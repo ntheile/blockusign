@@ -1,0 +1,31 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "./declarations",
+    "lib": [
+      "es5",
+      "es2015.iterable",
+      "es2015.collection",
+      "es2015.promise",
+      "dom"
+    ],
+    "suppressImplicitAnyIndexErrors": true,
+    "module": "es6",
+    "target": "es6",
+    "noImplicitAny": true,
+    "outDir": "./lib",
+    "preserveConstEnums": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "baseUrl": ".", // This must be specified if "paths" is.
+    "typeRoots" : ["typings", "node_modules/**/@types"]
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*-spec.ts"
+  ]
+}
