@@ -38,9 +38,19 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.480/pdf_viewer.js"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.480/pdf_viewer.css" rel="stylesheet">
+
+  <script src="./assets/text_layer_builder.js"></script>
+  <link href="./assets/text_layer_builder.css" rel="stylesheet">
   
 
-  
+
+
+  <script>
+    PDFJS = pdfjsLib;
+    PDFJS.DefaultTextLayerFactory  = DefaultTextLayerFactory;
+  </script>
+
+<script src="./assets/pdf-annotate.js"></script>
 
 </head>
 <body>

@@ -8,7 +8,13 @@ import { prototype } from 'long';
 declare var window: any;
 declare var PDFView: any;
 declare var canvas: any;
+import __pdfjs from 'pdfjs-dist/build/pdf';
+import PDFJSAnnotate from 'pdf-annotate';
+//import MyStoreAdapter from './myStoreAdapter';
 
+
+/// Pdf js basic example - https://jsfiddle.net/pdfjs/cq0asLqz/?utm_source=website&utm_medium=embed&utm_campaign=cq0asLqz
+/// Annotations sample - http://jsfiddle.net/seikichi/RuDvz/2/
 @Component({
     selector: 'page-home',
     templateUrl: 'home.html'
@@ -79,17 +85,31 @@ export class HomePage {
                     var pdfjsLib = window['pdfjs-dist/build/pdf'];
 
                     // The workerSrc property shall be specified.
-                    pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+                    //pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+
+                    pdfjsLib.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+                    PDFJSAnnotate.setStoreAdapter(new PDFJSAnnotate.LocalStoreAdapter());
+
+
+                   
+
 
                     // Using DocumentInitParameters object to load binary data.
                     var loadingTask = pdfjsLib.getDocument({ data: pdfData });
-                    loadingTask.promise.then(function (pdf) {
-                        console.log('PDF loaded');
 
-                        // Fetch the first page
+
+                    loadingTask.promise.then(function (pdf) {
+                        
+                        
+                        
+                        
+                        // console.log('PDF loaded');
+
+                        
                         var pageNumber = 1;
                         pdf.getPage(pageNumber).then(function (page) {
                             console.log('Page loaded');
+
 
                             var scale = 1.5;
                             var viewport = page.getViewport(scale);
@@ -109,7 +129,11 @@ export class HomePage {
                             renderTask.then(function () {
                                 console.log('Page rendered');
                             });
+
+                           
+
                         });
+
                     }, function (reason) {
                         // PDF loading error
                         console.error(reason);

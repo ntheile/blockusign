@@ -39,6 +39,7 @@
     "moment": "^2.20.1",
     "moment-timezone": "^0.5.14",
     "ng2-charts": "^1.6.0",
+    "pdf-annotate": "0.0.0",
     "pdfjs-dist": "^2.0.480",
     "rxjs": "5.5.2",
     "sw-toolbox": "3.6.0",

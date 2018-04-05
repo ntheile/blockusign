@@ -1,3 +1,18 @@
-page-list {
-
+.page {
+  position: relative;
+  width: 550px;
+  height: 700px;
+  margin: 0 auto 25px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+.page > .annotationLayer,
+.page > .textLayer {
+  position: absolute;
+  top: 10px;
+  left: 25px;
+  right: 25px;
+  bottom: 25px;
+  width: 500px;
+  height: 665px;
 }
