@@ -10,13 +10,13 @@
 <ion-content>
 
   <div class="toolbar">
-    <button class="rectangle" type="button" title="Rectangle" data-tooltype="area">&nbsp;</button>
-    <button class="highlight" type="button" title="Highlight" data-tooltype="highlight">&nbsp;</button>
-    <button class="strikeout" type="button" title="Strikeout" data-tooltype="strikeout">&nbsp;</button>
+    <button ion-button class="rectangle" title="Rectangle" data-tooltype="area">&nbsp;</button>
+    <button ion-button class="highlight" title="Highlight" data-tooltype="highlight">&nbsp;</button>
+    <button ion-button class="strikeout" title="Strikeout" data-tooltype="strikeout">&nbsp;</button>
 
     <div class="spacer"></div>
 
-    <a href="javascript://" class="clear" title="Clear">×</a>
+    <button ion-button class="clear" title="Clear" (click)="handleClearClick()">×</button>
   </div>
   <div class="page" id="pageContainer1" data-page-number="1">
     <svg class="annotationLayer" xmlns="http://www.w3.org/2000/svg"></svg>
@@ -41,31 +41,7 @@
       
     </div>
   </div>
-  <div class="page" id="pageContainer2" data-page-number="2">
-    <svg class="annotationLayer" xmlns="http://www.w3.org/2000/svg"></svg>
-    <div class="textLayer">
-      <p>Nunc quam nulla, tempor vitae rutrum ac, lacinia ut turpis. Sed vel nulla interdum, consequat odio id, finibus metus.
-        Nullam porta feugiat turpis vitae cursus. Vestibulum turpis lorem, blandit eget purus nec, ultricies tempor orci.
-        Curabitur id enim ac odio rhoncus finibus. Fusce sit amet laoreet ligula, in faucibus purus. Etiam non lacinia lectus.
-        Aliquam vel metus id lacus pretium consectetur. Phasellus turpis neque, vestibulum sit amet ipsum in, tincidunt elementum
-        sapien. Maecenas vitae risus fermentum, malesuada arcu vel, efficitur ex. Vestibulum consequat egestas dolor, in
-        sagittis augue placerat quis. Pellentesque in est at lacus tincidunt convallis in nec nulla. Vestibulum dictum lectus
-        sed pulvinar posuere. Donec ac ante porttitor lorem pellentesque sagittis quis ut urna. Aliquam erat volutpat. Cum
-        sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-      <p>Donec hendrerit risus ac eros imperdiet laoreet. Mauris nec leo velit. Pellentesque tincidunt lacus eros, in vulputate
-        risus efficitur a. In hac habitasse platea dictumst. Nam egestas, sapien vitae blandit semper, ante sapien tempus
-        tellus, eget semper ex purus blandit ante. Nam a sapien ac nulla elementum tempor. Morbi venenatis at lorem non mattis.
-        Maecenas nec sem id nulla fermentum porta in at augue. Donec id lacus sed urna faucibus pellentesque. Aenean dignissim
-        iaculis leo, id dapibus risus euismod id.</p>
-      <p>Vivamus ornare lorem rutrum, consequat nunc at, rhoncus nunc. Quisque et dictum lacus, eget consequat justo. Nunc vestibulum
-        tellus erat, non tincidunt dui fermentum ac. Fusce non felis mollis orci dictum tincidunt in nec dolor. Morbi est
-        mi, elementum eget commodo nec, eleifend vestibulum sapien. Vestibulum venenatis eget sapien vel sollicitudin. Nunc
-        libero neque, rhoncus sit amet accumsan ut, commodo et dui. Cras quis dui eget quam posuere eleifend. Cras tortor
-        massa, scelerisque vitae diam ac, bibendum placerat ligula. Nunc sed turpis sit amet nisi efficitur euismod hendrerit
-        at mauris. Integer pellentesque metus eu semper fringilla. Suspendisse eget nisi ullamcorper, sagittis est aliquam,
-        dictum felis. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-    </div>
-  </div>
+ 
 
 
 </ion-content>

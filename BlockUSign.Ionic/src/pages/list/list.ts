@@ -31,15 +31,15 @@ export class ListPage {
 
   data: any;
 
-  DOCUMENT_ID =  window.location.pathname.replace(/\/$/, '');
+  DOCUMENT_ID = window.location.pathname.replace(/\/$/, '');
   scale: any;
   rotation: any;
 
   UI = PDFAnnotate;
   page1: any;
   page2: any;
-  tooltype:any;
-  
+  tooltype: any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public cryptoCompareService: CryptoCompareService) {
 
   }
@@ -57,20 +57,31 @@ export class ListPage {
 
 
     this.page1 = document.querySelector('#pageContainer1 .annotationLayer');
-    this.page2 = document.querySelector('#pageContainer2 .annotationLayer');
+    //this.page2 = document.querySelector('#pageContainer2 .annotationLayer');
 
     PDFJS.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
-   
+
     PDFAnnotate.setStoreAdapter(new PDFAnnotate.LocalStoreAdapter());
 
     var self = this;
 
     Promise.all([
       PDFAnnotate.getAnnotations(self.DOCUMENT_ID, 1),
-      PDFAnnotate.getAnnotations(self.DOCUMENT_ID, 2)
+      //PDFAnnotate.getAnnotations(self.DOCUMENT_ID, 2)
     ]).then(([ann1, ann2]) => {
-      PDFAnnotate.render(self.page1, mockViewport(self.page1), ann1);
-      PDFAnnotate.render(self.page2, mockViewport(self.page2), ann2);
+
+
+      var RENDER_OPTIONS = {
+        documentId: self.DOCUMENT_ID,
+        pdfDocument: pdfData,
+        scale: 1,
+        rotate: 0
+      };
+
+      PDFAnnotate.render(1, RENDER_OPTIONS);
+
+      //PDFAnnotate.render(self.page1, mockViewport(self.page1), ann1);
+      //PDFAnnotate.render(self.page2, mockViewport(self.page2), ann2);
     });
 
 
@@ -90,7 +101,7 @@ export class ListPage {
       localStorage.setItem(`${this.DOCUMENT_ID}/tooltype`, type);
     }
     this.tooltype = type;
-    
+
     this.UI.UI.enableRect(type);
   }
 
@@ -100,11 +111,11 @@ export class ListPage {
     }
   }
 
-   handleClearClick(e) {
+  handleClearClick(e) {
     if (confirm('Are you sure you want to throw your work away?')) {
       localStorage.removeItem(`${this.DOCUMENT_ID}/annotations`);
       this.page1.innerHTML = '';
-      this.page2.innerHTML = '';
+
     }
   }
 
