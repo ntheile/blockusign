@@ -24,8 +24,8 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'Raw Data', component: ListPage }
+      { title: '1). Upload PDF', component: HomePage },
+      { title: '2). Annotate PDF', component: ListPage }
     ];
 
     // global vars

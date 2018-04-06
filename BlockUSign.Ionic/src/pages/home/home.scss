@@ -1,7 +1,5 @@
-#byte_content {
-    margin: 5px 0;
-    max-height: 100px;
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
-#byte_range { margin-top: 5px; }
+.centerMe {
+  max-width: 1024px;
+  position: relative; 
+  margin: 0 auto 25px;
+}

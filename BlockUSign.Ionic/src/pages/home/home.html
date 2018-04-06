@@ -1,79 +1,72 @@
 <ion-content>
-
-
-
   <ion-grid>
-    <ion-row >
-      <ion-col col-12 >
+    <ion-row>
+      <ion-col col-12>
         <ion-badge style="float:right">
-            
-            <ion-icon name="notifications" item-start></ion-icon>
+          <ion-icon name="notifications" item-start></ion-icon>
         </ion-badge>
       </ion-col>
     </ion-row>
-
   </ion-grid>
-
-
 
   <ion-fab left top menuToggle>
     <button ion-fab color="light" color="primary">
       <ion-icon name="menu"></ion-icon>
     </button>
-
   </ion-fab>
 
-  <script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
-
   <ion-grid>
-      <ion-row>
-        <ion-col width-100>
-            <div  style="max-width: 1024px">
-                <ion-card>
-                    <ion-card-header>
-                      Settings
-                    </ion-card-header>
-                    <ion-card-content ngClass="selectable">
-                      <input type="file" id="files" name="file" /> Read bytes: 
-                <span class="readBytesButtons">
-                  <button data-startbyte="0" data-endbyte="4">1-5</button>
-                  <button data-startbyte="5" data-endbyte="14">6-15</button>
-                  <button data-startbyte="6" data-endbyte="7">7-8</button>
-                  <button>entire file</button>
-                </span>
-                <div id="byte_range"></div>
-                <div id="byte_content"></div>
+    <ion-row>
+      <ion-col width-100>
+        <div class="centerMe">
+          <ion-card>
+            <ion-card-header>
+              Settings
+            </ion-card-header>
+            <ion-card-content ngClass="selectable">
+              <ion-item>
+                <label class="item item-input">
+                  <!-- <input type="file" id="upimgfile" name="uploadfile" ng-model="orderDetails.uploadfile"> -->
+                  <input type="file" id="files" name="file" />
+                </label>
+                <div class="preview-img">
+                  <img id="myImage" width="150" height="150" size="30" /> </div>
+              </ion-item>
 
 
-                <canvas id="the-canvas"></canvas>
-
-                    </ion-card-content>
-                 </ion-card>
-            </div>
-        </ion-col>
-      </ion-row>
+              <!-- <span class="readBytesButtons">
+                          <button data-startbyte="0" data-endbyte="4">1-5</button>
+                          <button data-startbyte="5" data-endbyte="14">6-15</button>
+                          <button data-startbyte="6" data-endbyte="7">7-8</button>
+                          <button>entire file</button>
+                        </span> -->
+              <!-- <div id="byte_range"></div>
+                        <div id="byte_content"></div> -->
+              <button ion-button (click)="loadFile()">Load</button>
+              <canvas id="the-canvas"></canvas>
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 
-  <!-- <ion-grid *ngIf="showAlert"> -->
   <ion-grid>
-      <ion-row>
-        <ion-col width-100>
-            <div  style="max-width: 1024px">
-                <ion-card>
-                    <ion-card-header>
-                      Alerts
-                    </ion-card-header>
-                    <ion-card-content ngClass="selectable">
-                     
-                      
-                    </ion-card-content>
-                 </ion-card>
-            </div>
-        </ion-col>
-      </ion-row>
+    <ion-row>
+      <ion-col width-100>
+        <div class="centerMe">
+          <ion-card>
+            <ion-card-header>
+              Alerts
+            </ion-card-header>
+            <ion-card-content ngClass="selectable">
+
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </ion-col>
+    </ion-row>
   </ion-grid>
-
-
 
 
 </ion-content>
