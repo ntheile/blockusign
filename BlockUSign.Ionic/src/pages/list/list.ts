@@ -47,6 +47,8 @@ export class ListPage {
 
   ionViewDidLoad() {
 
+    this.loadOtherGuy();
+
     let pdfData = this.loadPDFData();
 
     this.tooltype = localStorage.getItem(`${this.DOCUMENT_ID}/tooltype`) || 'area';
@@ -78,10 +80,15 @@ export class ListPage {
         rotate: 0
       };
 
-      PDFAnnotate.render(1, RENDER_OPTIONS);
+      //PDFAnnotate.render(1, RENDER_OPTIONS);
 
-      //PDFAnnotate.render(self.page1, mockViewport(self.page1), ann1);
+      PDFAnnotate.render(self.page1, mockViewport(self.page1), ann1);
       //PDFAnnotate.render(self.page2, mockViewport(self.page2), ann2);
+
+
+
+
+
     });
 
 
@@ -122,93 +129,57 @@ export class ListPage {
 
 
 
-  // ionViewDidLoad() {
+  loadOtherGuy() {
+    let pdfData = this.loadPDFData();
+    var loadingTask = pdfjsLib.getDocument({ data: pdfData });
 
 
-  //   PDFJS.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
-
-  //   var pdfData = this.loadPDFData();
-
-  //   PDFJSAnnotate.setStoreAdapter(new PDFJSAnnotate.LocalStoreAdapter());
-
-
-
-  //   var self = this;
-  //   PDFJS.getDocument(pdfData).then(function (pdf) {
-
-  //     // Get div#container and cache it for later use
-  //     var container = document.getElementById("container");
-
-  //     // Loop from 1 to total_number_of_pages in PDF document
-  //     for (var i = 1; i <= pdf.numPages; i++) {
-
-  //       // Get desired page
-  //       pdf.getPage(i).then(function (page) {
-
-  //         var scale = 1.0;
-  //         var viewport = page.getViewport(scale);
-  //         var div = document.createElement("div");
-
-  //         // Set id attribute with page-#{pdf_page_number} format
-  //         div.setAttribute("id", "page-" + (page.pageIndex + 1));
-
-  //         // This will keep positions of child elements as per our needs
-  //         div.setAttribute("style", "position: relative");
-
-  //         // Append div within div#container
-  //         container.appendChild(div);
-
-  //         // Create a new Canvas element
-  //         var canvas = document.createElement("canvas");
-
-  //         // Append Canvas within div#page-#{pdf_page_number}
-  //         div.appendChild(PDFJSAnnotate.UI.createPage(1));
-
-  //         var context = canvas.getContext('2d');
-  //         canvas.height = viewport.height;
-  //         canvas.width = viewport.width;
-
-  //         var renderContext = {
-  //           canvasContext: context,
-  //           viewport: viewport
-  //         };
-
-
-  //         var  RENDER_OPTIONS = {
-  //           documentId: 'MyPDF.pdf',
-  //           pdfDocument: pdf,
-  //           scale: 1,
-  //           rotate: 0
-  //         };
-
-  //         PDFJSAnnotate.UI.renderPage(1, RENDER_OPTIONS);
-
-
-
-  //         // Render PDF page
-  //         // page.render(renderContext) .then(function() {
-  //         //   // Get text-fragments
-  //         //   return page.getTextContent();
-  //         // })
-  //         // .then(function(textContent) {
+    loadingTask.promise.then(function (pdf) {
 
 
 
 
 
 
-  //         // });
+
+      var pageNumber = 1;
+      pdf.getPage(pageNumber).then(function (page) {
+        console.log('Page loaded');
+
+
+        var scale = 1.5;
+        var viewport = page.getViewport(scale);
+
+        // Prepare canvas using PDF page dimensions
+        var canvas = document.getElementById('page1');
+        var context = (<any>canvas).getContext('2d');
+        (<any>canvas).height = viewport.height;
+        (<any>canvas).width = viewport.width;
 
 
 
+        // Render PDF page into canvas context
+        var renderContext = {
+          canvasContext: context,
+          viewport: viewport
+        };
+        var renderTask = page.render(renderContext);
+        renderTask.then(function () {
+          console.log('Page rendered');
+        });
 
 
-  //       });
 
-  //     }
+      });
 
-  //   });
-  // }
+    }, function (reason) {
+      // PDF loading error
+      console.error(reason);
+    });
+
+
+
+  }
 
 
 
