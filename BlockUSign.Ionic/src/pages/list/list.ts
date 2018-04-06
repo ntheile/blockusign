@@ -136,18 +136,12 @@ export class ListPage {
 
     loadingTask.promise.then(function (pdf) {
 
-
-
-
-
-
-
       var pageNumber = 1;
       pdf.getPage(pageNumber).then(function (page) {
         console.log('Page loaded');
 
 
-        var scale = 1.5;
+        var scale = 1.0;
         var viewport = page.getViewport(scale);
 
         // Prepare canvas using PDF page dimensions
@@ -163,10 +157,35 @@ export class ListPage {
           canvasContext: context,
           viewport: viewport
         };
-        var renderTask = page.render(renderContext);
-        renderTask.then(function () {
-          console.log('Page rendered');
+        var renderTask = page.render(renderContext)
+        .then(function() {
+          // Get text-fragments
+          return page.getTextContent();
+        }).then(function(textContent) {
+          // Create div which will hold text-fragments
+          var textLayerDiv = document.createElement("div");
+      
+          // Set it's class to textLayer which have required CSS styles
+          textLayerDiv.setAttribute("class", "textLayer");
+      
+          // Append newly created div in `div#page-#{pdf_page_number}`
+          var div = document.getElementById("pageContainer1");
+          div.appendChild(textLayerDiv);
+      
+          // Create new instance of TextLayerBuilder class
+          var textLayer = new TextLayerBuilder({
+            textLayerDiv: textLayerDiv, 
+            pageIndex: page.pageIndex,
+            viewport: viewport
+          });
+      
+          // Set text-fragments
+          textLayer.setTextContent(textContent);
+      
+          // Render text-fragments
+          textLayer.render();
         });
+        
 
 
 

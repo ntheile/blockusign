@@ -11,7 +11,8 @@ declare var canvas: any;
 import __pdfjs from 'pdfjs-dist/build/pdf';
 import PDFJSAnnotate from 'pdf-annotate';
 //import MyStoreAdapter from './myStoreAdapter';
-
+declare var window: any;
+declare var TextEncoder: any;
 
 /// Pdf js basic example - https://jsfiddle.net/pdfjs/cq0asLqz/?utm_source=website&utm_medium=embed&utm_campaign=cq0asLqz
 /// Annotations sample - http://jsfiddle.net/seikichi/RuDvz/2/
@@ -31,16 +32,7 @@ export class HomePage {
     }
 
     ionViewDidLoad() {
-
-
-
-        // Loaded via <script> tag, create shortcut to access PDF.js exports.
-        var pdfjsLib = window['pdfjs-dist/build/pdf'];
-
-        // The workerSrc property shall be specified.
-        pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
-
-
+        var self = this;
 
         document.querySelector('.readBytesButtons').addEventListener('click', function (evt: any) {
             if (evt.target.tagName.toLowerCase() == 'button') {
@@ -48,27 +40,20 @@ export class HomePage {
                 var endByte = evt.target.getAttribute('data-endbyte');
                 var opt_startByte = startByte;
                 var opt_stopByte = endByte;
-
-
-
                 var files = (<any>document).getElementById('files').files;
                 if (!files.length) {
                     alert('Please select a file!');
                     return;
                 }
-
                 var file = files[0];
                 var start = parseInt(opt_startByte) || 0;
                 var stop = parseInt(opt_stopByte) || file.size - 1;
 
                 var reader = new FileReader();
-
-
-
                 // If we use onloadend, we need to check the readyState.
                 reader.onloadend = function (evt) {
-                    if ((<any>evt).target.readyState == (<any>FileReader).DONE) {  // tslint:disable-line
-                        document.getElementById('byte_content').textContent = (<any>evt).target.result;  // tslint:disable-line
+                    if ((<any>evt).target.readyState == (<any>FileReader).DONE) {  
+                        document.getElementById('byte_content').textContent = (<any>evt).target.result;
                         document.getElementById('byte_range').textContent =
                             ['Read bytes: ', start + 1, ' - ', stop + 1,
                                 ' of ', file.size, ' byte file'].join('');
@@ -80,72 +65,96 @@ export class HomePage {
                 reader.onload = function () {
                     var arraybuffer = this.result;
                     var pdfData = new Uint8Array(arraybuffer);
-
-                    // Loaded via <script> tag, create shortcut to access PDF.js exports.
-                    var pdfjsLib = window['pdfjs-dist/build/pdf'];
-
-                    // The workerSrc property shall be specified.
-                    //pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
-
-                    pdfjsLib.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
-                    PDFJSAnnotate.setStoreAdapter(new PDFJSAnnotate.LocalStoreAdapter());
-
-
-                   
-
-
-                    // Using DocumentInitParameters object to load binary data.
-                    var loadingTask = pdfjsLib.getDocument({ data: pdfData });
-
-
-                    loadingTask.promise.then(function (pdf) {
-                        
-                        
-                        
-                        
-                        // console.log('PDF loaded');
-
-                        
-                        var pageNumber = 1;
-                        pdf.getPage(pageNumber).then(function (page) {
-                            console.log('Page loaded');
-
-
-                            var scale = 1.5;
-                            var viewport = page.getViewport(scale);
-
-                            // Prepare canvas using PDF page dimensions
-                            var canvas = document.getElementById('the-canvas');
-                            var context = (<any>canvas).getContext('2d');
-                            (<any>canvas).height = viewport.height;
-                            (<any>canvas).width = viewport.width;
-
-                            // Render PDF page into canvas context
-                            var renderContext = {
-                                canvasContext: context,
-                                viewport: viewport
-                            };
-                            var renderTask = page.render(renderContext);
-                            renderTask.then(function () {
-                                console.log('Page rendered');
-                            });
-
-                           
-
-                        });
-
-                    }, function (reason) {
-                        // PDF loading error
-                        console.error(reason);
-                    });
-
-
+                    //self.savePdfAsString(pdfData);
+                    self.createPdf(pdfData);
                 };
                 reader.readAsArrayBuffer(blob);
-
             }
         }, false);
 
+    }
+
+    createPdf(pdfData) {
+        // Loaded via <script> tag, create shortcut to access PDF.js exports.
+        var pdfjsLib = window['pdfjs-dist/build/pdf'];
+
+        pdfjsLib.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+        PDFJSAnnotate.setStoreAdapter(new PDFJSAnnotate.LocalStoreAdapter());
+
+        var loadingTask = pdfjsLib.getDocument({ data: pdfData });
+
+        loadingTask.promise.then(function (pdf) {
+            console.log('PDF loaded');
+            var pageNumber = 1;
+            pdf.getPage(pageNumber).then(function (page) {
+                console.log('Page loaded');
+                var scale = 1.5;
+                var viewport = page.getViewport(scale);
+
+                // Prepare canvas using PDF page dimensions
+                var canvas = document.getElementById('the-canvas');
+                var context = (<any>canvas).getContext('2d');
+                (<any>canvas).height = viewport.height;
+                (<any>canvas).width = viewport.width;
+
+                // Render PDF page into canvas context
+                var renderContext = {
+                    canvasContext: context,
+                    viewport: viewport
+                };
+                var renderTask = page.render(renderContext);
+                renderTask.then(function () {
+                    console.log('Page rendered');
+                });
+            });
+
+        }, function (reason) {
+            // PDF loading error
+            console.error(reason);
+        });
+    }
+
+    savePdfAsString(pdf) {
+
+        this.largeuint8ArrToString(pdf, (strPdf) => {
+
+            // var blob = new Blob([strPdf], { type: "application/pdf" });
+            // var arrayBuffer;
+            // var fileReader = new FileReader();
+            // fileReader.onload = function () {
+            //     var arrayBuffer = this.result;
+            //     var pdfData = new Uint8Array(arrayBuffer);
+            //     var a = 1;
+            // };
+            // fileReader.readAsArrayBuffer(blob);
+
+
+           
+            //var blob = new Blob(strPdf, { type: "application/pdf" });
+
+            var self = this;
+            var reader = new FileReader();
+            //reader.readAsBinaryString(blob);
+            reader.onload = function () {
+                var arraybuffer = this.result;
+                var pdfData = new Uint8Array(arraybuffer);
+                self.createPdf(pdfData);
+            };
+            reader.readAsArrayBuffer(strPdf);
+
+        });
+
+    }
+
+
+    largeuint8ArrToString(uint8arr, callback) {
+        var bb = new Blob([uint8arr]);
+        var f = new FileReader();
+        f.onload = function (e) {
+            callback((<any>e).target.result);
+        };
+
+        f.readAsText(bb);
     }
 
 
