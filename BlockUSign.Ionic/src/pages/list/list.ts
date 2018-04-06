@@ -205,7 +205,7 @@ export class ListPage {
 
   loadPDFData() {
     /*jshint multistr: true */
-    var base64pdfData = '\
+    var base64pdfData = localStorage.getItem("pdfStr") || '\
 JVBERi0xLjUKJeTw7fgKOCAwIG9iago8PC9GaWx0ZXIvRmxhdGVEZWNvZGUvTGVuZ3RoIDExOT4+\
 CnN0cmVhbQp42mXLuwrCUBCE4d6nmFIh2ezlcDZpgwZJpbCdWHkpJEHE94dEQVBkpvw/PCDgeQLX\
 +YzTiDZQdQJN5LUjrvBMLiidiRVxPiy3l2G4F6tj9NjEfy9JyOpvsFt3dHv+AEVDTbZXryYkhjIb\

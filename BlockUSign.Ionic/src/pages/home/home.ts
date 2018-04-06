@@ -127,7 +127,6 @@ export class HomePage {
         var len = binary.length;
         var arraybuffer = new ArrayBuffer(len);
         var pdfData = new Uint8Array(arraybuffer);
-        this.createPdf(pdfData);
     }
 
     largeuint8ArrToString(uint8arr, callback) {
