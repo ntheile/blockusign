@@ -16,7 +16,6 @@ import { CoinService } from '../services/coin.service';
 import { CryptoCompareService } from '../services/cryptocompare.service';
 import { SlackService } from '../services/slack.service';
 
-
 @NgModule({
   declarations: [
     MyApp,

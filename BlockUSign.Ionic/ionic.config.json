@@ -4,5 +4,11 @@
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
-  }
+  },
+  "proxies": [
+    {
+      "path": "/blockstack",
+      "proxyUrl": "https://blockstack.org"
+    }
+  ]
 }

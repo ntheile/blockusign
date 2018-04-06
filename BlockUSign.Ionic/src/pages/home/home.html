@@ -4,7 +4,9 @@
       <ion-col col-12>
         <ion-badge style="float:right">
           <ion-icon name="notifications" item-start></ion-icon>
+
         </ion-badge>
+
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -60,7 +62,8 @@
               Alerts
             </ion-card-header>
             <ion-card-content ngClass="selectable">
-
+                <button ion-button (click)="login()" >Login</button>
+                <button ion-button (click)="showProfile()" >Show Profile</button>
             </ion-card-content>
           </ion-card>
         </div>
