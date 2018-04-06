@@ -65,7 +65,7 @@ export class HomePage {
                 reader.onload = function () {
                     var arraybuffer = this.result;
                     var pdfData = new Uint8Array(arraybuffer);
-                    //self.savePdfAsString(pdfData);
+                    self.savePdfAsString(pdfData);
                     self.createPdf(pdfData);
                 };
                 reader.readAsArrayBuffer(blob);
@@ -115,37 +115,20 @@ export class HomePage {
     }
 
     savePdfAsString(pdf) {
-
         this.largeuint8ArrToString(pdf, (strPdf) => {
-
-            // var blob = new Blob([strPdf], { type: "application/pdf" });
-            // var arrayBuffer;
-            // var fileReader = new FileReader();
-            // fileReader.onload = function () {
-            //     var arrayBuffer = this.result;
-            //     var pdfData = new Uint8Array(arrayBuffer);
-            //     var a = 1;
-            // };
-            // fileReader.readAsArrayBuffer(blob);
-
-
-           
-            //var blob = new Blob(strPdf, { type: "application/pdf" });
-
-            var self = this;
-            var reader = new FileReader();
-            //reader.readAsBinaryString(blob);
-            reader.onload = function () {
-                var arraybuffer = this.result;
-                var pdfData = new Uint8Array(arraybuffer);
-                self.createPdf(pdfData);
-            };
-            reader.readAsArrayBuffer(strPdf);
-
+            var base64StringPdf = btoa(strPdf);
+            localStorage.setItem("pdfStr", base64StringPdf);
         });
-
     }
 
+    getPdfFromString(base64PdfString){
+        // decode base64 string, remove space for IE compatibility
+        var binary = atob(base64PdfString.replace(/\s/g, ''));
+        var len = binary.length;
+        var arraybuffer = new ArrayBuffer(len);
+        var pdfData = new Uint8Array(arraybuffer);
+        this.createPdf(pdfData);
+    }
 
     largeuint8ArrToString(uint8arr, callback) {
         var bb = new Blob([uint8arr]);
@@ -153,10 +136,8 @@ export class HomePage {
         f.onload = function (e) {
             callback((<any>e).target.result);
         };
-
-        f.readAsText(bb);
+        f.readAsBinaryString(bb);
     }
-
 
 }
 
