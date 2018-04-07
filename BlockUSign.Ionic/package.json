@@ -10,11 +10,11 @@
     "lint": "ionic-app-scripts lint",
     "ionic:build": "ionic-app-scripts build",
     "ionic:serve": "ionic-app-scripts serve",
-    "buildweb": "ionic build && cp -av ./www/* ../PopBot.BE/wwwroot/",
-    "node": "ionic build && node server.js",
-    "fast": "node server.js",
-    "chrome": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./chrome.ps1",
-    "chrome-mac": "./chrome.sh",
+    "buildweb": "ionic build && cp -av ./www/* ../blockusign.BE/wwwroot/",
+    "fast": "node ./scripts/server.js",
+    "chrome": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./scripts/chrome.ps1",
+    "chrome-mac": "./scripts/chrome.sh",
+    "serve": "ionic build && node ./scripts/server.js",
     "start": "npm run chrome-mac && ionic serve"
   },
   "dependencies": {

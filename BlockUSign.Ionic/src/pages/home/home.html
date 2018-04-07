@@ -4,9 +4,9 @@
       <ion-col col-12>
         <ion-badge style="float:right">
           <ion-icon name="notifications" item-start></ion-icon>
-
         </ion-badge>
-
+        <!-- <button ion-button (click)="login()" style="float:right"  >Login</button> -->
+        <button ion-button (click)="logout()" style="float:right" >{{name}} {{ loginState }} </button>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -23,13 +23,14 @@
         <div class="centerMe">
           <ion-card>
             <ion-card-header>
-              Settings
+              <h1>Block-U-Sign</h1>
+              Upload PDF
             </ion-card-header>
             <ion-card-content ngClass="selectable">
               <ion-item>
                 <label class="item item-input">
                   <!-- <input type="file" id="upimgfile" name="uploadfile" ng-model="orderDetails.uploadfile"> -->
-                  <input type="file" id="files" name="file" />
+                  <input type="file" id="files" name="file" (submit)="loadFile()" />
                 </label>
                 <div class="preview-img">
                   <img id="myImage" width="150" height="150" size="30" /> </div>
@@ -52,24 +53,5 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
-  <ion-grid>
-    <ion-row>
-      <ion-col width-100>
-        <div class="centerMe">
-          <ion-card>
-            <ion-card-header>
-              Alerts
-            </ion-card-header>
-            <ion-card-content ngClass="selectable">
-                <button ion-button (click)="login()" >Login</button>
-                <button ion-button (click)="showProfile()" >Show Profile</button>
-            </ion-card-content>
-          </ion-card>
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
 
 </ion-content>

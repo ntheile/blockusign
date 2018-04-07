@@ -22,23 +22,42 @@ declare let blockstack: any;
 })
 export class HomePage {
 
+
+    name: string;
+    isLoggedIn = false;
+    loginState = "Login";
+
     constructor(public navCtrl: NavController, public loadingCtrl: LoadingController) {
 
     }
 
     ionViewDidLoad() {
-       
+        this.showProfile();
     }
 
     login() {
         blockstack.redirectToSignIn();
     }
 
+    logout() {
+        blockstack.signUserOut(window.location.origin);
+    }
 
-
-    showProfile(profile) {
-        var person = new blockstack.Person(profile)
-        alert("Hi" + person.name());
+    showProfile() {
+        if (blockstack.isUserSignedIn()) {
+            let profile = blockstack.loadUserData().profile;
+            let person = new blockstack.Person(profile);
+            this.name = person.name();
+            this.isLoggedIn = true;
+            this.loginState = "[Logout]";
+        } else if (blockstack.isSignInPending()) {
+            blockstack.handlePendingSignIn().then(function (userData) {
+                window.location = window.location.origin
+            })
+        }
+        else{
+            this.login();
+        }
     }
 
 
