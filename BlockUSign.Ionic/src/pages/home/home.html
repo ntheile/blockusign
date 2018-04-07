@@ -23,7 +23,7 @@
         <div class="centerMe">
           <ion-card>
             <ion-card-header>
-              <h1>Block-U-Sign</h1>
+              <h1>blockusign</h1>
               Upload PDF
             </ion-card-header>
             <ion-card-content ngClass="selectable">
@@ -45,7 +45,9 @@
                         </span> -->
               <!-- <div id="byte_range"></div>
                         <div id="byte_content"></div> -->
-              <button ion-button (click)="loadFile()">Load</button>
+              <button ion-button (click)="loadFile()">Load PDF</button>
+              <button ion-button (click)="saveFile()">Save File</button>
+              <button ion-button (click)="getFile()">Get File</button>
               <canvas id="the-canvas"></canvas>
             </ion-card-content>
           </ion-card>

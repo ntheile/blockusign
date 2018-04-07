@@ -26,6 +26,7 @@ export class HomePage {
     name: string;
     isLoggedIn = false;
     loginState = "Login";
+    storageFile = "blockusign/pdf1.txt";
 
     constructor(public navCtrl: NavController, public loadingCtrl: LoadingController) {
 
@@ -36,7 +37,8 @@ export class HomePage {
     }
 
     login() {
-        blockstack.redirectToSignIn();
+        const origin = window.location.origin
+        blockstack.redirectToSignIn(origin, origin + '/manifest.json', ['store_write', 'publish_data'])
     }
 
     logout() {
@@ -55,11 +57,23 @@ export class HomePage {
                 window.location = window.location.origin
             })
         }
-        else{
+        else {
             this.login();
         }
     }
 
+
+    saveFile() {
+        blockstack.putFile(this.storageFile, localStorage.getItem("pdfStr"), { encrypt: true });
+    }
+
+    getFile() {
+        blockstack.getFile(this.storageFile, { decrypt: true })
+            .then((data) => {
+                let pdfBase64 = data;
+                console.log(pdfBase64);
+            })
+    }
 
     loadFile() {
         let fileInput: any = document.getElementById('files');
