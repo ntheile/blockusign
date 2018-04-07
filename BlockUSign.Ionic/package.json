@@ -14,7 +14,8 @@
     "node": "ionic build && node server.js",
     "fast": "node server.js",
     "chrome": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./chrome.ps1",
-    "start": "npm run chrome && ionic serve"
+    "chrome-mac": "./chrome.sh",
+    "start": "npm run chrome-mac && ionic serve"
   },
   "dependencies": {
     "@angular/common": "5.0.3",
