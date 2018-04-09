@@ -27,6 +27,7 @@ export class HomePage {
     isLoggedIn = false;
     loginState = "Login";
     storageFile = "blockusign/pdf1.txt";
+    profile: any;
 
     constructor(public navCtrl: NavController, public loadingCtrl: LoadingController) {
 
@@ -47,9 +48,8 @@ export class HomePage {
 
     showProfile() {
         if (blockstack.isUserSignedIn()) {
-            let profile = blockstack.loadUserData().profile;
-            let person = new blockstack.Person(profile);
-            this.name = person.name();
+            let profile = blockstack.loadUserData();
+            this.name = profile.username;
             this.isLoggedIn = true;
             this.loginState = "[Logout]";
         } else if (blockstack.isSignInPending()) {
