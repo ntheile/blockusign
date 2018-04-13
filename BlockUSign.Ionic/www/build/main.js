@@ -67,7 +67,7 @@ var HomePage = (function () {
         this.loadingCtrl = loadingCtrl;
         this.isLoggedIn = false;
         this.loginState = "Login";
-        this.storageFile = "blockusign/pdf1.txt";
+        this.fileName = "blockusign/pdf1.txt";
     }
     HomePage.prototype.ionViewDidLoad = function () {
         this.showProfile();
@@ -96,13 +96,13 @@ var HomePage = (function () {
         }
     };
     HomePage.prototype.saveFile = function () {
-        blockstack.putFile(this.storageFile, localStorage.getItem("pdfStr"), { encrypt: true });
+        blockstack.putFile(this.fileName, this.pdfBuffer, { encrypt: true }).then(function (data) {
+        });
     };
     HomePage.prototype.getFile = function () {
-        blockstack.getFile(this.storageFile, { decrypt: true })
-            .then(function (data) {
-            var pdfBase64 = data;
-            console.log(pdfBase64);
+        var _this = this;
+        blockstack.getFile(this.fileName, { decrypt: true }).then(function (data) {
+            _this.pdfBuffer = data;
         });
     };
     HomePage.prototype.loadFile = function () {
@@ -131,12 +131,14 @@ var HomePage = (function () {
                 //         ' of ', file.size, ' byte file'].join('');
             }
             var filename = fileInput.files[0].name;
-            localStorage.setItem("FileName", filename);
+            //localStorage.setItem("FileName", filename);
         };
         var blob = file.slice(start, stop + 1);
         //reader.readAsBinaryString(blob);
         reader.onload = function (evt) {
             var arraybuffer = evt.target.result;
+            _this.pdfBuffer = arraybuffer;
+            _this.saveFile();
             var pdfData = new Uint8Array(arraybuffer);
             _this.savePdfAsString(pdfData);
             _this.createPdf(pdfData);
@@ -179,7 +181,7 @@ var HomePage = (function () {
     HomePage.prototype.savePdfAsString = function (pdf) {
         this.largeuint8ArrToString(pdf, function (strPdf) {
             var base64StringPdf = btoa(strPdf);
-            localStorage.setItem("pdfStr", base64StringPdf);
+            //localStorage.setItem("pdfStr", base64StringPdf);
         });
     };
     HomePage.prototype.getPdfFromString = function (base64PdfString) {
@@ -258,32 +260,37 @@ var ListPage = (function () {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.cryptoCompareService = cryptoCompareService;
-        this.DOCUMENT_ID = localStorage.getItem("FileName");
+        this.DOCUMENT_ID = "blockusign/pdf1.txt";
         this.UI = __WEBPACK_IMPORTED_MODULE_8_pdf_annotate___default.a;
         this.containerId = "pageContainer1";
         this.canvasId = "canvas1";
+        this.fileName = "blockusign/pdf1.txt";
     }
     ListPage.prototype.ionViewDidLoad = function () {
+        //let pdfData = this.loadPDFData(); // loads pdf data from localStorage, make sure you uploaded it from home.js
         var _this = this;
-        var pdfData = this.loadPDFData(); // loads pdf data from localStorage, make sure you uploaded it from home.js
-        this.loadPdf(pdfData); // loads the pdf to the screen with the text layers
-        this.setupToolBar();
-        this.page1 = document.querySelector("#" + this.containerId + " .annotationLayer");
-        //this.page2 = document.querySelector('#pageContainer2 .annotationLayer');
-        __WEBPACK_IMPORTED_MODULE_7_pdfjs_dist_build_pdf___default.a.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
-        __WEBPACK_IMPORTED_MODULE_8_pdf_annotate___default.a.setStoreAdapter(new __WEBPACK_IMPORTED_MODULE_8_pdf_annotate___default.a.LocalStoreAdapter());
-        Promise.all([
-            __WEBPACK_IMPORTED_MODULE_8_pdf_annotate___default.a.getAnnotations(this.DOCUMENT_ID, 1),
-        ]).then(function (_a) {
-            var ann1 = _a[0], ann2 = _a[1];
-            var RENDER_OPTIONS = {
-                documentId: _this.DOCUMENT_ID,
-                pdfDocument: pdfData,
-                scale: 1,
-                rotate: 0
-            };
-            __WEBPACK_IMPORTED_MODULE_8_pdf_annotate___default.a.render(_this.page1, Object(__WEBPACK_IMPORTED_MODULE_9__mockViewport__["a" /* default */])(_this.page1), ann1);
-            //PDFAnnotate.render(this.page2, mockViewport(this.page2), ann2);
+        blockstack.getFile(this.fileName, { decrypt: true }).then(function (data) {
+            _this.pdfBuffer = data;
+            var pdfData = new Uint8Array(_this.pdfBuffer);
+            _this.loadPdf(pdfData); // loads the pdf to the screen with the text layers
+            _this.setupToolBar();
+            _this.page1 = document.querySelector("#" + _this.containerId + " .annotationLayer");
+            //this.page2 = document.querySelector('#pageContainer2 .annotationLayer');
+            __WEBPACK_IMPORTED_MODULE_7_pdfjs_dist_build_pdf___default.a.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+            __WEBPACK_IMPORTED_MODULE_8_pdf_annotate___default.a.setStoreAdapter(new __WEBPACK_IMPORTED_MODULE_8_pdf_annotate___default.a.LocalStoreAdapter());
+            Promise.all([
+                __WEBPACK_IMPORTED_MODULE_8_pdf_annotate___default.a.getAnnotations(_this.DOCUMENT_ID, 1),
+            ]).then(function (_a) {
+                var ann1 = _a[0], ann2 = _a[1];
+                var RENDER_OPTIONS = {
+                    documentId: _this.DOCUMENT_ID,
+                    pdfDocument: pdfData,
+                    scale: 1,
+                    rotate: 0
+                };
+                __WEBPACK_IMPORTED_MODULE_8_pdf_annotate___default.a.render(_this.page1, Object(__WEBPACK_IMPORTED_MODULE_9__mockViewport__["a" /* default */])(_this.page1), ann1);
+                //PDFAnnotate.render(this.page2, mockViewport(this.page2), ann2);
+            });
         });
     };
     ListPage.prototype.loadPdf = function (pdfData) {
@@ -422,9 +429,10 @@ var ListPage = (function () {
             selector: 'page-list',template:/*ion-inline-start:"N:\code\git\blockusign\BlockUSign.Ionic\src\pages\list\list.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Block-U-Sign</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n\n\n  <div class="toolbar centerMe">\n\n    <!-- <button ion-button class="rectangle" title="Rectangle" data-tooltype="area">&nbsp;</button>\n\n    <button ion-button class="highlight" title="Highlight" data-tooltype="highlight">&nbsp;</button>\n\n    <button ion-button class="strikeout" title="Strikeout" data-tooltype="strikeout">&nbsp;</button> -->\n\n    <div class="spacer"></div>\n\n    <button ion-button class="clear" title="Clear" (click)="handleClearClick()">×</button>\n\n  </div>\n\n  <div class="page" id="pageContainer1" data-page-number="1">\n\n    <div id="canvasWrapper">\n\n      <canvas id="canvas1"></canvas>\n\n    </div>\n\n    <svg class="annotationLayer" xmlns="http://www.w3.org/2000/svg"></svg>\n\n    <div class="textLayer"></div>\n\n  </div>\n\n \n\n</ion-content>'/*ion-inline-end:"N:\code\git\blockusign\BlockUSign.Ionic\src\pages\list\list.html"*/,
             styles: ['list.scss']
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__services_cryptocompare_service__["a" /* CryptoCompareService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_cryptocompare_service__["a" /* CryptoCompareService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_cryptocompare_service__["a" /* CryptoCompareService */]) === "function" && _c || Object])
     ], ListPage);
     return ListPage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=list.js.map

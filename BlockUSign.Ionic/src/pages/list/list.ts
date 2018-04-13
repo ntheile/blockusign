@@ -18,6 +18,7 @@ declare let TextLayerBuilder: any;
 declare let canvas: any;
 declare let scale: any;
 declare let rotation: any;
+declare var blockstack: any;
 
 /// https://www.sitepoint.com/custom-pdf-rendering/
 @Component({
@@ -28,7 +29,7 @@ declare let rotation: any;
 export class ListPage {
 
   public data: any;
-  public DOCUMENT_ID = localStorage.getItem("FileName");
+  public DOCUMENT_ID = "blockusign/pdf1.txt";
   public scale: any;
   public rotation: any;
   public UI = PDFAnnotate;
@@ -37,6 +38,8 @@ export class ListPage {
   public tooltype: any;
   public containerId: string =  "pageContainer1";
   public canvasId: string = "canvas1";
+  fileName = "blockusign/pdf1.txt";
+  pdfBuffer: Buffer;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public cryptoCompareService: CryptoCompareService) {
 
@@ -46,34 +49,42 @@ export class ListPage {
   ionViewDidLoad() {
 
     
-    let pdfData = this.loadPDFData(); // loads pdf data from localStorage, make sure you uploaded it from home.js
-    this.loadPdf(pdfData); // loads the pdf to the screen with the text layers
+    //let pdfData = this.loadPDFData(); // loads pdf data from localStorage, make sure you uploaded it from home.js
 
-    this.setupToolBar();
- 
-    this.page1 = document.querySelector(`#${this.containerId} .annotationLayer`);
-    //this.page2 = document.querySelector('#pageContainer2 .annotationLayer');
 
-    PDFJS.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
-    PDFAnnotate.setStoreAdapter(new PDFAnnotate.LocalStoreAdapter());
-
-    Promise.all([
-      PDFAnnotate.getAnnotations(this.DOCUMENT_ID, 1),
-      //PDFAnnotate.getAnnotations(this.DOCUMENT_ID, 2)
-    ]).then(([ann1, ann2]) => {
+    blockstack.getFile(this.fileName, { decrypt: true }).then((data) => {
+      this.pdfBuffer = data;            
       
-      let RENDER_OPTIONS = {
-        documentId: this.DOCUMENT_ID,
-        pdfDocument: pdfData,
-        scale: 1,
-        rotate: 0
-      };
+      let pdfData = new Uint8Array( this.pdfBuffer);
 
-      PDFAnnotate.render(this.page1, mockViewport(this.page1), ann1);
-      //PDFAnnotate.render(this.page2, mockViewport(this.page2), ann2);
+      this.loadPdf(pdfData); // loads the pdf to the screen with the text layers
+
+      this.setupToolBar();
+   
+      this.page1 = document.querySelector(`#${this.containerId} .annotationLayer`);
+      //this.page2 = document.querySelector('#pageContainer2 .annotationLayer');
+  
+      PDFJS.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+      PDFAnnotate.setStoreAdapter(new PDFAnnotate.LocalStoreAdapter());
+  
+      Promise.all([
+        PDFAnnotate.getAnnotations(this.DOCUMENT_ID, 1),
+        //PDFAnnotate.getAnnotations(this.DOCUMENT_ID, 2)
+      ]).then(([ann1, ann2]) => {
+        
+        let RENDER_OPTIONS = {
+          documentId: this.DOCUMENT_ID,
+          pdfDocument: pdfData,
+          scale: 1,
+          rotate: 0
+        };
+  
+        PDFAnnotate.render(this.page1, mockViewport(this.page1), ann1);
+        //PDFAnnotate.render(this.page2, mockViewport(this.page2), ann2);
+  
+      });
 
     });
-
   }
 
 

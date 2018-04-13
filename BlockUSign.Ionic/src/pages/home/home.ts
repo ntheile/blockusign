@@ -26,8 +26,9 @@ export class HomePage {
     name: string;
     isLoggedIn = false;
     loginState = "Login";
-    storageFile = "blockusign/pdf1.txt";
+    fileName = "blockusign/pdf1.txt";
     profile: any;
+    pdfBuffer: Buffer;
 
     constructor(public navCtrl: NavController, public loadingCtrl: LoadingController) {
 
@@ -64,15 +65,16 @@ export class HomePage {
 
 
     saveFile() {
-        blockstack.putFile(this.storageFile, localStorage.getItem("pdfStr"), { encrypt: true });
+
+        blockstack.putFile(this.fileName, this.pdfBuffer , { encrypt: true }).then((data) => {
+                
+        });
     }
 
     getFile() {
-        blockstack.getFile(this.storageFile, { decrypt: true })
-            .then((data) => {
-                let pdfBase64 = data;
-                console.log(pdfBase64);
-            })
+        blockstack.getFile(this.fileName, { decrypt: true }).then((data) => {
+            this.pdfBuffer = data;            
+        });
     }
 
     loadFile() {
@@ -102,13 +104,15 @@ export class HomePage {
                 //         ' of ', file.size, ' byte file'].join('');
             }
             let filename = fileInput.files[0].name;
-            localStorage.setItem("FileName", filename);
+            //localStorage.setItem("FileName", filename);
         };
 
         let blob = file.slice(start, stop + 1);
         //reader.readAsBinaryString(blob);
         reader.onload = (evt: any) => {
             let arraybuffer = evt.target.result;
+            this.pdfBuffer = arraybuffer;
+            this.saveFile();
             let pdfData = new Uint8Array(arraybuffer);
             this.savePdfAsString(pdfData);
             this.createPdf(pdfData);
@@ -159,7 +163,7 @@ export class HomePage {
     savePdfAsString(pdf) {
         this.largeuint8ArrToString(pdf, (strPdf) => {
             let base64StringPdf = btoa(strPdf);
-            localStorage.setItem("pdfStr", base64StringPdf);
+            //localStorage.setItem("pdfStr", base64StringPdf);
         });
     }
 
