@@ -45,6 +45,7 @@ webpackEmptyAsyncContext.id = 180;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_pdf_annotate__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_pdf_annotate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_pdf_annotate__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_global_service__ = __webpack_require__(466);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -59,15 +60,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /// Pdf js basic example - https://jsfiddle.net/pdfjs/cq0asLqz/?utm_source=website&utm_medium=embed&utm_campaign=cq0asLqz
 /// Annotations sample - http://jsfiddle.net/seikichi/RuDvz/2/
 var HomePage = (function () {
-    function HomePage(navCtrl, loadingCtrl) {
+    function HomePage(navCtrl, loadingCtrl, globalService) {
         this.navCtrl = navCtrl;
         this.loadingCtrl = loadingCtrl;
+        this.globalService = globalService;
         this.isLoggedIn = false;
         this.loginState = "Login";
-        this.fileName = "blockusign/pdf1.txt";
+        this.fileName = "blockusign/pdf1.pdf";
+        var s = globalService.GaiUrl;
+        debugger;
     }
     HomePage.prototype.ionViewDidLoad = function () {
         this.showProfile();
@@ -203,7 +208,7 @@ var HomePage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-home',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/home/home.html"*/'<ion-content>\n  <ion-grid>\n    <ion-row>\n      <ion-col col-12>\n        <ion-badge style="float:right">\n          <ion-icon name="notifications" item-start></ion-icon>\n        </ion-badge>\n        <!-- <button ion-button (click)="login()" style="float:right"  >Login</button> -->\n        <button ion-button (click)="logout()" style="float:right" >{{name}} {{ loginState }} </button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-fab left top menuToggle>\n    <button ion-fab color="light" color="primary">\n      <ion-icon name="menu"></ion-icon>\n    </button>\n  </ion-fab>\n\n  <ion-grid>\n    <ion-row>\n      <ion-col width-100>\n        <div class="centerMe">\n          <ion-card>\n            <ion-card-header>\n              <h1>blockusign</h1>\n              Upload PDF\n            </ion-card-header>\n            <ion-card-content ngClass="selectable">\n              <ion-item>\n                <label class="item item-input">\n                  <!-- <input type="file" id="upimgfile" name="uploadfile" ng-model="orderDetails.uploadfile"> -->\n                  <input type="file" id="files" name="file" (submit)="loadFile()" />\n                </label>\n                <div class="preview-img">\n                  <img id="myImage" width="150" height="150" size="30" /> </div>\n              </ion-item>\n\n\n              <!-- <span class="readBytesButtons">\n                          <button data-startbyte="0" data-endbyte="4">1-5</button>\n                          <button data-startbyte="5" data-endbyte="14">6-15</button>\n                          <button data-startbyte="6" data-endbyte="7">7-8</button>\n                          <button>entire file</button>\n                        </span> -->\n              <!-- <div id="byte_range"></div>\n                        <div id="byte_content"></div> -->\n              <button ion-button (click)="loadFile()">Load PDF</button>\n              <button ion-button (click)="saveFile()">Save File</button>\n              <button ion-button (click)="getFile()">Get File</button>\n              <canvas id="the-canvas"></canvas>\n            </ion-card-content>\n          </ion-card>\n        </div>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n</ion-content>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/home/home.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* LoadingController */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_4__services_global_service__["a" /* GlobalService */]])
     ], HomePage);
     return HomePage;
 }());
@@ -220,11 +225,11 @@ var HomePage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_cryptocompare_service__ = __webpack_require__(231);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_retry__ = __webpack_require__(468);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_retry__ = __webpack_require__(469);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_retry___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_retry__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_timeout__ = __webpack_require__(471);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_timeout__ = __webpack_require__(472);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_timeout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_timeout__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_delay__ = __webpack_require__(479);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_delay__ = __webpack_require__(480);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_delay___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_delay__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map__);
@@ -232,7 +237,7 @@ var HomePage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_pdfjs_dist_build_pdf___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_pdfjs_dist_build_pdf__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_pdf_annotate__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_pdf_annotate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_pdf_annotate__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__mockViewport__ = __webpack_require__(516);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__mockViewport__ = __webpack_require__(517);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -263,7 +268,7 @@ var ListPage = (function () {
         this.UI = __WEBPACK_IMPORTED_MODULE_8_pdf_annotate___default.a;
         this.containerId = "pageContainer1";
         this.canvasId = "canvas1";
-        this.fileName = "blockusign/pdf1.txt";
+        this.fileName = "blockusign/pdf1.pdf";
     }
     ListPage.prototype.ionViewDidLoad = function () {
         //let pdfData = this.loadPDFData(); // loads pdf data from localStorage, make sure you uploaded it from home.js
@@ -613,17 +618,19 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_list_list__ = __webpack_require__(230);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_status_bar__ = __webpack_require__(220);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_splash_screen__ = __webpack_require__(223);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_ng2_charts__ = __webpack_require__(517);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_ng2_charts__ = __webpack_require__(518);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_ng2_charts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_ng2_charts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_coin_service__ = __webpack_require__(566);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_cryptocompare_service__ = __webpack_require__(231);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_slack_service__ = __webpack_require__(567);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_coin_service__ = __webpack_require__(567);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_global_service__ = __webpack_require__(466);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_cryptocompare_service__ = __webpack_require__(231);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_slack_service__ = __webpack_require__(568);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -666,8 +673,9 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_7__ionic_native_status_bar__["a" /* StatusBar */],
                 __WEBPACK_IMPORTED_MODULE_8__ionic_native_splash_screen__["a" /* SplashScreen */],
                 __WEBPACK_IMPORTED_MODULE_10__services_coin_service__["a" /* CoinService */],
-                __WEBPACK_IMPORTED_MODULE_11__services_cryptocompare_service__["a" /* CryptoCompareService */],
-                __WEBPACK_IMPORTED_MODULE_12__services_slack_service__["a" /* SlackService */],
+                __WEBPACK_IMPORTED_MODULE_12__services_cryptocompare_service__["a" /* CryptoCompareService */],
+                __WEBPACK_IMPORTED_MODULE_13__services_slack_service__["a" /* SlackService */],
+                __WEBPACK_IMPORTED_MODULE_11__services_global_service__["a" /* GlobalService */],
                 { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ErrorHandler"], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicErrorHandler */] }
             ]
         })
@@ -755,14 +763,38 @@ var MyApp = (function () {
 
 /***/ }),
 
-/***/ 487:
-/***/ (function(module, exports) {
+/***/ 466:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-/* (ignored) */
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GlobalService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var GlobalService = (function () {
+    function GlobalService() {
+        this.GaiUrl = "http://21312";
+    }
+    GlobalService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [])
+    ], GlobalService);
+    return GlobalService;
+}());
+
+//# sourceMappingURL=global.service.js.map
 
 /***/ }),
 
-/***/ 507:
+/***/ 488:
 /***/ (function(module, exports) {
 
 /* (ignored) */
@@ -783,7 +815,14 @@ var MyApp = (function () {
 
 /***/ }),
 
-/***/ 516:
+/***/ 510:
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 517:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -800,7 +839,7 @@ function mockViewport(page) {
 
 /***/ }),
 
-/***/ 548:
+/***/ 549:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -1057,11 +1096,11 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 548;
+webpackContext.id = 549;
 
 /***/ }),
 
-/***/ 566:
+/***/ 567:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1169,7 +1208,7 @@ var CoinService = (function () {
 
 /***/ }),
 
-/***/ 567:
+/***/ 568:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

@@ -12,6 +12,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ChartsModule } from 'ng2-charts';
 
 import { CoinService } from '../services/coin.service';
+import { GlobalService } from '../services/global.service'
 
 import { CryptoCompareService } from '../services/cryptocompare.service';
 import { SlackService } from '../services/slack.service';
@@ -41,6 +42,7 @@ import { SlackService } from '../services/slack.service';
     CoinService,
     CryptoCompareService,
     SlackService,
+    GlobalService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

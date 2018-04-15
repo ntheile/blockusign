@@ -7,6 +7,7 @@ import { LoadingController } from 'ionic-angular';
 import { prototype } from 'long';
 import __pdfjs from 'pdfjs-dist/build/pdf';
 import PDFJSAnnotate from 'pdf-annotate';
+import { GlobalService } from '../../services/global.service'
 declare let window: any;
 declare let PDFView: any;
 declare let canvas: any;
@@ -30,8 +31,10 @@ export class HomePage {
     profile: any;
     pdfBuffer: Buffer;
 
-    constructor(public navCtrl: NavController, public loadingCtrl: LoadingController) {
+    constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, public globalService: GlobalService) {
 
+        let s = globalService.GaiUrl;
+        debugger;
     }
 
     ionViewDidLoad() {
