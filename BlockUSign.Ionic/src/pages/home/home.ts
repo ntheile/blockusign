@@ -26,7 +26,7 @@ export class HomePage {
     name: string;
     isLoggedIn = false;
     loginState = "Login";
-    fileName = "blockusign/pdf1.txt";
+    fileName = "blockusign/pdf1.pdf";
     profile: any;
     pdfBuffer: Buffer;
 

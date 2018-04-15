@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <script data-ionic="inject">
+    (function(w){var i=w.Ionic=w.Ionic||{};i.version='3.9.2';i.angular='5.0.3';i.staticDir='build/';})(window);
+  </script>
+  <meta charset="UTF-8">
+  <title>Ionic App</title>
+  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.23.0/polyfill.min.js"></script>
+ 
+
+  <link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4e8ef7">
+
+  <!-- add to homescreen for ios -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <!-- cordova.js required for cordova apps (remove if not needed) -->
+  <script src="cordova.js"></script>
+  
+  <script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
+  
+
+  <!-- un-comment this code to enable service worker
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('service worker installed'))
+        .catch(err => console.error('Error', err));
+    }
+  </script>-->
+
+  <link href="build/main.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.480/pdf_viewer.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.480/pdf_viewer.css" rel="stylesheet">
+
+  <script src="./assets/text_layer_builder.js"></script>
+  <link href="./assets/text_layer_builder.css" rel="stylesheet">
+  
+
+
+
+  <script>
+    PDFJS = pdfjsLib;
+    PDFJS.DefaultTextLayerFactory  = DefaultTextLayerFactory;
+  </script>
+
+<script src="./assets/pdf-annotate.js"></script>
+<script src="./assets/blockstack.js"></script>
+
+</head>
+<body>
+
+
+  
+
+  <!-- Ionic's root component and where the app will load -->
+  <ion-app>
+
+    
+
+  </ion-app>
+
+  <!-- The polyfills js is generated during the build process -->
+  <script src="build/polyfills.js"></script>
+
+  <!-- The vendor js is generated during the build process
+       It contains all of the dependencies in node_modules -->
+  <script src="build/vendor.js"></script>
+
+  <!-- The main bundle js is generated during the build process -->
+  <script src="build/main.js"></script>
+
+
+  <!-- TODO Look into crypto compare widget embed -->
+  <!-- <script type="text/javascript">
+    baseUrl = "https://widgets.cryptocompare.com/";
+    var scripts = document.getElementsByTagName("script");
+    var embedder = scripts[scripts.length - 1];
+    var cccTheme = { "General": { "showExport": true } };
+    (function () {
+      var appName = encodeURIComponent(window.location.hostname);
+      if (appName == "") { appName = "local"; }
+      var s = document.createElement("script");
+      s.type = "text/javascript";
+      s.async = true;
+      var theUrl = baseUrl + 'serve/v3/coin/chart?fsym=IOT&tsyms=USD,EUR,CNY,GBP';
+      s.src = theUrl + (theUrl.indexOf("?") >= 0 ? "&" : "?") + "app=" + appName;
+      document.getElementById("here").appendChild(s);
+    })();
+  </script> -->
+
+</body>
+</html>
