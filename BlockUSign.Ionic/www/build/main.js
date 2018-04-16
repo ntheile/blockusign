@@ -1,243 +1,26 @@
 webpackJsonp([1],{
 
-/***/ 138:
-/***/ (function(module, exports) {
-
-function webpackEmptyAsyncContext(req) {
-	// Here Promise.resolve().then() is used instead of new Promise() to prevent
-	// uncatched exception popping up in devtools
-	return Promise.resolve().then(function() {
-		throw new Error("Cannot find module '" + req + "'.");
-	});
-}
-webpackEmptyAsyncContext.keys = function() { return []; };
-webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
-module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 138;
-
-/***/ }),
-
-/***/ 180:
-/***/ (function(module, exports) {
-
-function webpackEmptyAsyncContext(req) {
-	// Here Promise.resolve().then() is used instead of new Promise() to prevent
-	// uncatched exception popping up in devtools
-	return Promise.resolve().then(function() {
-		throw new Error("Cannot find module '" + req + "'.");
-	});
-}
-webpackEmptyAsyncContext.keys = function() { return []; };
-webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
-module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 180;
-
-/***/ }),
-
-/***/ 224:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__ = __webpack_require__(444);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_pdf_annotate__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_pdf_annotate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_pdf_annotate__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_global_service__ = __webpack_require__(466);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-/// Pdf js basic example - https://jsfiddle.net/pdfjs/cq0asLqz/?utm_source=website&utm_medium=embed&utm_campaign=cq0asLqz
-/// Annotations sample - http://jsfiddle.net/seikichi/RuDvz/2/
-var HomePage = (function () {
-    function HomePage(navCtrl, loadingCtrl, globalService) {
-        this.navCtrl = navCtrl;
-        this.loadingCtrl = loadingCtrl;
-        this.globalService = globalService;
-        this.isLoggedIn = false;
-        this.loginState = "Login";
-        this.fileName = "blockusign/pdf1.pdf";
-        var s = globalService.GaiUrl;
-        debugger;
-    }
-    HomePage.prototype.ionViewDidLoad = function () {
-        this.showProfile();
-    };
-    HomePage.prototype.login = function () {
-        var origin = window.location.origin;
-        blockstack.redirectToSignIn(origin, origin + '/manifest.json', ['store_write', 'publish_data']);
-    };
-    HomePage.prototype.logout = function () {
-        blockstack.signUserOut(window.location.origin);
-    };
-    HomePage.prototype.showProfile = function () {
-        if (blockstack.isUserSignedIn()) {
-            var profile = blockstack.loadUserData();
-            this.name = profile.username;
-            this.isLoggedIn = true;
-            this.loginState = "[Logout]";
-        }
-        else if (blockstack.isSignInPending()) {
-            blockstack.handlePendingSignIn().then(function (userData) {
-                window.location = window.location.origin;
-            });
-        }
-        else {
-            this.login();
-        }
-    };
-    HomePage.prototype.saveFile = function () {
-        blockstack.putFile(this.fileName, this.pdfBuffer, { encrypt: true }).then(function (data) {
-        });
-    };
-    HomePage.prototype.getFile = function () {
-        var _this = this;
-        blockstack.getFile(this.fileName, { decrypt: true }).then(function (data) {
-            _this.pdfBuffer = data;
-        });
-    };
-    HomePage.prototype.loadFile = function () {
-        var _this = this;
-        var fileInput = document.getElementById('files');
-        var firstFile = fileInput.files[0];
-        var startByte = 0;
-        var endByte = firstFile.size;
-        var opt_startByte = startByte.toString();
-        var opt_stopByte = endByte.toString();
-        var files = document.getElementById('files').files;
-        if (!files.length) {
-            alert('Please select a file!');
-            return;
-        }
-        var file = files[0];
-        var start = parseInt(opt_startByte) || 0;
-        var stop = parseInt(opt_stopByte) || file.size - 1;
-        var reader = new FileReader();
-        // If we use onloadend, we need to check the readyState.
-        reader.onloadend = function (evt) {
-            if (evt.target.readyState == FileReader.DONE) {
-                // document.getElementById('byte_content').textContent = evt.target.result;
-                // document.getElementById('byte_range').textContent =
-                //     ['Read bytes: ', start + 1, ' - ', stop + 1,
-                //         ' of ', file.size, ' byte file'].join('');
-            }
-            var filename = fileInput.files[0].name;
-            //localStorage.setItem("FileName", filename);
-        };
-        var blob = file.slice(start, stop + 1);
-        //reader.readAsBinaryString(blob);
-        reader.onload = function (evt) {
-            var arraybuffer = evt.target.result;
-            _this.pdfBuffer = arraybuffer;
-            _this.saveFile();
-            var pdfData = new Uint8Array(arraybuffer);
-            _this.savePdfAsString(pdfData);
-            _this.createPdf(pdfData);
-        };
-        reader.readAsArrayBuffer(blob);
-    };
-    HomePage.prototype.createPdf = function (pdfData) {
-        // Loaded via <script> tag, create shortcut to access PDF.js exports.
-        var pdfjsLib = window['pdfjs-dist/build/pdf'];
-        pdfjsLib.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
-        __WEBPACK_IMPORTED_MODULE_3_pdf_annotate___default.a.setStoreAdapter(new __WEBPACK_IMPORTED_MODULE_3_pdf_annotate___default.a.LocalStoreAdapter());
-        var loadingTask = pdfjsLib.getDocument({ data: pdfData });
-        loadingTask.promise.then(function (pdf) {
-            console.log('PDF loaded');
-            var pageNumber = 1;
-            pdf.getPage(pageNumber).then(function (page) {
-                console.log('Page loaded');
-                var scale = 1.5;
-                var viewport = page.getViewport(scale);
-                // Prepare canvas using PDF page dimensions
-                var canvas = document.getElementById('the-canvas');
-                var context = canvas.getContext('2d');
-                canvas.height = viewport.height;
-                canvas.width = viewport.width;
-                // Render PDF page into canvas context
-                var renderContext = {
-                    canvasContext: context,
-                    viewport: viewport
-                };
-                var renderTask = page.render(renderContext);
-                renderTask.then(function () {
-                    console.log('Page rendered');
-                });
-            });
-        }, function (reason) {
-            // PDF loading error
-            console.error(reason);
-        });
-    };
-    HomePage.prototype.savePdfAsString = function (pdf) {
-        this.largeuint8ArrToString(pdf, function (strPdf) {
-            var base64StringPdf = btoa(strPdf);
-            //localStorage.setItem("pdfStr", base64StringPdf);
-        });
-    };
-    HomePage.prototype.getPdfFromString = function (base64PdfString) {
-        // decode base64 string, remove space for IE compatibility
-        var binary = atob(base64PdfString.replace(/\s/g, ''));
-        var len = binary.length;
-        var arraybuffer = new ArrayBuffer(len);
-        var pdfData = new Uint8Array(arraybuffer);
-    };
-    HomePage.prototype.largeuint8ArrToString = function (uint8arr, callback) {
-        var bb = new Blob([uint8arr]);
-        var f = new FileReader();
-        f.onload = function (e) {
-            callback(e.target.result);
-        };
-        f.readAsBinaryString(bb);
-    };
-    HomePage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/home/home.html"*/'<ion-content>\n  <ion-grid>\n    <ion-row>\n      <ion-col col-12>\n        <ion-badge style="float:right">\n          <ion-icon name="notifications" item-start></ion-icon>\n        </ion-badge>\n        <!-- <button ion-button (click)="login()" style="float:right"  >Login</button> -->\n        <button ion-button (click)="logout()" style="float:right" >{{name}} {{ loginState }} </button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-fab left top menuToggle>\n    <button ion-fab color="light" color="primary">\n      <ion-icon name="menu"></ion-icon>\n    </button>\n  </ion-fab>\n\n  <ion-grid>\n    <ion-row>\n      <ion-col width-100>\n        <div class="centerMe">\n          <ion-card>\n            <ion-card-header>\n              <h1>blockusign</h1>\n              Upload PDF\n            </ion-card-header>\n            <ion-card-content ngClass="selectable">\n              <ion-item>\n                <label class="item item-input">\n                  <!-- <input type="file" id="upimgfile" name="uploadfile" ng-model="orderDetails.uploadfile"> -->\n                  <input type="file" id="files" name="file" (submit)="loadFile()" />\n                </label>\n                <div class="preview-img">\n                  <img id="myImage" width="150" height="150" size="30" /> </div>\n              </ion-item>\n\n\n              <!-- <span class="readBytesButtons">\n                          <button data-startbyte="0" data-endbyte="4">1-5</button>\n                          <button data-startbyte="5" data-endbyte="14">6-15</button>\n                          <button data-startbyte="6" data-endbyte="7">7-8</button>\n                          <button>entire file</button>\n                        </span> -->\n              <!-- <div id="byte_range"></div>\n                        <div id="byte_content"></div> -->\n              <button ion-button (click)="loadFile()">Load PDF</button>\n              <button ion-button (click)="saveFile()">Save File</button>\n              <button ion-button (click)="getFile()">Get File</button>\n              <canvas id="the-canvas"></canvas>\n            </ion-card-content>\n          </ion-card>\n        </div>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n</ion-content>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/home/home.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_4__services_global_service__["a" /* GlobalService */]])
-    ], HomePage);
-    return HomePage;
-}());
-
-//# sourceMappingURL=home.js.map
-
-/***/ }),
-
-/***/ 230:
+/***/ 125:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_cryptocompare_service__ = __webpack_require__(231);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_retry__ = __webpack_require__(469);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_cryptocompare_service__ = __webpack_require__(226);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_retry__ = __webpack_require__(447);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_retry___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_retry__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_timeout__ = __webpack_require__(472);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_timeout__ = __webpack_require__(450);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_timeout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_timeout__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_delay__ = __webpack_require__(480);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_delay__ = __webpack_require__(458);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_delay___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_delay__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_pdfjs_dist_build_pdf__ = __webpack_require__(233);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_pdfjs_dist_build_pdf__ = __webpack_require__(228);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_pdfjs_dist_build_pdf___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_pdfjs_dist_build_pdf__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_pdf_annotate__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_pdf_annotate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_pdf_annotate__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__mockViewport__ = __webpack_require__(517);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__mockViewport__ = __webpack_require__(516);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -442,14 +225,325 @@ var ListPage = (function () {
 
 /***/ }),
 
-/***/ 231:
+/***/ 139:
+/***/ (function(module, exports) {
+
+function webpackEmptyAsyncContext(req) {
+	// Here Promise.resolve().then() is used instead of new Promise() to prevent
+	// uncatched exception popping up in devtools
+	return Promise.resolve().then(function() {
+		throw new Error("Cannot find module '" + req + "'.");
+	});
+}
+webpackEmptyAsyncContext.keys = function() { return []; };
+webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
+module.exports = webpackEmptyAsyncContext;
+webpackEmptyAsyncContext.id = 139;
+
+/***/ }),
+
+/***/ 181:
+/***/ (function(module, exports) {
+
+function webpackEmptyAsyncContext(req) {
+	// Here Promise.resolve().then() is used instead of new Promise() to prevent
+	// uncatched exception popping up in devtools
+	return Promise.resolve().then(function() {
+		throw new Error("Cannot find module '" + req + "'.");
+	});
+}
+webpackEmptyAsyncContext.keys = function() { return []; };
+webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
+module.exports = webpackEmptyAsyncContext;
+webpackEmptyAsyncContext.id = 181;
+
+/***/ }),
+
+/***/ 225:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__list_list__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__(517);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_pdf_annotate__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_pdf_annotate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_pdf_annotate__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_global_service__ = __webpack_require__(245);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+/// Pdf js basic example - https://jsfiddle.net/pdfjs/cq0asLqz/?utm_source=website&utm_medium=embed&utm_campaign=cq0asLqz
+/// Annotations sample - http://jsfiddle.net/seikichi/RuDvz/2/
+var HomePage = (function () {
+    function HomePage(navCtrl, loadingCtrl, globalService) {
+        this.navCtrl = navCtrl;
+        this.loadingCtrl = loadingCtrl;
+        this.globalService = globalService;
+        this.isLoggedIn = false;
+        this.loginState = "Login";
+        this.fileName = "blockusign/pdf1.pdf";
+        var s = globalService.GaiUrl;
+    }
+    HomePage.prototype.ionViewDidLoad = function () {
+        this.showProfile();
+        this.ekUpload();
+    };
+    HomePage.prototype.login = function () {
+        var origin = window.location.origin;
+        blockstack.redirectToSignIn(origin, origin + '/manifest.json', ['store_write', 'publish_data']);
+    };
+    HomePage.prototype.next = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__list_list__["a" /* ListPage */]);
+    };
+    HomePage.prototype.logout = function () {
+        blockstack.signUserOut(window.location.origin);
+    };
+    HomePage.prototype.showProfile = function () {
+        if (blockstack.isUserSignedIn()) {
+            var profile = blockstack.loadUserData();
+            this.name = profile.username;
+            this.isLoggedIn = true;
+            this.loginState = "[Logout]";
+        }
+        else if (blockstack.isSignInPending()) {
+            blockstack.handlePendingSignIn().then(function (userData) {
+                window.location = window.location.origin;
+            });
+        }
+        else {
+            this.login();
+        }
+    };
+    HomePage.prototype.saveFile = function () {
+        blockstack.putFile(this.fileName, this.pdfBuffer, { encrypt: true }).then(function (data) {
+        });
+    };
+    HomePage.prototype.getFile = function () {
+        var _this = this;
+        blockstack.getFile(this.fileName, { decrypt: true }).then(function (data) {
+            _this.pdfBuffer = data;
+        });
+    };
+    HomePage.prototype.loadFile = function () {
+        var _this = this;
+        var fileInput = document.getElementById('file-upload');
+        var firstFile = fileInput.files[0];
+        var startByte = 0;
+        var endByte = firstFile.size;
+        var opt_startByte = startByte.toString();
+        var opt_stopByte = endByte.toString();
+        var files = document.getElementById('file-upload').files;
+        if (!files.length) {
+            alert('Please select a file!');
+            return;
+        }
+        var file = files[0];
+        var start = parseInt(opt_startByte) || 0;
+        var stop = parseInt(opt_stopByte) || file.size - 1;
+        var reader = new FileReader();
+        // If we use onloadend, we need to check the readyState.
+        reader.onloadend = function (evt) {
+            if (evt.target.readyState == FileReader.DONE) {
+                // document.getElementById('byte_content').textContent = evt.target.result;
+                // document.getElementById('byte_range').textContent =
+                //     ['Read bytes: ', start + 1, ' - ', stop + 1,
+                //         ' of ', file.size, ' byte file'].join('');
+            }
+            var filename = fileInput.files[0].name;
+            //localStorage.setItem("FileName", filename);
+        };
+        var blob = file.slice(start, stop + 1);
+        //reader.readAsBinaryString(blob);
+        reader.onload = function (evt) {
+            var arraybuffer = evt.target.result;
+            _this.pdfBuffer = arraybuffer;
+            _this.saveFile();
+            var pdfData = new Uint8Array(arraybuffer);
+            _this.savePdfAsString(pdfData);
+            _this.createPdf(pdfData);
+        };
+        reader.readAsArrayBuffer(blob);
+    };
+    HomePage.prototype.createPdf = function (pdfData) {
+        // Loaded via <script> tag, create shortcut to access PDF.js exports.
+        var pdfjsLib = window['pdfjs-dist/build/pdf'];
+        pdfjsLib.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+        __WEBPACK_IMPORTED_MODULE_4_pdf_annotate___default.a.setStoreAdapter(new __WEBPACK_IMPORTED_MODULE_4_pdf_annotate___default.a.LocalStoreAdapter());
+        var loadingTask = pdfjsLib.getDocument({ data: pdfData });
+        loadingTask.promise.then(function (pdf) {
+            console.log('PDF loaded');
+            var pageNumber = 1;
+            pdf.getPage(pageNumber).then(function (page) {
+                console.log('Page loaded');
+                var scale = 1.5;
+                var viewport = page.getViewport(scale);
+                // Prepare canvas using PDF page dimensions
+                var canvas = document.getElementById('the-canvas');
+                var context = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+                // Render PDF page into canvas context
+                var renderContext = {
+                    canvasContext: context,
+                    viewport: viewport
+                };
+                var renderTask = page.render(renderContext);
+                renderTask.then(function () {
+                    console.log('Page rendered');
+                });
+            });
+        }, function (reason) {
+            // PDF loading error
+            console.error(reason);
+        });
+    };
+    HomePage.prototype.savePdfAsString = function (pdf) {
+        this.largeuint8ArrToString(pdf, function (strPdf) {
+            var base64StringPdf = btoa(strPdf);
+            //localStorage.setItem("pdfStr", base64StringPdf);
+        });
+    };
+    HomePage.prototype.getPdfFromString = function (base64PdfString) {
+        // decode base64 string, remove space for IE compatibility
+        var binary = atob(base64PdfString.replace(/\s/g, ''));
+        var len = binary.length;
+        var arraybuffer = new ArrayBuffer(len);
+        var pdfData = new Uint8Array(arraybuffer);
+    };
+    HomePage.prototype.largeuint8ArrToString = function (uint8arr, callback) {
+        var bb = new Blob([uint8arr]);
+        var f = new FileReader();
+        f.onload = function (e) {
+            callback(e.target.result);
+        };
+        f.readAsBinaryString(bb);
+    };
+    // File Upload https://codepen.io/mattsince87/pen/yadZXv?editors=0010#0
+    HomePage.prototype.ekUpload = function () {
+        var self = this;
+        function Init() {
+            console.log("Upload Initialised");
+            var fileSelect = document.getElementById('file-upload'), fileDrag = document.getElementById('file-drag'), submitButton = document.getElementById('submit-button');
+            fileSelect.addEventListener('change', fileSelectHandler, false);
+            // Is XHR2 available?
+            var xhr = new XMLHttpRequest();
+            if (xhr.upload) {
+                // File Drop
+                fileDrag.addEventListener('dragover', fileDragHover, false);
+                fileDrag.addEventListener('dragleave', fileDragHover, false);
+                fileDrag.addEventListener('drop', fileSelectHandler, false);
+            }
+        }
+        function fileDragHover(e) {
+            var fileDrag = document.getElementById('file-drag');
+            e.stopPropagation();
+            e.preventDefault();
+            fileDrag.className = (e.type === 'dragover' ? 'hover' : 'modal-body file-upload');
+        }
+        function fileSelectHandler(e) {
+            // Fetch FileList object
+            var files = e.target.files || e.dataTransfer.files;
+            // Cancel event and hover styling
+            fileDragHover(e);
+            // Process all File objects
+            for (var i = 0, f; f = files[i]; i++) {
+                // parseFile(f);
+                self.loadFile();
+                uploadFile(f);
+            }
+        }
+        // Output
+        function output(msg) {
+            // Response
+            var m = document.getElementById('messages');
+            m.innerHTML = msg;
+        }
+        function setProgressMaxValue(e) {
+            var pBar = document.getElementById('file-progress');
+            if (e.lengthComputable) {
+                pBar.max = e.total;
+            }
+        }
+        function updateFileProgress(e) {
+            var pBar = document.getElementById('file-progress');
+            if (e.lengthComputable) {
+                pBar.value = e.loaded;
+            }
+        }
+        function uploadFile(file) {
+            var xhr = new XMLHttpRequest(), fileInput = document.getElementById('class-roster-file'), pBar = document.getElementById('file-progress'), fileSizeLimit = 1024; // In MB
+            if (xhr.upload) {
+                // Check if file is less than x MB
+                if (file.size <= fileSizeLimit * 1024 * 1024) {
+                    // Progress bar
+                    pBar.style.display = 'inline';
+                    xhr.upload.addEventListener('loadstart', setProgressMaxValue, false);
+                    xhr.upload.addEventListener('progress', updateFileProgress, false);
+                    // File received / failed
+                    xhr.onreadystatechange = function (e) {
+                        if (xhr.readyState == 4) {
+                            // Everything is good!
+                            // progress.className = (xhr.status == 200 ? "success" : "failure");
+                            // document.location.reload(true);
+                        }
+                    };
+                    // Start upload
+                    xhr.open('POST', document.getElementById('file-upload-form').action, true);
+                    xhr.setRequestHeader('X-File-Name', file.name);
+                    xhr.setRequestHeader('X-File-Size', file.size);
+                    xhr.setRequestHeader('Content-Type', 'multipart/form-data');
+                    xhr.send(file);
+                }
+                else {
+                    output('Please upload a smaller file (< ' + fileSizeLimit + ' MB).');
+                }
+            }
+        }
+        // Check for the various File API support.
+        if (window.File && window.FileList && window.FileReader) {
+            Init();
+        }
+        else {
+            document.getElementById('file-drag').style.display = 'none';
+        }
+    };
+    HomePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-home',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/home/home.html"*/'<ion-content>\n  <ion-grid>\n    <ion-row>\n      <ion-col col-2>\n        <h2></h2>\n      </ion-col>\n      <ion-col col-4>\n        <h3>blockusign</h3>\n      </ion-col>\n      <ion-col col-6>\n\n        <!-- <ion-badge style="float:right">\n          <ion-icon name="notifications" item-start></ion-icon>\n        </ion-badge> -->\n        <!-- <button ion-button (click)="login()" style="float:right"  >Login</button> -->\n        <button ion-button (click)="logout()" style="float:right">{{name}} {{ loginState }} </button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-fab left top menuToggle>\n    <button ion-fab color="light" color="primary">\n      <ion-icon name="menu"></ion-icon>\n    </button>\n  </ion-fab>\n\n\n\n  <div class="stepWrapper">\n      <div class="container">\n          <div class="row">\n            <div class="wizard">\n              <a href="#" style="color: #454cad; font-weight: bolder; font-size: 1.6rem; ">Upload</a>\n              <a href="#">Add Signature</a>\n              <a href="#">Email</a>\n              <a href="#">Accept</a>\n            </div>\n          </div>\n        </div>\n  </div>\n\n\n\n  <ion-grid>\n    <ion-row>\n      <ion-col width-100>\n        <div class="centerMe">\n          <ion-card>\n            <ion-card-header>\n\n            </ion-card-header>\n            <ion-card-content ngClass="selectable">\n\n\n\n\n              <ion-item>\n\n\n                <!-- Upload  -->\n                <form id="file-upload-form" class="uploader">\n                  <input id="file-upload" type="file" name="fileUpload" accept="*" />\n\n                  <label for="file-upload" id="file-drag">\n                    <img id="file-image" src="#" alt="Preview" class="hidden">\n                    <div id="start">\n                      <i class="fa fa-download" aria-hidden="true"></i>\n                      <div>Select a PDF or drag here</div>\n                      <div id="notimage" class="hidden">Please select an image</div>\n                      <span id="file-upload-btn" class="btn btn-primary">Select a file</span>\n                    </div>\n                    <div id="response" class="hidden">\n                      <div id="messages"></div>\n                      <progress class="progress" id="file-progress" value="0">\n                        <span>0</span>%\n                      </progress>\n                    </div>\n                  </label>\n                </form>\n\n\n\n                <!-- <label class="item item-input"> -->\n                <!-- <input type="file" id="files" name="file" (submit)="loadFile()" /> -->\n                <!-- </label> -->\n\n\n\n                <!-- <div class="preview-img">\n                  <img id="myImage" width="150" height="150" size="30" /> </div> -->\n              </ion-item>\n\n\n              <!-- <span class="readBytesButtons">\n                          <button data-startbyte="0" data-endbyte="4">1-5</button>\n                          <button data-startbyte="5" data-endbyte="14">6-15</button>\n                          <button data-startbyte="6" data-endbyte="7">7-8</button>\n                          <button>entire file</button>\n                        </span> -->\n              <!-- <div id="byte_range"></div>\n                        <div id="byte_content"></div> -->\n              <button ion-button (click)="next()" style="float:right">Next </button>\n              <!-- <button ion-button (click)="saveFile()">Save File</button>\n              <button ion-button (click)="getFile()">Get File</button> -->\n              <canvas id="the-canvas"></canvas>\n            </ion-card-content>\n          </ion-card>\n        </div>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n</ion-content>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/home/home.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_5__services_global_service__["a" /* GlobalService */]])
+    ], HomePage);
+    return HomePage;
+}());
+
+//# sourceMappingURL=home.js.map
+
+/***/ }),
+
+/***/ 226:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CryptoCompareService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__ = __webpack_require__(126);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__);
@@ -590,13 +684,44 @@ var CryptoCompareService = (function () {
 
 /***/ }),
 
-/***/ 369:
+/***/ 245:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GlobalService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var GlobalService = (function () {
+    function GlobalService() {
+        this.GaiUrl = "http://21312";
+    }
+    GlobalService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [])
+    ], GlobalService);
+    return GlobalService;
+}());
+
+//# sourceMappingURL=global.service.js.map
+
+/***/ }),
+
+/***/ 370:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(370);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(393);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(371);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(394);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -604,7 +729,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 393:
+/***/ 394:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -613,16 +738,16 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(435);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_home_home__ = __webpack_require__(224);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_list_list__ = __webpack_require__(230);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_status_bar__ = __webpack_require__(220);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_splash_screen__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(436);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_home_home__ = __webpack_require__(225);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_list_list__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_status_bar__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_splash_screen__ = __webpack_require__(224);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_ng2_charts__ = __webpack_require__(518);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_ng2_charts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_ng2_charts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_coin_service__ = __webpack_require__(567);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_global_service__ = __webpack_require__(466);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_cryptocompare_service__ = __webpack_require__(231);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_global_service__ = __webpack_require__(245);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_cryptocompare_service__ = __webpack_require__(226);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_slack_service__ = __webpack_require__(568);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -687,17 +812,17 @@ var AppModule = (function () {
 
 /***/ }),
 
-/***/ 435:
+/***/ 436:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(220);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(223);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(224);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(230);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(225);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(125);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -764,33 +889,23 @@ var MyApp = (function () {
 /***/ }),
 
 /***/ 466:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GlobalService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
+/* (ignored) */
 
-var GlobalService = (function () {
-    function GlobalService() {
-        this.GaiUrl = "http://21312";
-    }
-    GlobalService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [])
-    ], GlobalService);
-    return GlobalService;
-}());
+/***/ }),
 
-//# sourceMappingURL=global.service.js.map
+/***/ 486:
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 487:
+/***/ (function(module, exports) {
+
+/* (ignored) */
 
 /***/ }),
 
@@ -801,28 +916,7 @@ var GlobalService = (function () {
 
 /***/ }),
 
-/***/ 508:
-/***/ (function(module, exports) {
-
-/* (ignored) */
-
-/***/ }),
-
-/***/ 509:
-/***/ (function(module, exports) {
-
-/* (ignored) */
-
-/***/ }),
-
-/***/ 510:
-/***/ (function(module, exports) {
-
-/* (ignored) */
-
-/***/ }),
-
-/***/ 517:
+/***/ 516:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -843,244 +937,244 @@ function mockViewport(page) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 250,
-	"./af.js": 250,
-	"./ar": 251,
-	"./ar-dz": 252,
-	"./ar-dz.js": 252,
-	"./ar-kw": 253,
-	"./ar-kw.js": 253,
-	"./ar-ly": 254,
-	"./ar-ly.js": 254,
-	"./ar-ma": 255,
-	"./ar-ma.js": 255,
-	"./ar-sa": 256,
-	"./ar-sa.js": 256,
-	"./ar-tn": 257,
-	"./ar-tn.js": 257,
-	"./ar.js": 251,
-	"./az": 258,
-	"./az.js": 258,
-	"./be": 259,
-	"./be.js": 259,
-	"./bg": 260,
-	"./bg.js": 260,
-	"./bm": 261,
-	"./bm.js": 261,
-	"./bn": 262,
-	"./bn.js": 262,
-	"./bo": 263,
-	"./bo.js": 263,
-	"./br": 264,
-	"./br.js": 264,
-	"./bs": 265,
-	"./bs.js": 265,
-	"./ca": 266,
-	"./ca.js": 266,
-	"./cs": 267,
-	"./cs.js": 267,
-	"./cv": 268,
-	"./cv.js": 268,
-	"./cy": 269,
-	"./cy.js": 269,
-	"./da": 270,
-	"./da.js": 270,
-	"./de": 271,
-	"./de-at": 272,
-	"./de-at.js": 272,
-	"./de-ch": 273,
-	"./de-ch.js": 273,
-	"./de.js": 271,
-	"./dv": 274,
-	"./dv.js": 274,
-	"./el": 275,
-	"./el.js": 275,
-	"./en-au": 276,
-	"./en-au.js": 276,
-	"./en-ca": 277,
-	"./en-ca.js": 277,
-	"./en-gb": 278,
-	"./en-gb.js": 278,
-	"./en-ie": 279,
-	"./en-ie.js": 279,
-	"./en-nz": 280,
-	"./en-nz.js": 280,
-	"./eo": 281,
-	"./eo.js": 281,
-	"./es": 282,
-	"./es-do": 283,
-	"./es-do.js": 283,
-	"./es-us": 284,
-	"./es-us.js": 284,
-	"./es.js": 282,
-	"./et": 285,
-	"./et.js": 285,
-	"./eu": 286,
-	"./eu.js": 286,
-	"./fa": 287,
-	"./fa.js": 287,
-	"./fi": 288,
-	"./fi.js": 288,
-	"./fo": 289,
-	"./fo.js": 289,
-	"./fr": 290,
-	"./fr-ca": 291,
-	"./fr-ca.js": 291,
-	"./fr-ch": 292,
-	"./fr-ch.js": 292,
-	"./fr.js": 290,
-	"./fy": 293,
-	"./fy.js": 293,
-	"./gd": 294,
-	"./gd.js": 294,
-	"./gl": 295,
-	"./gl.js": 295,
-	"./gom-latn": 296,
-	"./gom-latn.js": 296,
-	"./gu": 297,
-	"./gu.js": 297,
-	"./he": 298,
-	"./he.js": 298,
-	"./hi": 299,
-	"./hi.js": 299,
-	"./hr": 300,
-	"./hr.js": 300,
-	"./hu": 301,
-	"./hu.js": 301,
-	"./hy-am": 302,
-	"./hy-am.js": 302,
-	"./id": 303,
-	"./id.js": 303,
-	"./is": 304,
-	"./is.js": 304,
-	"./it": 305,
-	"./it.js": 305,
-	"./ja": 306,
-	"./ja.js": 306,
-	"./jv": 307,
-	"./jv.js": 307,
-	"./ka": 308,
-	"./ka.js": 308,
-	"./kk": 309,
-	"./kk.js": 309,
-	"./km": 310,
-	"./km.js": 310,
-	"./kn": 311,
-	"./kn.js": 311,
-	"./ko": 312,
-	"./ko.js": 312,
-	"./ky": 313,
-	"./ky.js": 313,
-	"./lb": 314,
-	"./lb.js": 314,
-	"./lo": 315,
-	"./lo.js": 315,
-	"./lt": 316,
-	"./lt.js": 316,
-	"./lv": 317,
-	"./lv.js": 317,
-	"./me": 318,
-	"./me.js": 318,
-	"./mi": 319,
-	"./mi.js": 319,
-	"./mk": 320,
-	"./mk.js": 320,
-	"./ml": 321,
-	"./ml.js": 321,
-	"./mr": 322,
-	"./mr.js": 322,
-	"./ms": 323,
-	"./ms-my": 324,
-	"./ms-my.js": 324,
-	"./ms.js": 323,
-	"./mt": 325,
-	"./mt.js": 325,
-	"./my": 326,
-	"./my.js": 326,
-	"./nb": 327,
-	"./nb.js": 327,
-	"./ne": 328,
-	"./ne.js": 328,
-	"./nl": 329,
-	"./nl-be": 330,
-	"./nl-be.js": 330,
-	"./nl.js": 329,
-	"./nn": 331,
-	"./nn.js": 331,
-	"./pa-in": 332,
-	"./pa-in.js": 332,
-	"./pl": 333,
-	"./pl.js": 333,
-	"./pt": 334,
-	"./pt-br": 335,
-	"./pt-br.js": 335,
-	"./pt.js": 334,
-	"./ro": 336,
-	"./ro.js": 336,
-	"./ru": 337,
-	"./ru.js": 337,
-	"./sd": 338,
-	"./sd.js": 338,
-	"./se": 339,
-	"./se.js": 339,
-	"./si": 340,
-	"./si.js": 340,
-	"./sk": 341,
-	"./sk.js": 341,
-	"./sl": 342,
-	"./sl.js": 342,
-	"./sq": 343,
-	"./sq.js": 343,
-	"./sr": 344,
-	"./sr-cyrl": 345,
-	"./sr-cyrl.js": 345,
-	"./sr.js": 344,
-	"./ss": 346,
-	"./ss.js": 346,
-	"./sv": 347,
-	"./sv.js": 347,
-	"./sw": 348,
-	"./sw.js": 348,
-	"./ta": 349,
-	"./ta.js": 349,
-	"./te": 350,
-	"./te.js": 350,
-	"./tet": 351,
-	"./tet.js": 351,
-	"./th": 352,
-	"./th.js": 352,
-	"./tl-ph": 353,
-	"./tl-ph.js": 353,
-	"./tlh": 354,
-	"./tlh.js": 354,
-	"./tr": 355,
-	"./tr.js": 355,
-	"./tzl": 356,
-	"./tzl.js": 356,
-	"./tzm": 357,
-	"./tzm-latn": 358,
-	"./tzm-latn.js": 358,
-	"./tzm.js": 357,
-	"./uk": 359,
-	"./uk.js": 359,
-	"./ur": 360,
-	"./ur.js": 360,
-	"./uz": 361,
-	"./uz-latn": 362,
-	"./uz-latn.js": 362,
-	"./uz.js": 361,
-	"./vi": 363,
-	"./vi.js": 363,
-	"./x-pseudo": 364,
-	"./x-pseudo.js": 364,
-	"./yo": 365,
-	"./yo.js": 365,
-	"./zh-cn": 366,
-	"./zh-cn.js": 366,
-	"./zh-hk": 367,
-	"./zh-hk.js": 367,
-	"./zh-tw": 368,
-	"./zh-tw.js": 368
+	"./af": 251,
+	"./af.js": 251,
+	"./ar": 252,
+	"./ar-dz": 253,
+	"./ar-dz.js": 253,
+	"./ar-kw": 254,
+	"./ar-kw.js": 254,
+	"./ar-ly": 255,
+	"./ar-ly.js": 255,
+	"./ar-ma": 256,
+	"./ar-ma.js": 256,
+	"./ar-sa": 257,
+	"./ar-sa.js": 257,
+	"./ar-tn": 258,
+	"./ar-tn.js": 258,
+	"./ar.js": 252,
+	"./az": 259,
+	"./az.js": 259,
+	"./be": 260,
+	"./be.js": 260,
+	"./bg": 261,
+	"./bg.js": 261,
+	"./bm": 262,
+	"./bm.js": 262,
+	"./bn": 263,
+	"./bn.js": 263,
+	"./bo": 264,
+	"./bo.js": 264,
+	"./br": 265,
+	"./br.js": 265,
+	"./bs": 266,
+	"./bs.js": 266,
+	"./ca": 267,
+	"./ca.js": 267,
+	"./cs": 268,
+	"./cs.js": 268,
+	"./cv": 269,
+	"./cv.js": 269,
+	"./cy": 270,
+	"./cy.js": 270,
+	"./da": 271,
+	"./da.js": 271,
+	"./de": 272,
+	"./de-at": 273,
+	"./de-at.js": 273,
+	"./de-ch": 274,
+	"./de-ch.js": 274,
+	"./de.js": 272,
+	"./dv": 275,
+	"./dv.js": 275,
+	"./el": 276,
+	"./el.js": 276,
+	"./en-au": 277,
+	"./en-au.js": 277,
+	"./en-ca": 278,
+	"./en-ca.js": 278,
+	"./en-gb": 279,
+	"./en-gb.js": 279,
+	"./en-ie": 280,
+	"./en-ie.js": 280,
+	"./en-nz": 281,
+	"./en-nz.js": 281,
+	"./eo": 282,
+	"./eo.js": 282,
+	"./es": 283,
+	"./es-do": 284,
+	"./es-do.js": 284,
+	"./es-us": 285,
+	"./es-us.js": 285,
+	"./es.js": 283,
+	"./et": 286,
+	"./et.js": 286,
+	"./eu": 287,
+	"./eu.js": 287,
+	"./fa": 288,
+	"./fa.js": 288,
+	"./fi": 289,
+	"./fi.js": 289,
+	"./fo": 290,
+	"./fo.js": 290,
+	"./fr": 291,
+	"./fr-ca": 292,
+	"./fr-ca.js": 292,
+	"./fr-ch": 293,
+	"./fr-ch.js": 293,
+	"./fr.js": 291,
+	"./fy": 294,
+	"./fy.js": 294,
+	"./gd": 295,
+	"./gd.js": 295,
+	"./gl": 296,
+	"./gl.js": 296,
+	"./gom-latn": 297,
+	"./gom-latn.js": 297,
+	"./gu": 298,
+	"./gu.js": 298,
+	"./he": 299,
+	"./he.js": 299,
+	"./hi": 300,
+	"./hi.js": 300,
+	"./hr": 301,
+	"./hr.js": 301,
+	"./hu": 302,
+	"./hu.js": 302,
+	"./hy-am": 303,
+	"./hy-am.js": 303,
+	"./id": 304,
+	"./id.js": 304,
+	"./is": 305,
+	"./is.js": 305,
+	"./it": 306,
+	"./it.js": 306,
+	"./ja": 307,
+	"./ja.js": 307,
+	"./jv": 308,
+	"./jv.js": 308,
+	"./ka": 309,
+	"./ka.js": 309,
+	"./kk": 310,
+	"./kk.js": 310,
+	"./km": 311,
+	"./km.js": 311,
+	"./kn": 312,
+	"./kn.js": 312,
+	"./ko": 313,
+	"./ko.js": 313,
+	"./ky": 314,
+	"./ky.js": 314,
+	"./lb": 315,
+	"./lb.js": 315,
+	"./lo": 316,
+	"./lo.js": 316,
+	"./lt": 317,
+	"./lt.js": 317,
+	"./lv": 318,
+	"./lv.js": 318,
+	"./me": 319,
+	"./me.js": 319,
+	"./mi": 320,
+	"./mi.js": 320,
+	"./mk": 321,
+	"./mk.js": 321,
+	"./ml": 322,
+	"./ml.js": 322,
+	"./mr": 323,
+	"./mr.js": 323,
+	"./ms": 324,
+	"./ms-my": 325,
+	"./ms-my.js": 325,
+	"./ms.js": 324,
+	"./mt": 326,
+	"./mt.js": 326,
+	"./my": 327,
+	"./my.js": 327,
+	"./nb": 328,
+	"./nb.js": 328,
+	"./ne": 329,
+	"./ne.js": 329,
+	"./nl": 330,
+	"./nl-be": 331,
+	"./nl-be.js": 331,
+	"./nl.js": 330,
+	"./nn": 332,
+	"./nn.js": 332,
+	"./pa-in": 333,
+	"./pa-in.js": 333,
+	"./pl": 334,
+	"./pl.js": 334,
+	"./pt": 335,
+	"./pt-br": 336,
+	"./pt-br.js": 336,
+	"./pt.js": 335,
+	"./ro": 337,
+	"./ro.js": 337,
+	"./ru": 338,
+	"./ru.js": 338,
+	"./sd": 339,
+	"./sd.js": 339,
+	"./se": 340,
+	"./se.js": 340,
+	"./si": 341,
+	"./si.js": 341,
+	"./sk": 342,
+	"./sk.js": 342,
+	"./sl": 343,
+	"./sl.js": 343,
+	"./sq": 344,
+	"./sq.js": 344,
+	"./sr": 345,
+	"./sr-cyrl": 346,
+	"./sr-cyrl.js": 346,
+	"./sr.js": 345,
+	"./ss": 347,
+	"./ss.js": 347,
+	"./sv": 348,
+	"./sv.js": 348,
+	"./sw": 349,
+	"./sw.js": 349,
+	"./ta": 350,
+	"./ta.js": 350,
+	"./te": 351,
+	"./te.js": 351,
+	"./tet": 352,
+	"./tet.js": 352,
+	"./th": 353,
+	"./th.js": 353,
+	"./tl-ph": 354,
+	"./tl-ph.js": 354,
+	"./tlh": 355,
+	"./tlh.js": 355,
+	"./tr": 356,
+	"./tr.js": 356,
+	"./tzl": 357,
+	"./tzl.js": 357,
+	"./tzm": 358,
+	"./tzm-latn": 359,
+	"./tzm-latn.js": 359,
+	"./tzm.js": 358,
+	"./uk": 360,
+	"./uk.js": 360,
+	"./ur": 361,
+	"./ur.js": 361,
+	"./uz": 362,
+	"./uz-latn": 363,
+	"./uz-latn.js": 363,
+	"./uz.js": 362,
+	"./vi": 364,
+	"./vi.js": 364,
+	"./x-pseudo": 365,
+	"./x-pseudo.js": 365,
+	"./yo": 366,
+	"./yo.js": 366,
+	"./zh-cn": 367,
+	"./zh-cn.js": 367,
+	"./zh-hk": 368,
+	"./zh-hk.js": 368,
+	"./zh-tw": 369,
+	"./zh-tw.js": 369
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -1107,7 +1201,7 @@ webpackContext.id = 549;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CoinService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__ = __webpack_require__(126);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__);
@@ -1215,7 +1309,7 @@ var CoinService = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SlackService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__ = __webpack_require__(126);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__);
@@ -1294,5 +1388,5 @@ var SlackService = (function () {
 
 /***/ })
 
-},[369]);
+},[370]);
 //# sourceMappingURL=main.js.map

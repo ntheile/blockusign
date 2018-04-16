@@ -1,12 +1,19 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col col-12>
-        <ion-badge style="float:right">
+      <ion-col col-2>
+        <h2></h2>
+      </ion-col>
+      <ion-col col-4>
+        <h3>blockusign</h3>
+      </ion-col>
+      <ion-col col-6>
+
+        <!-- <ion-badge style="float:right">
           <ion-icon name="notifications" item-start></ion-icon>
-        </ion-badge>
+        </ion-badge> -->
         <!-- <button ion-button (click)="login()" style="float:right"  >Login</button> -->
-        <button ion-button (click)="logout()" style="float:right" >{{name}} {{ loginState }} </button>
+        <button ion-button (click)="logout()" style="float:right">{{name}} {{ loginState }} </button>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -17,23 +24,70 @@
     </button>
   </ion-fab>
 
+
+
+  <div class="stepWrapper">
+      <div class="container">
+          <div class="row">
+            <div class="wizard">
+              <a href="#" style="color: #454cad; font-weight: bolder; font-size: 1.6rem; ">Upload</a>
+              <a href="#">Add Signature</a>
+              <a href="#">Email</a>
+              <a href="#">Accept</a>
+            </div>
+          </div>
+        </div>
+  </div>
+
+
+
   <ion-grid>
     <ion-row>
       <ion-col width-100>
         <div class="centerMe">
           <ion-card>
             <ion-card-header>
-              <h1>blockusign</h1>
-              Upload PDF
+
             </ion-card-header>
             <ion-card-content ngClass="selectable">
+
+
+
+
               <ion-item>
-                <label class="item item-input">
-                  <!-- <input type="file" id="upimgfile" name="uploadfile" ng-model="orderDetails.uploadfile"> -->
-                  <input type="file" id="files" name="file" (submit)="loadFile()" />
-                </label>
-                <div class="preview-img">
-                  <img id="myImage" width="150" height="150" size="30" /> </div>
+
+
+                <!-- Upload  -->
+                <form id="file-upload-form" class="uploader">
+                  <input id="file-upload" type="file" name="fileUpload" accept="*" />
+
+                  <label for="file-upload" id="file-drag">
+                    <img id="file-image" src="#" alt="Preview" class="hidden">
+                    <div id="start">
+                      <i class="fa fa-download" aria-hidden="true"></i>
+                      <div>Select a PDF or drag here</div>
+                      <div id="notimage" class="hidden">Please select an image</div>
+                      <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
+                    </div>
+                    <div id="response" class="hidden">
+                      <div id="messages"></div>
+                      <progress class="progress" id="file-progress" value="0">
+                        <span>0</span>%
+                      </progress>
+                    </div>
+                  </label>
+                </form>
+
+
+
+                <!-- <label class="item item-input"> -->
+                <!-- <input type="file" id="files" name="file" (submit)="loadFile()" /> -->
+                <!-- </label> -->
+
+
+
+                <!-- <div class="preview-img">
+                  <img id="myImage" width="150" height="150" size="30" /> </div> -->
               </ion-item>
 
 
@@ -45,9 +99,9 @@
                         </span> -->
               <!-- <div id="byte_range"></div>
                         <div id="byte_content"></div> -->
-              <button ion-button (click)="loadFile()">Load PDF</button>
-              <button ion-button (click)="saveFile()">Save File</button>
-              <button ion-button (click)="getFile()">Get File</button>
+              <button ion-button (click)="next()" style="float:right">Next </button>
+              <!-- <button ion-button (click)="saveFile()">Save File</button>
+              <button ion-button (click)="getFile()">Get File</button> -->
               <canvas id="the-canvas"></canvas>
             </ion-card-content>
           </ion-card>

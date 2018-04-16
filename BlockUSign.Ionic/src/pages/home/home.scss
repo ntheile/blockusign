@@ -3,3 +3,249 @@
   position: relative; 
   margin: 0 auto 25px;
 }
+
+// Imports
+// 
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+// Vars and Reset
+// 
+$theme:       #454cad;
+$dark-text:   #5f6982;
+
+ html,body,* { box-sizing: border-box; font-size: 16px;}
+// html,body   { height: 100%; text-align: center;}
+// body        { padding: 2rem; background: #f8f8f8;}
+
+// h2 {
+//   font-family: "Roboto", sans-serif;
+//   font-size: 26px;
+//   line-height: 1;
+//   color: $theme;
+//   margin-bottom: 0;
+// }
+// p {
+//   font-family: "Roboto", sans-serif;
+//   font-size: 18px;
+//   color: $dark-text;
+// }
+// Upload Demo
+// 
+.uploader {
+  display: block;
+  clear: both;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 600px;
+
+  label {
+    float: left;
+    clear: both;
+    width: 100%;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    background: #fff;
+    border-radius: 7px;
+    border: 3px solid #eee;
+    transition: all .2s ease;
+    user-select: none;
+
+    &:hover {
+      border-color: $theme;
+    }
+    &.hover {
+      border: 3px solid $theme;
+      box-shadow: inset 0 0 0 6px #eee;
+      
+      #start {
+        i.fa {
+          transform: scale(0.8);
+          opacity: 0.3;
+        }
+      }
+    }
+  }
+
+  #start {
+    float: left;
+    clear: both;
+    width: 100%;
+    &.hidden {
+      display: none;
+    }
+    i.fa {
+      font-size: 50px;
+      margin-bottom: 1rem;
+      transition: all .2s ease-in-out;
+    }
+  }
+  #response {
+    float: left;
+    clear: both;
+    width: 100%;
+    &.hidden {
+      display: none;
+    }
+    #messages {
+      margin-bottom: .5rem;
+    }
+  }
+
+  #file-image {
+    display: inline;
+    margin: 0 auto .5rem auto;
+    width: auto;
+    height: auto;
+    max-width: 180px;
+    &.hidden {
+      display: none;
+    }
+  }
+  
+  #notimage {
+    display: block;
+    float: left;
+    clear: both;
+    width: 100%;
+    &.hidden {
+      display: none;
+    }
+  }
+
+  progress,
+  .progress {
+    // appearance: none;
+    display: inline;
+    clear: both;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 180px;
+    height: 8px;
+    border: 0;
+    border-radius: 4px;
+    background-color: #eee;
+    overflow: hidden;
+  }
+
+  .progress[value]::-webkit-progress-bar {
+    border-radius: 4px;
+    background-color: #eee;
+  }
+
+  .progress[value]::-webkit-progress-value {
+    background: linear-gradient(to right, darken($theme,8%) 0%, $theme 50%);
+    border-radius: 4px; 
+  }
+  .progress[value]::-moz-progress-bar {
+    background: linear-gradient(to right, darken($theme,8%) 0%, $theme 50%);
+    border-radius: 4px; 
+  }
+
+  input[type="file"] {
+    display: none;
+  }
+
+  div {
+    margin: 0 0 .5rem 0;
+    color: $dark-text;
+  }
+  .btn {
+    display: inline-block;
+    margin: .5rem .5rem 1rem .5rem;
+    clear: both;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    text-transform: initial;
+    border: none;
+    border-radius: .2rem;
+    outline: none;
+    padding: 0 1rem;
+    height: 36px;
+    line-height: 36px;
+    color: #fff;
+    transition: all 0.2s ease-in-out;
+    box-sizing: border-box;
+    background: $theme;
+    border-color: $theme;
+    cursor: pointer;
+  }
+}
+
+
+
+
+
+
+// https://codepen.io/srees/pen/EyrQVp
+.stepWrapper{
+  clear: both;
+  font-size: 1.3rem;
+  text-align: center;
+  margin-top: 100px;
+  max-width: 1024px;
+  position: relative; 
+  margin: 0 auto 25px;
+
+  .wizard {
+    display: inline-block;
+    counter-reset: flag;
+    color: red;
+    box-shadow: 1px 1px 2px 1px #ddd;
+    a {
+      position: relative;
+      float: left;
+      padding-left: 60px;
+      padding-right: 10px;
+      background: #fff;
+      text-decoration: none;
+      line-height: 36px;
+      color: black;
+      transition:all 0.5s;
+      &:after {
+        content: '';
+        background: #fff;
+        width: 36px;
+        height: 36px;
+        z-index: 1;
+        position: absolute;
+        top: 0;
+        right: -18px;
+        border-radius: 50px 0 0 0;
+        box-shadow:1px 1px 0 1px #ddd;
+        transform: rotate(-45deg) scale(0.73);
+      }
+      &:before {
+        content: counter(flag);
+        counter-increment: flag;
+        position: absolute;
+        top: 8px;
+        left: 30px;
+        line-height: 20px;
+        width: 20px;
+        height: 20px;
+        background: #fff;
+        border-radius: 50%;
+        box-shadow: 0 0 2px #ddd;
+      }
+      &:first-child {
+        padding-left: 46px;
+        &:before {
+          left: 14px;
+        }
+      }
+    }
+  }
+  
+  .wizard a:hover,
+  .wizard a:hover::after,
+  .wizard a:active,
+  .wizard a:active::after {
+    
+    transition:all 0.5s;
+  }
+
+}
+

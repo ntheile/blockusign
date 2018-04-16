@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Chart } from 'chart.js';
+import { ListPage } from '../list/list';
 import moment from 'moment-timezone';
 import 'rxjs/add/operator/toPromise';
 import { LoadingController } from 'ionic-angular';
@@ -14,6 +15,8 @@ declare let canvas: any;
 declare let TextEncoder: any;
 declare let FileReader: any;
 declare let blockstack: any;
+declare let document: any;
+declare let $: any;
 
 /// Pdf js basic example - https://jsfiddle.net/pdfjs/cq0asLqz/?utm_source=website&utm_medium=embed&utm_campaign=cq0asLqz
 /// Annotations sample - http://jsfiddle.net/seikichi/RuDvz/2/
@@ -34,16 +37,22 @@ export class HomePage {
     constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, public globalService: GlobalService) {
 
         let s = globalService.GaiUrl;
-        debugger;
+
     }
 
     ionViewDidLoad() {
         this.showProfile();
+        this.ekUpload();
+      
     }
 
     login() {
         const origin = window.location.origin
         blockstack.redirectToSignIn(origin, origin + '/manifest.json', ['store_write', 'publish_data'])
+    }
+
+    next(){
+        this.navCtrl.push(ListPage);
     }
 
     logout() {
@@ -69,26 +78,26 @@ export class HomePage {
 
     saveFile() {
 
-        blockstack.putFile(this.fileName, this.pdfBuffer , { encrypt: true }).then((data) => {
-                
+        blockstack.putFile(this.fileName, this.pdfBuffer, { encrypt: true }).then((data) => {
+
         });
     }
 
     getFile() {
         blockstack.getFile(this.fileName, { decrypt: true }).then((data) => {
-            this.pdfBuffer = data;            
+            this.pdfBuffer = data;
         });
     }
 
     loadFile() {
-        let fileInput: any = document.getElementById('files');
+        let fileInput: any = document.getElementById('file-upload');
         let firstFile = fileInput.files[0];
 
         let startByte = 0;
         let endByte = firstFile.size;
         let opt_startByte = startByte.toString();
         let opt_stopByte = endByte.toString();
-        let files = (<any>document).getElementById('files').files;
+        let files = (<any>document).getElementById('file-upload').files;
         if (!files.length) {
             alert('Please select a file!');
             return;
@@ -186,6 +195,127 @@ export class HomePage {
         };
         f.readAsBinaryString(bb);
     }
+
+    // File Upload https://codepen.io/mattsince87/pen/yadZXv?editors=0010#0
+    ekUpload() {
+        let self = this;
+        function Init() {
+
+            console.log("Upload Initialised");
+
+            var fileSelect = document.getElementById('file-upload'),
+                fileDrag = document.getElementById('file-drag'),
+                submitButton = document.getElementById('submit-button');
+
+            fileSelect.addEventListener('change', fileSelectHandler, false);
+
+            // Is XHR2 available?
+            var xhr = new XMLHttpRequest();
+            if (xhr.upload) {
+                // File Drop
+                fileDrag.addEventListener('dragover', fileDragHover, false);
+                fileDrag.addEventListener('dragleave', fileDragHover, false);
+                fileDrag.addEventListener('drop', fileSelectHandler, false);
+            }
+        }
+
+        function fileDragHover(e) {
+            var fileDrag = document.getElementById('file-drag');
+
+            e.stopPropagation();
+            e.preventDefault();
+
+            fileDrag.className = (e.type === 'dragover' ? 'hover' : 'modal-body file-upload');
+        }
+
+        function fileSelectHandler(e) {
+            // Fetch FileList object
+            var files = e.target.files || e.dataTransfer.files;
+
+            // Cancel event and hover styling
+            fileDragHover(e);
+
+            
+            // Process all File objects
+            for (var i = 0, f; f = files[i]; i++) {
+                // parseFile(f);
+                self.loadFile();
+                uploadFile(f);
+               
+            }
+        }
+
+        // Output
+        function output(msg) {
+            // Response
+            var m = document.getElementById('messages');
+            m.innerHTML = msg;
+        }
+
+      
+
+        function setProgressMaxValue(e) {
+            var pBar = document.getElementById('file-progress');
+
+            if (e.lengthComputable) {
+                pBar.max = e.total;
+            }
+        }
+
+        function updateFileProgress(e) {
+            var pBar = document.getElementById('file-progress');
+
+            if (e.lengthComputable) {
+                pBar.value = e.loaded;
+            }
+        }
+
+        function uploadFile(file) {
+
+            var xhr = new XMLHttpRequest(),
+                fileInput = document.getElementById('class-roster-file'),
+                pBar = document.getElementById('file-progress'),
+                fileSizeLimit = 1024; // In MB
+            if (xhr.upload) {
+                // Check if file is less than x MB
+                if (file.size <= fileSizeLimit * 1024 * 1024) {
+                    // Progress bar
+                    pBar.style.display = 'inline';
+                    xhr.upload.addEventListener('loadstart', setProgressMaxValue, false);
+                    xhr.upload.addEventListener('progress', updateFileProgress, false);
+
+                    // File received / failed
+                    xhr.onreadystatechange = function (e) {
+                        if (xhr.readyState == 4) {
+                            // Everything is good!
+
+                            // progress.className = (xhr.status == 200 ? "success" : "failure");
+                            // document.location.reload(true);
+                        }
+                    };
+
+                    // Start upload
+                    xhr.open('POST', document.getElementById('file-upload-form').action, true);
+                    xhr.setRequestHeader('X-File-Name', file.name);
+                    xhr.setRequestHeader('X-File-Size', file.size);
+                    xhr.setRequestHeader('Content-Type', 'multipart/form-data');
+                    xhr.send(file);
+                } else {
+                    output('Please upload a smaller file (< ' + fileSizeLimit + ' MB).');
+                }
+            }
+        }
+
+        // Check for the various File API support.
+        if (window.File && window.FileList && window.FileReader) {
+            Init();
+        } else {
+            document.getElementById('file-drag').style.display = 'none';
+        }
+    }
+
+
+   
 
 }
 
