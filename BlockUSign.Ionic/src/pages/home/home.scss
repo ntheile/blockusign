@@ -175,77 +175,83 @@ $dark-text:   #5f6982;
 }
 
 
+/* sy */
 
-
-
-
-// https://codepen.io/srees/pen/EyrQVp
-.stepWrapper{
-  clear: both;
-  font-size: 1.3rem;
-  text-align: center;
-  margin-top: 100px;
-  max-width: 1024px;
-  position: relative; 
-  margin: 0 auto 25px;
-
-  .wizard {
-    display: inline-block;
-    counter-reset: flag;
-    color: red;
-    box-shadow: 1px 1px 2px 1px #ddd;
-    a {
-      position: relative;
-      float: left;
-      padding-left: 60px;
-      padding-right: 10px;
-      background: #fff;
-      text-decoration: none;
-      line-height: 36px;
-      color: black;
-      transition:all 0.5s;
-      &:after {
-        content: '';
-        background: #fff;
-        width: 36px;
-        height: 36px;
-        z-index: 1;
-        position: absolute;
-        top: 0;
-        right: -18px;
-        border-radius: 50px 0 0 0;
-        box-shadow:1px 1px 0 1px #ddd;
-        transform: rotate(-45deg) scale(0.73);
-      }
-      &:before {
-        content: counter(flag);
-        counter-increment: flag;
-        position: absolute;
-        top: 8px;
-        left: 30px;
-        line-height: 20px;
-        width: 20px;
-        height: 20px;
-        background: #fff;
-        border-radius: 50%;
-        box-shadow: 0 0 2px #ddd;
-      }
-      &:first-child {
-        padding-left: 46px;
-        &:before {
-          left: 14px;
-        }
-      }
-    }
-  }
-  
-  .wizard a:hover,
-  .wizard a:hover::after,
-  .wizard a:active,
-  .wizard a:active::after {
-    
-    transition:all 0.5s;
-  }
-
+.steps-wrapper{
+  margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ padding-top: 50px;
+ --primary-color: hsl(223, 84%, 82%);
+ --active-color: hsl(226, 92%, 65%);
+ 
 }
 
+
+/* Steps Component */
+.steps {
+ counter-reset: step;
+ max-width: 80%;
+ margin: auto;
+ display: flex;
+ position: relative;
+ list-style: none;
+}
+
+.step {
+ color: var(--primary-color);
+ flex: 1;
+ counter-increment: step;
+ padding-top: calc(40px + 1rem); /*40px is for the circle*/
+ text-align: center;
+ position: relative;
+ background-image: linear-gradient(to bottom, transparent calc(20px - 2px), currentColor 0, currentColor calc(20px + 2px), transparent 0);
+ font-weight: 100;
+}
+
+.step::before {
+ display: flex;
+ width: 40px;
+ height: 40px;
+ border-radius: 50%;
+ background: var(--primary-color);
+ content: counter(step);
+ position: absolute;
+ justify-content: center;
+ align-items: center;
+ color: white;
+ font-size: 1.5rem;
+ top: 0;
+ left: 50%;
+ transform: translateX(-50%);
+}
+
+.step:last-child,
+.step:first-child {
+ background-size: 50% 100%;
+ background-repeat: no-repeat;
+}
+
+.step:first-child {
+ background-position: 100% 0;
+}
+
+.step-info::before {
+ font-weight: bold;
+ display: block;
+ content: "STEP " counter(step);
+}
+
+/* States */
+.step.active {
+ color: var(--active-color);
+}
+
+.step.active::before {
+ background: var(--active-color);
+}
+
+.step.completed::before {
+ content: '✓';
+}
+ 

@@ -26,19 +26,6 @@
 
 
 
-  <div class="stepWrapper">
-      <div class="container">
-          <div class="row">
-            <div class="wizard">
-              <a href="#" style="color: #454cad; font-weight: bolder; font-size: 1.6rem; ">Upload</a>
-              <a href="#">Add Signature</a>
-              <a href="#">Email</a>
-              <a href="#">Accept</a>
-            </div>
-          </div>
-        </div>
-  </div>
-
 
 
   <ion-grid>
@@ -47,7 +34,35 @@
         <div class="centerMe">
           <ion-card>
             <ion-card-header>
+              <ion-item>
 
+
+                <div class="steps-wrapper">
+                  <ul class="steps">
+                    <li class="step active">
+                      <div class="step-info">
+                        <span class="step-name">Upload</span>
+                      </div>
+                    </li>
+
+                    <li class="step completed">
+                      <div class="step-info">
+                        <span class="step-name">Annotate</span>
+                      </div>
+                    </li>
+                    <li class="step">
+                      <div class="step-info">
+                        <span class="step-name">Sign</span>
+                      </div>
+                    </li>
+                    <li class="step">
+                      <div class="step-info">
+                        <span class="step-name">Review</span>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </ion-item>
             </ion-card-header>
             <ion-card-content ngClass="selectable">
 
