@@ -21,7 +21,7 @@ declare let rotation: any;
 declare var blockstack: any;
 declare let dragOn: any;
 declare let interact: any;
-declare let global: any;
+//declare let global: any;
 
 
 /// https://www.sitepoint.com/custom-pdf-rendering/
@@ -286,12 +286,7 @@ export class ListPage {
 
   dragOn() {
 
-
-    
-
-    if (!global.svgDrawer){
-     
-      global.svgDrawer  = dragOn(document.querySelector(".dropzone"), {
+      let svgDrawer  = dragOn(document.querySelector(".dropzone"), {
         listenTo: '.draggable'
       });
   
@@ -309,7 +304,7 @@ export class ListPage {
         })
         .on('resizemove', (event) => {
   
-          global.svgDrawer.updateMetrics();
+          svgDrawer.updateMetrics();
   
           var target = event.target,
             x = (parseFloat(target.getAttribute('data-x')) || 0),
@@ -330,7 +325,7 @@ export class ListPage {
           target.setAttribute('data-y', y);
         });
   
-    }
+   
    
    
 

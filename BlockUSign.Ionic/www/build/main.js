@@ -4,7 +4,7 @@ webpackJsonp([1],{
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_cryptocompare_service__ = __webpack_require__(226);
@@ -39,6 +39,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+//declare let global: any;
 /// https://www.sitepoint.com/custom-pdf-rendering/
 var ListPage = (function () {
     function ListPage(navCtrl, navParams, cryptoCompareService) {
@@ -226,36 +227,34 @@ var ListPage = (function () {
     };
     ;
     ListPage.prototype.dragOn = function () {
-        if (!global.svgDrawer) {
-            global.svgDrawer = dragOn(document.querySelector(".dropzone"), {
-                listenTo: '.draggable'
-            });
-            // target elements with the "resizable" class
-            interact('.resizable')
-                .resizable({
-                // preserveAspectRatio: true,
-                edges: {
-                    left: true,
-                    right: true,
-                    bottom: true,
-                    top: true
-                }
-            })
-                .on('resizemove', function (event) {
-                global.svgDrawer.updateMetrics();
-                var target = event.target, x = (parseFloat(target.getAttribute('data-x')) || 0), y = (parseFloat(target.getAttribute('data-y')) || 0);
-                // update the element's style
-                target.style.width = event.rect.width + 'px';
-                target.style.height = event.rect.height + 'px';
-                // translate when resizing from top or left edges
-                x += event.deltaRect.left;
-                y += event.deltaRect.top;
-                target.style.webkitTransform = target.style.transform =
-                    'translate(' + x + 'px,' + y + 'px)';
-                target.setAttribute('data-x', x);
-                target.setAttribute('data-y', y);
-            });
-        }
+        var svgDrawer = dragOn(document.querySelector(".dropzone"), {
+            listenTo: '.draggable'
+        });
+        // target elements with the "resizable" class
+        interact('.resizable')
+            .resizable({
+            // preserveAspectRatio: true,
+            edges: {
+                left: true,
+                right: true,
+                bottom: true,
+                top: true
+            }
+        })
+            .on('resizemove', function (event) {
+            svgDrawer.updateMetrics();
+            var target = event.target, x = (parseFloat(target.getAttribute('data-x')) || 0), y = (parseFloat(target.getAttribute('data-y')) || 0);
+            // update the element's style
+            target.style.width = event.rect.width + 'px';
+            target.style.height = event.rect.height + 'px';
+            // translate when resizing from top or left edges
+            x += event.deltaRect.left;
+            y += event.deltaRect.top;
+            target.style.webkitTransform = target.style.transform =
+                'translate(' + x + 'px,' + y + 'px)';
+            target.setAttribute('data-x', x);
+            target.setAttribute('data-y', y);
+        });
     };
     ListPage.prototype.overLay = function () {
     };
@@ -283,7 +282,6 @@ var ListPage = (function () {
 }());
 
 //# sourceMappingURL=list.js.map
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(15)))
 
 /***/ }),
 
