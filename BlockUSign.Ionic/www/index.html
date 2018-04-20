@@ -51,12 +51,16 @@
   <script>
     PDFJS = pdfjsLib;
     PDFJS.DefaultTextLayerFactory  = DefaultTextLayerFactory;
+    var global = global || {};
   </script>
 
 <script src="./assets/pdf-annotate.js"></script>
 <script src="./assets/blockstack.js"></script>
 
 <link href='https://fonts.googleapis.com/css?family=Glegoo' rel='stylesheet' type='text/css'>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/interact.js/1.2.9/interact.min.js"></script>
+<script src="./assets/dragOn.js"></script>
 
 
 </head>
@@ -66,7 +70,7 @@
   
 
   <!-- Ionic's root component and where the app will load -->
-  <ion-app>
+  <ion-app >
 
     
 

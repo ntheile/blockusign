@@ -1,5 +1,7 @@
+@charset "UTF-8";
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
 @import url("https://fonts.googleapis.com/css?family=Roboto");
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,500,700");
 .ion-ios-add:before {
   content: "\f102";
 }
@@ -28159,82 +28161,699 @@ html, body, * {
   cursor: pointer;
 }
 
-.stepWrapper {
-  clear: both;
-  font-size: 1.3rem;
+/* Steps https://codepen.io/praveenpuglia/pen/WpEvwO */
+.steps-wrapper {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  --primary-color: #abc0f8;
+  --active-color: #547af8;
+}
+
+/* Steps Component */
+.steps {
+  counter-reset: step;
+  max-width: 90%;
+  margin: auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  list-style: none;
+}
+
+.step {
+  color: var(--primary-color);
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  counter-increment: step;
+  padding-top: calc(40px + 1rem) !important;
+  /*40px is for the circle*/
   text-align: center;
-  margin-top: 100px;
-  max-width: 1024px;
   position: relative;
-  margin: 0 auto 25px;
+  background-image: linear-gradient(to bottom, transparent calc(20px - 2px), currentColor 0, currentColor calc(20px + 2px), transparent 0);
+  font-weight: 100;
 }
 
-.stepWrapper .wizard {
-  display: inline-block;
-  counter-reset: flag;
-  color: red;
-  -webkit-box-shadow: 1px 1px 2px 1px #ddd;
-  box-shadow: 1px 1px 2px 1px #ddd;
-}
-
-.stepWrapper .wizard a {
-  position: relative;
-  float: left;
-  padding-left: 60px;
-  padding-right: 10px;
-  background: #fff;
-  text-decoration: none;
-  line-height: 36px;
-  color: black;
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
-}
-
-.stepWrapper .wizard a:after {
-  content: '';
-  background: #fff;
-  width: 36px;
-  height: 36px;
-  z-index: 1;
-  position: absolute;
-  top: 0;
-  right: -18px;
-  border-radius: 50px 0 0 0;
-  -webkit-box-shadow: 1px 1px 0 1px #ddd;
-  box-shadow: 1px 1px 0 1px #ddd;
-  -webkit-transform: rotate(-45deg) scale(0.73);
-  transform: rotate(-45deg) scale(0.73);
-}
-
-.stepWrapper .wizard a:before {
-  content: counter(flag);
-  counter-increment: flag;
-  position: absolute;
-  top: 8px;
-  left: 30px;
-  line-height: 20px;
-  width: 20px;
-  height: 20px;
-  background: #fff;
+.step::before {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  -webkit-box-shadow: 0 0 2px #ddd;
-  box-shadow: 0 0 2px #ddd;
+  background: var(--primary-color);
+  content: counter(step);
+  position: absolute;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: white;
+  font-size: 1.5rem;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 
-.stepWrapper .wizard a:first-child {
-  padding-left: 46px;
+.step:last-child,
+.step:first-child {
+  background-size: 50% 100%;
+  background-repeat: no-repeat;
 }
 
-.stepWrapper .wizard a:first-child:before {
-  left: 14px;
+.step:first-child {
+  background-position: 100% 0;
 }
 
-.stepWrapper .wizard a:hover,
-.stepWrapper .wizard a:hover::after,
-.stepWrapper .wizard a:active,
-.stepWrapper .wizard a:active::after {
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
+.step-info::before {
+  font-weight: bold;
+  display: block;
+  content: "STEP " counter(step);
+}
+
+/* States */
+.step.active {
+  color: var(--active-color);
+}
+
+.step.active::before {
+  background: var(--active-color);
+}
+
+.step.completed::before {
+  content: '✓';
+}
+
+.discord {
+}
+
+.discord * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.discord *:focus {
+  outline: 0;
+}
+
+.discord html, .discord body {
+  height: 100%;
+  background: #121416;
+  color: #FFF;
+  font-size: 16px;
+  font-family: "Roboto";
+}
+
+.discord .container {
+  height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.discord .vert-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.discord .servers {
+  height: 100%;
+  background: #1E2124;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 70px;
+  -ms-flex: 0 0 70px;
+  flex: 0 0 70px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  overflow-y: auto;
+  padding: 18px 0 18px 0;
+  -ms-overflow-style: none;
+}
+
+.discord .servers::-webkit-scrollbar {
+  display: none;
+}
+
+.discord .channels {
+  background: #2E3136;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 240px;
+  -ms-flex: 0 0 240px;
+  flex: 0 0 240px;
+}
+
+.discord .channels .channels-header {
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 56px;
+  -ms-flex: 0 0 56px;
+  flex: 0 0 56px;
+  padding: 28px 24px;
+  -webkit-box-shadow: 0 1px 0 #24272b, inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 0 #24272b, inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  -webkit-transition: background 0.15s ease;
+  transition: background 0.15s ease;
+}
+
+.discord .channels .channels-header .channels-header-dropdown {
+  width: 18px;
+  height: 18px;
+  margin-left: auto;
+  pointer-events: none;
+}
+
+.discord .channels .channels-header .channels-header-dropdown use {
+  stroke-dasharray: 7;
+  -webkit-transform-origin: 50%;
+  transform-origin: 50%;
+  -webkit-transition: stroke-dasharray 0.2s ease, -webkit-transform 0.2s ease;
+  transition: stroke-dasharray 0.2s ease, -webkit-transform 0.2s ease;
+  transition: stroke-dasharray 0.2s ease, transform 0.2s ease;
+  transition: stroke-dasharray 0.2s ease, transform 0.2s ease, -webkit-transform 0.2s ease;
+}
+
+.discord .channels .channels-header:hover, .discord .channels .channels-header:focus {
+  background: #282b2f;
+}
+
+.discord .channels .channels-header:focus use {
+  stroke-dasharray: 14;
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
+.discord .channels .channels-list-text, .discord .channels .channels-list-voice {
+  margin: 0 -20px 0 -20px;
+}
+
+.discord .channels .channels-header-name {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.discord .channels .channel {
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 8px 20px 10px 20px;
+  opacity: 0.3;
+  width: 100%;
+}
+
+.discord .channels .channel .button {
+  display: none;
+  opacity: 0.2;
+}
+
+.discord .channels .channel .button:hover, .discord .channels .channel .button:focus {
+  opacity: 1;
+}
+
+.discord .channels .channel.active, .discord .channels .channel:hover, .discord .channels .channel:focus {
+  opacity: 1;
+}
+
+.discord .channels .channel.active .button, .discord .channels .channel:hover .button, .discord .channels .channel:focus .button {
+  display: block;
+}
+
+.discord .channels .channel .channel-name {
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+
+.discord .channels .channel .button:first-of-type {
+  margin-left: auto;
+  margin-right: 8px;
+}
+
+.discord .channels .channel .button {
+  width: 16px;
+  height: 16px;
+}
+
+.discord .channels .channel-text {
+  position: relative;
+}
+
+.discord .channels .channel-text.active, .discord .channels .channel-text:hover, .discord .channels .channel-text:focus {
+  background: -webkit-gradient(linear, left top, right top, color-stop(85%, #282b30), to(#2e3136));
+  background: linear-gradient(to right, #282b30 85%, #2e3136);
+}
+
+.discord .channels .channel-text.active::before, .discord .channels .channel-text:hover::before, .discord .channels .channel-text:focus::before {
+  content: " ";
+  width: 2px;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  background: #7289DA;
+}
+
+.discord .channels .channel-text:not(.active):focus::before, .discord .channels .channel-text:not(.active):hover::before {
+  opacity: 0.25;
+}
+
+.discord .channels .channel-text .channel-name::before {
+  font-weight: 400 !important;
+}
+
+.discord .channels .channels-list {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1;
+  -ms-flex: 1 1;
+  flex: 1 1;
+  overflow-y: auto;
+  padding: 0 20px;
+}
+
+.discord .channels .channels-list ul {
+  list-style: none;
+}
+
+.discord .channels .channels-list .channels-list-header {
+  cursor: pointer;
+  margin-top: 20px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.87rem;
+  letter-spacing: 0.04rem;
+  -webkit-transition: color 0.2s linear;
+  transition: color 0.2s linear;
+  line-height: 30px;
+  position: relative;
+}
+
+.discord .channels .channels-list .channels-list-header:hover, .discord .channels .channels-list .channels-list-header:focus {
+  color: #FFF;
+}
+
+.discord .channels .channels-list .channels-list-header:hover::after, .discord .channels .channels-list .channels-list-header:focus::after {
+  opacity: 1;
+}
+
+.discord .channels .channels-list .channels-list-header::after {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  content: " ";
+  width: 10px;
+  height: 10px;
+  opacity: 0.3;
+  -webkit-transition: opacity 0.2s linear;
+  transition: opacity 0.2s linear;
+  background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMCAxMCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTguOTksMy45OUg2LjAxVjEuMDFDNi4wMSwwLjQ1Miw1LjU1OCwwLDUsMFMzLjk5LDAuNDUyLDMuOTksMS4wMVYzLjk5SDEuMDFDMC40NTIsMy45OSwwLDQuNDQyLDAsNWMwLDAuNTU4LDAuNDUyLDEuMDEsMS4wMSwxLjAxSDMuOTlWOC45OUMzLjk5LDkuNTQ4LDQuNDQyLDEwLDUsMTBzMS4wMS0wLjQ1MiwxLjAxLTEuMDFWNi4wMUg4Ljk5QzkuNTQ4LDYuMDEsMTAsNS41NTgsMTAsNUMxMCw0LjQ0Miw5LjU0OCwzLjk5LDguOTksMy45OXoiLz48L3N2Zz4=) no-repeat 50%;
+}
+
+.discord .channels .channels-footer {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 70px;
+  -ms-flex: 0 0 70px;
+  flex: 0 0 70px;
+  margin-top: auto;
+  background: #282b30;
+  border-top: 1px solid #1c1e21;
+  padding: 0 10px;
+}
+
+.discord .channels .channels-footer .channels-footer-details {
+  margin-left: 10px;
+}
+
+.discord .channels .channels-footer .channels-footer-controls {
+  margin-left: auto;
+  border: 1px solid #1c1e21;
+  border-radius: 4px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.discord .channels .channels-footer .channels-footer-controls .button {
+  display: block;
+  width: 32px;
+  height: 32px;
+}
+
+.discord .channels .channels-footer .channels-footer-controls .button svg {
+  width: 16px;
+}
+
+.discord .channels .channels-footer .channels-footer-controls .button:hover svg, .discord .channels .channels-footer .channels-footer-controls .button:focus svg {
+  -webkit-filter: brightness(200%);
+  filter: brightness(200%);
+}
+
+.discord .channels .channels-footer .avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.discord .channels .channels-footer .username, .discord .channels .channels-footer .tag {
+  display: block;
+  font-weight: 300;
+}
+
+.discord .channels .channels-footer .username {
+  font-size: 0.9rem;
+}
+
+.discord .channels .channels-footer .tag {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.7rem;
+}
+
+.discord .menu {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 57px;
+  -ms-flex: 0 0 57px;
+  flex: 0 0 57px;
+  padding: 0 20px 0 20px;
+  background: #36393E;
+  border-bottom: 1px solid #303337;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.discord .menu .menu-name {
+  font-weight: bold;
+  font-size: 1.3rem;
+  letter-spacing: 0.05rem;
+}
+
+.discord .hash-before::before, .discord .channels .channel-text .channel-name::before, .discord .menu .menu-name::before {
+  content: "#";
+  margin-right: 2px;
+  font-weight: 300;
+  color: #8A8E94;
+}
+
+.discord .chat {
+  background: #36393E;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.discord .server {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background-color: #2E3136;
+  background-repeat: no-repeat;
+  margin-bottom: 8px;
+  cursor: pointer;
+  position: relative;
+}
+
+.discord .server:not(.active) {
+  -webkit-animation: server-hover-out 0.6s ease;
+  animation: server-hover-out 0.6s ease;
+}
+
+.discord .server:not(.active):hover, .discord .server:not(.active):focus {
+  -webkit-animation: server-hover-in 0.8s ease forwards;
+  animation: server-hover-in 0.8s ease forwards;
+}
+
+.discord .server .server-icon {
+  border-radius: inherit;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.discord .server .server-icon > img {
+  border-radius: inherit;
+  max-width: 100%;
+}
+
+.discord .server.server-friends {
+  margin-bottom: 46px;
+  text-align: center;
+}
+
+.discord .server.server-friends svg {
+  max-width: 60%;
+  max-height: 60%;
+}
+
+.discord .server.server-friends.active::before {
+  display: none;
+}
+
+.discord .server.server-friends::after {
+  content: "2 ONLINE";
+  color: rgba(255, 255, 255, 0.3);
+  pointer-events: none;
+  font-weight: 300;
+  font-size: 0.65rem;
+  position: absolute;
+  bottom: -35px;
+  left: 3px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #2a2e32;
+}
+
+.discord .server::before {
+  position: absolute;
+  top: 20px;
+  left: -15px;
+  content: " ";
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 25px;
+}
+
+.discord .server.active {
+  border-radius: 15px;
+  background-color: #7289DA;
+}
+
+.discord .server.unread::before {
+  background: #8A8E94;
+}
+
+.discord .server.active::before {
+  background: #FFF;
+  height: 40px;
+  top: 5px;
+}
+
+.discord .server.active.unread::before {
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.discord .button {
+  background: #2E3136;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  line-height: normal;
+  overflow: visible;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.discord .button > svg, .discord .button > img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.discord .button-group .button:focus, .discord .button-group .button:active {
+  background: #3a3d44;
+}
+
+.discord .button-group .button:not(:last-of-type) {
+  border-right: 1px solid #1c1e21;
+}
+
+.discord .button-group .button + .button {
+  -webkit-box-shadow: inset 1px 0 0 #393c41;
+  box-shadow: inset 1px 0 0 #393c41;
+}
+
+.discord svg[id] {
+  width: 0;
+  position: absolute;
+}
+
+@-webkit-keyframes server-hover-in {
+  0% {
+    border-radius: 25px;
+    background-color: #2E3136;
+  }
+  40% {
+    border-radius: 12px;
+  }
+  70% {
+    border-radius: 16.7px;
+  }
+  80% {
+    background-color: #7289DA;
+  }
+  100% {
+    border-radius: 15px;
+    background-color: #7289DA;
+  }
+}
+
+@keyframes server-hover-in {
+  0% {
+    border-radius: 25px;
+    background-color: #2E3136;
+  }
+  40% {
+    border-radius: 12px;
+  }
+  70% {
+    border-radius: 16.7px;
+  }
+  80% {
+    background-color: #7289DA;
+  }
+  100% {
+    border-radius: 15px;
+    background-color: #7289DA;
+  }
+}
+
+@-webkit-keyframes server-hover-out {
+  0% {
+    border-radius: 15px;
+    background-color: #7289DA;
+  }
+  45% {
+    border-radius: 25px;
+    background-color: #2E3136;
+  }
+  65% {
+    border-radius: 25px;
+  }
+  75% {
+    border-radius: 23.5px;
+  }
+  100% {
+    border-radius: 25px;
+  }
+}
+
+@keyframes server-hover-out {
+  0% {
+    border-radius: 15px;
+    background-color: #7289DA;
+  }
+  45% {
+    border-radius: 25px;
+    background-color: #2E3136;
+  }
+  65% {
+    border-radius: 25px;
+  }
+  75% {
+    border-radius: 23.5px;
+  }
+  100% {
+    border-radius: 25px;
+  }
 }
 
 .page {
@@ -28261,4 +28880,86 @@ html, body, * {
   max-width: 1024px;
   position: relative;
   margin: 0 auto 25px;
+}
+
+#sign {
+  cursor: move;
+}
+
+/*
+ * generic drag styles
+ */
+.draggable {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  z-index: 10000;
+  background-color: #67a8d6;
+  border-radius: 5px;
+  -webkit-box-shadow: 2px 2px 10px -5px #000;
+  box-shadow: 2px 2px 10px -5px #000;
+  -webkit-transform: translate(0px, 0px);
+  transform: translate(0px, 0px);
+  -webkit-transition-property: background-color, -webkit-box-shadow;
+  transition-property: background-color, -webkit-box-shadow;
+  transition-property: background-color, box-shadow;
+  transition-property: background-color, box-shadow, -webkit-box-shadow;
+  -webkit-transition-duration: .18s;
+  transition-duration: .18s;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+}
+
+.draggable.drag-elem {
+  min-width: 40px;
+  padding: 2em 0.5em;
+  color: #fff;
+}
+
+.draggable.drag-dragging {
+  z-index: 9999;
+  -webkit-box-shadow: 2px 20px 40px -5px rgba(0, 0, 0, 0.4);
+  box-shadow: 2px 20px 40px -5px rgba(0, 0, 0, 0.4);
+}
+
+.draggable.drag-dropped {
+  -webkit-box-shadow: 1px 1px 10px -4px rgba(0, 0, 0, 0.4);
+  box-shadow: 1px 1px 10px -4px rgba(0, 0, 0, 0.4);
+}
+
+.draggable.drag-can-drop {
+  color: #000;
+  background-color: #a9ff9a;
+}
+
+img.draggable {
+  border: 1px solid #f00;
+}
+
+img.draggable.drag-can-drop {
+  border-color: #a9ff9a;
+}
+
+/*
+* generic dropzone styles
+*/
+.dropzone {
+  background-color: transparent;
+  display: block;
+  width: 100%;
+  margin: 15px 0 60px 0;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+  border-radius: 4px;
+  border: dashed 4px transparent;
+}
+
+.dropzone.drop-active {
+  border-color: #454cad;
+}
+
+.dropzone.drop-target {
+  background-color: transparent;
+  border-color: #fff;
+  border-style: solid;
 }

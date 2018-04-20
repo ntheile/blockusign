@@ -16,7 +16,8 @@ declare let TextEncoder: any;
 declare let FileReader: any;
 declare let blockstack: any;
 declare let document: any;
-declare let $: any;
+//declare let $: any;
+const $ = document.querySelectorAll.bind(document);
 
 /// Pdf js basic example - https://jsfiddle.net/pdfjs/cq0asLqz/?utm_source=website&utm_medium=embed&utm_campaign=cq0asLqz
 /// Annotations sample - http://jsfiddle.net/seikichi/RuDvz/2/
@@ -43,7 +44,7 @@ export class HomePage {
     ionViewDidLoad() {
         this.showProfile();
         this.ekUpload();
-      
+      this.setupDiscordMenu();
     }
 
     login() {
@@ -275,7 +276,7 @@ export class HomePage {
             var xhr = new XMLHttpRequest(),
                 fileInput = document.getElementById('class-roster-file'),
                 pBar = document.getElementById('file-progress'),
-                fileSizeLimit = 1024; // In MB
+                fileSizeLimit = 2048; // In MB
             if (xhr.upload) {
                 // Check if file is less than x MB
                 if (file.size <= fileSizeLimit * 1024 * 1024) {
@@ -312,6 +313,42 @@ export class HomePage {
         } else {
             document.getElementById('file-drag').style.display = 'none';
         }
+    }
+
+
+    setupDiscordMenu(){
+        $(".focusable, .button").forEach(el => {
+            // blur only on mouse click
+            // for accessibility, keep focus when keyboard focused
+            el.addEventListener("mousedown", e => e.preventDefault());
+            el.setAttribute("tabindex", "0");
+        });
+        
+        $(".server").forEach(el => {
+            el.addEventListener("click", () => {
+                const activeServer = $(".server.active")[0];
+                activeServer.classList.remove("active");
+                activeServer.removeAttribute("aria-selected");
+                
+                el.classList.add("active");
+                el.setAttribute("aria-selected", true);
+            });
+        })
+        
+        $(".channel-text").forEach(el => {
+            el.addEventListener("click", () => {
+                $(".channel-text.active")[0].classList.remove("active");
+                el.classList.add("active");
+            });
+        })
+        
+        // focus/blur on channel header click
+        $(".channels-header")[0].addEventListener("click", e => {
+            e.preventDefault();
+            
+            const focused = document.activeElement === e.target;
+            focused ? e.target.blur() : e.target.focus();
+        });
     }
 
 

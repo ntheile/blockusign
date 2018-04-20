@@ -9,19 +9,44 @@
 
 <ion-content>
 
-  <div class="toolbar centerMe">
-    <!-- <button ion-button class="rectangle" title="Rectangle" data-tooltype="area">&nbsp;</button>
-    <button ion-button class="highlight" title="Highlight" data-tooltype="highlight">&nbsp;</button>
-    <button ion-button class="strikeout" title="Strikeout" data-tooltype="strikeout">&nbsp;</button> -->
-    <div class="spacer"></div>
-    <button ion-button class="clear" title="Clear" (click)="handleClearClick()">×</button>
-  </div>
-  <div class="page" id="pageContainer1" data-page-number="1">
-    <div id="canvasWrapper">
-      <canvas id="canvas1"></canvas>
+  <div class="centerMe">
+    <!-- <button ion-button class="clear" title="Clear" (click)="handleClearClick()">×</button> -->
+
+    <img class="draggable draggable-droppable" height="45px" draggable="true" src="./../../assets/imgs/sign.png" />
+    
+    
+    <button ion-button (click)="saveSvg()">Save</button>
+
+    <!-- <svg class="annotationLayer"  class="dropzone resizable" id="svg-dropzone" viewBox="0 0 612 792" width="800" height="600"> </svg>-->
+
+
+
+    
+
+    <div class="page" id="pageContainer1" data-page-number="1" style="position: relative;">
+
+      <div id="canvasWrapper" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px">
+        <canvas id="canvas1" width="612" height="792" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px"></canvas>
+      </div>
+      <svg id="svg-dropzone" class="dropzone resizable" draggable="true" viewBox="0 0 612 792" width="612" height="792" xmlns="http://www.w3.org/2000/svg"
+          style="position: absolute; 
+                  left: 0px; 
+                  top:0px;
+                  z-index: 200000;
+                  width: 612;
+                  padding: 0px 0px 0px 0px; 
+                  margin: 0px 0px 0px 0px;
+                  height: 792">
+      </svg>
+      <div class="textLayer"></div>
     </div>
-    <svg class="annotationLayer" xmlns="http://www.w3.org/2000/svg"></svg>
-    <div class="textLayer"></div>
+
+
   </div>
- 
+
+
+  <svg  class="annotationLayer" xmlns="http://www.w3.org/2000/svg">
+
+  </svg>
+
 </ion-content>

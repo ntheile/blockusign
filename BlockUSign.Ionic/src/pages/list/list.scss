@@ -22,3 +22,89 @@
   position: relative; 
   margin: 0 auto 25px;
 }
+
+#sign{
+  cursor: move;
+}
+
+
+
+
+
+
+/*
+ * generic drag styles
+ */
+ .draggable {
+  display: inline-block;
+  vertical-align: middle;
+
+  position: relative;
+  z-index: 10000;
+
+  background-color: #67a8d6;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px -5px #000;
+
+  transform: translate(0px, 0px);
+
+  transition-property: background-color, box-shadow;
+  transition-duration: .18s;
+  transition-timing-function: ease-in-out;
+
+  &.drag-elem {
+      min-width: 40px;
+      padding: 2em 0.5em;
+
+      color: #fff;
+  }
+
+  &.drag-dragging {
+      z-index: 9999;
+      box-shadow: 2px 20px 40px -5px rgba(0, 0, 0, .4);
+  }
+
+  &.drag-dropped {
+      box-shadow: 1px 1px 10px -4px rgba(0, 0, 0, 0.4);
+  }
+
+  &.drag-can-drop {
+      color: #000;
+      background-color: #a9ff9a;
+  }
+}
+
+img.draggable {
+  border: 1px solid #f00;
+
+  &.drag-can-drop {
+      border-color: #a9ff9a;
+  }
+}
+
+/*
+* generic dropzone styles
+*/
+.dropzone {
+  background-color:transparent;
+  display: block;
+  
+  width: 100%;
+  
+  margin: 15px 0 60px 0;
+  
+  transition: background-color 0.3s;
+  
+  border-radius: 4px;
+  border: dashed 4px transparent;
+
+  &.drop-active {
+      border-color: #454cad;
+  }
+
+  &.drop-target {
+      background-color: transparent;
+      border-color: #fff;
+      border-style: solid;
+  }
+}

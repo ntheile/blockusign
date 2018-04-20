@@ -19,6 +19,10 @@ declare let canvas: any;
 declare let scale: any;
 declare let rotation: any;
 declare var blockstack: any;
+declare let dragOn: any;
+declare let interact: any;
+declare let global: any;
+
 
 /// https://www.sitepoint.com/custom-pdf-rendering/
 @Component({
@@ -36,66 +40,75 @@ export class ListPage {
   public page1: any;
   public page2: any;
   public tooltype: any;
-  public containerId: string =  "pageContainer1";
+  public containerId: string = "pageContainer1";
   public canvasId: string = "canvas1";
   fileName = "blockusign/pdf1.pdf";
   pdfBuffer: Buffer;
+  selectedElement = null;
+  prevElement = null;
+  currentX = 0;
+  currentY = 0;
+  
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public cryptoCompareService: CryptoCompareService) {
-
+    
   }
 
-  
+
   ionViewDidLoad() {
 
-    
+
     //let pdfData = this.loadPDFData(); // loads pdf data from localStorage, make sure you uploaded it from home.js
-
-
+   
     blockstack.getFile(this.fileName, { decrypt: true }).then((data) => {
-      this.pdfBuffer = data;            
-      
-      let pdfData = new Uint8Array( this.pdfBuffer);
+      this.pdfBuffer = data;
+
+      let pdfData = new Uint8Array(this.pdfBuffer);
 
       this.loadPdf(pdfData); // loads the pdf to the screen with the text layers
 
-      this.setupToolBar();
-   
-      this.page1 = document.querySelector(`#${this.containerId} .annotationLayer`);
+      //this.setupToolBar();
+
+      //this.page1 = document.querySelector(`#${this.containerId} .annotationLayer`);
       //this.page2 = document.querySelector('#pageContainer2 .annotationLayer');
-  
-      PDFJS.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
-      PDFAnnotate.setStoreAdapter(new PDFAnnotate.LocalStoreAdapter());
-  
-      Promise.all([
-        PDFAnnotate.getAnnotations(this.DOCUMENT_ID, 1),
-        //PDFAnnotate.getAnnotations(this.DOCUMENT_ID, 2)
-      ]).then(([ann1, ann2]) => {
-        
-        let RENDER_OPTIONS = {
-          documentId: this.DOCUMENT_ID,
-          pdfDocument: pdfData,
-          scale: 1,
-          rotate: 0
-        };
-  
-        PDFAnnotate.render(this.page1, mockViewport(this.page1), ann1);
-        //PDFAnnotate.render(this.page2, mockViewport(this.page2), ann2);
-  
-      });
+
+      //PDFJS.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+      //PDFAnnotate.setStoreAdapter(new PDFAnnotate.LocalStoreAdapter());
+
+      // Promise.all([
+      //   PDFAnnotate.getAnnotations(this.DOCUMENT_ID, 1),
+      //   //PDFAnnotate.getAnnotations(this.DOCUMENT_ID, 2)
+      // ]).then(([ann1, ann2]) => {
+
+      //   let RENDER_OPTIONS = {
+      //     documentId: this.DOCUMENT_ID,
+      //     pdfDocument: pdfData,
+      //     scale: 1,
+      //     rotate: 0
+      //   };
+
+      //   PDFAnnotate.render(this.page1, mockViewport(this.page1), ann1);
+      //   //PDFAnnotate.render(this.page2, mockViewport(this.page2), ann2);
+
+      // });
 
     });
   }
 
 
+  ionViewWillLeave(){
+    $(".dropzone").unbind();
+   
+  }
+
   loadPdf(pdfData) {
-    
+
     let loadingTask = pdfjsLib.getDocument({ data: pdfData });
 
-    loadingTask.promise.then( (pdf)=> {
+    loadingTask.promise.then((pdf) => {
 
       let pageNumber = 1;
-      pdf.getPage(pageNumber).then( (page)=> {
+      pdf.getPage(pageNumber).then((page) => {
         console.log('Page loaded');
 
         let scale = 1.0;
@@ -113,10 +126,10 @@ export class ListPage {
           viewport: viewport
         };
         let renderTask = page.render(renderContext)
-          .then( ()=> {
+          .then(() => {
             // Get text-fragments
             return page.getTextContent();
-          }).then( (textContent)=> {
+          }).then((textContent) => {
             // Create div which will hold text-fragments
             let textLayerDiv = document.createElement("div");
 
@@ -139,11 +152,18 @@ export class ListPage {
 
             // Render text-fragments
             textLayer.render();
+
+            // overlay
+            this.overLay();
+
+            // load svg
+            this.loadSvg();
+
           });
       });
 
     }, (reason) => {
-      
+
       // PDF loading error
       console.error(reason);
 
@@ -152,7 +172,7 @@ export class ListPage {
   }
 
   loadPDFData() {
-    
+
     let base64pdfData = localStorage.getItem("pdfStr");
     function base64ToUint8Array(base64) {
       let raw = atob(base64);
@@ -169,7 +189,7 @@ export class ListPage {
   setupAnnotations(page, viewport, canvas, $annotationLayerDiv) {
 
     let canvasOffset = $(canvas).offset();
-    let promise = page.getAnnotations().then( (annotationsData) => {
+    let promise = page.getAnnotations().then((annotationsData) => {
       viewport = viewport.clone({
         dontFlip: true
       });
@@ -214,7 +234,7 @@ export class ListPage {
   }
 
   setActiveToolbarItem(type, button) {
-    
+
     let active = document.querySelector('.toolbar button.active');
     if (active) {
       active.classList.remove('active');
@@ -231,7 +251,7 @@ export class ListPage {
   }
 
   handleToolbarClick(e) {
-    
+
     if (e.target.nodeName === 'BUTTON') {
       this.setActiveToolbarItem(e.target.getAttribute('data-tooltype'), e.target);
     }
@@ -239,7 +259,7 @@ export class ListPage {
   }
 
   handleClearClick(e) {
-    
+
     if (confirm('Are you sure you want to throw your work away?')) {
       localStorage.removeItem(`${this.DOCUMENT_ID}/annotations`);
       this.page1.innerHTML = '';
@@ -247,12 +267,102 @@ export class ListPage {
 
   }
 
-  setupToolBar(){
+  setupToolBar() {
     this.tooltype = localStorage.getItem(`${this.DOCUMENT_ID}/tooltype`) || 'area';
     if (this.tooltype) {
       this.setActiveToolbarItem(this.tooltype, document.querySelector(`.toolbar button[data-tooltype=${this.tooltype}]`));
     }
 
   }
+
+
+
+
+  handleDragStart(e) {
+    //log("handleDragStart");
+    e.style.opacity = '0.4'; // this ==> e.target is the source node.
+  };
+
+
+  dragOn() {
+
+
+    
+
+    if (!global.svgDrawer){
+     
+      global.svgDrawer  = dragOn(document.querySelector(".dropzone"), {
+        listenTo: '.draggable'
+      });
+  
+  
+      // target elements with the "resizable" class
+      interact('.resizable')
+        .resizable({
+          // preserveAspectRatio: true,
+          edges: {
+            left: true,
+            right: true,
+            bottom: true,
+            top: true
+          }
+        })
+        .on('resizemove', (event) => {
+  
+          global.svgDrawer.updateMetrics();
+  
+          var target = event.target,
+            x = (parseFloat(target.getAttribute('data-x')) || 0),
+            y = (parseFloat(target.getAttribute('data-y')) || 0);
+  
+          // update the element's style
+          target.style.width = event.rect.width + 'px';
+          target.style.height = event.rect.height + 'px';
+  
+          // translate when resizing from top or left edges
+          x += event.deltaRect.left;
+          y += event.deltaRect.top;
+  
+          target.style.webkitTransform = target.style.transform =
+            'translate(' + x + 'px,' + y + 'px)';
+  
+          target.setAttribute('data-x', x);
+          target.setAttribute('data-y', y);
+        });
+  
+    }
+   
+   
+
+  }
+
+
+  overLay(){
+
+  }
+
+  saveSvg(){
+
+    let svg = $("#svg-dropzone").html();
+
+    if (svg){
+      localStorage.setItem("svg", svg);
+    }
+
+    
+  }
+
+  loadSvg(){
+
+    let svg = localStorage.getItem("svg");
+
+    if (svg){
+      $("#svg-dropzone").innerHTML = svg;
+    }
+
+    this.dragOn();
+
+  }
+
 
 }
