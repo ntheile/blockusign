@@ -154,7 +154,11 @@
                     target.setAttribute("data-y", y);
                 })
                 .on('dragend', function(event) {
-                    event.target.parentNode.removeChild(event.target);
+                    try{
+                        event.target.parentNode.removeChild(event.target);
+                    }
+                    catch(e){};
+
                 });
             
             return this;
@@ -170,7 +174,7 @@
             for (var k in attrs) {
                 el.setAttribute(k, attrs[k]);
             }
-            
+
             return el;
         },
         /**
@@ -320,6 +324,7 @@
 
                 console.groupEnd();
 
+
                 var elemImage = this.createElementSVG('image');
                 
                 elemImage.setAttributeNS(
@@ -400,6 +405,110 @@
          */
         cleanDrawArea: function(selector) {
             this.drawArea.innerHTML = "";
+        },
+        addHTML: function(innerHTMLStr){
+             
+            this.drawArea.innerHTML = innerHTMLStr;
+            
+
+            for(var i = 0; i < this.drawArea.children.length; i++){
+                var elemImage = this.drawArea.children[i];
+                var elemDropped = elemImage;
+
+
+                this.updateMetrics();
+    
+                console.group("Dropped elem");
+    
+                // dropped cordinates
+                var elemDroppedBounding = elemDropped.getBoundingClientRect();
+    
+                var elemDroppedDistanceFrom = {};
+    
+                // position of dropped element relative to the document
+                elemDroppedDistanceFrom.document = {
+                    left: elemDroppedBounding.left + window.scrollX,
+                    top: elemDroppedBounding.top + window.scrollY
+                };
+    
+                // position of dropped element relative to SVG boundings
+                elemDroppedDistanceFrom.svg = {
+                    left: elemDroppedDistanceFrom.document.left - this.metrics.distanceFrom.document.left,
+                    top: elemDroppedDistanceFrom.document.top - this.metrics.distanceFrom.document.top
+                };
+                
+                console.log(elemDroppedDistanceFrom);
+    
+                console.info("O elemento foi solto à " + elemDroppedDistanceFrom.svg.left + "px da margem esquerda e " + elemDroppedDistanceFrom.svg.top + "px da margem superior do SVG.");
+    
+                console.groupEnd();
+    
+                console.group("Cáculos de escalonamento");
+    
+                elemDroppedDistanceFrom.svg.left =
+                    elemDroppedDistanceFrom.svg.left / this.metrics.viewBox.scale -
+                    this.metrics.whiteSpace.left / this.metrics.viewBox.scale;
+                elemDroppedDistanceFrom.svg.top =
+                    elemDroppedDistanceFrom.svg.top / this.metrics.viewBox.scale -
+                    this.metrics.whiteSpace.top / this.metrics.viewBox.scale;
+    
+                console.groupEnd();
+    
+    
+    
+    
+                var that = this;
+    
+                interact(elemImage)
+                .draggable(interactBasicOptions.draggable)
+                .on("dragmove", function(event) {
+                    var target = event.target,
+                        // keep the dragged position in the data-x/data-y attributes
+                        x = (parseFloat(target.getAttribute("x")) || 0) + event.dx / that.metrics.viewBox.scale,
+                        y = (parseFloat(target.getAttribute("y")) || 0) + event.dy / that.metrics.viewBox.scale;
+    
+                    // add dragging class
+                    target.classList.add("drag-dragging");
+                    target.classList.remove("drag-dropped");
+    
+                    // update the posiion attributes
+                    target.setAttribute("x", x);
+                    target.setAttribute("y", y);
+                })
+                .resizable(interactBasicOptions.resizable)
+                .on("resizemove", function(event) {
+                    var target = event.target;
+                    var x = parseFloat(target.getAttribute("x")) || 0;
+                    var y = parseFloat(target.getAttribute("y")) || 0;
+    
+                    console.log(event);
+                    console.log(that.metrics.viewBox.scale);
+                
+                    if (event.rect.width > 19) {
+                        // update the element's size
+                        target.setAttribute("width", event.rect.width / that.metrics.viewBox.scale);
+    
+                        // translate when resizing from top or left edges
+                        x += event.deltaRect.left / that.metrics.viewBox.scale;
+                        target.setAttribute("x", x);
+                    }
+    
+                    if (event.rect.height > 19) {
+                        // update the element's size
+                        target.setAttribute("height", event.rect.height / that.metrics.viewBox.scale);
+    
+                        // translate when resizing from top or left edges
+                        y += event.deltaRect.top / that.metrics.viewBox.scale;
+                        target.setAttribute("y", y);
+                    }
+                });
+    
+            }
+
+
+            
+            
+
         }
     });
 

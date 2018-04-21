@@ -17,11 +17,15 @@ import { GlobalService } from '../services/global.service'
 import { CryptoCompareService } from '../services/cryptocompare.service';
 import { SlackService } from '../services/slack.service';
 
+import { AbsoluteDragDirective } from '../directives/absolute-drag/absolute-drag';
+
+
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    AbsoluteDragDirective
   ],
   imports: [
     BrowserModule,

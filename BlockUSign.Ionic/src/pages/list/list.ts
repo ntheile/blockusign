@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { CryptoCompareService } from '../../services/cryptocompare.service'
 import { HomePage } from '../home/home';
+import { AbsoluteDragDirective } from '../../directives/absolute-drag/absolute-drag'
 import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/timeout';
 import 'rxjs/add/operator/delay';
@@ -19,8 +20,7 @@ declare let canvas: any;
 declare let scale: any;
 declare let rotation: any;
 declare var blockstack: any;
-declare let dragOn: any;
-declare let interact: any;
+declare let Event: any;
 //declare let global: any;
 
 
@@ -31,6 +31,8 @@ declare let interact: any;
   styles: ['list.scss']
 })
 export class ListPage {
+
+  @ViewChild(AbsoluteDragDirective) vc:AbsoluteDragDirective;
 
   public data: any;
   public DOCUMENT_ID = "blockusign/pdf1.txt";
@@ -57,6 +59,7 @@ export class ListPage {
 
   ionViewDidLoad() {
 
+    
 
     //let pdfData = this.loadPDFData(); // loads pdf data from localStorage, make sure you uploaded it from home.js
    
@@ -95,7 +98,16 @@ export class ListPage {
     });
   }
 
+ 
 
+  clear(){
+    this.vc.svgDrawer.cleanHTML();
+    this.vc.svgDrawer.cleanDrawArea();
+    this.vc.svgDrawer.updateMetrics();
+    localStorage.removeItem('svg');
+  }
+
+ 
   ionViewWillLeave(){
     $(".dropzone").unbind();
    
@@ -284,53 +296,7 @@ export class ListPage {
   };
 
 
-  dragOn() {
-
-      let svgDrawer  = dragOn(document.querySelector(".dropzone"), {
-        listenTo: '.draggable'
-      });
-  
-  
-      // target elements with the "resizable" class
-      interact('.resizable')
-        .resizable({
-          // preserveAspectRatio: true,
-          edges: {
-            left: true,
-            right: true,
-            bottom: true,
-            top: true
-          }
-        })
-        .on('resizemove', (event) => {
-  
-          svgDrawer.updateMetrics();
-  
-          var target = event.target,
-            x = (parseFloat(target.getAttribute('data-x')) || 0),
-            y = (parseFloat(target.getAttribute('data-y')) || 0);
-  
-          // update the element's style
-          target.style.width = event.rect.width + 'px';
-          target.style.height = event.rect.height + 'px';
-  
-          // translate when resizing from top or left edges
-          x += event.deltaRect.left;
-          y += event.deltaRect.top;
-  
-          target.style.webkitTransform = target.style.transform =
-            'translate(' + x + 'px,' + y + 'px)';
-  
-          target.setAttribute('data-x', x);
-          target.setAttribute('data-y', y);
-        });
-  
-   
-   
-   
-
-  }
-
+ 
 
   overLay(){
 
@@ -338,7 +304,7 @@ export class ListPage {
 
   saveSvg(){
 
-    let svg = $("#svg-dropzone").html();
+    let svg = $(".dragOn-drawArea").html();
 
     if (svg){
       localStorage.setItem("svg", svg);
@@ -348,14 +314,13 @@ export class ListPage {
   }
 
   loadSvg(){
+    let innerHtml = localStorage.getItem("svg");
 
-    let svg = localStorage.getItem("svg");
-
-    if (svg){
-      $("#svg-dropzone").innerHTML = svg;
+    if (innerHtml){
+      this.vc.svgDrawer.addHTML(innerHtml);
     }
-
-    this.dragOn();
+    
+    
 
   }
 

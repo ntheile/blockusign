@@ -12,10 +12,17 @@
   <div class="centerMe">
     <!-- <button ion-button class="clear" title="Clear" (click)="handleClearClick()">×</button> -->
 
-    <img class="draggable draggable-droppable" height="45px" draggable="true" src="./../../assets/imgs/sign.png" />
+    <!-- <img class="draggable draggable-droppable" height="45px" draggable="true" src="./../../assets/imgs/sign.png" /> -->
     
     
+    
+
     <button ion-button (click)="saveSvg()">Save</button>
+    <button ion-button (click)="clear()">Clear</button>
+    <button ion-button (click)="loadSvg()">Load</button>
+
+    <img id="sigImg" height="45px" absolute-drag class="draggable draggable-droppable" draggable="true" src="./../../assets/imgs/sign.png" />
+    
 
     <!-- <svg class="annotationLayer"  class="dropzone resizable" id="svg-dropzone" viewBox="0 0 612 792" width="800" height="600"> </svg>-->
 
