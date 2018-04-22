@@ -27990,6 +27990,13 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
+.split-pane-md.split-pane-visible > .split-pane-side {
+  min-width: 300px;
+  max-width: 300px;
+  border-right: 0px solid #dedede;
+  border-left: 0;
+}
+
 .centerMe {
   max-width: 1024px;
   position: relative;

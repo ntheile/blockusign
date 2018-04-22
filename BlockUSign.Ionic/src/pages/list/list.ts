@@ -98,7 +98,10 @@ export class ListPage {
     });
   }
 
- 
+  back(){
+    //this.navCtrl.push(ListPage);
+    this.navCtrl.setRoot(HomePage);
+  }
 
   clear(){
     this.vc.svgDrawer.cleanHTML();
@@ -287,41 +290,27 @@ export class ListPage {
 
   }
 
-
-
-
   handleDragStart(e) {
     //log("handleDragStart");
     e.style.opacity = '0.4'; // this ==> e.target is the source node.
   };
-
-
- 
 
   overLay(){
 
   }
 
   saveSvg(){
-
     let svg = $(".dragOn-drawArea").html();
-
     if (svg){
       localStorage.setItem("svg", svg);
     }
-
-    
   }
 
   loadSvg(){
     let innerHtml = localStorage.getItem("svg");
-
     if (innerHtml){
       this.vc.svgDrawer.addHTML(innerHtml);
     }
-    
-    
-
   }
 
 

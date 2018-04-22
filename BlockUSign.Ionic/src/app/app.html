@@ -1,4 +1,4 @@
-<ion-menu [content]="content" scroll="false" >
+<!-- <ion-menu [content]="content" scroll="false" >
   
 
   <ion-content scroll="false">
@@ -8,7 +8,164 @@
       </button>
     </ion-list>
   </ion-content>
-</ion-menu>
+</ion-menu> -->
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<ion-split-pane>
+<ion-menu [content]="content">
+  <ion-content>
+    <div class="discord" style="height: 100%; width: 300px;">
+      <!-- https://codepen.io/thesbros/pen/vxpMPp -->
+      <main class="container">
+
+
+        <aside class="servers">
+          <div class="servers-collection">
+            <div class="server focusable server-friends unread" role="button" aria-label="Friends unread">
+              <div class="server-icon">
+                <svg>
+                  <use xlink:href="#icon-friends" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="servers-collection">
+            <div class="server focusable unread" role="button" aria-label="Discord Developers unread">
+              <div class="server-icon">
+                <img src="https://cdn.discordapp.com/icons/41771983423143937/edc44e98a690a1f76c5ddec68a0a6b9e.png" />
+              </div>
+            </div>
+          </div>
+
+          <div class="servers-collection">
+            <div class="server focusable active" role="button" aria-label="My Server" aria-selected="true">
+              <div class="server-icon">
+                <img src="https://discordapp.com/assets/0e291f67c9274a1abdddeb3fd919cbaa.png" />
+              </div>
+            </div>
+          </div>
+        </aside>
+
+
+
+
+        <aside class="channels">
+          <header class="channels-header focusable">
+            <h3 role="header" class="channels-header-name" style="padding-right: 10px;">blockusign</h3>
+            <button ion-button style="padding: 10px 10px 10px 10px; background: green; height: 45px;"> NEW + </button>
+            <svg role="button" aria-label="Dropdown" class="channels-header-dropdown">
+              <use xlink:href="#icon-dropdown" />
+            </svg>
+          </header>
+
+          <section class="channels-list">
+
+            <header class="channels-list-header focusable">
+              <span>Documents</span>
+            </header>
+
+            <ul class="channels-list-text">
+              <li class="channel focusable channel-text active">
+                <span class="channel-name">blockusign nda.pdf</span>
+                <button class="button" role="button" aria-label="Invite">
+                  <svg>
+                    <use xlink:href="#icon-invite" />
+                  </svg>
+                </button>
+                <button class="button" role="button" aria-label="settings">
+                  <svg>
+                    <use xlink:href="#icon-channel-settings" />
+                  </svg>
+                </button>
+              </li>
+
+              <li class="channel focusable channel-text">
+                <span class="channel-name">my photo release form.pdf</span>
+                <button class="button" role="button" aria-label="Invite">
+                  <svg>
+                    <use xlink:href="#icon-invite" />
+                  </svg>
+                </button>
+                <button class="button" role="button" aria-label="settings">
+                  <svg>
+                    <use xlink:href="#icon-channel-settings" />
+                  </svg>
+                </button>
+              </li>
+
+              <li class="channel focusable channel-text">
+                <span class="channel-name">may lease.pdf</span>
+                <button class="button" role="button" aria-label="Invite">
+                  <svg>
+                    <use xlink:href="#icon-invite" />
+                  </svg>
+                </button>
+                <button class="button" role="button" aria-label="settings">
+                  <svg>
+                    <use xlink:href="#icon-channel-settings" />
+                  </svg>
+                </button>
+              </li>
+
+              <li class="channel focusable channel-text">
+                <span class="channel-name">escrow agreement.pdf</span>
+                <button class="button" role="button" aria-label="Invite">
+                  <svg>
+                    <use xlink:href="#icon-invite" />
+                  </svg>
+                </button>
+                <button class="button" role="button" aria-label="settings">
+                  <svg>
+                    <use xlink:href="#icon-channel-settings" />
+                  </svg>
+                </button>
+              </li>
+
+            </ul>
+
+            <header class="channels-list-header focusable">
+              <span>Templates</span>
+            </header>
+
+            <ul class="channels-list-text">
+              <li class="channel focusable channel-text ">
+                <span class="channel-name">COMING SOON</span>
+              </li>
+            </ul>
+
+            <header class="channels-list-header focusable">
+              <span>Analytics</span>
+            </header>
+            <ul class="channels-list-text">
+              <li class="channel focusable channel-text ">
+                <span class="channel-name">COMING SOON</span>
+              </li>
+            </ul>
+          </section>
+
+
+
+          <footer class="channels-footer">
+            <img class="avatar" alt="Avatar" src="https://discordapp.com/assets/0e291f67c9274a1abdddeb3fd919cbaa.png" />
+            <div class="channels-footer-details">
+              <span class="username">
+                <a (click)="logout()" style="float:right">{{name}} {{ loginState }} </a>
+              </span>
+              <span class="tag">#0001</span>
+            </div>
+            <!-- <div class="channels-footer-controls button-group">
+                        <button role="button" aria-label="Mute" class="button button-mute"><svg><use xlink:href="#icon-mute" /></svg></button>
+                        <button role="button" aria-label="Deafen" class="button button-deafen"><svg><use xlink:href="#icon-deafen" /></svg></button>
+                        <button role="button" aria-label="Settings" class="button button-settings"><svg><use xlink:href="#icon-settings" /></svg></button>
+                      </div> -->
+          </footer>
+        </aside>
+
+
+      </main>
+    </div>
+  </ion-content>
+</ion-menu>
+<ion-nav [root]="rootPage" main #content swipeBackEnabled="false"></ion-nav>
+</ion-split-pane >

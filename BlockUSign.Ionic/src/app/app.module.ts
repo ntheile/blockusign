@@ -19,13 +19,15 @@ import { SlackService } from '../services/slack.service';
 
 import { AbsoluteDragDirective } from '../directives/absolute-drag/absolute-drag';
 
+import { NavController } from 'ionic-angular';
+
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
-    AbsoluteDragDirective
+    AbsoluteDragDirective,
   ],
   imports: [
     BrowserModule,

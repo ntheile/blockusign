@@ -27,7 +27,6 @@ const $ = document.querySelectorAll.bind(document);
 })
 export class HomePage {
 
-
     name: string;
     isLoggedIn = false;
     loginState = "Login";
@@ -37,45 +36,16 @@ export class HomePage {
 
     constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, public globalService: GlobalService) {
 
-        let s = globalService.GaiUrl;
-
     }
 
     ionViewDidLoad() {
-        this.showProfile();
         this.ekUpload();
-      this.setupDiscordMenu();
-    }
-
-    login() {
-        const origin = window.location.origin
-        blockstack.redirectToSignIn(origin, origin + '/manifest.json', ['store_write', 'publish_data'])
     }
 
     next(){
-        this.navCtrl.push(ListPage);
+        //this.navCtrl.push(ListPage);
+        this.navCtrl.setRoot(ListPage);
     }
-
-    logout() {
-        blockstack.signUserOut(window.location.origin);
-    }
-
-    showProfile() {
-        if (blockstack.isUserSignedIn()) {
-            let profile = blockstack.loadUserData();
-            this.name = profile.username;
-            this.isLoggedIn = true;
-            this.loginState = "[Logout]";
-        } else if (blockstack.isSignInPending()) {
-            blockstack.handlePendingSignIn().then(function (userData) {
-                window.location = window.location.origin
-            })
-        }
-        else {
-            this.login();
-        }
-    }
-
 
     saveFile() {
 
@@ -253,7 +223,6 @@ export class HomePage {
             m.innerHTML = msg;
         }
 
-      
 
         function setProgressMaxValue(e) {
             var pBar = document.getElementById('file-progress');
@@ -316,42 +285,7 @@ export class HomePage {
     }
 
 
-    setupDiscordMenu(){
-        $(".focusable, .button").forEach(el => {
-            // blur only on mouse click
-            // for accessibility, keep focus when keyboard focused
-            el.addEventListener("mousedown", e => e.preventDefault());
-            el.setAttribute("tabindex", "0");
-        });
-        
-        $(".server").forEach(el => {
-            el.addEventListener("click", () => {
-                const activeServer = $(".server.active")[0];
-                activeServer.classList.remove("active");
-                activeServer.removeAttribute("aria-selected");
-                
-                el.classList.add("active");
-                el.setAttribute("aria-selected", true);
-            });
-        })
-        
-        $(".channel-text").forEach(el => {
-            el.addEventListener("click", () => {
-                $(".channel-text.active")[0].classList.remove("active");
-                el.classList.add("active");
-            });
-        })
-        
-        // focus/blur on channel header click
-        $(".channels-header")[0].addEventListener("click", e => {
-            e.preventDefault();
-            
-            const focused = document.activeElement === e.target;
-            focused ? e.target.blur() : e.target.focus();
-        });
-    }
-
-
+   
    
 
 }
