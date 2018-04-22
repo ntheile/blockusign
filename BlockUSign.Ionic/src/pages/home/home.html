@@ -1,36 +1,15 @@
-<ion-content style="width: 100%">
-  
-  <ion-grid>
-    <ion-row>
-      <ion-col col-12>
-        <!-- <ion-badge style="float:right">
-                  <ion-icon name="notifications" item-start></ion-icon>
-                </ion-badge> -->
-        <!-- <button ion-button (click)="login()" style="float:right"  >Login</button> -->
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
-  <ion-fab left top menuToggle>
-    <button ion-fab color="light" color="primary">
-      <ion-icon name="menu"></ion-icon>
-    </button>
-  </ion-fab>
-
+<ion-content>
   <ion-grid>
     <ion-row>
       <ion-col width-100>
-        <br/>
         <div class="steps-wrapper">
-          <br/>
-          
-          <ul class="steps">
+          <ul class="steps" >
             <li class="step active">
               <div class="step-info">
                 <span class="step-name">Upload</span>
               </div>
             </li>
-            <li class="step completed">
+            <li class="step" (click)="next()">
               <div class="step-info">
                 <span class="step-name">Annotate</span>
               </div>

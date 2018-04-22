@@ -1,34 +1,74 @@
-<ion-header>
+<!-- <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Block-U-Sign</ion-title>
   </ion-navbar>
-</ion-header>
-
+</ion-header> -->
 <ion-content>
+
+    
+        <ion-grid>
+          <ion-row>
+            <ion-col width-100>
+              <div class="steps-wrapper">
+                <ul class="steps">
+                  <li class="step completed" (click)="back()">
+                    <div class="step-info">
+                      <span class="step-name">Upload</span>
+                    </div>
+                  </li>
+                  <li class="step active">
+                    <div class="step-info">
+                      <span class="step-name">Annotate</span>
+                    </div>
+                  </li>
+                  <li class="step">
+                    <div class="step-info">
+                      <span class="step-name">Email</span>
+                    </div>
+                  </li>
+                  <li class="step">
+                    <div class="step-info">
+                      <span class="step-name">Sign</span>
+                    </div>
+                  </li>
+                  <li class="step">
+                    <div class="step-info">
+                      <span class="step-name">Review</span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <br/>
+              <br/>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+
+
 
   <div class="centerMe">
     <!-- <button ion-button class="clear" title="Clear" (click)="handleClearClick()">×</button> -->
 
     <!-- <img class="draggable draggable-droppable" height="45px" draggable="true" src="./../../assets/imgs/sign.png" /> -->
-    
-    
-    
+
     <button ion-button (click)="back()">back</button>
     <button ion-button (click)="saveSvg()">Save</button>
     <button ion-button (click)="clear()">Clear</button>
     <button ion-button (click)="loadSvg()">Load</button>
 
-    <img id="sigImg" height="45px" absolute-drag class="draggable draggable-droppable" draggable="true" src="./../../assets/imgs/sign.png" />
-    
+    <img id="sigImg" height="45px" absolute-drag class="draggable draggable-droppable" draggable="true" src="./../../assets/imgs/sign.png"
+    />
+
 
     <!-- <svg class="annotationLayer"  class="dropzone resizable" id="svg-dropzone" viewBox="0 0 612 792" width="800" height="600"> </svg>-->
 
 
 
-    
+
 
     <div class="page" id="pageContainer1" data-page-number="1" style="position: relative;">
 
@@ -36,7 +76,7 @@
         <canvas id="canvas1" width="612" height="792" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px"></canvas>
       </div>
       <svg id="svg-dropzone" class="dropzone resizable" draggable="true" viewBox="0 0 612 792" width="612" height="792" xmlns="http://www.w3.org/2000/svg"
-          style="position: absolute; 
+        style="position: absolute; 
                   left: 0px; 
                   top:0px;
                   z-index: 200000;
@@ -52,7 +92,7 @@
   </div>
 
 
-  <svg  class="annotationLayer" xmlns="http://www.w3.org/2000/svg">
+  <svg class="annotationLayer" xmlns="http://www.w3.org/2000/svg">
 
   </svg>
 

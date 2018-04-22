@@ -206,14 +206,13 @@
   
   /* Steps https://codepen.io/praveenpuglia/pen/WpEvwO */
   .steps-wrapper{
-    margin: 0;
+   margin: 0;
    padding: 0;
    box-sizing: border-box;
-   padding-top: 50px;
-   padding-bottom: 50px;
+   padding-top: 25px;
+   padding-bottom: 10px;
    --primary-color: hsl(223, 84%, 82%);
    --active-color: hsl(226, 92%, 65%);
-   
   }
   
   
@@ -255,6 +254,10 @@
    top: 0;
    left: 50%;
    transform: translateX(-50%);
+  }
+  
+  .step:hover{
+    cursor: pointer;
   }
   
   .step:last-child,

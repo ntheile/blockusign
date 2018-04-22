@@ -28174,8 +28174,8 @@ html, body, * {
   padding: 0;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 25px;
+  padding-bottom: 10px;
   --primary-color: #abc0f8;
   --active-color: #547af8;
 }
@@ -28233,6 +28233,10 @@ html, body, * {
   left: 50%;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
+}
+
+.step:hover {
+  cursor: pointer;
 }
 
 .step:last-child,
