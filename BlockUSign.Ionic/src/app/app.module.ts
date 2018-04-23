@@ -20,6 +20,7 @@ import { SlackService } from '../services/slack.service';
 import { AbsoluteDragDirective } from '../directives/absolute-drag/absolute-drag';
 
 import { NavController } from 'ionic-angular';
+import { DocumentService } from '../services/document.service';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { NavController } from 'ionic-angular';
     CryptoCompareService,
     SlackService,
     GlobalService,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    DocumentService
   ]
 })
 export class AppModule {}

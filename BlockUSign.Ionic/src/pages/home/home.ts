@@ -8,7 +8,9 @@ import { LoadingController } from 'ionic-angular';
 import { prototype } from 'long';
 import __pdfjs from 'pdfjs-dist/build/pdf';
 import PDFJSAnnotate from 'pdf-annotate';
-import { GlobalService } from '../../services/global.service'
+import { GlobalService } from '../../services/global.service';
+import { DocumentService } from '../../services/document.service';
+import { AlertController } from 'ionic-angular';
 declare let window: any;
 declare let PDFView: any;
 declare let canvas: any;
@@ -34,12 +36,16 @@ export class HomePage {
     profile: any;
     pdfBuffer: Buffer;
 
-    constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, public globalService: GlobalService) {
+    constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, 
+        public globalService: GlobalService, public documentService: DocumentService, public alertCtrl: AlertController ) {
 
     }
 
-    ionViewDidLoad() {
+    async ionViewDidLoad() {
         this.ekUpload();
+
+        //let docs = await this.documentService.getDocumentsIndex(true)
+        
     }
 
     next(){
@@ -47,11 +53,16 @@ export class HomePage {
         this.navCtrl.setRoot(ListPage);
     }
 
-    saveFile() {
+    async saveFile(fileName) {
 
-        blockstack.putFile(this.fileName, this.pdfBuffer, { encrypt: true }).then((data) => {
 
-        });
+        let documentList = await this.documentService.addDocument(fileName, this.pdfBuffer);
+        debugger;
+        this.next();
+
+        // blockstack.putFile(fileName, this.pdfBuffer, { encrypt: true }).then((data) => {
+        //     this.next();
+        // });
     }
 
     getFile() {
@@ -76,7 +87,7 @@ export class HomePage {
         let file = files[0];
         let start = parseInt(opt_startByte) || 0;
         let stop = parseInt(opt_stopByte) || file.size - 1;
-
+        let filename = "";
         let reader = new FileReader();
         // If we use onloadend, we need to check the readyState.
         reader.onloadend = (evt: any) => {
@@ -86,7 +97,8 @@ export class HomePage {
                 //     ['Read bytes: ', start + 1, ' - ', stop + 1,
                 //         ' of ', file.size, ' byte file'].join('');
             }
-            let filename = fileInput.files[0].name;
+            filename = fileInput.files[0].name;
+            this.newDocModal(filename);
             //localStorage.setItem("FileName", filename);
         };
 
@@ -95,9 +107,9 @@ export class HomePage {
         reader.onload = (evt: any) => {
             let arraybuffer = evt.target.result;
             this.pdfBuffer = arraybuffer;
-            this.saveFile();
+            //this.saveFile();
             let pdfData = new Uint8Array(arraybuffer);
-            this.savePdfAsString(pdfData);
+            //this.savePdfAsString(pdfData);
             this.createPdf(pdfData);
         };
         reader.readAsArrayBuffer(blob);
@@ -286,7 +298,45 @@ export class HomePage {
 
 
    
-   
+    newDocModal(fileName) {
+        
+        let alert = this.alertCtrl.create({
+          title: 'Document Name',
+          inputs: [
+            {
+              name: 'fileName',
+              placeholder: '',
+              value: fileName
+            }
+          ],
+          buttons: [
+            {
+              text: 'Cancel',
+              role: 'cancel',
+              handler: data => {
+                console.log('Cancel clicked');
+              }
+            },
+            {
+              text: 'Ok',
+              handler: data => {
+                
+                // save here
+                
+                this.saveFile(data.fileName);
+
+                if (true == true) {
+                  // logged in!
+                } else {
+                  // invalid login
+                  return false;
+                }
+              }
+            }
+          ]
+        });
+        alert.present();
+      }
 
 }
 

@@ -4129,7 +4129,7 @@ ion-alert input {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  min-width: 250px;
+  min-width: 325px;
   max-height: 90%;
   opacity: 0;
   contain: content;

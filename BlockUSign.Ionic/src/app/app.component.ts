@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import {DocumentService} from '../services/document.service'
 import moment from 'moment-timezone';
 import 'rxjs/add/operator/toPromise';
 import { LoadingController } from 'ionic-angular';
@@ -12,6 +13,9 @@ declare let blockstack: any;
 declare let document: any;
 declare var window: any;
 const $ = document.querySelectorAll.bind(document);
+import { AlertController } from 'ionic-angular';
+
+
 
 @Component({
   templateUrl: 'app.html'
@@ -29,8 +33,11 @@ export class MyApp {
   fileName = "blockusign/pdf1.pdf";
   profile: any;
   pdfBuffer: Buffer;
+  avatar: string;
+  documentsList: any;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public loadingCtrl: LoadingController) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, 
+      public loadingCtrl: LoadingController, private alertCtrl: AlertController, public documentService: DocumentService) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -54,11 +61,17 @@ export class MyApp {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-      this.showProfile();
-      this.setupDiscordMenu();
+      
+      this.documentService.getDocumentsIndex(true).then( (data)=>{
+        this.documentsList = data;
+        this.statusBar.styleDefault();
+        this.splashScreen.hide();
+        this.showProfile();
+        this.setupDiscordMenu();
 
+      });
+      
+      
     });
   }
 
@@ -86,6 +99,7 @@ export class MyApp {
       let profile = blockstack.loadUserData();
       this.name = profile.username;
       this.isLoggedIn = true;
+      this.avatar = profile.profile.image[0].contentUrl;
       this.loginState = "[Logout]";
     } else if (blockstack.isSignInPending()) {
       blockstack.handlePendingSignIn().then(function (userData) {
@@ -131,5 +145,9 @@ export class MyApp {
       focused ? e.target.blur() : e.target.focus();
     });
   }
+
+
+ 
+
 
 }
