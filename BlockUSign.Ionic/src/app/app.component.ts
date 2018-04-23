@@ -32,7 +32,7 @@ export class MyApp {
   loginState = "Login";
   fileName = "blockusign/pdf1.pdf";
   profile: any;
-  pdfBuffer: Buffer;
+  pdfBuffer: any;
   avatar: string;
   documentsList: any;
 
@@ -62,15 +62,12 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       
-      this.documentService.getDocumentsIndex(true).then( (data)=>{
-        this.documentsList = data;
+     
         this.statusBar.styleDefault();
         this.splashScreen.hide();
         this.showProfile();
         this.setupDiscordMenu();
-
-      });
-      
+     
       
     });
   }
@@ -95,16 +92,24 @@ export class MyApp {
   }
 
   showProfile() {
+    
     if (blockstack.isUserSignedIn()) {
+     
       let profile = blockstack.loadUserData();
       this.name = profile.username;
       this.isLoggedIn = true;
       this.avatar = profile.profile.image[0].contentUrl;
       this.loginState = "[Logout]";
+      this.documentService.getDocumentsIndex(true).then( (data)=>{
+        this.documentsList = data;
+      });
     } else if (blockstack.isSignInPending()) {
       blockstack.handlePendingSignIn().then(function (userData) {
         window.location = window.location.origin
-      })
+        this.documentService.getDocumentsIndex(true).then( (data)=>{
+          this.documentsList = data;
+        });
+      });
     }
     else {
       this.login();

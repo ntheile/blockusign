@@ -46,7 +46,7 @@ export class ListPage {
   public containerId: string = "pageContainer1";
   public canvasId: string = "canvas1";
   fileName = "blockusign/pdf1.pdf";
-  pdfBuffer: Buffer;
+  pdfBuffer: any;
   selectedElement = null;
   prevElement = null;
   currentX = 0;

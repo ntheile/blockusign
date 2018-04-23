@@ -34,7 +34,7 @@ export class HomePage {
     loginState = "Login";
     fileName = "blockusign/pdf1.pdf";
     profile: any;
-    pdfBuffer: Buffer;
+    pdfBuffer: any;
 
     constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, 
         public globalService: GlobalService, public documentService: DocumentService, public alertCtrl: AlertController ) {

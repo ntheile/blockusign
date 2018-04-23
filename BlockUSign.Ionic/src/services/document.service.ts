@@ -19,7 +19,7 @@ export class DocumentService {
   private indexFileName = "blockusign/documents.index.json";
 
   public documentsList: Array<Document>;
-  public docBuffer: Buffer;
+  public docBuffer: any;
   public currentDoc: Document
 
   constructor() {
@@ -43,7 +43,7 @@ export class DocumentService {
   }
 
 
-  async addDocument(fileName: string, fileBuffer: Buffer){
+  async addDocument(fileName: string, fileBuffer: any){
     debugger;
     let newDocument = new Document();
     newDocument.fileName = fileName;
@@ -58,7 +58,7 @@ export class DocumentService {
     return this.documentsList;
   }
 
-  async addDocumentBytes(guid: string, doc: Buffer){
+  async addDocumentBytes(guid: string, doc: any){
       return blockstack.putFile(guid + ".pdf", doc, { encrypt: true }).then((data) => {
             
       });

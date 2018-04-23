@@ -27991,8 +27991,8 @@ ion-navbar.toolbar {
 }
 
 .split-pane-md.split-pane-visible > .split-pane-side {
-  min-width: 300px;
-  max-width: 300px;
+  min-width: 310px;
+  max-width: 325px;
   border-right: 0px solid #dedede;
   border-left: 0;
 }
