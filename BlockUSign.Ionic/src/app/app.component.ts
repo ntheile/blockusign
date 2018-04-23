@@ -4,7 +4,10 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
-import {DocumentService} from '../services/document.service'
+import {DocumentService} from '../services/document.service';
+import { PopoverController } from 'ionic-angular';
+import { ViewController } from 'ionic-angular';
+import { OptionsPopoverPage } from './options.popover.page';
 import moment from 'moment-timezone';
 import 'rxjs/add/operator/toPromise';
 import { LoadingController } from 'ionic-angular';
@@ -37,7 +40,8 @@ export class MyApp {
   documentsList: any;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, 
-      public loadingCtrl: LoadingController, private alertCtrl: AlertController, public documentService: DocumentService) {
+      public loadingCtrl: LoadingController, private alertCtrl: AlertController, 
+      public documentService: DocumentService, public popoverCtrl: PopoverController) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -106,9 +110,7 @@ export class MyApp {
     } else if (blockstack.isSignInPending()) {
       blockstack.handlePendingSignIn().then(function (userData) {
         window.location = window.location.origin
-        this.documentService.getDocumentsIndex(true).then( (data)=>{
-          this.documentsList = data;
-        });
+        this.documentsGetList();
       });
     }
     else {
@@ -157,5 +159,25 @@ export class MyApp {
   }
  
 
+  
+
+  documentsGetList(){
+    this.documentService.getDocumentsIndex(true).then( (data)=>{
+      this.documentsList = data;
+    });
+  }
+
+
+  presentPopover(myEvent, item) {
+    let popover = this.popoverCtrl.create(OptionsPopoverPage, {selectedDoc: item });
+    popover.present({
+      ev: myEvent,
+      
+    });
+  }
+
 
 }
+
+
+

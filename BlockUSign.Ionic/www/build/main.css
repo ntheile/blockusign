@@ -28429,13 +28429,12 @@ html, body, * {
   -ms-flex-align: center;
   align-items: center;
   padding: 8px 20px 10px 20px;
-  opacity: 0.3;
+  opacity: 0.6;
   width: 100%;
 }
 
 .discord .channels .channel .button {
-  display: none;
-  opacity: 0.2;
+  opacity: 0.8;
 }
 
 .discord .channels .channel .button:hover, .discord .channels .channel .button:focus {
@@ -28476,7 +28475,7 @@ html, body, * {
 
 .discord .channels .channel-text.active::before, .discord .channels .channel-text:hover::before, .discord .channels .channel-text:focus::before {
   content: " ";
-  width: 2px;
+  width: 5px;
   height: 100%;
   position: absolute;
   left: 0;
@@ -28484,7 +28483,7 @@ html, body, * {
 }
 
 .discord .channels .channel-text:not(.active):focus::before, .discord .channels .channel-text:not(.active):hover::before {
-  opacity: 0.25;
+  opacity: 0.8;
 }
 
 .discord .channels .channel-text .channel-name::before {

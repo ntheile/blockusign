@@ -429,13 +429,13 @@
           display: flex;
           align-items: center;
           padding: 8px 20px 10px 20px;
-          opacity: 0.3;
+          opacity: 0.6;
           width: 100%;
                   
           .button
           {
-              display: none;
-              opacity: 0.2;
+              //display: none;
+              opacity: 0.8;
               
               &:hover, &:focus
               {
@@ -480,7 +480,7 @@
               &::before
               {
                   content: " ";
-                  width: 2px;
+                  width: 5px;
                   height: 100%;
                   position: absolute;
                   left: 0;
@@ -488,7 +488,7 @@
               }
           }
           
-          &:not(.active) { &:focus::before, &:hover::before { opacity: 0.25; } }
+          &:not(.active) { &:focus::before, &:hover::before { opacity: 0.8; } }
           
           .channel-name
           {

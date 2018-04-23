@@ -66,16 +66,19 @@
               <ul class="channels-list-text" *ngFor="let item of documentsList">
                 <li class="channel focusable channel-text" >
                   <!-- <span class="channel-name">blockusign nda.pdf</span> -->
-                  <span (click)="documentSelected(item)">{{ item.fileName }}</span>
-                  <button class="button" role="button" aria-label="Invite">
-                    <svg>
-                      <use xlink:href="#icon-invite" />
-                    </svg>
-                  </button>
-                  <button class="button" role="button" aria-label="settings">
+                  <span (click)="documentSelected(item)">
+                    {{ item.fileName }}
+                  </span>
+                  <!-- <button class="button" role="button" aria-label="Invite" >
+                      <ion-icon md="md-trash" (click)="documentRemove(item)"></ion-icon>
+                  </button> -->
+                  <!-- <button class="button" role="button" aria-label="settings">
                     <svg>
                       <use xlink:href="#icon-channel-settings" />
                     </svg>
+                  </button> -->
+                  <button ion-button icon-only  style="padding-left: 10px; background: transparent" (click)="presentPopover($event, item)">
+                          <ion-icon name="more"></ion-icon>
                   </button>
                 </li>
 

@@ -44,7 +44,7 @@ export class DocumentService {
 
 
   async addDocument(fileName: string, fileBuffer: any){
-    debugger;
+    
     let newDocument = new Document();
     newDocument.fileName = fileName;
     this.documentsList.push( newDocument );
@@ -54,14 +54,26 @@ export class DocumentService {
     this.docBuffer = fileBuffer;
     this.currentDoc = newDocument;
     let response = await this.addDocumentBytes( newDocument.guid,  fileBuffer );
+    return this.documentsList;
+  }
 
+  async removeDocument(document){
+    debugger;
+  
+    // remove item
+    this.documentsList = (<any>this.documentsList).remove(document);
+    await blockstack.putFile(this.indexFileName, JSON.stringify(this.documentsList), { encrypt: true });
+    this.removeDocumentBytes(document.guid);
+    // remove binary file
     return this.documentsList;
   }
 
   async addDocumentBytes(guid: string, doc: any){
-      return blockstack.putFile(guid + ".pdf", doc, { encrypt: true }).then((data) => {
-            
-      });
+      return blockstack.putFile(guid + ".pdf", doc, { encrypt: true }).then((data) => { });
+  }
+
+  async removeDocumentBytes(guid: string){
+    return blockstack.putFile(guid + ".pdf", "", { encrypt: true }).then((data) => { });
   }
 
 }
