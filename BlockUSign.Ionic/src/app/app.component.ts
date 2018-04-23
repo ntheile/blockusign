@@ -146,7 +146,10 @@ export class MyApp {
     });
   }
 
-
+  documentSelected(selectedDocument){
+    this.documentService.currentDoc = selectedDocument;
+    this.next();
+  }
  
 
 

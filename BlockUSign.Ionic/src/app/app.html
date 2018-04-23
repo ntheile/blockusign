@@ -48,7 +48,11 @@
 
           <aside class="channels">
             <header class="channels-header focusable">
-              <h3 role="header" class="channels-header-name" style="padding-right: 10px;">blockusign</h3>
+
+              <img src="./assets/imgs/blockusign.png" height="45px" width="45px" />
+              <img src="./assets/imgs/text.png" width="100px" style="padding-left: 7px; padding-top: 12px" />
+
+              <h3 role="header" class="channels-header-name" style="padding-right: 10px;"></h3> 
               <!-- <button ion-button style="padding: 10px 10px 10px 10px; background: green; height: 45px;"> NEW + </button> -->
               <svg role="button" aria-label="Dropdown" class="channels-header-dropdown">
                 <use xlink:href="#icon-dropdown" />
@@ -66,9 +70,9 @@
               </header>
               
               <ul class="channels-list-text" *ngFor="let item of documentsList">
-                <li class="channel focusable channel-text ">
+                <li class="channel focusable channel-text" >
                   <!-- <span class="channel-name">blockusign nda.pdf</span> -->
-                  <span>{{ item.fileName }}</span>
+                  <span (click)="documentSelected(item)">{{ item.fileName }}</span>
                   <button class="button" role="button" aria-label="Invite">
                     <svg>
                       <use xlink:href="#icon-invite" />

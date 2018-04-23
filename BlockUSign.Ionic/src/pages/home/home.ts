@@ -49,8 +49,8 @@ export class HomePage {
     }
 
     next(){
-        //this.navCtrl.push(ListPage);
-        this.navCtrl.setRoot(ListPage);
+        this.navCtrl.push(ListPage);
+        //this.navCtrl.setRoot(ListPage);
     }
 
     async saveFile(fileName) {

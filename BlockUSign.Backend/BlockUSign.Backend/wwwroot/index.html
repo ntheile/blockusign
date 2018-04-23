@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
   <script data-ionic="inject">
     (function(w){var i=w.Ionic=w.Ionic||{};i.version='3.9.2';i.angular='5.0.3';i.staticDir='build/';})(window);
@@ -11,7 +12,7 @@
   <meta name="msapplication-tap-highlight" content="no">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.23.0/polyfill.min.js"></script>
- 
+
 
   <link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico">
   <link rel="manifest" href="manifest.json">
@@ -23,9 +24,9 @@
 
   <!-- cordova.js required for cordova apps (remove if not needed) -->
   <script src="cordova.js"></script>
-  
+
   <script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
-  
+
 
   <!-- un-comment this code to enable service worker
   <script>
@@ -44,35 +45,43 @@
 
   <script src="./assets/text_layer_builder.js"></script>
   <link href="./assets/text_layer_builder.css" rel="stylesheet">
-  
+
 
 
 
   <script>
     PDFJS = pdfjsLib;
-    PDFJS.DefaultTextLayerFactory  = DefaultTextLayerFactory;
-    //var global = global || {};
+    PDFJS.DefaultTextLayerFactory = DefaultTextLayerFactory;
+    function guid() {
+      function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+          .toString(16)
+          .substring(1);
+      }
+      return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+    }
   </script>
 
-<script src="./assets/pdf-annotate.js"></script>
-<script src="./assets/blockstack.js"></script>
+  <script src="./assets/pdf-annotate.js"></script>
+  <script src="./assets/blockstack.js"></script>
 
-<link href='https://fonts.googleapis.com/css?family=Glegoo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Glegoo' rel='stylesheet' type='text/css'>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/interact.js/1.2.9/interact.min.js"></script>
-<script src="./assets/dragOn.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/interact.js/1.2.9/interact.min.js"></script>
+  <script src="./assets/dragOn.js"></script>
 
 
 </head>
+
 <body>
 
 
-  
+
 
   <!-- Ionic's root component and where the app will load -->
-  <ion-app >
+  <ion-app>
 
-    
+
 
   </ion-app>
 
@@ -106,4 +115,5 @@
   </script> -->
 
 </body>
+
 </html>

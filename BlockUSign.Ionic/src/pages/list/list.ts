@@ -2,7 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { CryptoCompareService } from '../../services/cryptocompare.service'
 import { HomePage } from '../home/home';
-import { AbsoluteDragDirective } from '../../directives/absolute-drag/absolute-drag'
+import { AbsoluteDragDirective } from '../../directives/absolute-drag/absolute-drag';
+import { DocumentService } from '../../services/document.service';
 import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/timeout';
 import 'rxjs/add/operator/delay';
@@ -52,7 +53,8 @@ export class ListPage {
   currentY = 0;
   
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public cryptoCompareService: CryptoCompareService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+    public documentService: DocumentService) {
     
   }
 
@@ -63,7 +65,7 @@ export class ListPage {
 
     //let pdfData = this.loadPDFData(); // loads pdf data from localStorage, make sure you uploaded it from home.js
    
-    blockstack.getFile(this.fileName, { decrypt: true }).then((data) => {
+    blockstack.getFile(this.documentService.currentDoc.guid + ".pdf", { decrypt: true }).then((data) => {
       this.pdfBuffer = data;
 
       let pdfData = new Uint8Array(this.pdfBuffer);
