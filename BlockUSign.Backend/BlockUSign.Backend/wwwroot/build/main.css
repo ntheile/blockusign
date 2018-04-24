@@ -27998,9 +27998,9 @@ ion-navbar.toolbar {
 }
 
 .centerMe {
-  max-width: 1024px;
-  position: relative;
-  margin: 0 auto 25px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 html, body, * {
@@ -28754,9 +28754,6 @@ html, body, * {
   font: inherit;
   line-height: normal;
   overflow: visible;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
