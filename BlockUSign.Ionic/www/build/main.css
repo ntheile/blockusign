@@ -28754,9 +28754,6 @@ html, body, * {
   font: inherit;
   line-height: normal;
   overflow: visible;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;

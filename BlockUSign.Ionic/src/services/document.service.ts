@@ -58,8 +58,7 @@ export class DocumentService {
   }
 
   async removeDocument(document){
-    debugger;
-  
+    
     // remove item
     this.documentsList = (<any>this.documentsList).remove(document);
     await blockstack.putFile(this.indexFileName, JSON.stringify(this.documentsList), { encrypt: true });

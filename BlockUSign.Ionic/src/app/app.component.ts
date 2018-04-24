@@ -153,7 +153,8 @@ export class MyApp {
     });
   }
 
-  documentSelected(selectedDocument){
+  documentSelected(e, selectedDocument){
+    
     this.documentService.currentDoc = selectedDocument;
     this.next();
   }

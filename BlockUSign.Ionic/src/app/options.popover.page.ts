@@ -18,7 +18,7 @@ import { ToastController } from 'ionic-angular';
 
     constructor(public viewCtrl: ViewController, public documentService: DocumentService, private toastCtrl: ToastController) {
         this.doc = this.viewCtrl.data.selectedDoc;
-        debugger;
+
     }
   
     close() {

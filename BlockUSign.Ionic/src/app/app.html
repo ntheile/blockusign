@@ -63,24 +63,27 @@
                 <span>Documents</span>
               </header>
               
-              <ul class="channels-list-text" *ngFor="let item of documentsList">
-                <li class="channel focusable channel-text" >
-                  <!-- <span class="channel-name">blockusign nda.pdf</span> -->
-                  <span (click)="documentSelected(item)">
-                    {{ item.fileName }}
-                  </span>
-                  <!-- <button class="button" role="button" aria-label="Invite" >
-                      <ion-icon md="md-trash" (click)="documentRemove(item)"></ion-icon>
-                  </button> -->
-                  <!-- <button class="button" role="button" aria-label="settings">
-                    <svg>
-                      <use xlink:href="#icon-channel-settings" />
-                    </svg>
-                  </button> -->
-                  <button ion-button icon-only  style="padding-left: 10px; background: transparent" (click)="presentPopover($event, item)">
-                          <ion-icon name="more"></ion-icon>
-                  </button>
-                </li>
+              <ul class="channels-list-text" >
+                <div *ngFor="let item of documentsList">
+                    <li [ngClass]="(item == documentService.currentDoc) ? 'channel focusable channel-text active' : 'channel focusable channel-text'"   >
+                        <!-- <span class="channel-name">blockusign nda.pdf</span> -->
+                        <span (click)="documentSelected($event, item)">
+                          {{ item.fileName }}
+                        </span>
+                        <!-- <button class="button" role="button" aria-label="Invite" >
+                            <ion-icon md="md-trash" (click)="documentRemove(item)"></ion-icon>
+                        </button> -->
+                        <!-- <button class="button" role="button" aria-label="settings">
+                          <svg>
+                            <use xlink:href="#icon-channel-settings" />
+                          </svg>
+                        </button> -->
+                        <button ion-button icon-only  style="padding-left: 10px; background: transparent" (click)="presentPopover($event, item)">
+                                <ion-icon name="more"></ion-icon>
+                        </button>
+                      </li>
+                </div>
+                
 
                 <!-- <li class="channel focusable channel-text active">
                   <span>my photo release form.pdf</span>
