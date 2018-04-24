@@ -36,7 +36,7 @@ export class ListPage {
   @ViewChild(AbsoluteDragDirective) vc:AbsoluteDragDirective;
 
   public data: any;
-  public DOCUMENT_ID = "blockusign/pdf1.txt";
+  public DOCUMENT_ID = "blockusign/pdf1.txt"; // @TODO not being used, delete in furture
   public scale: any;
   public rotation: any;
   public UI = PDFAnnotate;
@@ -45,7 +45,7 @@ export class ListPage {
   public tooltype: any;
   public containerId: string = "pageContainer1";
   public canvasId: string = "canvas1";
-  fileName = "blockusign/pdf1.pdf";
+  //fileName = "blockusign/pdf1.pdf";
   pdfBuffer: any;
   selectedElement = null;
   prevElement = null;
@@ -301,15 +301,22 @@ export class ListPage {
 
   }
 
-  saveSvg(){
+  async saveSvg(){
     let svg = $(".dragOn-drawArea").html();
     if (svg){
-      localStorage.setItem("svg", svg);
+      //localStorage.setItem("svg", svg);
+      await this.documentService.saveAnnotations(this.documentService.currentDoc.guid, svg);
     }
   }
 
-  loadSvg(){
-    let innerHtml = localStorage.getItem("svg");
+  async loadSvg(){
+    //let innerHtml = localStorage.getItem("svg");
+    let json  =  await this.documentService.getAnnotations(this.documentService.currentDoc.guid);
+    let innerHtml = null;
+    if (json) { 
+      innerHtml = json.annotations;
+    }
+    
     if (innerHtml){
       this.vc.svgDrawer.addHTML(innerHtml);
     }

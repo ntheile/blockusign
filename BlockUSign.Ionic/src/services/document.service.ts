@@ -5,6 +5,7 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { AnonymousSubject } from 'rxjs/Subject';
 declare let blockstack: any;
 
 /*
@@ -20,7 +21,8 @@ export class DocumentService {
 
   public documentsList: Array<Document>;
   public docBuffer: any;
-  public currentDoc: Document
+  public currentDoc: Document;
+  public currentDocAnnotations;
 
   constructor() {
     console.log('Hello StorageServiceProvider Provider');
@@ -73,6 +75,22 @@ export class DocumentService {
 
   async removeDocumentBytes(guid: string){
     return blockstack.putFile(guid + ".pdf", "", { encrypt: true }).then((data) => { });
+  }
+
+  async saveAnnotations(guid: string, annotation: string){
+    
+    let json = {
+      annotations: annotation
+    }
+    return await blockstack.putFile(guid + ".annotations.json", JSON.stringify(json), { encrypt: true });
+    
+  }
+
+  async getAnnotations(guid: string){
+    
+    this.currentDocAnnotations = JSON.parse ( await blockstack.getFile(guid + ".annotations.json", { decrypt: true }) );
+    return this.currentDocAnnotations;
+    
   }
 
 }

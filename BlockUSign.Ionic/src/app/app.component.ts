@@ -88,7 +88,17 @@ export class MyApp {
   }
 
   next() {
+
+    if (this.nav.getActive().name == "ListPage"){
+      this.nav.pop();  
+    }
+
     this.nav.push(ListPage);
+  }
+
+  home() {
+    this.nav.setRoot(HomePage);
+    this.clearActive();
   }
 
   logout() {
@@ -177,6 +187,14 @@ export class MyApp {
     });
   }
 
+  clearActive(){
+    $(".channel-text").forEach(el => {
+        try{
+          $(".channel-text.active")[0].classList.remove("active");
+        }
+        catch(e){}
+    });
+  }
 
 }
 

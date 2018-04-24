@@ -25,9 +25,9 @@
 }
 
 .centerMe {
-    max-width: 1024px;
-    position: relative; 
-    margin: 0 auto 25px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
   }
   
   // Imports
