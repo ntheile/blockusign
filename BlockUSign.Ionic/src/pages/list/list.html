@@ -54,24 +54,21 @@
     <!-- <button ion-button class="clear" title="Clear" (click)="handleClearClick()">×</button> -->
     <!-- <img class="draggable draggable-droppable" height="45px" draggable="true" src="./../../assets/imgs/sign.png" /> -->
     <!-- <svg class="annotationLayer"  class="dropzone resizable" id="svg-dropzone" viewBox="0 0 612 792" width="800" height="600"> </svg>-->
-
-
-
-
-    <div class="page" id="pageContainer1" data-page-number="1" style="position: relative; overflow-x: scroll">
+    
+    <div class="page" id="pageContainer1" data-page-number="1" style="position: relative; overflow-x: auto; width: 100%; height:100%">
 
       <div id="canvasWrapper" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
-        <canvas id="canvas1" width="612" height="792" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px"></canvas>
+        <!-- <canvas id="canvas1" width="612" height="792" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px"></canvas> -->
+        <canvas id="canvas1"  style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px"></canvas>
       </div>
-      <svg id="svg-dropzone" class="dropzone resizable" draggable="true" viewBox="0 0 612 792" width="612" height="792" xmlns="http://www.w3.org/2000/svg"
+      <svg id="svg-dropzone" class="dropzone resizable" draggable="true" xmlns="http://www.w3.org/2000/svg"
         style="position: absolute; 
                   left: 0px; 
                   top:0px;
                   z-index: 200000;
-                  width: 612;
                   padding: 0px 0px 0px 0px; 
-                  margin: 0px 0px 0px 0px;
-                  height: 792">
+                  margin: 0px 0px 0px 0px;">
+    
       </svg>
       <div class="textLayer"></div>
     </div>

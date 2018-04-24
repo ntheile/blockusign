@@ -61,8 +61,6 @@ export class ListPage {
 
   ionViewDidLoad() {
 
-    
-
     //let pdfData = this.loadPDFData(); // loads pdf data from localStorage, make sure you uploaded it from home.js
    
     blockstack.getFile(this.documentService.currentDoc.guid + ".pdf", { decrypt: true }).then((data) => {
@@ -114,8 +112,7 @@ export class ListPage {
 
  
   ionViewWillLeave(){
-    $(".dropzone").unbind();
-   
+    //$(".dropzone").unbind();
   }
 
   loadPdf(pdfData) {
@@ -128,7 +125,7 @@ export class ListPage {
       pdf.getPage(pageNumber).then((page) => {
         console.log('Page loaded');
 
-        let scale = 1.0;
+        let scale = 1;
         let viewport = page.getViewport(scale);
 
         // Prepare canvas using PDF page dimensions
@@ -137,6 +134,8 @@ export class ListPage {
         (<any>canvas).height = viewport.height;
         (<any>canvas).width = viewport.width;
 
+
+
         // Render PDF page into canvas context
         let renderContext = {
           canvasContext: context,
@@ -144,6 +143,7 @@ export class ListPage {
         };
         let renderTask = page.render(renderContext)
           .then(() => {
+            
             // Get text-fragments
             return page.getTextContent();
           }).then((textContent) => {
@@ -157,6 +157,8 @@ export class ListPage {
             let div = document.getElementById(`${this.containerId}`);
             div.appendChild(textLayerDiv);
 
+
+
             // Create new instance of TextLayerBuilder class
             let textLayer = new TextLayerBuilder({
               textLayerDiv: textLayerDiv,
@@ -167,14 +169,16 @@ export class ListPage {
             // Set text-fragments
             textLayer.setTextContent(textContent);
 
+
+            
+
             // Render text-fragments
             textLayer.render();
 
-            // overlay
-            this.overLay();
+           
 
             // load svg
-            this.loadSvg();
+            this.loadSvg(page);
 
           });
       });
@@ -188,20 +192,20 @@ export class ListPage {
 
   }
 
-  loadPDFData() {
+  // loadPDFData() {
 
-    let base64pdfData = localStorage.getItem("pdfStr");
-    function base64ToUint8Array(base64) {
-      let raw = atob(base64);
-      let uint8Array = new Uint8Array(new ArrayBuffer(raw.length));
-      for (var i = 0, len = raw.length; i < len; ++i) {
-        uint8Array[i] = raw.charCodeAt(i);
-      }
-      return uint8Array;
-    }
-    return base64ToUint8Array(base64pdfData);
+  //   let base64pdfData = localStorage.getItem("pdfStr");
+  //   function base64ToUint8Array(base64) {
+  //     let raw = atob(base64);
+  //     let uint8Array = new Uint8Array(new ArrayBuffer(raw.length));
+  //     for (var i = 0, len = raw.length; i < len; ++i) {
+  //       uint8Array[i] = raw.charCodeAt(i);
+  //     }
+  //     return uint8Array;
+  //   }
+  //   return base64ToUint8Array(base64pdfData);
 
-  }
+  // }
 
   setupAnnotations(page, viewport, canvas, $annotationLayerDiv) {
 
@@ -250,55 +254,63 @@ export class ListPage {
 
   }
 
-  setActiveToolbarItem(type, button) {
+  // setActiveToolbarItem(type, button) {
 
-    let active = document.querySelector('.toolbar button.active');
-    if (active) {
-      active.classList.remove('active');
-    }
-    if (button) {
-      button.classList.add('active');
-    }
-    if (this.tooltype !== type) {
-      localStorage.setItem(`${this.DOCUMENT_ID}/tooltype`, type);
-    }
-    this.tooltype = type;
-    this.UI.UI.enableRect(type);
+  //   let active = document.querySelector('.toolbar button.active');
+  //   if (active) {
+  //     active.classList.remove('active');
+  //   }
+  //   if (button) {
+  //     button.classList.add('active');
+  //   }
+  //   if (this.tooltype !== type) {
+  //     localStorage.setItem(`${this.DOCUMENT_ID}/tooltype`, type);
+  //   }
+  //   this.tooltype = type;
+  //   this.UI.UI.enableRect(type);
 
-  }
+  // }
 
-  handleToolbarClick(e) {
 
-    if (e.target.nodeName === 'BUTTON') {
-      this.setActiveToolbarItem(e.target.getAttribute('data-tooltype'), e.target);
-    }
+  // handleToolbarClick(e) {
 
-  }
+  //   if (e.target.nodeName === 'BUTTON') {
+  //     this.setActiveToolbarItem(e.target.getAttribute('data-tooltype'), e.target);
+  //   }
+
+  // }
 
   handleClearClick(e) {
 
     if (confirm('Are you sure you want to throw your work away?')) {
-      localStorage.removeItem(`${this.DOCUMENT_ID}/annotations`);
+      //localStorage.removeItem(`${this.DOCUMENT_ID}/annotations`);
       this.page1.innerHTML = '';
     }
 
   }
 
-  setupToolBar() {
-    this.tooltype = localStorage.getItem(`${this.DOCUMENT_ID}/tooltype`) || 'area';
-    if (this.tooltype) {
-      this.setActiveToolbarItem(this.tooltype, document.querySelector(`.toolbar button[data-tooltype=${this.tooltype}]`));
-    }
+  // setupToolBar() {
+  //   this.tooltype = localStorage.getItem(`${this.DOCUMENT_ID}/tooltype`) || 'area';
+  //   if (this.tooltype) {
+  //     this.setActiveToolbarItem(this.tooltype, document.querySelector(`.toolbar button[data-tooltype=${this.tooltype}]`));
+  //   }
 
-  }
+  // }
 
   handleDragStart(e) {
     //log("handleDragStart");
     e.style.opacity = '0.4'; // this ==> e.target is the source node.
   };
 
-  overLay(){
+  // set the overlay dimensionss
+  overLay(page: any){
 
+    let dimensions = page.pageInfo.view[0] + " " + page.pageInfo.view[1] + " " + page.pageInfo.view[2] + " "  + page.pageInfo.view[3];
+    $("#svg-dropzone").css("width", "612" );
+    $("#svg-dropzone").css("height", "792" );
+    $("#svg-dropzone").attr("width", "612" );
+    $("#svg-dropzone").attr("height", "792" );
+    $("#svg-dropzone").attr("viewBox", dimensions );
   }
 
   async saveSvg(){
@@ -309,8 +321,12 @@ export class ListPage {
     }
   }
 
-  async loadSvg(){
+  async loadSvg(page:any){
     //let innerHtml = localStorage.getItem("svg");
+
+     // overlay
+     this.overLay(page);
+
     let json  =  await this.documentService.getAnnotations(this.documentService.currentDoc.guid);
     let innerHtml = null;
     if (json) { 
@@ -320,6 +336,8 @@ export class ListPage {
     if (innerHtml){
       this.vc.svgDrawer.addHTML(innerHtml);
     }
+
+    
   }
 
 

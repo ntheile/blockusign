@@ -28865,11 +28865,7 @@ html, body, * {
 
 .page {
   position: relative;
-  width: 550px;
-  height: 700px;
   margin: 0 auto 25px;
-  background-color: #fff;
-  border: 1px solid #ccc;
 }
 
 .page > .annotationLayer,
