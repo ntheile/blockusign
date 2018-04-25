@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { CryptoCompareService } from '../../services/cryptocompare.service'
 import { HomePage } from '../home/home';
 import { AbsoluteDragDirective } from '../../directives/absolute-drag/absolute-drag';
@@ -26,6 +26,7 @@ declare let Event: any;
 
 
 /// https://www.sitepoint.com/custom-pdf-rendering/
+@IonicPage()
 @Component({
   selector: 'page-list',
   templateUrl: 'list.html',
@@ -100,6 +101,7 @@ export class ListPage {
 
   back(){
     //this.navCtrl.push(ListPage);
+    //this.navCtrl.push("HomePage");
     this.navCtrl.setRoot(HomePage);
   }
 

@@ -1,37 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule} from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicApp, IonicErrorHandler, IonicModule, IonicPageModule, List, NavController } from 'ionic-angular';
 import { HttpModule, JsonpModule } from '@angular/http';
-
-import { MyApp } from './app.component';
-
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
-import { OptionsPopoverPage } from './options.popover.page';
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ChartsModule } from 'ng2-charts';
+import { AbsoluteDragDirective } from '../directives/absolute-drag/absolute-drag';
+
+import { MyApp } from './app.component';
+import { HomeModule } from '../pages/home/home.module';
+import { ListModule } from '../pages/list/list.module';
+import { OptionsPopoverPage } from './options.popover.page';
 
 import { CoinService } from '../services/coin.service';
 import { GlobalService } from '../services/global.service'
-
 import { CryptoCompareService } from '../services/cryptocompare.service';
 import { SlackService } from '../services/slack.service';
-
-import { AbsoluteDragDirective } from '../directives/absolute-drag/absolute-drag';
-
-import { NavController } from 'ionic-angular';
 import { DocumentService } from '../services/document.service';
-
-
-
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    ListPage,
     OptionsPopoverPage,
     AbsoluteDragDirective
   ],
@@ -40,13 +29,13 @@ import { DocumentService } from '../services/document.service';
     IonicModule.forRoot(MyApp),
     ChartsModule,
     HttpModule,
-    JsonpModule
+    JsonpModule,
+    HomeModule,
+    ListModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    ListPage,
     OptionsPopoverPage
   ],
   providers: [
