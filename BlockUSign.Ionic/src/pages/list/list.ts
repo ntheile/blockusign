@@ -13,6 +13,7 @@ import pdfjsLib from 'pdfjs-dist/build/pdf';
 import PDFAnnotate from 'pdf-annotate';
 import annotations from './annotations';
 import mockViewport from './mockViewport'
+import { SignPage } from '../sign/sign';
 
 declare let CustomStyle: any;
 declare let $: any;
@@ -103,6 +104,10 @@ export class ListPage {
     //this.navCtrl.push(ListPage);
     //this.navCtrl.push("HomePage");
     this.navCtrl.setRoot(HomePage);
+  }
+
+  next(){
+    this.navCtrl.push(SignPage);
   }
 
   clear(){

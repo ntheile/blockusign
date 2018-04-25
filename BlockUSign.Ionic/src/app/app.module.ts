@@ -5,12 +5,12 @@ import { HttpModule, JsonpModule } from '@angular/http';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ChartsModule } from 'ng2-charts';
-import { AbsoluteDragDirective } from '../directives/absolute-drag/absolute-drag';
 
 import { MyApp } from './app.component';
+import { OptionsPopoverPage } from './options.popover.page';
 import { HomeModule } from '../pages/home/home.module';
 import { ListModule } from '../pages/list/list.module';
-import { OptionsPopoverPage } from './options.popover.page';
+import { SignPageModule } from '../pages/sign/sign.module';
 
 import { CoinService } from '../services/coin.service';
 import { GlobalService } from '../services/global.service'
@@ -21,8 +21,7 @@ import { DocumentService } from '../services/document.service';
 @NgModule({
   declarations: [
     MyApp,
-    OptionsPopoverPage,
-    AbsoluteDragDirective
+    OptionsPopoverPage
   ],
   imports: [
     BrowserModule,
@@ -31,7 +30,8 @@ import { DocumentService } from '../services/document.service';
     HttpModule,
     JsonpModule,
     HomeModule,
-    ListModule
+    ListModule,
+    SignPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
