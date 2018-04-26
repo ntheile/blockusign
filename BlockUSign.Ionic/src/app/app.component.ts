@@ -76,11 +76,11 @@ export class MyApp {
     });
   }
 
-  openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
-  }
+  // openPage(page) {
+  //   // Reset the content nav to have just this page
+  //   // we wouldn't want the back button to show in this scenario
+  //   this.nav.setRoot(page.component);
+  // }
 
   login() {
     const origin = window.location.origin
@@ -93,11 +93,11 @@ export class MyApp {
       this.nav.pop();  
     }
 
-    this.nav.push(ListPage);
+    this.nav.push("ListPage");
   }
 
   home() {
-    this.nav.setRoot(HomePage);
+    this.nav.setRoot("HomePage");
     this.clearActive();
   }
 

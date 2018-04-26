@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, IonicPage } from 'ionic-angular';
 import { Chart } from 'chart.js';
 import { ListPage } from '../list/list';
 import moment from 'moment-timezone';
@@ -23,6 +23,8 @@ const $ = document.querySelectorAll.bind(document);
 
 /// Pdf js basic example - https://jsfiddle.net/pdfjs/cq0asLqz/?utm_source=website&utm_medium=embed&utm_campaign=cq0asLqz
 /// Annotations sample - http://jsfiddle.net/seikichi/RuDvz/2/
+
+@IonicPage()
 @Component({
     selector: 'page-home',
     templateUrl: 'home.html'
@@ -49,7 +51,7 @@ export class HomePage {
     }
 
     next(){
-        this.navCtrl.push(ListPage);
+        this.navCtrl.push("ListPage");
         //this.navCtrl.setRoot(ListPage);
     }
 
