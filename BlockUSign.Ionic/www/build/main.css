@@ -27990,6 +27990,10 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
+.blockusign-logo path {
+  fill: #454cad;
+}
+
 .split-pane-md.split-pane-visible > .split-pane-side {
   min-width: 310px;
   max-width: 325px;

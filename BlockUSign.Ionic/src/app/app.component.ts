@@ -3,8 +3,8 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
-import {DocumentService} from '../services/document.service';
+import { AnnotatePage } from '../pages/annotate/annotate';
+import { DocumentService } from '../services/document.service';
 import { PopoverController } from 'ionic-angular';
 import { ViewController } from 'ionic-angular';
 import { OptionsPopoverPage } from './options.popover.page';
@@ -47,7 +47,7 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: '1). Upload PDF', component: HomePage },
-      { title: '2). Annotate PDF', component: ListPage }
+      { title: '2). Annotate PDF', component: AnnotatePage }
     ];
 
     // global vars
@@ -89,11 +89,11 @@ export class MyApp {
 
   next() {
 
-    if (this.nav.getActive().name == "ListPage"){
+    if (this.nav.getActive().name == "AnnotatePage"){
       this.nav.pop();  
     }
 
-    this.nav.push("ListPage");
+    this.nav.push("AnnotatePage");
   }
 
   home() {

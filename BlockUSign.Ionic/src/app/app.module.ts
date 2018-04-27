@@ -8,8 +8,9 @@ import { ChartsModule } from 'ng2-charts';
 
 import { MyApp } from './app.component';
 import { OptionsPopoverPage } from './options.popover.page';
+import { DirectivesModule } from './../directives/directives.module';
 import { HomeModule } from '../pages/home/home.module';
-import { ListModule } from '../pages/list/list.module';
+import { AnnotatePageModule } from '../pages/annotate/annotate.module';
 import { SignPageModule } from '../pages/sign/sign.module';
 
 import { CoinService } from '../services/coin.service';
@@ -26,11 +27,12 @@ import { DocumentService } from '../services/document.service';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    DirectivesModule,
     ChartsModule,
     HttpModule,
     JsonpModule,
     HomeModule,
-    ListModule,
+    AnnotatePageModule,
     SignPageModule
   ],
   bootstrap: [IonicApp],

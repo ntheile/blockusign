@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 import { Chart } from 'chart.js';
-import { ListPage } from '../list/list';
+import { AnnotatePage } from '../annotate/annotate';
 import moment from 'moment-timezone';
 import 'rxjs/add/operator/toPromise';
 import { LoadingController } from 'ionic-angular';
@@ -51,7 +51,7 @@ export class HomePage {
     }
 
     next(){
-        this.navCtrl.push("ListPage");
+        this.navCtrl.push("AnnotatePage");
         //this.navCtrl.setRoot(ListPage);
     }
 
