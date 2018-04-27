@@ -12,6 +12,8 @@ import { DirectivesModule } from './../directives/directives.module';
 import { HomeModule } from '../pages/home/home.module';
 import { AnnotatePageModule } from '../pages/annotate/annotate.module';
 import { SignPageModule } from '../pages/sign/sign.module';
+//import { HomePage } from './../pages/home/home';
+//import { AnnotatePage } from './../pages/annotate/annotate';
 
 import { CoinService } from '../services/coin.service';
 import { GlobalService } from '../services/global.service'
@@ -26,7 +28,9 @@ import { DocumentService } from '../services/document.service';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      preloadModules: true
+    }),
     DirectivesModule,
     ChartsModule,
     HttpModule,

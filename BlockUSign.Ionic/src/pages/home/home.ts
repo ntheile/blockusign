@@ -51,7 +51,8 @@ export class HomePage {
     }
 
     next(){
-        this.navCtrl.push("AnnotatePage");
+        
+        this.navCtrl.push(AnnotatePage)
         //this.navCtrl.setRoot(ListPage);
     }
 

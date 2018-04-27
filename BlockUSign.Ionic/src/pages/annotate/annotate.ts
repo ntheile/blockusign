@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, IonicPage, Segment } from 'ionic-angular';
 import { CryptoCompareService } from '../../services/cryptocompare.service'
 import { HomePage } from '../home/home';
 import { AbsoluteDragDirective } from '../../directives/absolute-drag/absolute-drag';
@@ -14,9 +14,12 @@ import PDFAnnotate from 'pdf-annotate';
 import annotations from './annotations';
 import mockViewport from './mockViewport'
 import { SignPage } from '../sign/sign';
+import { MyApp } from '../../app/app.component';
 
 declare let CustomStyle: any;
-declare let $: any;
+declare var $: any;
+//const $ = document.querySelectorAll.bind(document);
+declare var window: any;
 declare let TextLayerBuilder: any;
 declare let canvas: any;
 declare let scale: any;
@@ -27,7 +30,11 @@ declare let Event: any;
 
 
 /// https://www.sitepoint.com/custom-pdf-rendering/
-@IonicPage()
+@IonicPage({
+  name: 'AnnotatePage',
+  segment: 'annotate/:guid',
+  defaultHistory: ['HomePage']
+})
 @Component({
   selector: 'page-annotate',
   templateUrl: 'annotate.html',
@@ -53,11 +60,12 @@ export class AnnotatePage {
   prevElement = null;
   currentX = 0;
   currentY = 0;
-  
+   
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public documentService: DocumentService) {
     
+
   }
 
 
@@ -65,6 +73,24 @@ export class AnnotatePage {
 
     //let pdfData = this.loadPDFData(); // loads pdf data from localStorage, make sure you uploaded it from home.js
    
+    if ( this.navParams.get("guid") && !this.documentService.currentDoc ){
+      let guid = this.navParams.get("guid");
+      this.documentService.getDocumentsIndex(true).then((data) => {
+        this.documentService.documentsList = data;
+        this.documentService.setCurrentDoc(guid);
+        this.getFile();
+        // @todo in side menu highlight selected doc
+      });
+    }
+    else{
+      this.getFile();
+    }
+
+  }
+
+
+  getFile(){
+
     blockstack.getFile(this.documentService.currentDoc.guid + ".pdf", { decrypt: true }).then((data) => {
       this.pdfBuffer = data;
 
@@ -347,5 +373,6 @@ export class AnnotatePage {
     
   }
 
+  
 
 }

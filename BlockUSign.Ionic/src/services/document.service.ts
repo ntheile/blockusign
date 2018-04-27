@@ -93,4 +93,10 @@ export class DocumentService {
     
   }
 
+  setCurrentDoc(guid: string){
+    this.currentDoc = this.documentsList.find(x => x.guid == guid);
+  }
+
+  
+
 }

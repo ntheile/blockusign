@@ -39,9 +39,10 @@ export class MyApp {
   avatar: string;
   documentsList: any;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, 
-      public loadingCtrl: LoadingController, private alertCtrl: AlertController, 
-      public documentService: DocumentService, public popoverCtrl: PopoverController) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
+    public loadingCtrl: LoadingController, private alertCtrl: AlertController,
+    public documentService: DocumentService, public popoverCtrl: PopoverController) {
+
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -65,14 +66,14 @@ export class MyApp {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      
-     
-        this.statusBar.styleDefault();
-        this.splashScreen.hide();
-        this.showProfile();
-        this.setupDiscordMenu();
-     
-      
+
+
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
+      this.showProfile();
+      this.setupDiscordMenu();
+
+
     });
   }
 
@@ -89,11 +90,13 @@ export class MyApp {
 
   next() {
 
-    if (this.nav.getActive().name == "AnnotatePage"){
-      this.nav.pop();  
+    if (this.nav.getActive().name == "AnnotatePage") {
+      this.nav.pop();
     }
 
-    this.nav.push("AnnotatePage");
+    this.nav.push("AnnotatePage", {
+      guid: this.documentService.currentDoc.guid
+    });
   }
 
   home() {
@@ -106,15 +109,15 @@ export class MyApp {
   }
 
   showProfile() {
-    
+
     if (blockstack.isUserSignedIn()) {
-     
+
       let profile = blockstack.loadUserData();
       this.name = profile.username;
       this.isLoggedIn = true;
       this.avatar = profile.profile.image[0].contentUrl;
       this.loginState = "[Logout]";
-      this.documentService.getDocumentsIndex(true).then( (data)=>{
+      this.documentService.getDocumentsIndex(true).then((data) => {
         this.documentsList = data;
       });
     } else if (blockstack.isSignInPending()) {
@@ -128,7 +131,7 @@ export class MyApp {
     }
   }
 
-  setupDiscordMenu() {
+  public setupDiscordMenu() {
     $(".focusable, .button").forEach(el => {
       // blur only on mouse click
       // for accessibility, keep focus when keyboard focused
@@ -163,38 +166,40 @@ export class MyApp {
     });
   }
 
-  documentSelected(e, selectedDocument){
-    
+  documentSelected(e, selectedDocument) {
+
     this.documentService.currentDoc = selectedDocument;
     this.next();
   }
- 
 
-  
 
-  documentsGetList(){
-    this.documentService.getDocumentsIndex(true).then( (data)=>{
+
+
+  documentsGetList() {
+    this.documentService.getDocumentsIndex(true).then((data) => {
       this.documentsList = data;
     });
   }
 
 
   presentPopover(myEvent, item) {
-    let popover = this.popoverCtrl.create(OptionsPopoverPage, {selectedDoc: item });
+    let popover = this.popoverCtrl.create(OptionsPopoverPage, { selectedDoc: item });
     popover.present({
       ev: myEvent,
-      
+
     });
   }
 
-  clearActive(){
+  clearActive() {
     $(".channel-text").forEach(el => {
-        try{
-          $(".channel-text.active")[0].classList.remove("active");
-        }
-        catch(e){}
+      try {
+        $(".channel-text.active")[0].classList.remove("active");
+      }
+      catch (e) { }
     });
   }
+
+  
 
 }
 

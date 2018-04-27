@@ -10,7 +10,6 @@ import { DirectivesModule } from '../../directives/directives.module';
     declarations: [
         AnnotatePage
         //AbsoluteDragDirective
-        
     ],
     imports: [
       IonicPageModule.forChild(AnnotatePage),
