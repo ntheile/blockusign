@@ -15,7 +15,7 @@
     "chrome": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./scripts/chrome.ps1",
     "chrome-mac": "./scripts/chrome.sh",
     "serve": "ionic build && node ./scripts/server.js",
-    "start": "npm run chrome && ionic serve"
+    "start": "npm run chrome-mac && ionic serve"
   },
   "dependencies": {
     "@angular/common": "5.0.3",
