@@ -53,4 +53,8 @@ export class EmailPage {
     });
   }
 
+  getUrl(){
+    return window.location.href;
+  }
+
 }
