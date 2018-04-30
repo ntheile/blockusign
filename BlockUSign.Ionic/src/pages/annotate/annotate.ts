@@ -14,6 +14,7 @@ import PDFAnnotate from 'pdf-annotate';
 import annotations from './annotations';
 import mockViewport from './mockViewport'
 import { SignPage } from '../sign/sign';
+import { EmailPage } from '../email/email';
 import { MyApp } from '../../app/app.component';
 
 declare let CustomStyle: any;
@@ -133,7 +134,9 @@ export class AnnotatePage {
   }
 
   next(){
-    this.navCtrl.push(SignPage);
+    this.navCtrl.push("EmailPage", {
+      guid: this.documentService.currentDoc.guid
+    });
   }
 
   clear(){

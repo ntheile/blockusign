@@ -12,6 +12,8 @@ import { DirectivesModule } from './../directives/directives.module';
 import { HomeModule } from '../pages/home/home.module';
 import { AnnotatePageModule } from '../pages/annotate/annotate.module';
 import { SignPageModule } from '../pages/sign/sign.module';
+import { EmailPageModule } from '../pages/email/email.module';
+import { ReviewPageModule } from '../pages/review/review.module';
 //import { HomePage } from './../pages/home/home';
 //import { AnnotatePage } from './../pages/annotate/annotate';
 
@@ -37,7 +39,9 @@ import { DocumentService } from '../services/document.service';
     JsonpModule,
     HomeModule,
     AnnotatePageModule,
-    SignPageModule
+    SignPageModule,
+    EmailPageModule,
+    ReviewPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
