@@ -36,7 +36,10 @@ namespace BlockUSign.Backend
             }
 
             app.UseCors("CorsPolicy");
-            app.UseDefaultFiles();
+            DefaultFilesOptions options = new DefaultFilesOptions();
+            options.DefaultFileNames.Clear();
+            options.DefaultFileNames.Add("signup.html");
+            app.UseDefaultFiles(options);
             app.UseStaticFiles();
 
         }
