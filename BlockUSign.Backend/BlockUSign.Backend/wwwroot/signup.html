@@ -1,6 +1,8 @@
 <html>
 
 <head>
+    <title>Blockusign</title>
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <style>
         @import "https://fonts.googleapis.com/css?family=Open+Sans:300,400";
@@ -250,29 +252,34 @@
     <section class="one">
         <header>
             <logomenu>
-                <ul>
-                    <li class="logo">
+                Donate: BTC - 1Jw3xsPzmYus3ke4XYXAHHyzpxD1sjQVta
+                <!-- <div class="logo">
                         <img src="./assets//imgs/blockusignLogoHiRes.png" width="50px" />
                         <img src="./assets//imgs/blockusignTextLoRes.png" width="200px" style="padding-left: 10px" />
-                    </li>
-                    <!-- <li>Get Started</li>
+                    </div> -->
+                <!-- <li>Get Started</li>
                     <li>Docs</li>
                     <li>Pricing</li> -->
-                </ul>
+
             </logomenu>
             <infosmenu>
 
-                <a class="btn" href="mailto:blockusign@outlook.com?Subject=Hello" target="_top" style="color:white">Contact</a>
+                <a class="btn" href="mailto:blockusign@outlook.com?Subject=Hello" target="_top" style="color:white;text-decoration: none;">Contact</a>
 
             </infosmenu>
         </header>
         <div class="bighero">
-            <h1>Blockusign</h1>
+            <!-- <h1>Blockusign</h1> -->
+            <div class="logo" style="background: rgba(0, 0, 0, 0.5);padding: 10px 10px 10px 10px; border-radius: 25px;padding-left: 30px; padding-top: 16px">
+                <img src="./assets//imgs/blockusignLogoHiRes.png" width="75px" />
+                <img src="./assets//imgs/blockusignTextLoRes.png" width="225px" style="padding-left: 10px" />
+            </div>
             <p>
                 A decentralized document signing tool where you own and control your own documents, contracts and data.
             </p>
             <p>
-                It's built on BlockStack.
+                It's built on
+                <a href="https://blockstack.org/" target="_blank" style="color:white;">BlockStack</a>.
             </p>
 
             <p>
@@ -280,9 +287,14 @@
                 and 'who' signed something!
             </p>
 
+            <p>
+                <a class="btn" onclick="localStorage.setItem('signUp', 'true');" href="index.html" style="color: white;text-decoration: none;font-size: 1.5rem;"
+                    target="_blank">Login</a>
+                <span style="font-style: italic">&nbsp;&nbsp; Alpha Release</span>
+            </p>
 
 
-            <a class="btn" onclick="localStorage.setItem('signUp', 'true');" href="index.html" style="color: white" target="_blank">Login</a>
+
 
         </div>
     </section>
@@ -304,48 +316,75 @@
     </section>
     <section class="infos">
         <div class="content">
+
             <div class="grid allcenter">
                 <div class="float-md-50 wimg">
-                    <!-- <img src="https://discordapp.com/assets/0d82411c439e3558f8b2f6fb12eccbc1.svg" /> -->
-                    <img src="./assets/imgs/1upload.png" />
+                    <a href="https://discordapp.com/assets/0d82411c439e3558f8b2f6fb12eccbc1.svg">
+                        <img src="https://discordapp.com/assets/0d82411c439e3558f8b2f6fb12eccbc1.svg" />
+                    </a>
+
                 </div>
                 <div class="float-md-50 winfo">
-                    <h1 class="title">1.) Upload a PDF</h1>
-                    <p class="description">Upload a document from your local file system to your own personal secure storage bucket in the cloud. Only
-                        you and the person you share the file with have the keys to access this data. NOT Blockusign. NOT
-                        any government. JUST YOU!
+                    <h1 class="title">(1) Login with your own Self Sovereign Identity</h1>
+                    <p class="description">Login with Blockstack. It's a Self Sovereign identity that you own. No more worrying about your data
+                        being leaked with Facebook login.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid allcenter">
+                <div class="float-md-50 wimg">
+                    <a href=./assets/imgs/1upload.png>
+                        <img src="./assets/imgs/1upload.png" />
+                    </a>
+                </div>
+                <div class="float-md-50 winfo">
+                    <h1 class="title">(2) Upload a PDF</h1>
+                    <p class="description">Upload a document from your local file system to your own personal secure storage bucket in the cloud.
+                        Only you and the person you share the file with have the keys to access this data. NOT Blockusign.
+                        NOT any government. JUST YOU!
                     </p>
                 </div>
             </div>
             <div class="grid allcenter">
                 <div class="float-md-50 wimg">
-                    <!-- <img src="https://discordapp.com/assets/7edaed9d86e1b5dd9d4c98484372222b.svg" /> -->
-                    <img src="./assets/imgs/2annotate.png" />
+                    <a href="./assets/imgs/2annotate.png">
+                        <img src="./assets/imgs/2annotate.png" />
+                    </a>
                 </div>
                 <div class="float-md-50 winfo">
-                    <h1 class="title">2.) Annotate</h1>
+                    <h1 class="title">(3) Annotate</h1>
                     <p class="description">Drop annotations on the document for the location of the eSignatures. </p>
                 </div>
             </div>
-        </div>
-        <div class="grid allcenter">
-            <div class="float-md-50 wimg">
-                <!-- <img src="https://discordapp.com/assets/ac0aa0d7e79ce5deb0d21fcfc596179f.png" /> -->
-                <img src="./assets/imgs/3sign.png" width="350px"/>
+            <div class="grid allcenter">
+                <div class="float-md-50 wimg">
+                    <a href="./assets/imgs/3sign.png">
+                        <img src="./assets/imgs/3sign.png" />
+                    </a>
+                </div>
+                <div class="float-md-50 winfo">
+                    <h1 class="title">(4) Sign</h1>
+                    <p class="description">Share the document with the person who's signature you need. The transaction will be digitally signed
+                        and stored on the immutable ledger. This signature is unique to them and proves the date and time
+                        they signed it.
+                    </p>
+                    <p class="description">
+                        Current document signing systems can be forged since they are architected using a central server owned by a central company.
+                    </p>
+                </div>
             </div>
-            <div class="float-md-50 winfo">
-                <h1 class="title">3.) Sign</h1>
-                <p class="description">Share the document with the person who's signature you need. The transaction will be digitally signed
-                    and stored on the immutable ledger. This signature is unique to them and proves the date and time they signed
-                    it. 
-                </p>
-                <p class="description">
-                        Current document signing systems can be forged since they are architected using a central server
-                        owned by a central company.
-                </p>
-            </div>
         </div>
-        </div>
+
+
+
+    </section>
+
+    <section class="sponsors">
+        <p>
+            Donate: BTC - 1Jw3xsPzmYus3ke4XYXAHHyzpxD1sjQVta |
+            <a href="https://github.com/ntheile/blockusign" target="_blank">Github</a>
+        </p>
     </section>
 </body>
 
