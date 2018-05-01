@@ -127,7 +127,14 @@ export class MyApp {
       });
     }
     else {
-      this.login();
+      if ( localStorage.getItem('signUp') !== 'true' ){
+        window.location.href = "signup.html";
+      }
+      else{
+        localStorage.setItem('signUp', 'true');
+        this.login();
+      }
+      
     }
   }
 
