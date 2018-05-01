@@ -21,7 +21,7 @@
                 <span class="step-name">Annotate</span>
               </div>
             </li>
-            <li class="step active" >
+            <li class="step active">
               <div class="step-info">
                 <span class="step-name">Email</span>
               </div>
@@ -45,15 +45,40 @@
   </ion-grid>
 
 
-  <p>
-    The email feature will be enabled in the next release. 
-    For now, copy and paste this link to sign. Right now, only you can sign the document. 
-    The next release will allow you to send this document to somebody else to sign using Blockstacks
-    muli-player storage.
-  </p>
+  <ion-card>
+
+    <ion-card-header>
+      Work In Progress
+    </ion-card-header>
+
+    <ion-card-content>
+      <img src="./../../assets/imgs/bugcode.jpg"  style="max-width: 300px;"/>
+      <br />
+      <p>
+        Want this feature faster? Considering donating here: BTC - <ion-input value="1Jw3xsPzmYus3ke4XYXAHHyzpxD1sjQVta" style="font-size: large"></ion-input>
+      </p>
+
+      <p>
+        <br/>
+        The email feature will be enabled in the next release. For now, copy and paste this link to sign. Right now, only you can
+        sign the document. The next release will allow you to send this document to somebody else to sign using <a href="https://blockstack.org/tutorials/multi-player-storage" target="_blank">Blockstacks
+          muli-player storage.</a>
+        <br/>
+      </p>
 
 
-  <ion-input [value]="getUrl()" style="font-size: large"></ion-input>
-  
+      <ion-input [value]="getUrl()" style="font-size: large"></ion-input>
+
+
+
+    </ion-card-content>
+
+  </ion-card>
+
+
+
+
+
+
 
 </ion-content>

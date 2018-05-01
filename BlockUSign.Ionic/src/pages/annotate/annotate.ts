@@ -130,7 +130,8 @@ export class AnnotatePage {
   back(){
     //this.navCtrl.push(ListPage);
     //this.navCtrl.push("HomePage");
-    this.navCtrl.setRoot(HomePage);
+    //this.navCtrl.setRoot(HomePage);
+    this.navCtrl.push("HomePage");
   }
 
   next(){
