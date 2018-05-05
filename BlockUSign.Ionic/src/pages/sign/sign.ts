@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DocumentService } from './../../services/document.service';
+declare let blockstack: any;
 
 /**
  * Generated class for the SignPage page.
@@ -19,6 +20,9 @@ import { DocumentService } from './../../services/document.service';
   templateUrl: 'sign.html',
 })
 export class SignPage {
+
+
+  name:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public documentService: DocumentService) {
 
@@ -39,6 +43,7 @@ export class SignPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignPage');
+    this.name = blockstack.loadUserData().profile.name;
   }
 
   next(){

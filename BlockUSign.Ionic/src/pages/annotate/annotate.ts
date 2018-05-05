@@ -283,6 +283,7 @@ export class AnnotatePage {
           continue;
         }
         $annotationLayerDiv.append(element);
+        $annotationLayerDiv.append($("#signature"));
       }
 
     });

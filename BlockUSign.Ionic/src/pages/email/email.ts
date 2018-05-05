@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DocumentService } from './../../services/document.service';
+declare let blockstack: any;
 
 /**
  * Generated class for the SignPage page.
@@ -19,6 +20,9 @@ import { DocumentService } from './../../services/document.service';
   templateUrl: 'email.html',
 })
 export class EmailPage {
+
+
+  lookupId: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public documentService: DocumentService) {
 
@@ -39,6 +43,7 @@ export class EmailPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignPage');
+    this.lookup();
   }
 
   next(){
@@ -55,6 +60,16 @@ export class EmailPage {
 
   getUrl(){
     return window.location.href;
+  }
+
+  lookup(){
+    blockstack.lookupProfile("blockusign1.id")
+    .then((profile) => {
+      let data = profile;
+    })
+    .catch((error) => {
+      console.log('could not resolve profile')
+    })
   }
 
 }

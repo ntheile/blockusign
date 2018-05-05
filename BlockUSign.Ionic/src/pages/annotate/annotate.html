@@ -48,8 +48,7 @@
   </ion-grid>
 
 
-
-
+ 
   <div class="centerMe" style="padding-top: 25px">
     <!-- <button ion-button class="clear" title="Clear" (click)="handleClearClick()">×</button> -->
     <!-- <img class="draggable draggable-droppable" height="45px" draggable="true" src="./../../assets/imgs/sign.png" /> -->
@@ -99,8 +98,25 @@
         </button>
       </ion-fab>-->
       <ion-fab top left style="padding-left:140px; padding-top:120px;" #fab>
-        <img id="sigImg" height="45px" absolute-drag class="draggable draggable-droppable" draggable="true" src="./../../assets/imgs/sign.png"
-        />
+        
+        <img id="sigImg" height="45px" absolute-drag class="draggable draggable-droppable" 
+          draggable="true" src="./../../assets/imgs/sign.png"/>
+
+        <!-- <span id="signature" height="45px"  absolute-drag class="draggable draggable-droppable" 
+          draggable="true" 
+          style="font-family: 'Cedarville Cursive', cursive; font-weight: bold; font-size: 25px; color:green">
+            Nick Tee
+        </span> -->
+
+        <svg id="signature" absolute-drag class="draggable draggable-droppable" 
+            draggable="true"  height="45px" fill="transparent" >
+            <text  fill="green" x="0" y="35" font-family="Cedarville Cursive" font-size="40px" font-weight="bold" >
+              Nick Tee
+            </text>
+        </svg>
+        
+
+
       </ion-fab> 
 
 </ion-content>

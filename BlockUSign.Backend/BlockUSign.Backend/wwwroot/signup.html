@@ -252,7 +252,7 @@
     <section class="one">
         <header>
             <logomenu>
-                Donate: BTC - 1Jw3xsPzmYus3ke4XYXAHHyzpxD1sjQVta
+                Donate: BTC<br/> 1Jw3xsPzmYus3ke4XYXAHHyzpxD1sjQVta
                 <!-- <div class="logo">
                         <img src="./assets//imgs/blockusignLogoHiRes.png" width="50px" />
                         <img src="./assets//imgs/blockusignTextLoRes.png" width="200px" style="padding-left: 10px" />
@@ -270,11 +270,19 @@
         </header>
         <div class="bighero">
             <!-- <h1>Blockusign</h1> -->
-            <div class="logo" style="background: rgba(0, 0, 0, 0.5);padding: 10px 10px 10px 10px; border-radius: 25px;padding-left: 30px; padding-top: 16px">
-                <img src="./assets//imgs/blockusignLogoHiRes.png" width="75px" />
-                <img src="./assets//imgs/blockusignTextLoRes.png" width="225px" style="padding-left: 10px" />
+            <div class="logo" style="background: rgba(0, 0, 0, 0.5);padding: 10px 10px 10px 10px; border-radius: 25px;padding: 30 16 30 30">
+                <center>
+                    <img src="./assets//imgs/blockusignLogoHiRes.png" width="75px" />
+                    <img src="./assets//imgs/blockusignTextLoRes.png" width="225px" style="padding-left: 10px" />
+                    <br/>
+                    <br/>
+                    <a class="btn" onclick="localStorage.setItem('signUp', 'true');" href="index.html" style="color: white;text-decoration: none;font-size: 1.5rem;"
+                        target="_blank">Login</a>
+                </center>
+
             </div>
             <p>
+                <br/>
                 A decentralized document signing tool where you own and control your own documents, contracts and data.
             </p>
             <p>
@@ -288,11 +296,15 @@
             </p>
 
             <p>
-                <a class="btn" onclick="localStorage.setItem('signUp', 'true');" href="index.html" style="color: white;text-decoration: none;font-size: 1.5rem;"
-                    target="_blank">Login</a>
-                <span style="font-style: italic">&nbsp;&nbsp; Alpha Release</span>
+
+                <span style="font-style: italic">&nbsp;&nbsp; Alpha Release
+
+                </span>
             </p>
 
+            <p>
+                <span style="font-style: italic; font-size: x-small">* easier login using blockstack subdomains coming soon</span>
+            </p>
 
 
 
