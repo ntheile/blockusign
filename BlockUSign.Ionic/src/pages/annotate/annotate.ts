@@ -62,6 +62,7 @@ export class AnnotatePage {
   currentX = 0;
   currentY = 0;
   yourName: string;
+  allowResize = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public documentService: DocumentService) {
@@ -72,6 +73,7 @@ export class AnnotatePage {
 
   ionViewDidLoad() {
 
+    $(".dropzone").unbind();
     //let pdfData = this.loadPDFData(); // loads pdf data from localStorage, make sure you uploaded it from home.js
    
     if ( this.navParams.get("guid") && !this.documentService.currentDoc ){
@@ -246,53 +248,53 @@ export class AnnotatePage {
 
   // }
 
-  setupAnnotations(page, viewport, canvas, $annotationLayerDiv) {
+  // setupAnnotations(page, viewport, canvas, $annotationLayerDiv) {
 
-    let canvasOffset = $(canvas).offset();
-    let promise = page.getAnnotations().then((annotationsData) => {
-      viewport = viewport.clone({
-        dontFlip: true
-      });
-      for (let i = 0; i < annotationsData.length; i++) {
-        let data = annotationsData[i];
-        let annotation = PDFJS.Annotation.fromData(data);
-        if (!annotation || !annotation.hasHtml()) {
-          continue;
-        }
-        let element = annotation.getHtmlElement(page.commonObjs);
-        data = annotation.getData();
-        let rect = data.rect;
-        let view = page.view;
-        rect = PDFJS.Util.normalizeRect([
-          rect[0],
-          view[3] - rect[1] + view[1],
-          rect[2],
-          view[3] - rect[3] + view[1]
-        ]);
-        element.style.left = (canvasOffset.left + rect[0]) + 'px';
-        element.style.top = (canvasOffset.top + rect[1]) + 'px';
-        element.style.position = 'absolute';
+  //   let canvasOffset = $(canvas).offset();
+  //   let promise = page.getAnnotations().then((annotationsData) => {
+  //     viewport = viewport.clone({
+  //       dontFlip: true
+  //     });
+  //     for (let i = 0; i < annotationsData.length; i++) {
+  //       let data = annotationsData[i];
+  //       let annotation = PDFJS.Annotation.fromData(data);
+  //       if (!annotation || !annotation.hasHtml()) {
+  //         continue;
+  //       }
+  //       let element = annotation.getHtmlElement(page.commonObjs);
+  //       data = annotation.getData();
+  //       let rect = data.rect;
+  //       let view = page.view;
+  //       rect = PDFJS.Util.normalizeRect([
+  //         rect[0],
+  //         view[3] - rect[1] + view[1],
+  //         rect[2],
+  //         view[3] - rect[3] + view[1]
+  //       ]);
+  //       element.style.left = (canvasOffset.left + rect[0]) + 'px';
+  //       element.style.top = (canvasOffset.top + rect[1]) + 'px';
+  //       element.style.position = 'absolute';
 
-        let transform = viewport.transform;
-        let transformStr = 'matrix(' + transform.join(',') + ')';
-        CustomStyle.setProp('transform', element, transformStr);
-        let transformOriginStr = -rect[0] + 'px ' + -rect[1] + 'px';
-        CustomStyle.setProp('transformOrigin', element, transformOriginStr);
+  //       let transform = viewport.transform;
+  //       let transformStr = 'matrix(' + transform.join(',') + ')';
+  //       CustomStyle.setProp('transform', element, transformStr);
+  //       let transformOriginStr = -rect[0] + 'px ' + -rect[1] + 'px';
+  //       CustomStyle.setProp('transformOrigin', element, transformOriginStr);
 
-        if (data.subtype === 'Link' && !data.url) {
-          // In this example,  I do not handle the `Link` annotations without url.
-          // If you want to handle those links, see `web/page_view.js`.
-          continue;
-        }
-        $annotationLayerDiv.append(element);
-        $annotationLayerDiv.append($("#signature"));
-      }
+  //       if (data.subtype === 'Link' && !data.url) {
+  //         // In this example,  I do not handle the `Link` annotations without url.
+  //         // If you want to handle those links, see `web/page_view.js`.
+  //         continue;
+  //       }
+  //       $annotationLayerDiv.append(element);
+  //       $annotationLayerDiv.append($("#signature"));
+  //     }
 
-    });
+  //   });
 
-    return promise;
+  //   return promise;
 
-  }
+  // }
 
   // setActiveToolbarItem(type, button) {
 

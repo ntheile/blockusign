@@ -49,7 +49,7 @@
 
 
 
-  <div class="centerMe" style="padding-top: 25px">
+  <div class="centerMe" style="padding-top: 85px">
     <!-- <button ion-button class="clear" title="Clear" (click)="handleClearClick()">×</button> -->
     <!-- <img class="draggable draggable-droppable" height="45px" draggable="true" src="./../../assets/imgs/sign.png" /> -->
     <!-- <svg class="annotationLayer"  class="dropzone resizable" id="svg-dropzone" viewBox="0 0 612 792" width="800" height="600"> </svg>-->
@@ -96,27 +96,44 @@
           Clear
         </button>
       </ion-fab>-->
-  <ion-fab top left style="padding-left:35px; padding-top:120px;" #fab>
-
-    <img id="sigImg" height="50px" absolute-drag class="draggable draggable-droppable" draggable="true" src="./../../assets/imgs/sign.png"
-    />
+  <ion-fab top left style="padding-left:35px; margin-top:130px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab>
 
 
-    <span style="padding-right: 4px"></span>
 
-    <svg xmlns="http://www.w3.org/2000/svg" id="signature" absolute-drag class="draggable draggable-droppable" draggable="true"
-      width="110" height="50" viewBox="0 0 150 50" style="clear:both; background:#ffeb8e; border: 1px solid red " opacity="1">
+    <ion-grid>
+      <ion-row justify-content-start align-items-center>
+        <ion-col col-auto>
+          <img id="sigImg" height="50px" absolute-drag class="draggable draggable-droppable" draggable="true" src="./../../assets/imgs/sign.png"
+          />
+        </ion-col>
+        <ion-col col-auto>
+          <svg xmlns="http://www.w3.org/2000/svg" id="signature" absolute-drag class="draggable draggable-droppable" draggable="true"
+            width="200" height="50" viewBox="0 0 200 50" style="clear:both; background:#ffeb8e; border: 1px solid red " opacity="1">
 
-      <text x="50%" y="50%" width="150" height="50" viewBox="0 0 150 50" alignment-baseline="middle" text-anchor="middle" fill="green"
-        font-family="Cedarville Cursive" font-weight="bold" style="font-size: 25px" >
-        {{ yourName }} patrick theile
-      </text>
+            <text x="50%" y="50%" width="200" height="50" viewBox="0 0 200 50" alignment-baseline="middle" text-anchor="middle" fill="green"
+              font-family="Cedarville Cursive" font-weight="bold" style="font-size: 25px">
+              {{ yourName }}
+            </text>
 
-    </svg>
+          </svg>
+        </ion-col>
+        <ion-col col-auto>
+          <img src="./../../assets/imgs/arrows.svg" height="45px">
+          <span style="color:#757575; font-family: Cedarville Cursive; font-size: 20px; font-weight: bold">Drag and drop below</span>
 
+        </ion-col>
+        <ion-col col-auto>
 
+          <input id="checkBox" type="checkbox">
+
+          <span style="padding-right: 4px;color:#757575;">Allow Resize</span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
 
   </ion-fab>
+
+
 
 </ion-content>

@@ -9,15 +9,15 @@ webpackJsonp([1],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__directives_absolute_drag_absolute_drag__ = __webpack_require__(185);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_document_service__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_retry__ = __webpack_require__(431);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_retry__ = __webpack_require__(430);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_retry___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_retry__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_timeout__ = __webpack_require__(434);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_timeout__ = __webpack_require__(433);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_timeout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_timeout__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_delay__ = __webpack_require__(442);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_delay__ = __webpack_require__(441);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_delay___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_delay__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_map__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_pdfjs_dist_build_pdf__ = __webpack_require__(187);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_pdfjs_dist_build_pdf__ = __webpack_require__(445);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_pdfjs_dist_build_pdf___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_pdfjs_dist_build_pdf__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_pdf_annotate__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_pdf_annotate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_pdf_annotate__);
@@ -75,7 +75,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 
 
-
 //declare let global: any;
 /// https://www.sitepoint.com/custom-pdf-rendering/
 var AnnotatePage = (function () {
@@ -91,10 +90,12 @@ var AnnotatePage = (function () {
         this.prevElement = null;
         this.currentX = 0;
         this.currentY = 0;
+        this.allowResize = false;
     }
     AnnotatePage.prototype.ionViewDidLoad = function () {
-        //let pdfData = this.loadPDFData(); // loads pdf data from localStorage, make sure you uploaded it from home.js
         var _this = this;
+        $(".dropzone").unbind();
+        //let pdfData = this.loadPDFData(); // loads pdf data from localStorage, make sure you uploaded it from home.js
         if (this.navParams.get("guid") && !this.documentService.currentDoc) {
             var guid_1 = this.navParams.get("guid");
             this.documentService.getDocumentsIndex(true).then(function (data) {
@@ -217,47 +218,47 @@ var AnnotatePage = (function () {
     //   }
     //   return base64ToUint8Array(base64pdfData);
     // }
-    AnnotatePage.prototype.setupAnnotations = function (page, viewport, canvas, $annotationLayerDiv) {
-        var canvasOffset = $(canvas).offset();
-        var promise = page.getAnnotations().then(function (annotationsData) {
-            viewport = viewport.clone({
-                dontFlip: true
-            });
-            for (var i = 0; i < annotationsData.length; i++) {
-                var data = annotationsData[i];
-                var annotation = __WEBPACK_IMPORTED_MODULE_8_pdfjs_dist_build_pdf___default.a.Annotation.fromData(data);
-                if (!annotation || !annotation.hasHtml()) {
-                    continue;
-                }
-                var element = annotation.getHtmlElement(page.commonObjs);
-                data = annotation.getData();
-                var rect = data.rect;
-                var view = page.view;
-                rect = __WEBPACK_IMPORTED_MODULE_8_pdfjs_dist_build_pdf___default.a.Util.normalizeRect([
-                    rect[0],
-                    view[3] - rect[1] + view[1],
-                    rect[2],
-                    view[3] - rect[3] + view[1]
-                ]);
-                element.style.left = (canvasOffset.left + rect[0]) + 'px';
-                element.style.top = (canvasOffset.top + rect[1]) + 'px';
-                element.style.position = 'absolute';
-                var transform = viewport.transform;
-                var transformStr = 'matrix(' + transform.join(',') + ')';
-                CustomStyle.setProp('transform', element, transformStr);
-                var transformOriginStr = -rect[0] + 'px ' + -rect[1] + 'px';
-                CustomStyle.setProp('transformOrigin', element, transformOriginStr);
-                if (data.subtype === 'Link' && !data.url) {
-                    // In this example,  I do not handle the `Link` annotations without url.
-                    // If you want to handle those links, see `web/page_view.js`.
-                    continue;
-                }
-                $annotationLayerDiv.append(element);
-                $annotationLayerDiv.append($("#signature"));
-            }
-        });
-        return promise;
-    };
+    // setupAnnotations(page, viewport, canvas, $annotationLayerDiv) {
+    //   let canvasOffset = $(canvas).offset();
+    //   let promise = page.getAnnotations().then((annotationsData) => {
+    //     viewport = viewport.clone({
+    //       dontFlip: true
+    //     });
+    //     for (let i = 0; i < annotationsData.length; i++) {
+    //       let data = annotationsData[i];
+    //       let annotation = PDFJS.Annotation.fromData(data);
+    //       if (!annotation || !annotation.hasHtml()) {
+    //         continue;
+    //       }
+    //       let element = annotation.getHtmlElement(page.commonObjs);
+    //       data = annotation.getData();
+    //       let rect = data.rect;
+    //       let view = page.view;
+    //       rect = PDFJS.Util.normalizeRect([
+    //         rect[0],
+    //         view[3] - rect[1] + view[1],
+    //         rect[2],
+    //         view[3] - rect[3] + view[1]
+    //       ]);
+    //       element.style.left = (canvasOffset.left + rect[0]) + 'px';
+    //       element.style.top = (canvasOffset.top + rect[1]) + 'px';
+    //       element.style.position = 'absolute';
+    //       let transform = viewport.transform;
+    //       let transformStr = 'matrix(' + transform.join(',') + ')';
+    //       CustomStyle.setProp('transform', element, transformStr);
+    //       let transformOriginStr = -rect[0] + 'px ' + -rect[1] + 'px';
+    //       CustomStyle.setProp('transformOrigin', element, transformOriginStr);
+    //       if (data.subtype === 'Link' && !data.url) {
+    //         // In this example,  I do not handle the `Link` annotations without url.
+    //         // If you want to handle those links, see `web/page_view.js`.
+    //         continue;
+    //       }
+    //       $annotationLayerDiv.append(element);
+    //       $annotationLayerDiv.append($("#signature"));
+    //     }
+    //   });
+    //   return promise;
+    // }
     // setActiveToolbarItem(type, button) {
     //   let active = document.querySelector('.toolbar button.active');
     //   if (active) {
@@ -348,17 +349,17 @@ var AnnotatePage = (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_2__directives_absolute_drag_absolute_drag__["a" /* AbsoluteDragDirective */]),
-        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__directives_absolute_drag_absolute_drag__["a" /* AbsoluteDragDirective */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__directives_absolute_drag_absolute_drag__["a" /* AbsoluteDragDirective */]) === "function" && _a || Object)
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2__directives_absolute_drag_absolute_drag__["a" /* AbsoluteDragDirective */])
     ], AnnotatePage.prototype, "vc", void 0);
     AnnotatePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-annotate',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/annotate/annotate.html"*/'<!-- <ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Block-U-Sign</ion-title>\n  </ion-navbar>\n</ion-header> -->\n<ion-content>\n\n\n  <ion-grid>\n    <ion-row>\n      <ion-col width-100>\n        <div class="steps-wrapper">\n          <ul class="steps">\n            <li class="step" (click)="back()">\n              <div class="step-info">\n                <span class="step-name">Upload</span>\n              </div>\n            </li>\n            <li class="step active">\n              <div class="step-info">\n                <span class="step-name">Annotate</span>\n              </div>\n            </li>\n            <li class="step" (click)="next()">\n              <div class="step-info">\n                <span class="step-name">Email</span>\n              </div>\n            </li>\n            <li class="step">\n              <div class="step-info">\n                <span class="step-name">Sign</span>\n              </div>\n            </li>\n            <li class="step">\n              <div class="step-info">\n                <span class="step-name">Review</span>\n              </div>\n            </li>\n          </ul>\n        </div>\n        <br/>\n        <br/>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n\n\n  <div class="centerMe" style="padding-top: 25px">\n    <!-- <button ion-button class="clear" title="Clear" (click)="handleClearClick()">×</button> -->\n    <!-- <img class="draggable draggable-droppable" height="45px" draggable="true" src="./../../assets/imgs/sign.png" /> -->\n    <!-- <svg class="annotationLayer"  class="dropzone resizable" id="svg-dropzone" viewBox="0 0 612 792" width="800" height="600"> </svg>-->\n\n    <div class="page" id="pageContainer1" data-page-number="1" style="position: relative; overflow-x: auto; width: 100%; height:100%">\n\n      <div id="canvasWrapper" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">\n        <!-- <canvas id="canvas1" width="612" height="792" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px"></canvas> -->\n        <canvas id="canvas1" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px"></canvas>\n      </div>\n      <svg id="svg-dropzone" class="dropzone resizable" draggable="true" xmlns="http://www.w3.org/2000/svg" style="position: absolute; \n                  left: 0px; \n                  top:0px;\n                  z-index: 200000;\n                  padding: 0px 0px 0px 0px; \n                  margin: 0px 0px 0px 0px;">\n\n      </svg>\n      <div class="textLayer"></div>\n    </div>\n  </div>\n  <svg class="annotationLayer" xmlns="http://www.w3.org/2000/svg">\n\n  </svg>\n\n  <ion-fab bottom right #fab>\n    <button ion-fab>\n      <ion-icon name="md-options"></ion-icon>\n    </button>\n    <ion-fab-list side="top">\n      <button ion-fab (click)="saveSvg()">Save</button>\n      <button ion-fab (click)="clear()">Clear</button>\n    </ion-fab-list>\n  </ion-fab>\n\n  <!-- <ion-fab top left style="padding-top:120px;" (click)="saveSvg()" #fab>\n        <button ion-fab color="light" color="primary" (click)="saveSvg()">\n          Save\n        </button>\n    \n      </ion-fab>\n      <ion-fab top left style="padding-left:70px; padding-top:120px;" (click)="clear()" #fab>\n        <button ion-fab color="light" color="primary" (click)="clear()">\n          Clear\n        </button>\n      </ion-fab>-->\n  <ion-fab top left style="padding-left:35px; padding-top:120px;" #fab>\n\n    <img id="sigImg" height="50px" absolute-drag class="draggable draggable-droppable" draggable="true" src="./../../assets/imgs/sign.png"\n    />\n\n\n    <span style="padding-right: 4px"></span>\n\n    <svg xmlns="http://www.w3.org/2000/svg" id="signature" absolute-drag class="draggable draggable-droppable" draggable="true"\n      width="110" height="50" viewBox="0 0 150 50" style="clear:both; background:#ffeb8e; border: 1px solid red " opacity="1">\n\n      <text x="50%" y="50%" width="150" height="50" viewBox="0 0 150 50" alignment-baseline="middle" text-anchor="middle" fill="green"\n        font-family="Cedarville Cursive" font-weight="bold" style="font-size: 25px" >\n        {{ yourName }} patrick theile\n      </text>\n\n    </svg>\n\n\n\n\n  </ion-fab>\n\n</ion-content>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/annotate/annotate.html"*/,
+            selector: 'page-annotate',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/annotate/annotate.html"*/'<!-- <ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Block-U-Sign</ion-title>\n  </ion-navbar>\n</ion-header> -->\n<ion-content>\n\n\n  <ion-grid>\n    <ion-row>\n      <ion-col width-100>\n        <div class="steps-wrapper">\n          <ul class="steps">\n            <li class="step" (click)="back()">\n              <div class="step-info">\n                <span class="step-name">Upload</span>\n              </div>\n            </li>\n            <li class="step active">\n              <div class="step-info">\n                <span class="step-name">Annotate</span>\n              </div>\n            </li>\n            <li class="step" (click)="next()">\n              <div class="step-info">\n                <span class="step-name">Email</span>\n              </div>\n            </li>\n            <li class="step">\n              <div class="step-info">\n                <span class="step-name">Sign</span>\n              </div>\n            </li>\n            <li class="step">\n              <div class="step-info">\n                <span class="step-name">Review</span>\n              </div>\n            </li>\n          </ul>\n        </div>\n        <br/>\n        <br/>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n\n\n  <div class="centerMe" style="padding-top: 85px">\n    <!-- <button ion-button class="clear" title="Clear" (click)="handleClearClick()">×</button> -->\n    <!-- <img class="draggable draggable-droppable" height="45px" draggable="true" src="./../../assets/imgs/sign.png" /> -->\n    <!-- <svg class="annotationLayer"  class="dropzone resizable" id="svg-dropzone" viewBox="0 0 612 792" width="800" height="600"> </svg>-->\n\n    <div class="page" id="pageContainer1" data-page-number="1" style="position: relative; overflow-x: auto; width: 100%; height:100%">\n\n      <div id="canvasWrapper" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">\n        <!-- <canvas id="canvas1" width="612" height="792" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px"></canvas> -->\n        <canvas id="canvas1" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px"></canvas>\n      </div>\n      <svg id="svg-dropzone" class="dropzone resizable" draggable="true" xmlns="http://www.w3.org/2000/svg" style="position: absolute; \n                  left: 0px; \n                  top:0px;\n                  z-index: 200000;\n                  padding: 0px 0px 0px 0px; \n                  margin: 0px 0px 0px 0px;">\n\n      </svg>\n      <div class="textLayer"></div>\n    </div>\n  </div>\n  <svg class="annotationLayer" xmlns="http://www.w3.org/2000/svg">\n\n  </svg>\n\n  <ion-fab bottom right #fab>\n    <button ion-fab>\n      <ion-icon name="md-options"></ion-icon>\n    </button>\n    <ion-fab-list side="top">\n      <button ion-fab (click)="saveSvg()">Save</button>\n      <button ion-fab (click)="clear()">Clear</button>\n    </ion-fab-list>\n  </ion-fab>\n\n  <!-- <ion-fab top left style="padding-top:120px;" (click)="saveSvg()" #fab>\n        <button ion-fab color="light" color="primary" (click)="saveSvg()">\n          Save\n        </button>\n    \n      </ion-fab>\n      <ion-fab top left style="padding-left:70px; padding-top:120px;" (click)="clear()" #fab>\n        <button ion-fab color="light" color="primary" (click)="clear()">\n          Clear\n        </button>\n      </ion-fab>-->\n  <ion-fab top left style="padding-left:35px; margin-top:130px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab>\n\n\n\n    <ion-grid>\n      <ion-row justify-content-start align-items-center>\n        <ion-col col-auto>\n          <img id="sigImg" height="50px" absolute-drag class="draggable draggable-droppable" draggable="true" src="./../../assets/imgs/sign.png"\n          />\n        </ion-col>\n        <ion-col col-auto>\n          <svg xmlns="http://www.w3.org/2000/svg" id="signature" absolute-drag class="draggable draggable-droppable" draggable="true"\n            width="200" height="50" viewBox="0 0 200 50" style="clear:both; background:#ffeb8e; border: 1px solid red " opacity="1">\n\n            <text x="50%" y="50%" width="200" height="50" viewBox="0 0 200 50" alignment-baseline="middle" text-anchor="middle" fill="green"\n              font-family="Cedarville Cursive" font-weight="bold" style="font-size: 25px">\n              {{ yourName }}\n            </text>\n\n          </svg>\n        </ion-col>\n        <ion-col col-auto>\n          <img src="./../../assets/imgs/arrows.svg" height="45px">\n          <span style="color:#757575; font-family: Cedarville Cursive; font-size: 20px; font-weight: bold">Drag and drop below</span>\n\n        </ion-col>\n        <ion-col col-auto>\n\n          <input id="checkBox" type="checkbox">\n\n          <span style="padding-right: 4px;color:#757575;">Allow Resize</span>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n\n\n  </ion-fab>\n\n\n\n</ion-content>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/annotate/annotate.html"*/,
             styles: ['annotate.scss']
         }),
-        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_document_service__["a" /* DocumentService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_document_service__["a" /* DocumentService */]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_3__services_document_service__["a" /* DocumentService */]])
     ], AnnotatePage);
     return AnnotatePage;
-    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=annotate.js.map
@@ -390,16 +391,16 @@ var map = {
 		184
 	],
 	"../pages/email/email.module": [
-		205
+		204
 	],
 	"../pages/home/home.module": [
-		207
+		205
 	],
 	"../pages/review/review.module": [
-		206
+		208
 	],
 	"../pages/sign/sign.module": [
-		210
+		209
 	]
 };
 function webpackAsyncContext(req) {
@@ -427,7 +428,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__annotate__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__directives_directives_module__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__directives_directives_module__ = __webpack_require__(203);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -570,7 +571,7 @@ var AbsoluteDragDirective = (function () {
 
 /***/ }),
 
-/***/ 204:
+/***/ 203:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -602,7 +603,7 @@ var DirectivesModule = (function () {
 
 /***/ }),
 
-/***/ 205:
+/***/ 204:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -640,52 +641,14 @@ var EmailPageModule = (function () {
 
 /***/ }),
 
-/***/ 206:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReviewPageModule", function() { return ReviewPageModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__review__ = __webpack_require__(501);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-var ReviewPageModule = (function () {
-    function ReviewPageModule() {
-    }
-    ReviewPageModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
-            declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__review__["a" /* ReviewPage */],
-            ],
-            imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__review__["a" /* ReviewPage */]),
-            ],
-        })
-    ], ReviewPageModule);
-    return ReviewPageModule;
-}());
-
-//# sourceMappingURL=review.module.js.map
-
-/***/ }),
-
-/***/ 207:
+/***/ 205:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeModule", function() { return HomeModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__home__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__home__ = __webpack_require__(206);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -719,7 +682,7 @@ var HomeModule = (function () {
 
 /***/ }),
 
-/***/ 208:
+/***/ 206:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -731,7 +694,7 @@ var HomeModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_pdf_annotate__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_pdf_annotate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_pdf_annotate__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_global_service__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_global_service__ = __webpack_require__(207);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_document_service__ = __webpack_require__(33);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1070,7 +1033,7 @@ var HomePage = (function () {
 
 /***/ }),
 
-/***/ 209:
+/***/ 207:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1101,7 +1064,45 @@ var GlobalService = (function () {
 
 /***/ }),
 
-/***/ 210:
+/***/ 208:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReviewPageModule", function() { return ReviewPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__review__ = __webpack_require__(501);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var ReviewPageModule = (function () {
+    function ReviewPageModule() {
+    }
+    ReviewPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__review__["a" /* ReviewPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__review__["a" /* ReviewPage */]),
+            ],
+        })
+    ], ReviewPageModule);
+    return ReviewPageModule;
+}());
+
+//# sourceMappingURL=review.module.js.map
+
+/***/ }),
+
+/***/ 209:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1145,7 +1146,7 @@ var SignPageModule = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DocumentService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_models__ = __webpack_require__(428);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_models__ = __webpack_require__(427);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__ = __webpack_require__(106);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(54);
@@ -1341,7 +1342,7 @@ var DocumentService = (function () {
 
 /***/ }),
 
-/***/ 378:
+/***/ 377:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1440,13 +1441,13 @@ var OptionsPopoverPage = (function () {
 
 /***/ }),
 
-/***/ 379:
+/***/ 378:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(380);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(403);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(379);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(402);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -1454,7 +1455,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 403:
+/***/ 402:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1463,20 +1464,20 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(250);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_splash_screen__ = __webpack_require__(253);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(249);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_splash_screen__ = __webpack_require__(252);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_charts__ = __webpack_require__(528);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_charts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_ng2_charts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(577);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__options_popover_page__ = __webpack_require__(378);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_directives_module__ = __webpack_require__(204);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_home_home_module__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__options_popover_page__ = __webpack_require__(377);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_directives_module__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_home_home_module__ = __webpack_require__(205);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_annotate_annotate_module__ = __webpack_require__(184);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_sign_sign_module__ = __webpack_require__(210);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_email_email_module__ = __webpack_require__(205);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_review_review_module__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_sign_sign_module__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_email_email_module__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_review_review_module__ = __webpack_require__(208);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_coin_service__ = __webpack_require__(578);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__services_global_service__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__services_global_service__ = __webpack_require__(207);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__services_cryptocompare_service__ = __webpack_require__(579);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__services_slack_service__ = __webpack_require__(580);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_document_service__ = __webpack_require__(33);
@@ -1525,8 +1526,8 @@ var AppModule = (function () {
                     links: [
                         { loadChildren: '../pages/annotate/annotate.module#AnnotatePageModule', name: 'AnnotatePage', segment: 'annotate/:guid', priority: 'low', defaultHistory: ['HomePage'] },
                         { loadChildren: '../pages/email/email.module#EmailPageModule', name: 'EmailPage', segment: 'email/:guid', priority: 'low', defaultHistory: ['AnnotatePage', 'HomePage'] },
-                        { loadChildren: '../pages/review/review.module#ReviewPageModule', name: 'ReviewPage', segment: 'review/:guid', priority: 'low', defaultHistory: ['SignPage', 'EmailPage', 'AnnotatePage', 'HomePage'] },
                         { loadChildren: '../pages/home/home.module#HomeModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/review/review.module#ReviewPageModule', name: 'ReviewPage', segment: 'review/:guid', priority: 'low', defaultHistory: ['SignPage', 'EmailPage', 'AnnotatePage', 'HomePage'] },
                         { loadChildren: '../pages/sign/sign.module#SignPageModule', name: 'SignPage', segment: 'sign/:guid', priority: 'low', defaultHistory: ['EmailPage', 'AnnotatePage', 'HomePage'] }
                     ]
                 }),
@@ -1564,7 +1565,7 @@ var AppModule = (function () {
 
 /***/ }),
 
-/***/ 428:
+/***/ 427:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1879,244 +1880,244 @@ var SignPage = (function () {
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 259,
-	"./af.js": 259,
-	"./ar": 260,
-	"./ar-dz": 261,
-	"./ar-dz.js": 261,
-	"./ar-kw": 262,
-	"./ar-kw.js": 262,
-	"./ar-ly": 263,
-	"./ar-ly.js": 263,
-	"./ar-ma": 264,
-	"./ar-ma.js": 264,
-	"./ar-sa": 265,
-	"./ar-sa.js": 265,
-	"./ar-tn": 266,
-	"./ar-tn.js": 266,
-	"./ar.js": 260,
-	"./az": 267,
-	"./az.js": 267,
-	"./be": 268,
-	"./be.js": 268,
-	"./bg": 269,
-	"./bg.js": 269,
-	"./bm": 270,
-	"./bm.js": 270,
-	"./bn": 271,
-	"./bn.js": 271,
-	"./bo": 272,
-	"./bo.js": 272,
-	"./br": 273,
-	"./br.js": 273,
-	"./bs": 274,
-	"./bs.js": 274,
-	"./ca": 275,
-	"./ca.js": 275,
-	"./cs": 276,
-	"./cs.js": 276,
-	"./cv": 277,
-	"./cv.js": 277,
-	"./cy": 278,
-	"./cy.js": 278,
-	"./da": 279,
-	"./da.js": 279,
-	"./de": 280,
-	"./de-at": 281,
-	"./de-at.js": 281,
-	"./de-ch": 282,
-	"./de-ch.js": 282,
-	"./de.js": 280,
-	"./dv": 283,
-	"./dv.js": 283,
-	"./el": 284,
-	"./el.js": 284,
-	"./en-au": 285,
-	"./en-au.js": 285,
-	"./en-ca": 286,
-	"./en-ca.js": 286,
-	"./en-gb": 287,
-	"./en-gb.js": 287,
-	"./en-ie": 288,
-	"./en-ie.js": 288,
-	"./en-nz": 289,
-	"./en-nz.js": 289,
-	"./eo": 290,
-	"./eo.js": 290,
-	"./es": 291,
-	"./es-do": 292,
-	"./es-do.js": 292,
-	"./es-us": 293,
-	"./es-us.js": 293,
-	"./es.js": 291,
-	"./et": 294,
-	"./et.js": 294,
-	"./eu": 295,
-	"./eu.js": 295,
-	"./fa": 296,
-	"./fa.js": 296,
-	"./fi": 297,
-	"./fi.js": 297,
-	"./fo": 298,
-	"./fo.js": 298,
-	"./fr": 299,
-	"./fr-ca": 300,
-	"./fr-ca.js": 300,
-	"./fr-ch": 301,
-	"./fr-ch.js": 301,
-	"./fr.js": 299,
-	"./fy": 302,
-	"./fy.js": 302,
-	"./gd": 303,
-	"./gd.js": 303,
-	"./gl": 304,
-	"./gl.js": 304,
-	"./gom-latn": 305,
-	"./gom-latn.js": 305,
-	"./gu": 306,
-	"./gu.js": 306,
-	"./he": 307,
-	"./he.js": 307,
-	"./hi": 308,
-	"./hi.js": 308,
-	"./hr": 309,
-	"./hr.js": 309,
-	"./hu": 310,
-	"./hu.js": 310,
-	"./hy-am": 311,
-	"./hy-am.js": 311,
-	"./id": 312,
-	"./id.js": 312,
-	"./is": 313,
-	"./is.js": 313,
-	"./it": 314,
-	"./it.js": 314,
-	"./ja": 315,
-	"./ja.js": 315,
-	"./jv": 316,
-	"./jv.js": 316,
-	"./ka": 317,
-	"./ka.js": 317,
-	"./kk": 318,
-	"./kk.js": 318,
-	"./km": 319,
-	"./km.js": 319,
-	"./kn": 320,
-	"./kn.js": 320,
-	"./ko": 321,
-	"./ko.js": 321,
-	"./ky": 322,
-	"./ky.js": 322,
-	"./lb": 323,
-	"./lb.js": 323,
-	"./lo": 324,
-	"./lo.js": 324,
-	"./lt": 325,
-	"./lt.js": 325,
-	"./lv": 326,
-	"./lv.js": 326,
-	"./me": 327,
-	"./me.js": 327,
-	"./mi": 328,
-	"./mi.js": 328,
-	"./mk": 329,
-	"./mk.js": 329,
-	"./ml": 330,
-	"./ml.js": 330,
-	"./mr": 331,
-	"./mr.js": 331,
-	"./ms": 332,
-	"./ms-my": 333,
-	"./ms-my.js": 333,
-	"./ms.js": 332,
-	"./mt": 334,
-	"./mt.js": 334,
-	"./my": 335,
-	"./my.js": 335,
-	"./nb": 336,
-	"./nb.js": 336,
-	"./ne": 337,
-	"./ne.js": 337,
-	"./nl": 338,
-	"./nl-be": 339,
-	"./nl-be.js": 339,
-	"./nl.js": 338,
-	"./nn": 340,
-	"./nn.js": 340,
-	"./pa-in": 341,
-	"./pa-in.js": 341,
-	"./pl": 342,
-	"./pl.js": 342,
-	"./pt": 343,
-	"./pt-br": 344,
-	"./pt-br.js": 344,
-	"./pt.js": 343,
-	"./ro": 345,
-	"./ro.js": 345,
-	"./ru": 346,
-	"./ru.js": 346,
-	"./sd": 347,
-	"./sd.js": 347,
-	"./se": 348,
-	"./se.js": 348,
-	"./si": 349,
-	"./si.js": 349,
-	"./sk": 350,
-	"./sk.js": 350,
-	"./sl": 351,
-	"./sl.js": 351,
-	"./sq": 352,
-	"./sq.js": 352,
-	"./sr": 353,
-	"./sr-cyrl": 354,
-	"./sr-cyrl.js": 354,
-	"./sr.js": 353,
-	"./ss": 355,
-	"./ss.js": 355,
-	"./sv": 356,
-	"./sv.js": 356,
-	"./sw": 357,
-	"./sw.js": 357,
-	"./ta": 358,
-	"./ta.js": 358,
-	"./te": 359,
-	"./te.js": 359,
-	"./tet": 360,
-	"./tet.js": 360,
-	"./th": 361,
-	"./th.js": 361,
-	"./tl-ph": 362,
-	"./tl-ph.js": 362,
-	"./tlh": 363,
-	"./tlh.js": 363,
-	"./tr": 364,
-	"./tr.js": 364,
-	"./tzl": 365,
-	"./tzl.js": 365,
-	"./tzm": 366,
-	"./tzm-latn": 367,
-	"./tzm-latn.js": 367,
-	"./tzm.js": 366,
-	"./uk": 368,
-	"./uk.js": 368,
-	"./ur": 369,
-	"./ur.js": 369,
-	"./uz": 370,
-	"./uz-latn": 371,
-	"./uz-latn.js": 371,
-	"./uz.js": 370,
-	"./vi": 372,
-	"./vi.js": 372,
-	"./x-pseudo": 373,
-	"./x-pseudo.js": 373,
-	"./yo": 374,
-	"./yo.js": 374,
-	"./zh-cn": 375,
-	"./zh-cn.js": 375,
-	"./zh-hk": 376,
-	"./zh-hk.js": 376,
-	"./zh-tw": 377,
-	"./zh-tw.js": 377
+	"./af": 258,
+	"./af.js": 258,
+	"./ar": 259,
+	"./ar-dz": 260,
+	"./ar-dz.js": 260,
+	"./ar-kw": 261,
+	"./ar-kw.js": 261,
+	"./ar-ly": 262,
+	"./ar-ly.js": 262,
+	"./ar-ma": 263,
+	"./ar-ma.js": 263,
+	"./ar-sa": 264,
+	"./ar-sa.js": 264,
+	"./ar-tn": 265,
+	"./ar-tn.js": 265,
+	"./ar.js": 259,
+	"./az": 266,
+	"./az.js": 266,
+	"./be": 267,
+	"./be.js": 267,
+	"./bg": 268,
+	"./bg.js": 268,
+	"./bm": 269,
+	"./bm.js": 269,
+	"./bn": 270,
+	"./bn.js": 270,
+	"./bo": 271,
+	"./bo.js": 271,
+	"./br": 272,
+	"./br.js": 272,
+	"./bs": 273,
+	"./bs.js": 273,
+	"./ca": 274,
+	"./ca.js": 274,
+	"./cs": 275,
+	"./cs.js": 275,
+	"./cv": 276,
+	"./cv.js": 276,
+	"./cy": 277,
+	"./cy.js": 277,
+	"./da": 278,
+	"./da.js": 278,
+	"./de": 279,
+	"./de-at": 280,
+	"./de-at.js": 280,
+	"./de-ch": 281,
+	"./de-ch.js": 281,
+	"./de.js": 279,
+	"./dv": 282,
+	"./dv.js": 282,
+	"./el": 283,
+	"./el.js": 283,
+	"./en-au": 284,
+	"./en-au.js": 284,
+	"./en-ca": 285,
+	"./en-ca.js": 285,
+	"./en-gb": 286,
+	"./en-gb.js": 286,
+	"./en-ie": 287,
+	"./en-ie.js": 287,
+	"./en-nz": 288,
+	"./en-nz.js": 288,
+	"./eo": 289,
+	"./eo.js": 289,
+	"./es": 290,
+	"./es-do": 291,
+	"./es-do.js": 291,
+	"./es-us": 292,
+	"./es-us.js": 292,
+	"./es.js": 290,
+	"./et": 293,
+	"./et.js": 293,
+	"./eu": 294,
+	"./eu.js": 294,
+	"./fa": 295,
+	"./fa.js": 295,
+	"./fi": 296,
+	"./fi.js": 296,
+	"./fo": 297,
+	"./fo.js": 297,
+	"./fr": 298,
+	"./fr-ca": 299,
+	"./fr-ca.js": 299,
+	"./fr-ch": 300,
+	"./fr-ch.js": 300,
+	"./fr.js": 298,
+	"./fy": 301,
+	"./fy.js": 301,
+	"./gd": 302,
+	"./gd.js": 302,
+	"./gl": 303,
+	"./gl.js": 303,
+	"./gom-latn": 304,
+	"./gom-latn.js": 304,
+	"./gu": 305,
+	"./gu.js": 305,
+	"./he": 306,
+	"./he.js": 306,
+	"./hi": 307,
+	"./hi.js": 307,
+	"./hr": 308,
+	"./hr.js": 308,
+	"./hu": 309,
+	"./hu.js": 309,
+	"./hy-am": 310,
+	"./hy-am.js": 310,
+	"./id": 311,
+	"./id.js": 311,
+	"./is": 312,
+	"./is.js": 312,
+	"./it": 313,
+	"./it.js": 313,
+	"./ja": 314,
+	"./ja.js": 314,
+	"./jv": 315,
+	"./jv.js": 315,
+	"./ka": 316,
+	"./ka.js": 316,
+	"./kk": 317,
+	"./kk.js": 317,
+	"./km": 318,
+	"./km.js": 318,
+	"./kn": 319,
+	"./kn.js": 319,
+	"./ko": 320,
+	"./ko.js": 320,
+	"./ky": 321,
+	"./ky.js": 321,
+	"./lb": 322,
+	"./lb.js": 322,
+	"./lo": 323,
+	"./lo.js": 323,
+	"./lt": 324,
+	"./lt.js": 324,
+	"./lv": 325,
+	"./lv.js": 325,
+	"./me": 326,
+	"./me.js": 326,
+	"./mi": 327,
+	"./mi.js": 327,
+	"./mk": 328,
+	"./mk.js": 328,
+	"./ml": 329,
+	"./ml.js": 329,
+	"./mr": 330,
+	"./mr.js": 330,
+	"./ms": 331,
+	"./ms-my": 332,
+	"./ms-my.js": 332,
+	"./ms.js": 331,
+	"./mt": 333,
+	"./mt.js": 333,
+	"./my": 334,
+	"./my.js": 334,
+	"./nb": 335,
+	"./nb.js": 335,
+	"./ne": 336,
+	"./ne.js": 336,
+	"./nl": 337,
+	"./nl-be": 338,
+	"./nl-be.js": 338,
+	"./nl.js": 337,
+	"./nn": 339,
+	"./nn.js": 339,
+	"./pa-in": 340,
+	"./pa-in.js": 340,
+	"./pl": 341,
+	"./pl.js": 341,
+	"./pt": 342,
+	"./pt-br": 343,
+	"./pt-br.js": 343,
+	"./pt.js": 342,
+	"./ro": 344,
+	"./ro.js": 344,
+	"./ru": 345,
+	"./ru.js": 345,
+	"./sd": 346,
+	"./sd.js": 346,
+	"./se": 347,
+	"./se.js": 347,
+	"./si": 348,
+	"./si.js": 348,
+	"./sk": 349,
+	"./sk.js": 349,
+	"./sl": 350,
+	"./sl.js": 350,
+	"./sq": 351,
+	"./sq.js": 351,
+	"./sr": 352,
+	"./sr-cyrl": 353,
+	"./sr-cyrl.js": 353,
+	"./sr.js": 352,
+	"./ss": 354,
+	"./ss.js": 354,
+	"./sv": 355,
+	"./sv.js": 355,
+	"./sw": 356,
+	"./sw.js": 356,
+	"./ta": 357,
+	"./ta.js": 357,
+	"./te": 358,
+	"./te.js": 358,
+	"./tet": 359,
+	"./tet.js": 359,
+	"./th": 360,
+	"./th.js": 360,
+	"./tl-ph": 361,
+	"./tl-ph.js": 361,
+	"./tlh": 362,
+	"./tlh.js": 362,
+	"./tr": 363,
+	"./tr.js": 363,
+	"./tzl": 364,
+	"./tzl.js": 364,
+	"./tzm": 365,
+	"./tzm-latn": 366,
+	"./tzm-latn.js": 366,
+	"./tzm.js": 365,
+	"./uk": 367,
+	"./uk.js": 367,
+	"./ur": 368,
+	"./ur.js": 368,
+	"./uz": 369,
+	"./uz-latn": 370,
+	"./uz-latn.js": 370,
+	"./uz.js": 369,
+	"./vi": 371,
+	"./vi.js": 371,
+	"./x-pseudo": 372,
+	"./x-pseudo.js": 372,
+	"./yo": 373,
+	"./yo.js": 373,
+	"./zh-cn": 374,
+	"./zh-cn.js": 374,
+	"./zh-hk": 375,
+	"./zh-hk.js": 375,
+	"./zh-tw": 376,
+	"./zh-tw.js": 376
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -2143,12 +2144,12 @@ webpackContext.id = 559;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(250);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(253);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(249);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(252);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(206);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_annotate_annotate__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_document_service__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__options_popover_page__ = __webpack_require__(378);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__options_popover_page__ = __webpack_require__(377);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_toPromise__ = __webpack_require__(106);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_toPromise__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -2676,5 +2677,5 @@ var SlackService = (function () {
 
 /***/ })
 
-},[379]);
+},[378]);
 //# sourceMappingURL=main.js.map

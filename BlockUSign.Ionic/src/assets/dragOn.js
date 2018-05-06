@@ -276,6 +276,19 @@
          *
          */
         ondrop: function (event) {
+
+            // debouncer code added
+            // this is called twice per drop, not sure why, need to investigate if the element is double bound
+            if (localStorage.getItem('hasDropped') === 'true' ){
+                localStorage.setItem('hasDropped', 'false');
+                return;
+            }
+            else{
+                localStorage.setItem('hasDropped', 'true');
+            }
+
+            
+
             console.group("interac.js onDrop");
 
             var elemDropped = event.relatedTarget;
@@ -391,30 +404,30 @@
                         })
                         .resizable(interactBasicOptions.resizable)
                         .on("resizemove", function (event) {
-                            var target = event.target;
-                            var x = parseFloat(target.getAttribute("x")) || 0;
-                            var y = parseFloat(target.getAttribute("y")) || 0;
+                            // var target = event.target;
+                            // var x = parseFloat(target.getAttribute("x")) || 0;
+                            // var y = parseFloat(target.getAttribute("y")) || 0;
 
-                            console.log(event);
-                            console.log(that.metrics.viewBox.scale);
+                            // console.log(event);
+                            // console.log(that.metrics.viewBox.scale);
 
-                            if (event.rect.width > 19) {
-                                // update the element's size
-                                target.setAttribute("width", event.rect.width / that.metrics.viewBox.scale);
+                            // if (event.rect.width > 19) {
+                            //     // update the element's size
+                            //     target.setAttribute("width", event.rect.width / that.metrics.viewBox.scale);
 
-                                // translate when resizing from top or left edges
-                                x += event.deltaRect.left / that.metrics.viewBox.scale;
-                                target.setAttribute("x", x);
-                            }
+                            //     // translate when resizing from top or left edges
+                            //     x += event.deltaRect.left / that.metrics.viewBox.scale;
+                            //     target.setAttribute("x", x);
+                            // }
 
-                            if (event.rect.height > 19) {
-                                // update the element's size
-                                target.setAttribute("height", event.rect.height / that.metrics.viewBox.scale);
+                            // if (event.rect.height > 19) {
+                            //     // update the element's size
+                            //     target.setAttribute("height", event.rect.height / that.metrics.viewBox.scale);
 
-                                // translate when resizing from top or left edges
-                                y += event.deltaRect.top / that.metrics.viewBox.scale;
-                                target.setAttribute("y", y);
-                            }
+                            //     // translate when resizing from top or left edges
+                            //     y += event.deltaRect.top / that.metrics.viewBox.scale;
+                            //     target.setAttribute("y", y);
+                            // }
                         });
                 }
             }
@@ -506,36 +519,36 @@
                     })
                     .resizable(interactBasicOptions.resizable)
                     .on("resizemove", function (event) {
-                        var target = event.target;
-                        var x = parseFloat(target.getAttribute("x")) || 0;
-                        var y = parseFloat(target.getAttribute("y")) || 0;
+                        // var target = event.target;
+                        // var x = parseFloat(target.getAttribute("x")) || 0;
+                        // var y = parseFloat(target.getAttribute("y")) || 0;
 
-                        console.log(event);
-                        console.log(that.metrics.viewBox.scale);
+                        // console.log(event);
+                        // console.log(that.metrics.viewBox.scale);
 
-                        if (event.rect.width > 19) {
-                            // update the element's size
-                            target.setAttribute("width", event.rect.width / that.metrics.viewBox.scale);
+                        // if (event.rect.width > 19) {
+                        //     // update the element's size
+                        //     target.setAttribute("width", event.rect.width / that.metrics.viewBox.scale);
 
-                            // translate when resizing from top or left edges
-                            x += event.deltaRect.left / that.metrics.viewBox.scale;
-                            target.setAttribute("x", x);
-                        }
+                        //     // translate when resizing from top or left edges
+                        //     x += event.deltaRect.left / that.metrics.viewBox.scale;
+                        //     target.setAttribute("x", x);
+                        // }
 
-                        if (event.rect.height > 19) {
-                            // update the element's size
-                            target.setAttribute("height", event.rect.height / that.metrics.viewBox.scale);
+                        // if (event.rect.height > 19) {
+                        //     // update the element's size
+                        //     target.setAttribute("height", event.rect.height / that.metrics.viewBox.scale);
 
-                            // translate when resizing from top or left edges
-                            y += event.deltaRect.top / that.metrics.viewBox.scale;
-                            target.setAttribute("y", y);
-                        }
+                        //     // translate when resizing from top or left edges
+                        //     y += event.deltaRect.top / that.metrics.viewBox.scale;
+                        //     target.setAttribute("y", y);
+                        // }
                     });
 
             }
 
 
-
+            interact(this.elem).off('drop');
 
 
         }
