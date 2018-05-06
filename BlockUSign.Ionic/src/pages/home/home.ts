@@ -346,9 +346,28 @@ export class HomePage {
     }
 
 
-    initCamera() {
+    async initCamera() {
+
+        // rear camera selection - https://github.com/webrtc/samples/blob/gh-pages/src/content/devices/input-output/js/main.js
+        // @todo check rear camera logic on all phones
+        let devices = await navigator.mediaDevices.enumerateDevices();;
+
+        // find back camera
+        var rearCamera = devices.find( (device) => { return (device.kind === 'videoinput' && device.label.includes('back')) });
+        let mediaOptions: any; 
+        
+        if (rearCamera){
+            mediaOptions = {
+                deviceId: {exact: rearCamera.deviceId}
+              };
+        }
+        else{
+            mediaOptions = true;
+        }
+       
+
         let mediaConfig = {
-            video: true
+            video: mediaOptions
         };
 
         let playStream = function (video, src) {
@@ -356,18 +375,37 @@ export class HomePage {
             video.play();
         };
 
+        // let process = (video) => {
+        //     let mediaDevices = navigator.mediaDevices;
+        //     mediaDevices.getUserMedia(mediaConfig).then(
+        //         stream => playStream(
+        //             video,
+        //             window.URL.createObjectURL(stream)
+        //         )
+        //     ).catch(function (err) {
+        //         // alert(err);
+        //         alert("Not support get stream from camera!");
+        //     });
+        // };
+
         let process = (video) => {
             let mediaDevices = navigator.mediaDevices;
-            mediaDevices.getUserMedia(mediaConfig).then(
-                stream => playStream(
-                    video,
-                    window.URL.createObjectURL(stream)
-                )
-            ).catch(function (err) {
+            mediaDevices.getUserMedia(mediaConfig).then(function(stream) {
+                var videoTracks = stream.getVideoTracks();
+                console.log('Got stream with constraints:', mediaConfig);
+                console.log('Using video device: ' + videoTracks[0].label);
+                // stream.onended = function() {
+                //   console.log('Stream ended');
+                // };
+                window.stream = stream; // make variable available to console
+                video.srcObject = stream;
+              }).catch(function (err) {
                 // alert(err);
                 alert("Not support get stream from camera!");
             });
         };
+
+
 
         let video = $("#video")[0];
         process(video);
