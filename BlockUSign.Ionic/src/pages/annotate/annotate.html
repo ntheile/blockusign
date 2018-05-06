@@ -48,26 +48,25 @@
   </ion-grid>
 
 
- 
+
   <div class="centerMe" style="padding-top: 25px">
     <!-- <button ion-button class="clear" title="Clear" (click)="handleClearClick()">×</button> -->
     <!-- <img class="draggable draggable-droppable" height="45px" draggable="true" src="./../../assets/imgs/sign.png" /> -->
     <!-- <svg class="annotationLayer"  class="dropzone resizable" id="svg-dropzone" viewBox="0 0 612 792" width="800" height="600"> </svg>-->
-    
+
     <div class="page" id="pageContainer1" data-page-number="1" style="position: relative; overflow-x: auto; width: 100%; height:100%">
 
       <div id="canvasWrapper" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
         <!-- <canvas id="canvas1" width="612" height="792" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px"></canvas> -->
-        <canvas id="canvas1"  style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px"></canvas>
+        <canvas id="canvas1" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px"></canvas>
       </div>
-      <svg id="svg-dropzone" class="dropzone resizable" draggable="true" xmlns="http://www.w3.org/2000/svg"
-        style="position: absolute; 
+      <svg id="svg-dropzone" class="dropzone resizable" draggable="true" xmlns="http://www.w3.org/2000/svg" style="position: absolute; 
                   left: 0px; 
                   top:0px;
                   z-index: 200000;
                   padding: 0px 0px 0px 0px; 
                   margin: 0px 0px 0px 0px;">
-    
+
       </svg>
       <div class="textLayer"></div>
     </div>
@@ -76,17 +75,17 @@
 
   </svg>
 
-   <ion-fab bottom right #fab>
-      <button ion-fab>
-        <ion-icon name="md-options"></ion-icon>
-      </button>
-      <ion-fab-list side="top">
-        <button ion-fab (click)="saveSvg()">Save</button>
-        <button ion-fab (click)="clear()">Clear</button>
-      </ion-fab-list>
-    </ion-fab>
+  <ion-fab bottom right #fab>
+    <button ion-fab>
+      <ion-icon name="md-options"></ion-icon>
+    </button>
+    <ion-fab-list side="top">
+      <button ion-fab (click)="saveSvg()">Save</button>
+      <button ion-fab (click)="clear()">Clear</button>
+    </ion-fab-list>
+  </ion-fab>
 
-    <!-- <ion-fab top left style="padding-top:120px;" (click)="saveSvg()" #fab>
+  <!-- <ion-fab top left style="padding-top:120px;" (click)="saveSvg()" #fab>
         <button ion-fab color="light" color="primary" (click)="saveSvg()">
           Save
         </button>
@@ -97,27 +96,27 @@
           Clear
         </button>
       </ion-fab>-->
-      <ion-fab top left style="padding-left:140px; padding-top:120px;" #fab>
-        
-        <img id="sigImg" height="45px" absolute-drag class="draggable draggable-droppable" 
-          draggable="true" src="./../../assets/imgs/sign.png"/>
+  <ion-fab top left style="padding-left:35px; padding-top:120px;" #fab>
 
-        <!-- <span id="signature" height="45px"  absolute-drag class="draggable draggable-droppable" 
-          draggable="true" 
-          style="font-family: 'Cedarville Cursive', cursive; font-weight: bold; font-size: 25px; color:green">
-            Nick Tee
-        </span> -->
-
-        <svg id="signature" absolute-drag class="draggable draggable-droppable" 
-            draggable="true"  height="45px" fill="transparent" >
-            <text  fill="green" x="0" y="35" font-family="Cedarville Cursive" font-size="40px" font-weight="bold" >
-              Nick Tee
-            </text>
-        </svg>
-        
+    <img id="sigImg" height="50px" absolute-drag class="draggable draggable-droppable" draggable="true" src="./../../assets/imgs/sign.png"
+    />
 
 
-      </ion-fab> 
+    <span style="padding-right: 4px"></span>
+
+    <svg xmlns="http://www.w3.org/2000/svg" id="signature" absolute-drag class="draggable draggable-droppable" draggable="true"
+      width="110" height="50" viewBox="0 0 150 50" style="clear:both; background:#ffeb8e; border: 1px solid red " opacity="1">
+
+      <text x="50%" y="50%" width="150" height="50" viewBox="0 0 150 50" alignment-baseline="middle" text-anchor="middle" fill="green"
+        font-family="Cedarville Cursive" font-weight="bold" style="font-size: 25px" >
+        {{ yourName }} patrick theile
+      </text>
+
+    </svg>
+
+
+
+
+  </ion-fab>
 
 </ion-content>
-

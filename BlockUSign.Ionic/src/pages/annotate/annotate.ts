@@ -61,7 +61,7 @@ export class AnnotatePage {
   prevElement = null;
   currentX = 0;
   currentY = 0;
-   
+  yourName: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public documentService: DocumentService) {
@@ -86,6 +86,8 @@ export class AnnotatePage {
     else{
       this.getFile();
     }
+
+    this.yourName = blockstack.loadUserData().profile.name;
 
   }
 

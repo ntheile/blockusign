@@ -344,19 +344,23 @@
                 else if (elemDropped.tagName === "svg") {
                     elementTypeToCreate = "text";
                     elemImage = this.createElementSVG(elementTypeToCreate);
-                    
+
                     var txt = elemDropped.firstElementChild;
-                   
+
                     elemImage.setAttribute('x', elemDroppedDistanceFrom.svg.left);
                     elemImage.setAttribute('y', elemDroppedDistanceFrom.svg.top);
                     elemImage.setAttribute('width', elemDroppedBounding.width / this.metrics.viewBox.scale);
                     elemImage.setAttribute('height', elemDroppedBounding.height / this.metrics.viewBox.scale);
                     elemImage.setAttribute('preserveAspectRatio', "none");
-                   //fill="green" x="0" y="35" font-family="Cedarville Cursive" font-size="40px" font-weight="bold"
-                    elemImage.setAttribute('font-size', '40px');
-                    elemImage.setAttribute('font-family', 'Cedarville Cursive');
+                    //fill="green" x="0" y="35" font-family="Cedarville Cursive" font-size="40px" font-weight="bold"
+
+                   
+                    elemImage.setAttribute('font-family', txt.getAttribute('font-family'));
+                    elemImage.setAttribute('font-weight', txt.getAttribute('font-weight'));
+                    elemImage.setAttribute('fill', txt.getAttribute('fill'));
+                    elemImage.setAttribute('style', txt.getAttribute('style'));
                     elemImage.innerHTML = txt.innerHTML;
-                    
+
                 }
                 else {
                     console.log("Drag not supported for " + elemDropped.tagName)
