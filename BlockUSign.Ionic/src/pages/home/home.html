@@ -38,6 +38,7 @@
 
     <ion-row>
       <ion-col width-100>
+
         <div class="centerMe">
           <!-- Upload  -->
           <form id="file-upload-form" class="uploader">
@@ -79,9 +80,30 @@
           </button>  -->
           <!-- <button ion-button (click)="saveFile()">Save File</button>
                       <button ion-button (click)="getFile()">Get File</button> -->
+
+
+        
         </div>
       </ion-col>
     </ion-row>
+
+
+    <ion-row>
+        <ion-col>
+          
+        
+              
+            
+              <video id="video" width="612" height="792"></video>
+              <canvas id="canvasCamera" width="612" height="792"></canvas>
+          
+        </ion-col>
+      </ion-row>
+  
+
+   
+
+
 
     <ion-row>
       <ion-col>
@@ -93,4 +115,13 @@
     </ion-row>
 
   </ion-grid>
+
+
+  <ion-fab top left style="margin-top:130px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab>
+
+    
+          <button id="snap">Snap Photo</button>
+          <button id="downloadpdf">Download as pdf</button>
+     
+  </ion-fab>
 </ion-content>

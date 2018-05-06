@@ -402,8 +402,8 @@
                             target.setAttribute("x", x);
                             target.setAttribute("y", y);
                         })
-                        .resizable(interactBasicOptions.resizable)
-                        .on("resizemove", function (event) {
+                        //.resizable(interactBasicOptions.resizable)
+                        //.on("resizemove", function (event) {
                             // var target = event.target;
                             // var x = parseFloat(target.getAttribute("x")) || 0;
                             // var y = parseFloat(target.getAttribute("y")) || 0;
@@ -428,7 +428,7 @@
                             //     y += event.deltaRect.top / that.metrics.viewBox.scale;
                             //     target.setAttribute("y", y);
                             // }
-                        });
+                        //});
                 }
             }
 
@@ -517,8 +517,8 @@
                         target.setAttribute("x", x);
                         target.setAttribute("y", y);
                     })
-                    .resizable(interactBasicOptions.resizable)
-                    .on("resizemove", function (event) {
+                    //.resizable(interactBasicOptions.resizable)
+                    //.on("resizemove", function (event) {
                         // var target = event.target;
                         // var x = parseFloat(target.getAttribute("x")) || 0;
                         // var y = parseFloat(target.getAttribute("y")) || 0;
@@ -543,7 +543,7 @@
                         //     y += event.deltaRect.top / that.metrics.viewBox.scale;
                         //     target.setAttribute("y", y);
                         // }
-                    });
+                    //});
 
             }
 

@@ -18,8 +18,9 @@ declare let TextEncoder: any;
 declare let FileReader: any;
 declare let blockstack: any;
 declare let document: any;
-//declare let $: any;
-const $ = document.querySelectorAll.bind(document);
+declare let jsPDF: any;
+declare let $: any;
+//const $ = document.querySelectorAll.bind(document);
 
 /// Pdf js basic example - https://jsfiddle.net/pdfjs/cq0asLqz/?utm_source=website&utm_medium=embed&utm_campaign=cq0asLqz
 /// Annotations sample - http://jsfiddle.net/seikichi/RuDvz/2/
@@ -37,21 +38,24 @@ export class HomePage {
     fileName = "blockusign/pdf1.pdf";
     profile: any;
     pdfBuffer: any;
+    canvasCamera: any;
+    cameraContext: any;
 
-    constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, 
-        public globalService: GlobalService, public documentService: DocumentService, public alertCtrl: AlertController ) {
+    constructor(public navCtrl: NavController, public loadingCtrl: LoadingController,
+        public globalService: GlobalService, public documentService: DocumentService, public alertCtrl: AlertController) {
 
     }
 
     async ionViewDidLoad() {
+        this.initCamera();
         this.ekUpload();
 
         //let docs = await this.documentService.getDocumentsIndex(true)
-        
+
     }
 
-    next(){
-        
+    next() {
+
         this.navCtrl.push(AnnotatePage)
         //this.navCtrl.setRoot(ListPage);
     }
@@ -221,13 +225,13 @@ export class HomePage {
             // Cancel event and hover styling
             fileDragHover(e);
 
-            
+
             // Process all File objects
             for (var i = 0, f; f = files[i]; i++) {
                 // parseFile(f);
                 self.loadFile();
                 uploadFile(f);
-               
+
             }
         }
 
@@ -300,46 +304,99 @@ export class HomePage {
     }
 
 
-   
-    newDocModal(fileName) {
-        
-        let alert = this.alertCtrl.create({
-          title: 'Document Name',
-          inputs: [
-            {
-              name: 'fileName',
-              placeholder: '',
-              value: fileName
-            }
-          ],
-          buttons: [
-            {
-              text: 'Cancel',
-              role: 'cancel',
-              handler: data => {
-                console.log('Cancel clicked');
-              }
-            },
-            {
-              text: 'Ok',
-              handler: data => {
-                
-                // save here
-                
-                this.saveFile(data.fileName);
 
-                if (true == true) {
-                  // logged in!
-                } else {
-                  // invalid login
-                  return false;
+    newDocModal(fileName) {
+
+        let alert = this.alertCtrl.create({
+            title: 'Document Name',
+            inputs: [
+                {
+                    name: 'fileName',
+                    placeholder: '',
+                    value: fileName
                 }
-              }
-            }
-          ]
+            ],
+            buttons: [
+                {
+                    text: 'Cancel',
+                    role: 'cancel',
+                    handler: data => {
+                        console.log('Cancel clicked');
+                    }
+                },
+                {
+                    text: 'Ok',
+                    handler: data => {
+
+                        // save here
+
+                        this.saveFile(data.fileName);
+
+                        if (true == true) {
+                            // logged in!
+                        } else {
+                            // invalid login
+                            return false;
+                        }
+                    }
+                }
+            ]
         });
         alert.present();
-      }
+    }
+
+
+    initCamera() {
+        let mediaConfig = {
+            video: true
+        };
+
+        let playStream = function (video, src) {
+            video.src = src;
+            video.play();
+        };
+
+        let process = (video) => {
+            let mediaDevices = navigator.mediaDevices;
+            mediaDevices.getUserMedia(mediaConfig).then(
+                stream => playStream(
+                    video,
+                    window.URL.createObjectURL(stream)
+                )
+            ).catch(function (err) {
+                // alert(err);
+                alert("Not support get stream from camera!");
+            });
+        };
+
+        let video = $("#video")[0];
+        process(video);
+
+        this.canvasCamera = $("#canvasCamera")[0];
+        this.cameraContext = this.canvasCamera.getContext("2d");
+
+        $("#snap").on('click', () => {
+            this.cameraContext.drawImage(video, 0, 0, 612, 792);
+        });
+
+        $("#downloadpdf").on('click', this.savePDF);
+
+    }
+
+    savePDF() {
+        try {
+		    this.canvasCamera = $("#canvasCamera")[0];
+			var imgData = this.canvasCamera.toDataURL("image/jpeg", 1.0);
+		    var pdf = new jsPDF('p', 'mm', [297, 210]);
+		    pdf.addImage(imgData, 'JPEG', 5, 5);
+		    var namefile = prompt("insert name of file");
+		    pdf.save(namefile + ".pdf");
+		 } catch(e) {
+			 alert("Error description: " + e.message);
+		 }
+		
+    }
+
 
 }
 

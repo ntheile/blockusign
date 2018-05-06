@@ -1,23 +1,23 @@
 webpackJsonp([1],{
 
-/***/ 105:
+/***/ 106:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AnnotatePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__directives_absolute_drag_absolute_drag__ = __webpack_require__(185);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__directives_absolute_drag_absolute_drag__ = __webpack_require__(188);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_document_service__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_retry__ = __webpack_require__(430);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_retry__ = __webpack_require__(433);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_retry___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_retry__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_timeout__ = __webpack_require__(433);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_timeout__ = __webpack_require__(436);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_timeout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_timeout__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_delay__ = __webpack_require__(441);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_delay__ = __webpack_require__(444);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_delay___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_delay__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_map__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_pdfjs_dist_build_pdf__ = __webpack_require__(445);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_pdfjs_dist_build_pdf__ = __webpack_require__(448);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_pdfjs_dist_build_pdf___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_pdfjs_dist_build_pdf__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_pdf_annotate__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_pdf_annotate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_pdf_annotate__);
@@ -353,7 +353,7 @@ var AnnotatePage = (function () {
     ], AnnotatePage.prototype, "vc", void 0);
     AnnotatePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-annotate',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/annotate/annotate.html"*/'<!-- <ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Block-U-Sign</ion-title>\n  </ion-navbar>\n</ion-header> -->\n<ion-content>\n\n\n  <ion-grid>\n    <ion-row>\n      <ion-col width-100>\n        <div class="steps-wrapper">\n          <ul class="steps">\n            <li class="step" (click)="back()">\n              <div class="step-info">\n                <span class="step-name">Upload</span>\n              </div>\n            </li>\n            <li class="step active">\n              <div class="step-info">\n                <span class="step-name">Annotate</span>\n              </div>\n            </li>\n            <li class="step" (click)="next()">\n              <div class="step-info">\n                <span class="step-name">Email</span>\n              </div>\n            </li>\n            <li class="step">\n              <div class="step-info">\n                <span class="step-name">Sign</span>\n              </div>\n            </li>\n            <li class="step">\n              <div class="step-info">\n                <span class="step-name">Review</span>\n              </div>\n            </li>\n          </ul>\n        </div>\n        <br/>\n        <br/>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n\n\n  <div class="centerMe" style="padding-top: 85px">\n    <!-- <button ion-button class="clear" title="Clear" (click)="handleClearClick()">×</button> -->\n    <!-- <img class="draggable draggable-droppable" height="45px" draggable="true" src="./../../assets/imgs/sign.png" /> -->\n    <!-- <svg class="annotationLayer"  class="dropzone resizable" id="svg-dropzone" viewBox="0 0 612 792" width="800" height="600"> </svg>-->\n\n    <div class="page" id="pageContainer1" data-page-number="1" style="position: relative; overflow-x: auto; width: 100%; height:100%">\n\n      <div id="canvasWrapper" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">\n        <!-- <canvas id="canvas1" width="612" height="792" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px"></canvas> -->\n        <canvas id="canvas1" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px"></canvas>\n      </div>\n      <svg id="svg-dropzone" class="dropzone resizable" draggable="true" xmlns="http://www.w3.org/2000/svg" style="position: absolute; \n                  left: 0px; \n                  top:0px;\n                  z-index: 200000;\n                  padding: 0px 0px 0px 0px; \n                  margin: 0px 0px 0px 0px;">\n\n      </svg>\n      <div class="textLayer"></div>\n    </div>\n  </div>\n  <svg class="annotationLayer" xmlns="http://www.w3.org/2000/svg">\n\n  </svg>\n\n  <ion-fab bottom right #fab>\n    <button ion-fab>\n      <ion-icon name="md-options"></ion-icon>\n    </button>\n    <ion-fab-list side="top">\n      <button ion-fab (click)="saveSvg()">Save</button>\n      <button ion-fab (click)="clear()">Clear</button>\n    </ion-fab-list>\n  </ion-fab>\n\n  <!-- <ion-fab top left style="padding-top:120px;" (click)="saveSvg()" #fab>\n        <button ion-fab color="light" color="primary" (click)="saveSvg()">\n          Save\n        </button>\n    \n      </ion-fab>\n      <ion-fab top left style="padding-left:70px; padding-top:120px;" (click)="clear()" #fab>\n        <button ion-fab color="light" color="primary" (click)="clear()">\n          Clear\n        </button>\n      </ion-fab>-->\n  <ion-fab top left style="padding-left:35px; margin-top:130px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab>\n\n\n\n    <ion-grid>\n      <ion-row justify-content-start align-items-center>\n        <ion-col col-auto>\n          <img id="sigImg" height="50px" absolute-drag class="draggable draggable-droppable" draggable="true" src="./../../assets/imgs/sign.png"\n          />\n        </ion-col>\n        <ion-col col-auto>\n          <svg xmlns="http://www.w3.org/2000/svg" id="signature" absolute-drag class="draggable draggable-droppable" draggable="true"\n            width="200" height="50" viewBox="0 0 200 50" style="clear:both; background:#ffeb8e; border: 1px solid red " opacity="1">\n\n            <text x="50%" y="50%" width="200" height="50" viewBox="0 0 200 50" alignment-baseline="middle" text-anchor="middle" fill="green"\n              font-family="Cedarville Cursive" font-weight="bold" style="font-size: 25px">\n              {{ yourName }}\n            </text>\n\n          </svg>\n        </ion-col>\n        <ion-col col-auto>\n          <img src="./../../assets/imgs/arrows.svg" height="45px">\n          <span style="color:#757575; font-family: Cedarville Cursive; font-size: 20px; font-weight: bold">Drag and drop below</span>\n\n        </ion-col>\n        <ion-col col-auto>\n\n          <input id="checkBox" type="checkbox">\n\n          <span style="padding-right: 4px;color:#757575;">Allow Resize</span>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n\n\n  </ion-fab>\n\n\n\n</ion-content>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/annotate/annotate.html"*/,
+            selector: 'page-annotate',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/annotate/annotate.html"*/'<!-- <ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Block-U-Sign</ion-title>\n  </ion-navbar>\n</ion-header> -->\n<ion-content>\n\n\n  <ion-grid>\n    <ion-row justify-content-start align-items-center>\n      <ion-col>\n        <div class="steps-wrapper">\n          <ul class="steps">\n            <li class="step" (click)="back()">\n              <div class="step-info">\n                <span class="step-name">Upload</span>\n              </div>\n            </li>\n            <li class="step active">\n              <div class="step-info">\n                <span class="step-name">Annotate</span>\n              </div>\n            </li>\n            <li class="step" (click)="next()">\n              <div class="step-info">\n                <span class="step-name">Email</span>\n              </div>\n            </li>\n            <li class="step">\n              <div class="step-info">\n                <span class="step-name">Sign</span>\n              </div>\n            </li>\n            <li class="step">\n              <div class="step-info">\n                <span class="step-name">Review</span>\n              </div>\n            </li>\n          </ul>\n        </div>\n        <br/>\n        <br/>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n\n\n  <div class="centerMe" style="padding-top: 85px">\n    <!-- <button ion-button class="clear" title="Clear" (click)="handleClearClick()">×</button> -->\n    <!-- <img class="draggable draggable-droppable" height="45px" draggable="true" src="./../../assets/imgs/sign.png" /> -->\n    <!-- <svg class="annotationLayer"  class="dropzone resizable" id="svg-dropzone" viewBox="0 0 612 792" width="800" height="600"> </svg>-->\n\n    <div class="page" id="pageContainer1" data-page-number="1" style="position: relative; overflow-x: auto; width: 100%; height:100%">\n\n      <div id="canvasWrapper" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">\n        <!-- <canvas id="canvas1" width="612" height="792" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px"></canvas> -->\n        <canvas id="canvas1" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px"></canvas>\n      </div>\n      <svg id="svg-dropzone" class="dropzone resizable" draggable="true" xmlns="http://www.w3.org/2000/svg" style="position: absolute; \n                  left: 0px; \n                  top:0px;\n                  z-index: 200000;\n                  padding: 0px 0px 0px 0px; \n                  margin: 0px 0px 0px 0px;">\n\n      </svg>\n      <div class="textLayer"></div>\n    </div>\n  </div>\n  <svg class="annotationLayer" xmlns="http://www.w3.org/2000/svg">\n\n  </svg>\n\n  <ion-fab bottom right #fab>\n    <button ion-fab>\n      <ion-icon name="md-options"></ion-icon>\n    </button>\n    <ion-fab-list side="top">\n      <button ion-fab (click)="saveSvg()">Save</button>\n      <button ion-fab (click)="clear()">Clear</button>\n    </ion-fab-list>\n  </ion-fab>\n\n  <!-- <ion-fab top left style="padding-top:120px;" (click)="saveSvg()" #fab>\n        <button ion-fab color="light" color="primary" (click)="saveSvg()">\n          Save\n        </button>\n    \n      </ion-fab>\n      <ion-fab top left style="padding-left:70px; padding-top:120px;" (click)="clear()" #fab>\n        <button ion-fab color="light" color="primary" (click)="clear()">\n          Clear\n        </button>\n      </ion-fab>-->\n\n\n \n  <ion-fab top left style="margin-top:130px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab>\n    <ion-grid>\n      <ion-row justify-content-start align-items-center>\n        <ion-col col-auto>\n          <img id="sigImg" height="50px" absolute-drag class="draggable draggable-droppable" draggable="true" src="./../../assets/imgs/sign.png"\n          />\n        </ion-col>\n        <ion-col col-auto>\n          <svg xmlns="http://www.w3.org/2000/svg" id="signature" absolute-drag class="draggable draggable-droppable" draggable="true"\n            width="200" height="50" viewBox="0 0 200 50" style="clear:both; background:#ffeb8e; border: 1px solid red " opacity="1">\n\n            <text x="50%" y="50%" width="200" height="50" viewBox="0 0 200 50" alignment-baseline="middle" text-anchor="middle" fill="green"\n              font-family="Cedarville Cursive" font-weight="bold" style="font-size: 25px">\n              {{ yourName }}\n            </text>\n\n          </svg>\n        </ion-col>\n        <ion-col col-auto>\n          <img src="./../../assets/imgs/arrows.svg" height="35px">\n          <span style="color:#757575; font-family: Cedarville Cursive; font-size: 18px; font-weight: bold">drag</span>\n\n        </ion-col>\n        <ion-col col-auto style="padding-left: 50px;">\n\n          <input id="checkBox" type="checkbox">\n\n          <span style="padding-right: 4px;color:#757575;">Allow Resize</span>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-fab>\n\n</ion-content>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/annotate/annotate.html"*/,
             styles: ['annotate.scss']
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
@@ -388,19 +388,19 @@ webpackEmptyAsyncContext.id = 141;
 
 var map = {
 	"../pages/annotate/annotate.module": [
-		184
+		187
 	],
 	"../pages/email/email.module": [
-		204
+		184
 	],
 	"../pages/home/home.module": [
-		205
+		207
 	],
 	"../pages/review/review.module": [
-		208
+		185
 	],
 	"../pages/sign/sign.module": [
-		209
+		186
 	]
 };
 function webpackAsyncContext(req) {
@@ -424,11 +424,125 @@ module.exports = webpackAsyncContext;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EmailPageModule", function() { return EmailPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__email__ = __webpack_require__(427);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var EmailPageModule = (function () {
+    function EmailPageModule() {
+    }
+    EmailPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__email__["a" /* EmailPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__email__["a" /* EmailPage */]),
+            ],
+        })
+    ], EmailPageModule);
+    return EmailPageModule;
+}());
+
+//# sourceMappingURL=email.module.js.map
+
+/***/ }),
+
+/***/ 185:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReviewPageModule", function() { return ReviewPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__review__ = __webpack_require__(431);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var ReviewPageModule = (function () {
+    function ReviewPageModule() {
+    }
+    ReviewPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__review__["a" /* ReviewPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__review__["a" /* ReviewPage */]),
+            ],
+        })
+    ], ReviewPageModule);
+    return ReviewPageModule;
+}());
+
+//# sourceMappingURL=review.module.js.map
+
+/***/ }),
+
+/***/ 186:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignPageModule", function() { return SignPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sign__ = __webpack_require__(432);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var SignPageModule = (function () {
+    function SignPageModule() {
+    }
+    SignPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__sign__["a" /* SignPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__sign__["a" /* SignPage */]),
+            ],
+        })
+    ], SignPageModule);
+    return SignPageModule;
+}());
+
+//# sourceMappingURL=sign.module.js.map
+
+/***/ }),
+
+/***/ 187:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnnotatePageModule", function() { return AnnotatePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__annotate__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__annotate__ = __webpack_require__(106);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__directives_directives_module__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__directives_directives_module__ = __webpack_require__(206);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -465,7 +579,7 @@ var AnnotatePageModule = (function () {
 
 /***/ }),
 
-/***/ 185:
+/***/ 188:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -571,13 +685,13 @@ var AbsoluteDragDirective = (function () {
 
 /***/ }),
 
-/***/ 203:
+/***/ 206:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DirectivesModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__absolute_drag_absolute_drag__ = __webpack_require__(185);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__absolute_drag_absolute_drag__ = __webpack_require__(188);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -603,52 +717,14 @@ var DirectivesModule = (function () {
 
 /***/ }),
 
-/***/ 204:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EmailPageModule", function() { return EmailPageModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__email__ = __webpack_require__(500);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-var EmailPageModule = (function () {
-    function EmailPageModule() {
-    }
-    EmailPageModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
-            declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__email__["a" /* EmailPage */],
-            ],
-            imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__email__["a" /* EmailPage */]),
-            ],
-        })
-    ], EmailPageModule);
-    return EmailPageModule;
-}());
-
-//# sourceMappingURL=email.module.js.map
-
-/***/ }),
-
-/***/ 205:
+/***/ 207:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeModule", function() { return HomeModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__home__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__home__ = __webpack_require__(208);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -682,19 +758,19 @@ var HomeModule = (function () {
 
 /***/ }),
 
-/***/ 206:
+/***/ 208:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__annotate_annotate__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__annotate_annotate__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_pdf_annotate__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_pdf_annotate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_pdf_annotate__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_global_service__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_global_service__ = __webpack_require__(209);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_document_service__ = __webpack_require__(33);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -749,8 +825,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 
 
-//declare let $: any;
-var $ = document.querySelectorAll.bind(document);
+//const $ = document.querySelectorAll.bind(document);
 /// Pdf js basic example - https://jsfiddle.net/pdfjs/cq0asLqz/?utm_source=website&utm_medium=embed&utm_campaign=cq0asLqz
 /// Annotations sample - http://jsfiddle.net/seikichi/RuDvz/2/
 var HomePage = (function () {
@@ -767,6 +842,7 @@ var HomePage = (function () {
     HomePage.prototype.ionViewDidLoad = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
+                this.initCamera();
                 this.ekUpload();
                 return [2 /*return*/];
             });
@@ -1019,9 +1095,47 @@ var HomePage = (function () {
         });
         alert.present();
     };
+    HomePage.prototype.initCamera = function () {
+        var _this = this;
+        var mediaConfig = {
+            video: true
+        };
+        var playStream = function (video, src) {
+            video.src = src;
+            video.play();
+        };
+        var process = function (video) {
+            var mediaDevices = navigator.mediaDevices;
+            mediaDevices.getUserMedia(mediaConfig).then(function (stream) { return playStream(video, window.URL.createObjectURL(stream)); }).catch(function (err) {
+                // alert(err);
+                alert("Not support get stream from camera!");
+            });
+        };
+        var video = $("#video")[0];
+        process(video);
+        this.canvasCamera = $("#canvasCamera")[0];
+        this.cameraContext = this.canvasCamera.getContext("2d");
+        $("#snap").on('click', function () {
+            _this.cameraContext.drawImage(video, 0, 0, 612, 792);
+        });
+        $("#downloadpdf").on('click', this.savePDF);
+    };
+    HomePage.prototype.savePDF = function () {
+        try {
+            this.canvasCamera = $("#canvasCamera")[0];
+            var imgData = this.canvasCamera.toDataURL("image/jpeg", 1.0);
+            var pdf = new jsPDF('p', 'mm', [297, 210]);
+            pdf.addImage(imgData, 'JPEG', 5, 5);
+            var namefile = prompt("insert name of file");
+            pdf.save(namefile + ".pdf");
+        }
+        catch (e) {
+            alert("Error description: " + e.message);
+        }
+    };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/home/home.html"*/'<ion-content>\n  <ion-grid>\n    <ion-row>\n      <ion-col width-100>\n        <div class="steps-wrapper">\n          <ul class="steps" >\n            <li class="step active">\n              <div class="step-info">\n                <span class="step-name">Upload</span>\n              </div>\n            </li>\n            <li class="step" (click)="next()">\n              <div class="step-info">\n                <span class="step-name">Annotate</span>\n              </div>\n            </li>\n            <li class="step">\n              <div class="step-info">\n                <span class="step-name">Email</span>\n              </div>\n            </li>\n            <li class="step">\n              <div class="step-info">\n                <span class="step-name">Sign</span>\n              </div>\n            </li>\n            <li class="step">\n              <div class="step-info">\n                <span class="step-name">Review</span>\n              </div>\n            </li>\n          </ul>\n        </div>\n        <br/>\n        <br/>\n      </ion-col>\n    </ion-row>\n\n    <ion-row>\n      <ion-col width-100>\n        <div class="centerMe">\n          <!-- Upload  -->\n          <form id="file-upload-form" class="uploader">\n            <input id="file-upload" type="file" name="fileUpload" accept=".pdf" />\n            <label for="file-upload" id="file-drag">\n              <img id="file-image" src="#" alt="Preview" class="hidden">\n              <div id="start">\n                <i class="fa fa-download" aria-hidden="true"></i>\n                <div>Select a PDF</div>\n                <div id="notimage" class="hidden">Please select an image</div>\n                <span id="file-upload-btn" class="btn btn-primary">Select a file</span>\n              </div>\n              <div id="response" class="hidden">\n                <div id="messages"></div>\n                <progress class="progress" id="file-progress" value="0">\n                  <span>0</span>%\n                </progress>\n              </div>\n            </label>\n          </form>\n\n          <!-- <label class="item item-input"> -->\n          <!-- <input type="file" id="files" name="file" (submit)="loadFile()" /> -->\n          <!-- </label> -->\n          <!-- <div class="preview-img">\n                          <img id="myImage" width="150" height="150" size="30" /> </div> -->\n          <!-- <span class="readBytesButtons">\n                                  <button data-startbyte="0" data-endbyte="4">1-5</button>\n                                  <button data-startbyte="5" data-endbyte="14">6-15</button>\n                                  <button data-startbyte="6" data-endbyte="7">7-8</button>\n                                  <button>entire file</button>\n                                </span> -->\n          <!-- <div id="byte_range"></div>\n                                <div id="byte_content"></div> -->\n\n          <!-- <button ion-button (click)="next()" style="margin-left: 50px; padding: 10px 10px 10px 10px; background: green; height: 45px;">\n            Next &nbsp;\n            <ion-icon name="arrow-forward"></ion-icon>\n          </button>  -->\n          <!-- <button ion-button (click)="saveFile()">Save File</button>\n                      <button ion-button (click)="getFile()">Get File</button> -->\n        </div>\n      </ion-col>\n    </ion-row>\n\n    <ion-row>\n      <ion-col>\n        <div class="centerMe">\n          <br/>\n          <canvas id="the-canvas"></canvas>\n        </div>\n      </ion-col>\n    </ion-row>\n\n  </ion-grid>\n</ion-content>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/home/home.html"*/'<ion-content>\n  <ion-grid>\n    <ion-row>\n      <ion-col width-100>\n        <div class="steps-wrapper">\n          <ul class="steps" >\n            <li class="step active">\n              <div class="step-info">\n                <span class="step-name">Upload</span>\n              </div>\n            </li>\n            <li class="step" (click)="next()">\n              <div class="step-info">\n                <span class="step-name">Annotate</span>\n              </div>\n            </li>\n            <li class="step">\n              <div class="step-info">\n                <span class="step-name">Email</span>\n              </div>\n            </li>\n            <li class="step">\n              <div class="step-info">\n                <span class="step-name">Sign</span>\n              </div>\n            </li>\n            <li class="step">\n              <div class="step-info">\n                <span class="step-name">Review</span>\n              </div>\n            </li>\n          </ul>\n        </div>\n        <br/>\n        <br/>\n      </ion-col>\n    </ion-row>\n\n    <ion-row>\n      <ion-col width-100>\n\n        <div class="centerMe">\n          <!-- Upload  -->\n          <form id="file-upload-form" class="uploader">\n            <input id="file-upload" type="file" name="fileUpload" accept=".pdf" />\n            <label for="file-upload" id="file-drag">\n              <img id="file-image" src="#" alt="Preview" class="hidden">\n              <div id="start">\n                <i class="fa fa-download" aria-hidden="true"></i>\n                <div>Select a PDF</div>\n                <div id="notimage" class="hidden">Please select an image</div>\n                <span id="file-upload-btn" class="btn btn-primary">Select a file</span>\n              </div>\n              <div id="response" class="hidden">\n                <div id="messages"></div>\n                <progress class="progress" id="file-progress" value="0">\n                  <span>0</span>%\n                </progress>\n              </div>\n            </label>\n          </form>\n\n          <!-- <label class="item item-input"> -->\n          <!-- <input type="file" id="files" name="file" (submit)="loadFile()" /> -->\n          <!-- </label> -->\n          <!-- <div class="preview-img">\n                          <img id="myImage" width="150" height="150" size="30" /> </div> -->\n          <!-- <span class="readBytesButtons">\n                                  <button data-startbyte="0" data-endbyte="4">1-5</button>\n                                  <button data-startbyte="5" data-endbyte="14">6-15</button>\n                                  <button data-startbyte="6" data-endbyte="7">7-8</button>\n                                  <button>entire file</button>\n                                </span> -->\n          <!-- <div id="byte_range"></div>\n                                <div id="byte_content"></div> -->\n\n          <!-- <button ion-button (click)="next()" style="margin-left: 50px; padding: 10px 10px 10px 10px; background: green; height: 45px;">\n            Next &nbsp;\n            <ion-icon name="arrow-forward"></ion-icon>\n          </button>  -->\n          <!-- <button ion-button (click)="saveFile()">Save File</button>\n                      <button ion-button (click)="getFile()">Get File</button> -->\n\n\n        \n        </div>\n      </ion-col>\n    </ion-row>\n\n\n    <ion-row>\n        <ion-col>\n          \n        \n              \n            \n              <video id="video" width="612" height="792"></video>\n              <canvas id="canvasCamera" width="612" height="792"></canvas>\n          \n        </ion-col>\n      </ion-row>\n  \n\n   \n\n\n\n    <ion-row>\n      <ion-col>\n        <div class="centerMe">\n          <br/>\n          <canvas id="the-canvas"></canvas>\n        </div>\n      </ion-col>\n    </ion-row>\n\n  </ion-grid>\n\n\n  <ion-fab top left style="margin-top:130px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab>\n\n    \n          <button id="snap">Snap Photo</button>\n          <button id="downloadpdf">Download as pdf</button>\n     \n  </ion-fab>\n</ion-content>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/home/home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* LoadingController */],
             __WEBPACK_IMPORTED_MODULE_5__services_global_service__["a" /* GlobalService */], __WEBPACK_IMPORTED_MODULE_6__services_document_service__["a" /* DocumentService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
@@ -1033,7 +1147,7 @@ var HomePage = (function () {
 
 /***/ }),
 
-/***/ 207:
+/***/ 209:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1064,90 +1178,14 @@ var GlobalService = (function () {
 
 /***/ }),
 
-/***/ 208:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReviewPageModule", function() { return ReviewPageModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__review__ = __webpack_require__(501);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-var ReviewPageModule = (function () {
-    function ReviewPageModule() {
-    }
-    ReviewPageModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
-            declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__review__["a" /* ReviewPage */],
-            ],
-            imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__review__["a" /* ReviewPage */]),
-            ],
-        })
-    ], ReviewPageModule);
-    return ReviewPageModule;
-}());
-
-//# sourceMappingURL=review.module.js.map
-
-/***/ }),
-
-/***/ 209:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignPageModule", function() { return SignPageModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sign__ = __webpack_require__(502);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-var SignPageModule = (function () {
-    function SignPageModule() {
-    }
-    SignPageModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
-            declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__sign__["a" /* SignPage */],
-            ],
-            imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__sign__["a" /* SignPage */]),
-            ],
-        })
-    ], SignPageModule);
-    return SignPageModule;
-}());
-
-//# sourceMappingURL=sign.module.js.map
-
-/***/ }),
-
 /***/ 33:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DocumentService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_models__ = __webpack_require__(427);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_models__ = __webpack_require__(428);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
@@ -1470,14 +1508,14 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_charts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_ng2_charts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(577);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__options_popover_page__ = __webpack_require__(377);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_directives_module__ = __webpack_require__(203);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_home_home_module__ = __webpack_require__(205);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_annotate_annotate_module__ = __webpack_require__(184);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_sign_sign_module__ = __webpack_require__(209);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_email_email_module__ = __webpack_require__(204);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_review_review_module__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_directives_module__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_home_home_module__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_annotate_annotate_module__ = __webpack_require__(187);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_sign_sign_module__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_email_email_module__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_review_review_module__ = __webpack_require__(185);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_coin_service__ = __webpack_require__(578);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__services_global_service__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__services_global_service__ = __webpack_require__(209);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__services_cryptocompare_service__ = __webpack_require__(579);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__services_slack_service__ = __webpack_require__(580);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_document_service__ = __webpack_require__(33);
@@ -1524,11 +1562,11 @@ var AppModule = (function () {
                     preloadModules: true
                 }, {
                     links: [
-                        { loadChildren: '../pages/annotate/annotate.module#AnnotatePageModule', name: 'AnnotatePage', segment: 'annotate/:guid', priority: 'low', defaultHistory: ['HomePage'] },
                         { loadChildren: '../pages/email/email.module#EmailPageModule', name: 'EmailPage', segment: 'email/:guid', priority: 'low', defaultHistory: ['AnnotatePage', 'HomePage'] },
-                        { loadChildren: '../pages/home/home.module#HomeModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/review/review.module#ReviewPageModule', name: 'ReviewPage', segment: 'review/:guid', priority: 'low', defaultHistory: ['SignPage', 'EmailPage', 'AnnotatePage', 'HomePage'] },
-                        { loadChildren: '../pages/sign/sign.module#SignPageModule', name: 'SignPage', segment: 'sign/:guid', priority: 'low', defaultHistory: ['EmailPage', 'AnnotatePage', 'HomePage'] }
+                        { loadChildren: '../pages/sign/sign.module#SignPageModule', name: 'SignPage', segment: 'sign/:guid', priority: 'low', defaultHistory: ['EmailPage', 'AnnotatePage', 'HomePage'] },
+                        { loadChildren: '../pages/annotate/annotate.module#AnnotatePageModule', name: 'AnnotatePage', segment: 'annotate/:guid', priority: 'low', defaultHistory: ['HomePage'] },
+                        { loadChildren: '../pages/home/home.module#HomeModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_9__directives_directives_module__["a" /* DirectivesModule */],
@@ -1566,95 +1604,6 @@ var AppModule = (function () {
 /***/ }),
 
 /***/ 427:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Document; });
-/* unused harmony export Annotation */
-var Document = (function () {
-    function Document() {
-        this.guid = window.guid();
-        this.createdAt = Date.now();
-        this.updatedAt = Date.now();
-        this.hasAnnotations = false;
-        this.step = 1;
-        this.isCompleted = false;
-    }
-    return Document;
-}());
-
-var Annotation = (function () {
-    function Annotation() {
-    }
-    return Annotation;
-}());
-
-// // Index of documents for searching
-// // blockusign/documents.index.json
-// [
-//     {
-//         "guid": "guid",
-//         "fileName": "blockusign/nicktee.id/one.pdf", 
-//         "createdAt": "", 
-//         "updatedAt": "", 
-//         "owner": ["nicktee.id", ""], 
-//         "signer": ["nicktee.id"], 
-//         "hasAnnotations": true,
-//         "step": 5,
-//         "isCompleted": true
-//     },
-//     {
-//         "guid": "guid",
-//         "fileName": "blockusign/nicktee.id/two.pdf", 
-//         "createdAt": "", 
-//         "updatedAt": "", 
-//         "owner": ["nicktee.id", ""], 
-//         "signer": ["nicktee.id"], 
-//         "hasAnnotations": true,
-//         "step": 1,
-//         "isCompleted": false
-//     }
-// ]
-// // documents
-// // blockusign/guid.pdf
-// // documents metadata and annotations
-// // blockusign/guid.json
-// {
-//     annotations: "<img></img><img></img>"
-// }
-//# sourceMappingURL=models.js.map
-
-/***/ }),
-
-/***/ 450:
-/***/ (function(module, exports) {
-
-/* (ignored) */
-
-/***/ }),
-
-/***/ 470:
-/***/ (function(module, exports) {
-
-/* (ignored) */
-
-/***/ }),
-
-/***/ 471:
-/***/ (function(module, exports) {
-
-/* (ignored) */
-
-/***/ }),
-
-/***/ 472:
-/***/ (function(module, exports) {
-
-/* (ignored) */
-
-/***/ }),
-
-/***/ 500:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1738,7 +1687,68 @@ var EmailPage = (function () {
 
 /***/ }),
 
-/***/ 501:
+/***/ 428:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Document; });
+/* unused harmony export Annotation */
+var Document = (function () {
+    function Document() {
+        this.guid = window.guid();
+        this.createdAt = Date.now();
+        this.updatedAt = Date.now();
+        this.hasAnnotations = false;
+        this.step = 1;
+        this.isCompleted = false;
+    }
+    return Document;
+}());
+
+var Annotation = (function () {
+    function Annotation() {
+    }
+    return Annotation;
+}());
+
+// // Index of documents for searching
+// // blockusign/documents.index.json
+// [
+//     {
+//         "guid": "guid",
+//         "fileName": "blockusign/nicktee.id/one.pdf", 
+//         "createdAt": "", 
+//         "updatedAt": "", 
+//         "owner": ["nicktee.id", ""], 
+//         "signer": ["nicktee.id"], 
+//         "hasAnnotations": true,
+//         "step": 5,
+//         "isCompleted": true
+//     },
+//     {
+//         "guid": "guid",
+//         "fileName": "blockusign/nicktee.id/two.pdf", 
+//         "createdAt": "", 
+//         "updatedAt": "", 
+//         "owner": ["nicktee.id", ""], 
+//         "signer": ["nicktee.id"], 
+//         "hasAnnotations": true,
+//         "step": 1,
+//         "isCompleted": false
+//     }
+// ]
+// // documents
+// // blockusign/guid.pdf
+// // documents metadata and annotations
+// // blockusign/guid.json
+// {
+//     annotations: "<img></img><img></img>"
+// }
+//# sourceMappingURL=models.js.map
+
+/***/ }),
+
+/***/ 431:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1804,7 +1814,7 @@ var ReviewPage = (function () {
 
 /***/ }),
 
-/***/ 502:
+/***/ 432:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1873,6 +1883,34 @@ var SignPage = (function () {
 }());
 
 //# sourceMappingURL=sign.js.map
+
+/***/ }),
+
+/***/ 453:
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 473:
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 474:
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 475:
+/***/ (function(module, exports) {
+
+/* (ignored) */
 
 /***/ }),
 
@@ -2146,11 +2184,11 @@ webpackContext.id = 559;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(249);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(252);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(206);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_annotate_annotate__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_annotate_annotate__ = __webpack_require__(106);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_document_service__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__options_popover_page__ = __webpack_require__(377);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_toPromise__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_toPromise__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_toPromise__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;

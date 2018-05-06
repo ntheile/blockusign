@@ -28204,11 +28204,11 @@ html, body, * {
   -ms-flex: 1;
   flex: 1;
   counter-increment: step;
-  padding-top: calc(40px + 1rem) !important;
+  padding-top: calc(30px + 1rem) !important;
   /*40px is for the circle*/
   text-align: center;
   position: relative;
-  background-image: linear-gradient(to bottom, transparent calc(20px - 2px), currentColor 0, currentColor calc(20px + 2px), transparent 0);
+  background-image: linear-gradient(to bottom, transparent calc(15px - 2px), currentColor 0, currentColor calc(15px + 2px), transparent 0);
   font-weight: 100;
 }
 
@@ -28217,8 +28217,8 @@ html, body, * {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background: var(--primary-color);
   content: counter(step);

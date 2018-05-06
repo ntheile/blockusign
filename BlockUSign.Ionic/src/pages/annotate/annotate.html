@@ -10,8 +10,8 @@
 
 
   <ion-grid>
-    <ion-row>
-      <ion-col width-100>
+    <ion-row justify-content-start align-items-center>
+      <ion-col>
         <div class="steps-wrapper">
           <ul class="steps">
             <li class="step" (click)="back()">
@@ -96,10 +96,10 @@
           Clear
         </button>
       </ion-fab>-->
-  <ion-fab top left style="padding-left:35px; margin-top:130px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab>
 
 
-
+ 
+  <ion-fab top left style="margin-top:130px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab>
     <ion-grid>
       <ion-row justify-content-start align-items-center>
         <ion-col col-auto>
@@ -118,11 +118,11 @@
           </svg>
         </ion-col>
         <ion-col col-auto>
-          <img src="./../../assets/imgs/arrows.svg" height="45px">
-          <span style="color:#757575; font-family: Cedarville Cursive; font-size: 20px; font-weight: bold">Drag and drop below</span>
+          <img src="./../../assets/imgs/arrows.svg" height="35px">
+          <span style="color:#757575; font-family: Cedarville Cursive; font-size: 18px; font-weight: bold">drag</span>
 
         </ion-col>
-        <ion-col col-auto>
+        <ion-col col-auto style="padding-left: 50px;">
 
           <input id="checkBox" type="checkbox">
 
@@ -130,10 +130,6 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-
-
   </ion-fab>
-
-
 
 </ion-content>
