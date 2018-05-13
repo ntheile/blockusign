@@ -8,36 +8,11 @@
   <ion-grid>
     <ion-row>
       <ion-col width-100>
-        <div class="steps-wrapper">
-          <ul class="steps">
-            <!-- <li class="step completed" (click)="back()"> -->
-            <li class="step" (click)="back()">
-              <div class="step-info">
-                <span class="step-name">Upload</span>
-              </div>
-            </li>
-            <li class="step" (click)="back()">
-              <div class="step-info">
-                <span class="step-name">Annotate</span>
-              </div>
-            </li>
-            <li class="step active">
-              <div class="step-info">
-                <span class="step-name">Email</span>
-              </div>
-            </li>
-            <li class="step" (click)="next()">
-              <div class="step-info">
-                <span class="step-name">Sign</span>
-              </div>
-            </li>
-            <li class="step">
-              <div class="step-info">
-                <span class="step-name">Review</span>
-              </div>
-            </li>
-          </ul>
-        </div>
+       
+        <block-steps activeStep="3">
+        </block-steps>
+        
+
         <br/>
         <br/>
       </ion-col>
