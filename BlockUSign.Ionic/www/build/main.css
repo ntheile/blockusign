@@ -28867,6 +28867,106 @@ html, body, * {
   }
 }
 
+/* Steps https://codepen.io/praveenpuglia/pen/WpEvwO */
+.steps-wrapper {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-top: 11px;
+  padding-bottom: 10px;
+  --primary-color: #abc0f8;
+  --active-color: #547af8;
+}
+
+/* Steps Component */
+.steps {
+  counter-reset: step;
+  max-width: 90%;
+  margin: auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  list-style: none;
+}
+
+.step {
+  color: var(--primary-color);
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  counter-increment: step;
+  padding-top: calc(30px + 1rem) !important;
+  /*40px is for the circle*/
+  text-align: center;
+  position: relative;
+  background-image: linear-gradient(to bottom, transparent calc(15px - 2px), currentColor 0, currentColor calc(15px + 2px), transparent 0);
+  font-weight: 100;
+}
+
+.step::before {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  content: counter(step);
+  position: absolute;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: white;
+  font-size: 1.5rem;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.step:hover {
+  cursor: pointer;
+}
+
+.step:last-child,
+.step:first-child {
+  background-size: 50% 100%;
+  background-repeat: no-repeat;
+}
+
+.step:first-child {
+  background-position: 100% 0;
+}
+
+.step-info::before {
+  font-weight: bold;
+  display: block;
+  content: "STEP " counter(step);
+}
+
+/* States */
+.step.active {
+  color: var(--active-color);
+}
+
+.step.active::before {
+  background: var(--active-color);
+}
+
+.step.completed::before {
+  content: '✓';
+}
+
 .page {
   position: relative;
   margin: 0 auto 25px;

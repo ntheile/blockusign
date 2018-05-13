@@ -1,0 +1,87 @@
+
+  /* Steps https://codepen.io/praveenpuglia/pen/WpEvwO */
+  .steps-wrapper{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    padding-top: 11px;
+    padding-bottom: 10px;
+    --primary-color: hsl(223, 84%, 82%);
+    --active-color: hsl(226, 92%, 65%);
+   }
+   
+   
+   /* Steps Component */
+   .steps {
+    counter-reset: step;
+    max-width: 90%;
+    margin: auto;
+    display: flex;
+    position: relative;
+    list-style: none;
+   
+   }
+   
+   .step {
+    color: var(--primary-color);
+    flex: 1;
+    counter-increment: step;
+    padding-top: calc(30px + 1rem) !important; /*40px is for the circle*/
+    text-align: center;
+    position: relative;
+    background-image: linear-gradient(to bottom, transparent calc(15px - 2px), currentColor 0, currentColor calc(15px + 2px), transparent 0);
+    font-weight: 100;
+    
+   }
+   
+   .step::before {
+    display: flex;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    content: counter(step);
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.5rem;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+   }
+   
+   .step:hover{
+     cursor: pointer;
+   }
+   
+   .step:last-child,
+   .step:first-child {
+    background-size: 50% 100%;
+    background-repeat: no-repeat;
+   }
+   
+   .step:first-child {
+    background-position: 100% 0;
+   }
+   
+   .step-info::before {
+    font-weight: bold;
+    display: block;
+    content: "STEP " counter(step);
+   }
+   
+   /* States */
+   .step.active {
+    color: var(--active-color);
+   }
+   
+   .step.active::before {
+    background: var(--active-color);
+   }
+   
+   .step.completed::before {
+    content: '✓';
+   }
+    
+   

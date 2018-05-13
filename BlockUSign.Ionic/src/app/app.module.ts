@@ -23,6 +23,7 @@ import { CryptoCompareService } from '../services/cryptocompare.service';
 import { SlackService } from '../services/slack.service';
 import { DocumentService } from '../services/document.service';
 
+
 @NgModule({
   declarations: [
     MyApp,
@@ -41,7 +42,7 @@ import { DocumentService } from '../services/document.service';
     AnnotatePageModule,
     SignPageModule,
     EmailPageModule,
-    ReviewPageModule
+    ReviewPageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

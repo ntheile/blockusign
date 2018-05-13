@@ -20,6 +20,7 @@ declare let blockstack: any;
 declare let document: any;
 declare let jsPDF: any;
 declare let $: any;
+
 //const $ = document.querySelectorAll.bind(document);
 
 /// Pdf js basic example - https://jsfiddle.net/pdfjs/cq0asLqz/?utm_source=website&utm_medium=embed&utm_campaign=cq0asLqz
@@ -47,7 +48,7 @@ export class HomePage {
     }
 
     async ionViewDidLoad() {
-        this.initCamera();
+        //this.initCamera();
         this.ekUpload();
 
         //let docs = await this.documentService.getDocumentsIndex(true)
@@ -349,6 +350,7 @@ export class HomePage {
     async initCamera() {
 
         // rear camera selection - https://github.com/webrtc/samples/blob/gh-pages/src/content/devices/input-output/js/main.js
+        // https://www.html5rocks.com/en/tutorials/getusermedia/intro/
         // @todo check rear camera logic on all phones
         let devices = await navigator.mediaDevices.enumerateDevices();;
 

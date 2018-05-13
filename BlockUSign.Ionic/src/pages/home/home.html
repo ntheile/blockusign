@@ -1,36 +1,13 @@
 <ion-content>
+
+<block-steps activeStep="1">
+</block-steps>
+
+
   <ion-grid>
     <ion-row>
       <ion-col width-100>
-        <div class="steps-wrapper">
-          <ul class="steps" >
-            <li class="step active">
-              <div class="step-info">
-                <span class="step-name">Upload</span>
-              </div>
-            </li>
-            <li class="step" (click)="next()">
-              <div class="step-info">
-                <span class="step-name">Annotate</span>
-              </div>
-            </li>
-            <li class="step">
-              <div class="step-info">
-                <span class="step-name">Email</span>
-              </div>
-            </li>
-            <li class="step">
-              <div class="step-info">
-                <span class="step-name">Sign</span>
-              </div>
-            </li>
-            <li class="step">
-              <div class="step-info">
-                <span class="step-name">Review</span>
-              </div>
-            </li>
-          </ul>
-        </div>
+      
         <br/>
         <br/>
       </ion-col>
@@ -82,28 +59,19 @@
                       <button ion-button (click)="getFile()">Get File</button> -->
 
 
-        
+
         </div>
       </ion-col>
     </ion-row>
 
 
-    <ion-row>
-        <ion-col>
-          
-        
-              
-            
-              <video id="video" width="612" height="792"></video>
-              <canvas id="canvasCamera" width="612" height="792"></canvas>
-          
-        </ion-col>
-      </ion-row>
-  
-
-   
-
-
+    <!-- <ion-row>
+      <ion-col>
+        <video id="video" width="612" height="792"></video>
+        <canvas id="canvasCamera" width="612" height="792"></canvas>
+      </ion-col>
+    </ion-row>
+ -->
 
     <ion-row>
       <ion-col>
@@ -117,11 +85,12 @@
   </ion-grid>
 
 
-  <ion-fab top left style="margin-top:130px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab>
-
+  <!-- <steps>
     
-          <button id="snap">Snap Photo</button>
-          <button id="downloadpdf">Download as pdf</button>
-     
-  </ion-fab>
+  </steps> -->
+
+  <!-- <ion-fab top left style="margin-top:130px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab>
+    <button id="snap">Snap Photo</button>
+    <button id="downloadpdf">Download as pdf</button>
+  </ion-fab> -->
 </ion-content>

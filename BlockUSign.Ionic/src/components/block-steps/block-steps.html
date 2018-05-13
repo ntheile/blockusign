@@ -1,0 +1,42 @@
+<!-- Generated template for the BlockStepsComponent component -->
+<!-- <h1>
+    {{ activeStep }}
+</h1>
+
+<div>
+    <ng-content select=".step1"></ng-content>
+</div>
+<h2>
+    <ng-content select=".step2"></ng-content>
+</h2> -->
+
+
+ <div class="steps-wrapper">
+    <ul class="steps">
+      <li [ngClass]="activeStep == '1' ? 'step active': 'step'" (click)="route('HomePage')">
+        <div class="step-info">
+          <span class="step-name">Upload</span>
+        </div>
+      </li>
+      <li [ngClass]="activeStep == '2' ? 'step active': 'step'" (click)="route('AnnotatePage')">
+        <div class="step-info">
+          <span class="step-name">Annotate</span>
+        </div>
+      </li>
+      <li [ngClass]="activeStep == '3' ? 'step active': 'step'" (click)="route('EmailPage')">
+        <div class="step-info">
+          <span class="step-name">Email</span>
+        </div>
+      </li>
+      <li [ngClass]="activeStep == '4' ? 'step active': 'step'" (click)="route('SignPage')">
+        <div class="step-info">
+          <span class="step-name">Sign</span>
+        </div>
+      </li>
+      <li [ngClass]="activeStep == '5' ? 'step active': 'step'" (click)="route('ReviewPage')">
+        <div class="step-info">
+          <span class="step-name">Review</span>
+        </div>
+      </li>
+    </ul>
+  </div>
