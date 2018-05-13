@@ -1,46 +1,8 @@
-<!-- <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Block-U-Sign</ion-title>
-  </ion-navbar>
-</ion-header> -->
 <ion-content>
-
 
   <ion-grid>
     <ion-row justify-content-start align-items-center>
       <ion-col>
-        <!-- <div class="steps-wrapper">
-          <ul class="steps">
-            <li class="step" (click)="back()">
-              <div class="step-info">
-                <span class="step-name">Upload</span>
-              </div>
-            </li>
-            <li class="step active">
-              <div class="step-info">
-                <span class="step-name">Annotate</span>
-              </div>
-            </li>
-            <li class="step" (click)="next()">
-              <div class="step-info">
-                <span class="step-name">Email</span>
-              </div>
-            </li>
-            <li class="step">
-              <div class="step-info">
-                <span class="step-name">Sign</span>
-              </div>
-            </li>
-            <li class="step">
-              <div class="step-info">
-                <span class="step-name">Review</span>
-              </div>
-            </li>
-          </ul>
-        </div> -->
         <block-steps activeStep="2">
         </block-steps>
         <br/>
@@ -49,89 +11,9 @@
     </ion-row>
   </ion-grid>
 
-
-
-  <div class="centerMe" style="padding-top: 85px">
-    <!-- <button ion-button class="clear" title="Clear" (click)="handleClearClick()">×</button> -->
-    <!-- <img class="draggable draggable-droppable" height="45px" draggable="true" src="./../../assets/imgs/sign.png" /> -->
-    <!-- <svg class="annotationLayer"  class="dropzone resizable" id="svg-dropzone" viewBox="0 0 612 792" width="800" height="600"> </svg>-->
-
-    <div class="page" id="pageContainer1" data-page-number="1" style="position: relative; overflow-x: auto; width: 100%; height:100%">
-
-      <div id="canvasWrapper" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
-        <!-- <canvas id="canvas1" width="612" height="792" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px"></canvas> -->
-        <canvas id="canvas1" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px"></canvas>
-      </div>
-      <svg id="svg-dropzone" class="dropzone resizable" draggable="true" xmlns="http://www.w3.org/2000/svg" style="position: absolute; 
-                  left: 0px; 
-                  top:0px;
-                  z-index: 200000;
-                  padding: 0px 0px 0px 0px; 
-                  margin: 0px 0px 0px 0px;">
-
-      </svg>
-      <div class="textLayer"></div>
-    </div>
-  </div>
-  <svg class="annotationLayer" xmlns="http://www.w3.org/2000/svg">
-
-  </svg>
-
-  <ion-fab bottom right #fab>
-    <button ion-fab>
-      <ion-icon name="md-options"></ion-icon>
-    </button>
-    <ion-fab-list side="top">
-      <button ion-fab (click)="saveSvg()">Save</button>
-      <button ion-fab (click)="clear()">Clear</button>
-    </ion-fab-list>
-  </ion-fab>
-
-  <!-- <ion-fab top left style="padding-top:120px;" (click)="saveSvg()" #fab>
-        <button ion-fab color="light" color="primary" (click)="saveSvg()">
-          Save
-        </button>
+  <block-pdf>
     
-      </ion-fab>
-      <ion-fab top left style="padding-left:70px; padding-top:120px;" (click)="clear()" #fab>
-        <button ion-fab color="light" color="primary" (click)="clear()">
-          Clear
-        </button>
-      </ion-fab>-->
+  </block-pdf>
 
-
- 
-  <ion-fab top left style="margin-top:130px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab>
-    <ion-grid>
-      <ion-row justify-content-start align-items-center>
-        <ion-col col-auto>
-          <img id="sigImg" height="50px" absolute-drag class="draggable draggable-droppable" draggable="true" src="./../../assets/imgs/sign.png"
-          />
-        </ion-col>
-        <ion-col col-auto>
-          <svg xmlns="http://www.w3.org/2000/svg" id="signature" absolute-drag class="draggable draggable-droppable" draggable="true"
-            width="200" height="50" viewBox="0 0 200 50" style="clear:both; background:#ffeb8e; border: 1px solid red " opacity="1">
-
-            <text x="50%" y="50%" width="200" height="50" viewBox="0 0 200 50" alignment-baseline="middle" text-anchor="middle" fill="green"
-              font-family="Cedarville Cursive" font-weight="bold" style="font-size: 25px">
-              {{ yourName }}
-            </text>
-
-          </svg>
-        </ion-col>
-        <ion-col col-auto>
-          <img src="./../../assets/imgs/arrows.svg" height="35px">
-          <span style="color:#757575; font-family: Cedarville Cursive; font-size: 18px; font-weight: bold">drag</span>
-
-        </ion-col>
-        <ion-col col-auto style="padding-left: 50px;">
-
-          <input id="checkBox" type="checkbox">
-
-          <span style="padding-right: 4px;color:#757575;">Allow Resize</span>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-fab>
 
 </ion-content>

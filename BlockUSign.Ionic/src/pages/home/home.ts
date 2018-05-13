@@ -52,7 +52,7 @@ export class HomePage {
         this.ekUpload();
 
         //let docs = await this.documentService.getDocumentsIndex(true)
-
+        //this.testPublicKeyFile();
     }
 
     next() {
@@ -435,6 +435,55 @@ export class HomePage {
 			 alert("Error description: " + e.message);
 		 }
 		
+    }
+
+
+    testPublicKeyFile(){
+        const myPublicKey = blockstack.getPublicKeyFromPrivate(blockstack.loadUserData().appPrivateKey);
+        const yourPublicKey = "02563f0f1d5c5429fa8fdb3d8fc4b0464dac70b07cd8249f0ef17bcf2c93ed7469";
+        
+        if (blockstack.loadUserData().profile.name == "nick tee"){
+            
+            // write for you
+            this.testPutFile(yourPublicKey);
+            // write for me
+            this.testPutFile(myPublicKey).then( ()=>{
+                // read for me
+                this.testGetFile(myPublicKey);
+            });
+        }
+
+        if (blockstack.loadUserData().profile.name == "Demo User BlockSign"){
+            // read for me
+            this.testGetFile(myPublicKey);
+        }
+        
+       
+        
+    }
+
+
+    testPutFile(publicKey) : Promise<any> { 
+        const encryptOptions = { encrypt: publicKey };
+        const path = "testFile.json";
+        let fileContent = "{stuff: 'from nicktee.id'}";
+
+        // put and encrypt the file
+        return blockstack.putFile(path, fileContent, encryptOptions)
+          .then((publicURL) => {
+              console.log("testPublicKeyFile ===> " + publicURL);
+          });
+    }
+
+    testGetFile(publicKey) : Promise<any> {
+        const decryptOptions = { 
+            decrypt: true
+        };
+        let fullReadUrl = "../../hub/18kTskBpTh1mznsypu1fhJ27dxbC1SwXEK/testFile.json";
+
+        return blockstack.getFile(fullReadUrl, decryptOptions).then(readContent => {
+            console.log("testPublicKeyFile ===> " + readContent);
+        }); 
     }
 
 
