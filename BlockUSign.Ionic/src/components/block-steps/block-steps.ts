@@ -26,6 +26,7 @@ export class BlockStepsComponent {
   }
 
   route(page){
+    this.nav.pop();
     this.nav.push(page, {
       guid: this.documentService.currentDoc.guid
     });

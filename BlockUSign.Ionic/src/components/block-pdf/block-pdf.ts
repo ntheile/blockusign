@@ -63,7 +63,21 @@ export class BlockPdfComponent {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public documentService: DocumentService) {
+      console.log('====> constructor');
+      this.init();
+  }
 
+
+  ngOnInit() {
+    console.log('====> ngOnInit');
+
+  }
+
+  ngOnDestroy() {
+    console.log("====> ngOnDestroy");
+  }
+
+  init(){
     $(".dropzone").unbind();
     //let pdfData = this.loadPDFData(); // loads pdf data from localStorage, make sure you uploaded it from home.js
 
@@ -81,13 +95,6 @@ export class BlockPdfComponent {
     }
 
     this.yourName = blockstack.loadUserData().profile.name;
-
-  }
-
-
-  ionViewDidLoad() {
-
-
   }
 
 
