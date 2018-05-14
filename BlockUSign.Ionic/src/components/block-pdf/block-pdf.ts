@@ -61,8 +61,11 @@ export class BlockPdfComponent {
   yourName: string;
   allowResize = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-    public documentService: DocumentService) {
+  constructor(
+    public navCtrl:         NavController, 
+    public navParams:       NavParams,
+    public documentService: DocumentService
+  ) {
       console.log('====> constructor');
       this.init();
   }

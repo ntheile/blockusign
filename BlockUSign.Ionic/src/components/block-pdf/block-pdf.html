@@ -1,5 +1,6 @@
-<ion-content>
-  <div class="page" id="pageContainer1" data-page-number="1" style="position: relative; overflow-x: auto; width: 100%; height:100%; margin-top:130px;">
+<ion-content class="block-pdf-page">
+
+  <div class="page" id="pageContainer1" data-page-number="1" style="position:relative;width: 100%; height:100%; margin-top:130px;overflow-x:auto;overflow-y:auto">
 
     <div id="canvasWrapper" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
       <canvas id="canvas1" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px"></canvas>
@@ -15,54 +16,44 @@
     <div class="textLayer"></div>
   </div>
 
-
-
-
   <svg class="annotationLayer" xmlns="http://www.w3.org/2000/svg">
-
   </svg>
 
-  <ion-fab bottom right #fab>
-    <button ion-fab>
-      <ion-icon name="md-options"></ion-icon>
-    </button>
-    <ion-fab-list side="top">
-      <button ion-fab (click)="saveSvg()">Save</button>
-      <button ion-fab (click)="clear()">Clear</button>
-    </ion-fab-list>
-  </ion-fab>
 
-  <ion-fab top left style="margin-top:1px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab>
-    <ion-grid>
-      <ion-row justify-content-start align-items-center>
-        <ion-col col-auto>
-          <img id="sigImg" height="50px" absolute-drag class="draggable draggable-droppable" draggable="true" src="./../../assets/imgs/sign.png"
-          />
-        </ion-col>
-        <ion-col col-auto>
-          <svg xmlns="http://www.w3.org/2000/svg" id="signature" absolute-drag class="draggable draggable-droppable" draggable="true"
-            width="200" height="50" viewBox="0 0 200 50" style="clear:both; background:#ffeb8e; border: 1px solid red " opacity="1">
 
-            <text x="50%" y="50%" width="200" height="50" viewBox="0 0 200 50" alignment-baseline="middle" text-anchor="middle" fill="green"
-              font-family="Cedarville Cursive" font-weight="bold" style="font-size: 25px">
-              {{ yourName }}
-            </text>
+<ion-fab top left style="margin-top:1px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab>
+  <ion-grid>
+    <ion-row justify-content-start align-items-center>
+      <ion-col col-auto>
+        <img id="sigImg" height="50px" absolute-drag class="draggable draggable-droppable" draggable="true" src="./../../assets/imgs/sign.png"
+        />
+      </ion-col>
+      <ion-col col-auto>
+        <svg xmlns="http://www.w3.org/2000/svg" id="signature" absolute-drag class="draggable draggable-droppable" draggable="true"
+          width="200" height="50" viewBox="0 0 200 50" style="clear:both; background:#ffeb8e; border: 1px solid red " opacity="1">
 
-          </svg>
-        </ion-col>
-        <ion-col col-auto>
-          <img src="./../../assets/imgs/arrows.svg" height="35px">
-          <span style="color:#757575; font-family: Cedarville Cursive; font-size: 18px; font-weight: bold">drag</span>
+          <text x="50%" y="50%" width="200" height="50" viewBox="0 0 200 50" alignment-baseline="middle" text-anchor="middle" fill="green"
+            font-family="Cedarville Cursive" font-weight="bold" style="font-size: 25px">
+            {{ yourName }}
+          </text>
 
-        </ion-col>
-        <ion-col col-auto style="padding-left: 50px;">
-
-          <input id="checkBox" type="checkbox">
-
-          <span style="padding-right: 4px;color:#757575;">Allow Resize</span>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-fab>
-
+        </svg>
+      </ion-col>
+      <ion-col col-auto>
+        <img src="./../../assets/imgs/arrows.svg" height="35px">
+        <span style="color:#757575; font-family: Cedarville Cursive; font-size: 18px; font-weight: bold">drag</span>
+      </ion-col>
+      <ion-col col-auto style="padding-left: 50px;">
+        <input id="checkBox" type="checkbox">
+        <span style="padding-right: 4px;color:#757575;">Allow Resize</span>
+      </ion-col>
+      <ion-col col-auto style="padding-left: 20px;">
+        <button ion-fab (click)="saveSvg()" style="position:relative">Save</button>
+      </ion-col>
+      <ion-col col-auto style="padding-left: 20px;">
+        <button ion-fab (click)="clear()"  style="position:relative">Clear</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-fab>
 </ion-content>

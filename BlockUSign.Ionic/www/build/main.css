@@ -28971,6 +28971,11 @@ img.draggable.drag-can-drop {
   border-style: solid;
 }
 
+.block-pdf-page .scroll-content {
+  overflow-y: scroll !important;
+  overflow-x: scroll !important;
+}
+
 /* Steps https://codepen.io/praveenpuglia/pen/WpEvwO */
 .steps-wrapper {
   margin: 0;
@@ -29173,4 +29178,8 @@ img.draggable.drag-can-drop {
   background-color: transparent;
   border-color: #fff;
   border-style: solid;
+}
+
+.annotate-page .scroll-content {
+  overflow-y: hidden;
 }
