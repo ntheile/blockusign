@@ -66,9 +66,19 @@
 
             <section class="channels-list">
 
-              <header class="channels-list-header focusable" (click)="home()">
+              <section  (click)="home()">
+                <button ion-button icon-end 
+                  style="float:right;width:100%;background-color:green; color:white; border-radius: 2px; margin-bottom: 20px; margin-top: 20px">New Doc
+                  <ion-icon name="md-add"></ion-icon>
+                </button>
+                
+              </section>
+
+              <header class="channels-list-header" (click)="home()">
                 <span>Documents</span>
               </header>
+
+             
               
               <ul class="channels-list-text" >
                 <div *ngFor="let item of documentsList">
