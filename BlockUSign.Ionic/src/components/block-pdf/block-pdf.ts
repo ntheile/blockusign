@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Input } from '@angular/core';
 import { NavController, NavParams, IonicPage, Segment } from 'ionic-angular';
 import { CryptoCompareService } from '../../services/cryptocompare.service'
 //import { HomePage } from '../home/home';
@@ -41,6 +41,11 @@ declare let Event: any;
 export class BlockPdfComponent {
 
   @ViewChild(AbsoluteDragDirective) vc: AbsoluteDragDirective;
+  
+  @Input() showToolBar = 0;
+  @Input() showSignature: 0;
+  @Input() showSignHere: 0;
+  @Input() showButtons: 0;
 
   public data: any;
   public DOCUMENT_ID = "blockusign/pdf1.txt"; // @TODO not being used, delete in furture
@@ -68,6 +73,7 @@ export class BlockPdfComponent {
   ) {
       console.log('====> constructor');
       this.init();
+     
   }
 
 

@@ -28867,6 +28867,10 @@ html, body, * {
   }
 }
 
+.no-overflow-page .scroll-content {
+  overflow-y: hidden;
+}
+
 .page {
   position: relative;
   margin: 0 auto 25px;
@@ -29178,8 +29182,4 @@ img.draggable.drag-can-drop {
   background-color: transparent;
   border-color: #fff;
   border-style: solid;
-}
-
-.annotate-page .scroll-content {
-  overflow-y: hidden;
 }

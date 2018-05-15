@@ -840,3 +840,9 @@
   }
   }
   
+
+  .no-overflow-page {
+    .scroll-content {
+        overflow-y: hidden;
+    }
+}
