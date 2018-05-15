@@ -34,20 +34,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 /// https://www.sitepoint.com/custom-pdf-rendering/
 var AnnotatePage = (function () {
-    function AnnotatePage(navCtrl, navParams, documentService) {
+    function AnnotatePage(navCtrl, navParams, documentService, events) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.documentService = documentService;
+        this.events = events;
     }
     AnnotatePage.prototype.ionViewDidLoad = function () {
     };
     AnnotatePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-annotate',template:/*ion-inline-start:"N:\code\git\blockusign\BlockUSign.Ionic\src\pages\annotate\annotate.html"*/'<ion-content class="no-overflow-page">\n\n\n\n\n\n \n\n  <ion-grid>\n\n    <ion-row justify-content-start align-items-center>\n\n      <ion-col>\n\n        <block-steps activeStep="2">\n\n        </block-steps>\n\n        <br/>\n\n        <br/>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <block-pdf showToolBar="true" showSignHere="true" showButtons="true">\n\n\n\n  </block-pdf>\n\n\n\n  <block-chat>\n\n    \n\n  </block-chat>\n\n\n\n</ion-content>'/*ion-inline-end:"N:\code\git\blockusign\BlockUSign.Ionic\src\pages\annotate\annotate.html"*/,
+            selector: 'page-annotate',template:/*ion-inline-start:"N:\code\git\blockusign\BlockUSign.Ionic\src\pages\annotate\annotate.html"*/'<ion-content class="no-overflow-page">\n\n \n\n  <ion-grid>\n\n    <ion-row justify-content-start align-items-center>\n\n      <ion-col>\n\n        <block-steps activeStep="2">\n\n        </block-steps>\n\n        <br/>\n\n        <br/>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <block-pdf showToolBar="true" showSignHere="true" showButtons="true">\n\n\n\n  </block-pdf>\n\n\n\n  <block-chat>\n\n    \n\n  </block-chat>\n\n\n\n</ion-content>'/*ion-inline-end:"N:\code\git\blockusign\BlockUSign.Ionic\src\pages\annotate\annotate.html"*/,
             styles: ['annotate.scss']
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__services_document_service__["a" /* DocumentService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__services_document_service__["a" /* DocumentService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */]])
     ], AnnotatePage);
     return AnnotatePage;
 }());
@@ -160,6 +163,8 @@ var AnnotatePageModule = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Document; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Log; });
+/* unused harmony export Message */
 /* unused harmony export Annotation */
 var Document = (function () {
     function Document() {
@@ -171,6 +176,21 @@ var Document = (function () {
         this.isCompleted = false;
     }
     return Document;
+}());
+
+var Log = (function () {
+    function Log() {
+        this.guid = window.guid();
+        this.createdAt = Date.now();
+        this.updatedAt = Date.now();
+    }
+    return Log;
+}());
+
+var Message = (function () {
+    function Message() {
+    }
+    return Message;
 }());
 
 var Annotation = (function () {
@@ -514,14 +534,47 @@ var DocumentService = (function () {
         });
     };
     DocumentService.prototype.setCurrentDoc = function (guid) {
+        //alert('set curr doc');
         this.currentDoc = this.documentsList.find(function (x) { return x.guid == guid; });
         this.events.publish('documentService:setCurrentDoc', this.currentDoc);
     };
+    DocumentService.prototype.addLog = function (guid, annotation) {
+        return __awaiter(this, void 0, void 0, function () {
+            var log, json;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        log = new __WEBPACK_IMPORTED_MODULE_1__models_models__["b" /* Log */]();
+                        log.guid = guid;
+                        log.messages = [];
+                        json = {};
+                        return [4 /*yield*/, blockstack.putFile(guid + ".log.json", JSON.stringify(json), { encrypt: true })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    DocumentService.prototype.addMessage = function (guid, annotation) {
+        return __awaiter(this, void 0, void 0, function () {
+            var json;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        json = {
+                            annotations: annotation
+                        };
+                        return [4 /*yield*/, blockstack.putFile(guid + ".log.json", JSON.stringify(json), { encrypt: true })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
     DocumentService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5_ionic_angular__["c" /* Events */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["c" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["c" /* Events */]) === "function" && _a || Object])
     ], DocumentService);
     return DocumentService;
+    var _a;
 }());
 
 //# sourceMappingURL=document.service.js.map
@@ -710,10 +763,9 @@ var EmailService = (function () {
     };
     EmailService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["c" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["c" /* Events */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5_ionic_angular__["c" /* Events */], __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]])
     ], EmailService);
     return EmailService;
-    var _a, _b;
 }());
 
 //# sourceMappingURL=email.service.js.map
@@ -1715,10 +1767,10 @@ var BlockPdfComponent = (function () {
         this.currentY = 0;
         this.allowResize = false;
         console.log('====> constructor');
-        this.init();
     }
     BlockPdfComponent.prototype.ngOnInit = function () {
         console.log('====> ngOnInit');
+        this.init();
     };
     BlockPdfComponent.prototype.ngOnDestroy = function () {
         console.log("====> ngOnDestroy");
@@ -1737,6 +1789,8 @@ var BlockPdfComponent = (function () {
             });
         }
         else {
+            var guid = this.navParams.get("guid");
+            this.documentService.setCurrentDoc(guid);
             this.getFile();
         }
         this.yourName = blockstack.loadUserData().profile.name;
@@ -2074,25 +2128,46 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  */
 var BlockChatComponent = (function () {
     function BlockChatComponent(documentService, events) {
-        var _this = this;
         this.documentService = documentService;
         this.events = events;
-        //public fileName = "FILENAME";
+    }
+    BlockChatComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        if (!this.log) {
+            this.log = [];
+        }
+        if (!this.doc) {
+            this.doc = new __WEBPACK_IMPORTED_MODULE_2__models_models__["a" /* Document */]();
+        }
         this.doc = new __WEBPACK_IMPORTED_MODULE_2__models_models__["a" /* Document */]();
-        console.log('Hello BlockChatComponent Component');
         this.events.subscribe('documentService:setCurrentDoc', function (currentDoc) {
             _this.doc = currentDoc;
+            $('.chat-head').html(currentDoc.fileName);
+            _this.log = [
+                { id: 1, name: 'Superman' },
+                { id: 2, name: 'Batman' },
+                { id: 5, name: 'BatGirl' },
+                { id: 3, name: 'Robin' },
+                { id: 4, name: 'Flash' }
+            ];
+            var template = "";
+            for (var _i = 0, _a = _this.log; _i < _a.length; _i++) {
+                var item = _a[_i];
+                template = template + ("  \n        <div class=\"chat-message clearfix\">\n        <img src=\"http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=32\" alt=\"\" width=\"32\" height=\"32\">\n        <div class=\"chat-message-content clearfix\">\n          <span class=\"chat-time\">13:37</span>\n          <h5>" + item.name + "</h5>\n          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, nulla accusamus magni vel debitis numquam qui tempora rem voluptatem delectus!</p>\n        </div> \n        </div>\n        ");
+            }
+            $('.log-history').html(template);
         });
-    }
+    };
     BlockChatComponent.prototype.minimize = function () {
         $('.chat').slideToggle(300, 'swing');
         $('.chat-message-counter').fadeToggle(300, 'swing');
     };
     BlockChatComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'block-chat',template:/*ion-inline-start:"N:\code\git\blockusign\BlockUSign.Ionic\src\components\block-chat\block-chat.html"*/'<div class="block-chat" >\n  <ion-fab bottom right>\n    <div id="live-chat" class="shadow6">\n		\n      <header class="clearfix" (click)="minimize()">        \n        <!-- <a class="chat-close"  >x</a>\n   -->\n        <h4><span>{{ doc.fileName }}</span> - Log</h4>\n        <span style="opacity:.6; padding-left:30px;" >Nick/John</span>\n        <span class="chat-message-counter">3</span>\n      </header>\n  \n      <div class="chat">\n        \n        <div class="chat-history">\n          \n          <div class="chat-message clearfix">\n            \n            <img src="http://lorempixum.com/32/32/people" alt="" width="32" height="32">\n  \n            <div class="chat-message-content clearfix">\n              \n              <span class="chat-time">13:35</span>\n  \n              <h5>John Doe</h5>\n  \n              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, explicabo quasi ratione odio dolorum harum.</p>\n  \n            </div> <!-- end chat-message-content -->\n  \n          </div> <!-- end chat-message -->\n  \n          <hr>\n  \n          <div class="chat-message clearfix">\n            \n            <img src="http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=32" alt="" width="32" height="32">\n  \n            <div class="chat-message-content clearfix">\n              \n              <span class="chat-time">13:37</span>\n  \n              <h5>Marco Biedermann</h5>\n  \n              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, nulla accusamus magni vel debitis numquam qui tempora rem voluptatem delectus!</p>\n  \n            </div> <!-- end chat-message-content -->\n  \n          </div> <!-- end chat-message -->\n  \n          <hr>\n  \n          <div class="chat-message clearfix">\n            \n            <img src="http://lorempixum.com/32/32/people" alt="" width="32" height="32">\n  \n            <div class="chat-message-content clearfix">\n              \n              <span class="chat-time">13:38</span>\n  \n              <h5>John Doe</h5>\n  \n              <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>\n  \n            </div> <!-- end chat-message-content -->\n  \n          </div> <!-- end chat-message -->\n  \n          <hr>\n  \n        </div> <!-- end chat-history -->\n  \n        <p class="chat-feedback">Your partner is typing…</p>\n  \n        <form action="#" method="post">\n  \n          <fieldset>\n            \n            <input type="text" placeholder="Type your message…" autofocus>\n            <input type="hidden">\n  \n          </fieldset>\n  \n        </form>\n  \n      </div> <!-- end chat -->\n  \n    </div> <!-- end live-chat -->\n  </ion-fab>\n \n</div>\n'/*ion-inline-end:"N:\code\git\blockusign\BlockUSign.Ionic\src\components\block-chat\block-chat.html"*/
+            selector: 'block-chat',template:/*ion-inline-start:"N:\code\git\blockusign\BlockUSign.Ionic\src\components\block-chat\block-chat.html"*/'<div class="block-chat">\n  <ion-fab bottom right>\n    <div id="live-chat" class="shadow6">\n\n      <header class="clearfix" (click)="minimize()">\n        <!-- <a class="chat-close"  >x</a>-->\n        <h4>\n          <span class="chat-head"></span> - Log</h4>\n        <span style="opacity:.6; padding-left:30px;">Nick/John</span>\n        <span class="chat-message-counter">3</span>\n      </header>\n      <div class="chat">\n        <div class="chat-history">\n          <div class="log-history">\n\n          </div>\n        </div>\n        <!-- <p class="chat-feedback">Your partner is typing…</p> -->\n        <form action="#" method="post">\n\n          <fieldset>\n\n            <input type="text" placeholder="Type your message…" autofocus>\n            <input type="hidden">\n\n          </fieldset>\n\n        </form>\n\n      </div>\n      <!-- end chat -->\n\n    </div>\n    <!-- end live-chat -->\n  </ion-fab>\n\n</div>'/*ion-inline-end:"N:\code\git\blockusign\BlockUSign.Ionic\src\components\block-chat\block-chat.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_document_service__["a" /* DocumentService */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* Events */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_document_service__["a" /* DocumentService */],
+            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* Events */]])
     ], BlockChatComponent);
     return BlockChatComponent;
 }());

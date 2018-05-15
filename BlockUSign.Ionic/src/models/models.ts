@@ -20,6 +20,28 @@ export class Document{
 
 }
 
+export class Log{
+    public guid: any;
+    public createdAt: Date; 
+    public updatedAt: Date; 
+    public messages: Array<Message>;
+
+    constructor(){
+        this.guid = (<any>window).guid();
+        this.createdAt = (<any>Date).now();
+        this.updatedAt = (<any>Date).now();
+    }
+
+}
+
+export class Message {
+    public guid: any;
+    public createdAt: Date; 
+    public updatedAt: Date; 
+    public message: string;
+    public createdBy: string;
+}
+
 export class Annotation{
     public annotations: string;
     constructor(){

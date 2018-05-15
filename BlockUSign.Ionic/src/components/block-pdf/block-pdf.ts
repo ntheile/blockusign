@@ -72,14 +72,13 @@ export class BlockPdfComponent {
     public documentService: DocumentService
   ) {
       console.log('====> constructor');
-      this.init();
-     
+    
   }
 
 
   ngOnInit() {
     console.log('====> ngOnInit');
-
+    this.init();
   }
 
   ngOnDestroy() {
@@ -100,6 +99,8 @@ export class BlockPdfComponent {
       });
     }
     else {
+      let guid = this.navParams.get("guid");
+      this.documentService.setCurrentDoc(guid);
       this.getFile();
     }
 

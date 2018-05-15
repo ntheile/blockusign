@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Document } from './../models/models';
+import { Document, Log } from './../models/models';
 import 'rxjs/add/operator/toPromise';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -95,11 +95,35 @@ export class DocumentService {
   }
 
   setCurrentDoc(guid: string){
+    //alert('set curr doc');
     this.currentDoc = this.documentsList.find(x => x.guid == guid);
     this.events.publish('documentService:setCurrentDoc', this.currentDoc );
 
   }
 
-  
+  async addLog(guid: string, annotation: string){
+    
 
+    // first try to get log
+
+    let log = new Log();
+    log.guid = guid;
+    log.messages = [];
+    
+    
+    let json = {
+      
+    };
+    return await blockstack.putFile(guid + ".log.json", JSON.stringify(json), { encrypt: true });
+    
+  }
+
+  async addMessage(guid: string, annotation: string){
+    let json = {
+      annotations: annotation
+    }
+    return await blockstack.putFile(guid + ".log.json", JSON.stringify(json), { encrypt: true });
+  }
+
+  
 }

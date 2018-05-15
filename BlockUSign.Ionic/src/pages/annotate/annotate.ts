@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, IonicPage, Segment } from 'ionic-angular';
+import { NavController, NavParams, IonicPage, Segment, Events } from 'ionic-angular';
 import { DocumentService } from '../../services/document.service';
 import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/timeout';
@@ -23,16 +23,17 @@ declare var blockstack: any;
 })
 export class AnnotatePage {
 
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
-    public documentService: DocumentService) {
-    
-
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public documentService: DocumentService,
+    public events: Events
+  ) {
+   
   }
 
   ionViewDidLoad() {
-
-
+   
   }
 
 }
