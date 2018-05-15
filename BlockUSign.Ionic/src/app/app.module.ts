@@ -22,6 +22,7 @@ import { GlobalService } from '../services/global.service'
 import { CryptoCompareService } from '../services/cryptocompare.service';
 import { SlackService } from '../services/slack.service';
 import { DocumentService } from '../services/document.service';
+import { EmailService } from '../services/email.service';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { DocumentService } from '../services/document.service';
     SlackService,
     GlobalService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    DocumentService
+    DocumentService,
+    EmailService
   ]
 })
 export class AppModule {}

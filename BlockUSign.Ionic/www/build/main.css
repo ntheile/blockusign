@@ -28871,6 +28871,211 @@ html, body, * {
   overflow-y: hidden;
 }
 
+block-chat {
+  background: #e9e9e9;
+  color: #9a9a9a;
+  margin: 0;
+  /* For IE 6/7 */
+  /* ---------- LIVE-CHAT ---------- */
+  /*==================================================
+ * shadow6
+ * ===============================================*/
+}
+
+block-chat a {
+  text-decoration: none;
+}
+
+block-chat fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+block-chat h4, block-chat h5 {
+  line-height: 1.5em;
+  margin: 0;
+}
+
+block-chat hr {
+  background: #e9e9e9;
+  border: 0;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 1px;
+  margin: 0;
+  min-height: 1px;
+}
+
+block-chat img {
+  border: 0;
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+block-chat input {
+  border: 0;
+  color: inherit;
+  font-family: inherit;
+  font-size: 100%;
+  line-height: normal;
+  margin: 0;
+}
+
+block-chat p {
+  margin: 0;
+}
+
+block-chat .clearfix {
+  *zoom: 1;
+}
+
+block-chat .clearfix:before, block-chat .clearfix:after {
+  content: "";
+  display: table;
+}
+
+block-chat .clearfix:after {
+  clear: both;
+}
+
+block-chat #live-chat {
+  bottom: 0;
+  font-size: 12px;
+  right: 24px;
+  position: fixed;
+  width: 300px;
+}
+
+block-chat .shadow6 {
+  position: relative;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+block-chat .shadow6:before, block-chat .shadow6:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  top: 50%;
+  bottom: 0;
+  left: 10px;
+  right: 10px;
+  border-radius: 100px / 10px;
+}
+
+block-chat .shadow6:after {
+  right: 10px;
+  left: auto;
+  -webkit-transform: skew(8deg) rotate(3deg);
+  transform: skew(8deg) rotate(3deg);
+}
+
+block-chat #live-chat header {
+  background: #293239;
+  border-radius: 5px 5px 0 0;
+  color: #fff;
+  cursor: pointer;
+  padding: 16px 24px;
+}
+
+block-chat #live-chat h4:before {
+  background: #1a8a34;
+  border-radius: 50%;
+  content: "";
+  display: inline-block;
+  height: 8px;
+  margin: 0 8px 0 0;
+  width: 8px;
+}
+
+block-chat #live-chat h4 {
+  font-size: 12px;
+}
+
+block-chat #live-chat h5 {
+  font-size: 10px;
+}
+
+block-chat #live-chat form {
+  padding: 24px;
+}
+
+block-chat #live-chat input[type="text"] {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 8px;
+  outline: none;
+  width: 234px;
+}
+
+block-chat .chat-message-counter {
+  background: #e62727;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  display: none;
+  font-size: 12px;
+  font-weight: bold;
+  height: 28px;
+  left: 0;
+  line-height: 28px;
+  margin: -15px 0 0 -15px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 28px;
+}
+
+block-chat .chat-close {
+  background: #1b2126;
+  border-radius: 50%;
+  color: #fff;
+  display: block;
+  float: right;
+  font-size: 10px;
+  height: 16px;
+  line-height: 16px;
+  margin: 2px 0 0 0;
+  text-align: center;
+  width: 16px;
+}
+
+block-chat .chat {
+  background: #fff;
+}
+
+block-chat .chat-history {
+  height: 252px;
+  padding: 8px 24px;
+  overflow-y: scroll;
+}
+
+block-chat .chat-message {
+  margin: 16px 0;
+}
+
+block-chat .chat-message img {
+  border-radius: 50%;
+  float: left;
+}
+
+block-chat .chat-message-content {
+  margin-left: 56px;
+}
+
+block-chat .chat-time {
+  float: right;
+  font-size: 10px;
+}
+
+block-chat .chat-feedback {
+  font-style: italic;
+  margin: 0 0 0 80px;
+}
+
 .page {
   position: relative;
   margin: 0 auto 25px;

@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { AnonymousSubject } from 'rxjs/Subject';
+import { Events } from 'ionic-angular';
 declare let blockstack: any;
 
 /*
@@ -24,7 +25,7 @@ export class DocumentService {
   public currentDoc: Document;
   public currentDocAnnotations;
 
-  constructor() {
+  constructor(public events: Events) {
     console.log('Hello StorageServiceProvider Provider');
     this.documentsList = [];
     // @TODO - think about putting in checks here is documentsList is empty, 
@@ -95,6 +96,8 @@ export class DocumentService {
 
   setCurrentDoc(guid: string){
     this.currentDoc = this.documentsList.find(x => x.guid == guid);
+    this.events.publish('documentService:setCurrentDoc', this.currentDoc );
+
   }
 
   

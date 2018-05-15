@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DocumentService } from './../../services/document.service';
+import { EmailService } from './../../services/email.service';
 declare let blockstack: any;
 
 /**
@@ -21,10 +22,15 @@ declare let blockstack: any;
 })
 export class EmailPage {
 
-
+  email = "";
   lookupId: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public documentService: DocumentService) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public documentService: DocumentService,
+    public emailService: EmailService
+  ) {
 
     if ( this.navParams.get("guid") && !this.documentService.currentDoc ){
       let guid = this.navParams.get("guid");

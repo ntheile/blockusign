@@ -1,17 +1,12 @@
-<!-- <ion-header>
-  <ion-navbar>
-    <ion-title>sign</ion-title>
-  </ion-navbar>
-</ion-header> -->
-<ion-content class="no-overflow-page">
+<ion-content class="no-overflow-page email-page">
 
   <ion-grid>
     <ion-row>
       <ion-col width-100>
-       
+
         <block-steps activeStep="3">
         </block-steps>
-        
+
 
         <br/>
         <br/>
@@ -19,11 +14,22 @@
     </ion-row>
   </ion-grid>
 
-<block-pdf>
+  
+  <section style="position: relative;">
+    <ion-item style="max-width:250px; background:transparent;">
+      <ion-label floating>Enter Email</ion-label>
+      <ion-input [(ngModel)]="email"></ion-input>
+   </ion-item>
+   
+   <button ion-button (click)="emailService.sendEmail(email)">Send Email</button>  
+  </section>
 
-</block-pdf>
+  
 
 
+
+  <block-pdf>
+  </block-pdf>
 
   <!-- <ion-card>
 
