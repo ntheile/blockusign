@@ -40,6 +40,13 @@ export class Message {
     public updatedAt: Date; 
     public message: string;
     public createdBy: string;
+
+    constructor(){
+        this.guid = (<any>window).guid();
+        this.createdAt = (<any>Date).now();
+        this.updatedAt = (<any>Date).now();
+    }
+
 }
 
 export class Annotation{

@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { DocumentService } from './../../services/document.service';
-import { Document } from './../../models/models';
+import { Document, Log, Message } from './../../models/models';
 import { Events } from 'ionic-angular';
+import { BlockStackService } from '../../services/blockstack.service';
 declare let $: any;
 
 /**
@@ -15,46 +16,47 @@ declare let $: any;
 export class BlockChatComponent {
 
   public doc: Document;
-  public log: Array<any>;
-
+ 
   constructor(
     public documentService: DocumentService, 
-    public events: Events
+    public events: Events,
+    public blockstackService: BlockStackService
   ) {
   
   }
 
   ngOnInit(){
 
-    if (!this.log){
-      this.log =  [];
-    }    
+    
     if (!this.doc){
       this.doc = new Document();
     }
     this.doc = new Document();
-    this.events.subscribe('documentService:setCurrentDoc', (currentDoc) => {
+    this.events.subscribe('documentService:setCurrentDoc', async (currentDoc) => {
       this.doc = currentDoc;
-      $('.chat-head').html(currentDoc.fileName);
-      this.log =  [
-        {id: 1, name:'Superman'},
-        {id: 2, name:'Batman'},
-        {id: 5, name:'BatGirl'},
-        {id: 3, name:'Robin'},
-        {id: 4, name:'Flash'}
-      ];
 
+      let logData: Log = await this.documentService.getLog(this.doc.guid);
+
+      $('.chat-head').html(currentDoc.fileName);
+     
       let template = "";
-      for (let item of this.log) {
+      for (let item of logData.messages ) {
+
+
+        let d = item.updatedAt;
+        d = new Date(d);
+        let formatDate = (d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear()+' '+(d.getHours() > 12 ? d.getHours() - 12 : d.getHours())+':'+d.getMinutes()+' '+(d.getHours() >= 12 ? "PM" : "AM");
+
         template =  template + `  
         <div class="chat-message clearfix">
         <img src="http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=32" alt="" width="32" height="32">
         <div class="chat-message-content clearfix">
-          <span class="chat-time">13:37</span>
-          <h5>${item.name}</h5>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, nulla accusamus magni vel debitis numquam qui tempora rem voluptatem delectus!</p>
+          <span class="chat-time">${formatDate}</span>
+          <h5>${item.createdBy}</h5>
+          <p>${item.message}</p>
         </div> 
         </div>
+        <hr style='margin-top:5px' />
         `;
       }
       $('.log-history').html(template);

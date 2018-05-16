@@ -383,6 +383,9 @@ export class BlockPdfComponent {
     //if (svg){
     //localStorage.setItem("svg", svg);
     await this.documentService.saveAnnotations(this.documentService.currentDoc.guid, svg);
+
+    await this.documentService.addMessage(this.documentService.currentDoc.guid, 'Updated annotation');
+
     //}
   }
 

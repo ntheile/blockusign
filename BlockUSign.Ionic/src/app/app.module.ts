@@ -23,6 +23,7 @@ import { CryptoCompareService } from '../services/cryptocompare.service';
 import { SlackService } from '../services/slack.service';
 import { DocumentService } from '../services/document.service';
 import { EmailService } from '../services/email.service';
+import { BlockStackService } from '../services/blockstack.service';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { EmailService } from '../services/email.service';
     GlobalService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DocumentService,
-    EmailService
+    EmailService,
+    BlockStackService
   ]
 })
 export class AppModule {}
