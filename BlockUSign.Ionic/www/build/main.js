@@ -44,7 +44,7 @@ var AnnotatePage = (function () {
     };
     AnnotatePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-annotate',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/annotate/annotate.html"*/'<ion-content class="no-overflow-page">\n \n  <ion-grid>\n    <ion-row justify-content-start align-items-center>\n      <ion-col>\n        <block-steps activeStep="2">\n        </block-steps>\n        <br/>\n        <br/>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <block-pdf showToolBar="true" showSignHere="true" showButtons="true">\n\n  </block-pdf>\n\n  <block-chat>\n    \n  </block-chat>\n\n</ion-content>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/annotate/annotate.html"*/,
+            selector: 'page-annotate',template:/*ion-inline-start:"N:\code\git\blockusign\BlockUSign.Ionic\src\pages\annotate\annotate.html"*/'<ion-content class="no-overflow-page">\n\n \n\n  <ion-grid>\n\n    <ion-row justify-content-start align-items-center>\n\n      <ion-col>\n\n        <block-steps activeStep="2">\n\n        </block-steps>\n\n        <br/>\n\n        <br/>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <block-pdf showToolBar="true" showSignHere="true" showButtons="true">\n\n\n\n  </block-pdf>\n\n\n\n  <block-chat>\n\n    \n\n  </block-chat>\n\n\n\n</ion-content>'/*ion-inline-end:"N:\code\git\blockusign\BlockUSign.Ionic\src\pages\annotate\annotate.html"*/,
             styles: ['annotate.scss']
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */],
@@ -84,16 +84,16 @@ var map = {
 		185
 	],
 	"../pages/email/email.module": [
-		210
+		333
 	],
 	"../pages/home/home.module": [
-		214
+		337
 	],
 	"../pages/review/review.module": [
-		212
+		335
 	],
 	"../pages/sign/sign.module": [
-		213
+		336
 	]
 };
 function webpackAsyncContext(req) {
@@ -581,6 +581,7 @@ var DocumentService = (function () {
                         msg = new __WEBPACK_IMPORTED_MODULE_1__models_models__["c" /* Message */]();
                         msg.message = message;
                         msg.createdBy = blockstack.loadUserData().username;
+                        msg.createdByName = blockstack.loadUserData().profile.name;
                         log.messages.push(msg);
                         return [4 /*yield*/, blockstack.putFile(logFileName, JSON.stringify(log), { encrypt: true })];
                     case 2: return [2 /*return*/, _a.sent()];
@@ -709,16 +710,34 @@ var BlockStackService = (function () {
     function BlockStackService(events, http) {
         this.events = events;
         this.http = http;
+        this.picCache = [];
     }
-    BlockStackService.prototype.getPic = function (userId) {
+    BlockStackService.prototype.getPicUrl = function (userId) {
         return __awaiter(this, void 0, void 0, function () {
-            var resp;
+            var picUrl, isInCache, resp, respObj;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.http.get("https://core.blockstack.org/v1/search?query=" + userId.replace('.id', '')).toPromise()];
+                    case 0:
+                        picUrl = "http://www.gravatar.com/avatar/?d=identicon";
+                        if (!userId) {
+                            return [2 /*return*/, picUrl];
+                        }
+                        isInCache = this.picCache.filter(function (item) { return item.id === userId; })[0];
+                        if (isInCache) {
+                            return [2 /*return*/, this.picCache.filter(function (item) { return item.id === userId; })[0].pic];
+                        }
+                        return [4 /*yield*/, this.http.get("https://core.blockstack.org/v1/search?query=" + userId).toPromise()];
                     case 1:
                         resp = _a.sent();
-                        return [2 /*return*/, resp];
+                        respObj = JSON.parse(resp.text());
+                        if (respObj.results.length > 0) {
+                            picUrl = respObj.results[0].profile.image[0].contentUrl;
+                        }
+                        this.picCache.push({
+                            id: userId,
+                            pic: picUrl
+                        });
+                        return [2 /*return*/, picUrl];
                 }
             });
         });
@@ -735,7 +754,7 @@ var BlockStackService = (function () {
 
 /***/ }),
 
-/***/ 210:
+/***/ 333:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -743,7 +762,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EmailPageModule", function() { return EmailPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__email__ = __webpack_require__(506);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__email__ = __webpack_require__(511);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(58);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -776,7 +795,7 @@ var EmailPageModule = (function () {
 
 /***/ }),
 
-/***/ 211:
+/***/ 334:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -894,7 +913,7 @@ var EmailService = (function () {
 
 /***/ }),
 
-/***/ 212:
+/***/ 335:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -902,7 +921,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReviewPageModule", function() { return ReviewPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__review__ = __webpack_require__(507);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__review__ = __webpack_require__(512);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(58);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -935,7 +954,7 @@ var ReviewPageModule = (function () {
 
 /***/ }),
 
-/***/ 213:
+/***/ 336:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -943,7 +962,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignPageModule", function() { return SignPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sign__ = __webpack_require__(508);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sign__ = __webpack_require__(513);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(58);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -976,14 +995,14 @@ var SignPageModule = (function () {
 
 /***/ }),
 
-/***/ 214:
+/***/ 337:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeModule", function() { return HomeModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__home__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__home__ = __webpack_require__(338);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(58);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1022,7 +1041,7 @@ var HomeModule = (function () {
 
 /***/ }),
 
-/***/ 215:
+/***/ 338:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1034,7 +1053,7 @@ var HomeModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_pdf_annotate__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_pdf_annotate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_pdf_annotate__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_global_service__ = __webpack_require__(216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_global_service__ = __webpack_require__(339);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_document_service__ = __webpack_require__(20);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1466,7 +1485,7 @@ var HomePage = (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/home/home.html"*/'<ion-content>\n\n<block-steps activeStep="1">\n</block-steps>\n\n\n  <ion-grid>\n    <ion-row>\n      <ion-col width-100>\n      \n        <br/>\n        <br/>\n      </ion-col>\n    </ion-row>\n\n    <ion-row>\n      <ion-col width-100>\n\n        <div class="centerMe">\n          <!-- Upload  -->\n          <form id="file-upload-form" class="uploader">\n            <input id="file-upload" type="file" name="fileUpload" accept=".pdf" />\n            <label for="file-upload" id="file-drag">\n              <img id="file-image" src="#" alt="Preview" class="hidden">\n              <div id="start">\n                <i class="fa fa-download" aria-hidden="true"></i>\n                <div>Select a PDF</div>\n                <div id="notimage" class="hidden">Please select an image</div>\n                <span id="file-upload-btn" class="btn btn-primary">Select a file</span>\n              </div>\n              <div id="response" class="hidden">\n                <div id="messages"></div>\n                <progress class="progress" id="file-progress" value="0">\n                  <span>0</span>%\n                </progress>\n              </div>\n            </label>\n          </form>\n\n          <!-- <label class="item item-input"> -->\n          <!-- <input type="file" id="files" name="file" (submit)="loadFile()" /> -->\n          <!-- </label> -->\n          <!-- <div class="preview-img">\n                          <img id="myImage" width="150" height="150" size="30" /> </div> -->\n          <!-- <span class="readBytesButtons">\n                                  <button data-startbyte="0" data-endbyte="4">1-5</button>\n                                  <button data-startbyte="5" data-endbyte="14">6-15</button>\n                                  <button data-startbyte="6" data-endbyte="7">7-8</button>\n                                  <button>entire file</button>\n                                </span> -->\n          <!-- <div id="byte_range"></div>\n                                <div id="byte_content"></div> -->\n\n          <!-- <button ion-button (click)="next()" style="margin-left: 50px; padding: 10px 10px 10px 10px; background: green; height: 45px;">\n            Next &nbsp;\n            <ion-icon name="arrow-forward"></ion-icon>\n          </button>  -->\n          <!-- <button ion-button (click)="saveFile()">Save File</button>\n                      <button ion-button (click)="getFile()">Get File</button> -->\n\n\n\n        </div>\n      </ion-col>\n    </ion-row>\n\n\n    <!-- <ion-row>\n      <ion-col>\n        <video id="video" width="612" height="792"></video>\n        <canvas id="canvasCamera" width="612" height="792"></canvas>\n      </ion-col>\n    </ion-row>\n -->\n\n    <ion-row>\n      <ion-col>\n        <div class="centerMe">\n          <br/>\n          <canvas id="the-canvas"></canvas>\n        </div>\n      </ion-col>\n    </ion-row>\n\n  </ion-grid>\n\n\n  <!-- <steps>\n    \n  </steps> -->\n\n  <!-- <ion-fab top left style="margin-top:130px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab>\n    <button id="snap">Snap Photo</button>\n    <button id="downloadpdf">Download as pdf</button>\n  </ion-fab> -->\n</ion-content>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"N:\code\git\blockusign\BlockUSign.Ionic\src\pages\home\home.html"*/'<ion-content>\n\n\n\n<block-steps activeStep="1">\n\n</block-steps>\n\n\n\n\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col width-100>\n\n      \n\n        <br/>\n\n        <br/>\n\n      </ion-col>\n\n    </ion-row>\n\n\n\n    <ion-row>\n\n      <ion-col width-100>\n\n\n\n        <div class="centerMe">\n\n          <!-- Upload  -->\n\n          <form id="file-upload-form" class="uploader">\n\n            <input id="file-upload" type="file" name="fileUpload" accept=".pdf" />\n\n            <label for="file-upload" id="file-drag">\n\n              <img id="file-image" src="#" alt="Preview" class="hidden">\n\n              <div id="start">\n\n                <i class="fa fa-download" aria-hidden="true"></i>\n\n                <div>Select a PDF</div>\n\n                <div id="notimage" class="hidden">Please select an image</div>\n\n                <span id="file-upload-btn" class="btn btn-primary">Select a file</span>\n\n              </div>\n\n              <div id="response" class="hidden">\n\n                <div id="messages"></div>\n\n                <progress class="progress" id="file-progress" value="0">\n\n                  <span>0</span>%\n\n                </progress>\n\n              </div>\n\n            </label>\n\n          </form>\n\n\n\n          <!-- <label class="item item-input"> -->\n\n          <!-- <input type="file" id="files" name="file" (submit)="loadFile()" /> -->\n\n          <!-- </label> -->\n\n          <!-- <div class="preview-img">\n\n                          <img id="myImage" width="150" height="150" size="30" /> </div> -->\n\n          <!-- <span class="readBytesButtons">\n\n                                  <button data-startbyte="0" data-endbyte="4">1-5</button>\n\n                                  <button data-startbyte="5" data-endbyte="14">6-15</button>\n\n                                  <button data-startbyte="6" data-endbyte="7">7-8</button>\n\n                                  <button>entire file</button>\n\n                                </span> -->\n\n          <!-- <div id="byte_range"></div>\n\n                                <div id="byte_content"></div> -->\n\n\n\n          <!-- <button ion-button (click)="next()" style="margin-left: 50px; padding: 10px 10px 10px 10px; background: green; height: 45px;">\n\n            Next &nbsp;\n\n            <ion-icon name="arrow-forward"></ion-icon>\n\n          </button>  -->\n\n          <!-- <button ion-button (click)="saveFile()">Save File</button>\n\n                      <button ion-button (click)="getFile()">Get File</button> -->\n\n\n\n\n\n\n\n        </div>\n\n      </ion-col>\n\n    </ion-row>\n\n\n\n\n\n    <!-- <ion-row>\n\n      <ion-col>\n\n        <video id="video" width="612" height="792"></video>\n\n        <canvas id="canvasCamera" width="612" height="792"></canvas>\n\n      </ion-col>\n\n    </ion-row>\n\n -->\n\n\n\n    <ion-row>\n\n      <ion-col>\n\n        <div class="centerMe">\n\n          <br/>\n\n          <canvas id="the-canvas"></canvas>\n\n        </div>\n\n      </ion-col>\n\n    </ion-row>\n\n\n\n  </ion-grid>\n\n\n\n\n\n  <!-- <steps>\n\n    \n\n  </steps> -->\n\n\n\n  <!-- <ion-fab top left style="margin-top:130px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab>\n\n    <button id="snap">Snap Photo</button>\n\n    <button id="downloadpdf">Download as pdf</button>\n\n  </ion-fab> -->\n\n</ion-content>'/*ion-inline-end:"N:\code\git\blockusign\BlockUSign.Ionic\src\pages\home\home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
             __WEBPACK_IMPORTED_MODULE_5__services_global_service__["a" /* GlobalService */], __WEBPACK_IMPORTED_MODULE_6__services_document_service__["a" /* DocumentService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
@@ -1478,7 +1497,7 @@ var HomePage = (function () {
 
 /***/ }),
 
-/***/ 216:
+/***/ 339:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1509,7 +1528,7 @@ var GlobalService = (function () {
 
 /***/ }),
 
-/***/ 384:
+/***/ 388:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1608,13 +1627,13 @@ var OptionsPopoverPage = (function () {
 
 /***/ }),
 
-/***/ 385:
+/***/ 389:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(386);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(409);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(390);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(413);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -1622,7 +1641,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 409:
+/***/ 413:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1631,24 +1650,24 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(256);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_splash_screen__ = __webpack_require__(259);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_charts__ = __webpack_require__(534);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(379);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_splash_screen__ = __webpack_require__(382);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_charts__ = __webpack_require__(539);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_charts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_ng2_charts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__options_popover_page__ = __webpack_require__(384);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(587);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__options_popover_page__ = __webpack_require__(388);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_directives_module__ = __webpack_require__(208);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_home_home_module__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_home_home_module__ = __webpack_require__(337);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_annotate_annotate_module__ = __webpack_require__(185);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_sign_sign_module__ = __webpack_require__(213);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_email_email_module__ = __webpack_require__(210);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_review_review_module__ = __webpack_require__(212);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_coin_service__ = __webpack_require__(584);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__services_global_service__ = __webpack_require__(216);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__services_cryptocompare_service__ = __webpack_require__(585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__services_slack_service__ = __webpack_require__(586);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_sign_sign_module__ = __webpack_require__(336);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_email_email_module__ = __webpack_require__(333);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_review_review_module__ = __webpack_require__(335);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_coin_service__ = __webpack_require__(588);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__services_global_service__ = __webpack_require__(339);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__services_cryptocompare_service__ = __webpack_require__(589);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__services_slack_service__ = __webpack_require__(590);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_document_service__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__services_email_service__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__services_email_service__ = __webpack_require__(334);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__services_blockstack_service__ = __webpack_require__(209);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1738,7 +1757,7 @@ var AppModule = (function () {
 
 /***/ }),
 
-/***/ 448:
+/***/ 452:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1783,7 +1802,7 @@ var BlockStepsComponent = (function () {
     ], BlockStepsComponent.prototype, "activeStep", void 0);
     BlockStepsComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'block-steps',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-steps/block-steps.html"*/'<!-- Generated template for the BlockStepsComponent component -->\n<!-- <h1>\n    {{ activeStep }}\n</h1>\n\n<div>\n    <ng-content select=".step1"></ng-content>\n</div>\n<h2>\n    <ng-content select=".step2"></ng-content>\n</h2> -->\n\n\n <div class="steps-wrapper">\n    <ul class="steps">\n      <li [ngClass]="activeStep == \'1\' ? \'step active\': \'step\'" (click)="route(\'HomePage\')">\n        <div class="step-info">\n          <span class="step-name">Upload</span>\n        </div>\n      </li>\n      <li [ngClass]="activeStep == \'2\' ? \'step active\': \'step\'" (click)="route(\'AnnotatePage\')">\n        <div class="step-info">\n          <span class="step-name">Annotate</span>\n        </div>\n      </li>\n      <li [ngClass]="activeStep == \'3\' ? \'step active\': \'step\'" (click)="route(\'EmailPage\')">\n        <div class="step-info">\n          <span class="step-name">Email</span>\n        </div>\n      </li>\n      <li [ngClass]="activeStep == \'4\' ? \'step active\': \'step\'" (click)="route(\'SignPage\')">\n        <div class="step-info">\n          <span class="step-name">Sign</span>\n        </div>\n      </li>\n      <li [ngClass]="activeStep == \'5\' ? \'step active\': \'step\'" (click)="route(\'ReviewPage\')">\n        <div class="step-info">\n          <span class="step-name">Review</span>\n        </div>\n      </li>\n    </ul>\n  </div>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-steps/block-steps.html"*/
+            selector: 'block-steps',template:/*ion-inline-start:"N:\code\git\blockusign\BlockUSign.Ionic\src\components\block-steps\block-steps.html"*/'<!-- Generated template for the BlockStepsComponent component -->\n\n<!-- <h1>\n\n    {{ activeStep }}\n\n</h1>\n\n\n\n<div>\n\n    <ng-content select=".step1"></ng-content>\n\n</div>\n\n<h2>\n\n    <ng-content select=".step2"></ng-content>\n\n</h2> -->\n\n\n\n\n\n <div class="steps-wrapper">\n\n    <ul class="steps">\n\n      <li [ngClass]="activeStep == \'1\' ? \'step active\': \'step\'" (click)="route(\'HomePage\')">\n\n        <div class="step-info">\n\n          <span class="step-name">Upload</span>\n\n        </div>\n\n      </li>\n\n      <li [ngClass]="activeStep == \'2\' ? \'step active\': \'step\'" (click)="route(\'AnnotatePage\')">\n\n        <div class="step-info">\n\n          <span class="step-name">Annotate</span>\n\n        </div>\n\n      </li>\n\n      <li [ngClass]="activeStep == \'3\' ? \'step active\': \'step\'" (click)="route(\'EmailPage\')">\n\n        <div class="step-info">\n\n          <span class="step-name">Email</span>\n\n        </div>\n\n      </li>\n\n      <li [ngClass]="activeStep == \'4\' ? \'step active\': \'step\'" (click)="route(\'SignPage\')">\n\n        <div class="step-info">\n\n          <span class="step-name">Sign</span>\n\n        </div>\n\n      </li>\n\n      <li [ngClass]="activeStep == \'5\' ? \'step active\': \'step\'" (click)="route(\'ReviewPage\')">\n\n        <div class="step-info">\n\n          <span class="step-name">Review</span>\n\n        </div>\n\n      </li>\n\n    </ul>\n\n  </div>'/*ion-inline-end:"N:\code\git\blockusign\BlockUSign.Ionic\src\components\block-steps\block-steps.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__services_document_service__["a" /* DocumentService */]])
     ], BlockStepsComponent);
@@ -1794,7 +1813,7 @@ var BlockStepsComponent = (function () {
 
 /***/ }),
 
-/***/ 449:
+/***/ 453:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1811,7 +1830,7 @@ var BlockStepsComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_delay___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_delay__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_map__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_pdfjs_dist_build_pdf__ = __webpack_require__(450);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_pdfjs_dist_build_pdf__ = __webpack_require__(454);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_pdfjs_dist_build_pdf___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_pdfjs_dist_build_pdf__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_pdf_annotate__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_pdf_annotate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_pdf_annotate__);
@@ -2188,7 +2207,7 @@ var BlockPdfComponent = (function () {
     ], BlockPdfComponent.prototype, "showButtons", void 0);
     BlockPdfComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'block-pdf',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-pdf/block-pdf.html"*/'<ion-content class="block-pdf-page">\n  \n\n  <div class="page" id="pageContainer1" data-page-number="1" style="position:relative;width: 100%; height:100%; margin-top:130px;overflow-x:auto;overflow-y:auto">\n\n    <div id="canvasWrapper" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">\n      <canvas id="canvas1" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px"></canvas>\n    </div>\n    <svg id="svg-dropzone" class="dropzone resizable" draggable="true" xmlns="http://www.w3.org/2000/svg" style="position: absolute; \n                  left: 0px; \n                  top:0px;\n                  z-index: 200000;\n                  padding: 0px 0px 0px 0px; \n                  margin: 0px 0px 0px 0px;">\n\n    </svg>\n    <div class="textLayer"></div>\n  </div>\n\n  <svg class="annotationLayer" xmlns="http://www.w3.org/2000/svg">\n  </svg>\n\n  <img   *ngIf="!showToolBar"  id="sigImg" height="50px" absolute-drag class="draggable draggable-droppable" draggable="true" src="./../../assets/imgs/sign.png"\n        />\n\n\n<ion-fab *ngIf="showToolBar" top left style="margin-top:1px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab>\n  <ion-grid>\n    <ion-row justify-content-start align-items-center>\n      <ion-col col-auto *ngIf="showSignHere">\n        <img id="sigImg" height="50px" absolute-drag class="draggable draggable-droppable" draggable="true" src="./../../assets/imgs/sign.png"\n        />\n      </ion-col>\n      <ion-col col-auto *ngIf="showSignature">\n        <svg xmlns="http://www.w3.org/2000/svg" id="signature" absolute-drag class="draggable draggable-droppable" draggable="true"\n          width="200" height="50" viewBox="0 0 200 50" style="clear:both; background:#ffeb8e; border: 1px solid red " opacity="1">\n\n          <text x="50%" y="50%" width="200" height="50" viewBox="0 0 200 50" alignment-baseline="middle" text-anchor="middle" fill="green"\n            font-family="Cedarville Cursive" font-weight="bold" style="font-size: 25px">\n            {{ yourName }}\n          </text>\n\n        </svg>\n      </ion-col>\n      <ion-col col-auto *ngIf="showButtons">\n        <img src="./../../assets/imgs/arrows.svg" height="35px">\n        <span style="color:#757575; font-family: Cedarville Cursive; font-size: 18px; font-weight: bold">drag</span>\n      </ion-col>\n      <!-- <ion-col col-auto style="padding-left: 50px;">\n        <input id="checkBox" type="checkbox">\n        <span style="padding-right: 4px;color:#757575;">Allow Resize</span>\n      </ion-col> -->\n      <ion-col col-auto style="padding-left: 20px;" *ngIf="showButtons">\n        <button ion-fab (click)="saveSvg()" style="position:relative">Save</button>\n      </ion-col>\n      <ion-col col-auto style="padding-left: 5px;" *ngIf="showButtons">\n        <button ion-fab (click)="clear()"  style="position:relative">Clear</button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-fab>\n</ion-content>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-pdf/block-pdf.html"*/
+            selector: 'block-pdf',template:/*ion-inline-start:"N:\code\git\blockusign\BlockUSign.Ionic\src\components\block-pdf\block-pdf.html"*/'<ion-content class="block-pdf-page">\n\n  \n\n\n\n  <div class="page" id="pageContainer1" data-page-number="1" style="position:relative;width: 100%; height:100%; margin-top:130px;overflow-x:auto;overflow-y:auto">\n\n\n\n    <div id="canvasWrapper" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">\n\n      <canvas id="canvas1" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px"></canvas>\n\n    </div>\n\n    <svg id="svg-dropzone" class="dropzone resizable" draggable="true" xmlns="http://www.w3.org/2000/svg" style="position: absolute; \n\n                  left: 0px; \n\n                  top:0px;\n\n                  z-index: 200000;\n\n                  padding: 0px 0px 0px 0px; \n\n                  margin: 0px 0px 0px 0px;">\n\n\n\n    </svg>\n\n    <div class="textLayer"></div>\n\n  </div>\n\n\n\n  <svg class="annotationLayer" xmlns="http://www.w3.org/2000/svg">\n\n  </svg>\n\n\n\n  <img   *ngIf="!showToolBar"  id="sigImg" height="50px" absolute-drag class="draggable draggable-droppable" draggable="true" src="./../../assets/imgs/sign.png"\n\n        />\n\n\n\n\n\n<ion-fab *ngIf="showToolBar" top left style="margin-top:1px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab>\n\n  <ion-grid>\n\n    <ion-row justify-content-start align-items-center>\n\n      <ion-col col-auto *ngIf="showSignHere">\n\n        <img id="sigImg" height="50px" absolute-drag class="draggable draggable-droppable" draggable="true" src="./../../assets/imgs/sign.png"\n\n        />\n\n      </ion-col>\n\n      <ion-col col-auto *ngIf="showSignature">\n\n        <svg xmlns="http://www.w3.org/2000/svg" id="signature" absolute-drag class="draggable draggable-droppable" draggable="true"\n\n          width="200" height="50" viewBox="0 0 200 50" style="clear:both; background:#ffeb8e; border: 1px solid red " opacity="1">\n\n\n\n          <text x="50%" y="50%" width="200" height="50" viewBox="0 0 200 50" alignment-baseline="middle" text-anchor="middle" fill="green"\n\n            font-family="Cedarville Cursive" font-weight="bold" style="font-size: 25px">\n\n            {{ yourName }}\n\n          </text>\n\n\n\n        </svg>\n\n      </ion-col>\n\n      <ion-col col-auto *ngIf="showButtons">\n\n        <img src="./../../assets/imgs/arrows.svg" height="35px">\n\n        <span style="color:#757575; font-family: Cedarville Cursive; font-size: 18px; font-weight: bold">drag</span>\n\n      </ion-col>\n\n      <!-- <ion-col col-auto style="padding-left: 50px;">\n\n        <input id="checkBox" type="checkbox">\n\n        <span style="padding-right: 4px;color:#757575;">Allow Resize</span>\n\n      </ion-col> -->\n\n      <ion-col col-auto style="padding-left: 20px;" *ngIf="showButtons">\n\n        <button ion-fab (click)="saveSvg()" style="position:relative">Save</button>\n\n      </ion-col>\n\n      <ion-col col-auto style="padding-left: 5px;" *ngIf="showButtons">\n\n        <button ion-fab (click)="clear()"  style="position:relative">Clear</button>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n</ion-fab>\n\n</ion-content>'/*ion-inline-end:"N:\code\git\blockusign\BlockUSign.Ionic\src\components\block-pdf\block-pdf.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
@@ -2201,35 +2220,35 @@ var BlockPdfComponent = (function () {
 
 /***/ }),
 
-/***/ 455:
+/***/ 459:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 475:
+/***/ 479:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 476:
+/***/ 480:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 477:
+/***/ 481:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 505:
+/***/ 509:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2239,6 +2258,8 @@ var BlockPdfComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_models__ = __webpack_require__(186);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_moment__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_moment__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2288,6 +2309,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 
 
+
 /**
  * https://codepen.io/mehmetmert/pen/zbKpv
  */
@@ -2304,7 +2326,7 @@ var BlockChatComponent = (function () {
         }
         this.doc = new __WEBPACK_IMPORTED_MODULE_2__models_models__["a" /* Document */]();
         this.events.subscribe('documentService:setCurrentDoc', function (currentDoc) { return __awaiter(_this, void 0, void 0, function () {
-            var logData, template, _i, _a, item, d, formatDate;
+            var logData, template, _loop_1, this_1, _i, _a, item;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -2314,12 +2336,23 @@ var BlockChatComponent = (function () {
                         logData = _b.sent();
                         $('.chat-head').html(currentDoc.fileName);
                         template = "";
+                        _loop_1 = function (item) {
+                            var d = item.updatedAt;
+                            //d = new Date(d);
+                            //let formatDate = (d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear()+' '+(d.getHours() > 12 ? d.getHours() - 12 : d.getHours())+':'+d.getMinutes()+' '+(d.getHours() >= 12 ? "PM" : "AM");
+                            var formatDate = __WEBPACK_IMPORTED_MODULE_5_moment__(d).calendar(d);
+                            var uid = item.createdBy.replace('.id', '');
+                            var uName = item.createdByName;
+                            var uidClass = 'block-pic-' + uid;
+                            this_1.blockstackService.getPicUrl(uName).then(function (picUrl) {
+                                $('.' + uidClass).attr('src', picUrl);
+                            });
+                            template = template + ("  \n        <div class=\"chat-message clearfix\">\n        <img class=\"" + uidClass + "\" src=\"http://www.gravatar.com/avatar/?d=identicon\" alt=\"\" width=\"32\" height=\"32\">\n        <div class=\"chat-message-content clearfix\">\n          <span class=\"chat-time\">" + formatDate + "</span>\n          <h5>" + item.createdBy + "</h5>\n          <p>" + item.message + "</p>\n        </div> \n        </div>\n        <hr style='margin-top:5px' />\n        ");
+                        };
+                        this_1 = this;
                         for (_i = 0, _a = logData.messages; _i < _a.length; _i++) {
                             item = _a[_i];
-                            d = item.updatedAt;
-                            d = new Date(d);
-                            formatDate = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear() + ' ' + (d.getHours() > 12 ? d.getHours() - 12 : d.getHours()) + ':' + d.getMinutes() + ' ' + (d.getHours() >= 12 ? "PM" : "AM");
-                            template = template + ("  \n        <div class=\"chat-message clearfix\">\n        <img src=\"http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=32\" alt=\"\" width=\"32\" height=\"32\">\n        <div class=\"chat-message-content clearfix\">\n          <span class=\"chat-time\">" + formatDate + "</span>\n          <h5>" + item.createdBy + "</h5>\n          <p>" + item.message + "</p>\n        </div> \n        </div>\n        <hr style='margin-top:5px' />\n        ");
+                            _loop_1(item);
                         }
                         $('.log-history').html(template);
                         return [2 /*return*/];
@@ -2333,7 +2366,7 @@ var BlockChatComponent = (function () {
     };
     BlockChatComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'block-chat',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-chat/block-chat.html"*/'<div class="block-chat">\n  <ion-fab bottom right>\n    <div id="live-chat" class="shadow6">\n\n      <header class="clearfix" (click)="minimize()">\n        <!-- <a class="chat-close"  >x</a>-->\n        <h4>\n          <span class="chat-head"></span> - Log</h4>\n        <!-- <span style="opacity:.6; padding-left:30px;">YOURNAME/THEIRNAME</span> -->\n        <span class="chat-message-counter">3</span>\n      </header>\n      <div class="chat">\n        <div class="chat-history">\n          <div class="log-history">\n\n          </div>\n        </div>\n        <!-- <p class="chat-feedback">Your partner is typing…</p> -->\n        <form action="#" method="post">\n\n          <fieldset>\n\n            <input type="text" placeholder="Type your message…" autofocus>\n            <input type="hidden">\n\n          </fieldset>\n\n        </form>\n\n      </div>\n      <!-- end chat -->\n\n    </div>\n    <!-- end live-chat -->\n  </ion-fab>\n\n</div>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-chat/block-chat.html"*/,
+            selector: 'block-chat',template:/*ion-inline-start:"N:\code\git\blockusign\BlockUSign.Ionic\src\components\block-chat\block-chat.html"*/'<div class="block-chat">\n\n  <ion-fab bottom right>\n\n    <div id="live-chat" class="shadow6">\n\n\n\n      <header class="clearfix" (click)="minimize()">\n\n        <!-- <a class="chat-close"  >x</a>-->\n\n        <h4>\n\n          <span class="chat-head"></span> - Log</h4>\n\n        <!-- <span style="opacity:.6; padding-left:30px;">YOURNAME/THEIRNAME</span> -->\n\n        <span class="chat-message-counter">3</span>\n\n      </header>\n\n      <div class="chat">\n\n        <div class="chat-history">\n\n          <div class="log-history">\n\n\n\n          </div>\n\n        </div>\n\n        <!-- <p class="chat-feedback">Your partner is typing…</p> -->\n\n        <form action="#" method="post">\n\n\n\n          <fieldset>\n\n\n\n            <input type="text" placeholder="Type your message…" autofocus>\n\n            <input type="hidden">\n\n\n\n          </fieldset>\n\n\n\n        </form>\n\n\n\n      </div>\n\n      <!-- end chat -->\n\n\n\n    </div>\n\n    <!-- end live-chat -->\n\n  </ion-fab>\n\n\n\n</div>'/*ion-inline-end:"N:\code\git\blockusign\BlockUSign.Ionic\src\components\block-chat\block-chat.html"*/,
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_document_service__["a" /* DocumentService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_document_service__["a" /* DocumentService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* Events */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__["a" /* BlockStackService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__["a" /* BlockStackService */]) === "function" && _c || Object])
     ], BlockChatComponent);
@@ -2345,7 +2378,276 @@ var BlockChatComponent = (function () {
 
 /***/ }),
 
-/***/ 506:
+/***/ 510:
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./af": 210,
+	"./af.js": 210,
+	"./ar": 211,
+	"./ar-dz": 212,
+	"./ar-dz.js": 212,
+	"./ar-kw": 213,
+	"./ar-kw.js": 213,
+	"./ar-ly": 214,
+	"./ar-ly.js": 214,
+	"./ar-ma": 215,
+	"./ar-ma.js": 215,
+	"./ar-sa": 216,
+	"./ar-sa.js": 216,
+	"./ar-tn": 217,
+	"./ar-tn.js": 217,
+	"./ar.js": 211,
+	"./az": 218,
+	"./az.js": 218,
+	"./be": 219,
+	"./be.js": 219,
+	"./bg": 220,
+	"./bg.js": 220,
+	"./bm": 221,
+	"./bm.js": 221,
+	"./bn": 222,
+	"./bn.js": 222,
+	"./bo": 223,
+	"./bo.js": 223,
+	"./br": 224,
+	"./br.js": 224,
+	"./bs": 225,
+	"./bs.js": 225,
+	"./ca": 226,
+	"./ca.js": 226,
+	"./cs": 227,
+	"./cs.js": 227,
+	"./cv": 228,
+	"./cv.js": 228,
+	"./cy": 229,
+	"./cy.js": 229,
+	"./da": 230,
+	"./da.js": 230,
+	"./de": 231,
+	"./de-at": 232,
+	"./de-at.js": 232,
+	"./de-ch": 233,
+	"./de-ch.js": 233,
+	"./de.js": 231,
+	"./dv": 234,
+	"./dv.js": 234,
+	"./el": 235,
+	"./el.js": 235,
+	"./en-au": 236,
+	"./en-au.js": 236,
+	"./en-ca": 237,
+	"./en-ca.js": 237,
+	"./en-gb": 238,
+	"./en-gb.js": 238,
+	"./en-ie": 239,
+	"./en-ie.js": 239,
+	"./en-il": 240,
+	"./en-il.js": 240,
+	"./en-nz": 241,
+	"./en-nz.js": 241,
+	"./eo": 242,
+	"./eo.js": 242,
+	"./es": 243,
+	"./es-do": 244,
+	"./es-do.js": 244,
+	"./es-us": 245,
+	"./es-us.js": 245,
+	"./es.js": 243,
+	"./et": 246,
+	"./et.js": 246,
+	"./eu": 247,
+	"./eu.js": 247,
+	"./fa": 248,
+	"./fa.js": 248,
+	"./fi": 249,
+	"./fi.js": 249,
+	"./fo": 250,
+	"./fo.js": 250,
+	"./fr": 251,
+	"./fr-ca": 252,
+	"./fr-ca.js": 252,
+	"./fr-ch": 253,
+	"./fr-ch.js": 253,
+	"./fr.js": 251,
+	"./fy": 254,
+	"./fy.js": 254,
+	"./gd": 255,
+	"./gd.js": 255,
+	"./gl": 256,
+	"./gl.js": 256,
+	"./gom-latn": 257,
+	"./gom-latn.js": 257,
+	"./gu": 258,
+	"./gu.js": 258,
+	"./he": 259,
+	"./he.js": 259,
+	"./hi": 260,
+	"./hi.js": 260,
+	"./hr": 261,
+	"./hr.js": 261,
+	"./hu": 262,
+	"./hu.js": 262,
+	"./hy-am": 263,
+	"./hy-am.js": 263,
+	"./id": 264,
+	"./id.js": 264,
+	"./is": 265,
+	"./is.js": 265,
+	"./it": 266,
+	"./it.js": 266,
+	"./ja": 267,
+	"./ja.js": 267,
+	"./jv": 268,
+	"./jv.js": 268,
+	"./ka": 269,
+	"./ka.js": 269,
+	"./kk": 270,
+	"./kk.js": 270,
+	"./km": 271,
+	"./km.js": 271,
+	"./kn": 272,
+	"./kn.js": 272,
+	"./ko": 273,
+	"./ko.js": 273,
+	"./ky": 274,
+	"./ky.js": 274,
+	"./lb": 275,
+	"./lb.js": 275,
+	"./lo": 276,
+	"./lo.js": 276,
+	"./lt": 277,
+	"./lt.js": 277,
+	"./lv": 278,
+	"./lv.js": 278,
+	"./me": 279,
+	"./me.js": 279,
+	"./mi": 280,
+	"./mi.js": 280,
+	"./mk": 281,
+	"./mk.js": 281,
+	"./ml": 282,
+	"./ml.js": 282,
+	"./mn": 283,
+	"./mn.js": 283,
+	"./mr": 284,
+	"./mr.js": 284,
+	"./ms": 285,
+	"./ms-my": 286,
+	"./ms-my.js": 286,
+	"./ms.js": 285,
+	"./mt": 287,
+	"./mt.js": 287,
+	"./my": 288,
+	"./my.js": 288,
+	"./nb": 289,
+	"./nb.js": 289,
+	"./ne": 290,
+	"./ne.js": 290,
+	"./nl": 291,
+	"./nl-be": 292,
+	"./nl-be.js": 292,
+	"./nl.js": 291,
+	"./nn": 293,
+	"./nn.js": 293,
+	"./pa-in": 294,
+	"./pa-in.js": 294,
+	"./pl": 295,
+	"./pl.js": 295,
+	"./pt": 296,
+	"./pt-br": 297,
+	"./pt-br.js": 297,
+	"./pt.js": 296,
+	"./ro": 298,
+	"./ro.js": 298,
+	"./ru": 299,
+	"./ru.js": 299,
+	"./sd": 300,
+	"./sd.js": 300,
+	"./se": 301,
+	"./se.js": 301,
+	"./si": 302,
+	"./si.js": 302,
+	"./sk": 303,
+	"./sk.js": 303,
+	"./sl": 304,
+	"./sl.js": 304,
+	"./sq": 305,
+	"./sq.js": 305,
+	"./sr": 306,
+	"./sr-cyrl": 307,
+	"./sr-cyrl.js": 307,
+	"./sr.js": 306,
+	"./ss": 308,
+	"./ss.js": 308,
+	"./sv": 309,
+	"./sv.js": 309,
+	"./sw": 310,
+	"./sw.js": 310,
+	"./ta": 311,
+	"./ta.js": 311,
+	"./te": 312,
+	"./te.js": 312,
+	"./tet": 313,
+	"./tet.js": 313,
+	"./tg": 314,
+	"./tg.js": 314,
+	"./th": 315,
+	"./th.js": 315,
+	"./tl-ph": 316,
+	"./tl-ph.js": 316,
+	"./tlh": 317,
+	"./tlh.js": 317,
+	"./tr": 318,
+	"./tr.js": 318,
+	"./tzl": 319,
+	"./tzl.js": 319,
+	"./tzm": 320,
+	"./tzm-latn": 321,
+	"./tzm-latn.js": 321,
+	"./tzm.js": 320,
+	"./ug-cn": 322,
+	"./ug-cn.js": 322,
+	"./uk": 323,
+	"./uk.js": 323,
+	"./ur": 324,
+	"./ur.js": 324,
+	"./uz": 325,
+	"./uz-latn": 326,
+	"./uz-latn.js": 326,
+	"./uz.js": 325,
+	"./vi": 327,
+	"./vi.js": 327,
+	"./x-pseudo": 328,
+	"./x-pseudo.js": 328,
+	"./yo": 329,
+	"./yo.js": 329,
+	"./zh-cn": 330,
+	"./zh-cn.js": 330,
+	"./zh-hk": 331,
+	"./zh-hk.js": 331,
+	"./zh-tw": 332,
+	"./zh-tw.js": 332
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 510;
+
+/***/ }),
+
+/***/ 511:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2353,7 +2655,7 @@ var BlockChatComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_document_service__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_email_service__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_email_service__ = __webpack_require__(334);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2422,7 +2724,7 @@ var EmailPage = (function () {
     };
     EmailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-email',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/email/email.html"*/'<ion-content class="no-overflow-page email-page">\n\n  <ion-grid>\n    <ion-row>\n      <ion-col width-100>\n\n        <block-steps activeStep="3">\n        </block-steps>\n\n\n        <br/>\n        <br/>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  \n  <section style="position: relative;">\n    <ion-item style="max-width:250px; background:transparent;">\n      <ion-label floating>Enter Email</ion-label>\n      <ion-input [(ngModel)]="email"></ion-input>\n   </ion-item>\n   \n   <button ion-button (click)="emailService.sendEmail(email)">Send Email</button>  \n  </section>\n\n  \n\n\n\n  <block-pdf>\n  </block-pdf>\n\n  <!-- <ion-card>\n\n    <ion-card-header>\n      Work In Progress\n    </ion-card-header>\n\n    <ion-card-content>\n      <img src="./../../assets/imgs/bugcode.jpg"  style="max-width: 300px;"/>\n      <br />\n      <p>\n        Want this feature faster? Considering donating here: BTC - <ion-input value="1Jw3xsPzmYus3ke4XYXAHHyzpxD1sjQVta" style="font-size: large"></ion-input>\n      </p>\n\n      <p>\n        <br/>\n        The email feature will be enabled in the next release. For now, copy and paste this link to sign. Right now, only you can\n        sign the document. The next release will allow you to send this document to somebody else to sign using <a href="https://blockstack.org/tutorials/multi-player-storage" target="_blank">Blockstacks\n          muli-player storage.</a>\n        <br/>\n      </p>\n\n\n      <ion-input [value]="getUrl()" style="font-size: large"></ion-input>\n\n\n\n\n      <ion-input [value]="getUrl()" style="font-size: large"></ion-input>\n\n\n    </ion-card-content>\n\n  </ion-card>\n -->\n\n\n\n\n\n\n</ion-content>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/email/email.html"*/,
+            selector: 'page-email',template:/*ion-inline-start:"N:\code\git\blockusign\BlockUSign.Ionic\src\pages\email\email.html"*/'<ion-content class="no-overflow-page email-page">\n\n\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col width-100>\n\n\n\n        <block-steps activeStep="3">\n\n        </block-steps>\n\n\n\n\n\n        <br/>\n\n        <br/>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  \n\n  <section style="position: relative;">\n\n    <ion-item style="max-width:250px; background:transparent;">\n\n      <ion-label floating>Enter Email</ion-label>\n\n      <ion-input [(ngModel)]="email"></ion-input>\n\n   </ion-item>\n\n   \n\n   <button ion-button (click)="emailService.sendEmail(email)">Send Email</button>  \n\n  </section>\n\n\n\n  \n\n\n\n\n\n\n\n  <block-pdf>\n\n  </block-pdf>\n\n\n\n  <!-- <ion-card>\n\n\n\n    <ion-card-header>\n\n      Work In Progress\n\n    </ion-card-header>\n\n\n\n    <ion-card-content>\n\n      <img src="./../../assets/imgs/bugcode.jpg"  style="max-width: 300px;"/>\n\n      <br />\n\n      <p>\n\n        Want this feature faster? Considering donating here: BTC - <ion-input value="1Jw3xsPzmYus3ke4XYXAHHyzpxD1sjQVta" style="font-size: large"></ion-input>\n\n      </p>\n\n\n\n      <p>\n\n        <br/>\n\n        The email feature will be enabled in the next release. For now, copy and paste this link to sign. Right now, only you can\n\n        sign the document. The next release will allow you to send this document to somebody else to sign using <a href="https://blockstack.org/tutorials/multi-player-storage" target="_blank">Blockstacks\n\n          muli-player storage.</a>\n\n        <br/>\n\n      </p>\n\n\n\n\n\n      <ion-input [value]="getUrl()" style="font-size: large"></ion-input>\n\n\n\n\n\n\n\n\n\n      <ion-input [value]="getUrl()" style="font-size: large"></ion-input>\n\n\n\n\n\n    </ion-card-content>\n\n\n\n  </ion-card>\n\n -->\n\n\n\n\n\n\n\n\n\n\n\n\n\n</ion-content>'/*ion-inline-end:"N:\code\git\blockusign\BlockUSign.Ionic\src\pages\email\email.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
@@ -2436,7 +2738,7 @@ var EmailPage = (function () {
 
 /***/ }),
 
-/***/ 507:
+/***/ 512:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2491,7 +2793,7 @@ var ReviewPage = (function () {
     };
     ReviewPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-review',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/review/review.html"*/'<ion-content class="no-overflow-page">\n\n  <ion-grid>\n    <ion-row>\n      <ion-col width-100>\n        <block-steps activeStep="5">\n        </block-steps>\n        <br/>\n        <br/>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <block-pdf>\n\n  </block-pdf>\n\n<!-- \n  <ion-card>\n\n      <ion-card-header>\n        Work In Progress\n      </ion-card-header>\n  \n      <ion-card-content>\n        <img src="./../../assets/imgs/bugcode.jpg"  style="max-width: 300px;"/>\n        <br />\n        <p>\n          Want this feature faster? Considering donating here: BTC - <ion-input value="1Jw3xsPzmYus3ke4XYXAHHyzpxD1sjQVta" style="font-size: large"></ion-input>\n        </p>\n  \n\n      </ion-card-content>\n  \n    </ion-card> -->\n\n</ion-content>\n'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/review/review.html"*/,
+            selector: 'page-review',template:/*ion-inline-start:"N:\code\git\blockusign\BlockUSign.Ionic\src\pages\review\review.html"*/'<ion-content class="no-overflow-page">\n\n\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col width-100>\n\n        <block-steps activeStep="5">\n\n        </block-steps>\n\n        <br/>\n\n        <br/>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <block-pdf>\n\n\n\n  </block-pdf>\n\n\n\n<!-- \n\n  <ion-card>\n\n\n\n      <ion-card-header>\n\n        Work In Progress\n\n      </ion-card-header>\n\n  \n\n      <ion-card-content>\n\n        <img src="./../../assets/imgs/bugcode.jpg"  style="max-width: 300px;"/>\n\n        <br />\n\n        <p>\n\n          Want this feature faster? Considering donating here: BTC - <ion-input value="1Jw3xsPzmYus3ke4XYXAHHyzpxD1sjQVta" style="font-size: large"></ion-input>\n\n        </p>\n\n  \n\n\n\n      </ion-card-content>\n\n  \n\n    </ion-card> -->\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"N:\code\git\blockusign\BlockUSign.Ionic\src\pages\review\review.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__services_document_service__["a" /* DocumentService */]])
     ], ReviewPage);
@@ -2502,7 +2804,7 @@ var ReviewPage = (function () {
 
 /***/ }),
 
-/***/ 508:
+/***/ 513:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2563,7 +2865,7 @@ var SignPage = (function () {
     };
     SignPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-sign',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/sign/sign.html"*/'<!-- <ion-header>\n  <ion-navbar>\n    <ion-title>sign</ion-title>\n  </ion-navbar>\n</ion-header> -->\n<ion-content class="no-overflow-page">\n\n  <ion-grid>\n    <ion-row>\n      <ion-col width-100>\n        <block-steps activeStep="4" ></block-steps>\n        <br/>\n        <br/>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <block-pdf showToolBar="true" showSignature="true" showButtons="true">\n\n  </block-pdf>\n\n<!-- \n  <ion-card>\n\n     \n      <ion-card-header>\n        Work In Progress\n      </ion-card-header>\n  \n      <ion-card-content>\n        <img src="./../../assets/imgs/officespace.jpg"  style="max-width: 300px;"/>\n        <br />\n        <p>\n          Want this feature faster? Considering donating here: BTC - <ion-input value="1Jw3xsPzmYus3ke4XYXAHHyzpxD1sjQVta" style="font-size: large"></ion-input>\n        </p>\n  \n        <p>\n          <br/>\n            The signing feature will be enabled in the next release using <a href="https://blockstack.org/tutorials/multi-player-storage" target="_blank">Blockstacks\n            muli-player storage.</a>\n          <br/>\n        </p>\n  \n\n  \n  \n      </ion-card-content>\n  \n    </ion-card> -->\n\n</ion-content>\n'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/sign/sign.html"*/,
+            selector: 'page-sign',template:/*ion-inline-start:"N:\code\git\blockusign\BlockUSign.Ionic\src\pages\sign\sign.html"*/'<!-- <ion-header>\n\n  <ion-navbar>\n\n    <ion-title>sign</ion-title>\n\n  </ion-navbar>\n\n</ion-header> -->\n\n<ion-content class="no-overflow-page">\n\n\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col width-100>\n\n        <block-steps activeStep="4" ></block-steps>\n\n        <br/>\n\n        <br/>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <block-pdf showToolBar="true" showSignature="true" showButtons="true">\n\n\n\n  </block-pdf>\n\n\n\n<!-- \n\n  <ion-card>\n\n\n\n     \n\n      <ion-card-header>\n\n        Work In Progress\n\n      </ion-card-header>\n\n  \n\n      <ion-card-content>\n\n        <img src="./../../assets/imgs/officespace.jpg"  style="max-width: 300px;"/>\n\n        <br />\n\n        <p>\n\n          Want this feature faster? Considering donating here: BTC - <ion-input value="1Jw3xsPzmYus3ke4XYXAHHyzpxD1sjQVta" style="font-size: large"></ion-input>\n\n        </p>\n\n  \n\n        <p>\n\n          <br/>\n\n            The signing feature will be enabled in the next release using <a href="https://blockstack.org/tutorials/multi-player-storage" target="_blank">Blockstacks\n\n            muli-player storage.</a>\n\n          <br/>\n\n        </p>\n\n  \n\n\n\n  \n\n  \n\n      </ion-card-content>\n\n  \n\n    </ion-card> -->\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"N:\code\git\blockusign\BlockUSign.Ionic\src\pages\sign\sign.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__services_document_service__["a" /* DocumentService */]])
     ], SignPage);
@@ -2574,278 +2876,17 @@ var SignPage = (function () {
 
 /***/ }),
 
-/***/ 565:
-/***/ (function(module, exports, __webpack_require__) {
-
-var map = {
-	"./af": 265,
-	"./af.js": 265,
-	"./ar": 266,
-	"./ar-dz": 267,
-	"./ar-dz.js": 267,
-	"./ar-kw": 268,
-	"./ar-kw.js": 268,
-	"./ar-ly": 269,
-	"./ar-ly.js": 269,
-	"./ar-ma": 270,
-	"./ar-ma.js": 270,
-	"./ar-sa": 271,
-	"./ar-sa.js": 271,
-	"./ar-tn": 272,
-	"./ar-tn.js": 272,
-	"./ar.js": 266,
-	"./az": 273,
-	"./az.js": 273,
-	"./be": 274,
-	"./be.js": 274,
-	"./bg": 275,
-	"./bg.js": 275,
-	"./bm": 276,
-	"./bm.js": 276,
-	"./bn": 277,
-	"./bn.js": 277,
-	"./bo": 278,
-	"./bo.js": 278,
-	"./br": 279,
-	"./br.js": 279,
-	"./bs": 280,
-	"./bs.js": 280,
-	"./ca": 281,
-	"./ca.js": 281,
-	"./cs": 282,
-	"./cs.js": 282,
-	"./cv": 283,
-	"./cv.js": 283,
-	"./cy": 284,
-	"./cy.js": 284,
-	"./da": 285,
-	"./da.js": 285,
-	"./de": 286,
-	"./de-at": 287,
-	"./de-at.js": 287,
-	"./de-ch": 288,
-	"./de-ch.js": 288,
-	"./de.js": 286,
-	"./dv": 289,
-	"./dv.js": 289,
-	"./el": 290,
-	"./el.js": 290,
-	"./en-au": 291,
-	"./en-au.js": 291,
-	"./en-ca": 292,
-	"./en-ca.js": 292,
-	"./en-gb": 293,
-	"./en-gb.js": 293,
-	"./en-ie": 294,
-	"./en-ie.js": 294,
-	"./en-nz": 295,
-	"./en-nz.js": 295,
-	"./eo": 296,
-	"./eo.js": 296,
-	"./es": 297,
-	"./es-do": 298,
-	"./es-do.js": 298,
-	"./es-us": 299,
-	"./es-us.js": 299,
-	"./es.js": 297,
-	"./et": 300,
-	"./et.js": 300,
-	"./eu": 301,
-	"./eu.js": 301,
-	"./fa": 302,
-	"./fa.js": 302,
-	"./fi": 303,
-	"./fi.js": 303,
-	"./fo": 304,
-	"./fo.js": 304,
-	"./fr": 305,
-	"./fr-ca": 306,
-	"./fr-ca.js": 306,
-	"./fr-ch": 307,
-	"./fr-ch.js": 307,
-	"./fr.js": 305,
-	"./fy": 308,
-	"./fy.js": 308,
-	"./gd": 309,
-	"./gd.js": 309,
-	"./gl": 310,
-	"./gl.js": 310,
-	"./gom-latn": 311,
-	"./gom-latn.js": 311,
-	"./gu": 312,
-	"./gu.js": 312,
-	"./he": 313,
-	"./he.js": 313,
-	"./hi": 314,
-	"./hi.js": 314,
-	"./hr": 315,
-	"./hr.js": 315,
-	"./hu": 316,
-	"./hu.js": 316,
-	"./hy-am": 317,
-	"./hy-am.js": 317,
-	"./id": 318,
-	"./id.js": 318,
-	"./is": 319,
-	"./is.js": 319,
-	"./it": 320,
-	"./it.js": 320,
-	"./ja": 321,
-	"./ja.js": 321,
-	"./jv": 322,
-	"./jv.js": 322,
-	"./ka": 323,
-	"./ka.js": 323,
-	"./kk": 324,
-	"./kk.js": 324,
-	"./km": 325,
-	"./km.js": 325,
-	"./kn": 326,
-	"./kn.js": 326,
-	"./ko": 327,
-	"./ko.js": 327,
-	"./ky": 328,
-	"./ky.js": 328,
-	"./lb": 329,
-	"./lb.js": 329,
-	"./lo": 330,
-	"./lo.js": 330,
-	"./lt": 331,
-	"./lt.js": 331,
-	"./lv": 332,
-	"./lv.js": 332,
-	"./me": 333,
-	"./me.js": 333,
-	"./mi": 334,
-	"./mi.js": 334,
-	"./mk": 335,
-	"./mk.js": 335,
-	"./ml": 336,
-	"./ml.js": 336,
-	"./mr": 337,
-	"./mr.js": 337,
-	"./ms": 338,
-	"./ms-my": 339,
-	"./ms-my.js": 339,
-	"./ms.js": 338,
-	"./mt": 340,
-	"./mt.js": 340,
-	"./my": 341,
-	"./my.js": 341,
-	"./nb": 342,
-	"./nb.js": 342,
-	"./ne": 343,
-	"./ne.js": 343,
-	"./nl": 344,
-	"./nl-be": 345,
-	"./nl-be.js": 345,
-	"./nl.js": 344,
-	"./nn": 346,
-	"./nn.js": 346,
-	"./pa-in": 347,
-	"./pa-in.js": 347,
-	"./pl": 348,
-	"./pl.js": 348,
-	"./pt": 349,
-	"./pt-br": 350,
-	"./pt-br.js": 350,
-	"./pt.js": 349,
-	"./ro": 351,
-	"./ro.js": 351,
-	"./ru": 352,
-	"./ru.js": 352,
-	"./sd": 353,
-	"./sd.js": 353,
-	"./se": 354,
-	"./se.js": 354,
-	"./si": 355,
-	"./si.js": 355,
-	"./sk": 356,
-	"./sk.js": 356,
-	"./sl": 357,
-	"./sl.js": 357,
-	"./sq": 358,
-	"./sq.js": 358,
-	"./sr": 359,
-	"./sr-cyrl": 360,
-	"./sr-cyrl.js": 360,
-	"./sr.js": 359,
-	"./ss": 361,
-	"./ss.js": 361,
-	"./sv": 362,
-	"./sv.js": 362,
-	"./sw": 363,
-	"./sw.js": 363,
-	"./ta": 364,
-	"./ta.js": 364,
-	"./te": 365,
-	"./te.js": 365,
-	"./tet": 366,
-	"./tet.js": 366,
-	"./th": 367,
-	"./th.js": 367,
-	"./tl-ph": 368,
-	"./tl-ph.js": 368,
-	"./tlh": 369,
-	"./tlh.js": 369,
-	"./tr": 370,
-	"./tr.js": 370,
-	"./tzl": 371,
-	"./tzl.js": 371,
-	"./tzm": 372,
-	"./tzm-latn": 373,
-	"./tzm-latn.js": 373,
-	"./tzm.js": 372,
-	"./uk": 374,
-	"./uk.js": 374,
-	"./ur": 375,
-	"./ur.js": 375,
-	"./uz": 376,
-	"./uz-latn": 377,
-	"./uz-latn.js": 377,
-	"./uz.js": 376,
-	"./vi": 378,
-	"./vi.js": 378,
-	"./x-pseudo": 379,
-	"./x-pseudo.js": 379,
-	"./yo": 380,
-	"./yo.js": 380,
-	"./zh-cn": 381,
-	"./zh-cn.js": 381,
-	"./zh-hk": 382,
-	"./zh-hk.js": 382,
-	"./zh-tw": 383,
-	"./zh-tw.js": 383
-};
-function webpackContext(req) {
-	return __webpack_require__(webpackContextResolve(req));
-};
-function webpackContextResolve(req) {
-	var id = map[req];
-	if(!(id + 1)) // check for number or string
-		throw new Error("Cannot find module '" + req + "'.");
-	return id;
-};
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = 565;
-
-/***/ }),
-
 /***/ 58:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BlockStepsComponentModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__block_steps_block_steps__ = __webpack_require__(448);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__block_steps_block_steps__ = __webpack_require__(452);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__block_pdf_block_pdf__ = __webpack_require__(449);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__block_pdf_block_pdf__ = __webpack_require__(453);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_directives_module__ = __webpack_require__(208);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__block_chat_block_chat__ = __webpack_require__(505);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__block_chat_block_chat__ = __webpack_require__(509);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2890,19 +2931,19 @@ var BlockStepsComponentModule = (function () {
 
 /***/ }),
 
-/***/ 583:
+/***/ 587:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(256);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(259);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(379);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(382);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(338);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_annotate_annotate__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_document_service__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__options_popover_page__ = __webpack_require__(384);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__options_popover_page__ = __webpack_require__(388);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_toPromise__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_toPromise__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3075,7 +3116,7 @@ var MyApp = (function () {
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Nav */])
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/app/app.html"*/'<!-- <ion-menu [content]="content" scroll="false" >\n  \n\n  <ion-content scroll="false">\n    <ion-list scroll="false">\n      <button scroll="false" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n        {{p.title}}\n      </button>\n    </ion-list>\n  </ion-content>\n</ion-menu> -->\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-split-pane >\n  <ion-menu [content]="content" >\n      <div class="discord" style="height: 100%; width: 300px; color:whitesmoke">\n        <!-- https://codepen.io/thesbros/pen/vxpMPp -->\n        <main class="container">\n          <aside class="servers">\n            <div class="servers-collection">\n              <div class="server focusable server-friends" role="button" aria-label="Friends unread">\n                <div class="server-icon">\n                  <svg>\n                    <use xlink:href="#icon-friends" />\n                  </svg>\n                </div>\n              </div>\n            </div>\n\n          \n            <div class="servers-collection">\n              <div class="server focusable active" role="button" aria-label="My Server" aria-selected="true">\n                <div class="server-icon">\n                 <!-- <img src="https://discordapp.com/assets/0e291f67c9274a1abdddeb3fd919cbaa.png" /> -->\n                  <img class="avatar" alt="Avatar" [src]="avatar" />\n                </div>\n              </div>\n            </div>\n          </aside>\n\n\n\n\n          <aside class="channels">\n            <header class="channels-header focusable" (click)="home()">\n\n              <!-- <img src="./assets/imgs/blockusign.png" height="45px" width="45px" /> -->\n              <img src="./assets/imgs/blockusignLogoSvg.svg" height="45px" width="45px" class="blockusign-logo" />\n              <img src="./assets/imgs/blockusignTextLoRes.png" width="120px" style="padding-left: 12px; padding-top: 10px" />\n             \n              \n            \n\n\n\n              <h3 role="header" class="channels-header-name" style="padding-right: 10px;"></h3> \n              <!-- <button ion-button style="padding: 10px 10px 10px 10px; background: green; height: 45px;"> NEW + </button> -->\n              <svg role="button" aria-label="Dropdown" class="channels-header-dropdown">\n                <use xlink:href="#icon-dropdown" />\n              </svg>\n\n             \n\n\n            </header>\n\n            <section class="channels-list">\n\n              <section  (click)="home()">\n                <button ion-button icon-end \n                  style="float:right;width:100%;background-color:green; color:white; border-radius: 5px; margin-bottom: 20px; margin-top: 20px">New Doc\n                  <ion-icon name="md-add"></ion-icon>\n                </button>\n                \n              </section>\n\n              <header class="channels-list-header" (click)="home()">\n                <span>Documents</span>\n              </header>\n\n             \n              \n              <ul class="channels-list-text" >\n                <div *ngFor="let item of documentsList">\n                    <li [ngClass]="(item == documentService.currentDoc) ? \'channel focusable channel-text active\' : \'channel focusable channel-text\'"   >\n                        <!-- <span class="channel-name">blockusign nda.pdf</span> -->\n                        <span (click)="documentSelected($event, item)">\n                          {{ item.fileName }}\n                        </span>\n                        <!-- <button class="button" role="button" aria-label="Invite" >\n                            <ion-icon md="md-trash" (click)="documentRemove(item)"></ion-icon>\n                        </button> -->\n                        <!-- <button class="button" role="button" aria-label="settings">\n                          <svg>\n                            <use xlink:href="#icon-channel-settings" />\n                          </svg>\n                        </button> -->\n                        <button ion-button icon-only  style="padding-left: 10px; background: transparent" (click)="presentPopover($event, item)">\n                                <ion-icon name="more"></ion-icon>\n                        </button>\n                      </li>\n                </div>\n                \n\n                <!-- <li class="channel focusable channel-text active">\n                  <span>my photo release form.pdf</span>\n                  <button class="button" role="button" aria-label="Invite">\n                    <svg>\n                      <use xlink:href="#icon-invite" />\n                    </svg>\n                  </button>\n                  <button class="button" role="button" aria-label="settings">\n                    <svg>\n                      <use xlink:href="#icon-channel-settings" />\n                    </svg>\n                  </button>\n                </li>\n\n                <li class="channel focusable channel-text">\n                  <span>may lease.pdf</span>\n                  <button class="button" role="button" aria-label="Invite">\n                    <svg>\n                      <use xlink:href="#icon-invite" />\n                    </svg>\n                  </button>\n                  <button class="button" role="button" aria-label="settings">\n                    <svg>\n                      <use xlink:href="#icon-channel-settings" />\n                    </svg>\n                  </button>\n                </li>\n\n                <li class="channel focusable channel-text">\n                  <span >escrow agreement.pdf</span>\n                  <button class="button" role="button" aria-label="Invite">\n                    <svg>\n                      <use xlink:href="#icon-invite" />\n                    </svg>\n                  </button>\n                  <button class="button" role="button" aria-label="settings">\n                    <svg>\n                      <use xlink:href="#icon-channel-settings" />\n                    </svg>\n                  </button>\n                </li> -->\n\n              </ul>\n\n\n\n              <header class="channels-list-header focusable">\n                <span>Templates</span>\n              </header>\n\n              <ul class="channels-list-text">\n                <li class="channel focusable channel-text ">\n                  <span class="channel-name">COMING SOON</span>\n                </li>\n              </ul>\n\n              <header class="channels-list-header focusable">\n                <span>Analytics</span>\n              </header>\n              <ul class="channels-list-text">\n                <li class="channel focusable channel-text ">\n                  <span class="channel-name">COMING SOON</span>\n                </li>\n              </ul>\n            </section>\n\n\n\n            <footer class="channels-footer">\n              <!-- <img class="avatar" alt="Avatar" src="https://discordapp.com/assets/0e291f67c9274a1abdddeb3fd919cbaa.png" /> -->\n              <img class="avatar" alt="Avatar" [src]="avatar" />\n              <div class="channels-footer-details">\n                <span class="username">\n                  <a (click)="logout()" style="float:right">{{name}} {{ loginState }} </a>\n                </span>\n                <!-- <span class="tag">#0001</span> -->\n              </div>\n              <!-- <div class="channels-footer-controls button-group">\n                        <button role="button" aria-label="Mute" class="button button-mute"><svg><use xlink:href="#icon-mute" /></svg></button>\n                        <button role="button" aria-label="Deafen" class="button button-deafen"><svg><use xlink:href="#icon-deafen" /></svg></button>\n                        <button role="button" aria-label="Settings" class="button button-settings"><svg><use xlink:href="#icon-settings" /></svg></button>\n                      </div> -->\n            </footer>\n          </aside>\n\n\n        </main>\n      </div>\n   \n  </ion-menu>\n  <ion-nav [root]="rootPage" main #content swipeBackEnabled="false">\n    <!-- content injected here -->\n  </ion-nav>\n  <ion-fab left top menuToggle>\n    <button ion-fab color="light" color="primary">\n      <ion-icon name="menu"></ion-icon>\n    </button>\n  </ion-fab>\n</ion-split-pane>\n\n<!-- ICONS -->\n<div style="visibility: hidden">\n  <svg id="icon-friends" viewBox="-289 382 32 27.1"><style id="style3">.st0{fill:#FFFFFF;} .st1{opacity:0.6;}</style><g id="g4145" fill="#fff"><path id="path5" d="M-273 409.1c-4.1 0-6.8-.6-7.9-1.7-.5-.6-.6-1.1-.6-1.3 0-.7.1-2.9.6-3.8.1-.3.5-1 4.5-2.4-1.6-1.4-2.6-4-2.6-7.1 0-4.2 2.3-7 5.9-7.1h.1c3.6.1 5.9 2.8 5.9 7.1 0 3.1-1 5.7-2.6 7.1 4 1.4 4.4 2.1 4.5 2.4.4.9.5 3.1.6 3.8 0 .2 0 .7-.6 1.3-1.1 1.1-3.7 1.7-7.8 1.7zm0-2c5.1 0 6.2-.9 6.4-1.1-.1-1.1-.2-2.3-.3-2.7-.6-.4-2.9-1.3-4.8-1.9l-.7-.2-.1-2 .7-.3c1.7-.6 2.8-3.1 2.8-6.1 0-3.1-1.5-5-3.9-5.1-2.5 0-4 2-4 5.1 0 3 1.1 5.5 2.8 6.1l.7.3-.1 2-.7.2c-1.9.6-4.2 1.5-4.8 1.9-.1.4-.3 1.6-.3 2.7.1.2 1.3 1.1 6.3 1.1z" class="st0"/><g id="g7" class="st1" opacity=".6"><path id="path9" d="M-257 402.4c0-.7-.1-2.9-.6-3.8-.1-.3-.5-1-4.5-2.4 1.6-1.4 2.6-4 2.6-7.1 0-4.2-2.3-7-5.9-7.1h-.1c-1.9 0-3.5.8-4.5 2.2.6.3 1.2.6 1.8 1 .7-.8 1.6-1.3 2.8-1.3 2.4 0 3.9 2 3.9 5.1 0 3-1.1 5.5-2.8 6.1l-.7.3.1 2 .7.2c1.9.6 4.3 1.5 4.8 1.9.1.4.3 1.6.3 2.7-.2.2-1 .8-3.8 1 .1.6.2 1.2.2 2 2.5-.2 4.2-.8 5-1.6.7-.5.7-1 .7-1.2z" class="st0"/><path id="path11" d="M-287 402.3c.1-1.1.2-2.3.3-2.7.6-.4 2.9-1.3 4.8-1.9l.7-.2.1-2-.7-.3c-1.6-.6-2.8-3.1-2.8-6.1 0-3.1 1.5-5 4-5.1 1.2 0 2.1.5 2.8 1.3.5-.4 1.1-.8 1.8-1-1-1.4-2.6-2.2-4.5-2.2h-.1c-3.6 0-5.9 2.8-5.9 7.1 0 3.1 1 5.7 2.6 7.1-4 1.4-4.4 2.1-4.5 2.4-.4.9-.5 3.1-.6 3.8 0 .2 0 .7.6 1.3.8.9 2.5 1.4 5.1 1.6 0-.7.1-1.4.2-2-2.9-.3-3.7-.9-3.9-1.1z" class="st0"/></g></g></svg>\n\n  <svg id="icon-mute" viewBox="0 0 16 16"><path fill="#5D6063" d="M12.5,8v1c0,2.2-1.8,4-4,4h-1c-2.2,0-4-1.8-4-4V8h-1v1 c0,2.8,2.2,5,5,5v1H7c-0.3,0-0.5,0.2-0.5,0.5C6.5,15.8,6.7,16,7,16h2c0.3,0,0.5-0.2,0.5-0.5C9.5,15.2,9.3,15,9,15H8.5v-1 c2.8,0,5-2.2,5-5V8H12.5z M8,12c1.9,0,3.5-1.6,3.5-3.5v-5C11.5,1.6,9.9,0,8,0C6.1,0,4.5,1.6,4.5,3.5v5C4.5,10.4,6.1,12,8,12z M5.5,3.5C5.5,2.1,6.6,1,8,1c1.4,0,2.5,1.1,2.5,2.5v5C10.5,9.9,9.4,11,8,11c-1.4,0-2.5-1.1-2.5-2.5V3.5z"/></svg>\n  \n  <svg id="icon-deafen" viewBox="0 0 16 16"><path fill="#5D6063" d="M15.9,9C16,8.7,16,8.3,16,8c0-4.4-3.6-8-8-8C3.6,0,0,3.6,0,8 c0,0.3,0,0.7,0.1,1h0C0,9.2,0,9.3,0,9.5v4C0,14.3,0.7,15,1.5,15h2C4.3,15,5,14.3,5,13.5v-4C5,8.7,4.3,8,3.5,8h-2 C1.3,8,1.2,8,1,8.1C1,8.1,1,8,1,8c0-3.9,3.1-7,7-7c3.9,0,7,3.1,7,7c0,0,0,0.1,0,0.1C14.8,8,14.7,8,14.5,8h-2C11.7,8,11,8.7,11,9.5 v4c0,0.8,0.7,1.5,1.5,1.5h2c0.8,0,1.5-0.7,1.5-1.5v-4C16,9.3,16,9.2,15.9,9L15.9,9z M1.5,9h2C3.8,9,4,9.2,4,9.5v4 C4,13.8,3.8,14,3.5,14h-2C1.2,14,1,13.8,1,13.5v-4C1,9.2,1.2,9,1.5,9z M15,13.5c0,0.3-0.2,0.5-0.5,0.5h-2c-0.3,0-0.5-0.2-0.5-0.5 v-4C12,9.2,12.2,9,12.5,9h2C14.8,9,15,9.2,15,9.5V13.5z"/></svg>\n  \n  <svg id="icon-settings" viewBox="0 0 16 16"><path fill="#5D6063" d="M8,5C6.3,5,5,6.3,5,8c0,1.7,1.3,3,3,3c1.7,0,3-1.3,3-3 C11,6.3,9.7,5,8,5z M8,10c-1.1,0-2-0.9-2-2c0-1.1,0.9-2,2-2s2,0.9,2,2C10,9.1,9.1,10,8,10z M16,8c0-1-0.8-1.9-1.8-2 c-0.1-0.3-0.3-0.7-0.4-1c0.7-0.8,0.6-1.9-0.1-2.7c-0.7-0.7-1.9-0.8-2.7-0.1c-0.3-0.2-0.6-0.3-1-0.4C9.9,0.8,9,0,8,0 C7,0,6.1,0.8,6,1.8C5.7,1.9,5.3,2.1,5,2.2C4.2,1.6,3.1,1.6,2.3,2.3C1.6,3.1,1.6,4.2,2.2,5C2.1,5.3,1.9,5.7,1.8,6C0.8,6.1,0,7,0,8 c0,1,0.8,1.9,1.8,2c0.1,0.3,0.3,0.7,0.4,1c-0.7,0.8-0.6,1.9,0.1,2.7c0.7,0.7,1.9,0.8,2.7,0.1c0.3,0.2,0.6,0.3,1,0.4 C6.1,15.2,7,16,8,16c1,0,1.9-0.8,2-1.8c0.3-0.1,0.7-0.3,1-0.4c0.8,0.7,1.9,0.6,2.7-0.1c0.7-0.7,0.8-1.9,0.1-2.7 c0.2-0.3,0.3-0.6,0.4-1C15.2,9.9,16,9,16,8z M13.4,9c-0.1,0.8-0.5,1.5-0.9,2.1l0.4,0.4c0.4,0.4,0.4,1,0,1.4c-0.4,0.4-1,0.4-1.4,0 l-0.4-0.4C10.5,13,9.8,13.3,9,13.4V14c0,0.6-0.4,1-1,1c-0.6,0-1-0.4-1-1v-0.6c-0.8-0.1-1.5-0.5-2.1-0.9l-0.4,0.4 c-0.4,0.4-1,0.4-1.4,0c-0.4-0.4-0.4-1,0-1.4l0.4-0.4C3,10.5,2.7,9.8,2.6,9H2C1.4,9,1,8.6,1,8c0-0.6,0.4-1,1-1h0.6 C2.7,6.2,3,5.5,3.5,4.9L3.1,4.5c-0.4-0.4-0.4-1,0-1.4c0.4-0.4,1-0.4,1.4,0l0.4,0.4C5.5,3,6.2,2.7,7,2.6V2c0-0.6,0.4-1,1-1 c0.6,0,1,0.4,1,1v0.6c0.8,0.1,1.5,0.5,2.1,0.9l0.4-0.4c0.4-0.4,1-0.4,1.4,0c0.4,0.4,0.4,1,0,1.4l-0.4,0.4C13,5.5,13.3,6.2,13.4,7 H14c0.6,0,1,0.4,1,1c0,0.6-0.4,1-1,1H13.4z"/></svg>\n  \n  <svg id="icon-dropdown" viewBox="0 0 18 18"><style>.dd{stroke:#ABADAF;stroke-width:2px;stroke-dashoffset:1;stroke-dasharray:inherit}</style><path class="dd" stroke="#FFF" d="M4.5 4.5l9 9" stroke-linecap="round"></path><path class="dd" stroke="#FFF" d="M13.5 4.5l-9 9" stroke-linecap="round"></path></svg>\n  \n  <svg id="icon-invite" viewBox="0 0 16 16"><path fill="#fff" d="M6.3,3.4L8,1.7v9.8C8,11.8,8.2,12,8.5,12C8.8,12,9,11.8,9,11.5V1.7l1.7,1.7c0.2,0.2,0.5,0.2,0.7,0c0.2-0.2,0.2-0.5,0-0.7L8.9,0.2c0,0,0,0,0-0.1C8.8,0,8.6,0,8.5,0c0,0,0,0,0,0c0,0,0,0,0,0C8.4,0,8.2,0,8.1,0.1c0,0,0,0,0,0.1L5.6,2.7c-0.2,0.2-0.2,0.5,0,0.7C5.8,3.5,6.1,3.5,6.3,3.4z M14,4h-1.5v1h1C13.8,5,14,5.2,14,5.5v9c0,0.3-0.2,0.5-0.5,0.5h-10C3.2,15,3,14.8,3,14.5v-9C3,5.2,3.2,5,3.5,5h1V4H3C2.4,4,2,4.4,2,5v10c0,0.6,0.4,1,1,1h11c0.6,0,1-0.4,1-1V5C15,4.4,14.6,4,14,4z"/></svg>\n  \n  <svg id="icon-channel-settings" viewBox="0 0 16 16"><path fill="#fff" d="M8,5C6.3,5,5,6.3,5,8c0,1.7,1.3,3,3,3c1.7,0,3-1.3,3-3 C11,6.3,9.7,5,8,5z M8,10c-1.1,0-2-0.9-2-2c0-1.1,0.9-2,2-2s2,0.9,2,2C10,9.1,9.1,10,8,10z M16,8c0-1-0.8-1.9-1.8-2 c-0.1-0.3-0.3-0.7-0.4-1c0.7-0.8,0.6-1.9-0.1-2.7c-0.7-0.7-1.9-0.8-2.7-0.1c-0.3-0.2-0.6-0.3-1-0.4C9.9,0.8,9,0,8,0 C7,0,6.1,0.8,6,1.8C5.7,1.9,5.3,2.1,5,2.2C4.2,1.6,3.1,1.6,2.3,2.3C1.6,3.1,1.6,4.2,2.2,5C2.1,5.3,1.9,5.7,1.8,6C0.8,6.1,0,7,0,8 c0,1,0.8,1.9,1.8,2c0.1,0.3,0.3,0.7,0.4,1c-0.7,0.8-0.6,1.9,0.1,2.7c0.7,0.7,1.9,0.8,2.7,0.1c0.3,0.2,0.6,0.3,1,0.4 C6.1,15.2,7,16,8,16c1,0,1.9-0.8,2-1.8c0.3-0.1,0.7-0.3,1-0.4c0.8,0.7,1.9,0.6,2.7-0.1c0.7-0.7,0.8-1.9,0.1-2.7 c0.2-0.3,0.3-0.6,0.4-1C15.2,9.9,16,9,16,8z M13.4,9c-0.1,0.8-0.5,1.5-0.9,2.1l0.4,0.4c0.4,0.4,0.4,1,0,1.4c-0.4,0.4-1,0.4-1.4,0 l-0.4-0.4C10.5,13,9.8,13.3,9,13.4V14c0,0.6-0.4,1-1,1c-0.6,0-1-0.4-1-1v-0.6c-0.8-0.1-1.5-0.5-2.1-0.9l-0.4,0.4 c-0.4,0.4-1,0.4-1.4,0c-0.4-0.4-0.4-1,0-1.4l0.4-0.4C3,10.5,2.7,9.8,2.6,9H2C1.4,9,1,8.6,1,8c0-0.6,0.4-1,1-1h0.6 C2.7,6.2,3,5.5,3.5,4.9L3.1,4.5c-0.4-0.4-0.4-1,0-1.4c0.4-0.4,1-0.4,1.4,0l0.4,0.4C5.5,3,6.2,2.7,7,2.6V2c0-0.6,0.4-1,1-1 c0.6,0,1,0.4,1,1v0.6c0.8,0.1,1.5,0.5,2.1,0.9l0.4-0.4c0.4-0.4,1-0.4,1.4,0c0.4,0.4,0.4,1,0,1.4l-0.4,0.4C13,5.5,13.3,6.2,13.4,7 H14c0.6,0,1,0.4,1,1c0,0.6-0.4,1-1,1H13.4z"/></svg>\n</div>\n'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"N:\code\git\blockusign\BlockUSign.Ionic\src\app\app.html"*/'<!-- <ion-menu [content]="content" scroll="false" >\n\n  \n\n\n\n  <ion-content scroll="false">\n\n    <ion-list scroll="false">\n\n      <button scroll="false" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n        {{p.title}}\n\n      </button>\n\n    </ion-list>\n\n  </ion-content>\n\n</ion-menu> -->\n\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n\n<ion-split-pane >\n\n  <ion-menu [content]="content" >\n\n      <div class="discord" style="height: 100%; width: 300px; color:whitesmoke">\n\n        <!-- https://codepen.io/thesbros/pen/vxpMPp -->\n\n        <main class="container">\n\n          <aside class="servers">\n\n            <div class="servers-collection">\n\n              <div class="server focusable server-friends" role="button" aria-label="Friends unread">\n\n                <div class="server-icon">\n\n                  <svg>\n\n                    <use xlink:href="#icon-friends" />\n\n                  </svg>\n\n                </div>\n\n              </div>\n\n            </div>\n\n\n\n          \n\n            <div class="servers-collection">\n\n              <div class="server focusable active" role="button" aria-label="My Server" aria-selected="true">\n\n                <div class="server-icon">\n\n                 <!-- <img src="https://discordapp.com/assets/0e291f67c9274a1abdddeb3fd919cbaa.png" /> -->\n\n                  <img class="avatar" alt="Avatar" [src]="avatar" />\n\n                </div>\n\n              </div>\n\n            </div>\n\n          </aside>\n\n\n\n\n\n\n\n\n\n          <aside class="channels">\n\n            <header class="channels-header focusable" (click)="home()">\n\n\n\n              <!-- <img src="./assets/imgs/blockusign.png" height="45px" width="45px" /> -->\n\n              <img src="./assets/imgs/blockusignLogoSvg.svg" height="45px" width="45px" class="blockusign-logo" />\n\n              <img src="./assets/imgs/blockusignTextLoRes.png" width="120px" style="padding-left: 12px; padding-top: 10px" />\n\n             \n\n              \n\n            \n\n\n\n\n\n\n\n              <h3 role="header" class="channels-header-name" style="padding-right: 10px;"></h3> \n\n              <!-- <button ion-button style="padding: 10px 10px 10px 10px; background: green; height: 45px;"> NEW + </button> -->\n\n              <svg role="button" aria-label="Dropdown" class="channels-header-dropdown">\n\n                <use xlink:href="#icon-dropdown" />\n\n              </svg>\n\n\n\n             \n\n\n\n\n\n            </header>\n\n\n\n            <section class="channels-list">\n\n\n\n              <section  (click)="home()">\n\n                <button ion-button icon-end \n\n                  style="float:right;width:100%;background-color:green; color:white; border-radius: 5px; margin-bottom: 20px; margin-top: 20px">New Doc\n\n                  <ion-icon name="md-add"></ion-icon>\n\n                </button>\n\n                \n\n              </section>\n\n\n\n              <header class="channels-list-header" (click)="home()">\n\n                <span>Documents</span>\n\n              </header>\n\n\n\n             \n\n              \n\n              <ul class="channels-list-text" >\n\n                <div *ngFor="let item of documentsList">\n\n                    <li [ngClass]="(item == documentService.currentDoc) ? \'channel focusable channel-text active\' : \'channel focusable channel-text\'"   >\n\n                        <!-- <span class="channel-name">blockusign nda.pdf</span> -->\n\n                        <span (click)="documentSelected($event, item)">\n\n                          {{ item.fileName }}\n\n                        </span>\n\n                        <!-- <button class="button" role="button" aria-label="Invite" >\n\n                            <ion-icon md="md-trash" (click)="documentRemove(item)"></ion-icon>\n\n                        </button> -->\n\n                        <!-- <button class="button" role="button" aria-label="settings">\n\n                          <svg>\n\n                            <use xlink:href="#icon-channel-settings" />\n\n                          </svg>\n\n                        </button> -->\n\n                        <button ion-button icon-only  style="padding-left: 10px; background: transparent" (click)="presentPopover($event, item)">\n\n                                <ion-icon name="more"></ion-icon>\n\n                        </button>\n\n                      </li>\n\n                </div>\n\n                \n\n\n\n                <!-- <li class="channel focusable channel-text active">\n\n                  <span>my photo release form.pdf</span>\n\n                  <button class="button" role="button" aria-label="Invite">\n\n                    <svg>\n\n                      <use xlink:href="#icon-invite" />\n\n                    </svg>\n\n                  </button>\n\n                  <button class="button" role="button" aria-label="settings">\n\n                    <svg>\n\n                      <use xlink:href="#icon-channel-settings" />\n\n                    </svg>\n\n                  </button>\n\n                </li>\n\n\n\n                <li class="channel focusable channel-text">\n\n                  <span>may lease.pdf</span>\n\n                  <button class="button" role="button" aria-label="Invite">\n\n                    <svg>\n\n                      <use xlink:href="#icon-invite" />\n\n                    </svg>\n\n                  </button>\n\n                  <button class="button" role="button" aria-label="settings">\n\n                    <svg>\n\n                      <use xlink:href="#icon-channel-settings" />\n\n                    </svg>\n\n                  </button>\n\n                </li>\n\n\n\n                <li class="channel focusable channel-text">\n\n                  <span >escrow agreement.pdf</span>\n\n                  <button class="button" role="button" aria-label="Invite">\n\n                    <svg>\n\n                      <use xlink:href="#icon-invite" />\n\n                    </svg>\n\n                  </button>\n\n                  <button class="button" role="button" aria-label="settings">\n\n                    <svg>\n\n                      <use xlink:href="#icon-channel-settings" />\n\n                    </svg>\n\n                  </button>\n\n                </li> -->\n\n\n\n              </ul>\n\n\n\n\n\n\n\n              <header class="channels-list-header focusable">\n\n                <span>Templates</span>\n\n              </header>\n\n\n\n              <ul class="channels-list-text">\n\n                <li class="channel focusable channel-text ">\n\n                  <span class="channel-name">COMING SOON</span>\n\n                </li>\n\n              </ul>\n\n\n\n              <header class="channels-list-header focusable">\n\n                <span>Analytics</span>\n\n              </header>\n\n              <ul class="channels-list-text">\n\n                <li class="channel focusable channel-text ">\n\n                  <span class="channel-name">COMING SOON</span>\n\n                </li>\n\n              </ul>\n\n            </section>\n\n\n\n\n\n\n\n            <footer class="channels-footer">\n\n              <!-- <img class="avatar" alt="Avatar" src="https://discordapp.com/assets/0e291f67c9274a1abdddeb3fd919cbaa.png" /> -->\n\n              <img class="avatar" alt="Avatar" [src]="avatar" />\n\n              <div class="channels-footer-details">\n\n                <span class="username">\n\n                  <a (click)="logout()" style="float:right">{{name}} {{ loginState }} </a>\n\n                </span>\n\n                <!-- <span class="tag">#0001</span> -->\n\n              </div>\n\n              <!-- <div class="channels-footer-controls button-group">\n\n                        <button role="button" aria-label="Mute" class="button button-mute"><svg><use xlink:href="#icon-mute" /></svg></button>\n\n                        <button role="button" aria-label="Deafen" class="button button-deafen"><svg><use xlink:href="#icon-deafen" /></svg></button>\n\n                        <button role="button" aria-label="Settings" class="button button-settings"><svg><use xlink:href="#icon-settings" /></svg></button>\n\n                      </div> -->\n\n            </footer>\n\n          </aside>\n\n\n\n\n\n        </main>\n\n      </div>\n\n   \n\n  </ion-menu>\n\n  <ion-nav [root]="rootPage" main #content swipeBackEnabled="false">\n\n    <!-- content injected here -->\n\n  </ion-nav>\n\n  <ion-fab left top menuToggle>\n\n    <button ion-fab color="light" color="primary">\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n  </ion-fab>\n\n</ion-split-pane>\n\n\n\n<!-- ICONS -->\n\n<div style="visibility: hidden">\n\n  <svg id="icon-friends" viewBox="-289 382 32 27.1"><style id="style3">.st0{fill:#FFFFFF;} .st1{opacity:0.6;}</style><g id="g4145" fill="#fff"><path id="path5" d="M-273 409.1c-4.1 0-6.8-.6-7.9-1.7-.5-.6-.6-1.1-.6-1.3 0-.7.1-2.9.6-3.8.1-.3.5-1 4.5-2.4-1.6-1.4-2.6-4-2.6-7.1 0-4.2 2.3-7 5.9-7.1h.1c3.6.1 5.9 2.8 5.9 7.1 0 3.1-1 5.7-2.6 7.1 4 1.4 4.4 2.1 4.5 2.4.4.9.5 3.1.6 3.8 0 .2 0 .7-.6 1.3-1.1 1.1-3.7 1.7-7.8 1.7zm0-2c5.1 0 6.2-.9 6.4-1.1-.1-1.1-.2-2.3-.3-2.7-.6-.4-2.9-1.3-4.8-1.9l-.7-.2-.1-2 .7-.3c1.7-.6 2.8-3.1 2.8-6.1 0-3.1-1.5-5-3.9-5.1-2.5 0-4 2-4 5.1 0 3 1.1 5.5 2.8 6.1l.7.3-.1 2-.7.2c-1.9.6-4.2 1.5-4.8 1.9-.1.4-.3 1.6-.3 2.7.1.2 1.3 1.1 6.3 1.1z" class="st0"/><g id="g7" class="st1" opacity=".6"><path id="path9" d="M-257 402.4c0-.7-.1-2.9-.6-3.8-.1-.3-.5-1-4.5-2.4 1.6-1.4 2.6-4 2.6-7.1 0-4.2-2.3-7-5.9-7.1h-.1c-1.9 0-3.5.8-4.5 2.2.6.3 1.2.6 1.8 1 .7-.8 1.6-1.3 2.8-1.3 2.4 0 3.9 2 3.9 5.1 0 3-1.1 5.5-2.8 6.1l-.7.3.1 2 .7.2c1.9.6 4.3 1.5 4.8 1.9.1.4.3 1.6.3 2.7-.2.2-1 .8-3.8 1 .1.6.2 1.2.2 2 2.5-.2 4.2-.8 5-1.6.7-.5.7-1 .7-1.2z" class="st0"/><path id="path11" d="M-287 402.3c.1-1.1.2-2.3.3-2.7.6-.4 2.9-1.3 4.8-1.9l.7-.2.1-2-.7-.3c-1.6-.6-2.8-3.1-2.8-6.1 0-3.1 1.5-5 4-5.1 1.2 0 2.1.5 2.8 1.3.5-.4 1.1-.8 1.8-1-1-1.4-2.6-2.2-4.5-2.2h-.1c-3.6 0-5.9 2.8-5.9 7.1 0 3.1 1 5.7 2.6 7.1-4 1.4-4.4 2.1-4.5 2.4-.4.9-.5 3.1-.6 3.8 0 .2 0 .7.6 1.3.8.9 2.5 1.4 5.1 1.6 0-.7.1-1.4.2-2-2.9-.3-3.7-.9-3.9-1.1z" class="st0"/></g></g></svg>\n\n\n\n  <svg id="icon-mute" viewBox="0 0 16 16"><path fill="#5D6063" d="M12.5,8v1c0,2.2-1.8,4-4,4h-1c-2.2,0-4-1.8-4-4V8h-1v1 c0,2.8,2.2,5,5,5v1H7c-0.3,0-0.5,0.2-0.5,0.5C6.5,15.8,6.7,16,7,16h2c0.3,0,0.5-0.2,0.5-0.5C9.5,15.2,9.3,15,9,15H8.5v-1 c2.8,0,5-2.2,5-5V8H12.5z M8,12c1.9,0,3.5-1.6,3.5-3.5v-5C11.5,1.6,9.9,0,8,0C6.1,0,4.5,1.6,4.5,3.5v5C4.5,10.4,6.1,12,8,12z M5.5,3.5C5.5,2.1,6.6,1,8,1c1.4,0,2.5,1.1,2.5,2.5v5C10.5,9.9,9.4,11,8,11c-1.4,0-2.5-1.1-2.5-2.5V3.5z"/></svg>\n\n  \n\n  <svg id="icon-deafen" viewBox="0 0 16 16"><path fill="#5D6063" d="M15.9,9C16,8.7,16,8.3,16,8c0-4.4-3.6-8-8-8C3.6,0,0,3.6,0,8 c0,0.3,0,0.7,0.1,1h0C0,9.2,0,9.3,0,9.5v4C0,14.3,0.7,15,1.5,15h2C4.3,15,5,14.3,5,13.5v-4C5,8.7,4.3,8,3.5,8h-2 C1.3,8,1.2,8,1,8.1C1,8.1,1,8,1,8c0-3.9,3.1-7,7-7c3.9,0,7,3.1,7,7c0,0,0,0.1,0,0.1C14.8,8,14.7,8,14.5,8h-2C11.7,8,11,8.7,11,9.5 v4c0,0.8,0.7,1.5,1.5,1.5h2c0.8,0,1.5-0.7,1.5-1.5v-4C16,9.3,16,9.2,15.9,9L15.9,9z M1.5,9h2C3.8,9,4,9.2,4,9.5v4 C4,13.8,3.8,14,3.5,14h-2C1.2,14,1,13.8,1,13.5v-4C1,9.2,1.2,9,1.5,9z M15,13.5c0,0.3-0.2,0.5-0.5,0.5h-2c-0.3,0-0.5-0.2-0.5-0.5 v-4C12,9.2,12.2,9,12.5,9h2C14.8,9,15,9.2,15,9.5V13.5z"/></svg>\n\n  \n\n  <svg id="icon-settings" viewBox="0 0 16 16"><path fill="#5D6063" d="M8,5C6.3,5,5,6.3,5,8c0,1.7,1.3,3,3,3c1.7,0,3-1.3,3-3 C11,6.3,9.7,5,8,5z M8,10c-1.1,0-2-0.9-2-2c0-1.1,0.9-2,2-2s2,0.9,2,2C10,9.1,9.1,10,8,10z M16,8c0-1-0.8-1.9-1.8-2 c-0.1-0.3-0.3-0.7-0.4-1c0.7-0.8,0.6-1.9-0.1-2.7c-0.7-0.7-1.9-0.8-2.7-0.1c-0.3-0.2-0.6-0.3-1-0.4C9.9,0.8,9,0,8,0 C7,0,6.1,0.8,6,1.8C5.7,1.9,5.3,2.1,5,2.2C4.2,1.6,3.1,1.6,2.3,2.3C1.6,3.1,1.6,4.2,2.2,5C2.1,5.3,1.9,5.7,1.8,6C0.8,6.1,0,7,0,8 c0,1,0.8,1.9,1.8,2c0.1,0.3,0.3,0.7,0.4,1c-0.7,0.8-0.6,1.9,0.1,2.7c0.7,0.7,1.9,0.8,2.7,0.1c0.3,0.2,0.6,0.3,1,0.4 C6.1,15.2,7,16,8,16c1,0,1.9-0.8,2-1.8c0.3-0.1,0.7-0.3,1-0.4c0.8,0.7,1.9,0.6,2.7-0.1c0.7-0.7,0.8-1.9,0.1-2.7 c0.2-0.3,0.3-0.6,0.4-1C15.2,9.9,16,9,16,8z M13.4,9c-0.1,0.8-0.5,1.5-0.9,2.1l0.4,0.4c0.4,0.4,0.4,1,0,1.4c-0.4,0.4-1,0.4-1.4,0 l-0.4-0.4C10.5,13,9.8,13.3,9,13.4V14c0,0.6-0.4,1-1,1c-0.6,0-1-0.4-1-1v-0.6c-0.8-0.1-1.5-0.5-2.1-0.9l-0.4,0.4 c-0.4,0.4-1,0.4-1.4,0c-0.4-0.4-0.4-1,0-1.4l0.4-0.4C3,10.5,2.7,9.8,2.6,9H2C1.4,9,1,8.6,1,8c0-0.6,0.4-1,1-1h0.6 C2.7,6.2,3,5.5,3.5,4.9L3.1,4.5c-0.4-0.4-0.4-1,0-1.4c0.4-0.4,1-0.4,1.4,0l0.4,0.4C5.5,3,6.2,2.7,7,2.6V2c0-0.6,0.4-1,1-1 c0.6,0,1,0.4,1,1v0.6c0.8,0.1,1.5,0.5,2.1,0.9l0.4-0.4c0.4-0.4,1-0.4,1.4,0c0.4,0.4,0.4,1,0,1.4l-0.4,0.4C13,5.5,13.3,6.2,13.4,7 H14c0.6,0,1,0.4,1,1c0,0.6-0.4,1-1,1H13.4z"/></svg>\n\n  \n\n  <svg id="icon-dropdown" viewBox="0 0 18 18"><style>.dd{stroke:#ABADAF;stroke-width:2px;stroke-dashoffset:1;stroke-dasharray:inherit}</style><path class="dd" stroke="#FFF" d="M4.5 4.5l9 9" stroke-linecap="round"></path><path class="dd" stroke="#FFF" d="M13.5 4.5l-9 9" stroke-linecap="round"></path></svg>\n\n  \n\n  <svg id="icon-invite" viewBox="0 0 16 16"><path fill="#fff" d="M6.3,3.4L8,1.7v9.8C8,11.8,8.2,12,8.5,12C8.8,12,9,11.8,9,11.5V1.7l1.7,1.7c0.2,0.2,0.5,0.2,0.7,0c0.2-0.2,0.2-0.5,0-0.7L8.9,0.2c0,0,0,0,0-0.1C8.8,0,8.6,0,8.5,0c0,0,0,0,0,0c0,0,0,0,0,0C8.4,0,8.2,0,8.1,0.1c0,0,0,0,0,0.1L5.6,2.7c-0.2,0.2-0.2,0.5,0,0.7C5.8,3.5,6.1,3.5,6.3,3.4z M14,4h-1.5v1h1C13.8,5,14,5.2,14,5.5v9c0,0.3-0.2,0.5-0.5,0.5h-10C3.2,15,3,14.8,3,14.5v-9C3,5.2,3.2,5,3.5,5h1V4H3C2.4,4,2,4.4,2,5v10c0,0.6,0.4,1,1,1h11c0.6,0,1-0.4,1-1V5C15,4.4,14.6,4,14,4z"/></svg>\n\n  \n\n  <svg id="icon-channel-settings" viewBox="0 0 16 16"><path fill="#fff" d="M8,5C6.3,5,5,6.3,5,8c0,1.7,1.3,3,3,3c1.7,0,3-1.3,3-3 C11,6.3,9.7,5,8,5z M8,10c-1.1,0-2-0.9-2-2c0-1.1,0.9-2,2-2s2,0.9,2,2C10,9.1,9.1,10,8,10z M16,8c0-1-0.8-1.9-1.8-2 c-0.1-0.3-0.3-0.7-0.4-1c0.7-0.8,0.6-1.9-0.1-2.7c-0.7-0.7-1.9-0.8-2.7-0.1c-0.3-0.2-0.6-0.3-1-0.4C9.9,0.8,9,0,8,0 C7,0,6.1,0.8,6,1.8C5.7,1.9,5.3,2.1,5,2.2C4.2,1.6,3.1,1.6,2.3,2.3C1.6,3.1,1.6,4.2,2.2,5C2.1,5.3,1.9,5.7,1.8,6C0.8,6.1,0,7,0,8 c0,1,0.8,1.9,1.8,2c0.1,0.3,0.3,0.7,0.4,1c-0.7,0.8-0.6,1.9,0.1,2.7c0.7,0.7,1.9,0.8,2.7,0.1c0.3,0.2,0.6,0.3,1,0.4 C6.1,15.2,7,16,8,16c1,0,1.9-0.8,2-1.8c0.3-0.1,0.7-0.3,1-0.4c0.8,0.7,1.9,0.6,2.7-0.1c0.7-0.7,0.8-1.9,0.1-2.7 c0.2-0.3,0.3-0.6,0.4-1C15.2,9.9,16,9,16,8z M13.4,9c-0.1,0.8-0.5,1.5-0.9,2.1l0.4,0.4c0.4,0.4,0.4,1,0,1.4c-0.4,0.4-1,0.4-1.4,0 l-0.4-0.4C10.5,13,9.8,13.3,9,13.4V14c0,0.6-0.4,1-1,1c-0.6,0-1-0.4-1-1v-0.6c-0.8-0.1-1.5-0.5-2.1-0.9l-0.4,0.4 c-0.4,0.4-1,0.4-1.4,0c-0.4-0.4-0.4-1,0-1.4l0.4-0.4C3,10.5,2.7,9.8,2.6,9H2C1.4,9,1,8.6,1,8c0-0.6,0.4-1,1-1h0.6 C2.7,6.2,3,5.5,3.5,4.9L3.1,4.5c-0.4-0.4-0.4-1,0-1.4c0.4-0.4,1-0.4,1.4,0l0.4,0.4C5.5,3,6.2,2.7,7,2.6V2c0-0.6,0.4-1,1-1 c0.6,0,1,0.4,1,1v0.6c0.8,0.1,1.5,0.5,2.1,0.9l0.4-0.4c0.4-0.4,1-0.4,1.4,0c0.4,0.4,0.4,1,0,1.4l-0.4,0.4C13,5.5,13.3,6.2,13.4,7 H14c0.6,0,1,0.4,1,1c0,0.6-0.4,1-1,1H13.4z"/></svg>\n\n</div>\n\n'/*ion-inline-end:"N:\code\git\blockusign\BlockUSign.Ionic\src\app\app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
@@ -3088,7 +3129,7 @@ var MyApp = (function () {
 
 /***/ }),
 
-/***/ 584:
+/***/ 588:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3196,7 +3237,7 @@ var CoinService = (function () {
 
 /***/ }),
 
-/***/ 585:
+/***/ 589:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3344,7 +3385,7 @@ var CryptoCompareService = (function () {
 
 /***/ }),
 
-/***/ 586:
+/***/ 590:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3430,5 +3471,5 @@ var SlackService = (function () {
 
 /***/ })
 
-},[385]);
+},[389]);
 //# sourceMappingURL=main.js.map

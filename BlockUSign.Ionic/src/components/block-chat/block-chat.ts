@@ -4,6 +4,7 @@ import { DocumentService } from './../../services/document.service';
 import { Document, Log, Message } from './../../models/models';
 import { Events } from 'ionic-angular';
 import { BlockStackService } from '../../services/blockstack.service';
+import * as moment from 'moment';
 declare let $: any;
 
 /**
@@ -26,7 +27,6 @@ export class BlockChatComponent {
   }
 
   ngOnInit(){
-
     
     if (!this.doc){
       this.doc = new Document();
@@ -42,14 +42,22 @@ export class BlockChatComponent {
       let template = "";
       for (let item of logData.messages ) {
 
-
         let d = item.updatedAt;
-        d = new Date(d);
-        let formatDate = (d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear()+' '+(d.getHours() > 12 ? d.getHours() - 12 : d.getHours())+':'+d.getMinutes()+' '+(d.getHours() >= 12 ? "PM" : "AM");
+        //d = new Date(d);
+        //let formatDate = (d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear()+' '+(d.getHours() > 12 ? d.getHours() - 12 : d.getHours())+':'+d.getMinutes()+' '+(d.getHours() >= 12 ? "PM" : "AM");
+        let formatDate = moment(d).calendar(d);
+
+        let uid = item.createdBy.replace('.id','');
+        let uName = item.createdByName;
+        let uidClass = 'block-pic-' + uid;
+
+        this.blockstackService.getPicUrl(uName).then( (picUrl) =>{
+          $('.' + uidClass).attr('src', picUrl);
+        });
 
         template =  template + `  
         <div class="chat-message clearfix">
-        <img src="http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=32" alt="" width="32" height="32">
+        <img class="${uidClass}" src="http://www.gravatar.com/avatar/?d=identicon" alt="" width="32" height="32">
         <div class="chat-message-content clearfix">
           <span class="chat-time">${formatDate}</span>
           <h5>${item.createdBy}</h5>

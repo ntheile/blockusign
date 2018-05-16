@@ -40,6 +40,7 @@ export class Message {
     public updatedAt: Date; 
     public message: string;
     public createdBy: string;
+    public createdByName: string;
 
     constructor(){
         this.guid = (<any>window).guid();

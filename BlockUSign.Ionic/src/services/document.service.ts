@@ -119,6 +119,7 @@ export class DocumentService {
       let msg = new Message();
       msg.message = message;
       msg.createdBy = blockstack.loadUserData().username;
+      msg.createdByName = blockstack.loadUserData().profile.name;
       log.messages.push(msg);
       return await blockstack.putFile(logFileName, JSON.stringify(log), { encrypt: true });
     }
