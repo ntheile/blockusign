@@ -46,6 +46,7 @@ export class BlockPdfComponent {
   @Input() showSignature: 0;
   @Input() showSignHere: 0;
   @Input() showButtons: 0;
+  @Input() marginTop = '130px';
 
   public data: any;
   public DOCUMENT_ID = "blockusign/pdf1.txt"; // @TODO not being used, delete in furture
@@ -97,6 +98,10 @@ export class BlockPdfComponent {
         this.getFile();
         // @todo in side menu highlight selected doc
       });
+    }
+    else if(this.documentService.currentDoc.guid){
+      this.documentService.setCurrentDoc(this.documentService.currentDoc.guid);
+      this.getFile();
     }
     else {
       let guid = this.navParams.get("guid");

@@ -14,22 +14,39 @@
     </ion-row>
   </ion-grid>
 
-  
-  <section style="position: relative;">
-    <ion-item style="max-width:250px; background:transparent;">
-      <ion-label floating>Enter Email</ion-label>
-      <ion-input [(ngModel)]="email"></ion-input>
-   </ion-item>
-   
-   <button ion-button (click)="emailService.sendEmail(email)">Send Email</button>  
-  </section>
+  <ion-grid>
+    <ion-row align-items-left>
+      <ion-col>
+        <ng-select style="width:460px; background-color:whitesmoke; border-radius:2px; padding-left:10px" [items]="githubUsers$ | async"
+          [multiple]="false" bindLabel="login" [(ngModel)]="selectedUsers1" placeholder="Select people">
+          <ng-template ng-label-tmp let-item="item" let-clear="clear">
+            <span class="ng-value-label">
+              <img [src]="item.avatar_url" width="20px" height="20px"> {{item.login}}</span>
+            <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
+          </ng-template>
+          <ng-template ng-option-tmp let-item="item">
+            <img [src]="item.avatar_url" width="20px" height="20px"> {{item.login}}
+          </ng-template>
+        </ng-select>
+      </ion-col>
+      <ion-col style="width:460px; background-color:transparent; ">
+        <ion-item  style="width:460px; background-color:transparent; " >
+          <ion-input style="width:460px;" placeholder="[Enter Email]" [(ngModel)]="email"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <button ion-button (click)="emailService.sendEmail(email)">Send Email</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-  
 
-
-
-  <block-pdf>
+ 
+  <block-pdf marginTop="50px" >
   </block-pdf>
+ 
+
+  
 
   <!-- <ion-card>
 

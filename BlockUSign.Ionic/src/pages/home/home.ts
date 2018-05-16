@@ -57,15 +57,17 @@ export class HomePage {
 
     next() {
 
-        this.navCtrl.push(AnnotatePage)
+        //this.navCtrl.push(AnnotatePage)
         //this.navCtrl.setRoot(ListPage);
+        this.navCtrl.push("AnnotatePage", {
+            guid: this.documentService.currentDoc.guid
+        });
     }
 
     async saveFile(fileName) {
 
 
         let documentList = await this.documentService.addDocument(fileName, this.pdfBuffer);
-        debugger;
         this.next();
 
         // blockstack.putFile(fileName, this.pdfBuffer, { encrypt: true }).then((data) => {
@@ -355,18 +357,18 @@ export class HomePage {
         let devices = await navigator.mediaDevices.enumerateDevices();;
 
         // find back camera
-        var rearCamera = devices.find( (device) => { return (device.kind === 'videoinput' && device.label.includes('back')) });
-        let mediaOptions: any; 
-        
-        if (rearCamera){
+        var rearCamera = devices.find((device) => { return (device.kind === 'videoinput' && device.label.includes('back')) });
+        let mediaOptions: any;
+
+        if (rearCamera) {
             mediaOptions = {
-                deviceId: {exact: rearCamera.deviceId}
-              };
+                deviceId: { exact: rearCamera.deviceId }
+            };
         }
-        else{
+        else {
             mediaOptions = true;
         }
-       
+
 
         let mediaConfig = {
             video: mediaOptions
@@ -392,7 +394,7 @@ export class HomePage {
 
         let process = (video) => {
             let mediaDevices = navigator.mediaDevices;
-            mediaDevices.getUserMedia(mediaConfig).then(function(stream) {
+            mediaDevices.getUserMedia(mediaConfig).then(function (stream) {
                 var videoTracks = stream.getVideoTracks();
                 console.log('Got stream with constraints:', mediaConfig);
                 console.log('Using video device: ' + videoTracks[0].label);
@@ -401,7 +403,7 @@ export class HomePage {
                 // };
                 window.stream = stream; // make variable available to console
                 video.srcObject = stream;
-              }).catch(function (err) {
+            }).catch(function (err) {
                 // alert(err);
                 alert("Not support get stream from camera!");
             });
@@ -425,65 +427,65 @@ export class HomePage {
 
     savePDF() {
         try {
-		    this.canvasCamera = $("#canvasCamera")[0];
-			var imgData = this.canvasCamera.toDataURL("image/jpeg", 1.0);
-		    var pdf = new jsPDF('p', 'mm', [297, 210]);
-		    pdf.addImage(imgData, 'JPEG', 5, 5);
-		    var namefile = prompt("insert name of file");
-		    pdf.save(namefile + ".pdf");
-		 } catch(e) {
-			 alert("Error description: " + e.message);
-		 }
-		
+            this.canvasCamera = $("#canvasCamera")[0];
+            var imgData = this.canvasCamera.toDataURL("image/jpeg", 1.0);
+            var pdf = new jsPDF('p', 'mm', [297, 210]);
+            pdf.addImage(imgData, 'JPEG', 5, 5);
+            var namefile = prompt("insert name of file");
+            pdf.save(namefile + ".pdf");
+        } catch (e) {
+            alert("Error description: " + e.message);
+        }
+
     }
 
 
-    testPublicKeyFile(){
+    testPublicKeyFile() {
         const myPublicKey = blockstack.getPublicKeyFromPrivate(blockstack.loadUserData().appPrivateKey);
         const yourPublicKey = "02563f0f1d5c5429fa8fdb3d8fc4b0464dac70b07cd8249f0ef17bcf2c93ed7469";
-        
-        if (blockstack.loadUserData().profile.name == "nick tee"){
-            
+
+        if (blockstack.loadUserData().profile.name == "nick tee") {
+
             // write for you
             this.testPutFile(yourPublicKey);
             // write for me
-            this.testPutFile(myPublicKey).then( ()=>{
+            this.testPutFile(myPublicKey).then(() => {
                 // read for me
                 this.testGetFile(myPublicKey);
             });
         }
 
-        if (blockstack.loadUserData().profile.name == "Demo User BlockSign"){
+        if (blockstack.loadUserData().profile.name == "Demo User BlockSign") {
             // read for me
             this.testGetFile(myPublicKey);
         }
-        
-       
-        
+
+
+
     }
 
 
-    testPutFile(publicKey) : Promise<any> { 
+    testPutFile(publicKey): Promise<any> {
         const encryptOptions = { encrypt: publicKey };
         const path = "testFile.json";
         let fileContent = "{stuff: 'from nicktee.id'}";
 
         // put and encrypt the file
         return blockstack.putFile(path, fileContent, encryptOptions)
-          .then((publicURL) => {
-              console.log("testPublicKeyFile ===> " + publicURL);
-          });
+            .then((publicURL) => {
+                console.log("testPublicKeyFile ===> " + publicURL);
+            });
     }
 
-    testGetFile(publicKey) : Promise<any> {
-        const decryptOptions = { 
+    testGetFile(publicKey): Promise<any> {
+        const decryptOptions = {
             decrypt: true
         };
         let fullReadUrl = "../../hub/18kTskBpTh1mznsypu1fhJ27dxbC1SwXEK/testFile.json";
 
         return blockstack.getFile(fullReadUrl, decryptOptions).then(readContent => {
             console.log("testPublicKeyFile ===> " + readContent);
-        }); 
+        });
     }
 
 

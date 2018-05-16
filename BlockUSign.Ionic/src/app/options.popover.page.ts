@@ -8,7 +8,7 @@ import { ToastController } from 'ionic-angular';
      <br/>
       <ion-list style="">
         <button ion-item (click)="documentRemove()">Delete</button>
-        <button ion-item (click)="close()">Documentation</button>
+        <button ion-item (click)="close()">CLOSE X</button>
       </ion-list>
     `
   })

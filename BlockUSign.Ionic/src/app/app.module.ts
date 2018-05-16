@@ -5,6 +5,8 @@ import { HttpModule, JsonpModule } from '@angular/http';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ChartsModule } from 'ng2-charts';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
 
 import { MyApp } from './app.component';
 import { OptionsPopoverPage } from './options.popover.page';
@@ -45,6 +47,8 @@ import { BlockStackService } from '../services/blockstack.service';
     SignPageModule,
     EmailPageModule,
     ReviewPageModule,
+    NgSelectModule, 
+    FormsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -38,8 +38,11 @@ export class DocumentService {
 
   async getDocumentsIndex(refresh: boolean) {
     if (refresh) {
-      this.documentsList = JSON.parse(await blockstack.getFile(this.indexFileName, { decrypt: true }));
-      if (this.documentsList == null) {
+      let resp = await blockstack.getFile(this.indexFileName, { decrypt: true });
+      if (resp){
+        this.documentsList = JSON.parse(resp);
+      }
+      if (this.documentsList == null || !resp) {
         this.documentsList = JSON.parse(await blockstack.putFile(this.indexFileName, "[]", { encrypt: true }));
       }
     }
@@ -90,9 +93,14 @@ export class DocumentService {
 
   async getAnnotations(guid: string) {
 
-    this.currentDocAnnotations = JSON.parse(await blockstack.getFile(guid + ".annotations.json", { decrypt: true }));
+    let resp = await blockstack.getFile(guid + ".annotations.json", { decrypt: true });
+    if (resp){
+      this.currentDocAnnotations = JSON.parse(resp);
+    }
+    if (!resp){
+      this.currentDocAnnotations = "";
+    }
     return this.currentDocAnnotations;
-
   }
 
   setCurrentDoc(guid: string) {
@@ -103,19 +111,29 @@ export class DocumentService {
 
   async getLog(guid: string) {
     let logFileName = guid + '.log.json';
-    this.log = JSON.parse(await blockstack.getFile(logFileName, { decrypt: true }));
-    if (this.log === null || this.log === undefined ) {
-      let newLog = new Log();
-      newLog.messages = [];
-      this.log = JSON.parse(await blockstack.putFile(logFileName, JSON.stringify(newLog), { encrypt: true }));
+
+    let resp;
+    try {
+      resp = await blockstack.getFile(logFileName, { decrypt: true });
+      if (resp){
+        this.log = JSON.parse(resp);
+      }
+      if (this.log === null || this.log === undefined) {
+        let newLog = new Log();
+        newLog.messages = [];
+        this.log = JSON.parse(await blockstack.putFile(logFileName, JSON.stringify(newLog), { encrypt: true }));
+      }
+      return this.log;
     }
-    return this.log;
+    catch (e) {
+      throw e;
+    }
   }
 
   async addMessage(guid: string, message: string) {
     let logFileName = guid + ".log.json"
     let log = await this.getLog(guid);
-    if (log){
+    if (log) {
       let msg = new Message();
       msg.message = message;
       msg.createdBy = blockstack.loadUserData().username;
@@ -123,10 +141,10 @@ export class DocumentService {
       log.messages.push(msg);
       return await blockstack.putFile(logFileName, JSON.stringify(log), { encrypt: true });
     }
-    else{
+    else {
       console.error("error getting log file: " + logFileName)
     }
-    
+
   }
 
 
