@@ -25,14 +25,14 @@ export class BlockStackService {
     public events: Events,
     public http: Http
   ) {
-   
+
   }
 
-  async getPic(userId){
-    let resp = await this.http.get("https://core.blockstack.org/v1/search?query=" + userId.replace('.id','')).toPromise();
+  async getPic(userId) {
+    let resp = await this.http.get("https://core.blockstack.org/v1/search?query=" + userId.replace('.id', '')).toPromise();
     return resp;
-}
+  }
 
-  
+
 
 }
