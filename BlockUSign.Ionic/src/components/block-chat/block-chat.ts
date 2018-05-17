@@ -18,6 +18,7 @@ export class BlockChatComponent {
 
   public doc: Document;
   message;
+  private subscription;
  
   constructor(
     public documentService: DocumentService, 
@@ -28,14 +29,26 @@ export class BlockChatComponent {
   }
 
   ngOnInit(){
-    if (!this.doc){
-      this.doc = new Document();
-    }
+    
     this.doc = new Document();
-    this.events.subscribe('documentService:setCurrentDoc', async (currentDoc) => {
-      this.doc = currentDoc;
+    
+    if (this.documentService.currentDoc){
+      this.doc = this.documentService.currentDoc;
       this.getLogData();
-    });
+    }
+    else{
+      this.subscription = this.events.subscribe('documentService:setCurrentDoc', async (currentDoc) => {
+        this.doc = currentDoc;
+        this.getLogData();
+      });
+    }
+
+  }
+
+  ngOnDestroy(){
+    if (this.subscription){
+      this.subscription.unsubscribe();
+    }
   }
 
   async getLogData(){

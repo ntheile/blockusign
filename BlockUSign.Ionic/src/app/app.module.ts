@@ -16,6 +16,7 @@ import { AnnotatePageModule } from '../pages/annotate/annotate.module';
 import { SignPageModule } from '../pages/sign/sign.module';
 import { EmailPageModule } from '../pages/email/email.module';
 import { ReviewPageModule } from '../pages/review/review.module';
+
 //import { HomePage } from './../pages/home/home';
 //import { AnnotatePage } from './../pages/annotate/annotate';
 
@@ -26,6 +27,7 @@ import { SlackService } from '../services/slack.service';
 import { DocumentService } from '../services/document.service';
 import { EmailService } from '../services/email.service';
 import { BlockStackService } from '../services/blockstack.service';
+
 
 
 @NgModule({

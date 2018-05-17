@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { delay, map, tap, distinctUntilChanged , debounceTime, switchMap} from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import { Subject } from 'rxjs';
+import { FormGroup, FormControl } from  '@angular/forms';
 declare let blockstack: any;
 
 /**
@@ -33,14 +34,11 @@ export class EmailPage {
   email = "";
   lookupId: string;
   user: string;
-
-  githubUsers$: any;
-
   people3: any =  [];
   people3Loading = false;
   selectedUser = [];
   people3Typeahead = new Subject<string>();
-  
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -50,7 +48,6 @@ export class EmailPage {
     public chg: ChangeDetectorRef
   ) {
 
-    
     if (this.navParams.get("guid") && !this.documentService.currentDoc) {
       let guid = this.navParams.get("guid");
       this.documentService.getDocumentsIndex(true).then((data) => {
@@ -66,56 +63,15 @@ export class EmailPage {
 
   }
 
+  saveEmail(){
+    console.log(this.emailForm);
+    console.log(JSON.stringify(this.emailForm.value));
+  }
 
   async ionViewDidLoad() {
     console.log('ionViewDidLoad SignPage');
     this.lookup();
-
     this.loadPeople3();
-    //this.githubUsers$ = this.blockStackService.getGithubAccounts('anjm');
-    // this.githubUsers$ = of([
-    //   {
-    //     "login": "ntheile",
-    //     "id": 1273575,
-    //     "avatar_url": "https://avatars3.githubusercontent.com/u/1273575?v=4",
-    //     "gravatar_id": "",
-    //     "url": "https://api.github.com/users/ntheile",
-    //     "html_url": "https://github.com/ntheile",
-    //     "followers_url": "https://api.github.com/users/ntheile/followers",
-    //     "following_url": "https://api.github.com/users/ntheile/following{/other_user}",
-    //     "gists_url": "https://api.github.com/users/ntheile/gists{/gist_id}",
-    //     "starred_url": "https://api.github.com/users/ntheile/starred{/owner}{/repo}",
-    //     "subscriptions_url": "https://api.github.com/users/ntheile/subscriptions",
-    //     "organizations_url": "https://api.github.com/users/ntheile/orgs",
-    //     "repos_url": "https://api.github.com/users/ntheile/repos",
-    //     "events_url": "https://api.github.com/users/ntheile/events{/privacy}",
-    //     "received_events_url": "https://api.github.com/users/ntheile/received_events",
-    //     "type": "User",
-    //     "site_admin": false,
-    //     "score": 65.59707
-    //   },
-    //   {
-    //     "login": "Jesus",
-    //     "id": 23031,
-    //     "avatar_url": "https://avatars1.githubusercontent.com/u/23031?v=4",
-    //     "gravatar_id": "",
-    //     "url": "https://api.github.com/users/Jesus",
-    //     "html_url": "https://github.com/Jesus",
-    //     "followers_url": "https://api.github.com/users/Jesus/followers",
-    //     "following_url": "https://api.github.com/users/Jesus/following{/other_user}",
-    //     "gists_url": "https://api.github.com/users/Jesus/gists{/gist_id}",
-    //     "starred_url": "https://api.github.com/users/Jesus/starred{/owner}{/repo}",
-    //     "subscriptions_url": "https://api.github.com/users/Jesus/subscriptions",
-    //     "organizations_url": "https://api.github.com/users/Jesus/orgs",
-    //     "repos_url": "https://api.github.com/users/Jesus/repos",
-    //     "events_url": "https://api.github.com/users/Jesus/events{/privacy}",
-    //     "received_events_url": "https://api.github.com/users/Jesus/received_events",
-    //     "type": "User",
-    //     "site_admin": false,
-    //     "score": 63.052933
-    //   }
-    // ]);
-    
   }
 
   next() {
@@ -146,7 +102,6 @@ export class EmailPage {
 
   async searchUser(user) {
     let resp = await this.blockStackService.searchUser(user);
-    this.githubUsers$ = of(resp);
   }
 
   private loadPeople3() {

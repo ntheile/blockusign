@@ -94,9 +94,12 @@ export class MyApp {
       this.nav.pop();
     }
 
+    let guid = this.documentService.currentDoc.guid;
+    
     this.nav.push("AnnotatePage", {
-      guid: this.documentService.currentDoc.guid
+      guid: guid
     });
+   
   }
 
   home() {

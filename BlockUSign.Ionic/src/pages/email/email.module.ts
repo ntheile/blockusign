@@ -4,6 +4,7 @@ import { EmailPage } from './email';
 import { BlockStepsComponentModule } from '../../components/components.module';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { FormsModule } from '@angular/forms';
     IonicPageModule.forChild(EmailPage),
     BlockStepsComponentModule,
     NgSelectModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     
