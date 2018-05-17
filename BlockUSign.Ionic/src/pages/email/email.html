@@ -18,7 +18,7 @@
     <ion-row align-items-left>
       <ion-col>
         <ng-select style="width:460px; background-color:whitesmoke; border-radius:2px; padding-left:10px" [items]="githubUsers$ | async"
-          [multiple]="false" bindLabel="login" [(ngModel)]="selectedUsers1" placeholder="Select people">
+          [multiple]="false" bindLabel="login" [(ngModel)]="selectedUsers1" placeholder="Select signer...">
           <ng-template ng-label-tmp let-item="item" let-clear="clear">
             <span class="ng-value-label">
               <img [src]="item.avatar_url" width="20px" height="20px"> {{item.login}}</span>
@@ -30,9 +30,12 @@
         </ng-select>
       </ion-col>
       <ion-col style="width:460px; background-color:transparent; ">
-        <ion-item  style="width:460px; background-color:transparent; " >
+        <!-- <ion-item  style="width:460px; background-color:transparent; " >
           <ion-input style="width:460px;" placeholder="[Enter Email]" [(ngModel)]="email"></ion-input>
-        </ion-item>
+        </ion-item> -->
+        
+        <input class="classic-input" type="email" placeholder="Email To..." [(ngModel)]="email" autofocus>
+   
       </ion-col>
       <ion-col>
         <button ion-button (click)="emailService.sendEmail(email)">Send Email</button>
@@ -41,7 +44,9 @@
   </ion-grid>
 
 
- 
+   
+
+  
   <block-pdf marginTop="50px" >
   </block-pdf>
  

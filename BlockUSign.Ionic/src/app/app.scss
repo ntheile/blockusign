@@ -840,15 +840,21 @@
           border-radius: 25px;
       }
   }
-
-
-  }
+}
   
-
-  .no-overflow-page {
+.no-overflow-page {
     .scroll-content {
         overflow-y: hidden;
     }
 }
 
+.classic-input{
+    border: 1px solid #ccc;
+	border-radius: 3px;
+	padding: 8px;
+	outline: none;
+    width: 300px;
+    color:black;
+    height: 71.5px;
+}
 

@@ -16,12 +16,13 @@
           </div>
         </div>
         <!-- <p class="chat-feedback">Your partner is typing…</p> -->
-        <form action="#" method="post">
+        <form>
 
           <fieldset>
 
-            <input type="text" placeholder="Type your message…" autofocus>
-            <input type="hidden">
+            <input type="text" name="addMsg" placeholder="Type your message…" 
+              autofocus [(ngModel)]="message" (keydown.enter)="addMessage($event)" /> 
+            
 
           </fieldset>
 
