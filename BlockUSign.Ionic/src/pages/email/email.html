@@ -17,15 +17,21 @@
   <ion-grid>
     <ion-row align-items-left>
       <ion-col>
-        <ng-select style="width:460px; background-color:whitesmoke; border-radius:2px; padding-left:10px" [items]="githubUsers$ | async"
-          [multiple]="false" bindLabel="login" [(ngModel)]="selectedUsers1" placeholder="Select signer...">
+        <ng-select style="width:460px; background-color:whitesmoke; border-radius:2px; padding-left:10px" 
+          [items]="people3"
+          [multiple]="false" 
+          bindLabel="username" 
+          [(ngModel)]="selectedUser"  
+          (change)="searchUser($event)" 
+          [typeahead]="people3Typeahead"
+          placeholder="Select signer...">
           <ng-template ng-label-tmp let-item="item" let-clear="clear">
             <span class="ng-value-label">
-              <img [src]="item.avatar_url" width="20px" height="20px"> {{item.login}}</span>
+              <img [src]="item.profile.image && item.profile.image[0].contentUrl" width="20px" height="20px"> {{item.username}}</span>
             <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
           </ng-template>
           <ng-template ng-option-tmp let-item="item">
-            <img [src]="item.avatar_url" width="20px" height="20px"> {{item.login}}
+            <img [src]="item.profile.image && item.profile.image[0].contentUrl" width="20px" height="20px"> {{item.username}}
           </ng-template>
         </ng-select>
       </ion-col>

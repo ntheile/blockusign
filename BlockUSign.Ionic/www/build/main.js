@@ -78,14 +78,13 @@ var BlockStackService = (function () {
     }
     BlockStackService.prototype.searchUser = function (user) {
         return __awaiter(this, void 0, void 0, function () {
-            var resp, respObj;
+            var resp;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.http.get("https://core.blockstack.org/v1/search?query=" + user).toPromise()];
+                    case 0: return [4 /*yield*/, this.http.get("https://core.blockstack.org/v1/search?query=" + user).map(function (r) { return r.json().results; }).toPromise()];
                     case 1:
                         resp = _a.sent();
-                        respObj = JSON.parse(resp.text());
-                        return [2 /*return*/, respObj];
+                        return [2 /*return*/, resp];
                 }
             });
         });
@@ -337,10 +336,10 @@ var BlockStackService = (function () {
     };
     BlockStackService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5_ionic_angular__["c" /* Events */],
-            __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["c" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["c" /* Events */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]) === "function" && _b || Object])
     ], BlockStackService);
     return BlockStackService;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=blockstack.service.js.map
@@ -372,7 +371,7 @@ var map = {
 		210
 	],
 	"../pages/email/email.module": [
-		382
+		383
 	],
 	"../pages/home/home.module": [
 		386
@@ -381,7 +380,7 @@ var map = {
 		381
 	],
 	"../pages/sign/sign.module": [
-		385
+		382
 	]
 };
 function webpackAsyncContext(req) {
@@ -1041,12 +1040,53 @@ var ReviewPageModule = (function () {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignPageModule", function() { return SignPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sign__ = __webpack_require__(625);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(69);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+var SignPageModule = (function () {
+    function SignPageModule() {
+    }
+    SignPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__sign__["a" /* SignPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__sign__["a" /* SignPage */]),
+                __WEBPACK_IMPORTED_MODULE_3__components_components_module__["a" /* BlockStepsComponentModule */]
+            ],
+        })
+    ], SignPageModule);
+    return SignPageModule;
+}());
+
+//# sourceMappingURL=sign.module.js.map
+
+/***/ }),
+
+/***/ 383:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EmailPageModule", function() { return EmailPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__email__ = __webpack_require__(625);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__email__ = __webpack_require__(626);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ng_select_ng_select__ = __webpack_require__(384);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ng_select_ng_select__ = __webpack_require__(385);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(23);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1084,7 +1124,7 @@ var EmailPageModule = (function () {
 
 /***/ }),
 
-/***/ 383:
+/***/ 384:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1199,47 +1239,6 @@ var EmailService = (function () {
 }());
 
 //# sourceMappingURL=email.service.js.map
-
-/***/ }),
-
-/***/ 385:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignPageModule", function() { return SignPageModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sign__ = __webpack_require__(628);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(69);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-
-var SignPageModule = (function () {
-    function SignPageModule() {
-    }
-    SignPageModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
-            declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__sign__["a" /* SignPage */],
-            ],
-            imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__sign__["a" /* SignPage */]),
-                __WEBPACK_IMPORTED_MODULE_3__components_components_module__["a" /* BlockStepsComponentModule */]
-            ],
-        })
-    ], SignPageModule);
-    return SignPageModule;
-}());
-
-//# sourceMappingURL=sign.module.js.map
 
 /***/ }),
 
@@ -1902,22 +1901,22 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_splash_screen__ = __webpack_require__(431);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_charts__ = __webpack_require__(654);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_charts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_ng2_charts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ng_select_ng_select__ = __webpack_require__(384);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ng_select_ng_select__ = __webpack_require__(385);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_component__ = __webpack_require__(702);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__options_popover_page__ = __webpack_require__(437);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__directives_directives_module__ = __webpack_require__(239);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_home_home_module__ = __webpack_require__(386);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_annotate_annotate_module__ = __webpack_require__(210);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_sign_sign_module__ = __webpack_require__(385);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_email_email_module__ = __webpack_require__(382);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_sign_sign_module__ = __webpack_require__(382);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_email_email_module__ = __webpack_require__(383);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_review_review_module__ = __webpack_require__(381);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__services_coin_service__ = __webpack_require__(703);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__services_global_service__ = __webpack_require__(388);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_cryptocompare_service__ = __webpack_require__(704);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__services_slack_service__ = __webpack_require__(705);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__services_document_service__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__services_email_service__ = __webpack_require__(383);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__services_email_service__ = __webpack_require__(384);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__services_blockstack_service__ = __webpack_require__(129);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1968,8 +1967,8 @@ var AppModule = (function () {
                     links: [
                         { loadChildren: '../pages/annotate/annotate.module#AnnotatePageModule', name: 'AnnotatePage', segment: 'annotate/:guid', priority: 'low', defaultHistory: ['HomePage'] },
                         { loadChildren: '../pages/review/review.module#ReviewPageModule', name: 'ReviewPage', segment: 'review/:guid', priority: 'low', defaultHistory: ['SignPage', 'EmailPage', 'AnnotatePage', 'HomePage'] },
-                        { loadChildren: '../pages/email/email.module#EmailPageModule', name: 'EmailPage', segment: 'email/:guid', priority: 'low', defaultHistory: ['AnnotatePage', 'HomePage'] },
                         { loadChildren: '../pages/sign/sign.module#SignPageModule', name: 'SignPage', segment: 'sign/:guid', priority: 'low', defaultHistory: ['EmailPage', 'AnnotatePage', 'HomePage'] },
+                        { loadChildren: '../pages/email/email.module#EmailPageModule', name: 'EmailPage', segment: 'email/:guid', priority: 'low', defaultHistory: ['AnnotatePage', 'HomePage'] },
                         { loadChildren: '../pages/home/home.module#HomeModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] }
                     ]
                 }),
@@ -2654,10 +2653,11 @@ var BlockChatComponent = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'block-chat',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-chat/block-chat.html"*/'<div class="block-chat">\n  <ion-fab bottom right>\n    <div id="live-chat" class="shadow6">\n\n      <header class="clearfix" (click)="minimize()">\n        <!-- <a class="chat-close"  >x</a>-->\n        <h4>\n          <span class="chat-head"></span> - Log</h4>\n        <!-- <span style="opacity:.6; padding-left:30px;">YOURNAME/THEIRNAME</span> -->\n        <span class="chat-message-counter">3</span>\n      </header>\n      <div class="chat">\n        <div class="chat-history">\n          <div class="log-history">\n\n          </div>\n        </div>\n        <!-- <p class="chat-feedback">Your partner is typing…</p> -->\n        <form>\n\n          <fieldset>\n\n            <input type="text" name="addMsg" placeholder="Type your message…" \n              autofocus [(ngModel)]="message" (keydown.enter)="addMessage($event)" /> \n            \n\n          </fieldset>\n\n        </form>\n\n      </div>\n      <!-- end chat -->\n\n    </div>\n    <!-- end live-chat -->\n  </ion-fab>\n\n</div>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-chat/block-chat.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_document_service__["a" /* DocumentService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_document_service__["a" /* DocumentService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* Events */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__["a" /* BlockStackService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__["a" /* BlockStackService */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_document_service__["a" /* DocumentService */],
+            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* Events */],
+            __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__["a" /* BlockStackService */]])
     ], BlockChatComponent);
     return BlockChatComponent;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=block-chat.js.map
@@ -3003,245 +3003,6 @@ var ReviewPage = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EmailPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_document_service__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_email_service__ = __webpack_require__(383);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__ = __webpack_require__(129);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_observable_of__ = __webpack_require__(130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_observable_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_observable_of__);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-
-/**
- * Generated class for the SignPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var EmailPage = (function () {
-    function EmailPage(navCtrl, navParams, documentService, emailService, blockStackService, chg) {
-        var _this = this;
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.documentService = documentService;
-        this.emailService = emailService;
-        this.blockStackService = blockStackService;
-        this.chg = chg;
-        this.email = "";
-        this.selectedUsers1 = [];
-        if (this.navParams.get("guid") && !this.documentService.currentDoc) {
-            var guid_1 = this.navParams.get("guid");
-            this.documentService.getDocumentsIndex(true).then(function (data) {
-                _this.documentService.documentsList = data;
-                _this.documentService.setCurrentDoc(guid_1);
-                //this.getFile();
-                // @todo in side menu highlight selected doc
-            });
-        }
-        else {
-            //this.getFile();
-        }
-    }
-    EmailPage.prototype.ionViewDidLoad = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                console.log('ionViewDidLoad SignPage');
-                this.lookup();
-                //this.githubUsers$ = this.blockStackService.getGithubAccounts('anjm');
-                this.githubUsers$ = Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_observable_of__["of"])([
-                    {
-                        "login": "ntheile",
-                        "id": 1273575,
-                        "avatar_url": "https://avatars3.githubusercontent.com/u/1273575?v=4",
-                        "gravatar_id": "",
-                        "url": "https://api.github.com/users/ntheile",
-                        "html_url": "https://github.com/ntheile",
-                        "followers_url": "https://api.github.com/users/ntheile/followers",
-                        "following_url": "https://api.github.com/users/ntheile/following{/other_user}",
-                        "gists_url": "https://api.github.com/users/ntheile/gists{/gist_id}",
-                        "starred_url": "https://api.github.com/users/ntheile/starred{/owner}{/repo}",
-                        "subscriptions_url": "https://api.github.com/users/ntheile/subscriptions",
-                        "organizations_url": "https://api.github.com/users/ntheile/orgs",
-                        "repos_url": "https://api.github.com/users/ntheile/repos",
-                        "events_url": "https://api.github.com/users/ntheile/events{/privacy}",
-                        "received_events_url": "https://api.github.com/users/ntheile/received_events",
-                        "type": "User",
-                        "site_admin": false,
-                        "score": 65.59707
-                    },
-                    {
-                        "login": "Jesus",
-                        "id": 23031,
-                        "avatar_url": "https://avatars1.githubusercontent.com/u/23031?v=4",
-                        "gravatar_id": "",
-                        "url": "https://api.github.com/users/Jesus",
-                        "html_url": "https://github.com/Jesus",
-                        "followers_url": "https://api.github.com/users/Jesus/followers",
-                        "following_url": "https://api.github.com/users/Jesus/following{/other_user}",
-                        "gists_url": "https://api.github.com/users/Jesus/gists{/gist_id}",
-                        "starred_url": "https://api.github.com/users/Jesus/starred{/owner}{/repo}",
-                        "subscriptions_url": "https://api.github.com/users/Jesus/subscriptions",
-                        "organizations_url": "https://api.github.com/users/Jesus/orgs",
-                        "repos_url": "https://api.github.com/users/Jesus/repos",
-                        "events_url": "https://api.github.com/users/Jesus/events{/privacy}",
-                        "received_events_url": "https://api.github.com/users/Jesus/received_events",
-                        "type": "User",
-                        "site_admin": false,
-                        "score": 63.052933
-                    },
-                    {
-                        "login": "postwait",
-                        "id": 335748,
-                        "avatar_url": "https://avatars0.githubusercontent.com/u/335748?v=4",
-                        "gravatar_id": "",
-                        "url": "https://api.github.com/users/postwait",
-                        "html_url": "https://github.com/postwait",
-                        "followers_url": "https://api.github.com/users/postwait/followers",
-                        "following_url": "https://api.github.com/users/postwait/following{/other_user}",
-                        "gists_url": "https://api.github.com/users/postwait/gists{/gist_id}",
-                        "starred_url": "https://api.github.com/users/postwait/starred{/owner}{/repo}",
-                        "subscriptions_url": "https://api.github.com/users/postwait/subscriptions",
-                        "organizations_url": "https://api.github.com/users/postwait/orgs",
-                        "repos_url": "https://api.github.com/users/postwait/repos",
-                        "events_url": "https://api.github.com/users/postwait/events{/privacy}",
-                        "received_events_url": "https://api.github.com/users/postwait/received_events",
-                        "type": "User",
-                        "site_admin": false,
-                        "score": 43.323296
-                    },
-                    {
-                        "login": "jfederico",
-                        "id": 578359,
-                        "avatar_url": "https://avatars0.githubusercontent.com/u/578359?v=4",
-                        "gravatar_id": "",
-                        "url": "https://api.github.com/users/jfederico",
-                        "html_url": "https://github.com/jfederico",
-                        "followers_url": "https://api.github.com/users/jfederico/followers",
-                        "following_url": "https://api.github.com/users/jfederico/following{/other_user}",
-                        "gists_url": "https://api.github.com/users/jfederico/gists{/gist_id}",
-                        "starred_url": "https://api.github.com/users/jfederico/starred{/owner}{/repo}",
-                        "subscriptions_url": "https://api.github.com/users/jfederico/subscriptions",
-                        "organizations_url": "https://api.github.com/users/jfederico/orgs",
-                        "repos_url": "https://api.github.com/users/jfederico/repos",
-                        "events_url": "https://api.github.com/users/jfederico/events{/privacy}",
-                        "received_events_url": "https://api.github.com/users/jfederico/received_events",
-                        "type": "User",
-                        "site_admin": false,
-                        "score": 39.45767
-                    }
-                ]);
-                return [2 /*return*/];
-            });
-        });
-    };
-    EmailPage.prototype.next = function () {
-        this.navCtrl.push("SignPage", {
-            guid: this.documentService.currentDoc.guid
-        });
-    };
-    EmailPage.prototype.back = function () {
-        this.navCtrl.push("AnnotatePage", {
-            guid: this.documentService.currentDoc.guid
-        });
-    };
-    EmailPage.prototype.getUrl = function () {
-        return window.location.href;
-    };
-    EmailPage.prototype.lookup = function () {
-        blockstack.lookupProfile("blockusign1.id")
-            .then(function (profile) {
-            var data = profile;
-        })
-            .catch(function (error) {
-            console.log('could not resolve profile');
-        });
-    };
-    EmailPage.prototype.searchUser = function (user) {
-        return __awaiter(this, void 0, void 0, function () {
-            var resp;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.blockStackService.searchUser(user)];
-                    case 1:
-                        resp = _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    EmailPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-email',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/email/email.html"*/'<ion-content class="no-overflow-page email-page">\n\n  <ion-grid>\n    <ion-row>\n      <ion-col width-100>\n\n        <block-steps activeStep="3">\n        </block-steps>\n\n\n        <br/>\n        <br/>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-grid>\n    <ion-row align-items-left>\n      <ion-col>\n        <ng-select style="width:460px; background-color:whitesmoke; border-radius:2px; padding-left:10px" [items]="githubUsers$ | async"\n          [multiple]="false" bindLabel="login" [(ngModel)]="selectedUsers1" placeholder="Select signer...">\n          <ng-template ng-label-tmp let-item="item" let-clear="clear">\n            <span class="ng-value-label">\n              <img [src]="item.avatar_url" width="20px" height="20px"> {{item.login}}</span>\n            <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>\n          </ng-template>\n          <ng-template ng-option-tmp let-item="item">\n            <img [src]="item.avatar_url" width="20px" height="20px"> {{item.login}}\n          </ng-template>\n        </ng-select>\n      </ion-col>\n      <ion-col style="width:460px; background-color:transparent; ">\n        <!-- <ion-item  style="width:460px; background-color:transparent; " >\n          <ion-input style="width:460px;" placeholder="[Enter Email]" [(ngModel)]="email"></ion-input>\n        </ion-item> -->\n        \n        <input class="classic-input" type="email" placeholder="Email To..." [(ngModel)]="email" autofocus>\n   \n      </ion-col>\n      <ion-col>\n        <button ion-button (click)="emailService.sendEmail(email)">Send Email</button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n\n   \n\n  \n  <block-pdf marginTop="50px" >\n  </block-pdf>\n \n\n  \n\n  <!-- <ion-card>\n\n    <ion-card-header>\n      Work In Progress\n    </ion-card-header>\n\n    <ion-card-content>\n      <img src="./../../assets/imgs/bugcode.jpg"  style="max-width: 300px;"/>\n      <br />\n      <p>\n        Want this feature faster? Considering donating here: BTC - <ion-input value="1Jw3xsPzmYus3ke4XYXAHHyzpxD1sjQVta" style="font-size: large"></ion-input>\n      </p>\n\n      <p>\n        <br/>\n        The email feature will be enabled in the next release. For now, copy and paste this link to sign. Right now, only you can\n        sign the document. The next release will allow you to send this document to somebody else to sign using <a href="https://blockstack.org/tutorials/multi-player-storage" target="_blank">Blockstacks\n          muli-player storage.</a>\n        <br/>\n      </p>\n\n\n      <ion-input [value]="getUrl()" style="font-size: large"></ion-input>\n\n\n\n\n      <ion-input [value]="getUrl()" style="font-size: large"></ion-input>\n\n\n    </ion-card-content>\n\n  </ion-card>\n -->\n\n\n\n\n\n\n</ion-content>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/email/email.html"*/,
-            changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectionStrategy"].OnPush,
-            encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__services_document_service__["a" /* DocumentService */],
-            __WEBPACK_IMPORTED_MODULE_3__services_email_service__["a" /* EmailService */],
-            __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__["a" /* BlockStackService */],
-            __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"]])
-    ], EmailPage);
-    return EmailPage;
-}());
-
-//# sourceMappingURL=email.js.map
-
-/***/ }),
-
-/***/ 628:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SignPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
@@ -3307,6 +3068,179 @@ var SignPage = (function () {
 }());
 
 //# sourceMappingURL=sign.js.map
+
+/***/ }),
+
+/***/ 626:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EmailPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_document_service__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_email_service__ = __webpack_require__(384);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs__ = __webpack_require__(714);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_rxjs__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+
+
+/**
+ * Generated class for the SignPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var EmailPage = (function () {
+    function EmailPage(navCtrl, navParams, documentService, emailService, blockStackService, chg) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.documentService = documentService;
+        this.emailService = emailService;
+        this.blockStackService = blockStackService;
+        this.chg = chg;
+        this.email = "";
+        this.people3 = [];
+        this.people3Loading = false;
+        this.selectedUser = [];
+        this.people3Typeahead = new __WEBPACK_IMPORTED_MODULE_7_rxjs__["Subject"]();
+        if (this.navParams.get("guid") && !this.documentService.currentDoc) {
+            var guid_1 = this.navParams.get("guid");
+            this.documentService.getDocumentsIndex(true).then(function (data) {
+                _this.documentService.documentsList = data;
+                _this.documentService.setCurrentDoc(guid_1);
+                //this.getFile();
+                // @todo in side menu highlight selected doc
+            });
+        }
+        else {
+            //this.getFile();
+        }
+    }
+    EmailPage.prototype.ionViewDidLoad = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                console.log('ionViewDidLoad SignPage');
+                this.lookup();
+                this.loadPeople3();
+                return [2 /*return*/];
+            });
+        });
+    };
+    EmailPage.prototype.next = function () {
+        this.navCtrl.push("SignPage", {
+            guid: this.documentService.currentDoc.guid
+        });
+    };
+    EmailPage.prototype.back = function () {
+        this.navCtrl.push("AnnotatePage", {
+            guid: this.documentService.currentDoc.guid
+        });
+    };
+    EmailPage.prototype.getUrl = function () {
+        return window.location.href;
+    };
+    EmailPage.prototype.lookup = function () {
+        blockstack.lookupProfile("blockusign1.id")
+            .then(function (profile) {
+            var data = profile;
+        })
+            .catch(function (error) {
+            console.log('could not resolve profile');
+        });
+    };
+    EmailPage.prototype.searchUser = function (user) {
+        return __awaiter(this, void 0, void 0, function () {
+            var resp;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.blockStackService.searchUser(user)];
+                    case 1:
+                        resp = _a.sent();
+                        this.githubUsers$ = Object(__WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__["of"])(resp);
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    EmailPage.prototype.loadPeople3 = function () {
+        var _this = this;
+        this.people3Typeahead.pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators__["tap"])(function () { return _this.people3Loading = true; }), Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators__["distinctUntilChanged"])(), Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators__["debounceTime"])(750), Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators__["switchMap"])(function (term) { return _this.blockStackService.searchUser(term); })).subscribe(function (x) {
+            _this.people3 = x;
+            _this.people3Loading = false;
+            _this.chg.markForCheck();
+        }, function () {
+            _this.people3 = [];
+        });
+    };
+    EmailPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-email',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/email/email.html"*/'<ion-content class="no-overflow-page email-page">\n\n  <ion-grid>\n    <ion-row>\n      <ion-col width-100>\n\n        <block-steps activeStep="3">\n        </block-steps>\n\n\n        <br/>\n        <br/>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-grid>\n    <ion-row align-items-left>\n      <ion-col>\n        <ng-select style="width:460px; background-color:whitesmoke; border-radius:2px; padding-left:10px" \n          [items]="people3"\n          [multiple]="false" \n          bindLabel="username" \n          [(ngModel)]="selectedUser"  \n          (change)="searchUser($event)" \n          [typeahead]="people3Typeahead"\n          placeholder="Select signer...">\n          <ng-template ng-label-tmp let-item="item" let-clear="clear">\n            <span class="ng-value-label">\n              <img [src]="item.profile.image && item.profile.image[0].contentUrl" width="20px" height="20px"> {{item.username}}</span>\n            <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>\n          </ng-template>\n          <ng-template ng-option-tmp let-item="item">\n            <img [src]="item.profile.image && item.profile.image[0].contentUrl" width="20px" height="20px"> {{item.username}}\n          </ng-template>\n        </ng-select>\n      </ion-col>\n      <ion-col style="width:460px; background-color:transparent; ">\n        <!-- <ion-item  style="width:460px; background-color:transparent; " >\n          <ion-input style="width:460px;" placeholder="[Enter Email]" [(ngModel)]="email"></ion-input>\n        </ion-item> -->\n        \n        <input class="classic-input" type="email" placeholder="Email To..." [(ngModel)]="email" autofocus>\n   \n      </ion-col>\n      <ion-col>\n        <button ion-button (click)="emailService.sendEmail(email)">Send Email</button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n\n   \n\n  \n  <block-pdf marginTop="50px" >\n  </block-pdf>\n \n\n  \n\n  <!-- <ion-card>\n\n    <ion-card-header>\n      Work In Progress\n    </ion-card-header>\n\n    <ion-card-content>\n      <img src="./../../assets/imgs/bugcode.jpg"  style="max-width: 300px;"/>\n      <br />\n      <p>\n        Want this feature faster? Considering donating here: BTC - <ion-input value="1Jw3xsPzmYus3ke4XYXAHHyzpxD1sjQVta" style="font-size: large"></ion-input>\n      </p>\n\n      <p>\n        <br/>\n        The email feature will be enabled in the next release. For now, copy and paste this link to sign. Right now, only you can\n        sign the document. The next release will allow you to send this document to somebody else to sign using <a href="https://blockstack.org/tutorials/multi-player-storage" target="_blank">Blockstacks\n          muli-player storage.</a>\n        <br/>\n      </p>\n\n\n      <ion-input [value]="getUrl()" style="font-size: large"></ion-input>\n\n\n\n\n      <ion-input [value]="getUrl()" style="font-size: large"></ion-input>\n\n\n    </ion-card-content>\n\n  </ion-card>\n -->\n\n\n\n\n\n\n</ion-content>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/email/email.html"*/,
+            changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectionStrategy"].Default,
+            encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None,
+        }),
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_document_service__["a" /* DocumentService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_document_service__["a" /* DocumentService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_email_service__["a" /* EmailService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_email_service__["a" /* EmailService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__["a" /* BlockStackService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__["a" /* BlockStackService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"]) === "function" && _f || Object])
+    ], EmailPage);
+    return EmailPage;
+    var _a, _b, _c, _d, _e, _f;
+}());
+
+//# sourceMappingURL=email.js.map
 
 /***/ }),
 

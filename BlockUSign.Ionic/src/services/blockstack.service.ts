@@ -43,9 +43,8 @@ export class BlockStackService {
 
   async searchUser(user) {
     // get from server
-    let resp = await this.http.get("https://core.blockstack.org/v1/search?query=" + user).toPromise();
-    let respObj = JSON.parse (resp.text() );
-    return respObj;
+    let resp = await this.http.get("https://core.blockstack.org/v1/search?query=" + user).map(r => r.json().results).toPromise();
+    return resp;
   }
 
   async getPicUrl(userId) {
