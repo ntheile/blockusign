@@ -8,6 +8,7 @@ import 'rxjs/add/operator/catch';
 import { AnonymousSubject } from 'rxjs/Subject';
 import { Events } from 'ionic-angular';
 declare let blockstack: any;
+declare let sjcl: any;
 
 /*
   Generated class for the StorageServiceProvider provider.
@@ -54,18 +55,19 @@ export class DocumentService {
 
     let newDocument = new Document();
     newDocument.fileName = fileName;
+    newDocument.documentKey = this.generateKey();
+    newDocument.path = blockstack.loadUserData().profile.apps[window.location.origin];
     this.documentsList.push(newDocument);
 
     await blockstack.putFile(this.indexFileName, JSON.stringify(this.documentsList), { encrypt: true });
 
     this.docBuffer = fileBuffer;
     this.currentDoc = newDocument;
-    let response = await this.addDocumentBytes(newDocument.guid, fileBuffer);
+    let response = await this.addDocumentBytes(newDocument.guid, fileBuffer, newDocument.documentKey);
     return this.documentsList;
   }
 
   async removeDocument(document) {
-
     // remove item
     this.documentsList = (<any>this.documentsList).remove(document);
     await blockstack.putFile(this.indexFileName, JSON.stringify(this.documentsList), { encrypt: true });
@@ -74,12 +76,31 @@ export class DocumentService {
     return this.documentsList;
   }
 
-  async addDocumentBytes(guid: string, doc: any) {
-    return blockstack.putFile(guid + ".pdf", doc, { encrypt: true }).then((data) => { });
+  async addDocumentBytes(guid: string, doc: any, documentKey: string) {
+
+    let encryptedDoc = this.ecryptDoc(doc, documentKey );
+
+    return blockstack.putFile(guid + ".pdf", encryptedDoc, { encrypt: false }).then((data) => { 
+
+    });
+
+  }
+
+  async getDocument(fileName: string, documentKey: string){
+    let resp = await blockstack.getFile(fileName, { decrypt: false });
+
+    if (resp){
+      let encryptedDoc = resp;
+      return this.decryptDoc(encryptedDoc, documentKey);
+    }
+    else{
+      return null;
+    }
+
   }
 
   async removeDocumentBytes(guid: string) {
-    return blockstack.putFile(guid + ".pdf", "", { encrypt: true }).then((data) => { });
+    return blockstack.putFile(guid + ".pdf", "", { encrypt: false }).then((data) => { });
   }
 
   async saveAnnotations(guid: string, annotation: string) {
@@ -87,13 +108,13 @@ export class DocumentService {
     let json = {
       annotations: annotation
     }
-    return await blockstack.putFile(guid + ".annotations.json", JSON.stringify(json), { encrypt: true });
+    return await blockstack.putFile(guid + ".annotations.json", JSON.stringify(json), { encrypt: false });
 
   }
 
   async getAnnotations(guid: string) {
 
-    let resp = await blockstack.getFile(guid + ".annotations.json", { decrypt: true });
+    let resp = await blockstack.getFile(guid + ".annotations.json", { decrypt: false });
     if (resp){
       this.currentDocAnnotations = JSON.parse(resp);
     }
@@ -114,14 +135,14 @@ export class DocumentService {
 
     let resp;
     try {
-      resp = await blockstack.getFile(logFileName, { decrypt: true });
+      resp = await blockstack.getFile(logFileName, { decrypt: false });
       if (resp){
         this.log = JSON.parse(resp);
       }
       if (this.log === null || this.log === undefined) {
         let newLog = new Log();
         newLog.messages = [];
-        this.log = JSON.parse(await blockstack.putFile(logFileName, JSON.stringify(newLog), { encrypt: true }));
+        this.log = JSON.parse(await blockstack.putFile(logFileName, JSON.stringify(newLog), { encrypt: false }));
       }
       return this.log;
     }
@@ -139,7 +160,7 @@ export class DocumentService {
       msg.createdBy = blockstack.loadUserData().username;
       msg.createdByName = blockstack.loadUserData().profile.name;
       log.messages.push(msg);
-      return await blockstack.putFile(logFileName, JSON.stringify(log), { encrypt: true });
+      return await blockstack.putFile(logFileName, JSON.stringify(log), { encrypt: false });
     }
     else {
       console.error("error getting log file: " + logFileName)
@@ -147,5 +168,22 @@ export class DocumentService {
 
   }
 
+
+  //https://stackoverflow.com/questions/26734033/encrypting-files-with-sjcl-client-side
+  ecryptDoc(doc: any, key: string) {
+    let docBits = sjcl.codec.arrayBuffer.toBits(doc);
+    let base64bits = sjcl.codec.base64.fromBits(docBits); 
+    let encryptedDoc = sjcl.encrypt(key, base64bits);
+    return encryptedDoc;
+  }
+  decryptDoc(encryptedDoc, key: string) {
+    let dec = sjcl.decrypt(key, encryptedDoc);
+    let decryptedBase64 = sjcl.codec.base64.toBits(dec);
+    let decryptedDocBits = sjcl.codec.arrayBuffer.fromBits(decryptedBase64);
+    return decryptedDocBits;
+  }
+  generateKey(){
+    return "nickteeblockusign1";
+  }
 
 }

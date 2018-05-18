@@ -11,6 +11,7 @@ import PDFJSAnnotate from 'pdf-annotate';
 import { GlobalService } from '../../services/global.service';
 import { DocumentService } from '../../services/document.service';
 import { AlertController } from 'ionic-angular';
+import * as openpgpWorker from 'openpgp/dist/openpgp.worker.js';
 declare let window: any;
 declare let PDFView: any;
 declare let canvas: any;
@@ -20,7 +21,7 @@ declare let blockstack: any;
 declare let document: any;
 declare let jsPDF: any;
 declare let $: any;
-declare let openpgp: any;
+declare let sjcl: any;
 
 //const $ = document.querySelectorAll.bind(document);
 
@@ -51,30 +52,8 @@ export class HomePage {
     async ionViewDidLoad() {
 
 
-        openpgp.initWorker({ path: './../../assets/dist/openpgp.worker.js' }) // set the relative web worker path
 
 
-        var options, encrypted;
-
-        options = {
-            data: new Uint8Array([0x01, 0x01, 0x01]), // input as Uint8Array (or String)
-            passwords: ['secret stuff'],              // multiple passwords possible
-            armor: false                              // don't ASCII armor (for Uint8Array output)
-        };
-
-        openpgp.encrypt(options).then(function (ciphertext) {
-            encrypted = ciphertext.message.packets.write(); // get raw encrypted packets as Uint8Array
-        });
-
-        options = {
-            message: openpgp.message.read(encrypted), // parse encrypted bytes
-            passwords: ['secret stuff'],              // decrypt with password
-            format: 'binary'                          // output as Uint8Array
-        };
-
-        openpgp.decrypt(options).then(function (plaintext) {
-            return plaintext.data // Uint8Array([0x01, 0x01, 0x01])
-        });
 
         //this.initCamera();
         this.ekUpload();
@@ -103,10 +82,9 @@ export class HomePage {
         // });
     }
 
-    getFile() {
-        blockstack.getFile(this.fileName, { decrypt: true }).then((data) => {
-            this.pdfBuffer = data;
-        });
+    async getFile() {
+        let data = this.documentService.getDocument(this.fileName, this.documentService.currentDoc.documentKey);
+        this.pdfBuffer = data;
     }
 
     loadFile() {

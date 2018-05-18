@@ -15,7 +15,7 @@
     "chrome": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./scripts/chrome.ps1",
     "chrome-mac": "./scripts/chrome.sh",
     "serve": "ionic build && node ./scripts/server.js",
-    "start": "npm run chrome-mac && ionic serve"
+    "start": "npm run chrome && ionic serve"
   },
   "dependencies": {
     "@angular/common": "5.0.3",
@@ -51,6 +51,7 @@
     "opn": "^5.3.0",
     "pdf-annotate": "0.0.0",
     "pdfjs-dist": "^2.0.480",
+    "requirejs": "^2.3.5",
     "rxjs": "^5.5.2",
     "rxjs-compat": "^6.1.0",
     "sw-toolbox": "3.6.0",

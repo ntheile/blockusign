@@ -41,7 +41,7 @@ declare let Event: any;
 export class BlockPdfComponent {
 
   @ViewChild(AbsoluteDragDirective) vc: AbsoluteDragDirective;
-  
+
   @Input() showToolBar = 0;
   @Input() showSignature: 0;
   @Input() showSignHere: 0;
@@ -68,12 +68,12 @@ export class BlockPdfComponent {
   allowResize = false;
 
   constructor(
-    public navCtrl:         NavController, 
-    public navParams:       NavParams,
+    public navCtrl: NavController,
+    public navParams: NavParams,
     public documentService: DocumentService
   ) {
-      console.log('====> constructor');
-    
+    console.log('====> constructor');
+
   }
 
 
@@ -86,7 +86,7 @@ export class BlockPdfComponent {
     console.log("====> ngOnDestroy");
   }
 
-  init(){
+  init() {
     $(".dropzone").unbind();
     //let pdfData = this.loadPDFData(); // loads pdf data from localStorage, make sure you uploaded it from home.js
 
@@ -99,7 +99,7 @@ export class BlockPdfComponent {
         // @todo in side menu highlight selected doc
       });
     }
-    else if(this.documentService.currentDoc.guid){
+    else if (this.documentService.currentDoc.guid) {
       this.documentService.setCurrentDoc(this.documentService.currentDoc.guid);
       this.getFile();
     }
@@ -113,41 +113,40 @@ export class BlockPdfComponent {
   }
 
 
-  getFile() {
+  async getFile() {
 
-    blockstack.getFile(this.documentService.currentDoc.guid + ".pdf", { decrypt: true }).then((data) => {
-      this.pdfBuffer = data;
+    let data = await this.documentService.getDocument(this.documentService.currentDoc.guid + ".pdf", this.documentService.currentDoc.documentKey);
+    this.pdfBuffer = data;
 
-      let pdfData = new Uint8Array(this.pdfBuffer);
+    let pdfData = new Uint8Array(this.pdfBuffer);
 
-      this.loadPdf(pdfData); // loads the pdf to the screen with the text layers
+    this.loadPdf(pdfData); // loads the pdf to the screen with the text layers
 
-      //this.setupToolBar();
+    //this.setupToolBar();
 
-      //this.page1 = document.querySelector(`#${this.containerId} .annotationLayer`);
-      //this.page2 = document.querySelector('#pageContainer2 .annotationLayer');
+    //this.page1 = document.querySelector(`#${this.containerId} .annotationLayer`);
+    //this.page2 = document.querySelector('#pageContainer2 .annotationLayer');
 
-      //PDFJS.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
-      //PDFAnnotate.setStoreAdapter(new PDFAnnotate.LocalStoreAdapter());
+    //PDFJS.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+    //PDFAnnotate.setStoreAdapter(new PDFAnnotate.LocalStoreAdapter());
 
-      // Promise.all([
-      //   PDFAnnotate.getAnnotations(this.DOCUMENT_ID, 1),
-      //   //PDFAnnotate.getAnnotations(this.DOCUMENT_ID, 2)
-      // ]).then(([ann1, ann2]) => {
+    // Promise.all([
+    //   PDFAnnotate.getAnnotations(this.DOCUMENT_ID, 1),
+    //   //PDFAnnotate.getAnnotations(this.DOCUMENT_ID, 2)
+    // ]).then(([ann1, ann2]) => {
 
-      //   let RENDER_OPTIONS = {
-      //     documentId: this.DOCUMENT_ID,
-      //     pdfDocument: pdfData,
-      //     scale: 1,
-      //     rotate: 0
-      //   };
+    //   let RENDER_OPTIONS = {
+    //     documentId: this.DOCUMENT_ID,
+    //     pdfDocument: pdfData,
+    //     scale: 1,
+    //     rotate: 0
+    //   };
 
-      //   PDFAnnotate.render(this.page1, mockViewport(this.page1), ann1);
-      //   //PDFAnnotate.render(this.page2, mockViewport(this.page2), ann2);
+    //   PDFAnnotate.render(this.page1, mockViewport(this.page1), ann1);
+    //   //PDFAnnotate.render(this.page2, mockViewport(this.page2), ann2);
 
-      // });
+    // });
 
-    });
   }
 
   back() {

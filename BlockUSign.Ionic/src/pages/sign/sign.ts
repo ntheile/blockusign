@@ -21,10 +21,12 @@ declare let blockstack: any;
 })
 export class SignPage {
 
-
   name:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public documentService: DocumentService) {
+
+    // if you are a signer and the document is not in your document.index then add it!
+    // @todo think about allowing a document to get signed by an anonymous person if they got it via email with the documentKey
 
     if ( this.navParams.get("guid") && !this.documentService.currentDoc ){
       let guid = this.navParams.get("guid");
