@@ -63,11 +63,6 @@ export class EmailPage {
 
   }
 
-  saveEmail(){
-    console.log(this.emailForm);
-    console.log(JSON.stringify(this.emailForm.value));
-  }
-
   async ionViewDidLoad() {
     console.log('ionViewDidLoad SignPage');
     this.lookup();

@@ -60,8 +60,6 @@ export class BlockChatComponent {
     for (let item of logData.messages ) {
 
       let d = item.updatedAt;
-      //d = new Date(d);
-      //let formatDate = (d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear()+' '+(d.getHours() > 12 ? d.getHours() - 12 : d.getHours())+':'+d.getMinutes()+' '+(d.getHours() >= 12 ? "PM" : "AM");
       let formatDate = moment(d).calendar(d);
 
       let uid = item.createdBy.replace('.id','');
