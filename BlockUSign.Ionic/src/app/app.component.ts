@@ -8,6 +8,7 @@ import { DocumentService } from '../services/document.service';
 import { PopoverController } from 'ionic-angular';
 import { ViewController } from 'ionic-angular';
 import { OptionsPopoverPage } from './options.popover.page';
+import { MenuController } from 'ionic-angular';
 import moment from 'moment-timezone';
 import 'rxjs/add/operator/toPromise';
 import { LoadingController } from 'ionic-angular';
@@ -39,9 +40,16 @@ export class MyApp {
   avatar: string;
   documentsList: any;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
-    public loadingCtrl: LoadingController, private alertCtrl: AlertController,
-    public documentService: DocumentService, public popoverCtrl: PopoverController) {
+  constructor(
+    public platform: Platform, 
+    public statusBar: StatusBar, 
+    public splashScreen: SplashScreen,
+    public loadingCtrl: LoadingController, 
+    private alertCtrl: AlertController,
+    public documentService: DocumentService, 
+    public popoverCtrl: PopoverController,
+    public menuCtrl: MenuController
+  ) {
 
     this.initializeApp();
 
@@ -89,6 +97,9 @@ export class MyApp {
   }
 
   next() {
+
+
+    this.menuCtrl.close();
 
     if (this.nav.getActive().name == "AnnotatePage") {
       this.nav.pop();

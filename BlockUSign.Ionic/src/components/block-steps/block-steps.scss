@@ -11,6 +11,7 @@
    }
    
    
+   
    /* Steps Component */
    .steps {
     counter-reset: step;
@@ -19,7 +20,9 @@
     display: flex;
     position: relative;
     list-style: none;
-   
+    @media (min-width: 800px) {
+      margin-left: -50px;
+    }
    }
    
    .step {
