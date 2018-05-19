@@ -9,6 +9,7 @@ import { AnonymousSubject } from 'rxjs/Subject';
 import { Events } from 'ionic-angular';
 declare let blockstack: any;
 declare let sjcl: any;
+declare let $: any;
 
 /*
   Generated class for the StorageServiceProvider provider.
@@ -128,6 +129,13 @@ export class DocumentService {
     //alert('set curr doc');
     this.currentDoc = this.documentsList.find(x => x.guid == guid);
     this.events.publish('documentService:setCurrentDoc', this.currentDoc);
+    let span = "span:contains('" + this.currentDoc.fileName + "')";
+    
+    $( document ).ready(function() {
+      let s = $(span);
+      s.parent().addClass('active');
+    });
+   
   }
 
   async getLog(guid: string) {
