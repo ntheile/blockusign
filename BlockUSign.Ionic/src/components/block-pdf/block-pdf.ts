@@ -1,4 +1,4 @@
-import { Component, ViewChild, Input } from '@angular/core';
+import { Component, ViewChild, Input, ChangeDetectionStrategy, ChangeDetectorRef, ViewContainerRef } from '@angular/core';
 import { NavController, NavParams, IonicPage, Segment } from 'ionic-angular';
 import { CryptoCompareService } from '../../services/cryptocompare.service'
 //import { HomePage } from '../home/home';
@@ -27,6 +27,9 @@ declare let scale: any;
 declare let rotation: any;
 declare var blockstack: any;
 declare let Event: any;
+declare let dragOn: any;
+declare let interact: any;
+
 
 /**
  * Generated class for the BlockPdfComponent component.
@@ -36,11 +39,13 @@ declare let Event: any;
  */
 @Component({
   selector: 'block-pdf',
-  templateUrl: 'block-pdf.html'
+  templateUrl: 'block-pdf.html',
+  //changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BlockPdfComponent {
 
-  @ViewChild(AbsoluteDragDirective) vc: AbsoluteDragDirective;
+  //@ViewChild(AbsoluteDragDirective) vc: AbsoluteDragDirective;
+  svgDrawer;
 
   @Input() showToolBar = 0;
   @Input() showSignature: 0;
@@ -70,25 +75,40 @@ export class BlockPdfComponent {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public documentService: DocumentService
+    public documentService: DocumentService,
+    private changeDetector: ChangeDetectorRef,
+    private viewContainerRef: ViewContainerRef
   ) {
     console.log('====> constructor');
-
+    
   }
 
 
   ngOnInit() {
     console.log('====> ngOnInit');
-    this.init();
+    $( document ).ready( () => {
+      this.init();
+    });
+    
   }
 
   ngOnDestroy() {
     console.log("====> ngOnDestroy");
+
   }
 
   init() {
-    $(".dropzone").unbind();
+    //$(".dropzone").off();
     //let pdfData = this.loadPDFData(); // loads pdf data from localStorage, make sure you uploaded it from home.js
+
+
+    
+
+    this.svgDrawer  = dragOn(document.querySelector(".dropzone"), {
+      listenTo: '.draggable'
+    });
+
+
 
     if (this.navParams.get("guid") && !this.documentService.currentDoc) {
       let guid = this.navParams.get("guid");
@@ -163,15 +183,10 @@ export class BlockPdfComponent {
   }
 
   clear() {
-    this.vc.svgDrawer.cleanHTML();
-    this.vc.svgDrawer.cleanDrawArea();
-    this.vc.svgDrawer.updateMetrics();
+    this.svgDrawer.cleanHTML();
+    this.svgDrawer.cleanDrawArea();
+    this.svgDrawer.updateMetrics();
     localStorage.removeItem('svg');
-  }
-
-
-  ionViewWillLeave() {
-    //$(".dropzone").unbind();
   }
 
   loadPdf(pdfData) {
@@ -406,8 +421,11 @@ export class BlockPdfComponent {
     }
 
     if (innerHtml) {
-      this.vc.svgDrawer.addHTML(innerHtml);
+      this.svgDrawer.addHTML(innerHtml);
     }
+
+    //this.changeDetector.markForCheck();
+
 
 
   }

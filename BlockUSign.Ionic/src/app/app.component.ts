@@ -18,6 +18,7 @@ declare let document: any;
 declare var window: any;
 const $ = document.querySelectorAll.bind(document);
 import { AlertController } from 'ionic-angular';
+declare let jQuery: any;
 
 
 
@@ -101,12 +102,16 @@ export class MyApp {
 
     this.menuCtrl.close();
 
-    if (this.nav.getActive().name == "AnnotatePage") {
-      this.nav.pop();
-    }
+    // if (this.nav.getActive().name == "AnnotatePage") {
+    //  this.nav.pop();
+    // }
+    // else{
+    //   jQuery('.block-pdf-page').empty();
+    // }
+
+    this.nav.setRoot("HomePage");
 
     let guid = this.documentService.currentDoc.guid;
-    
     this.nav.push("AnnotatePage", {
       guid: guid
     });
@@ -114,6 +119,7 @@ export class MyApp {
   }
 
   home() {
+    this.menuCtrl.close();
     this.nav.setRoot("HomePage");
     this.clearActive();
   }
@@ -212,6 +218,7 @@ export class MyApp {
   }
 
   clearActive() {
+    
     $(".channel-text").forEach(el => {
       try {
         $(".channel-text.active")[0].classList.remove("active");

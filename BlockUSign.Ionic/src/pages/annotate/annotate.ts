@@ -32,8 +32,5 @@ export class AnnotatePage {
    
   }
 
-  ionViewDidLoad() {
-   
-  }
 
 }

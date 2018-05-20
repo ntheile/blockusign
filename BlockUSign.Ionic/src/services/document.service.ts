@@ -132,6 +132,7 @@ export class DocumentService {
     let span = "span:contains('" + this.currentDoc.fileName + "')";
     
     $( document ).ready(function() {
+      $(".channels-list-text li").removeClass('active');
       let s = $(span);
       s.parent().addClass('active');
     });

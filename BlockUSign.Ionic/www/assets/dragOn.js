@@ -81,6 +81,8 @@
 
             console.log(this.elem);
 
+            interact('.draggable').unset();
+
             this.elem.classList.add(pluginName + '-dropzone')
 
 
@@ -215,9 +217,13 @@
             console.group("Finding rendered viewBox size");
 
             // gets viewBox attr as array
+
             var elemViewBoxAttrArray = this.elem
                 .getAttribute("viewBox")
                 .split(" "); // x, y, width, height
+
+
+
 
             // maps viewBox
             this.metrics.viewBox.attr = {
@@ -285,13 +291,13 @@
 
             // debouncer code added
             // this is called twice per drop, not sure why, need to investigate if the element is double bound
-            if (localStorage.getItem('hasDropped') === 'true') {
-                localStorage.setItem('hasDropped', 'false');
-                return;
-            }
-            else {
-                localStorage.setItem('hasDropped', 'true');
-            }
+            // if (localStorage.getItem('hasDropped') === 'true') {
+            //     localStorage.setItem('hasDropped', 'false');
+            //     return;
+            // }
+            // else {
+            //     localStorage.setItem('hasDropped', 'true');
+            // }
 
 
 

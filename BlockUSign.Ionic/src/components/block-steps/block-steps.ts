@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 import { DocumentService } from '../../services/document.service';
-
+declare let $: any;
 
 /**
  * Generated class for the BlockStepsComponent component.
@@ -26,7 +26,13 @@ export class BlockStepsComponent {
   }
 
   route(page){
-    this.nav.pop();
+    // try{
+    //   this.nav.pop();
+    // }
+    // catch(e) {
+    //   // nothing to pop
+    // };
+    $('.block-pdf-page').empty();
     this.nav.push(page, {
       guid: this.documentService.currentDoc.guid
     });

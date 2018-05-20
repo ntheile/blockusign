@@ -4,10 +4,10 @@ import { DocumentService } from './../../services/document.service';
 import { EmailService } from './../../services/email.service';
 import { BlockStackService } from './../../services/blockstack.service';
 import { Observable } from 'rxjs';
-import { delay, map, tap, distinctUntilChanged , debounceTime, switchMap} from 'rxjs/operators';
+import { delay, map, tap, distinctUntilChanged, debounceTime, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import { Subject } from 'rxjs';
-import { FormGroup, FormControl } from  '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 declare let blockstack: any;
 
 /**
@@ -34,7 +34,7 @@ export class EmailPage {
   email = "";
   lookupId: string;
   user: string;
-  people3: any =  [];
+  people3: any = [];
   people3Loading = false;
   selectedUser = [];
   people3Typeahead = new Subject<string>();
@@ -101,18 +101,19 @@ export class EmailPage {
 
   private loadPeople3() {
     this.people3Typeahead.pipe(
-        tap(() => this.people3Loading = true),
-        distinctUntilChanged(),
-        debounceTime(750),
-        switchMap(term => this.blockStackService.searchUser(term)),
+      tap(() => this.people3Loading = true),
+      distinctUntilChanged(),
+      debounceTime(375),
+      switchMap(term => this.blockStackService.searchUser(term)),
     ).subscribe(x => {
-        this.people3 = x;
-        this.people3Loading = false;
-        this.chg.markForCheck();
+      this.people3 = x;
+      this.people3Loading = false;
+      this.chg.markForCheck();
     }, () => {
-        this.people3 = [];
+      this.people3 = [];
     });
-}
+  }
+
 
 
 
