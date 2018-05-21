@@ -161,6 +161,7 @@ export class DocumentService {
       msg.createdBy = blockstack.loadUserData().username;
       msg.createdByName = blockstack.loadUserData().profile.name;
       log.messages.push(msg);
+      this.events.publish('documentService:addedChat', msg);
       return await blockstack.putFile(logFileName, JSON.stringify(log), { encrypt: false });
     }
     else {
