@@ -1,24 +1,26 @@
 export class Document{
     public fileName: string;
-    public path: string; // fully qualified gaia path to the doc 
     public documentKey: string; // the key to decrypt the doc
     public guid: any;
     public createdAt: Date; 
     public updatedAt: Date; 
     public owner: Array<string>; // ["nicktee.id"] 
-    public signer: Array<string>; // ["nicktee.id", "dude.id"] // allow users without a blockstack id to sign, there name has no .id in it like ["Alice Smith"]
+    public signer: Array<string>; // ["nicktee.id"] //  for now just 1 signer, in the future allow users without a blockstack id to sign, there name has no .id in it like ["Alice Smith"]
     public reviewer: Array<string>; // ["auditor.id"] owners and signers are automatically reviewers
     public hasAnnotations: boolean;
-    public step: number;
+    public step: string; // Annotate, Sign, Final
     public isCompleted: boolean;
     public annotationsRequired: Array<any>; // [ {"Sign": "nicktee.id"}, { Sign: "blockusign1.id" } ]
+    
+    public pathAnnotatedDoc: string; // fully qualified gaia path to the Annotated doc , this is usually in the owners storage bucket
+    public pathSignedDoc: string; // fully qualified gaia path to the Signed doc, this is usually in the signers bucket
 
     constructor(){
         this.guid = (<any>window).guid();
         this.createdAt = (<any>Date).now();
         this.updatedAt = (<any>Date).now();
         this.hasAnnotations = false;
-        this.step = 1;
+        this.step = "Annotate";
         this.isCompleted = false
     }
 

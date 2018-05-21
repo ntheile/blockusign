@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DocumentService } from './../../services/document.service';
 declare let blockstack: any;
+declare let getQueryParam: any;
 
 /**
  * Generated class for the SignPage page.
@@ -13,7 +14,7 @@ declare let blockstack: any;
 @IonicPage({
   name: 'SignPage',
   segment: 'sign/:guid',
-  defaultHistory: ['EmailPage','AnnotatePage', 'HomePage']
+  defaultHistory: ['EmailPage', 'AnnotatePage', 'HomePage']
 })
 @Component({
   selector: 'page-sign',
@@ -21,14 +22,22 @@ declare let blockstack: any;
 })
 export class SignPage {
 
-  name:string;
+  name: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public documentService: DocumentService) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public documentService: DocumentService
+  ) {
+
+  }
+
+  ionViewDidLoad() {
 
     // if you are a signer and the document is not in your document.index then add it!
     // @todo think about allowing a document to get signed by an anonymous person if they got it via email with the documentKey
 
-    if ( this.navParams.get("guid") && !this.documentService.currentDoc ){
+    if (this.navParams.get("guid") && !this.documentService.currentDoc) {
       let guid = this.navParams.get("guid");
       this.documentService.getDocumentsIndex(true).then((data) => {
         this.documentService.documentsList = data;
@@ -37,24 +46,30 @@ export class SignPage {
         // @todo in side menu highlight selected doc
       });
     }
-    else{
+    else {
       //this.getFile();
     }
 
-  }
+    let docKey = getQueryParam('documentKey');
+    if (docKey) {
+      alert(docKey);
+    }
 
-  ionViewDidLoad() {
+    if (this.navParams.get("documentKey")) {
+      alert(this.navParams.get("documentKey"));
+    }
+
     console.log('ionViewDidLoad SignPage');
     this.name = blockstack.loadUserData().profile.name;
   }
 
-  next(){
+  next() {
     this.navCtrl.push("ReviewPage", {
       guid: this.documentService.currentDoc.guid
     });
   }
 
-  back(){
+  back() {
     this.navCtrl.push("EmailPage", {
       guid: this.documentService.currentDoc.guid
     });

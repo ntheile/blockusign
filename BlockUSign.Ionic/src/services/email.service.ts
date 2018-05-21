@@ -20,7 +20,7 @@ declare let blockstack: any;
 export class EmailService {
 
   url = "https://api.sendgrid.com/v3/mail/send";
-  apiK = "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";
+  apiK = "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";
 
   constructor(public events: Events, public http: Http) {
 

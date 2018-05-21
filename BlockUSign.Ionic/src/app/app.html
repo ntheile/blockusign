@@ -82,9 +82,9 @@
               
               <ul class="channels-list-text" >
                 <div *ngFor="let item of documentsList">
-                    <li (click)="documentSelected($event, item)" [ngClass]="(item == documentService.currentDoc) ? 'channel focusable channel-text active ' : 'channel focusable channel-text ' " >
+                    <li [ngClass]="(item == documentService.currentDoc) ? 'channel focusable channel-text active ' : 'channel focusable channel-text ' " >
                         <!-- <span class="channel-name">blockusign nda.pdf</span> -->
-                        <span (click)="documentSelected($event, item)">
+                        <span (click)="documentSelected($event, item)" style="width:90%">
                           {{ item.fileName }}
                         </span>
                         <!-- <button class="button" role="button" aria-label="Invite" >

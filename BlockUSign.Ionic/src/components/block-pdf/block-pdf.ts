@@ -1,5 +1,5 @@
 import { Component, ViewChild, Input, ChangeDetectionStrategy, ChangeDetectorRef, ViewContainerRef } from '@angular/core';
-import { NavController, NavParams, IonicPage, Segment } from 'ionic-angular';
+import { NavController, NavParams, IonicPage, Segment, LoadingController } from 'ionic-angular';
 import { CryptoCompareService } from '../../services/cryptocompare.service'
 //import { HomePage } from '../home/home';
 import { AbsoluteDragDirective } from '../../directives/absolute-drag/absolute-drag';
@@ -71,13 +71,15 @@ export class BlockPdfComponent {
   currentY = 0;
   yourName: string;
   allowResize = false;
+  loading;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public documentService: DocumentService,
     private changeDetector: ChangeDetectorRef,
-    private viewContainerRef: ViewContainerRef
+    private viewContainerRef: ViewContainerRef,
+    public loadingCtrl: LoadingController
   ) {
     console.log('====> constructor');
     
@@ -87,6 +89,12 @@ export class BlockPdfComponent {
   ngOnInit() {
     console.log('====> ngOnInit');
     $( document ).ready( () => {
+
+      this.loading = this.loadingCtrl.create({
+        content: 'Please wait...'
+      });
+      this.loading.present();
+
       this.init();
     });
     
@@ -101,14 +109,9 @@ export class BlockPdfComponent {
     //$(".dropzone").off();
     //let pdfData = this.loadPDFData(); // loads pdf data from localStorage, make sure you uploaded it from home.js
 
-
-    
-
     this.svgDrawer  = dragOn(document.querySelector(".dropzone"), {
       listenTo: '.draggable'
     });
-
-
 
     if (this.navParams.get("guid") && !this.documentService.currentDoc) {
       let guid = this.navParams.get("guid");
@@ -253,6 +256,8 @@ export class BlockPdfComponent {
 
             // load svg
             this.loadSvg(page);
+
+            this.loading.dismiss();
 
           });
       });

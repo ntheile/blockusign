@@ -21,7 +21,6 @@ declare let $: any;
 export class DocumentService {
 
   private indexFileName = "blockusign/documents.index.json";
-
   public documentsList: Array<Document>;
   public docBuffer: any;
   public currentDoc: Document;
@@ -31,6 +30,7 @@ export class DocumentService {
   constructor(public events: Events) {
     console.log('Hello StorageServiceProvider Provider');
     this.documentsList = [];
+
     // @TODO - think about putting in checks here is documentsList is empty, 
     // or there could be a async race issue if they take too long to come back
     this.getDocumentsIndex(true).then((data) => {
@@ -53,15 +53,12 @@ export class DocumentService {
 
 
   async addDocument(fileName: string, fileBuffer: any) {
-
     let newDocument = new Document();
     newDocument.fileName = fileName;
     newDocument.documentKey = this.generateKey();
-    newDocument.path = blockstack.loadUserData().profile.apps[window.location.origin];
+    newDocument.pathAnnotatedDoc = blockstack.loadUserData().profile.apps[window.location.origin];
     this.documentsList.push(newDocument);
-
     await blockstack.putFile(this.indexFileName, JSON.stringify(this.documentsList), { encrypt: true });
-
     this.docBuffer = fileBuffer;
     this.currentDoc = newDocument;
     let response = await this.addDocumentBytes(newDocument.guid, fileBuffer, newDocument.documentKey);
@@ -72,24 +69,22 @@ export class DocumentService {
     // remove item
     this.documentsList = (<any>this.documentsList).remove(document);
     await blockstack.putFile(this.indexFileName, JSON.stringify(this.documentsList), { encrypt: true });
-    this.removeDocumentBytes(document.guid);
+    await this.removeDocumentBytes(document.guid);
     // remove binary file
     return this.documentsList;
   }
 
   async addDocumentBytes(guid: string, doc: any, documentKey: string) {
-
     let encryptedDoc = this.ecryptDoc(doc, documentKey );
-
-    return blockstack.putFile(guid + ".pdf", encryptedDoc, { encrypt: false }).then((data) => { 
-
-    });
-
+    // add blank annotations file
+    await this.saveAnnotations(guid, "");
+    // add blank log file
+    await this.getLog(guid);
+    return blockstack.putFile(guid + ".pdf", encryptedDoc, { encrypt: false }).then((data) => { });
   }
 
   async getDocument(fileName: string, documentKey: string){
     let resp = await blockstack.getFile(fileName, { decrypt: false });
-
     if (resp){
       let encryptedDoc = resp;
       return this.decryptDoc(encryptedDoc, documentKey);
@@ -97,24 +92,22 @@ export class DocumentService {
     else{
       return null;
     }
-
   }
 
   async removeDocumentBytes(guid: string) {
+    await blockstack.putFile(guid + ".annotations.json", "", { encrypt: false });
+    await blockstack.putFile(guid + ".log.json", "", { encrypt: false });
     return blockstack.putFile(guid + ".pdf", "", { encrypt: false }).then((data) => { });
   }
 
   async saveAnnotations(guid: string, annotation: string) {
-
     let json = {
       annotations: annotation
     }
     return await blockstack.putFile(guid + ".annotations.json", JSON.stringify(json), { encrypt: false });
-
   }
 
   async getAnnotations(guid: string) {
-
     let resp = await blockstack.getFile(guid + ".annotations.json", { decrypt: false });
     if (resp){
       this.currentDocAnnotations = JSON.parse(resp);
@@ -130,33 +123,32 @@ export class DocumentService {
     this.currentDoc = this.documentsList.find(x => x.guid == guid);
     this.events.publish('documentService:setCurrentDoc', this.currentDoc);
     let span = "span:contains('" + this.currentDoc.fileName + "')";
-    
     $( document ).ready(function() {
       $(".channels-list-text li").removeClass('active');
       let s = $(span);
       s.parent().addClass('active');
     });
-   
   }
 
+
+  //#region Chat log
   async getLog(guid: string) {
     let logFileName = guid + '.log.json';
-
     let resp;
     try {
       resp = await blockstack.getFile(logFileName, { decrypt: false });
       if (resp){
         this.log = JSON.parse(resp);
       }
-      if (this.log === null || this.log === undefined) {
+      else{
         let newLog = new Log();
         newLog.messages = [];
         this.log = JSON.parse(await blockstack.putFile(logFileName, JSON.stringify(newLog), { encrypt: false }));
-      }
+      }  
       return this.log;
     }
     catch (e) {
-      throw e;
+      //throw e;
     }
   }
 
@@ -174,10 +166,11 @@ export class DocumentService {
     else {
       console.error("error getting log file: " + logFileName)
     }
-
   }
+  //#endregion
 
 
+  //#region Encryption
   //https://stackoverflow.com/questions/26734033/encrypting-files-with-sjcl-client-side
   ecryptDoc(doc: any, key: string) {
     let docBits = sjcl.codec.arrayBuffer.toBits(doc);
@@ -192,7 +185,14 @@ export class DocumentService {
     return decryptedDocBits;
   }
   generateKey(){
-    return "nickteeblockusign1";
+    return (<any>window).guid();
   }
+  //#endregion
 
+
+
+  // watchout
+  async resetStorage(){
+    await blockstack.putFile(this.indexFileName, "[]", { encrypt: true });
+  }
 }

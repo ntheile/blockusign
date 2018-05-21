@@ -49,7 +49,7 @@ export class MyApp {
     private alertCtrl: AlertController,
     public documentService: DocumentService, 
     public popoverCtrl: PopoverController,
-    public menuCtrl: MenuController
+    public menuCtrl: MenuController,
   ) {
 
     this.initializeApp();

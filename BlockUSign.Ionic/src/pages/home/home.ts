@@ -43,17 +43,19 @@ export class HomePage {
     pdfBuffer: any;
     canvasCamera: any;
     cameraContext: any;
+    loading;
 
-    constructor(public navCtrl: NavController, public loadingCtrl: LoadingController,
-        public globalService: GlobalService, public documentService: DocumentService, public alertCtrl: AlertController) {
+    constructor(
+        public navCtrl: NavController, 
+        public loadingCtrl: LoadingController,
+        public globalService: GlobalService, 
+        public documentService: DocumentService, 
+        public alertCtrl: AlertController
+    ) {
 
     }
 
     async ionViewDidLoad() {
-
-
-
-
 
         //this.initCamera();
         this.ekUpload();
@@ -88,6 +90,12 @@ export class HomePage {
     }
 
     loadFile() {
+
+        this.loading = this.loadingCtrl.create({
+            content: 'Please wait...'
+          });
+        //this.loading.present();
+
         let fileInput: any = document.getElementById('file-upload');
         let firstFile = fileInput.files[0];
 
@@ -162,12 +170,14 @@ export class HomePage {
                 let renderTask = page.render(renderContext);
                 renderTask.then(() => {
                     console.log('Page rendered');
+                    this.loading.dismiss();
                 });
             });
 
         }, (reason) => {
             // PDF loading error
             console.error(reason);
+            this.loading.dismiss();
         });
     }
 
