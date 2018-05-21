@@ -398,4 +398,5 @@ ASALocalRun/
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
 
-BlockUSign.Backend/BlockUSign.Backend/wwwroot/secret.config
+appsettings.config
+BlockUSign.Backend/BlockUSign.Backend/appsettings.json

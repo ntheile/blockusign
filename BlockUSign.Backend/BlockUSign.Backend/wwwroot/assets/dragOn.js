@@ -81,13 +81,19 @@
 
             console.log(this.elem);
 
+            interact('.draggable').unset();
+
             this.elem.classList.add(pluginName + '-dropzone')
+
 
             this.drawArea = this.createElementSVG('g', {
                 class: pluginName + '-drawArea',
                 width: '100%',
                 height: '100%',
             });
+
+
+
 
             // adds drawArea to SVG
             this.elem.appendChild(this.drawArea);
@@ -169,6 +175,8 @@
          */
         createElementSVG: function (tag, attrs) {
 
+
+
             var el = document.createElementNS(this.settings.namespace.svg, tag);
 
             for (var k in attrs) {
@@ -209,9 +217,13 @@
             console.group("Finding rendered viewBox size");
 
             // gets viewBox attr as array
+
             var elemViewBoxAttrArray = this.elem
                 .getAttribute("viewBox")
                 .split(" "); // x, y, width, height
+
+
+
 
             // maps viewBox
             this.metrics.viewBox.attr = {
@@ -279,15 +291,15 @@
 
             // debouncer code added
             // this is called twice per drop, not sure why, need to investigate if the element is double bound
-            if (localStorage.getItem('hasDropped') === 'true' ){
-                localStorage.setItem('hasDropped', 'false');
-                return;
-            }
-            else{
-                localStorage.setItem('hasDropped', 'true');
-            }
+            // if (localStorage.getItem('hasDropped') === 'true') {
+            //     localStorage.setItem('hasDropped', 'false');
+            //     return;
+            // }
+            // else {
+            //     localStorage.setItem('hasDropped', 'true');
+            // }
 
-            
+
 
             console.group("interac.js onDrop");
 
@@ -367,7 +379,7 @@
                     elemImage.setAttribute('preserveAspectRatio', "none");
                     //fill="green" x="0" y="35" font-family="Cedarville Cursive" font-size="40px" font-weight="bold"
 
-                   
+
                     elemImage.setAttribute('font-family', txt.getAttribute('font-family'));
                     elemImage.setAttribute('font-weight', txt.getAttribute('font-weight'));
                     elemImage.setAttribute('fill', txt.getAttribute('fill'));
@@ -402,33 +414,33 @@
                             target.setAttribute("x", x);
                             target.setAttribute("y", y);
                         })
-                        //.resizable(interactBasicOptions.resizable)
-                        //.on("resizemove", function (event) {
-                            // var target = event.target;
-                            // var x = parseFloat(target.getAttribute("x")) || 0;
-                            // var y = parseFloat(target.getAttribute("y")) || 0;
+                    //.resizable(interactBasicOptions.resizable)
+                    //.on("resizemove", function (event) {
+                    // var target = event.target;
+                    // var x = parseFloat(target.getAttribute("x")) || 0;
+                    // var y = parseFloat(target.getAttribute("y")) || 0;
 
-                            // console.log(event);
-                            // console.log(that.metrics.viewBox.scale);
+                    // console.log(event);
+                    // console.log(that.metrics.viewBox.scale);
 
-                            // if (event.rect.width > 19) {
-                            //     // update the element's size
-                            //     target.setAttribute("width", event.rect.width / that.metrics.viewBox.scale);
+                    // if (event.rect.width > 19) {
+                    //     // update the element's size
+                    //     target.setAttribute("width", event.rect.width / that.metrics.viewBox.scale);
 
-                            //     // translate when resizing from top or left edges
-                            //     x += event.deltaRect.left / that.metrics.viewBox.scale;
-                            //     target.setAttribute("x", x);
-                            // }
+                    //     // translate when resizing from top or left edges
+                    //     x += event.deltaRect.left / that.metrics.viewBox.scale;
+                    //     target.setAttribute("x", x);
+                    // }
 
-                            // if (event.rect.height > 19) {
-                            //     // update the element's size
-                            //     target.setAttribute("height", event.rect.height / that.metrics.viewBox.scale);
+                    // if (event.rect.height > 19) {
+                    //     // update the element's size
+                    //     target.setAttribute("height", event.rect.height / that.metrics.viewBox.scale);
 
-                            //     // translate when resizing from top or left edges
-                            //     y += event.deltaRect.top / that.metrics.viewBox.scale;
-                            //     target.setAttribute("y", y);
-                            // }
-                        //});
+                    //     // translate when resizing from top or left edges
+                    //     y += event.deltaRect.top / that.metrics.viewBox.scale;
+                    //     target.setAttribute("y", y);
+                    // }
+                    //});
                 }
             }
 
@@ -517,33 +529,33 @@
                         target.setAttribute("x", x);
                         target.setAttribute("y", y);
                     })
-                    //.resizable(interactBasicOptions.resizable)
-                    //.on("resizemove", function (event) {
-                        // var target = event.target;
-                        // var x = parseFloat(target.getAttribute("x")) || 0;
-                        // var y = parseFloat(target.getAttribute("y")) || 0;
+                //.resizable(interactBasicOptions.resizable)
+                //.on("resizemove", function (event) {
+                // var target = event.target;
+                // var x = parseFloat(target.getAttribute("x")) || 0;
+                // var y = parseFloat(target.getAttribute("y")) || 0;
 
-                        // console.log(event);
-                        // console.log(that.metrics.viewBox.scale);
+                // console.log(event);
+                // console.log(that.metrics.viewBox.scale);
 
-                        // if (event.rect.width > 19) {
-                        //     // update the element's size
-                        //     target.setAttribute("width", event.rect.width / that.metrics.viewBox.scale);
+                // if (event.rect.width > 19) {
+                //     // update the element's size
+                //     target.setAttribute("width", event.rect.width / that.metrics.viewBox.scale);
 
-                        //     // translate when resizing from top or left edges
-                        //     x += event.deltaRect.left / that.metrics.viewBox.scale;
-                        //     target.setAttribute("x", x);
-                        // }
+                //     // translate when resizing from top or left edges
+                //     x += event.deltaRect.left / that.metrics.viewBox.scale;
+                //     target.setAttribute("x", x);
+                // }
 
-                        // if (event.rect.height > 19) {
-                        //     // update the element's size
-                        //     target.setAttribute("height", event.rect.height / that.metrics.viewBox.scale);
+                // if (event.rect.height > 19) {
+                //     // update the element's size
+                //     target.setAttribute("height", event.rect.height / that.metrics.viewBox.scale);
 
-                        //     // translate when resizing from top or left edges
-                        //     y += event.deltaRect.top / that.metrics.viewBox.scale;
-                        //     target.setAttribute("y", y);
-                        // }
-                    //});
+                //     // translate when resizing from top or left edges
+                //     y += event.deltaRect.top / that.metrics.viewBox.scale;
+                //     target.setAttribute("y", y);
+                // }
+                //});
 
             }
 

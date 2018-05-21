@@ -73,6 +73,16 @@
       }
       return this;
     };
+    
+    function getQueryParam (name, url) {
+      if (!url) url = window.location.href;
+      name = name.replace(/[\[\]]/g, "\\$&");
+      var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
 
   </script>
 
@@ -81,10 +91,14 @@
 
   <link href='https://fonts.googleapis.com/css?family=Glegoo' rel='stylesheet' type='text/css'>
 
+  <link href='./assets/ng-select.material.theme.css' rel='stylesheet' type='text/css' >
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/interact.js/1.2.9/interact.min.js"></script>
   <script src="./assets/dragOn.js"></script>
-
-
+  <script src="./assets/sjcl.js"></script>
+  <script src="./assets/ccmArrayBuffer.js"></script>
+  <script src="./assets/codecArrayBuffer.js"></script>
+ 
 </head>
 
 <body>

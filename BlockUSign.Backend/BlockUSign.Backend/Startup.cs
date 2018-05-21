@@ -34,6 +34,10 @@ namespace BlockUSign.Backend
                     .AllowCredentials());
             });
 
+            services.AddSingleton<IConfiguration>(Configuration);
+
+            services.AddMvc();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,7 +56,13 @@ namespace BlockUSign.Backend
             app.UseDefaultFiles(options);
             app.UseStaticFiles();
 
-            var myConfig = Configuration["SendGridKey"];
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller}/{action=Index}/{id?}");
+            });
+
 
         }
     }
