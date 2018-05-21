@@ -19,11 +19,8 @@ declare let blockstack: any;
 @Injectable()
 export class EmailService {
 
-  //url = "https://api.sendgrid.com/v3/mail/send";
-  //apiK = "";
-  url = "https://blockusign.co/api/email";
-  //url = "http://localhost:5000/api/email";
-
+  url = "https://api.sendgrid.com/v3/mail/send";
+  apiK = "";
 
   constructor(public events: Events, public http: Http) {
 
@@ -31,20 +28,18 @@ export class EmailService {
 
   async sendEmail (email) {
 
-    if (!email){
-      return;
-    }
-
     let data = {
-      "to": email, 
-      "subject": "PLease review new document id ref 9876", 
-      "content": "This will be the content of the message for you Nick!"
-    };
+      "personalizations": [{ 
+      "to": [{ "email": email }] }], 
+      "from": { "email": "blockusign@outlook.com" }, 
+      "subject": "PLease review new document id ref1234", 
+      "content": [{ "type": "text/plain", "value": "This will be the content of the message for you Nick!" }
+    ]};
     let httpOptions = new RequestOptions();
     httpOptions.headers = new Headers(
       {
-        'Content-Type': 'application/json'
-        //'Authorization': 'Bearer ' + this.apiK
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.apiK
       }
     );
 
