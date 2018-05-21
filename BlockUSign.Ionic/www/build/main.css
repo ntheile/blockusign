@@ -28722,6 +28722,14 @@ html, body, * {
   height: 71.5px;
 }
 
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #555;
+}
+
 block-chat {
   background: #e9e9e9;
   color: #9a9a9a;
