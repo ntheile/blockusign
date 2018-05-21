@@ -7,6 +7,9 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { AnonymousSubject } from 'rxjs/Subject';
 import { Events } from 'ionic-angular';
+import * as moment from 'moment';
+import * as Automerge from 'automerge/dist/automerge.js';
+//const Automerge = require('automerge');
 declare let blockstack: any;
 declare let sjcl: any;
 declare let $: any;
@@ -26,6 +29,7 @@ export class DocumentService {
   public currentDoc: Document;
   public currentDocAnnotations;
   public log: Log;
+  public automerge = Automerge;
 
   constructor(public events: Events) {
     console.log('Hello StorageServiceProvider Provider');
@@ -41,7 +45,7 @@ export class DocumentService {
   async getDocumentsIndex(refresh: boolean) {
     if (refresh) {
       let resp = await blockstack.getFile(this.indexFileName, { decrypt: true });
-      if (resp){
+      if (resp) {
         this.documentsList = JSON.parse(resp);
       }
       if (this.documentsList == null || !resp) {
@@ -75,7 +79,7 @@ export class DocumentService {
   }
 
   async addDocumentBytes(guid: string, doc: any, documentKey: string) {
-    let encryptedDoc = this.ecryptDoc(doc, documentKey );
+    let encryptedDoc = this.ecryptDoc(doc, documentKey);
     // add blank annotations file
     await this.saveAnnotations(guid, "");
     // add blank log file
@@ -83,13 +87,13 @@ export class DocumentService {
     return blockstack.putFile(guid + ".pdf", encryptedDoc, { encrypt: false }).then((data) => { });
   }
 
-  async getDocument(fileName: string, documentKey: string){
+  async getDocument(fileName: string, documentKey: string) {
     let resp = await blockstack.getFile(fileName, { decrypt: false });
-    if (resp){
+    if (resp) {
       let encryptedDoc = resp;
       return this.decryptDoc(encryptedDoc, documentKey);
     }
-    else{
+    else {
       return null;
     }
   }
@@ -109,10 +113,10 @@ export class DocumentService {
 
   async getAnnotations(guid: string) {
     let resp = await blockstack.getFile(guid + ".annotations.json", { decrypt: false });
-    if (resp){
+    if (resp) {
       this.currentDocAnnotations = JSON.parse(resp);
     }
-    if (!resp){
+    if (!resp) {
       this.currentDocAnnotations = "";
     }
     return this.currentDocAnnotations;
@@ -123,7 +127,7 @@ export class DocumentService {
     this.currentDoc = this.documentsList.find(x => x.guid == guid);
     this.events.publish('documentService:setCurrentDoc', this.currentDoc);
     let span = "span:contains('" + this.currentDoc.fileName + "')";
-    $( document ).ready(function() {
+    $(document).ready(function () {
       $(".channels-list-text li").removeClass('active');
       let s = $(span);
       s.parent().addClass('active');
@@ -137,14 +141,14 @@ export class DocumentService {
     let resp;
     try {
       resp = await blockstack.getFile(logFileName, { decrypt: false });
-      if (resp){
+      if (resp) {
         this.log = JSON.parse(resp);
       }
-      else{
+      else {
         let newLog = new Log();
         newLog.messages = [];
         this.log = JSON.parse(await blockstack.putFile(logFileName, JSON.stringify(newLog), { encrypt: false }));
-      }  
+      }
       return this.log;
     }
     catch (e) {
@@ -175,7 +179,7 @@ export class DocumentService {
   //https://stackoverflow.com/questions/26734033/encrypting-files-with-sjcl-client-side
   ecryptDoc(doc: any, key: string) {
     let docBits = sjcl.codec.arrayBuffer.toBits(doc);
-    let base64bits = sjcl.codec.base64.fromBits(docBits); 
+    let base64bits = sjcl.codec.base64.fromBits(docBits);
     let encryptedDoc = sjcl.encrypt(key, base64bits);
     return encryptedDoc;
   }
@@ -185,7 +189,7 @@ export class DocumentService {
     let decryptedDocBits = sjcl.codec.arrayBuffer.fromBits(decryptedBase64);
     return decryptedDocBits;
   }
-  generateKey(){
+  generateKey() {
     return (<any>window).guid();
   }
   //#endregion
@@ -193,7 +197,107 @@ export class DocumentService {
 
 
   // watchout
-  async resetStorage(){
+  async resetStorage() {
     await blockstack.putFile(this.indexFileName, "[]", { encrypt: true });
   }
+
+
+  testAutoMerge() {
+
+    // // fetch from server state for Nick
+    // let doc1Nick = [{ 'who': 'nick' }];
+
+    // // init doc
+    // let doc1 = Automerge.init();
+    // let commitMsg = 'Initialize doc from server for nick - ' + this.getDate();
+    // doc1 = Automerge.change(doc1, commitMsg , doc => {
+    //   doc = doc1Nick;
+    // });
+
+    // console.log(doc1);
+
+    // // nick adds a row
+    // commitMsg = 'Nick adds a row - ' + this.getDate;
+    // doc1 = Automerge.change(doc1, 'Add card', doc => {
+    //   doc.push({'who': 'nick2'});
+    // });
+
+    // console.log(doc1);
+
+
+    // // Now let's simulate another device, whose application state is doc2. We
+    // // initialise it separately, and merge doc1 into it. After merging, doc2 has
+    // // a copy of all the cards in doc1.
+    // // fetch from server state for Blockusign
+
+    // let doc1Blockusign1 = [{ 'who': 'nick' }, {'who': 'Blocusign1'}];
+
+  }
+
+  getDate() {
+    let d = Date();
+    return d;
+  }
+
+
+
+
+  doc;
+  docMine;
+  docYours;
+  
+  test(){
+    this.init1Doc();
+    this.save2Mine();
+    this.save3Yours();
+    this.save4Mine();
+    this.sync();
+  }
+
+  init1Doc(){
+     // init doc
+     this.docMine = Automerge.init();
+     let commitMsg = 'initDoc - ' + this.getDate();
+     this.docMine = Automerge.change(this.docMine, commitMsg , doc => {
+      //let msg = new Message(); 
+     // msg.
+      //doc.chat = [msg];
+     });
+     return this.docMine;
+  }
+
+  save2Mine(){
+    this.docMine = Automerge.change(this.docMine, 'save1Me - ' + this.getDate(), doc => {
+      doc.chat.push({'me': '2'});
+    });
+    console.log(this.docMine);
+    return this.docMine;
+  }
+
+  save3Yours(){
+    this.docYours = Automerge.init()
+    this.docYours = Automerge.merge(this.docYours, this.docMine);
+
+    this.docYours = Automerge.change(this.docYours, 'save2Yours - ' + this.getDate() , doc => {
+      doc.chat.push({'yours': '3'});
+    });
+
+    console.log(this.docYours);
+    return this.docYours;
+  }
+
+
+  save4Mine(){
+    this.docMine = Automerge.change(this.docMine, 'save3Me - ' + this.getDate(), doc => {
+      doc.chat.push({'me': '4'});
+    });
+    return this.docMine;
+  }
+
+  sync(){
+    this.doc = Automerge.merge(this.docMine, this.docYours);
+    console.log(this.doc);
+    return this.doc;
+  }
+
 }

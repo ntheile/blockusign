@@ -11,7 +11,6 @@ import PDFJSAnnotate from 'pdf-annotate';
 import { GlobalService } from '../../services/global.service';
 import { DocumentService } from '../../services/document.service';
 import { AlertController } from 'ionic-angular';
-import * as openpgpWorker from 'openpgp/dist/openpgp.worker.js';
 declare let window: any;
 declare let PDFView: any;
 declare let canvas: any;
