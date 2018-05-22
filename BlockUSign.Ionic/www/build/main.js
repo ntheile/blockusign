@@ -781,48 +781,72 @@ var DocumentService = (function () {
         var d = Date();
         return d;
     };
+    //doc;
+    //docMine;
+    ///docYours;
     DocumentService.prototype.test = function () {
-        this.init1Doc();
-        this.save2Mine();
+        var docMine = this.init1Doc("chat", this.genMessage("me init"));
+        docMine = this.save2Mine(docMine, this.genMessage("me 2"));
         this.save3Yours();
         this.save4Mine();
         this.sync();
     };
-    DocumentService.prototype.init1Doc = function () {
+    DocumentService.prototype.initDoc = function (property) {
         // init doc
-        this.docMine = __WEBPACK_IMPORTED_MODULE_6_automerge_dist_automerge_js__["init"]();
-        var commitMsg = 'initDoc - ' + this.getDate();
-        this.docMine = __WEBPACK_IMPORTED_MODULE_6_automerge_dist_automerge_js__["change"](this.docMine, commitMsg, function (doc) {
-            doc.chat = [{ 'me': '1' }];
-        });
-        return this.docMine;
+        var docMine = __WEBPACK_IMPORTED_MODULE_6_automerge_dist_automerge_js__["init"]();
+        return docMine;
     };
-    DocumentService.prototype.save2Mine = function () {
-        this.docMine = __WEBPACK_IMPORTED_MODULE_6_automerge_dist_automerge_js__["change"](this.docMine, 'save1Me - ' + this.getDate(), function (doc) {
-            doc.chat.push({ 'me': '2' });
+    DocumentService.prototype.getMine = function (property, message) {
+        // init doc
+        var docMine = __WEBPACK_IMPORTED_MODULE_6_automerge_dist_automerge_js__["init"]();
+        //let commitMsg = 'initDoc - ' + this.getDate();
+        docMine = __WEBPACK_IMPORTED_MODULE_6_automerge_dist_automerge_js__["change"](docMine, message, function (doc) {
+            doc[property] = [message];
         });
-        console.log(this.docMine);
-        return this.docMine;
+        return docMine;
     };
-    DocumentService.prototype.save3Yours = function () {
+    // save2Mine(docMine, message){
+    //   docMine = Automerge.change(docMine, message, doc => {
+    //     doc.chat.push(message);
+    //   });
+    //   return docMine;
+    // }
+    DocumentService.prototype.mergeYours = function () {
         this.docYours = __WEBPACK_IMPORTED_MODULE_6_automerge_dist_automerge_js__["init"]();
         this.docYours = __WEBPACK_IMPORTED_MODULE_6_automerge_dist_automerge_js__["merge"](this.docYours, this.docMine);
         this.docYours = __WEBPACK_IMPORTED_MODULE_6_automerge_dist_automerge_js__["change"](this.docYours, 'save2Yours - ' + this.getDate(), function (doc) {
-            doc.chat.push({ 'yours': '3' });
+            var msg = new __WEBPACK_IMPORTED_MODULE_1__models_models__["c" /* Message */]();
+            msg.message = "yours 3";
+            msg.createdBy = blockstack.loadUserData().username;
+            msg.createdByName = blockstack.loadUserData().profile.name;
+            doc.chat.push(msg);
         });
         console.log(this.docYours);
         return this.docYours;
     };
-    DocumentService.prototype.save4Mine = function () {
-        this.docMine = __WEBPACK_IMPORTED_MODULE_6_automerge_dist_automerge_js__["change"](this.docMine, 'save3Me - ' + this.getDate(), function (doc) {
-            doc.chat.push({ 'me': '4' });
-        });
-        return this.docMine;
-    };
+    // save4Mine(){
+    //   this.docMine = Automerge.change(this.docMine, 'save3Me - ' + this.getDate(), doc => {
+    //     let msg = new Message();
+    //     msg.message = "me 4";
+    //     msg.createdBy = blockstack.loadUserData().username;
+    //     msg.createdByName = blockstack.loadUserData().profile.name;
+    //     doc.chat.push(msg);
+    //   });
+    //   return this.docMine;
+    // }
     DocumentService.prototype.sync = function () {
         this.doc = __WEBPACK_IMPORTED_MODULE_6_automerge_dist_automerge_js__["merge"](this.docMine, this.docYours);
         console.log(this.doc);
+        // sort by date
+        console.log(jslinq(this.doc.chat).orderBy(function (el) { return el.updatedAt; }).toList());
         return this.doc;
+    };
+    DocumentService.prototype.genMessage = function (content) {
+        var msg = new __WEBPACK_IMPORTED_MODULE_1__models_models__["c" /* Message */]();
+        msg.message = content;
+        msg.createdBy = blockstack.loadUserData().username;
+        msg.createdByName = blockstack.loadUserData().profile.name;
+        return msg;
     };
     DocumentService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),

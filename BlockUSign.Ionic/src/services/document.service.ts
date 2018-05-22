@@ -9,6 +9,7 @@ import { AnonymousSubject } from 'rxjs/Subject';
 import { Events } from 'ionic-angular';
 import * as moment from 'moment';
 import * as Automerge from 'automerge/dist/automerge.js';
+declare let jslinq: any;
 //const Automerge = require('automerge');
 declare let blockstack: any;
 declare let sjcl: any;
@@ -242,62 +243,130 @@ export class DocumentService {
 
 
 
-  doc;
-  docMine;
-  docYours;
+  //doc;
+  //docMine;
+  ///docYours;
   
   test(){
-    this.init1Doc();
-    this.save2Mine();
-    this.save3Yours();
-    this.save4Mine();
-    this.sync();
+    
+    // 1) init or load Mine
+    let docMine = this.initDoc("messages");
+    //let docMine = this.loadDoc("dataFromMyStorageBucket");
+    
+    // 2) get Their data data
+
+    // 3) Merge
+
+    // 4) Save
+    
+    //docMine = this.getMyDoc(docMine, this.genMessage("me 2") );
+    
+    // Save some of my data
+
+    // Merge some of your data
+
+    //this.save3Yours();
+    
+    //this.save4Mine();
+    
+    //this.sync();
+
   }
 
-  init1Doc(){
+  initDoc(property){
+    // init doc
+    let docMine = Automerge.init();
+    return docMine;
+  }
+
+  loadMyDoc(data){
+    return Automerge.load(data);
+  }
+
+  loadTheirDoc(){
+
+  }
+
+  mergeDocs(){
+
+  }
+
+  saveDoc(){
+
+  }
+
+
+
+  getMine(property, message){
      // init doc
-     this.docMine = Automerge.init();
-     let commitMsg = 'initDoc - ' + this.getDate();
-     this.docMine = Automerge.change(this.docMine, commitMsg , doc => {
-      //let msg = new Message(); 
-     // msg.
-      //doc.chat = [msg];
+     let docMine = Automerge.init();
+     //let commitMsg = 'initDoc - ' + this.getDate();
+     docMine = Automerge.change(docMine, message , doc => {
+        
+        doc[property] = [message];
      });
-     return this.docMine;
+     return docMine;
   }
 
-  save2Mine(){
-    this.docMine = Automerge.change(this.docMine, 'save1Me - ' + this.getDate(), doc => {
-      doc.chat.push({'me': '2'});
-    });
-    console.log(this.docMine);
-    return this.docMine;
-  }
+  // save2Mine(docMine, message){
+  //   docMine = Automerge.change(docMine, message, doc => {
+  //     doc.chat.push(message);
+  //   });
+  //   return docMine;
+  // }
 
-  save3Yours(){
-    this.docYours = Automerge.init()
-    this.docYours = Automerge.merge(this.docYours, this.docMine);
+  // mergeYours(){
+  //   this.docYours = Automerge.init()
+  //   this.docYours = Automerge.merge(this.docYours, this.docMine);
 
-    this.docYours = Automerge.change(this.docYours, 'save2Yours - ' + this.getDate() , doc => {
-      doc.chat.push({'yours': '3'});
-    });
+  //   this.docYours = Automerge.change(this.docYours, 'save2Yours - ' + this.getDate() , doc => {
 
-    console.log(this.docYours);
-    return this.docYours;
-  }
+  //     let msg = new Message();
+  //     msg.message = "yours 3";
+  //     msg.createdBy = blockstack.loadUserData().username;
+  //     msg.createdByName = blockstack.loadUserData().profile.name;
+  //     doc.chat.push(msg);
+
+  //   });
+
+  //   console.log(this.docYours);
+  //   return this.docYours;
+  // }
 
 
-  save4Mine(){
-    this.docMine = Automerge.change(this.docMine, 'save3Me - ' + this.getDate(), doc => {
-      doc.chat.push({'me': '4'});
-    });
-    return this.docMine;
-  }
+  // save4Mine(){
+  //   this.docMine = Automerge.change(this.docMine, 'save3Me - ' + this.getDate(), doc => {
 
-  sync(){
-    this.doc = Automerge.merge(this.docMine, this.docYours);
-    console.log(this.doc);
-    return this.doc;
-  }
+  //     let msg = new Message();
+  //     msg.message = "me 4";
+  //     msg.createdBy = blockstack.loadUserData().username;
+  //     msg.createdByName = blockstack.loadUserData().profile.name;
+  //     doc.chat.push(msg);
+
+  //   });
+  //   return this.docMine;
+  // }
+
+  // sync(){
+  //   this.doc = Automerge.merge(this.docMine, this.docYours);
+  //   console.log(this.doc);
+
+  //   // sort by date
+  //   console.log(
+  //     jslinq(this.doc.chat).orderBy( (el) => el.updatedAt ).toList()
+  //   ); 
+
+  //   return this.doc;
+  // }
+
+  // genMessage(content){
+  //   let msg = new Message();
+  //   msg.message = content;
+  //   msg.createdBy = blockstack.loadUserData().username;
+  //   msg.createdByName = blockstack.loadUserData().profile.name;
+  //   return msg;
+  // }
+
+
 
 }
