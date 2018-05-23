@@ -34,9 +34,9 @@ export class DocumentService {
   public currentDocAnnotations;
   public logDoc: any;
   public log: Log;
-  public automerge = Automerge;
+  //public automerge = Automerge;
 
-  constructor(public events: Events) {
+  constructor(public events: Events, private http: Http) {
     console.log('Hello StorageServiceProvider Provider');
     this.documentsList = [];
 
@@ -66,6 +66,12 @@ export class DocumentService {
     newDocument.fileName = fileName;
     newDocument.documentKey = this.generateKey();
     newDocument.pathAnnotatedDoc = blockstack.loadUserData().profile.apps[window.location.origin];
+    newDocument.paths = [{
+      name: blockstack.loadUserData().profile.name, 
+      userId: blockstack.loadUserData().username, 
+      pathToStorage: blockstack.loadUserData().profile.apps[window.location.origin]
+    }];
+    newDocument.signer = ["blockusign.id"];
     this.documentsList.push(newDocument);
     await blockstack.putFile(this.indexFileName, JSON.stringify(this.documentsList), { encrypt: true });
     this.docBuffer = fileBuffer;
@@ -73,6 +79,8 @@ export class DocumentService {
     let response = await this.addDocumentBytes(newDocument.guid, fileBuffer, newDocument.documentKey);
     return this.documentsList;
   }
+
+ 
 
   async removeDocument(document) {
     // remove item
@@ -101,6 +109,41 @@ export class DocumentService {
     else {
       return null;
     }
+  }
+
+  async getDocumentByPath(docPath: string, docKey: string) {
+    let resp = await this.http.get(docPath).toPromise();
+    if (resp) {
+      let encryptedDoc = resp.text();
+      return this.decryptDoc(encryptedDoc, docKey);
+    }
+    else {
+      return of(null);
+    }
+  }
+
+  async copyDocument(newDocument: Document, guid: string){
+    // this.documentsList.push(newDocument);
+    // await blockstack.putFile(this.indexFileName, JSON.stringify(this.documentsList), { encrypt: true });
+    // this.docBuffer = fileBuffer;
+    // this.currentDoc = newDocument;
+    // let response = await this.addDocumentBytes(newDocument.guid, fileBuffer, newDocument.documentKey);
+    // return this.documentsList;
+  }
+
+  documentExists(guid): boolean {
+    let exists = false;
+    let docs = jslinq(this.documentsList).where(  (el) => el.guid == guid ).toList();
+    if (docs.length > 0){
+      exists = true;
+    }
+    return exists;
+  }
+
+  async addSignerToCurrentDoc(nameOrId){
+
+    
+    
   }
 
   async removeDocumentBytes(guid: string) {
@@ -145,12 +188,27 @@ export class DocumentService {
     let logFileName = guid + '.log.json';
     let resp;
     try {
-      resp = await blockstack.getFile(logFileName, { decrypt: false });
-      
+      resp = await blockstack.getFile(logFileName, { decrypt: false }); 
       // existing doc
       if (resp) {
         if (resp) {
           this.logDoc = Automerge.load(resp);
+          // now get their doc if there is already a signer
+          if (this.currentDoc.signer[0]){
+            this.log = this.logDoc.log;
+            let theirUrl = this.currentDoc.paths.find( x=> x.userId == this.currentDoc.signer[0] || x.name == this.currentDoc.signer[0]  );
+            if (theirUrl){
+              let url = theirUrl[0] + logFileName;
+              let theirResp = await this.http.get(url).toPromise(); 
+              // now merge their doc into mine
+              if (theirResp){
+                let str = theirResp.text();
+                let theirDoc = Automerge.load(str);
+                let finalDoc = Automerge.merge(this.logDoc, theirDoc)
+                this.logDoc = finalDoc;
+              }
+            }
+          }
           this.log = this.logDoc.log;
         }
       }
@@ -398,3 +456,4 @@ export class DocumentService {
 
 
 }
+

@@ -38,7 +38,7 @@ export class MyApp {
   fileName = "blockusign/pdf1.pdf";
   profile: any;
   pdfBuffer: any;
-  avatar: string;
+  avatar: string = "http://www.gravatar.com/avatar/?d=identicon";
   documentsList: any;
 
   constructor(
@@ -135,7 +135,10 @@ export class MyApp {
       let profile = blockstack.loadUserData();
       this.name = profile.username;
       this.isLoggedIn = true;
-      this.avatar = profile.profile.image[0].contentUrl;
+      try{
+        this.avatar = profile.profile.image[0].contentUrl;
+      }catch(e) {console.log('no profile pic')}
+      
       this.loginState = "[Logout]";
       this.documentService.getDocumentsIndex(true).then((data) => {
         this.documentsList = data;

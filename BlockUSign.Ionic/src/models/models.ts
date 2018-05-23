@@ -14,8 +14,9 @@ export class Document{
     
     public pathAnnotatedDoc: string; // fully qualified gaia path to the Annotated doc , this is usually in the owners storage bucket
     public pathSignedDoc: string; // fully qualified gaia path to the Signed doc, this is usually in the signers bucket
+    public paths: Array<NameStorageMapping>;
 
-    constructor(){
+    constructor() {
         this.guid = (<any>window).guid();
         this.createdAt = (<any>Date).now();
         this.updatedAt = (<any>Date).now();
@@ -23,10 +24,9 @@ export class Document{
         this.step = "Annotate";
         this.isCompleted = false
     }
-
 }
 
-export class Log{
+export class Log {
     public guid: any;
     public createdAt: Date; 
     public updatedAt: Date; 
@@ -69,6 +69,12 @@ export class AnnotationTypes{
     constructor(){
         return ["Sign"];
     }
+}
+
+export class NameStorageMapping {
+    public name: string; // @todo required, but there is a potential for dups if two people choose the same name, also could fail if they edit user name. small tradoff tho for user usability, until the blockstack registrar is created
+    public userId: string; // @todo optional, to allow for non registerd users without ID's
+    public pathToStorage: string;
 }
 
 // // Index of documents for searching

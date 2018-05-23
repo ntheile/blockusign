@@ -81,7 +81,12 @@ export class BlockChatComponent {
         let d = item.updatedAt;
         let formatDate = moment(d).calendar(d);
   
-        let uid = item.createdBy.replace('.id','');
+        let uid = item.createdBy;
+        try{
+          uid = item.createdBy.replace('.id','');
+        }
+        catch(e){ console.log('user does not have .id') };
+        
         let uName = item.createdByName;
         let uidClass = 'block-pic-' + uid;
   
