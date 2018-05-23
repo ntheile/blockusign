@@ -15,6 +15,9 @@ declare let blockstack: any;
 declare let sjcl: any;
 declare let $: any;
 
+import { State } from './../models/state';
+import { of } from 'rxjs/observable/of';
+
 /*
   Generated class for the StorageServiceProvider provider.
 
@@ -29,6 +32,7 @@ export class DocumentService {
   public docBuffer: any;
   public currentDoc: Document;
   public currentDocAnnotations;
+  public logDoc: any;
   public log: Log;
   public automerge = Automerge;
 
@@ -136,19 +140,38 @@ export class DocumentService {
   }
 
 
-  //#region Chat log
+  //#region Log (Chat)
   async getLog(guid: string) {
     let logFileName = guid + '.log.json';
     let resp;
     try {
       resp = await blockstack.getFile(logFileName, { decrypt: false });
+      
+      // existing doc
       if (resp) {
-        this.log = JSON.parse(resp);
+        if (resp) {
+          this.logDoc = Automerge.load(resp);
+          this.log = this.logDoc.log;
+        }
       }
+      // init new doc
       else {
         let newLog = new Log();
         newLog.messages = [];
-        this.log = JSON.parse(await blockstack.putFile(logFileName, JSON.stringify(newLog), { encrypt: false }));
+        let msg = new Message();
+        msg.createdBy = blockstack.loadUserData().username;
+        msg.createdByName = blockstack.loadUserData().profile.name;
+        msg.message = "Created Doc";
+        newLog.messages.push(msg);
+        this.logDoc = Automerge.init();
+        this.logDoc = Automerge.change(this.logDoc, 'Initialize log - ' + this.getDate(), doc => {
+          doc.log = newLog;
+        });
+        let logStr = Automerge.save(this.logDoc);
+        logStr = await blockstack.putFile(logFileName, logStr, { encrypt: false })
+        this.logDoc = Automerge.load(logStr);
+        this.log = this.logDoc.log;
+        //this.log = JSON.parse(await blockstack.putFile(logFileName, JSON.stringify(newLog), { encrypt: false }));
       }
       return this.log;
     }
@@ -165,9 +188,16 @@ export class DocumentService {
       msg.message = message;
       msg.createdBy = blockstack.loadUserData().username;
       msg.createdByName = blockstack.loadUserData().profile.name;
-      log.messages.push(msg);
+      this.logDoc = Automerge.change(this.logDoc, msg.createdByName + " added message at " + this.getDate() ,  (doc) => {
+        doc.log.messages.push(msg);
+      });
+      //log.messages.push(msg);
+      let logStr = Automerge.save(this.logDoc);
+      await blockstack.putFile(logFileName, logStr, { encrypt: false });
+      this.log = this.logDoc.log;
       this.events.publish('documentService:addedChat', msg);
-      return await blockstack.putFile(logFileName, JSON.stringify(log), { encrypt: false });
+      return this.log;
+      //return await blockstack.putFile(logFileName, JSON.stringify(log), { encrypt: false });
     }
     else {
       console.error("error getting log file: " + logFileName)
@@ -243,15 +273,42 @@ export class DocumentService {
 
 
 
-  //doc;
-  //docMine;
-  ///docYours;
-  
-  test(){
-    
+  doc;
+  docMine;
+  docYours;
+  state = new State();
+
+  testInitDoc() {
+
     // 1) init or load Mine
-    let docMine = this.initDoc("messages");
-    //let docMine = this.loadDoc("dataFromMyStorageBucket");
+    this.docMine = this.state.docInit();
+   
+    // 2) Save as string
+    let docStr = this.state.docSave(this.docMine);
+    
+    // 3) Send to server
+    // putFile
+
+    return docStr;
+    
+  }
+
+  testEditDoc(){
+    // 1) load Mine
+    //this.docMine;
+
+    // 2) Edit Doc
+    this.docMine = this.state.docEdit(this.docMine, "nick 1st add - " + this.getDate(), "messages", {'nick': '1'} );
+
+
+    // 3) Save to server
+    
+  }
+
+  testMerge(){
+
+    // 1) load Mine
+    let docMine = this.testInitDoc();
     
     // 2) get Their data data
 
@@ -259,42 +316,13 @@ export class DocumentService {
 
     // 4) Save
     
-    //docMine = this.getMyDoc(docMine, this.genMessage("me 2") );
-    
-    // Save some of my data
 
-    // Merge some of your data
+    // return doc
 
-    //this.save3Yours();
-    
-    //this.save4Mine();
-    
-    //this.sync();
 
   }
 
-  initDoc(property){
-    // init doc
-    let docMine = Automerge.init();
-    return docMine;
-  }
-
-  loadMyDoc(data){
-    return Automerge.load(data);
-  }
-
-  loadTheirDoc(){
-
-  }
-
-  mergeDocs(){
-
-  }
-
-  saveDoc(){
-
-  }
-
+  
 
 
   getMine(property, message){
