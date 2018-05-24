@@ -122,13 +122,29 @@ export class DocumentService {
     }
   }
 
-  async copyDocument(newDocument: Document, guid: string){
-    // this.documentsList.push(newDocument);
-    // await blockstack.putFile(this.indexFileName, JSON.stringify(this.documentsList), { encrypt: true });
-    // this.docBuffer = fileBuffer;
-    // this.currentDoc = newDocument;
-    // let response = await this.addDocumentBytes(newDocument.guid, fileBuffer, newDocument.documentKey);
-    // return this.documentsList;
+  async copyDocument(newDocument: Document, guid: string, fileBuffer: Buffer){
+    console.log("file buffer", fileBuffer);
+    console.log("guid", guid);
+    console.log("doc", newDocument);
+
+    newDocument.paths.push({
+      name: blockstack.loadUserData().profile.name, 
+      userId: blockstack.loadUserData().username, 
+      pathToStorage: blockstack.loadUserData().profile.apps[window.location.origin]
+    });
+
+    this.documentsList.push(newDocument);
+    console.log("new doc list", this.documentsList );
+    await blockstack.putFile(this.indexFileName, JSON.stringify(this.documentsList), { encrypt: true });
+    let response = await this.addDocumentBytes(guid, fileBuffer, newDocument.documentKey);
+    this.docBuffer = fileBuffer;
+    this.currentDoc = newDocument;
+
+    // @todo now copy annotations
+
+    // @todo now copy chat log
+
+    return this.documentsList;
   }
 
   documentExists(guid): boolean {

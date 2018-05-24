@@ -29,6 +29,7 @@ declare var blockstack: any;
 declare let Event: any;
 declare let dragOn: any;
 declare let interact: any;
+declare let getQueryParam: any;
 
 
 /**
@@ -112,6 +113,12 @@ export class BlockPdfComponent {
     this.svgDrawer  = dragOn(document.querySelector(".dropzone"), {
       listenTo: '.draggable'
     });
+
+    let docData = getQueryParam('docData');
+    if (docData){
+      this.loading.dismiss();
+      return;
+    }
 
     if (this.navParams.get("guid") && !this.documentService.currentDoc) {
       let guid = this.navParams.get("guid");

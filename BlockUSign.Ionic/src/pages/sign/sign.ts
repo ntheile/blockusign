@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DocumentService } from './../../services/document.service';
+import { BlockPdfComponent } from '../../components/block-pdf/block-pdf';
 declare let blockstack: any;
 declare let getQueryParam: any;
-declare let jslinq:any;
+declare let jslinq: any;
 
 /**
  * Generated class for the SignPage page.
@@ -24,6 +25,7 @@ declare let jslinq:any;
 export class SignPage {
 
   name: string;
+  @ViewChild(BlockPdfComponent) blockPdf: BlockPdfComponent;
 
   constructor(
     public navCtrl: NavController,
@@ -33,46 +35,51 @@ export class SignPage {
 
   }
 
-  async ionViewDidLoad() {
+  ionViewDidLoad() {
+    this.init();
+  }
 
+  async init() {
+    
     // if you are a signer and the document is not in your document.index then add it!
     // @todo think about allowing a document to get signed by an anonymous person if they got it via email with the documentKey
 
+    // test - http://localhost:8100/#/sign/a48b11c6-349b-697b-90f9-8356c29ccbf8/?docData=eyJndWlkIjoiYTQ4YjExYzYtMzQ5Yi02OTdiLTkwZjktODM1NmMyOWNjYmY4IiwiY3JlYXRlZEF0IjoxNTI3MTI3NTgxNDgyLCJ1cGRhdGVkQXQiOjE1MjcxMjc1ODE0ODIsImhhc0Fubm90YXRpb25zIjpmYWxzZSwic3RlcCI6IkFubm90YXRlIiwiaXNDb21wbGV0ZWQiOmZhbHNlLCJmaWxlTmFtZSI6Im5pY2sgMS5wZGYiLCJkb2N1bWVudEtleSI6IjVjYmY0NjVjLTU5ODktOTNlMy02OGUxLTdkNTE5NzEyYTZmNCIsInBhdGhBbm5vdGF0ZWREb2MiOiJodHRwczovL2dhaWEuYmxvY2tzdGFjay5vcmcvaHViLzE4a1Rza0JwVGgxbXpuc3lwdTFmaEoyN2R4YkMxU3dYRUsvIiwicGF0aHMiOlt7Im5hbWUiOiJuaWNrIHRlZSIsInVzZXJJZCI6Im5pY2t0ZWUuaWQiLCJwYXRoVG9TdG9yYWdlIjoiaHR0cHM6Ly9nYWlhLmJsb2Nrc3RhY2sub3JnL2h1Yi8xOGtUc2tCcFRoMW16bnN5cHUxZmhKMjdkeGJDMVN3WEVLLyJ9XSwic2lnbmVyIjpbImJsb2NrdXNpZ24uaWQiXX0=
+
     let docData = getQueryParam('docData');
-
-    // test http://localhost:8100/#/sign/0fc4dd38-993a-ed72-187f-4a0d65e7f96c/?docData=eyJndWlkIjoiZDBkYmJjODktYWRkYS01YTgwLTllYTgtMDQxMmM1NjQ5ZDM3IiwiY3JlYXRlZEF0IjoxNTI3MTAwNTYwOTU3LCJ1cGRhdGVkQXQiOjE1MjcxMDA1NjA5NTcsImhhc0Fubm90YXRpb25zIjpmYWxzZSwic3RlcCI6IkFubm90YXRlIiwiaXNDb21wbGV0ZWQiOmZhbHNlLCJmaWxlTmFtZSI6ImIxLnBkZiIsImRvY3VtZW50S2V5IjoiMjQyMjNkNjUtN2E4My1hZTYwLWY5YzAtNjIzMTRiNDU1NWE2IiwicGF0aEFubm90YXRlZERvYyI6Imh0dHBzOi8vZ2FpYS5ibG9ja3N0YWNrLm9yZy9odWIvMThrVHNrQnBUaDFtem5zeXB1MWZoSjI3ZHhiQzFTd1hFSy8iLCJwYXRocyI6W3sibmFtZSI6Im5pY2sgdGVlIiwidXNlcklkIjoibmlja3RlZS5pZCIsInBhdGhUb1N0b3JhZ2UiOiJodHRwczovL2dhaWEuYmxvY2tzdGFjay5vcmcvaHViLzE4a1Rza0JwVGgxbXpuc3lwdTFmaEoyN2R4YkMxU3dYRUsvIn1dLCJzaWduZXIiOlsiYmxvY2t1c2lnbi5pZCJdfQ==
-
-    
-    // if (this.navParams.get("guid") && !this.documentService.currentDoc && !docData) {
-    //   let guid = this.navParams.get("guid");
-    //   this.documentService.getDocumentsIndex(true).then((data) => {
-    //     this.documentService.documentsList = data;
-    //     this.documentService.setCurrentDoc(guid);
-    //   });
-    // }
-    // else {
-      if (docData && this.navParams.get("guid") ) {
-        let guid = this.navParams.get("guid");
-        let doc = JSON.parse(atob(docData));
-        // lookup to see if its in your storage, if not, get it and add it to your storage
-        this.documentService.getDocumentsIndex(true).then( async (data) => {
-          this.documentService.documentsList = data;
-          
-          // if (this.documentService.documentExists(guid)){
-          //   this.documentService.setCurrentDoc(guid);
-          // }
-          // else{
-            // get the file buffer
-            let path = doc.pathAnnotatedDoc + this.navParams.get("guid") + ".pdf";
-            console.log(path);
-            let fileBuffer = await this.documentService.getDocumentByPath(path, doc.documentKey);
-            // this.documentService.addDocumentBytes()
-            // this.documentService.addDocument()
-          //}
-            let after4 = "b4";
-        }); 
+   
+    // my doc
+    if (this.navParams.get("guid") && !this.documentService.currentDoc && !docData) {
+      let guid = this.navParams.get("guid");
+      this.documentService.getDocumentsIndex(true).then((data) => {
+        this.documentService.documentsList = data;
+        this.documentService.setCurrentDoc(guid);
+      });
+    }
+    // their doc
+    else if (this.navParams.get("guid") && !this.documentService.currentDoc && docData) {
+      let jsonDoc = atob(docData);
+      let doc = JSON.parse(jsonDoc);
+      let resp = await this.documentService.getDocumentsIndex(true);
+      this.documentService.documentsList = resp;
+      let guid = this.navParams.get("guid");
+   
+      if (this.documentService.documentExists(guid)) {
+        this.documentService.setCurrentDoc(guid);
       }
-    //}
+      else {
+        //get the file buffer
+        let path = doc.pathAnnotatedDoc + this.navParams.get("guid") + ".pdf";
+        console.log(path);
+        let fileBuffer = await this.documentService.getDocumentByPath(path, doc.documentKey);
+        await this.documentService.copyDocument(doc, guid, fileBuffer);
+        this.blockPdf.ngOnInit();
+      }
+    }
+    else{
+      console.log('Error, must pass in guid')
+    }
+
     console.log('ionViewDidLoad SignPage');
     this.name = blockstack.loadUserData().profile.name;
   }

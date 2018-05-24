@@ -13,7 +13,7 @@ export class Document{
     public annotationsRequired: Array<any>; // [ {"Sign": "nicktee.id"}, { Sign: "blockusign1.id" } ]
     
     public pathAnnotatedDoc: string; // fully qualified gaia path to the Annotated doc , this is usually in the owners storage bucket
-    public pathSignedDoc: string; // fully qualified gaia path to the Signed doc, this is usually in the signers bucket
+    //public pathSignedDoc: string; // fully qualified gaia path to the Signed doc, this is usually in the signers bucket
     public paths: Array<NameStorageMapping>;
 
     constructor() {
