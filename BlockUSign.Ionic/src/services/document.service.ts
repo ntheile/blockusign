@@ -122,7 +122,7 @@ export class DocumentService {
     }
   }
 
-  async copyDocument(newDocument: Document, guid: string, fileBuffer: Buffer){
+  async copyDocument(newDocument: Document, guid: string, fileBuffer: any){
     console.log("file buffer", fileBuffer);
     console.log("guid", guid);
     console.log("doc", newDocument);

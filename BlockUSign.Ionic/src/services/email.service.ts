@@ -29,22 +29,22 @@ export class EmailService {
 
   }
 
-  async sendEmail (email) {
+  async sendEmail (to, subject, content) {
 
-    if (!email){
+    if (!to || !subject || !content){
+      alert('Must add an email address');
       return;
     }
 
     let data = {
-      "to": email, 
-      "subject": "PLease review new document id ref 9876", 
-      "content": "This will be the content of the message for you Nick!"
+      "to": to, 
+      "subject": subject, 
+      "content": content
     };
     let httpOptions = new RequestOptions();
     httpOptions.headers = new Headers(
       {
         'Content-Type': 'application/json'
-        //'Authorization': 'Bearer ' + this.apiK
       }
     );
 
@@ -52,7 +52,7 @@ export class EmailService {
     return resp;
 
   }
-
+  
   catchError () {
 
   }

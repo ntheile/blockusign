@@ -21,7 +21,6 @@ declare let blockstack: any;
   name: 'EmailPage',
   segment: 'email/:guid',
   defaultHistory: ['AnnotatePage', 'HomePage'],
-
 })
 @Component({
   selector: 'page-email',
@@ -101,17 +100,40 @@ export class EmailPage {
 
   private loadPeople3() {
     this.people3Typeahead.pipe(
-      tap(() => this.people3Loading = true),
+      tap( () => this.people3Loading = true),
       distinctUntilChanged(),
       debounceTime(375),
-      switchMap(term => this.blockStackService.searchUser(term)),
+      switchMap(term => 
+        this.blockStackService.searchUser(term)
+      ),
     ).subscribe(x => {
       this.people3 = x;
       this.people3Loading = false;
-      this.chg.markForCheck();
+      //this.chg.markForCheck();
+      console.log("ppl loading false");
     }, () => {
       this.people3 = [];
+      console.log("[]");
     });
+  }
+
+  async sendEmail(e){
+    if (!this.email){
+      alert('Please enter an email address');
+      return;
+    }
+    let documentLink = window.location.origin + "/#/sign/" + this.documentService.currentDoc.guid + "/?docData=" + btoa(JSON.stringify(this.documentService.currentDoc));
+    let subject = blockstack.loadUserData().profile.name + " has sent you a document to sign - " + this.documentService.currentDoc.fileName;
+    let content = "Please click this link and sign the document. Thanks! <br/><br/>" + documentLink;
+    await this.emailService.sendEmail(this.email, subject, content);
+    alert('Email sent!');
+  }
+
+  clickedUser(){
+    // @todo spoofed
+    setTimeout( ()=>{
+      alert('Email not found. Please enter below');
+    }, 1000 );
   }
 
 

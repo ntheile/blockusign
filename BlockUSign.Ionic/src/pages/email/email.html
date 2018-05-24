@@ -24,16 +24,22 @@
           [(ngModel)]="selectedUser"  
           (change)="searchUser($event)" 
           [typeahead]="people3Typeahead"
-          placeholder="Select signer...">
-          <ng-template ng-label-tmp let-item="item" let-clear="clear">
+          placeholder="Select signer..."
+          >
+          <ng-template ng-label-tmp let-item="item" let-clear="clear" >
             <span class="ng-value-label">
               <img [src]="item.profile.image && item.profile.image[0].contentUrl" width="20px" height="20px"> {{item.username}}</span>
-            <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
+              <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
           </ng-template>
           <ng-template ng-option-tmp let-item="item">
-            <img [src]="item.profile.image && item.profile.image[0].contentUrl" width="20px" height="20px"> {{item.username}}
+            <span style="width:100%" (click)="clickedUser()">
+                <img [src]="item.profile.image && item.profile.image[0].contentUrl" width="20px" height="20px"> {{item.username}}
+            </span>
           </ng-template>
         </ng-select>
+      </ion-col>
+      <ion-col>
+        <h3>or</h3>
       </ion-col>
       <ion-col style="width:460px; background-color:transparent; ">
         <!-- <ion-item  style="width:460px; background-color:transparent; " >
@@ -44,7 +50,7 @@
    
       </ion-col>
       <ion-col>
-        <button ion-button (click)="emailService.sendEmail(email)">Send Email</button>
+        <button ion-button (click)="sendEmail($event)">Send Email</button>
       </ion-col>
     </ion-row>
   </ion-grid>
