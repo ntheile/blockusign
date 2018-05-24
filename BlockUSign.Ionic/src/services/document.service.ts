@@ -122,7 +122,7 @@ export class DocumentService {
     }
   }
 
-  async copyDocument(newDocument: Document, guid: string, fileBuffer: any){
+  async copyDocument(newDocument: Document, guid: string, fileBuffer: any) {
     console.log("file buffer", fileBuffer);
     console.log("guid", guid);
     console.log("doc", newDocument);
@@ -141,7 +141,7 @@ export class DocumentService {
     this.currentDoc = newDocument;
 
     // @todo now copy annotations
-
+    
     // @todo now copy chat log
 
     return this.documentsList;
@@ -172,13 +172,29 @@ export class DocumentService {
     let json = {
       annotations: annotation
     }
-    return await blockstack.putFile(guid + ".annotations.json", JSON.stringify(json), { encrypt: false });
+    let encrypted = this.encryptString(JSON.stringify(json), this.currentDoc.documentKey);
+    return await blockstack.putFile(guid + ".annotations.json", encrypted, { encrypt: false });
   }
 
   async getAnnotations(guid: string) {
     let resp = await blockstack.getFile(guid + ".annotations.json", { decrypt: false });
     if (resp) {
-      this.currentDocAnnotations = JSON.parse(resp);
+      let decrypted = this.decryptString(resp, this.currentDoc.documentKey)
+      this.currentDocAnnotations = JSON.parse(decrypted);
+    }
+    if (!resp) {
+      this.currentDocAnnotations = "";
+    }
+    return this.currentDocAnnotations;
+  }
+
+  async getAnnotationsByPath(docPath: string, docKey: string) {
+    // @todo WIP
+    let resp = await this.http.get(docPath).toPromise();
+    if (resp) {
+      let encryptedDoc = resp.text();
+      let annotations = this.decryptString(encryptedDoc, docKey);
+      this.currentDocAnnotations = annotations;
     }
     if (!resp) {
       this.currentDocAnnotations = "";
@@ -207,7 +223,7 @@ export class DocumentService {
       resp = await blockstack.getFile(logFileName, { decrypt: false }); 
       // existing doc
       if (resp) {
-        if (resp) {
+          this.logDoc = this.decryptString(resp, this.currentDoc.documentKey);
           this.logDoc = Automerge.load(resp);
           // now get their doc if there is already a signer
           if (this.currentDoc.signer[0]){
@@ -219,6 +235,7 @@ export class DocumentService {
               // now merge their doc into mine
               if (theirResp){
                 let str = theirResp.text();
+                str = this.decryptString(str, this.currentDoc.documentKey);
                 let theirDoc = Automerge.load(str);
                 let finalDoc = Automerge.merge(this.logDoc, theirDoc)
                 this.logDoc = finalDoc;
@@ -226,7 +243,6 @@ export class DocumentService {
             }
           }
           this.log = this.logDoc.log;
-        }
       }
       // init new doc
       else {
@@ -242,7 +258,10 @@ export class DocumentService {
           doc.log = newLog;
         });
         let logStr = Automerge.save(this.logDoc);
-        logStr = await blockstack.putFile(logFileName, logStr, { encrypt: false })
+        logStr = this.encryptString(logStr, this.currentDoc.documentKey)
+        logStr = await blockstack.putFile(logFileName, logStr, { encrypt: false });
+        logStr = this.decryptString(logStr, this.currentDoc.documentKey);
+        console.log('logstr', logStr);
         this.logDoc = Automerge.load(logStr);
         this.log = this.logDoc.log;
         //this.log = JSON.parse(await blockstack.putFile(logFileName, JSON.stringify(newLog), { encrypt: false }));
@@ -267,6 +286,7 @@ export class DocumentService {
       });
       //log.messages.push(msg);
       let logStr = Automerge.save(this.logDoc);
+      logStr = this.encryptString(logStr, this.currentDoc.documentKey);
       await blockstack.putFile(logFileName, logStr, { encrypt: false });
       this.log = this.logDoc.log;
       this.events.publish('documentService:addedChat', msg);
@@ -293,6 +313,14 @@ export class DocumentService {
     let decryptedBase64 = sjcl.codec.base64.toBits(dec);
     let decryptedDocBits = sjcl.codec.arrayBuffer.fromBits(decryptedBase64);
     return decryptedDocBits;
+  }
+  encryptString(payload:string, key: string) {
+    let encryptedDoc = sjcl.encrypt(key, payload);
+    return encryptedDoc;
+  }
+  decryptString(payload: string, key: string) {
+    let dec = sjcl.decrypt(key, payload);
+    return dec;
   }
   generateKey() {
     return (<any>window).guid();

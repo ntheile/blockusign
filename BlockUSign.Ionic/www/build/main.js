@@ -748,14 +748,15 @@ var DocumentService = (function () {
     };
     DocumentService.prototype.saveAnnotations = function (guid, annotation) {
         return __awaiter(this, void 0, void 0, function () {
-            var json;
+            var json, encrypted;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         json = {
                             annotations: annotation
                         };
-                        return [4 /*yield*/, blockstack.putFile(guid + ".annotations.json", JSON.stringify(json), { encrypt: false })];
+                        encrypted = this.encryptString(JSON.stringify(json), this.currentDoc.documentKey);
+                        return [4 /*yield*/, blockstack.putFile(guid + ".annotations.json", encrypted, { encrypt: false })];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -763,14 +764,36 @@ var DocumentService = (function () {
     };
     DocumentService.prototype.getAnnotations = function (guid) {
         return __awaiter(this, void 0, void 0, function () {
-            var resp;
+            var resp, decrypted;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, blockstack.getFile(guid + ".annotations.json", { decrypt: false })];
                     case 1:
                         resp = _a.sent();
                         if (resp) {
-                            this.currentDocAnnotations = JSON.parse(resp);
+                            decrypted = this.decryptString(resp, this.currentDoc.documentKey);
+                            this.currentDocAnnotations = JSON.parse(decrypted);
+                        }
+                        if (!resp) {
+                            this.currentDocAnnotations = "";
+                        }
+                        return [2 /*return*/, this.currentDocAnnotations];
+                }
+            });
+        });
+    };
+    DocumentService.prototype.getAnnotationsByPath = function (docPath, docKey) {
+        return __awaiter(this, void 0, void 0, function () {
+            var resp, encryptedDoc, annotations;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.http.get(docPath).toPromise()];
+                    case 1:
+                        resp = _a.sent();
+                        if (resp) {
+                            encryptedDoc = resp.text();
+                            annotations = this.decryptString(encryptedDoc, docKey);
+                            this.currentDocAnnotations = annotations;
                         }
                         if (!resp) {
                             this.currentDocAnnotations = "";
@@ -802,12 +825,12 @@ var DocumentService = (function () {
                         logFileName = guid + '.log.json';
                         _a.label = 1;
                     case 1:
-                        _a.trys.push([1, 9, , 10]);
+                        _a.trys.push([1, 8, , 9]);
                         return [4 /*yield*/, blockstack.getFile(logFileName, { decrypt: false })];
                     case 2:
                         resp = _a.sent();
-                        if (!resp) return [3 /*break*/, 6];
                         if (!resp) return [3 /*break*/, 5];
+                        this.logDoc = this.decryptString(resp, this.currentDoc.documentKey);
                         this.logDoc = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["load"](resp);
                         if (!this.currentDoc.signer[0]) return [3 /*break*/, 4];
                         this.log = this.logDoc.log;
@@ -820,6 +843,7 @@ var DocumentService = (function () {
                         // now merge their doc into mine
                         if (theirResp) {
                             str = theirResp.text();
+                            str = this.decryptString(str, this.currentDoc.documentKey);
                             theirDoc = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["load"](str);
                             finalDoc = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["merge"](this.logDoc, theirDoc);
                             this.logDoc = finalDoc;
@@ -827,9 +851,8 @@ var DocumentService = (function () {
                         _a.label = 4;
                     case 4:
                         this.log = this.logDoc.log;
-                        _a.label = 5;
-                    case 5: return [3 /*break*/, 8];
-                    case 6:
+                        return [3 /*break*/, 7];
+                    case 5:
                         newLog_1 = new __WEBPACK_IMPORTED_MODULE_1__models_models__["b" /* Log */]();
                         newLog_1.messages = [];
                         msg = new __WEBPACK_IMPORTED_MODULE_1__models_models__["c" /* Message */]();
@@ -842,17 +865,20 @@ var DocumentService = (function () {
                             doc.log = newLog_1;
                         });
                         logStr = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["save"](this.logDoc);
+                        logStr = this.encryptString(logStr, this.currentDoc.documentKey);
                         return [4 /*yield*/, blockstack.putFile(logFileName, logStr, { encrypt: false })];
-                    case 7:
+                    case 6:
                         logStr = _a.sent();
+                        logStr = this.decryptString(logStr, this.currentDoc.documentKey);
+                        console.log('logstr', logStr);
                         this.logDoc = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["load"](logStr);
                         this.log = this.logDoc.log;
-                        _a.label = 8;
-                    case 8: return [2 /*return*/, this.log];
-                    case 9:
+                        _a.label = 7;
+                    case 7: return [2 /*return*/, this.log];
+                    case 8:
                         e_1 = _a.sent();
-                        return [3 /*break*/, 10];
-                    case 10: return [2 /*return*/];
+                        return [3 /*break*/, 9];
+                    case 9: return [2 /*return*/];
                 }
             });
         });
@@ -876,6 +902,7 @@ var DocumentService = (function () {
                             doc.log.messages.push(msg_1);
                         });
                         logStr = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["save"](this.logDoc);
+                        logStr = this.encryptString(logStr, this.currentDoc.documentKey);
                         return [4 /*yield*/, blockstack.putFile(logFileName, logStr, { encrypt: false })];
                     case 2:
                         _a.sent();
@@ -904,6 +931,14 @@ var DocumentService = (function () {
         var decryptedBase64 = sjcl.codec.base64.toBits(dec);
         var decryptedDocBits = sjcl.codec.arrayBuffer.fromBits(decryptedBase64);
         return decryptedDocBits;
+    };
+    DocumentService.prototype.encryptString = function (payload, key) {
+        var encryptedDoc = sjcl.encrypt(key, payload);
+        return encryptedDoc;
+    };
+    DocumentService.prototype.decryptString = function (payload, key) {
+        var dec = sjcl.decrypt(key, payload);
+        return dec;
     };
     DocumentService.prototype.generateKey = function () {
         return window.guid();
@@ -983,9 +1018,10 @@ var DocumentService = (function () {
     };
     DocumentService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_6_ionic_angular__["c" /* Events */], __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* Http */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["c" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["c" /* Events */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* Http */]) === "function" && _b || Object])
     ], DocumentService);
     return DocumentService;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=document.service.js.map
