@@ -224,7 +224,7 @@ export class DocumentService {
       // existing doc
       if (resp) {
           this.logDoc = this.decryptString(resp, this.currentDoc.documentKey);
-          this.logDoc = Automerge.load(resp);
+          this.logDoc =  Automerge.load(this.logDoc);
           // now get their doc if there is already a signer
           if (this.currentDoc.signer[0]){
             this.log = this.logDoc.log;
