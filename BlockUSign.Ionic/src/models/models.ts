@@ -72,8 +72,9 @@ export class AnnotationTypes{
 }
 
 export class NameStorageMapping {
-    public name: string; // @todo required, but there is a potential for dups if two people choose the same name, also could fail if they edit user name. small tradoff tho for user usability, until the blockstack registrar is created
-    public userId: string; // @todo optional, to allow for non registerd users without ID's
+    public name?: string; // @todo required, but there is a potential for dups if two people choose the same name, also could fail if they edit user name. small tradoff tho for user usability, until the blockstack registrar is created
+    public userId?: string; // @todo optional, to allow for non registerd users without ID's
+    public email?: string; // optional, for users without user id's
     public pathToStorage: string;
 }
 

@@ -1,11 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, Toast } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { AnnotatePage } from '../pages/annotate/annotate';
 import { DocumentService } from '../services/document.service';
-import { PopoverController } from 'ionic-angular';
+import { PopoverController, ToastController} from 'ionic-angular';
 import { ViewController } from 'ionic-angular';
 import { OptionsPopoverPage } from './options.popover.page';
 import { MenuController } from 'ionic-angular';
@@ -52,7 +52,8 @@ export class MyApp {
     public documentService: DocumentService,
     public popoverCtrl: PopoverController,
     public menuCtrl: MenuController,
-    public blockStackService: BlockStackService
+    public blockStackService: BlockStackService,
+    public toastCntrl: ToastController
   ) {
 
     this.initializeApp();
@@ -147,21 +148,24 @@ export class MyApp {
         this.documentsList = data;
       });
 
-      if (!profile.username) {
+      //if (!profile.username) {
 
-        let profileData = await this.blockStackService.getEmail();
+        let profileData = await this.blockStackService.getProfileData();
 
         if (!profileData) {
           this.profileModal(this.email);
         }
-        else{
+        else {
           let myProfile = JSON.parse(profileData);
           if (!myProfile.email){
             this.profileModal(this.email);
           }
+          else {
+            this.name = myProfile.email;
+          }
         }
 
-      }
+      //}
 
     } else if (blockstack.isSignInPending()) {
       blockstack.handlePendingSignIn().then(function (userData) {
@@ -254,6 +258,7 @@ export class MyApp {
 
     let alert = this.alertCtrl.create({
       title: 'Please enter your email',
+      enableBackdropDismiss: false,
       inputs: [
         {
           name: 'email',
@@ -262,25 +267,26 @@ export class MyApp {
         }
       ],
       buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
+        // {
+        //   text: 'Cancel',
+        //   role: 'cancel',
+        //   handler: data => {
+        //     console.log('Cancel clicked');
+        //   }
+        // },
         {
           text: 'Ok',
           handler: data => {
 
             // save here
 
-            this.blockStackService.setEmail(data.email);
+            this.blockStackService.setProfileData(data.email);
 
-            if (true == true) {
+            if (data.email.indexOf("@") != -1) {
               // logged in!
             } else {
               // invalid login
+              this.showErrorToast('Invalid Email');
               return false;
             }
           }
@@ -290,6 +296,19 @@ export class MyApp {
     alert.present();
   }
 
+  showErrorToast(data: any) {
+    let toast = this.toastCntrl.create({
+      message: data,
+      duration: 3000,
+      position: 'top'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
+  }
 
 
 }

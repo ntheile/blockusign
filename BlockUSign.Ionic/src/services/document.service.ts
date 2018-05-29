@@ -9,6 +9,7 @@ import { AnonymousSubject } from 'rxjs/Subject';
 import { Events } from 'ionic-angular';
 import * as moment from 'moment';
 import * as Automerge from 'automerge/dist/automerge.js';
+import { BlockStackService } from './blockstack.service';
 declare let jslinq: any;
 //const Automerge = require('automerge');
 declare let blockstack: any;
@@ -37,7 +38,11 @@ export class DocumentService {
   public log: Log;
   //public automerge = Automerge;
 
-  constructor(public events: Events, private http: Http) {
+  constructor(
+    public events: Events, 
+    private http: Http,
+    private blockStackService: BlockStackService
+  ) {
     console.log('Hello StorageServiceProvider Provider');
     this.documentsList = [];
 
@@ -128,9 +133,24 @@ export class DocumentService {
     console.log("guid", guid);
     console.log("doc", newDocument);
 
+    let myName = null;
+    if (blockstack.loadUserData().profile.name){
+      myName = blockstack.loadUserData().profile.name;
+    }
+    let myUserId = null;
+    if(blockstack.loadUserData().username){
+      myUserId = blockstack.loadUserData().username;
+    }
+    let profileData = await this.blockStackService.getProfileData();
+    let myEmail = null;
+    if (profileData){
+      myEmail = JSON.parse(profileData).email;
+    }
+    
     newDocument.paths.push({
-      name: blockstack.loadUserData().profile.name, 
-      userId: blockstack.loadUserData().username, 
+      name: myName, 
+      userId: myUserId, 
+      email: myEmail,
       pathToStorage: blockstack.loadUserData().profile.apps[window.location.origin]
     });
 

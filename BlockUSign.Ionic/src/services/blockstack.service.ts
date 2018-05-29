@@ -68,7 +68,10 @@ export class BlockStackService {
   }
 
 
-  async getEmail() {
+  async getProfileData() {
+  
+    // this.clearProfileData();
+  
     let profileData = await blockstack.getFile(this.blockusignProfileUrl, { decrypt: false });
 
     let myProfile = JSON.parse(profileData);
@@ -79,13 +82,28 @@ export class BlockStackService {
     return profileData;
   }
 
-  async setEmail(email) {
-
+  async setProfileData(email) {
+    
+    let storagePath = blockstack.loadUserData().profile.apps[window.location.origin];
     let json = {
-      email: email
+      email: email,
+      storagePath: storagePath,
+      appPublicKey: await this.getAppPublicKey()
     }
-
     return await blockstack.putFile(this.blockusignProfileUrl, JSON.stringify(json), { encrypt: false });
+  }
+
+  async clearProfileData() {
+    
+    let json = {
+    
+    }
+    return await blockstack.putFile(this.blockusignProfileUrl, JSON.stringify(json), { encrypt: false });
+  }
+
+  async getAppPublicKey(){
+    var myPublicKey  = await blockstack.getPublicKeyFromPrivate(blockstack.loadUserData().appPrivateKey);
+    return myPublicKey;
   }
 
 }
