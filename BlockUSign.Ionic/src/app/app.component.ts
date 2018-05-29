@@ -9,6 +9,7 @@ import { PopoverController } from 'ionic-angular';
 import { ViewController } from 'ionic-angular';
 import { OptionsPopoverPage } from './options.popover.page';
 import { MenuController } from 'ionic-angular';
+import { BlockStackService } from './../services/blockstack.service';
 import moment from 'moment-timezone';
 import 'rxjs/add/operator/toPromise';
 import { LoadingController } from 'ionic-angular';
@@ -40,16 +41,18 @@ export class MyApp {
   pdfBuffer: any;
   avatar: string = "http://www.gravatar.com/avatar/?d=identicon";
   documentsList: any;
+  email: string;
 
   constructor(
-    public platform: Platform, 
-    public statusBar: StatusBar, 
+    public platform: Platform,
+    public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    public loadingCtrl: LoadingController, 
+    public loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
-    public documentService: DocumentService, 
+    public documentService: DocumentService,
     public popoverCtrl: PopoverController,
     public menuCtrl: MenuController,
+    public blockStackService: BlockStackService
   ) {
 
     this.initializeApp();
@@ -115,7 +118,7 @@ export class MyApp {
     this.nav.push("AnnotatePage", {
       guid: guid
     });
-   
+
   }
 
   home() {
@@ -128,21 +131,38 @@ export class MyApp {
     blockstack.signUserOut(window.location.origin);
   }
 
-  showProfile() {
+  async showProfile() {
 
     if (blockstack.isUserSignedIn()) {
 
       let profile = blockstack.loadUserData();
       this.name = profile.username;
       this.isLoggedIn = true;
-      try{
+      try {
         this.avatar = profile.profile.image[0].contentUrl;
-      }catch(e) {console.log('no profile pic')}
-      
+      } catch (e) { console.log('no profile pic') }
+
       this.loginState = "[Logout]";
       this.documentService.getDocumentsIndex(true).then((data) => {
         this.documentsList = data;
       });
+
+      if (!profile.username) {
+
+        let profileData = await this.blockStackService.getEmail();
+
+        if (!profileData) {
+          this.profileModal(this.email);
+        }
+        else{
+          let myProfile = JSON.parse(profileData);
+          if (!myProfile.email){
+            this.profileModal(this.email);
+          }
+        }
+
+      }
+
     } else if (blockstack.isSignInPending()) {
       blockstack.handlePendingSignIn().then(function (userData) {
         window.location = window.location.origin
@@ -150,14 +170,14 @@ export class MyApp {
       });
     }
     else {
-      if ( localStorage.getItem('signUp') !== 'true' ){
+      if (localStorage.getItem('signUp') !== 'true') {
         window.location.href = "signup.html";
       }
-      else{
+      else {
         localStorage.setItem('signUp', 'true');
         this.login();
       }
-      
+
     }
   }
 
@@ -221,7 +241,7 @@ export class MyApp {
   }
 
   clearActive() {
-    
+
     $(".channel-text").forEach(el => {
       try {
         $(".channel-text.active")[0].classList.remove("active");
@@ -230,7 +250,47 @@ export class MyApp {
     });
   }
 
-  
+  profileModal(email) {
+
+    let alert = this.alertCtrl.create({
+      title: 'Please enter your email',
+      inputs: [
+        {
+          name: 'email',
+          placeholder: 'email',
+          value: email
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Ok',
+          handler: data => {
+
+            // save here
+
+            this.blockStackService.setEmail(data.email);
+
+            if (true == true) {
+              // logged in!
+            } else {
+              // invalid login
+              return false;
+            }
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+
 
 }
 

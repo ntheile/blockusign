@@ -31,6 +31,7 @@ export class DocumentService {
   public documentsList: Array<Document>;
   public docBuffer: any;
   public currentDoc: Document;
+  public currentDocAnnotationsDoc;
   public currentDocAnnotations;
   public logDoc: any;
   public log: Log;
@@ -94,7 +95,7 @@ export class DocumentService {
   async addDocumentBytes(guid: string, doc: any, documentKey: string) {
     let encryptedDoc = this.ecryptDoc(doc, documentKey);
     // add blank annotations file
-    await this.saveAnnotations(guid, "");
+    await this.createAnnotations(guid);
     // add blank log file
     await this.getLog(guid);
     return blockstack.putFile(guid + ".pdf", encryptedDoc, { encrypt: false }).then((data) => { });
@@ -136,13 +137,30 @@ export class DocumentService {
     this.documentsList.push(newDocument);
     console.log("new doc list", this.documentsList );
     await blockstack.putFile(this.indexFileName, JSON.stringify(this.documentsList), { encrypt: true });
-    let response = await this.addDocumentBytes(guid, fileBuffer, newDocument.documentKey);
-    this.docBuffer = fileBuffer;
     this.currentDoc = newDocument;
+    //let response = await this.addDocumentBytes(guid, fileBuffer, newDocument.documentKey);
+    this.docBuffer = fileBuffer;
+    let encryptedDoc = this.ecryptDoc(fileBuffer, this.currentDoc.documentKey);
+    let r = await blockstack.putFile(guid + ".pdf", encryptedDoc, { encrypt: false }).then((data) => { });
 
     // @todo now copy annotations
+    let annotsResp = await this.getAnnotationsByPath(this.currentDoc.pathAnnotatedDoc + guid + ".annotations.json", this.currentDoc.documentKey);
+    if (annotsResp) {
+      this.saveAnnotations(guid, this.currentDocAnnotations.annotations);
+    }
+    else{
+      this.saveAnnotations(guid, "");
+    }
     
+
     // @todo now copy chat log
+    // let chatResp = this.getAnnotationsByPath(this.currentDoc.pathAnnotatedDoc + guid + ".annotations.json", this.currentDoc.documentKey);
+    // if (chatResp) {
+    //   let chatty = await blockstack.putFile(guid + ".annotations.json", annots, { decrypt: false });
+    // }
+    // else{
+    //   let chatty = await blockstack.putFile(guid + ".annotations.json", "" , { decrypt: false });
+    // }
 
     return this.documentsList;
   }
@@ -168,19 +186,59 @@ export class DocumentService {
     return blockstack.putFile(guid + ".pdf", "", { encrypt: false }).then((data) => { });
   }
 
+
+  async createAnnotations(guid: string) {
+    let json = {
+      annotations: ""
+    }
+    this.currentDocAnnotationsDoc = Automerge.init();
+    let commit = blockstack.loadUserData().profile.name + " created annotations on " + this.getDate(); 
+    this.currentDocAnnotationsDoc = Automerge.change(this.currentDocAnnotationsDoc, commit, doc => {
+      doc.annots = [];
+    });
+    let saveAnnotStr = Automerge.save(this.currentDocAnnotationsDoc);
+    let encrypted = this.encryptString(saveAnnotStr, this.currentDoc.documentKey);
+    return await blockstack.putFile(guid + ".annotations.json", encrypted, { encrypt: false });
+  }
+
   async saveAnnotations(guid: string, annotation: string) {
     let json = {
       annotations: annotation
     }
-    let encrypted = this.encryptString(JSON.stringify(json), this.currentDoc.documentKey);
+    let commit = blockstack.loadUserData().profile.name + " added annotation on " + this.getDate(); 
+    this.currentDocAnnotationsDoc = Automerge.change(this.currentDocAnnotationsDoc, commit, doc => {
+      doc.annots.insertAt(0, json);
+    });
+    let saveAnnotStr = Automerge.save(this.currentDocAnnotationsDoc);
+    let encrypted = this.encryptString(saveAnnotStr, this.currentDoc.documentKey);
     return await blockstack.putFile(guid + ".annotations.json", encrypted, { encrypt: false });
   }
 
   async getAnnotations(guid: string) {
     let resp = await blockstack.getFile(guid + ".annotations.json", { decrypt: false });
     if (resp) {
-      let decrypted = this.decryptString(resp, this.currentDoc.documentKey)
-      this.currentDocAnnotations = JSON.parse(decrypted);
+      let decrypted = this.decryptString(resp, this.currentDoc.documentKey);
+      this.currentDocAnnotationsDoc = Automerge.load(decrypted);
+      this.currentDocAnnotations =  this.currentDocAnnotationsDoc.annots[0];//JSON.parse(decrypted);
+    }
+    if (!resp) {
+      this.currentDocAnnotations = "";
+    }
+
+   
+
+    return this.currentDocAnnotations;
+  }
+
+  async getAnnotationsByPath(docPath: string, docKey: string): Promise<any> {
+    // @todo WIP
+    let resp = await this.http.get(docPath).toPromise();
+    if (resp) {
+      let encryptedDocStr = JSON.stringify(resp.json());
+      let annotations = this.decryptString(encryptedDocStr, docKey);
+      this.currentDocAnnotationsDoc = Automerge.load(annotations);
+      this.currentDocAnnotations =  this.currentDocAnnotationsDoc.annots[0];
+      //this.currentDocAnnotations = JSON.parse(annotations);
     }
     if (!resp) {
       this.currentDocAnnotations = "";
@@ -188,18 +246,21 @@ export class DocumentService {
     return this.currentDocAnnotations;
   }
 
-  async getAnnotationsByPath(docPath: string, docKey: string) {
-    // @todo WIP
-    let resp = await this.http.get(docPath).toPromise();
-    if (resp) {
-      let encryptedDoc = resp.text();
-      let annotations = this.decryptString(encryptedDoc, docKey);
-      this.currentDocAnnotations = annotations;
+  async mergeAnnotations(guid, theirs?, mine?){
+    if (!theirs){
+      theirs = await this.getAnnotationsByPath(this.currentDoc.pathAnnotatedDoc + guid + ".annotations.json", this.currentDoc.documentKey);
+      theirs = this.currentDocAnnotationsDoc;
     }
-    if (!resp) {
-      this.currentDocAnnotations = "";
+    if (!mine){
+      mine =  await this.getAnnotations(guid);
+      mine = this.currentDocAnnotationsDoc;
     }
-    return this.currentDocAnnotations;
+    
+   
+    let mergedAnnotations = Automerge.merge(mine, theirs);
+
+    console.log("mergedAnnots", mergedAnnotations);
+
   }
 
   setCurrentDoc(guid: string) {

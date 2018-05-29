@@ -16,6 +16,8 @@ declare let blockstack: any;
 export class BlockStackService {
 
   public picCache = [];
+  public blockusignProfileUrl = "blockusign.profile.json";
+  public profile;
 
   constructor(
     public events: Events,
@@ -31,24 +33,24 @@ export class BlockStackService {
   }
 
   async getPicUrl(userId) {
-    
+
     // placeholder
     let picUrl = "http://www.gravatar.com/avatar/?d=identicon";
-    try{
-      if (!userId){
+    try {
+      if (!userId) {
         return picUrl;
       }
-  
+
       // get from cache
       let isInCache = this.picCache.filter(item => item.id === userId)[0];
-      if (isInCache){
+      if (isInCache) {
         return this.picCache.filter(item => item.id === userId)[0].pic;
       }
-  
+
       // get from server
       let resp = await this.http.get("https://core.blockstack.org/v1/search?query=" + userId).toPromise();
-      let respObj = JSON.parse (resp.text() );
-      if ( respObj.results.length > 0 ){
+      let respObj = JSON.parse(resp.text());
+      if (respObj.results.length > 0) {
         picUrl = respObj.results[0].profile.image[0].contentUrl
       }
       this.picCache.push({
@@ -56,12 +58,34 @@ export class BlockStackService {
         pic: picUrl
       });
     }
-    catch(e){console.log('Unable to getpic url')
-  
+    catch (e) {
+      console.log('Unable to getpic url')
+
     }
 
     return picUrl;
 
+  }
+
+
+  async getEmail() {
+    let profileData = await blockstack.getFile(this.blockusignProfileUrl, { decrypt: false });
+
+    let myProfile = JSON.parse(profileData);
+    if (myProfile) {
+      this.profile = myProfile
+    }
+
+    return profileData;
+  }
+
+  async setEmail(email) {
+
+    let json = {
+      email: email
+    }
+
+    return await blockstack.putFile(this.blockusignProfileUrl, JSON.stringify(json), { encrypt: false });
   }
 
 }

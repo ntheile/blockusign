@@ -29,6 +29,7 @@ import { SlackService } from '../services/slack.service';
 import { DocumentService } from '../services/document.service';
 import { EmailService } from '../services/email.service';
 import { BlockStackService } from '../services/blockstack.service';
+import { Block } from 'bitcoinjs-lib';
 
 
 
@@ -63,14 +64,14 @@ import { BlockStackService } from '../services/blockstack.service';
   providers: [
     StatusBar,
     SplashScreen,
+    BlockStackService,
     CoinService,
     CryptoCompareService,
     SlackService,
     GlobalService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DocumentService,
-    EmailService,
-    BlockStackService
+    EmailService
   ]
 })
 export class AppModule {}
