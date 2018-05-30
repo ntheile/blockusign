@@ -974,7 +974,8 @@ var DocumentService = (function () {
     };
     DocumentService.prototype.copyDocument = function (newDocument, guid, fileBuffer) {
         return __awaiter(this, void 0, void 0, function () {
-            var myName, myUserId, profileData, myEmail, _a, _b, _c, encryptedDoc, r, annotsResp;
+            var _this = this;
+            var myName, myUserId, profileData, myEmail, _a, _b, _c, encryptedDoc, r, annotsResp, theirPath, theirUrl, theirLogDoc, logStr;
             return __generator(this, function (_d) {
                 switch (_d.label) {
                     case 0:
@@ -1028,15 +1029,18 @@ var DocumentService = (function () {
                         else {
                             this.saveAnnotations(guid, "");
                         }
-                        // @todo now copy chat log
-                        // let chatResp = this.getAnnotationsByPath(this.currentDoc.pathAnnotatedDoc + guid + ".annotations.json", this.currentDoc.documentKey);
-                        // if (chatResp) {
-                        //   let chatty = await blockstack.putFile(guid + ".annotations.json", annots, { decrypt: false });
-                        // }
-                        // else{
-                        //   let chatty = await blockstack.putFile(guid + ".annotations.json", "" , { decrypt: false });
-                        // }
-                        return [2 /*return*/, this.documentsList];
+                        theirPath = jslinq(this.currentDoc.paths).where(function (el) { return el.email != _this.blockStackService.profile.email; }).toList();
+                        theirUrl = theirPath[0].pathToStorage + guid + '.log.json';
+                        return [4 /*yield*/, this.getLogByPath(theirUrl, this.currentDoc.documentKey)];
+                    case 6:
+                        theirLogDoc = _d.sent();
+                        if (!theirLogDoc) return [3 /*break*/, 8];
+                        logStr = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["save"](theirLogDoc);
+                        return [4 /*yield*/, this.saveLog(guid, logStr)];
+                    case 7:
+                        _d.sent();
+                        return [3 /*break*/, 8];
+                    case 8: return [2 /*return*/, this.documentsList];
                 }
             });
         });
@@ -1200,7 +1204,7 @@ var DocumentService = (function () {
     DocumentService.prototype.getLog = function (guid) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
-            var logFileName, resp, theirUrl, url, theirResp, str, theirDoc, finalDoc, newLog_1, msg, logStr, e_1;
+            var logFileName, resp, theirPath, theirUrl, url, theirResp, str, theirDoc, finalDoc, newLog_1, msg, logStr, e_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -1214,11 +1218,12 @@ var DocumentService = (function () {
                         if (!resp) return [3 /*break*/, 5];
                         this.logDoc = this.decryptString(resp, this.currentDoc.documentKey);
                         this.logDoc = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["load"](this.logDoc);
-                        if (!this.currentDoc.signer[0]) return [3 /*break*/, 4];
+                        if (!(this.currentDoc.paths.length > 1)) return [3 /*break*/, 4];
                         this.log = this.logDoc.log;
-                        theirUrl = this.currentDoc.paths.find(function (x) { return x.userId == _this.currentDoc.signer[0] || x.name == _this.currentDoc.signer[0]; });
+                        theirPath = jslinq(this.currentDoc.paths).where(function (el) { return el.email != _this.blockStackService.profile.email; }).toList();
+                        theirUrl = theirPath[0].pathToStorage;
                         if (!theirUrl) return [3 /*break*/, 4];
-                        url = theirUrl[0] + logFileName;
+                        url = theirUrl + logFileName;
                         return [4 /*yield*/, this.http.get(url).toPromise()];
                     case 3:
                         theirResp = _a.sent();
@@ -1227,7 +1232,7 @@ var DocumentService = (function () {
                             str = theirResp.text();
                             str = this.decryptString(str, this.currentDoc.documentKey);
                             theirDoc = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["load"](str);
-                            finalDoc = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["merge"](this.logDoc, theirDoc);
+                            finalDoc = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["merge"](theirDoc, this.logDoc);
                             this.logDoc = finalDoc;
                         }
                         _a.label = 4;
@@ -1240,6 +1245,7 @@ var DocumentService = (function () {
                         msg = new __WEBPACK_IMPORTED_MODULE_1__models_models__["c" /* Message */]();
                         msg.createdBy = blockstack.loadUserData().username;
                         msg.createdByName = blockstack.loadUserData().profile.name;
+                        msg.email = this.blockStackService.profile.email;
                         msg.message = "Created Doc";
                         newLog_1.messages.push(msg);
                         this.logDoc = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["init"]();
@@ -1265,6 +1271,44 @@ var DocumentService = (function () {
             });
         });
     };
+    DocumentService.prototype.saveLog = function (guid, logStr) {
+        return __awaiter(this, void 0, void 0, function () {
+            var logFileName;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        logFileName = guid + '.log.json';
+                        logStr = this.encryptString(logStr, this.currentDoc.documentKey);
+                        return [4 /*yield*/, blockstack.putFile(logFileName, logStr, { encrypt: false })];
+                    case 1:
+                        logStr = _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    DocumentService.prototype.getLogByPath = function (docPath, docKey) {
+        return __awaiter(this, void 0, void 0, function () {
+            var resp, encryptedDocStr, chatLog;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.http.get(docPath).toPromise()];
+                    case 1:
+                        resp = _a.sent();
+                        if (resp) {
+                            encryptedDocStr = JSON.stringify(resp.json());
+                            chatLog = this.decryptString(encryptedDocStr, docKey);
+                            this.logDoc = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["load"](chatLog);
+                            this.log = this.logDoc.log;
+                        }
+                        if (!resp) {
+                            this.log = null;
+                        }
+                        return [2 /*return*/, this.logDoc];
+                }
+            });
+        });
+    };
     DocumentService.prototype.addMessage = function (guid, message) {
         return __awaiter(this, void 0, void 0, function () {
             var logFileName, log, msg_1, logStr;
@@ -1280,6 +1324,7 @@ var DocumentService = (function () {
                         msg_1.message = message;
                         msg_1.createdBy = blockstack.loadUserData().username;
                         msg_1.createdByName = blockstack.loadUserData().profile.name;
+                        msg_1.email = this.blockStackService.profile.email;
                         this.logDoc = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["change"](this.logDoc, msg_1.createdByName + " added message at " + this.getDate(), function (doc) {
                             doc.log.messages.push(msg_1);
                         });
@@ -1300,6 +1345,13 @@ var DocumentService = (function () {
         });
     };
     //#endregion
+    DocumentService.prototype.updatePartnerPathData = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
     //#region Encryption
     //https://stackoverflow.com/questions/26734033/encrypting-files-with-sjcl-client-side
     DocumentService.prototype.ecryptDoc = function (doc, key) {
@@ -2865,14 +2917,15 @@ var BlockChatComponent = (function () {
             var _this = this;
             return __generator(this, function (_a) {
                 $(document).ready(function () { return __awaiter(_this, void 0, void 0, function () {
-                    var logData, template, _loop_1, this_1, _i, _a, item;
-                    return __generator(this, function (_b) {
-                        switch (_b.label) {
+                    var logData, template, orderedMessages, _loop_1, this_1, _i, orderedMessages_1, item;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
                             case 0: return [4 /*yield*/, this.documentService.getLog(this.doc.guid)];
                             case 1:
-                                logData = _b.sent();
+                                logData = _a.sent();
                                 $('.chat-head').html(this.doc.fileName);
                                 template = "";
+                                orderedMessages = jslinq(logData.messages).orderBy(function (el) { return el.updatedAt; }).toList();
                                 _loop_1 = function (item) {
                                     var d = item.updatedAt;
                                     var formatDate = __WEBPACK_IMPORTED_MODULE_5_moment__(d).calendar(d);
@@ -2889,11 +2942,11 @@ var BlockChatComponent = (function () {
                                     this_1.blockstackService.getPicUrl(uName).then(function (picUrl) {
                                         $('.' + uidClass).attr('src', picUrl);
                                     });
-                                    template = template + ("  \n        <div class=\"chat-message clearfix\">\n        <img class=\"" + uidClass + "\" src=\"http://www.gravatar.com/avatar/?d=identicon\" alt=\"\" width=\"32\" height=\"32\">\n        <div class=\"chat-message-content clearfix\">\n          <span class=\"chat-time\">" + formatDate + "</span>\n          <h5>" + item.createdBy + "</h5>\n          <p>" + item.message + "</p>\n        </div> \n        </div>\n        <hr style='margin-top:5px' />\n        ");
+                                    template = template + ("  \n        <div class=\"chat-message clearfix\">\n        <img class=\"" + uidClass + "\" src=\"http://www.gravatar.com/avatar/?d=identicon\" alt=\"\" width=\"32\" height=\"32\">\n        <div class=\"chat-message-content clearfix\">\n          <span class=\"chat-time\">" + formatDate + "</span>\n          <h5>" + item.email + "</h5>\n          <p>" + item.message + "</p>\n        </div> \n        </div>\n        <hr style='margin-top:5px' />\n        ");
                                 };
                                 this_1 = this;
-                                for (_i = 0, _a = logData.messages; _i < _a.length; _i++) {
-                                    item = _a[_i];
+                                for (_i = 0, orderedMessages_1 = orderedMessages; _i < orderedMessages_1.length; _i++) {
+                                    item = orderedMessages_1[_i];
                                     _loop_1(item);
                                 }
                                 //setTimeout( () =>{ // hack?
@@ -2929,11 +2982,10 @@ var BlockChatComponent = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'block-chat',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-chat/block-chat.html"*/'<div class="block-chat">\n  <ion-fab bottom right>\n    <div id="live-chat" class="shadow6">\n\n      <header class="clearfix" (click)="minimize()">\n        <!-- <a class="chat-close"  >x</a>-->\n        <h4>\n          <span class="chat-head"></span> - Log</h4>\n        <!-- <span style="opacity:.6; padding-left:30px;">YOURNAME/THEIRNAME</span> -->\n        <span class="chat-message-counter">3</span>\n      </header>\n      <div class="chat">\n        <div class="chat-history">\n          <div class="log-history">\n           \n          </div>\n        </div>\n        <!-- <p class="chat-feedback">Your partner is typing…</p> -->\n        <form>\n          <fieldset>\n            <input type="text" name="addMsg" placeholder="Type your message…" autofocus [(ngModel)]="message" (keydown.enter)="addMessage($event)"\n            />\n          </fieldset>\n        </form>\n\n      </div>\n      <!-- end chat -->\n\n    </div>\n    <!-- end live-chat -->\n  </ion-fab>\n\n</div>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-chat/block-chat.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_document_service__["a" /* DocumentService */],
-            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* Events */],
-            __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__["a" /* BlockStackService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_document_service__["a" /* DocumentService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_document_service__["a" /* DocumentService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* Events */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__["a" /* BlockStackService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__["a" /* BlockStackService */]) === "function" && _c || Object])
     ], BlockChatComponent);
     return BlockChatComponent;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=block-chat.js.map
@@ -3610,10 +3662,10 @@ var BlockStackService = (function () {
     };
     BlockStackService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5_ionic_angular__["c" /* Events */],
-            __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["c" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["c" /* Events */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]) === "function" && _b || Object])
     ], BlockStackService);
     return BlockStackService;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=blockstack.service.js.map

@@ -47,6 +47,7 @@ export class Message {
     public message: string;
     public createdBy: string;
     public createdByName: string;
+    public email: string;
 
     constructor(){
         this.guid = (<any>window).guid();

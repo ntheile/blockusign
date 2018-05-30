@@ -18,7 +18,7 @@ export class BlockStackService {
   public picCache = [];
   public blockusignProfileUrl = "blockusign.profile.json";
   public profile;
-
+ 
   constructor(
     public events: Events,
     public http: Http

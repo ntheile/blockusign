@@ -195,13 +195,16 @@ export class DocumentService {
     
 
     // @todo now copy chat log
-    // let chatResp = this.getAnnotationsByPath(this.currentDoc.pathAnnotatedDoc + guid + ".annotations.json", this.currentDoc.documentKey);
-    // if (chatResp) {
-    //   let chatty = await blockstack.putFile(guid + ".annotations.json", annots, { decrypt: false });
-    // }
-    // else{
-    //   let chatty = await blockstack.putFile(guid + ".annotations.json", "" , { decrypt: false });
-    // }
+    let theirPath = jslinq(this.currentDoc.paths).where( (el) => el.email != this.blockStackService.profile.email  ).toList();
+    let theirUrl = theirPath[0].pathToStorage + guid + '.log.json';
+    let theirLogDoc = await this.getLogByPath(theirUrl, this.currentDoc.documentKey);
+    if (theirLogDoc) {
+      let logStr = Automerge.save(theirLogDoc);
+      await this.saveLog(guid, logStr);
+    }
+    else{
+      // nothing
+    }
 
     return this.documentsList;
   }
@@ -327,19 +330,23 @@ export class DocumentService {
       if (resp) {
           this.logDoc = this.decryptString(resp, this.currentDoc.documentKey);
           this.logDoc =  Automerge.load(this.logDoc);
-          // now get their doc if there is already a signer
-          if (this.currentDoc.signer[0]){
+          // now get their doc, if there is a signer
+          if (this.currentDoc.paths.length > 1){
             this.log = this.logDoc.log;
-            let theirUrl = this.currentDoc.paths.find( x=> x.userId == this.currentDoc.signer[0] || x.name == this.currentDoc.signer[0]  );
+            
+            let theirPath = jslinq(this.currentDoc.paths).where( (el) => el.email != this.blockStackService.profile.email  ).toList();
+
+            //let theirUrl = this.currentDoc.paths.find( x=> x.userId == this.currentDoc.signer[0] || x.name == this.currentDoc.signer[0]  );
+            let theirUrl = theirPath[0].pathToStorage
             if (theirUrl){
-              let url = theirUrl[0] + logFileName;
+              let url = theirUrl + logFileName;
               let theirResp = await this.http.get(url).toPromise(); 
               // now merge their doc into mine
               if (theirResp){
                 let str = theirResp.text();
                 str = this.decryptString(str, this.currentDoc.documentKey);
                 let theirDoc = Automerge.load(str);
-                let finalDoc = Automerge.merge(this.logDoc, theirDoc)
+                let finalDoc = Automerge.merge(theirDoc, this.logDoc)
                 this.logDoc = finalDoc;
               }
             }
@@ -353,6 +360,7 @@ export class DocumentService {
         let msg = new Message();
         msg.createdBy = blockstack.loadUserData().username;
         msg.createdByName = blockstack.loadUserData().profile.name;
+        msg.email = this.blockStackService.profile.email;
         msg.message = "Created Doc";
         newLog.messages.push(msg);
         this.logDoc = Automerge.init();
@@ -375,6 +383,26 @@ export class DocumentService {
     }
   }
 
+  async saveLog(guid: string, logStr: string) {
+    let logFileName = guid + '.log.json';
+    logStr = this.encryptString(logStr, this.currentDoc.documentKey)
+    logStr = await blockstack.putFile(logFileName, logStr, { encrypt: false });
+  }
+
+  async getLogByPath(docPath, docKey){
+     let resp = await this.http.get(docPath).toPromise();
+     if (resp) {
+       let encryptedDocStr = JSON.stringify(resp.json());
+       let chatLog = this.decryptString(encryptedDocStr, docKey);
+       this.logDoc = Automerge.load(chatLog);
+       this.log =  this.logDoc.log;
+     }
+     if (!resp) {
+       this.log = null;
+     }
+    return this.logDoc;
+  }
+
   async addMessage(guid: string, message: string) {
     let logFileName = guid + ".log.json"
     let log = await this.getLog(guid);
@@ -383,6 +411,7 @@ export class DocumentService {
       msg.message = message;
       msg.createdBy = blockstack.loadUserData().username;
       msg.createdByName = blockstack.loadUserData().profile.name;
+      msg.email = this.blockStackService.profile.email;
       this.logDoc = Automerge.change(this.logDoc, msg.createdByName + " added message at " + this.getDate() ,  (doc) => {
         doc.log.messages.push(msg);
       });
@@ -400,6 +429,11 @@ export class DocumentService {
     }
   }
   //#endregion
+
+
+  async updatePartnerPathData(){
+    
+  }
 
 
   //#region Encryption

@@ -6,6 +6,7 @@ import { Events } from 'ionic-angular';
 import { BlockStackService } from '../../services/blockstack.service';
 import * as moment from 'moment';
 declare let $: any;
+declare let jslinq: any;
 
 /**
  * https://codepen.io/mehmetmert/pen/zbKpv
@@ -76,7 +77,10 @@ export class BlockChatComponent {
       $('.chat-head').html(this.doc.fileName);
      
       let template = "";
-      for (let item of logData.messages ) {
+
+      let orderedMessages = jslinq(logData.messages).orderBy( (el) => el.updatedAt ).toList();
+
+      for (let item of orderedMessages ) {
   
         let d = item.updatedAt;
         let formatDate = moment(d).calendar(d);
@@ -99,7 +103,7 @@ export class BlockChatComponent {
         <img class="${uidClass}" src="http://www.gravatar.com/avatar/?d=identicon" alt="" width="32" height="32">
         <div class="chat-message-content clearfix">
           <span class="chat-time">${formatDate}</span>
-          <h5>${item.createdBy}</h5>
+          <h5>${item.email}</h5>
           <p>${item.message}</p>
         </div> 
         </div>
