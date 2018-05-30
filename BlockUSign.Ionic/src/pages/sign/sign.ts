@@ -89,9 +89,9 @@ export class SignPage {
     this.name = blockstack.loadUserData().profile.name;
 
 
-    setTimeout( () =>{
-      this.documentService.mergeAnnotations(this.navParams.get("guid") );
-    }, 3000 )
+    // setTimeout( () =>{
+    //   this.documentService.mergeAnnotations(this.navParams.get("guid") );
+    // }, 3000 )
    
    
 

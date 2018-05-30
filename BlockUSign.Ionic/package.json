@@ -16,9 +16,10 @@
     "chrome": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./scripts/chrome.ps1",
     "chrome-private": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./scripts/chrome-private.ps1",
     "chrome-mac": "./scripts/chrome.sh",
+    "chrome-mac-private": "./scripts/chrome-private.sh",
     "serve": "ionic build && node ./scripts/server.js",
-    "private": "npm run chrome-private && ionic serve",
-    "start": "npm run chrome && ionic serve"
+    "private": "npm run chrome-mac-private && ionic serve",
+    "start": "npm run chrome-mac && ionic serve"
   },
   "dependencies": {
     "@angular/common": "5.0.3",

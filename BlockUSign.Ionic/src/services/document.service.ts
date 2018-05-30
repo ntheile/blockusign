@@ -72,18 +72,38 @@ export class DocumentService {
     newDocument.fileName = fileName;
     newDocument.documentKey = this.generateKey();
     newDocument.pathAnnotatedDoc = blockstack.loadUserData().profile.apps[window.location.origin];
+    let profileData = await this.blockStackService.getProfileData();
+    let myEmail = null;
+    if (profileData){
+      myEmail = JSON.parse(profileData).email;
+    }
     newDocument.paths = [{
       name: blockstack.loadUserData().profile.name, 
       userId: blockstack.loadUserData().username, 
+      email: myEmail,
+      appPublicKey: await this.blockStackService.getAppPublicKey(),
       pathToStorage: blockstack.loadUserData().profile.apps[window.location.origin]
     }];
-    newDocument.signer = ["blockusign.id"];
+    newDocument.signer = [];
     this.documentsList.push(newDocument);
     await blockstack.putFile(this.indexFileName, JSON.stringify(this.documentsList), { encrypt: true });
     this.docBuffer = fileBuffer;
     this.currentDoc = newDocument;
     let response = await this.addDocumentBytes(newDocument.guid, fileBuffer, newDocument.documentKey);
     return this.documentsList;
+  }
+
+  async updateDocument(documentGuid, doc){
+    // find in array 
+    let index = this.documentsList.findIndex(i => i.guid === documentGuid);
+    // update
+    if (index !== -1) {
+      this.documentsList[index] = doc;
+      // write document index
+      await blockstack.putFile(this.indexFileName, JSON.stringify(this.documentsList), { encrypt: true });
+      return true;
+    }
+    return false;
   }
 
  
@@ -151,6 +171,7 @@ export class DocumentService {
       name: myName, 
       userId: myUserId, 
       email: myEmail,
+      appPublicKey: await this.blockStackService.getAppPublicKey(),
       pathToStorage: blockstack.loadUserData().profile.apps[window.location.origin]
     });
 

@@ -8,6 +8,7 @@ import { delay, map, tap, distinctUntilChanged, debounceTime, switchMap } from '
 import { of } from 'rxjs/observable/of';
 import { Subject } from 'rxjs';
 import { FormGroup, FormControl } from '@angular/forms';
+import { LoadingController } from 'ionic-angular';
 declare let blockstack: any;
 
 /**
@@ -37,6 +38,7 @@ export class EmailPage {
   people3Loading = false;
   selectedUser = [];
   people3Typeahead = new Subject<string>();
+  loading;
 
   constructor(
     public navCtrl: NavController,
@@ -44,7 +46,8 @@ export class EmailPage {
     public documentService: DocumentService,
     public emailService: EmailService,
     public blockStackService: BlockStackService,
-    public chg: ChangeDetectorRef
+    public chg: ChangeDetectorRef,
+    public loadingCtrl: LoadingController
   ) {
 
     if (this.navParams.get("guid") && !this.documentService.currentDoc) {
@@ -122,10 +125,23 @@ export class EmailPage {
       alert('Please enter an email address');
       return;
     }
+
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    this.loading.present();
+
     let documentLink = window.location.origin + "/#/sign/" + this.documentService.currentDoc.guid + "/?docData=" + btoa(JSON.stringify(this.documentService.currentDoc));
     let subject = blockstack.loadUserData().profile.name + " has sent you a document to sign - " + this.documentService.currentDoc.fileName;
     let content = "Please click this link and sign the document. Thanks! <br/><br/>" + documentLink;
     await this.emailService.sendEmail(this.email, subject, content);
+
+    // add as signer
+    this.documentService.currentDoc.signer.push(this.email);    
+    await this.documentService.updateDocument(this.documentService.currentDoc.guid, this.documentService.currentDoc)
+
+    this.loading.dismiss();
+
     alert('Email sent!');
   }
 

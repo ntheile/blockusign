@@ -5,7 +5,7 @@ export class Document{
     public createdAt: Date; 
     public updatedAt: Date; 
     public owner: Array<string>; // ["nicktee.id"] 
-    public signer: Array<string>; // ["nicktee.id"] //  for now just 1 signer, in the future allow users without a blockstack id to sign, there name has no .id in it like ["Alice Smith"]
+    public signer: Array<string>; // ["nicktee.id || emailAddress"] //  for now just 1 signer, in the future allow users without a blockstack id to sign, there name has no .id in it like ["Alice Smith"]
     public reviewer: Array<string>; // ["auditor.id"] owners and signers are automatically reviewers
     public hasAnnotations: boolean;
     public step: string; // Annotate, Sign, Final
@@ -75,6 +75,7 @@ export class NameStorageMapping {
     public name?: string; // @todo required, but there is a potential for dups if two people choose the same name, also could fail if they edit user name. small tradoff tho for user usability, until the blockstack registrar is created
     public userId?: string; // @todo optional, to allow for non registerd users without ID's
     public email?: string; // optional, for users without user id's
+    public appPublicKey?: string; // optional, the public key for the user for the app via blockstack
     public pathToStorage: string;
 }
 
