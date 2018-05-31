@@ -100,7 +100,7 @@ namespace BlockUSign.Backend
         }
     }
 
-    public class EmailJson
+    public class EmailConfirmJson
     {
         public string to { get; set; }
         public string content { get; set; }
