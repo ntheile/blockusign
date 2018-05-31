@@ -1,1 +1,4595 @@
-webpackJsonp([6],{102:function(n,l,e){"use strict";e.d(l,"a",function(){return i}),l.b=o;var t=e(0),u=e(23),i=t["ɵcrt"]({encapsulation:2,styles:[],data:{}});function o(n){return t["ɵvid"](0,[(n()(),t["ɵted"](-1,null,["\n"])),(n()(),t["ɵted"](-1,null,["\n\n\n "])),(n()(),t["ɵeld"](2,0,null,null,54,"div",[["class","steps-wrapper"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n    "])),(n()(),t["ɵeld"](4,0,null,null,51,"ul",[["class","steps"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵeld"](6,0,null,null,8,"li",[],null,[[null,"click"]],function(n,l,e){var t=!0;"click"===l&&(t=!1!==n.component.route("HomePage")&&t);return t},null,null)),t["ɵdid"](7,278528,null,0,u.g,[t.IterableDiffers,t.KeyValueDiffers,t.ElementRef,t.Renderer2],{ngClass:[0,"ngClass"]},null),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵeld"](9,0,null,null,4,"div",[["class","step-info"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n          "])),(n()(),t["ɵeld"](11,0,null,null,1,"span",[["class","step-name"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["Upload"])),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵeld"](16,0,null,null,8,"li",[],null,[[null,"click"]],function(n,l,e){var t=!0;"click"===l&&(t=!1!==n.component.route("AnnotatePage")&&t);return t},null,null)),t["ɵdid"](17,278528,null,0,u.g,[t.IterableDiffers,t.KeyValueDiffers,t.ElementRef,t.Renderer2],{ngClass:[0,"ngClass"]},null),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵeld"](19,0,null,null,4,"div",[["class","step-info"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n          "])),(n()(),t["ɵeld"](21,0,null,null,1,"span",[["class","step-name"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["Annotate"])),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵeld"](26,0,null,null,8,"li",[],null,[[null,"click"]],function(n,l,e){var t=!0;"click"===l&&(t=!1!==n.component.route("EmailPage")&&t);return t},null,null)),t["ɵdid"](27,278528,null,0,u.g,[t.IterableDiffers,t.KeyValueDiffers,t.ElementRef,t.Renderer2],{ngClass:[0,"ngClass"]},null),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵeld"](29,0,null,null,4,"div",[["class","step-info"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n          "])),(n()(),t["ɵeld"](31,0,null,null,1,"span",[["class","step-name"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["Email"])),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵeld"](36,0,null,null,8,"li",[],null,[[null,"click"]],function(n,l,e){var t=!0;"click"===l&&(t=!1!==n.component.route("SignPage")&&t);return t},null,null)),t["ɵdid"](37,278528,null,0,u.g,[t.IterableDiffers,t.KeyValueDiffers,t.ElementRef,t.Renderer2],{ngClass:[0,"ngClass"]},null),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵeld"](39,0,null,null,4,"div",[["class","step-info"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n          "])),(n()(),t["ɵeld"](41,0,null,null,1,"span",[["class","step-name"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["Sign"])),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵeld"](46,0,null,null,8,"li",[],null,[[null,"click"]],function(n,l,e){var t=!0;"click"===l&&(t=!1!==n.component.route("ReviewPage")&&t);return t},null,null)),t["ɵdid"](47,278528,null,0,u.g,[t.IterableDiffers,t.KeyValueDiffers,t.ElementRef,t.Renderer2],{ngClass:[0,"ngClass"]},null),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵeld"](49,0,null,null,4,"div",[["class","step-info"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n          "])),(n()(),t["ɵeld"](51,0,null,null,1,"span",[["class","step-name"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["Review"])),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵted"](-1,null,["\n    "])),(n()(),t["ɵted"](-1,null,["\n  "]))],function(n,l){var e=l.component;n(l,7,0,"1"==e.activeStep?"step active":"step"),n(l,17,0,"2"==e.activeStep?"step active":"step"),n(l,27,0,"3"==e.activeStep?"step active":"step"),n(l,37,0,"4"==e.activeStep?"step active":"step"),n(l,47,0,"5"==e.activeStep?"step active":"step")},null)}},138:function(n,l,e){"use strict";e.d(l,"a",function(){return k}),l.b=E;var t=e(0),u=e(66),i=e(418),o=e(65),r=e(4),a=e(183),s=e(79),c=e(6),d=e(67),p=e(68),h=e(23),f=e(83),g=e(29),m=e(11),v=e(12),b=e(33),y=e(8),w=e(25),k=t["ɵcrt"]({encapsulation:2,styles:[],data:{}});function D(n){return t["ɵvid"](0,[(n()(),t["ɵeld"](0,0,null,null,0,"img",[["class","draggable draggable-droppable"],["height","50px"],["id","sigImg"],["src","./../../assets/imgs/sign.png"]],null,null,null,null,null))],null,null)}function S(n){return t["ɵvid"](0,[(n()(),t["ɵeld"](0,0,null,null,4,"ion-col",[["class","col"],["col-auto",""]],null,null,null,null,null)),t["ɵdid"](1,16384,null,0,u.a,[],null,null),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵeld"](3,0,null,null,0,"img",[["class","draggable draggable-droppable"],["height","50px"],["id","sigImg"],["src","./../../assets/imgs/sign.png"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n      "]))],null,null)}function C(n){return t["ɵvid"](0,[(n()(),t["ɵeld"](0,0,null,null,8,"ion-col",[["class","col"],["col-auto",""]],null,null,null,null,null)),t["ɵdid"](1,16384,null,0,u.a,[],null,null),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵeld"](3,0,null,null,4,":svg:svg",[["class","draggable draggable-droppable"],["height","50"],["id","signature"],["opacity","1"],["style","clear:both; background:#ffeb8e; border: 1px solid red "],["viewBox","0 0 200 50"],["width","200"],["xmlns","http://www.w3.org/2000/svg"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n\n          "])),(n()(),t["ɵeld"](5,0,null,null,1,":svg:text",[["alignment-baseline","middle"],["fill","green"],["font-family","Cedarville Cursive"],["font-weight","bold"],["height","50"],["style","font-size: 25px"],["text-anchor","middle"],["viewBox","0 0 200 50"],["width","200"],["x","50%"],["y","50%"]],null,null,null,null,null)),(n()(),t["ɵted"](6,null,["\n            ","\n          "])),(n()(),t["ɵted"](-1,null,["\n\n        "])),(n()(),t["ɵted"](-1,null,["\n      "]))],null,function(n,l){n(l,6,0,l.component.yourName)})}function x(n){return t["ɵvid"](0,[(n()(),t["ɵeld"](0,0,null,null,7,"ion-col",[["class","col"],["col-auto",""]],null,null,null,null,null)),t["ɵdid"](1,16384,null,0,u.a,[],null,null),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵeld"](3,0,null,null,0,"img",[["height","35px"],["src","./../../assets/imgs/arrows.svg"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵeld"](5,0,null,null,1,"span",[["style","color:#757575; font-family: Cedarville Cursive; font-size: 18px; font-weight: bold"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["drag"])),(n()(),t["ɵted"](-1,null,["\n      "]))],null,null)}function P(n){return t["ɵvid"](0,[(n()(),t["ɵeld"](0,0,null,null,6,"ion-col",[["class","col"],["col-auto",""],["style","padding-left: 20px;"]],null,null,null,null,null)),t["ɵdid"](1,16384,null,0,u.a,[],null,null),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵeld"](3,0,null,null,2,"button",[["ion-fab",""],["style","position:relative"]],null,[[null,"click"]],function(n,l,e){var t=!0;"click"===l&&(t=!1!==n.component.saveSvg()&&t);return t},i.b,i.a)),t["ɵdid"](4,49152,[[1,4]],0,o.a,[r.a,t.ElementRef,t.Renderer],null,null),(n()(),t["ɵted"](-1,0,["Save"])),(n()(),t["ɵted"](-1,null,["\n      "]))],null,null)}function j(n){return t["ɵvid"](0,[(n()(),t["ɵeld"](0,0,null,null,6,"ion-col",[["class","col"],["col-auto",""],["style","padding-left: 5px;"]],null,null,null,null,null)),t["ɵdid"](1,16384,null,0,u.a,[],null,null),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵeld"](3,0,null,null,2,"button",[["ion-fab",""],["style","position:relative"]],null,[[null,"click"]],function(n,l,e){var t=!0;"click"===l&&(t=!1!==n.component.clear()&&t);return t},i.b,i.a)),t["ɵdid"](4,49152,[[1,4]],0,o.a,[r.a,t.ElementRef,t.Renderer],null,null),(n()(),t["ɵted"](-1,0,["Clear"])),(n()(),t["ɵted"](-1,null,["\n      "]))],null,null)}function R(n){return t["ɵvid"](0,[(n()(),t["ɵeld"](0,0,null,null,28,"ion-fab",[["left",""],["style","margin-top:1px;background-color:#36393E; opacity: .95;border-radius: 10px"],["top",""]],null,null,null,a.b,a.a)),t["ɵdid"](1,1228800,[["fab",4]],2,s.a,[c.a],null,null),t["ɵqud"](603979776,1,{_mainButton:0}),t["ɵqud"](603979776,2,{_fabLists:1}),(n()(),t["ɵted"](-1,0,["\n  "])),(n()(),t["ɵeld"](5,0,null,0,22,"ion-grid",[["class","grid"]],null,null,null,null,null)),t["ɵdid"](6,16384,null,0,d.a,[],null,null),(n()(),t["ɵted"](-1,null,["\n    "])),(n()(),t["ɵeld"](8,0,null,null,18,"ion-row",[["align-items-center",""],["class","row"],["justify-content-start",""]],null,null,null,null,null)),t["ɵdid"](9,16384,null,0,p.a,[],null,null),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵand"](16777216,null,null,1,null,S)),t["ɵdid"](12,16384,null,0,h.i,[t.ViewContainerRef,t.TemplateRef],{ngIf:[0,"ngIf"]},null),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵand"](16777216,null,null,1,null,C)),t["ɵdid"](15,16384,null,0,h.i,[t.ViewContainerRef,t.TemplateRef],{ngIf:[0,"ngIf"]},null),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵand"](16777216,null,null,1,null,x)),t["ɵdid"](18,16384,null,0,h.i,[t.ViewContainerRef,t.TemplateRef],{ngIf:[0,"ngIf"]},null),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵand"](16777216,null,null,1,null,P)),t["ɵdid"](22,16384,null,0,h.i,[t.ViewContainerRef,t.TemplateRef],{ngIf:[0,"ngIf"]},null),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵand"](16777216,null,null,1,null,j)),t["ɵdid"](25,16384,null,0,h.i,[t.ViewContainerRef,t.TemplateRef],{ngIf:[0,"ngIf"]},null),(n()(),t["ɵted"](-1,null,["\n    "])),(n()(),t["ɵted"](-1,null,["\n  "])),(n()(),t["ɵted"](-1,0,["\n"]))],function(n,l){var e=l.component;n(l,12,0,e.showSignHere),n(l,15,0,e.showSignature),n(l,18,0,e.showButtons),n(l,22,0,e.showButtons),n(l,25,0,e.showButtons)},null)}function E(n){return t["ɵvid"](0,[(n()(),t["ɵeld"](0,0,null,null,24,"ion-content",[["class","block-pdf-page"]],[[2,"statusbar-padding",null],[2,"has-refresher",null]],null,null,f.b,f.a)),t["ɵdid"](1,4374528,null,0,g.a,[r.a,c.a,m.a,t.ElementRef,t.Renderer,v.a,b.a,t.NgZone,[2,y.a],[2,w.a]],null,null),(n()(),t["ɵted"](-1,1,["\n  \n\n  "])),(n()(),t["ɵeld"](3,0,null,1,11,"div",[["class","page"],["data-page-number","1"],["id","pageContainer1"],["style","position:relative;width: 100%; height:100%;overflow-x:auto;overflow-y:auto"]],[[4,"margin-top",null]],null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n\n    "])),(n()(),t["ɵeld"](5,0,null,null,3,"div",[["id","canvasWrapper"],["style","padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵeld"](7,0,null,null,0,"canvas",[["id","canvas1"],["style","padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n    "])),(n()(),t["ɵted"](-1,null,["\n    "])),(n()(),t["ɵeld"](10,0,null,null,1,":svg:svg",[["class","dropzone resizable"],["id","svg-dropzone"],["style","position: absolute; \n                  left: 0px; \n                  top:0px;\n                  z-index: 200000;\n                  padding: 0px 0px 0px 0px; \n                  margin: 0px 0px 0px 0px;"],["xmlns","http://www.w3.org/2000/svg"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n\n    "])),(n()(),t["ɵted"](-1,null,["\n    "])),(n()(),t["ɵeld"](13,0,null,null,0,"div",[["class","textLayer"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n  "])),(n()(),t["ɵted"](-1,1,["\n\n  "])),(n()(),t["ɵeld"](16,0,null,1,1,":svg:svg",[["class","annotationLayer"],["xmlns","http://www.w3.org/2000/svg"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n  "])),(n()(),t["ɵted"](-1,1,["\n\n  "])),(n()(),t["ɵand"](16777216,null,1,1,null,D)),t["ɵdid"](20,16384,null,0,h.i,[t.ViewContainerRef,t.TemplateRef],{ngIf:[0,"ngIf"]},null),(n()(),t["ɵted"](-1,1,["\n\n\n"])),(n()(),t["ɵand"](16777216,null,0,1,null,R)),t["ɵdid"](23,16384,null,0,h.i,[t.ViewContainerRef,t.TemplateRef],{ngIf:[0,"ngIf"]},null),(n()(),t["ɵted"](-1,1,["\n"]))],function(n,l){var e=l.component;n(l,20,0,!e.showToolBar),n(l,23,0,e.showToolBar)},function(n,l){var e=l.component;n(l,0,0,t["ɵnov"](l,1).statusbarPadding,t["ɵnov"](l,1)._hasRefresher),n(l,3,0,e.marginTop)})}},140:function(n,l,e){"use strict";e.d(l,"a",function(){return s});e(1);var t=e(81),u=(e.n(t),e(58)),i=e(47),o=(e.n(i),e(69)),r=(e.n(o),e(16),this&&this.__awaiter||function(n,l,e,t){return new(e||(e=Promise))(function(u,i){function o(n){try{a(t.next(n))}catch(n){i(n)}}function r(n){try{a(t.throw(n))}catch(n){i(n)}}function a(n){n.done?u(n.value):new e(function(l){l(n.value)}).then(o,r)}a((t=t.apply(n,l||[])).next())})}),a=this&&this.__generator||function(n,l){var e,t,u,i,o={label:0,sent:function(){if(1&u[0])throw u[1];return u[1]},trys:[],ops:[]};return i={next:r(0),throw:r(1),return:r(2)},"function"==typeof Symbol&&(i[Symbol.iterator]=function(){return this}),i;function r(i){return function(r){return function(i){if(e)throw new TypeError("Generator is already executing.");for(;o;)try{if(e=1,t&&(u=t[2&i[0]?"return":i[0]?"throw":"next"])&&!(u=u.call(t,i[1])).done)return u;switch(t=0,u&&(i=[0,u.value]),i[0]){case 0:case 1:u=i;break;case 4:return o.label++,{value:i[1],done:!1};case 5:o.label++,t=i[1],i=[0];continue;case 7:i=o.ops.pop(),o.trys.pop();continue;default:if(!(u=(u=o.trys).length>0&&u[u.length-1])&&(6===i[0]||2===i[0])){o=0;continue}if(3===i[0]&&(!u||i[1]>u[0]&&i[1]<u[3])){o.label=i[1];break}if(6===i[0]&&o.label<u[1]){o.label=u[1],u=i;break}if(u&&o.label<u[2]){o.label=u[2],o.ops.push(i);break}u[2]&&o.ops.pop(),o.trys.pop();continue}i=l.call(n,o)}catch(n){i=[6,n],t=0}finally{e=u=0}if(5&i[0])throw i[1];return{value:i[0]?i[1]:void 0,done:!0}}([i,r])}}},s=function(){function n(n,l){this.events=n,this.http=l,this.url="https://blockusign.co/api/email"}return n.prototype.sendEmail=function(n,l,e){return r(this,void 0,void 0,function(){var t,i;return a(this,function(o){switch(o.label){case 0:return n&&l&&e?(t={to:n,subject:l,content:e},(i=new u.j).headers=new u.d({"Content-Type":"application/json"}),[4,this.http.post(this.url,JSON.stringify(t),i).toPromise()]):(alert("Must add an email address"),[2]);case 1:return[2,o.sent()]}})})},n.prototype.catchError=function(){},n}()},148:function(n,l,e){"use strict";e.d(l,"a",function(){return t});e(1);var t=function(){return function(){this.GaiUrl="http://21312"}}()},152:function(n,l,e){"use strict";e(1),e(0),e(16);e.d(l,"a",function(){return t});var t=function(){return function(){}}()},153:function(n,l,e){"use strict";e.d(l,"a",function(){return r});e(1),e(16);var t=e(175),u=(e.n(t),e(176)),i=(e.n(u),e(177)),o=(e.n(i),e(47)),r=(e.n(o),function(){return function(n,l,e,t){this.navCtrl=n,this.navParams=l,this.documentService=e,this.events=t}}())},154:function(n,l,e){"use strict";e.d(l,"a",function(){return t});e(1),e(16);var t=function(){function n(n,l,e){var t=this;if(this.navCtrl=n,this.navParams=l,this.documentService=e,this.navParams.get("guid")&&!this.documentService.currentDoc){var u=this.navParams.get("guid");this.documentService.getDocumentsIndex(!0).then(function(n){t.documentService.documentsList=n,t.documentService.setCurrentDoc(u)})}}return n.prototype.ionViewDidLoad=function(){console.log("ionViewDidLoad SignPage")},n.prototype.back=function(){this.navCtrl.push("SignPage",{guid:this.documentService.currentDoc.guid})},n}()},155:function(n,l,e){"use strict";e.d(l,"a",function(){return a});e(1),e(16);var t=e(81),u=(e.n(t),e(39)),i=e.n(u),o=this&&this.__awaiter||function(n,l,e,t){return new(e||(e=Promise))(function(u,i){function o(n){try{a(t.next(n))}catch(n){i(n)}}function r(n){try{a(t.throw(n))}catch(n){i(n)}}function a(n){n.done?u(n.value):new e(function(l){l(n.value)}).then(o,r)}a((t=t.apply(n,l||[])).next())})},r=this&&this.__generator||function(n,l){var e,t,u,i,o={label:0,sent:function(){if(1&u[0])throw u[1];return u[1]},trys:[],ops:[]};return i={next:r(0),throw:r(1),return:r(2)},"function"==typeof Symbol&&(i[Symbol.iterator]=function(){return this}),i;function r(i){return function(r){return function(i){if(e)throw new TypeError("Generator is already executing.");for(;o;)try{if(e=1,t&&(u=t[2&i[0]?"return":i[0]?"throw":"next"])&&!(u=u.call(t,i[1])).done)return u;switch(t=0,u&&(i=[0,u.value]),i[0]){case 0:case 1:u=i;break;case 4:return o.label++,{value:i[1],done:!1};case 5:o.label++,t=i[1],i=[0];continue;case 7:i=o.ops.pop(),o.trys.pop();continue;default:if(!(u=(u=o.trys).length>0&&u[u.length-1])&&(6===i[0]||2===i[0])){o=0;continue}if(3===i[0]&&(!u||i[1]>u[0]&&i[1]<u[3])){o.label=i[1];break}if(6===i[0]&&o.label<u[1]){o.label=u[1],u=i;break}if(u&&o.label<u[2]){o.label=u[2],o.ops.push(i);break}u[2]&&o.ops.pop(),o.trys.pop();continue}i=l.call(n,o)}catch(n){i=[6,n],t=0}finally{e=u=0}if(5&i[0])throw i[1];return{value:i[0]?i[1]:void 0,done:!0}}([i,r])}}},a=function(){function n(n,l,e,t,u){this.navCtrl=n,this.loadingCtrl=l,this.globalService=e,this.documentService=t,this.alertCtrl=u,this.isLoggedIn=!1,this.loginState="Login",this.fileName="blockusign/pdf1.pdf"}return n.prototype.ionViewDidLoad=function(){return o(this,void 0,void 0,function(){return r(this,function(n){return this.ekUpload(),[2]})})},n.prototype.next=function(){this.navCtrl.push("AnnotatePage",{guid:this.documentService.currentDoc.guid})},n.prototype.saveFile=function(n){return o(this,void 0,void 0,function(){return r(this,function(l){switch(l.label){case 0:return[4,this.documentService.addDocument(n,this.pdfBuffer)];case 1:return l.sent(),this.next(),[2]}})})},n.prototype.getFile=function(){return o(this,void 0,void 0,function(){var n;return r(this,function(l){return n=this.documentService.getDocument(this.fileName,this.documentService.currentDoc.documentKey),this.pdfBuffer=n,[2]})})},n.prototype.loadFile=function(){var n=this;this.loading=this.loadingCtrl.create({content:"Please wait..."});var l=document.getElementById("file-upload"),e=l.files[0].size,t=(0).toString(),u=e.toString(),i=document.getElementById("file-upload").files;if(i.length){var o=i[0],r=parseInt(t)||0,a=parseInt(u)||o.size-1,s=new FileReader;s.onloadend=function(e){FileReader,n.newDocModal(l.files[0].name)};var c=o.slice(r,a+1);s.onload=function(l){var e=l.target.result;n.pdfBuffer=e;var t=new Uint8Array(e);n.createPdf(t)},s.readAsArrayBuffer(c)}else alert("Please select a file!")},n.prototype.createPdf=function(n){var l=this,e=window["pdfjs-dist/build/pdf"];e.workerSrc="//mozilla.github.io/pdf.js/build/pdf.worker.js",i.a.setStoreAdapter(new i.a.LocalStoreAdapter),e.getDocument({data:n}).promise.then(function(n){console.log("PDF loaded");n.getPage(1).then(function(n){console.log("Page loaded");var e=n.getViewport(1.5),t=document.getElementById("the-canvas"),u=t.getContext("2d");t.height=e.height,t.width=e.width,n.render({canvasContext:u,viewport:e}).then(function(){console.log("Page rendered"),l.loading.dismiss()})})},function(n){console.error(n),l.loading.dismiss()})},n.prototype.savePdfAsString=function(n){this.largeuint8ArrToString(n,function(n){btoa(n)})},n.prototype.getPdfFromString=function(n){var l=atob(n.replace(/\s/g,"")),e=new ArrayBuffer(l.length);new Uint8Array(e)},n.prototype.largeuint8ArrToString=function(n,l){var e=new Blob([n]),t=new FileReader;t.onload=function(n){l(n.target.result)},t.readAsBinaryString(e)},n.prototype.ekUpload=function(){var n=this;function l(n){var l=document.getElementById("file-drag");n.stopPropagation(),n.preventDefault(),l.className="dragover"===n.type?"hover":"modal-body file-upload"}function e(e){var t=e.target.files||e.dataTransfer.files;l(e);for(var u,o=0;u=t[o];o++)n.loadFile(),i(u)}function t(n){var l=document.getElementById("file-progress");n.lengthComputable&&(l.max=n.total)}function u(n){var l=document.getElementById("file-progress");n.lengthComputable&&(l.value=n.loaded)}function i(n){var l,e=new XMLHttpRequest,i=(document.getElementById("class-roster-file"),document.getElementById("file-progress"));e.upload&&(n.size<=2147483648?(i.style.display="inline",e.upload.addEventListener("loadstart",t,!1),e.upload.addEventListener("progress",u,!1),e.onreadystatechange=function(n){},e.open("POST",document.getElementById("file-upload-form").action,!0),e.setRequestHeader("X-File-Name",n.name),e.setRequestHeader("X-File-Size",n.size),e.setRequestHeader("Content-Type","multipart/form-data"),e.send(n)):(l="Please upload a smaller file (< 2048 MB).",document.getElementById("messages").innerHTML=l))}window.File&&window.FileList&&window.FileReader?function(){console.log("Upload Initialised");var n=document.getElementById("file-upload"),t=document.getElementById("file-drag");document.getElementById("submit-button"),n.addEventListener("change",e,!1),(new XMLHttpRequest).upload&&(t.addEventListener("dragover",l,!1),t.addEventListener("dragleave",l,!1),t.addEventListener("drop",e,!1))}():document.getElementById("file-drag").style.display="none"},n.prototype.newDocModal=function(n){var l=this;this.alertCtrl.create({title:"Document Name",inputs:[{name:"fileName",placeholder:"",value:n}],buttons:[{text:"Cancel",role:"cancel",handler:function(n){console.log("Cancel clicked")}},{text:"Ok",handler:function(n){l.saveFile(n.fileName)}}]}).present()},n.prototype.initCamera=function(){return o(this,void 0,void 0,function(){var n,l,e,t,u,i=this;return r(this,function(o){switch(o.label){case 0:return[4,navigator.mediaDevices.enumerateDevices()];case 1:return n=o.sent(),l=n.find(function(n){return"videoinput"===n.kind&&n.label.includes("back")}),e={video:!l||{deviceId:{exact:l.deviceId}}},function(n,l){n.src=l,n.play()},t=function(n){navigator.mediaDevices.getUserMedia(e).then(function(l){var t=l.getVideoTracks();console.log("Got stream with constraints:",e),console.log("Using video device: "+t[0].label),window.stream=l,n.srcObject=l}).catch(function(n){alert("Not support get stream from camera!")})},u=$("#video")[0],t(u),this.canvasCamera=$("#canvasCamera")[0],this.cameraContext=this.canvasCamera.getContext("2d"),$("#snap").on("click",function(){i.cameraContext.drawImage(u,0,0,612,792)}),$("#downloadpdf").on("click",this.savePDF),[2]}})})},n.prototype.savePDF=function(){try{this.canvasCamera=$("#canvasCamera")[0];var n=this.canvasCamera.toDataURL("image/jpeg",1),l=new jsPDF("p","mm",[297,210]);l.addImage(n,"JPEG",5,5);var e=prompt("insert name of file");l.save(e+".pdf")}catch(n){alert("Error description: "+n.message)}},n.prototype.testPublicKeyFile=function(){var n=this,l=blockstack.getPublicKeyFromPrivate(blockstack.loadUserData().appPrivateKey);"nick tee"==blockstack.loadUserData().profile.name&&(this.testPutFile("02563f0f1d5c5429fa8fdb3d8fc4b0464dac70b07cd8249f0ef17bcf2c93ed7469"),this.testPutFile(l).then(function(){n.testGetFile(l)})),"Demo User BlockSign"==blockstack.loadUserData().profile.name&&this.testGetFile(l)},n.prototype.testPutFile=function(n){return blockstack.putFile("testFile.json","{stuff: 'from nicktee.id'}",{encrypt:n}).then(function(n){console.log("testPublicKeyFile ===> "+n)})},n.prototype.testGetFile=function(n){return blockstack.getFile("../../hub/18kTskBpTh1mznsypu1fhJ27dxbC1SwXEK/testFile.json",{decrypt:!0}).then(function(n){console.log("testPublicKeyFile ===> "+n)})},n}()},182:function(n,l,e){"use strict";e.d(l,"a",function(){return r});e(1);var t=e(270),u=(e(16),e(3)),i=(e.n(u),this&&this.__awaiter||function(n,l,e,t){return new(e||(e=Promise))(function(u,i){function o(n){try{a(t.next(n))}catch(n){i(n)}}function r(n){try{a(t.throw(n))}catch(n){i(n)}}function a(n){n.done?u(n.value):new e(function(l){l(n.value)}).then(o,r)}a((t=t.apply(n,l||[])).next())})}),o=this&&this.__generator||function(n,l){var e,t,u,i,o={label:0,sent:function(){if(1&u[0])throw u[1];return u[1]},trys:[],ops:[]};return i={next:r(0),throw:r(1),return:r(2)},"function"==typeof Symbol&&(i[Symbol.iterator]=function(){return this}),i;function r(i){return function(r){return function(i){if(e)throw new TypeError("Generator is already executing.");for(;o;)try{if(e=1,t&&(u=t[2&i[0]?"return":i[0]?"throw":"next"])&&!(u=u.call(t,i[1])).done)return u;switch(t=0,u&&(i=[0,u.value]),i[0]){case 0:case 1:u=i;break;case 4:return o.label++,{value:i[1],done:!1};case 5:o.label++,t=i[1],i=[0];continue;case 7:i=o.ops.pop(),o.trys.pop();continue;default:if(!(u=(u=o.trys).length>0&&u[u.length-1])&&(6===i[0]||2===i[0])){o=0;continue}if(3===i[0]&&(!u||i[1]>u[0]&&i[1]<u[3])){o.label=i[1];break}if(6===i[0]&&o.label<u[1]){o.label=u[1],u=i;break}if(u&&o.label<u[2]){o.label=u[2],o.ops.push(i);break}u[2]&&o.ops.pop(),o.trys.pop();continue}i=l.call(n,o)}catch(n){i=[6,n],t=0}finally{e=u=0}if(5&i[0])throw i[1];return{value:i[0]?i[1]:void 0,done:!0}}([i,r])}}},r=function(){function n(n,l,e){this.documentService=n,this.events=l,this.blockstackService=e}return n.prototype.ngOnInit=function(){var n=this;this.doc=new t.a,this.documentService.currentDoc?(this.doc=this.documentService.currentDoc,this.getLogData()):this.subscription=this.events.subscribe("documentService:setCurrentDoc",function(l){return i(n,void 0,void 0,function(){return o(this,function(n){return this.doc=l,this.getLogData(),[2]})})}),this.chatSubscription=this.events.subscribe("documentService:addedChat",function(l){return i(n,void 0,void 0,function(){var n=this;return o(this,function(l){return setTimeout(function(){n.getLogData()},1e3),[2]})})})},n.prototype.ngOnDestroy=function(){this.subscription&&this.subscription.unsubscribe(),this.chatSubscription&&this.chatSubscription.unsubscribe()},n.prototype.getLogData=function(){return i(this,void 0,void 0,function(){var n=this;return o(this,function(l){return $(document).ready(function(){return i(n,void 0,void 0,function(){var n,l,e,t,i,r,a;return o(this,function(o){switch(o.label){case 0:return[4,this.documentService.getLog(this.doc.guid)];case 1:for(n=o.sent(),$(".chat-head").html(this.doc.fileName),l="",e=jslinq(n.messages).orderBy(function(n){return n.updatedAt}).toList(),t=function(n){var e=n.updatedAt,t=u(e).calendar(e),o=n.createdBy;try{o=n.createdBy.replace(".id","")}catch(n){console.log("user does not have .id")}var r="block-pic-"+o;i.blockstackService.getPicUrl(n.createdByName).then(function(n){$("."+r).attr("src",n)}),l=l+'  \n        <div class="chat-message clearfix">\n        <img class="'+r+'" src="http://www.gravatar.com/avatar/?d=identicon" alt="" width="32" height="32">\n        <div class="chat-message-content clearfix">\n          <span class="chat-time">'+t+"</span>\n          <h5>"+n.email+"</h5>\n          <p>"+n.message+"</p>\n        </div> \n        </div>\n        <hr style='margin-top:5px' />\n        "},i=this,r=0,a=e;r<a.length;r++)t(a[r]);return $(".log-history").html(l),$(".chat-history").scrollTop($(".log-history").height()),[2]}})})}),[2]})})},n.prototype.minimize=function(){$(".chat").slideToggle(300,"swing"),$(".chat-message-counter").fadeToggle(300,"swing")},n.prototype.addMessage=function(){return i(this,void 0,void 0,function(){return o(this,function(n){switch(n.label){case 0:return[4,this.documentService.addMessage(this.doc.guid,this.message)];case 1:return n.sent(),this.events.publish("documentService:addedChat",this.message),this.message=null,[2]}})})},n}()},20:function(n,l,e){"use strict";e(1),e(0);var t=e(270),u=(e(81),e(58),e(47),e(69),e(16),e(272)),i=(e(45),function(){function n(){}return n.prototype.docInit=function(){return u.init()},n.prototype.docLoadMine=function(n){return u.load(n)},n.prototype.docLoadTheirs=function(n){return u.load(n)},n.prototype.docMerge=function(n,l){return u.merge(n,l)},n.prototype.docSave=function(n){return u.save(n)},n.prototype.docEdit=function(n,l,e,t){return n=u.change(n,l,function(n){n[e]=t})},n.prototype.docHistory=function(n){return u.getHistory(n).map(function(n){return[n.change.message,n.snapshot.cards.length]})},n}()),o=e(174);e.d(l,"a",function(){return s});var r=this&&this.__awaiter||function(n,l,e,t){return new(e||(e=Promise))(function(u,i){function o(n){try{a(t.next(n))}catch(n){i(n)}}function r(n){try{a(t.throw(n))}catch(n){i(n)}}function a(n){n.done?u(n.value):new e(function(l){l(n.value)}).then(o,r)}a((t=t.apply(n,l||[])).next())})},a=this&&this.__generator||function(n,l){var e,t,u,i,o={label:0,sent:function(){if(1&u[0])throw u[1];return u[1]},trys:[],ops:[]};return i={next:r(0),throw:r(1),return:r(2)},"function"==typeof Symbol&&(i[Symbol.iterator]=function(){return this}),i;function r(i){return function(r){return function(i){if(e)throw new TypeError("Generator is already executing.");for(;o;)try{if(e=1,t&&(u=t[2&i[0]?"return":i[0]?"throw":"next"])&&!(u=u.call(t,i[1])).done)return u;switch(t=0,u&&(i=[0,u.value]),i[0]){case 0:case 1:u=i;break;case 4:return o.label++,{value:i[1],done:!1};case 5:o.label++,t=i[1],i=[0];continue;case 7:i=o.ops.pop(),o.trys.pop();continue;default:if(!(u=(u=o.trys).length>0&&u[u.length-1])&&(6===i[0]||2===i[0])){o=0;continue}if(3===i[0]&&(!u||i[1]>u[0]&&i[1]<u[3])){o.label=i[1];break}if(6===i[0]&&o.label<u[1]){o.label=u[1],u=i;break}if(u&&o.label<u[2]){o.label=u[2],o.ops.push(i);break}u[2]&&o.ops.pop(),o.trys.pop();continue}i=l.call(n,o)}catch(n){i=[6,n],t=0}finally{e=u=0}if(5&i[0])throw i[1];return{value:i[0]?i[1]:void 0,done:!0}}([i,r])}}},s=function(){function n(n,l,e){var t=this;this.events=n,this.http=l,this.blockStackService=e,this.indexFileName="blockusign/documents.index.json",this.state=new i,console.log("Hello StorageServiceProvider Provider"),this.documentsList=[],this.getDocumentsIndex(!0).then(function(n){t.documentsList=n})}return n.prototype.getDocumentsIndex=function(n){return r(this,void 0,void 0,function(){var l,e,t,u;return a(this,function(i){switch(i.label){case 0:return n?[4,blockstack.getFile(this.indexFileName,{decrypt:!0})]:[3,3];case 1:return(l=i.sent())&&(this.documentsList=JSON.parse(l)),null!=this.documentsList&&l?[3,3]:(e=this,u=(t=JSON).parse,[4,blockstack.putFile(this.indexFileName,"[]",{encrypt:!0})]);case 2:e.documentsList=u.apply(t,[i.sent()]),i.label=3;case 3:return[2,this.documentsList]}})})},n.prototype.addDocument=function(n,l){return r(this,void 0,void 0,function(){var e,u,i,o,r;return a(this,function(a){switch(a.label){case 0:return(e=new t.a).fileName=n,e.documentKey=this.generateKey(),e.pathAnnotatedDoc=blockstack.loadUserData().profile.apps[window.location.origin],[4,this.blockStackService.getProfileData()];case 1:return u=a.sent(),i=null,u&&(i=JSON.parse(u).email),o=e,r={name:blockstack.loadUserData().profile.name,userId:blockstack.loadUserData().username,email:i},[4,this.blockStackService.getAppPublicKey()];case 2:return o.paths=[(r.appPublicKey=a.sent(),r.pathToStorage=blockstack.loadUserData().profile.apps[window.location.origin],r)],e.signer=[],this.documentsList.push(e),[4,blockstack.putFile(this.indexFileName,JSON.stringify(this.documentsList),{encrypt:!0})];case 3:return a.sent(),this.docBuffer=l,this.currentDoc=e,[4,this.addDocumentBytes(e.guid,l,e.documentKey)];case 4:return a.sent(),[2,this.documentsList]}})})},n.prototype.updateDocument=function(n,l){return r(this,void 0,void 0,function(){var e;return a(this,function(t){switch(t.label){case 0:return-1===(e=this.documentsList.findIndex(function(l){return l.guid===n}))?[3,2]:(this.documentsList[e]=l,[4,blockstack.putFile(this.indexFileName,JSON.stringify(this.documentsList),{encrypt:!0})]);case 1:return t.sent(),[2,!0];case 2:return[2,!1]}})})},n.prototype.removeDocument=function(n){return r(this,void 0,void 0,function(){return a(this,function(l){switch(l.label){case 0:return this.documentsList=this.documentsList.remove(n),[4,blockstack.putFile(this.indexFileName,JSON.stringify(this.documentsList),{encrypt:!0})];case 1:return l.sent(),[4,this.removeDocumentBytes(n.guid)];case 2:return l.sent(),[2,this.documentsList]}})})},n.prototype.addDocumentBytes=function(n,l,e){return r(this,void 0,void 0,function(){var t;return a(this,function(u){switch(u.label){case 0:return t=this.ecryptDoc(l,e),[4,this.createAnnotations(n)];case 1:return u.sent(),[4,this.getLog(n)];case 2:return u.sent(),[2,blockstack.putFile(n+".pdf",t,{encrypt:!1}).then(function(n){})]}})})},n.prototype.getDocument=function(n,l){return r(this,void 0,void 0,function(){var e;return a(this,function(t){switch(t.label){case 0:return[4,blockstack.getFile(n,{decrypt:!1})];case 1:return(e=t.sent())?[2,this.decryptDoc(e,l)]:[2,null]}})})},n.prototype.getDocumentByPath=function(n,l){return r(this,void 0,void 0,function(){var e,t;return a(this,function(u){switch(u.label){case 0:return[4,this.http.get(n).toPromise()];case 1:return(e=u.sent())?(t=e.text(),[2,this.decryptDoc(t,l)]):[2,Object(o.of)(null)]}})})},n.prototype.copyDocument=function(n,l,e){return r(this,void 0,void 0,function(){var t,i,o,r,s,c,d,p,h,f,g,m,v=this;return a(this,function(a){switch(a.label){case 0:return console.log("file buffer",e),console.log("guid",l),console.log("doc",n),t=null,blockstack.loadUserData().profile.name&&(t=blockstack.loadUserData().profile.name),i=null,blockstack.loadUserData().username&&(i=blockstack.loadUserData().username),[4,this.blockStackService.getProfileData()];case 1:return o=a.sent(),r=null,o&&(r=JSON.parse(o).email),c=(s=n.paths).push,d={name:t,userId:i,email:r},[4,this.blockStackService.getAppPublicKey()];case 2:return c.apply(s,[(d.appPublicKey=a.sent(),d.pathToStorage=blockstack.loadUserData().profile.apps[window.location.origin],d)]),this.documentsList.push(n),console.log("new doc list",this.documentsList),[4,blockstack.putFile(this.indexFileName,JSON.stringify(this.documentsList),{encrypt:!0})];case 3:return a.sent(),this.currentDoc=n,this.docBuffer=e,p=this.ecryptDoc(e,this.currentDoc.documentKey),[4,blockstack.putFile(l+".pdf",p,{encrypt:!1}).then(function(n){})];case 4:return a.sent(),[4,this.getAnnotationsByPath(this.currentDoc.pathAnnotatedDoc+l+".annotations.json",this.currentDoc.documentKey)];case 5:return h=a.sent(),this.saveAnnotations(l,h?this.currentDocAnnotations.annotations:""),f=jslinq(this.currentDoc.paths).where(function(n){return n.email!=v.blockStackService.profile.email}).toList(),[4,this.getLogByPath(f[0].pathToStorage+l+".log.json",this.currentDoc.documentKey)];case 6:return(g=a.sent())?(m=u.save(g),[4,this.saveLog(l,m)]):[3,8];case 7:return a.sent(),[3,8];case 8:return[2,this.documentsList]}})})},n.prototype.documentExists=function(n){var l=!1;return jslinq(this.documentsList).where(function(l){return l.guid==n}).toList().length>0&&(l=!0),l},n.prototype.addSignerToCurrentDoc=function(n){return r(this,void 0,void 0,function(){return a(this,function(n){return[2]})})},n.prototype.removeDocumentBytes=function(n){return r(this,void 0,void 0,function(){return a(this,function(l){switch(l.label){case 0:return[4,blockstack.putFile(n+".annotations.json","",{encrypt:!1})];case 1:return l.sent(),[4,blockstack.putFile(n+".log.json","",{encrypt:!1})];case 2:return l.sent(),[2,blockstack.putFile(n+".pdf","",{encrypt:!1}).then(function(n){})]}})})},n.prototype.createAnnotations=function(n){return r(this,void 0,void 0,function(){var l,e,t;return a(this,function(i){switch(i.label){case 0:return{annotations:""},this.currentDocAnnotationsDoc=u.init(),l=blockstack.loadUserData().profile.name+" created annotations on "+this.getDate(),this.currentDocAnnotationsDoc=u.change(this.currentDocAnnotationsDoc,l,function(n){n.annots=[]}),e=u.save(this.currentDocAnnotationsDoc),t=this.encryptString(e,this.currentDoc.documentKey),[4,blockstack.putFile(n+".annotations.json",t,{encrypt:!1})];case 1:return[2,i.sent()]}})})},n.prototype.saveAnnotations=function(n,l){return r(this,void 0,void 0,function(){var e,t,i,o;return a(this,function(r){switch(r.label){case 0:return e={annotations:l},t=blockstack.loadUserData().profile.name+" added annotation on "+this.getDate(),this.currentDocAnnotationsDoc=u.change(this.currentDocAnnotationsDoc,t,function(n){n.annots.insertAt(0,e)}),i=u.save(this.currentDocAnnotationsDoc),o=this.encryptString(i,this.currentDoc.documentKey),[4,blockstack.putFile(n+".annotations.json",o,{encrypt:!1})];case 1:return[2,r.sent()]}})})},n.prototype.getAnnotations=function(n){return r(this,void 0,void 0,function(){var l,e;return a(this,function(t){switch(t.label){case 0:return[4,blockstack.getFile(n+".annotations.json",{decrypt:!1})];case 1:return(l=t.sent())&&(e=this.decryptString(l,this.currentDoc.documentKey),this.currentDocAnnotationsDoc=u.load(e),this.currentDocAnnotations=this.currentDocAnnotationsDoc.annots[0]),l||(this.currentDocAnnotations=""),[2,this.currentDocAnnotations]}})})},n.prototype.getAnnotationsByPath=function(n,l){return r(this,void 0,void 0,function(){var e,t,i;return a(this,function(o){switch(o.label){case 0:return[4,this.http.get(n).toPromise()];case 1:return(e=o.sent())&&(t=JSON.stringify(e.json()),i=this.decryptString(t,l),this.currentDocAnnotationsDoc=u.load(i),this.currentDocAnnotations=this.currentDocAnnotationsDoc.annots[0]),e||(this.currentDocAnnotations=""),[2,this.currentDocAnnotations]}})})},n.prototype.mergeAnnotations=function(n,l,e){return r(this,void 0,void 0,function(){var t;return a(this,function(i){switch(i.label){case 0:return l?[3,2]:[4,this.getAnnotationsByPath(this.currentDoc.pathAnnotatedDoc+n+".annotations.json",this.currentDoc.documentKey)];case 1:l=i.sent(),l=this.currentDocAnnotationsDoc,i.label=2;case 2:return e?[3,4]:[4,this.getAnnotations(n)];case 3:e=i.sent(),e=this.currentDocAnnotationsDoc,i.label=4;case 4:return t=u.merge(e,l),console.log("mergedAnnots",t),[2]}})})},n.prototype.setCurrentDoc=function(n){this.currentDoc=this.documentsList.find(function(l){return l.guid==n}),this.events.publish("documentService:setCurrentDoc",this.currentDoc);var l="span:contains('"+this.currentDoc.fileName+"')";$(document).ready(function(){$(".channels-list-text li").removeClass("active"),$(l).parent().addClass("active")})},n.prototype.getLog=function(n){return r(this,void 0,void 0,function(){var l,e,i,o,r,s,c,d,p,h,f,g=this;return a(this,function(a){switch(a.label){case 0:l=n+".log.json",a.label=1;case 1:return a.trys.push([1,8,,9]),[4,blockstack.getFile(l,{decrypt:!1})];case 2:return(e=a.sent())?(this.logDoc=this.decryptString(e,this.currentDoc.documentKey),this.logDoc=u.load(this.logDoc),this.currentDoc.paths.length>1?(this.log=this.logDoc.log,i=jslinq(this.currentDoc.paths).where(function(n){return n.email!=g.blockStackService.profile.email}).toList(),(o=i[0].pathToStorage)?[4,this.http.get(o+l).toPromise()]:[3,4]):[3,4]):[3,5];case 3:(r=a.sent())&&(s=r.text(),s=this.decryptString(s,this.currentDoc.documentKey),c=u.load(s),d=u.merge(c,this.logDoc),this.logDoc=d),a.label=4;case 4:return this.log=this.logDoc.log,[3,7];case 5:return(p=new t.b).messages=[],(h=new t.c).createdBy=blockstack.loadUserData().username,h.createdByName=blockstack.loadUserData().profile.name,h.email=this.blockStackService.profile.email,h.message="Created Doc",p.messages.push(h),this.logDoc=u.init(),this.logDoc=u.change(this.logDoc,"Initialize log - "+this.getDate(),function(n){n.log=p}),f=u.save(this.logDoc),f=this.encryptString(f,this.currentDoc.documentKey),[4,blockstack.putFile(l,f,{encrypt:!1})];case 6:f=a.sent(),f=this.decryptString(f,this.currentDoc.documentKey),console.log("logstr",f),this.logDoc=u.load(f),this.log=this.logDoc.log,a.label=7;case 7:return[2,this.log];case 8:return a.sent(),[3,9];case 9:return[2]}})})},n.prototype.saveLog=function(n,l){return r(this,void 0,void 0,function(){var e;return a(this,function(t){switch(t.label){case 0:return e=n+".log.json",l=this.encryptString(l,this.currentDoc.documentKey),[4,blockstack.putFile(e,l,{encrypt:!1})];case 1:return l=t.sent(),[2]}})})},n.prototype.getLogByPath=function(n,l){return r(this,void 0,void 0,function(){var e,t,i;return a(this,function(o){switch(o.label){case 0:return[4,this.http.get(n).toPromise()];case 1:return(e=o.sent())&&(t=JSON.stringify(e.json()),i=this.decryptString(t,l),this.logDoc=u.load(i),this.log=this.logDoc.log),e||(this.log=null),[2,this.logDoc]}})})},n.prototype.addMessage=function(n,l){return r(this,void 0,void 0,function(){var e,i,o;return a(this,function(r){switch(r.label){case 0:return e=n+".log.json",[4,this.getLog(n)];case 1:return r.sent()?((i=new t.c).message=l,i.createdBy=blockstack.loadUserData().username,i.createdByName=blockstack.loadUserData().profile.name,i.email=this.blockStackService.profile.email,this.logDoc=u.change(this.logDoc,i.createdByName+" added message at "+this.getDate(),function(n){n.log.messages.push(i)}),o=u.save(this.logDoc),o=this.encryptString(o,this.currentDoc.documentKey),[4,blockstack.putFile(e,o,{encrypt:!1})]):[3,3];case 2:return r.sent(),this.log=this.logDoc.log,this.events.publish("documentService:addedChat",i),[2,this.log];case 3:console.error("error getting log file: "+e),r.label=4;case 4:return[2]}})})},n.prototype.updatePartnerPathData=function(){return r(this,void 0,void 0,function(){return a(this,function(n){return[2]})})},n.prototype.ecryptDoc=function(n,l){var e=sjcl.codec.arrayBuffer.toBits(n),t=sjcl.codec.base64.fromBits(e);return sjcl.encrypt(l,t)},n.prototype.decryptDoc=function(n,l){var e=sjcl.decrypt(l,n),t=sjcl.codec.base64.toBits(e);return sjcl.codec.arrayBuffer.fromBits(t)},n.prototype.encryptString=function(n,l){return sjcl.encrypt(l,n)},n.prototype.decryptString=function(n,l){return sjcl.decrypt(l,n)},n.prototype.generateKey=function(){return window.guid()},n.prototype.resetStorage=function(){return r(this,void 0,void 0,function(){return a(this,function(n){switch(n.label){case 0:return[4,blockstack.putFile(this.indexFileName,"[]",{encrypt:!0})];case 1:return n.sent(),[2]}})})},n.prototype.testAutoMerge=function(){},n.prototype.getDate=function(){return Date()},n.prototype.testInitDoc=function(){return this.docMine=this.state.docInit(),this.state.docSave(this.docMine)},n.prototype.testEditDoc=function(){this.docMine=this.state.docEdit(this.docMine,"nick 1st add - "+this.getDate(),"messages",{nick:"1"})},n.prototype.testMerge=function(){this.testInitDoc()},n.prototype.getMine=function(n,l){var e=u.init();return e=u.change(e,l,function(e){e[n]=[l]})},n}()},219:function(n,l,e){"use strict";e.d(l,"a",function(){return t});e(1),e(16);var t=function(){return function(){}}()},220:function(n,l,e){"use strict";e.d(l,"a",function(){return t});e(1),e(16);var t=function(){return function(){}}()},221:function(n,l,e){"use strict";e.d(l,"a",function(){return r});e(1),e(16);var t=e(203),u=(e.n(t),e(627)),i=(e.n(u),this&&this.__awaiter||function(n,l,e,t){return new(e||(e=Promise))(function(u,i){function o(n){try{a(t.next(n))}catch(n){i(n)}}function r(n){try{a(t.throw(n))}catch(n){i(n)}}function a(n){n.done?u(n.value):new e(function(l){l(n.value)}).then(o,r)}a((t=t.apply(n,l||[])).next())})}),o=this&&this.__generator||function(n,l){var e,t,u,i,o={label:0,sent:function(){if(1&u[0])throw u[1];return u[1]},trys:[],ops:[]};return i={next:r(0),throw:r(1),return:r(2)},"function"==typeof Symbol&&(i[Symbol.iterator]=function(){return this}),i;function r(i){return function(r){return function(i){if(e)throw new TypeError("Generator is already executing.");for(;o;)try{if(e=1,t&&(u=t[2&i[0]?"return":i[0]?"throw":"next"])&&!(u=u.call(t,i[1])).done)return u;switch(t=0,u&&(i=[0,u.value]),i[0]){case 0:case 1:u=i;break;case 4:return o.label++,{value:i[1],done:!1};case 5:o.label++,t=i[1],i=[0];continue;case 7:i=o.ops.pop(),o.trys.pop();continue;default:if(!(u=(u=o.trys).length>0&&u[u.length-1])&&(6===i[0]||2===i[0])){o=0;continue}if(3===i[0]&&(!u||i[1]>u[0]&&i[1]<u[3])){o.label=i[1];break}if(6===i[0]&&o.label<u[1]){o.label=u[1],u=i;break}if(u&&o.label<u[2]){o.label=u[2],o.ops.push(i);break}u[2]&&o.ops.pop(),o.trys.pop();continue}i=l.call(n,o)}catch(n){i=[6,n],t=0}finally{e=u=0}if(5&i[0])throw i[1];return{value:i[0]?i[1]:void 0,done:!0}}([i,r])}}},r=function(){function n(n,l,e,t,i,o,r){var a=this;if(this.navCtrl=n,this.navParams=l,this.documentService=e,this.emailService=t,this.blockStackService=i,this.chg=o,this.loadingCtrl=r,this.email="",this.people3=[],this.people3Loading=!1,this.selectedUser=[],this.people3Typeahead=new u.Subject,this.navParams.get("guid")&&!this.documentService.currentDoc){var s=this.navParams.get("guid");this.documentService.getDocumentsIndex(!0).then(function(n){a.documentService.documentsList=n,a.documentService.setCurrentDoc(s)})}}return n.prototype.ionViewDidLoad=function(){return i(this,void 0,void 0,function(){return o(this,function(n){return console.log("ionViewDidLoad SignPage"),this.lookup(),this.loadPeople3(),[2]})})},n.prototype.next=function(){this.navCtrl.push("SignPage",{guid:this.documentService.currentDoc.guid})},n.prototype.back=function(){this.navCtrl.push("AnnotatePage",{guid:this.documentService.currentDoc.guid})},n.prototype.getUrl=function(){return window.location.href},n.prototype.lookup=function(){blockstack.lookupProfile("blockusign1.id").then(function(n){}).catch(function(n){console.log("could not resolve profile")})},n.prototype.searchUser=function(n){return i(this,void 0,void 0,function(){return o(this,function(l){switch(l.label){case 0:return[4,this.blockStackService.searchUser(n)];case 1:return l.sent(),[2]}})})},n.prototype.loadPeople3=function(){var n=this;this.people3Typeahead.pipe(Object(t.tap)(function(){return n.people3Loading=!0}),Object(t.distinctUntilChanged)(),Object(t.debounceTime)(375),Object(t.switchMap)(function(l){return n.blockStackService.searchUser(l)})).subscribe(function(l){n.people3=l,n.people3Loading=!1,console.log("ppl loading false")},function(){n.people3=[],console.log("[]")})},n.prototype.sendEmail=function(n){return i(this,void 0,void 0,function(){var n,l;return o(this,function(e){switch(e.label){case 0:return this.email?(this.loading=this.loadingCtrl.create({content:"Please wait..."}),this.loading.present(),n=window.location.origin+"/#/sign/"+this.documentService.currentDoc.guid+"/?docData="+btoa(JSON.stringify(this.documentService.currentDoc)),l=blockstack.loadUserData().profile.name+" has sent you a document to sign - "+this.documentService.currentDoc.fileName,[4,this.emailService.sendEmail(this.email,l,"Please click this link and sign the document. Thanks! <br/><br/>"+n)]):(alert("Please enter an email address"),[2]);case 1:return e.sent(),this.documentService.currentDoc.signer.push(this.email),[4,this.documentService.updateDocument(this.documentService.currentDoc.guid,this.documentService.currentDoc)];case 2:return e.sent(),this.loading.dismiss(),alert("Email sent!"),[2]}})})},n.prototype.clickedUser=function(){setTimeout(function(){alert("Email not found. Please enter below")},1e3)},n}()},222:function(n,l,e){"use strict";e.d(l,"a",function(){return t});e(1),e(16);var t=function(){return function(){}}()},223:function(n,l,e){"use strict";e.d(l,"a",function(){return t});e(1),e(16);var t=function(){return function(){}}()},224:function(n,l,e){"use strict";e.d(l,"a",function(){return i});e(1),e(16),e(71);var t=this&&this.__awaiter||function(n,l,e,t){return new(e||(e=Promise))(function(u,i){function o(n){try{a(t.next(n))}catch(n){i(n)}}function r(n){try{a(t.throw(n))}catch(n){i(n)}}function a(n){n.done?u(n.value):new e(function(l){l(n.value)}).then(o,r)}a((t=t.apply(n,l||[])).next())})},u=this&&this.__generator||function(n,l){var e,t,u,i,o={label:0,sent:function(){if(1&u[0])throw u[1];return u[1]},trys:[],ops:[]};return i={next:r(0),throw:r(1),return:r(2)},"function"==typeof Symbol&&(i[Symbol.iterator]=function(){return this}),i;function r(i){return function(r){return function(i){if(e)throw new TypeError("Generator is already executing.");for(;o;)try{if(e=1,t&&(u=t[2&i[0]?"return":i[0]?"throw":"next"])&&!(u=u.call(t,i[1])).done)return u;switch(t=0,u&&(i=[0,u.value]),i[0]){case 0:case 1:u=i;break;case 4:return o.label++,{value:i[1],done:!1};case 5:o.label++,t=i[1],i=[0];continue;case 7:i=o.ops.pop(),o.trys.pop();continue;default:if(!(u=(u=o.trys).length>0&&u[u.length-1])&&(6===i[0]||2===i[0])){o=0;continue}if(3===i[0]&&(!u||i[1]>u[0]&&i[1]<u[3])){o.label=i[1];break}if(6===i[0]&&o.label<u[1]){o.label=u[1],u=i;break}if(u&&o.label<u[2]){o.label=u[2],o.ops.push(i);break}u[2]&&o.ops.pop(),o.trys.pop();continue}i=l.call(n,o)}catch(n){i=[6,n],t=0}finally{e=u=0}if(5&i[0])throw i[1];return{value:i[0]?i[1]:void 0,done:!0}}([i,r])}}},i=function(){function n(n,l,e){this.navCtrl=n,this.navParams=l,this.documentService=e}return n.prototype.ionViewDidLoad=function(){this.init()},n.prototype.init=function(){return t(this,void 0,void 0,function(){var n,l,e,t,i,o,r,a,s=this;return u(this,function(u){switch(u.label){case 0:return n=getQueryParam("docData"),!this.navParams.get("guid")||this.documentService.currentDoc||n?[3,1]:(l=this.navParams.get("guid"),this.documentService.getDocumentsIndex(!0).then(function(n){s.documentService.documentsList=n,s.documentService.setCurrentDoc(l)}),[3,8]);case 1:return this.navParams.get("guid")&&!this.documentService.currentDoc&&n?(e=atob(n),t=JSON.parse(e),[4,this.documentService.getDocumentsIndex(!0)]):[3,7];case 2:return i=u.sent(),this.documentService.documentsList=i,o=this.navParams.get("guid"),this.documentService.documentExists(o)?(this.documentService.setCurrentDoc(o),[3,6]):[3,3];case 3:return r=t.pathAnnotatedDoc+this.navParams.get("guid")+".pdf",console.log(r),[4,this.documentService.getDocumentByPath(r,t.documentKey)];case 4:return a=u.sent(),[4,this.documentService.copyDocument(t,o,a)];case 5:u.sent(),this.blockPdf.ngOnInit(),u.label=6;case 6:return[3,8];case 7:console.log("Error, must pass in guid"),u.label=8;case 8:return console.log("ionViewDidLoad SignPage"),this.name=blockstack.loadUserData().profile.name,[2]}})})},n.prototype.next=function(){this.navCtrl.push("ReviewPage",{guid:this.documentService.currentDoc.guid})},n.prototype.back=function(){this.navCtrl.push("EmailPage",{guid:this.documentService.currentDoc.guid})},n}()},225:function(n,l,e){"use strict";e.d(l,"a",function(){return t});e(1),e(16);var t=function(){return function(){}}()},237:function(n,l){function e(n){return Promise.resolve().then(function(){throw new Error("Cannot find module '"+n+"'.")})}e.keys=function(){return[]},e.resolve=e,n.exports=e,e.id=237},269:function(n,l,e){var t={"../pages/annotate/annotate.module.ngfactory":[935,4],"../pages/email/email.module.ngfactory":[937,3],"../pages/home/home.module.ngfactory":[940,2],"../pages/review/review.module.ngfactory":[938,1],"../pages/sign/sign.module.ngfactory":[939,0]};function u(n){var l=t[n];return l?e.e(l[1]).then(function(){return e(l[0])}):Promise.reject(new Error("Cannot find module '"+n+"'."))}u.keys=function(){return Object.keys(t)},u.id=269,n.exports=u},270:function(n,l,e){"use strict";e.d(l,"a",function(){return t}),e.d(l,"b",function(){return u}),e.d(l,"c",function(){return i});var t=function(){return function(){this.guid=window.guid(),this.createdAt=Date.now(),this.updatedAt=Date.now(),this.hasAnnotations=!1,this.step="Annotate",this.isCompleted=!1}}(),u=function(){return function(){this.guid=window.guid(),this.createdAt=Date.now(),this.updatedAt=Date.now()}}(),i=function(){return function(){this.guid=window.guid(),this.createdAt=Date.now(),this.updatedAt=Date.now()}}()},45:function(n,l,e){"use strict";e.d(l,"a",function(){return a});e(1);var t=e(81),u=(e.n(t),e(47)),i=(e.n(u),e(69)),o=(e.n(i),e(16),this&&this.__awaiter||function(n,l,e,t){return new(e||(e=Promise))(function(u,i){function o(n){try{a(t.next(n))}catch(n){i(n)}}function r(n){try{a(t.throw(n))}catch(n){i(n)}}function a(n){n.done?u(n.value):new e(function(l){l(n.value)}).then(o,r)}a((t=t.apply(n,l||[])).next())})}),r=this&&this.__generator||function(n,l){var e,t,u,i,o={label:0,sent:function(){if(1&u[0])throw u[1];return u[1]},trys:[],ops:[]};return i={next:r(0),throw:r(1),return:r(2)},"function"==typeof Symbol&&(i[Symbol.iterator]=function(){return this}),i;function r(i){return function(r){return function(i){if(e)throw new TypeError("Generator is already executing.");for(;o;)try{if(e=1,t&&(u=t[2&i[0]?"return":i[0]?"throw":"next"])&&!(u=u.call(t,i[1])).done)return u;switch(t=0,u&&(i=[0,u.value]),i[0]){case 0:case 1:u=i;break;case 4:return o.label++,{value:i[1],done:!1};case 5:o.label++,t=i[1],i=[0];continue;case 7:i=o.ops.pop(),o.trys.pop();continue;default:if(!(u=(u=o.trys).length>0&&u[u.length-1])&&(6===i[0]||2===i[0])){o=0;continue}if(3===i[0]&&(!u||i[1]>u[0]&&i[1]<u[3])){o.label=i[1];break}if(6===i[0]&&o.label<u[1]){o.label=u[1],u=i;break}if(u&&o.label<u[2]){o.label=u[2],o.ops.push(i);break}u[2]&&o.ops.pop(),o.trys.pop();continue}i=l.call(n,o)}catch(n){i=[6,n],t=0}finally{e=u=0}if(5&i[0])throw i[1];return{value:i[0]?i[1]:void 0,done:!0}}([i,r])}}},a=function(){function n(n,l){this.events=n,this.http=l,this.picCache=[],this.blockusignProfileUrl="blockusign.profile.json"}return n.prototype.searchUser=function(n){return o(this,void 0,void 0,function(){return r(this,function(l){switch(l.label){case 0:return[4,this.http.get("https://core.blockstack.org/v1/search?query="+n).map(function(n){return n.json().results}).toPromise()];case 1:return[2,l.sent()]}})})},n.prototype.getPicUrl=function(n){return o(this,void 0,void 0,function(){var l,e,t;return r(this,function(u){switch(u.label){case 0:l="http://www.gravatar.com/avatar/?d=identicon",u.label=1;case 1:return u.trys.push([1,3,,4]),n?this.picCache.filter(function(l){return l.id===n})[0]?[2,this.picCache.filter(function(l){return l.id===n})[0].pic]:[4,this.http.get("https://core.blockstack.org/v1/search?query="+n).toPromise()]:[2,l];case 2:return e=u.sent(),(t=JSON.parse(e.text())).results.length>0&&(l=t.results[0].profile.image[0].contentUrl),this.picCache.push({id:n,pic:l}),[3,4];case 3:return u.sent(),console.log("Unable to getpic url"),[3,4];case 4:return[2,l]}})})},n.prototype.getProfileData=function(){return o(this,void 0,void 0,function(){var n,l;return r(this,function(e){switch(e.label){case 0:return[4,blockstack.getFile(this.blockusignProfileUrl,{decrypt:!1})];case 1:return n=e.sent(),(l=JSON.parse(n))&&(this.profile=l),[2,n]}})})},n.prototype.setProfileData=function(n){return o(this,void 0,void 0,function(){var l,e;return r(this,function(t){switch(t.label){case 0:return l=blockstack.loadUserData().profile.apps[window.location.origin],e={email:n,storagePath:l},[4,this.getAppPublicKey()];case 1:return e.appPublicKey=t.sent(),[4,blockstack.putFile(this.blockusignProfileUrl,JSON.stringify(e),{encrypt:!1})];case 2:return[2,t.sent()]}})})},n.prototype.clearProfileData=function(){return o(this,void 0,void 0,function(){return r(this,function(n){switch(n.label){case 0:return[4,blockstack.putFile(this.blockusignProfileUrl,JSON.stringify({}),{encrypt:!1})];case 1:return[2,n.sent()]}})})},n.prototype.getAppPublicKey=function(){return o(this,void 0,void 0,function(){return r(this,function(n){switch(n.label){case 0:return[4,blockstack.getPublicKeyFromPrivate(blockstack.loadUserData().appPrivateKey)];case 1:return[2,n.sent()]}})})},n}()},546:function(n,l,e){"use strict";var t=e(0),u=e(83),i=e(29),o=e(4),r=e(6),a=e(11),s=e(12),c=e(33),d=e(8),p=e(25),h=e(102),f=e(70),g=e(20),m=e(138),v=e(71),b=e(19),y=e(44),w=e(183),k=e(79),D=e(21),S=e(182),C=e(103),x=e(45),P=t["ɵcrt"]({encapsulation:2,styles:[],data:{}});function j(n){return t["ɵvid"](0,[(n()(),t["ɵeld"](0,0,null,null,52,"div",[["class","block-chat"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n  "])),(n()(),t["ɵeld"](2,0,null,null,49,"ion-fab",[["bottom",""],["right",""]],null,null,null,w.b,w.a)),t["ɵdid"](3,1228800,null,2,k.a,[r.a],null,null),t["ɵqud"](335544320,1,{_mainButton:0}),t["ɵqud"](603979776,2,{_fabLists:1}),(n()(),t["ɵted"](-1,0,["\n    "])),(n()(),t["ɵeld"](7,0,null,0,42,"div",[["class","shadow6"],["id","live-chat"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n\n      "])),(n()(),t["ɵeld"](9,0,null,null,11,"header",[["class","clearfix"]],null,[[null,"click"]],function(n,l,e){var t=!0;"click"===l&&(t=!1!==n.component.minimize()&&t);return t},null,null)),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵeld"](12,0,null,null,3,"h4",[],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n          "])),(n()(),t["ɵeld"](14,0,null,null,0,"span",[["class","chat-head"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,[" - Log"])),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵeld"](18,0,null,null,1,"span",[["class","chat-message-counter"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["3"])),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵeld"](22,0,null,null,25,"div",[["class","chat"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵeld"](24,0,null,null,4,"div",[["class","chat-history"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n          "])),(n()(),t["ɵeld"](26,0,null,null,1,"div",[["class","log-history"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n           \n          "])),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵeld"](31,0,null,null,15,"form",[["novalidate",""]],[[2,"ng-untouched",null],[2,"ng-touched",null],[2,"ng-pristine",null],[2,"ng-dirty",null],[2,"ng-valid",null],[2,"ng-invalid",null],[2,"ng-pending",null]],[[null,"submit"],[null,"reset"]],function(n,l,e){var u=!0;"submit"===l&&(u=!1!==t["ɵnov"](n,33).onSubmit(e)&&u);"reset"===l&&(u=!1!==t["ɵnov"](n,33).onReset()&&u);return u},null,null)),t["ɵdid"](32,16384,null,0,D.n,[],null,null),t["ɵdid"](33,4210688,null,0,D.j,[[8,null],[8,null]],null,null),t["ɵprd"](2048,null,D.b,null,[D.j]),t["ɵdid"](35,16384,null,0,D.i,[D.b],null,null),(n()(),t["ɵted"](-1,null,["\n          "])),(n()(),t["ɵeld"](37,0,null,null,8,"fieldset",[],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n            "])),(n()(),t["ɵeld"](39,0,null,null,5,"input",[["autofocus",""],["name","addMsg"],["placeholder","Type your message…"],["type","text"]],[[2,"ng-untouched",null],[2,"ng-touched",null],[2,"ng-pristine",null],[2,"ng-dirty",null],[2,"ng-valid",null],[2,"ng-invalid",null],[2,"ng-pending",null]],[[null,"ngModelChange"],[null,"keydown.enter"],[null,"input"],[null,"blur"],[null,"compositionstart"],[null,"compositionend"]],function(n,l,e){var u=!0,i=n.component;"input"===l&&(u=!1!==t["ɵnov"](n,40)._handleInput(e.target.value)&&u);"blur"===l&&(u=!1!==t["ɵnov"](n,40).onTouched()&&u);"compositionstart"===l&&(u=!1!==t["ɵnov"](n,40)._compositionStart()&&u);"compositionend"===l&&(u=!1!==t["ɵnov"](n,40)._compositionEnd(e.target.value)&&u);"ngModelChange"===l&&(u=!1!==(i.message=e)&&u);"keydown.enter"===l&&(u=!1!==i.addMessage(e)&&u);return u},null,null)),t["ɵdid"](40,16384,null,0,D.c,[t.Renderer2,t.ElementRef,[2,D.a]],null,null),t["ɵprd"](1024,null,D.f,function(n){return[n]},[D.c]),t["ɵdid"](42,671744,null,0,D.k,[[2,D.b],[8,null],[8,null],[2,D.f]],{name:[0,"name"],model:[1,"model"]},{update:"ngModelChange"}),t["ɵprd"](2048,null,D.g,null,[D.k]),t["ɵdid"](44,16384,null,0,D.h,[D.g],null,null),(n()(),t["ɵted"](-1,null,["\n          "])),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵted"](-1,null,["\n\n      "])),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵted"](-1,null,["\n\n    "])),(n()(),t["ɵted"](-1,0,["\n    "])),(n()(),t["ɵted"](-1,0,["\n  "])),(n()(),t["ɵted"](-1,null,["\n\n"]))],function(n,l){n(l,42,0,"addMsg",l.component.message)},function(n,l){n(l,31,0,t["ɵnov"](l,35).ngClassUntouched,t["ɵnov"](l,35).ngClassTouched,t["ɵnov"](l,35).ngClassPristine,t["ɵnov"](l,35).ngClassDirty,t["ɵnov"](l,35).ngClassValid,t["ɵnov"](l,35).ngClassInvalid,t["ɵnov"](l,35).ngClassPending),n(l,39,0,t["ɵnov"](l,44).ngClassUntouched,t["ɵnov"](l,44).ngClassTouched,t["ɵnov"](l,44).ngClassPristine,t["ɵnov"](l,44).ngClassDirty,t["ɵnov"](l,44).ngClassValid,t["ɵnov"](l,44).ngClassInvalid,t["ɵnov"](l,44).ngClassPending)})}var R=e(153);e.d(l,"a",function(){return T});var E=t["ɵcrt"]({encapsulation:0,styles:["annotate.scss"],data:{}});function L(n){return t["ɵvid"](0,[(n()(),t["ɵeld"](0,0,null,null,15,"ion-content",[["class","no-overflow-page"]],[[2,"statusbar-padding",null],[2,"has-refresher",null]],null,null,u.b,u.a)),t["ɵdid"](1,4374528,null,0,i.a,[o.a,r.a,a.a,t.ElementRef,t.Renderer,s.a,c.a,t.NgZone,[2,d.a],[2,p.a]],null,null),(n()(),t["ɵted"](-1,1,["\n \n  "])),(n()(),t["ɵted"](-1,1,["\n\n  "])),(n()(),t["ɵeld"](4,0,null,1,2,"block-steps",[["activeStep","2"]],null,null,null,h.b,h.a)),t["ɵdid"](5,49152,null,0,f.a,[p.a,g.a],{activeStep:[0,"activeStep"]},null),(n()(),t["ɵted"](-1,null,["\n  "])),(n()(),t["ɵted"](-1,1,[" \n        \n\n  "])),(n()(),t["ɵeld"](8,16777216,null,1,2,"block-pdf",[["showButtons","true"],["showSignHere","true"],["showToolBar","true"]],null,null,null,m.b,m.a)),t["ɵdid"](9,245760,null,0,v.a,[p.a,b.a,g.a,t.ChangeDetectorRef,t.ViewContainerRef,y.a],{showToolBar:[0,"showToolBar"],showSignHere:[1,"showSignHere"],showButtons:[2,"showButtons"]},null),(n()(),t["ɵted"](-1,null,["\n\n  "])),(n()(),t["ɵted"](-1,1,["\n\n  "])),(n()(),t["ɵeld"](12,0,null,1,2,"block-chat",[],null,null,null,j,P)),t["ɵdid"](13,245760,null,0,S.a,[g.a,C.a,x.a],null,null),(n()(),t["ɵted"](-1,null,["\n    \n  "])),(n()(),t["ɵted"](-1,1,["\n\n"]))],function(n,l){n(l,5,0,"2");n(l,9,0,"true","true","true"),n(l,13,0)},function(n,l){n(l,0,0,t["ɵnov"](l,1).statusbarPadding,t["ɵnov"](l,1)._hasRefresher)})}var T=t["ɵccf"]("page-annotate",R.a,function(n){return t["ɵvid"](0,[(n()(),t["ɵeld"](0,0,null,null,1,"page-annotate",[],null,null,null,L,E)),t["ɵdid"](1,49152,null,0,R.a,[p.a,b.a,g.a,C.a],null,null)],null,null)},{},{},[])},547:function(n,l,e){"use strict";e.d(l,"a",function(){return B});var t=e(0),u=e(83),i=e(29),o=e(4),r=e(6),a=e(11),s=e(12),c=e(33),d=e(8),p=e(25),h=e(67),f=e(68),g=e(66),m=e(102),v=e(70),b=e(20),y=e(885),w=e(84),k=e(21),D=e(74),S=e(36),C=e(138),x=e(71),P=e(19),j=e(44),R=e(221),E=e(140),L=e(45),T=t["ɵcrt"]({encapsulation:2,styles:[],data:{}});function I(n){return t["ɵvid"](0,[(n()(),t["ɵted"](-1,null,["\n            "])),(n()(),t["ɵeld"](1,0,null,null,3,"span",[["class","ng-value-label"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n              "])),(n()(),t["ɵeld"](3,0,null,null,0,"img",[["height","20px"],["width","20px"]],[[8,"src",4]],null,null,null,null)),(n()(),t["ɵted"](4,null,[" ",""])),(n()(),t["ɵted"](-1,null,["\n              "])),(n()(),t["ɵeld"](6,0,null,null,1,"span",[["aria-hidden","true"],["class","ng-value-icon right"]],null,[[null,"click"]],function(n,l,e){var t=!0;"click"===l&&(t=!1!==n.context.clear(n.context.item)&&t);return t},null,null)),(n()(),t["ɵted"](-1,null,["×"])),(n()(),t["ɵted"](-1,null,["\n          "]))],null,function(n,l){n(l,3,0,l.context.item.profile.image&&l.context.item.profile.image[0].contentUrl),n(l,4,0,l.context.item.username)})}function A(n){return t["ɵvid"](0,[(n()(),t["ɵted"](-1,null,["\n            "])),(n()(),t["ɵeld"](1,0,null,null,3,"span",[["style","width:100%"]],null,[[null,"click"]],function(n,l,e){var t=!0;"click"===l&&(t=!1!==n.component.clickedUser()&&t);return t},null,null)),(n()(),t["ɵted"](-1,null,["\n                "])),(n()(),t["ɵeld"](3,0,null,null,0,"img",[["height","20px"],["width","20px"]],[[8,"src",4]],null,null,null,null)),(n()(),t["ɵted"](4,null,[" ","\n            "])),(n()(),t["ɵted"](-1,null,["\n          "]))],null,function(n,l){n(l,3,0,l.context.item.profile.image&&l.context.item.profile.image[0].contentUrl),n(l,4,0,l.context.item.username)})}function F(n){return t["ɵvid"](0,[(n()(),t["ɵeld"](0,0,null,null,90,"ion-content",[["class","no-overflow-page email-page"]],[[2,"statusbar-padding",null],[2,"has-refresher",null]],null,null,u.b,u.a)),t["ɵdid"](1,4374528,null,0,i.a,[o.a,r.a,a.a,t.ElementRef,t.Renderer,s.a,c.a,t.NgZone,[2,d.a],[2,p.a]],null,null),(n()(),t["ɵted"](-1,1,["\n\n  "])),(n()(),t["ɵeld"](3,0,null,1,18,"ion-grid",[["class","grid"]],null,null,null,null,null)),t["ɵdid"](4,16384,null,0,h.a,[],null,null),(n()(),t["ɵted"](-1,null,["\n    "])),(n()(),t["ɵeld"](6,0,null,null,14,"ion-row",[["class","row"]],null,null,null,null,null)),t["ɵdid"](7,16384,null,0,f.a,[],null,null),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵeld"](9,0,null,null,10,"ion-col",[["class","col"],["width-100",""]],null,null,null,null,null)),t["ɵdid"](10,16384,null,0,g.a,[],null,null),(n()(),t["ɵted"](-1,null,["\n\n        "])),(n()(),t["ɵeld"](12,0,null,null,2,"block-steps",[["activeStep","3"]],null,null,null,m.b,m.a)),t["ɵdid"](13,49152,null,0,v.a,[p.a,b.a],{activeStep:[0,"activeStep"]},null),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵted"](-1,null,["\n\n\n        "])),(n()(),t["ɵeld"](16,0,null,null,0,"br",[],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵeld"](18,0,null,null,0,"br",[],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵted"](-1,null,["\n    "])),(n()(),t["ɵted"](-1,null,["\n  "])),(n()(),t["ɵted"](-1,1,["\n\n  "])),(n()(),t["ɵeld"](23,0,null,1,61,"ion-grid",[["class","grid"]],null,null,null,null,null)),t["ɵdid"](24,16384,null,0,h.a,[],null,null),(n()(),t["ɵted"](-1,null,["\n    "])),(n()(),t["ɵeld"](26,0,null,null,57,"ion-row",[["align-items-left",""],["class","row"]],null,null,null,null,null)),t["ɵdid"](27,16384,null,0,f.a,[],null,null),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵeld"](29,0,null,null,26,"ion-col",[["class","col"]],null,null,null,null,null)),t["ɵdid"](30,16384,null,0,g.a,[],null,null),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵeld"](32,0,null,null,22,"ng-select",[["bindLabel","username"],["class","ng-select"],["placeholder","Select signer..."],["role","listbox"],["style","width:460px; background-color:whitesmoke; border-radius:2px; padding-left:10px"]],[[2,"ng-select-single",null],[2,"ng-select-typeahead",null],[2,"ng-select-multiple",null],[2,"ng-select-taggable",null],[2,"ng-select-searchable",null],[2,"ng-select-opened",null],[2,"ng-select-disabled",null],[2,"ng-select-filtered",null],[2,"ng-untouched",null],[2,"ng-touched",null],[2,"ng-pristine",null],[2,"ng-dirty",null],[2,"ng-valid",null],[2,"ng-invalid",null],[2,"ng-pending",null]],[[null,"ngModelChange"],[null,"change"],[null,"keydown"]],function(n,l,e){var u=!0,i=n.component;"keydown"===l&&(u=!1!==t["ɵnov"](n,33).handleKeyDown(e)&&u);"ngModelChange"===l&&(u=!1!==(i.selectedUser=e)&&u);"change"===l&&(u=!1!==i.searchUser(e)&&u);return u},y.b,y.a)),t["ɵdid"](33,4964352,null,10,w.b,[w.a,[8,null],t.ChangeDetectorRef,w.j,t.NgZone,w.h,t.ElementRef],{items:[0,"items"],bindLabel:[1,"bindLabel"],placeholder:[2,"placeholder"],typeahead:[3,"typeahead"],multiple:[4,"multiple"]},{changeEvent:"change"}),t["ɵqud"](335544320,1,{optionTemplate:0}),t["ɵqud"](335544320,2,{optgroupTemplate:0}),t["ɵqud"](335544320,3,{labelTemplate:0}),t["ɵqud"](335544320,4,{multiLabelTemplate:0}),t["ɵqud"](335544320,5,{headerTemplate:0}),t["ɵqud"](335544320,6,{footerTemplate:0}),t["ɵqud"](335544320,7,{notFoundTemplate:0}),t["ɵqud"](335544320,8,{typeToSearchTemplate:0}),t["ɵqud"](335544320,9,{loadingTextTemplate:0}),t["ɵqud"](603979776,10,{ngOptions:1}),t["ɵprd"](1024,null,k.f,function(n){return[n]},[w.b]),t["ɵdid"](45,671744,null,0,k.k,[[8,null],[8,null],[8,null],[2,k.f]],{model:[0,"model"]},{update:"ngModelChange"}),t["ɵprd"](2048,null,k.g,null,[k.k]),t["ɵdid"](47,16384,null,0,k.h,[k.g],null,null),(n()(),t["ɵted"](-1,null,["\n          "])),(n()(),t["ɵand"](0,[[3,2]],null,1,null,I)),t["ɵdid"](50,16384,null,0,w.e,[t.TemplateRef],null,null),(n()(),t["ɵted"](-1,null,["\n          "])),(n()(),t["ɵand"](0,[[1,2]],null,1,null,A)),t["ɵdid"](53,16384,null,0,w.d,[t.TemplateRef],null,null),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵeld"](57,0,null,null,5,"ion-col",[["class","col"]],null,null,null,null,null)),t["ɵdid"](58,16384,null,0,g.a,[],null,null),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵeld"](60,0,null,null,1,"h3",[],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["or"])),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵeld"](64,0,null,null,10,"ion-col",[["class","col"],["style","width:460px; background-color:transparent; "]],null,null,null,null,null)),t["ɵdid"](65,16384,null,0,g.a,[],null,null),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵted"](-1,null,["\n        \n        "])),(n()(),t["ɵeld"](68,0,null,null,5,"input",[["autofocus",""],["class","classic-input"],["placeholder","Email To..."],["type","email"]],[[2,"ng-untouched",null],[2,"ng-touched",null],[2,"ng-pristine",null],[2,"ng-dirty",null],[2,"ng-valid",null],[2,"ng-invalid",null],[2,"ng-pending",null]],[[null,"ngModelChange"],[null,"input"],[null,"blur"],[null,"compositionstart"],[null,"compositionend"]],function(n,l,e){var u=!0,i=n.component;"input"===l&&(u=!1!==t["ɵnov"](n,69)._handleInput(e.target.value)&&u);"blur"===l&&(u=!1!==t["ɵnov"](n,69).onTouched()&&u);"compositionstart"===l&&(u=!1!==t["ɵnov"](n,69)._compositionStart()&&u);"compositionend"===l&&(u=!1!==t["ɵnov"](n,69)._compositionEnd(e.target.value)&&u);"ngModelChange"===l&&(u=!1!==(i.email=e)&&u);return u},null,null)),t["ɵdid"](69,16384,null,0,k.c,[t.Renderer2,t.ElementRef,[2,k.a]],null,null),t["ɵprd"](1024,null,k.f,function(n){return[n]},[k.c]),t["ɵdid"](71,671744,null,0,k.k,[[8,null],[8,null],[8,null],[2,k.f]],{model:[0,"model"]},{update:"ngModelChange"}),t["ɵprd"](2048,null,k.g,null,[k.k]),t["ɵdid"](73,16384,null,0,k.h,[k.g],null,null),(n()(),t["ɵted"](-1,null,["\n   \n      "])),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵeld"](76,0,null,null,6,"ion-col",[["class","col"]],null,null,null,null,null)),t["ɵdid"](77,16384,null,0,g.a,[],null,null),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵeld"](79,0,null,null,2,"button",[["ion-button",""]],null,[[null,"click"]],function(n,l,e){var t=!0;"click"===l&&(t=!1!==n.component.sendEmail(e)&&t);return t},D.b,D.a)),t["ɵdid"](80,1097728,null,0,S.a,[[8,""],o.a,t.ElementRef,t.Renderer],null,null),(n()(),t["ɵted"](-1,0,["Send Email"])),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵted"](-1,null,["\n    "])),(n()(),t["ɵted"](-1,null,["\n  "])),(n()(),t["ɵted"](-1,1,["\n\n  \n  "])),(n()(),t["ɵeld"](86,16777216,null,1,2,"block-pdf",[["marginTop","50px"]],null,null,null,C.b,C.a)),t["ɵdid"](87,245760,null,0,x.a,[p.a,P.a,b.a,t.ChangeDetectorRef,t.ViewContainerRef,j.a],{marginTop:[0,"marginTop"]},null),(n()(),t["ɵted"](-1,null,["\n  "])),(n()(),t["ɵted"](-1,1,["\n \n\n  \n\n  "])),(n()(),t["ɵted"](-1,1,["\n\n\n\n\n\n\n"]))],function(n,l){var e=l.component;n(l,13,0,"3");n(l,33,0,e.people3,"username","Select signer...",e.people3Typeahead,!1),n(l,45,0,e.selectedUser),n(l,71,0,e.email);n(l,87,0,"50px")},function(n,l){n(l,0,0,t["ɵnov"](l,1).statusbarPadding,t["ɵnov"](l,1)._hasRefresher),n(l,32,1,[!t["ɵnov"](l,33).multiple,t["ɵnov"](l,33).typeahead,t["ɵnov"](l,33).multiple,t["ɵnov"](l,33).addTag,t["ɵnov"](l,33).searchable,t["ɵnov"](l,33).isOpen,t["ɵnov"](l,33).isDisabled,t["ɵnov"](l,33).filtered,t["ɵnov"](l,47).ngClassUntouched,t["ɵnov"](l,47).ngClassTouched,t["ɵnov"](l,47).ngClassPristine,t["ɵnov"](l,47).ngClassDirty,t["ɵnov"](l,47).ngClassValid,t["ɵnov"](l,47).ngClassInvalid,t["ɵnov"](l,47).ngClassPending]),n(l,68,0,t["ɵnov"](l,73).ngClassUntouched,t["ɵnov"](l,73).ngClassTouched,t["ɵnov"](l,73).ngClassPristine,t["ɵnov"](l,73).ngClassDirty,t["ɵnov"](l,73).ngClassValid,t["ɵnov"](l,73).ngClassInvalid,t["ɵnov"](l,73).ngClassPending)})}var B=t["ɵccf"]("page-email",R.a,function(n){return t["ɵvid"](0,[(n()(),t["ɵeld"](0,0,null,null,1,"page-email",[],null,null,null,F,T)),t["ɵdid"](1,49152,null,0,R.a,[p.a,P.a,b.a,E.a,L.a,t.ChangeDetectorRef,j.a],null,null)],null,null)},{},{},[])},548:function(n,l,e){"use strict";e.d(l,"a",function(){return P});var t=e(0),u=e(83),i=e(29),o=e(4),r=e(6),a=e(11),s=e(12),c=e(33),d=e(8),p=e(25),h=e(67),f=e(68),g=e(66),m=e(102),v=e(70),b=e(20),y=e(138),w=e(71),k=e(19),D=e(44),S=e(154),C=t["ɵcrt"]({encapsulation:2,styles:[],data:{}});function x(n){return t["ɵvid"](0,[(n()(),t["ɵeld"](0,0,null,null,27,"ion-content",[["class","no-overflow-page"]],[[2,"statusbar-padding",null],[2,"has-refresher",null]],null,null,u.b,u.a)),t["ɵdid"](1,4374528,null,0,i.a,[o.a,r.a,a.a,t.ElementRef,t.Renderer,s.a,c.a,t.NgZone,[2,d.a],[2,p.a]],null,null),(n()(),t["ɵted"](-1,1,["\n\n  "])),(n()(),t["ɵeld"](3,0,null,1,18,"ion-grid",[["class","grid"]],null,null,null,null,null)),t["ɵdid"](4,16384,null,0,h.a,[],null,null),(n()(),t["ɵted"](-1,null,["\n    "])),(n()(),t["ɵeld"](6,0,null,null,14,"ion-row",[["class","row"]],null,null,null,null,null)),t["ɵdid"](7,16384,null,0,f.a,[],null,null),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵeld"](9,0,null,null,10,"ion-col",[["class","col"],["width-100",""]],null,null,null,null,null)),t["ɵdid"](10,16384,null,0,g.a,[],null,null),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵeld"](12,0,null,null,2,"block-steps",[["activeStep","5"]],null,null,null,m.b,m.a)),t["ɵdid"](13,49152,null,0,v.a,[p.a,b.a],{activeStep:[0,"activeStep"]},null),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵeld"](16,0,null,null,0,"br",[],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵeld"](18,0,null,null,0,"br",[],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵted"](-1,null,["\n    "])),(n()(),t["ɵted"](-1,null,["\n  "])),(n()(),t["ɵted"](-1,1,["\n\n  "])),(n()(),t["ɵeld"](23,16777216,null,1,2,"block-pdf",[["marginTop","0px"]],null,null,null,y.b,y.a)),t["ɵdid"](24,245760,null,0,w.a,[p.a,k.a,b.a,t.ChangeDetectorRef,t.ViewContainerRef,D.a],{marginTop:[0,"marginTop"]},null),(n()(),t["ɵted"](-1,null,["\n\n  "])),(n()(),t["ɵted"](-1,1,["\n  \n"])),(n()(),t["ɵted"](-1,1,["\n\n"])),(n()(),t["ɵted"](-1,null,["\n"]))],function(n,l){n(l,13,0,"5");n(l,24,0,"0px")},function(n,l){n(l,0,0,t["ɵnov"](l,1).statusbarPadding,t["ɵnov"](l,1)._hasRefresher)})}var P=t["ɵccf"]("page-review",S.a,function(n){return t["ɵvid"](0,[(n()(),t["ɵeld"](0,0,null,null,1,"page-review",[],null,null,null,x,C)),t["ɵdid"](1,49152,null,0,S.a,[p.a,k.a,b.a],null,null)],null,null)},{},{},[])},549:function(n,l,e){"use strict";e.d(l,"a",function(){return P});var t=e(0),u=e(83),i=e(29),o=e(4),r=e(6),a=e(11),s=e(12),c=e(33),d=e(8),p=e(25),h=e(67),f=e(68),g=e(66),m=e(102),v=e(70),b=e(20),y=e(138),w=e(71),k=e(19),D=e(44),S=e(224),C=t["ɵcrt"]({encapsulation:2,styles:[],data:{}});function x(n){return t["ɵvid"](0,[t["ɵqud"](402653184,1,{blockPdf:0}),(n()(),t["ɵted"](-1,null,["\n"])),(n()(),t["ɵeld"](2,0,null,null,26,"ion-content",[["class","no-overflow-page"]],[[2,"statusbar-padding",null],[2,"has-refresher",null]],null,null,u.b,u.a)),t["ɵdid"](3,4374528,null,0,i.a,[o.a,r.a,a.a,t.ElementRef,t.Renderer,s.a,c.a,t.NgZone,[2,d.a],[2,p.a]],null,null),(n()(),t["ɵted"](-1,1,["\n\n  "])),(n()(),t["ɵeld"](5,0,null,1,17,"ion-grid",[["class","grid"]],null,null,null,null,null)),t["ɵdid"](6,16384,null,0,h.a,[],null,null),(n()(),t["ɵted"](-1,null,["\n    "])),(n()(),t["ɵeld"](8,0,null,null,13,"ion-row",[["class","row"]],null,null,null,null,null)),t["ɵdid"](9,16384,null,0,f.a,[],null,null),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵeld"](11,0,null,null,9,"ion-col",[["class","col"],["width-100",""]],null,null,null,null,null)),t["ɵdid"](12,16384,null,0,g.a,[],null,null),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵeld"](14,0,null,null,1,"block-steps",[["activeStep","4"]],null,null,null,m.b,m.a)),t["ɵdid"](15,49152,null,0,v.a,[p.a,b.a],{activeStep:[0,"activeStep"]},null),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵeld"](17,0,null,null,0,"br",[],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵeld"](19,0,null,null,0,"br",[],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵted"](-1,null,["\n    "])),(n()(),t["ɵted"](-1,null,["\n  "])),(n()(),t["ɵted"](-1,1,["\n\n  "])),(n()(),t["ɵeld"](24,16777216,null,1,2,"block-pdf",[["showButtons","true"],["showSignature","true"],["showToolBar","true"]],null,null,null,y.b,y.a)),t["ɵdid"](25,245760,[[1,4],["blockpdf",4]],0,w.a,[p.a,k.a,b.a,t.ChangeDetectorRef,t.ViewContainerRef,D.a],{showToolBar:[0,"showToolBar"],showSignature:[1,"showSignature"],showButtons:[2,"showButtons"]},null),(n()(),t["ɵted"](-1,null,["\n\n  "])),(n()(),t["ɵted"](-1,1,["\n\n"])),(n()(),t["ɵted"](-1,1,["\n\n"])),(n()(),t["ɵted"](-1,null,["\n"]))],function(n,l){n(l,15,0,"4");n(l,25,0,"true","true","true")},function(n,l){n(l,2,0,t["ɵnov"](l,3).statusbarPadding,t["ɵnov"](l,3)._hasRefresher)})}var P=t["ɵccf"]("page-sign",S.a,function(n){return t["ɵvid"](0,[(n()(),t["ɵeld"](0,0,null,null,1,"page-sign",[],null,null,null,x,C)),t["ɵdid"](1,49152,null,0,S.a,[p.a,k.a,b.a],null,null)],null,null)},{},{},[])},550:function(n,l,e){"use strict";e.d(l,"a",function(){return P});var t=e(0),u=e(83),i=e(29),o=e(4),r=e(6),a=e(11),s=e(12),c=e(33),d=e(8),p=e(25),h=e(102),f=e(70),g=e(20),m=e(67),v=e(68),b=e(66),y=e(21),w=e(155),k=e(44),D=e(148),S=e(90),C=t["ɵcrt"]({encapsulation:2,styles:[],data:{}});function x(n){return t["ɵvid"](0,[(n()(),t["ɵeld"](0,0,null,null,90,"ion-content",[],[[2,"statusbar-padding",null],[2,"has-refresher",null]],null,null,u.b,u.a)),t["ɵdid"](1,4374528,null,0,i.a,[o.a,r.a,a.a,t.ElementRef,t.Renderer,s.a,c.a,t.NgZone,[2,d.a],[2,p.a]],null,null),(n()(),t["ɵted"](-1,1,["\n\n"])),(n()(),t["ɵeld"](3,0,null,1,2,"block-steps",[["activeStep","1"]],null,null,null,h.b,h.a)),t["ɵdid"](4,49152,null,0,f.a,[p.a,g.a],{activeStep:[0,"activeStep"]},null),(n()(),t["ɵted"](-1,null,["\n"])),(n()(),t["ɵted"](-1,1,["\n"])),(n()(),t["ɵeld"](7,0,null,1,0,"br",[],null,null,null,null,null)),(n()(),t["ɵeld"](8,0,null,1,0,"br",[],null,null,null,null,null)),(n()(),t["ɵted"](-1,1,["\n\n  "])),(n()(),t["ɵeld"](10,0,null,1,77,"ion-grid",[["class","grid"]],null,null,null,null,null)),t["ɵdid"](11,16384,null,0,m.a,[],null,null),(n()(),t["ɵted"](-1,null,["\n\n    "])),(n()(),t["ɵeld"](13,0,null,null,57,"ion-row",[["class","uploader-row row"]],null,null,null,null,null)),t["ɵdid"](14,16384,null,0,v.a,[],null,null),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵeld"](16,0,null,null,53,"ion-col",[["class","col"]],null,null,null,null,null)),t["ɵdid"](17,16384,null,0,b.a,[],null,null),(n()(),t["ɵted"](-1,null,["\n\n        "])),(n()(),t["ɵeld"](19,0,null,null,49,"div",[],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n          "])),(n()(),t["ɵted"](-1,null,["\n          "])),(n()(),t["ɵeld"](22,0,null,null,37,"form",[["class","uploader"],["id","file-upload-form"],["novalidate",""]],[[2,"ng-untouched",null],[2,"ng-touched",null],[2,"ng-pristine",null],[2,"ng-dirty",null],[2,"ng-valid",null],[2,"ng-invalid",null],[2,"ng-pending",null]],[[null,"submit"],[null,"reset"]],function(n,l,e){var u=!0;"submit"===l&&(u=!1!==t["ɵnov"](n,24).onSubmit(e)&&u);"reset"===l&&(u=!1!==t["ɵnov"](n,24).onReset()&&u);return u},null,null)),t["ɵdid"](23,16384,null,0,y.n,[],null,null),t["ɵdid"](24,4210688,null,0,y.j,[[8,null],[8,null]],null,null),t["ɵprd"](2048,null,y.b,null,[y.j]),t["ɵdid"](26,16384,null,0,y.i,[y.b],null,null),(n()(),t["ɵted"](-1,null,["\n            "])),(n()(),t["ɵeld"](28,0,null,null,0,"input",[["accept",".pdf"],["id","file-upload"],["name","fileUpload"],["type","file"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n            "])),(n()(),t["ɵeld"](30,0,null,null,28,"label",[["for","file-upload"],["id","file-drag"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n              "])),(n()(),t["ɵeld"](32,0,null,null,0,"img",[["alt","Preview"],["class","hidden"],["id","file-image"],["src","#"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n              "])),(n()(),t["ɵeld"](34,0,null,null,12,"div",[["id","start"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n                "])),(n()(),t["ɵeld"](36,0,null,null,0,"i",[["aria-hidden","true"],["class","fa fa-download"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n                "])),(n()(),t["ɵeld"](38,0,null,null,1,"div",[],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["Select a PDF"])),(n()(),t["ɵted"](-1,null,["\n                "])),(n()(),t["ɵeld"](41,0,null,null,1,"div",[["class","hidden"],["id","notimage"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["Please select an image"])),(n()(),t["ɵted"](-1,null,["\n                "])),(n()(),t["ɵeld"](44,0,null,null,1,"span",[["class","btn btn-primary"],["id","file-upload-btn"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["Select a file"])),(n()(),t["ɵted"](-1,null,["\n              "])),(n()(),t["ɵted"](-1,null,["\n              "])),(n()(),t["ɵeld"](48,0,null,null,9,"div",[["class","hidden"],["id","response"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n                "])),(n()(),t["ɵeld"](50,0,null,null,0,"div",[["id","messages"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n                "])),(n()(),t["ɵeld"](52,0,null,null,4,"progress",[["class","progress"],["id","file-progress"],["value","0"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n                  "])),(n()(),t["ɵeld"](54,0,null,null,1,"span",[],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["0"])),(n()(),t["ɵted"](-1,null,["%\n                "])),(n()(),t["ɵted"](-1,null,["\n              "])),(n()(),t["ɵted"](-1,null,["\n            "])),(n()(),t["ɵted"](-1,null,["\n          "])),(n()(),t["ɵted"](-1,null,["\n\n          "])),(n()(),t["ɵted"](-1,null,["\n          "])),(n()(),t["ɵted"](-1,null,["\n          "])),(n()(),t["ɵted"](-1,null,["\n          "])),(n()(),t["ɵted"](-1,null,["\n          "])),(n()(),t["ɵted"](-1,null,["\n          "])),(n()(),t["ɵted"](-1,null,["\n\n          "])),(n()(),t["ɵted"](-1,null,["\n          "])),(n()(),t["ɵted"](-1,null,["\n\n\n\n        "])),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵted"](-1,null,["\n    "])),(n()(),t["ɵted"](-1,null,["\n\n\n    "])),(n()(),t["ɵted"](-1,null,["\n\n    "])),(n()(),t["ɵeld"](73,0,null,null,13,"ion-row",[["class","row"]],null,null,null,null,null)),t["ɵdid"](74,16384,null,0,v.a,[],null,null),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵeld"](76,0,null,null,9,"ion-col",[["class","col"]],null,null,null,null,null)),t["ɵdid"](77,16384,null,0,b.a,[],null,null),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵeld"](79,0,null,null,5,"div",[],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n          "])),(n()(),t["ɵeld"](81,0,null,null,0,"br",[],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n          "])),(n()(),t["ɵeld"](83,0,null,null,0,"canvas",[["id","the-canvas"]],null,null,null,null,null)),(n()(),t["ɵted"](-1,null,["\n        "])),(n()(),t["ɵted"](-1,null,["\n      "])),(n()(),t["ɵted"](-1,null,["\n    "])),(n()(),t["ɵted"](-1,null,["\n\n  "])),(n()(),t["ɵted"](-1,1,["\n\n\n  "])),(n()(),t["ɵted"](-1,1,["\n\n  "])),(n()(),t["ɵted"](-1,1,["\n"]))],function(n,l){n(l,4,0,"1")},function(n,l){n(l,0,0,t["ɵnov"](l,1).statusbarPadding,t["ɵnov"](l,1)._hasRefresher),n(l,22,0,t["ɵnov"](l,26).ngClassUntouched,t["ɵnov"](l,26).ngClassTouched,t["ɵnov"](l,26).ngClassPristine,t["ɵnov"](l,26).ngClassDirty,t["ɵnov"](l,26).ngClassValid,t["ɵnov"](l,26).ngClassInvalid,t["ɵnov"](l,26).ngClassPending)})}var P=t["ɵccf"]("page-home",w.a,function(n){return t["ɵvid"](0,[(n()(),t["ɵeld"](0,0,null,null,1,"page-home",[],null,null,null,x,C)),t["ɵdid"](1,49152,null,0,w.a,[p.a,k.a,D.a,g.a,S.a],null,null)],null,null)},{},{},[])},551:function(n,l,e){"use strict";Object.defineProperty(l,"__esModule",{value:!0});var t=e(49),u=e(0),i=(e(1),e(16),e(58)),o=e(149),r=e(150),a=(e(886),e(84)),s=e(21),c=e(155),d=e(153),p=e(20),h=this&&this.__awaiter||function(n,l,e,t){return new(e||(e=Promise))(function(u,i){function o(n){try{a(t.next(n))}catch(n){i(n)}}function r(n){try{a(t.throw(n))}catch(n){i(n)}}function a(n){n.done?u(n.value):new e(function(l){l(n.value)}).then(o,r)}a((t=t.apply(n,l||[])).next())})},f=this&&this.__generator||function(n,l){var e,t,u,i,o={label:0,sent:function(){if(1&u[0])throw u[1];return u[1]},trys:[],ops:[]};return i={next:r(0),throw:r(1),return:r(2)},"function"==typeof Symbol&&(i[Symbol.iterator]=function(){return this}),i;function r(i){return function(r){return function(i){if(e)throw new TypeError("Generator is already executing.");for(;o;)try{if(e=1,t&&(u=t[2&i[0]?"return":i[0]?"throw":"next"])&&!(u=u.call(t,i[1])).done)return u;switch(t=0,u&&(i=[0,u.value]),i[0]){case 0:case 1:u=i;break;case 4:return o.label++,{value:i[1],done:!1};case 5:o.label++,t=i[1],i=[0];continue;case 7:i=o.ops.pop(),o.trys.pop();continue;default:if(!(u=(u=o.trys).length>0&&u[u.length-1])&&(6===i[0]||2===i[0])){o=0;continue}if(3===i[0]&&(!u||i[1]>u[0]&&i[1]<u[3])){o.label=i[1];break}if(6===i[0]&&o.label<u[1]){o.label=u[1],u=i;break}if(u&&o.label<u[2]){o.label=u[2],o.ops.push(i);break}u[2]&&o.ops.pop(),o.trys.pop();continue}i=l.call(n,o)}catch(n){i=[6,n],t=0}finally{e=u=0}if(5&i[0])throw i[1];return{value:i[0]?i[1]:void 0,done:!0}}([i,r])}}},g=function(){function n(n,l,e){this.viewCtrl=n,this.documentService=l,this.toastCtrl=e,this.doc=this.viewCtrl.data.selectedDoc}return n.prototype.close=function(){this.viewCtrl.dismiss()},n.prototype.documentRemove=function(n){return h(this,void 0,void 0,function(){return f(this,function(n){switch(n.label){case 0:return[4,this.documentService.removeDocument(this.doc)];case 1:return n.sent(),this.toastCtrl.create({message:"Document deleted!",duration:3e3,position:"middle"}).present(),this.viewCtrl.dismiss(),[2]}})})},n}(),m=e(45),v=(e(81),this&&this.__awaiter||function(n,l,e,t){return new(e||(e=Promise))(function(u,i){function o(n){try{a(t.next(n))}catch(n){i(n)}}function r(n){try{a(t.throw(n))}catch(n){i(n)}}function a(n){n.done?u(n.value):new e(function(l){l(n.value)}).then(o,r)}a((t=t.apply(n,l||[])).next())})}),b=this&&this.__generator||function(n,l){var e,t,u,i,o={label:0,sent:function(){if(1&u[0])throw u[1];return u[1]},trys:[],ops:[]};return i={next:r(0),throw:r(1),return:r(2)},"function"==typeof Symbol&&(i[Symbol.iterator]=function(){return this}),i;function r(i){return function(r){return function(i){if(e)throw new TypeError("Generator is already executing.");for(;o;)try{if(e=1,t&&(u=t[2&i[0]?"return":i[0]?"throw":"next"])&&!(u=u.call(t,i[1])).done)return u;switch(t=0,u&&(i=[0,u.value]),i[0]){case 0:case 1:u=i;break;case 4:return o.label++,{value:i[1],done:!1};case 5:o.label++,t=i[1],i=[0];continue;case 7:i=o.ops.pop(),o.trys.pop();continue;default:if(!(u=(u=o.trys).length>0&&u[u.length-1])&&(6===i[0]||2===i[0])){o=0;continue}if(3===i[0]&&(!u||i[1]>u[0]&&i[1]<u[3])){o.label=i[1];break}if(6===i[0]&&o.label<u[1]){o.label=u[1],u=i;break}if(u&&o.label<u[2]){o.label=u[2],o.ops.push(i);break}u[2]&&o.ops.pop(),o.trys.pop();continue}i=l.call(n,o)}catch(n){i=[6,n],t=0}finally{e=u=0}if(5&i[0])throw i[1];return{value:i[0]?i[1]:void 0,done:!0}}([i,r])}}},y=document.querySelectorAll.bind(document),w=function(){function n(n,l,e,t,u,i,o,r,a,s){this.platform=n,this.statusBar=l,this.splashScreen=e,this.loadingCtrl=t,this.alertCtrl=u,this.documentService=i,this.popoverCtrl=o,this.menuCtrl=r,this.blockStackService=a,this.toastCntrl=s,this.rootPage=c.a,this.isLoggedIn=!1,this.loginState="Login",this.fileName="blockusign/pdf1.pdf",this.avatar="http://www.gravatar.com/avatar/?d=identicon",this.initializeApp(),this.pages=[{title:"1). Upload PDF",component:c.a},{title:"2). Annotate PDF",component:d.a}],window.location.host.includes("localhost")?window.apiUrl="http://localhost:5000":window.apiUrl=""}return n.prototype.initializeApp=function(){var n=this;this.platform.ready().then(function(){n.statusBar.styleDefault(),n.splashScreen.hide(),n.showProfile(),n.setupDiscordMenu()})},n.prototype.login=function(){var n=window.location.origin;blockstack.redirectToSignIn(n,n+"/manifest.json",["store_write","publish_data"])},n.prototype.next=function(){this.menuCtrl.close(),this.nav.setRoot("HomePage"),this.nav.push("AnnotatePage",{guid:this.documentService.currentDoc.guid})},n.prototype.home=function(){this.menuCtrl.close(),this.nav.setRoot("HomePage"),this.clearActive()},n.prototype.logout=function(){blockstack.signUserOut(window.location.origin)},n.prototype.showProfile=function(){return v(this,void 0,void 0,function(){var n,l,e,t=this;return b(this,function(u){switch(u.label){case 0:if(!blockstack.isUserSignedIn())return[3,2];n=blockstack.loadUserData(),this.name=n.username,this.isLoggedIn=!0;try{this.avatar=n.profile.image[0].contentUrl}catch(n){console.log("no profile pic")}return this.loginState="[Logout]",this.documentService.getDocumentsIndex(!0).then(function(n){t.documentsList=n}),[4,this.blockStackService.getProfileData()];case 1:return(l=u.sent())&&(e=JSON.parse(l)).email?this.name=e.email:this.profileModal(this.email),[3,3];case 2:blockstack.isSignInPending()?blockstack.handlePendingSignIn().then(function(n){window.location=window.location.origin,this.documentsGetList()}):"true"!==localStorage.getItem("signUp")?window.location.href="signup.html":(localStorage.setItem("signUp","true"),this.login()),u.label=3;case 3:return[2]}})})},n.prototype.setupDiscordMenu=function(){y(".focusable, .button").forEach(function(n){n.addEventListener("mousedown",function(n){return n.preventDefault()}),n.setAttribute("tabindex","0")}),y(".server").forEach(function(n){n.addEventListener("click",function(){var l=y(".server.active")[0];l.classList.remove("active"),l.removeAttribute("aria-selected"),n.classList.add("active"),n.setAttribute("aria-selected",!0)})}),y(".channel-text").forEach(function(n){n.addEventListener("click",function(){y(".channel-text.active")[0].classList.remove("active"),n.classList.add("active")})}),y(".channels-header")[0].addEventListener("click",function(n){n.preventDefault(),document.activeElement===n.target?n.target.blur():n.target.focus()})},n.prototype.documentSelected=function(n,l){this.documentService.currentDoc=l,this.next()},n.prototype.documentsGetList=function(){var n=this;this.documentService.getDocumentsIndex(!0).then(function(l){n.documentsList=l})},n.prototype.presentPopover=function(n,l){this.popoverCtrl.create(g,{selectedDoc:l}).present({ev:n})},n.prototype.clearActive=function(){y(".channel-text").forEach(function(n){try{y(".channel-text.active")[0].classList.remove("active")}catch(n){}})},n.prototype.profileModal=function(n){var l=this;this.alertCtrl.create({title:"Please enter your email",enableBackdropDismiss:!1,inputs:[{name:"email",placeholder:"email",value:n}],buttons:[{text:"Ok",handler:function(n){if(l.blockStackService.setProfileData(n.email),-1==n.email.indexOf("@"))return l.showErrorToast("Invalid Email"),!1}}]}).present()},n.prototype.showErrorToast=function(n){var l=this.toastCntrl.create({message:n,duration:3e3,position:"top"});l.onDidDismiss(function(){console.log("Dismissed toast")}),l.present()},n}(),k=e(152),D=e(225),S=e(219),C=e(223),x=e(220),P=e(222),j=e(61),R=(e(47),e(69),this&&this.__awaiter||function(n,l,e,t){return new(e||(e=Promise))(function(u,i){function o(n){try{a(t.next(n))}catch(n){i(n)}}function r(n){try{a(t.throw(n))}catch(n){i(n)}}function a(n){n.done?u(n.value):new e(function(l){l(n.value)}).then(o,r)}a((t=t.apply(n,l||[])).next())})}),E=this&&this.__generator||function(n,l){var e,t,u,i,o={label:0,sent:function(){if(1&u[0])throw u[1];return u[1]},trys:[],ops:[]};return i={next:r(0),throw:r(1),return:r(2)},"function"==typeof Symbol&&(i[Symbol.iterator]=function(){return this}),i;function r(i){return function(r){return function(i){if(e)throw new TypeError("Generator is already executing.");for(;o;)try{if(e=1,t&&(u=t[2&i[0]?"return":i[0]?"throw":"next"])&&!(u=u.call(t,i[1])).done)return u;switch(t=0,u&&(i=[0,u.value]),i[0]){case 0:case 1:u=i;break;case 4:return o.label++,{value:i[1],done:!1};case 5:o.label++,t=i[1],i=[0];continue;case 7:i=o.ops.pop(),o.trys.pop();continue;default:if(!(u=(u=o.trys).length>0&&u[u.length-1])&&(6===i[0]||2===i[0])){o=0;continue}if(3===i[0]&&(!u||i[1]>u[0]&&i[1]<u[3])){o.label=i[1];break}if(6===i[0]&&o.label<u[1]){o.label=u[1],u=i;break}if(u&&o.label<u[2]){o.label=u[2],o.ops.push(i);break}u[2]&&o.ops.pop(),o.trys.pop();continue}i=l.call(n,o)}catch(n){i=[6,n],t=0}finally{e=u=0}if(5&i[0])throw i[1];return{value:i[0]?i[1]:void 0,done:!0}}([i,r])}}},L=function(){function n(n){this.http=n,this.baseUrl="https://min-api.cryptocompare.com/data/histohour?fsym=",this.coin="IOT",this.symbol="IOT",this.params="&tsym=USD&limit=60&aggregate=3&e=CCCAGG",this.url=""}return n.prototype.getCoin=function(n){return R(this,void 0,void 0,function(){return E(this,function(l){switch(l.label){case 0:return this.coin=n,this.url=this.baseUrl+this.coin+this.params,[4,this.http.get(this.url).toPromise()];case 1:return[2,l.sent()]}})})},n.prototype.getAllCoins=function(){return R(this,void 0,void 0,function(){return E(this,function(n){switch(n.label){case 0:return[4,this.http.get("https://min-api.cryptocompare.com/data/all/coinlist").toPromise()];case 1:return[2,n.sent()]}})})},n}(),T=e(148),I=this&&this.__awaiter||function(n,l,e,t){return new(e||(e=Promise))(function(u,i){function o(n){try{a(t.next(n))}catch(n){i(n)}}function r(n){try{a(t.throw(n))}catch(n){i(n)}}function a(n){n.done?u(n.value):new e(function(l){l(n.value)}).then(o,r)}a((t=t.apply(n,l||[])).next())})},A=this&&this.__generator||function(n,l){var e,t,u,i,o={label:0,sent:function(){if(1&u[0])throw u[1];return u[1]},trys:[],ops:[]};return i={next:r(0),throw:r(1),return:r(2)},"function"==typeof Symbol&&(i[Symbol.iterator]=function(){return this}),i;function r(i){return function(r){return function(i){if(e)throw new TypeError("Generator is already executing.");for(;o;)try{if(e=1,t&&(u=t[2&i[0]?"return":i[0]?"throw":"next"])&&!(u=u.call(t,i[1])).done)return u;switch(t=0,u&&(i=[0,u.value]),i[0]){case 0:case 1:u=i;break;case 4:return o.label++,{value:i[1],done:!1};case 5:o.label++,t=i[1],i=[0];continue;case 7:i=o.ops.pop(),o.trys.pop();continue;default:if(!(u=(u=o.trys).length>0&&u[u.length-1])&&(6===i[0]||2===i[0])){o=0;continue}if(3===i[0]&&(!u||i[1]>u[0]&&i[1]<u[3])){o.label=i[1];break}if(6===i[0]&&o.label<u[1]){o.label=u[1],u=i;break}if(u&&o.label<u[2]){o.label=u[2],o.ops.push(i);break}u[2]&&o.ops.pop(),o.trys.pop();continue}i=l.call(n,o)}catch(n){i=[6,n],t=0}finally{e=u=0}if(5&i[0])throw i[1];return{value:i[0]?i[1]:void 0,done:!0}}([i,r])}}},F=function(){function n(n,l){this.http=n,this.jsonp=l,this.baseUrl="https://www.cryptocompare.com/api/data",this.apiUrl=window.apiUrl,this.currency="BTC",this.aggregate="1"}return n.prototype.getTopCoins=function(){return I(this,void 0,void 0,function(){var n,l,e,t;return A(this,function(u){switch(u.label){case 0:return[4,this.http.get("https://api.coinmarketcap.com/v1/ticker/?limit=377").toPromise()];case 1:return n=u.sent(),[4,this.http.get("https://min-api.cryptocompare.com/data/all/coinlist").toPromise()];case 2:return l=u.sent(),e=l.json().Data,t={},n.json().forEach(function(n){var l=e[n.symbol];l?(l.rank=n.rank,t[n.symbol]=l):console.error("Cannot find "+n.symbol)}),[2,t]}})})},n.prototype.getSocialStats=function(n,l){return I(this,void 0,void 0,function(){return A(this,function(e){switch(e.label){case 0:return n||(n=306304),l||(l=337),this.url=this.baseUrl+("/socialstatshistohour/?aggregate=1&id="+n+"&limit="+l),[4,this.http.get(this.url).toPromise()];case 1:return[2,e.sent()]}})})},n.prototype.getCoins=function(n,l,e,t,u){return I(this,void 0,void 0,function(){return A(this,function(i){switch(i.label){case 0:return this.currency=t,this.aggregate=u,n||(n=10),l||(l=24),e||(e=24),[4,this.http.get(this.apiUrl+"/api/coins?coinLimit="+n+"&histPriceLimit="+l+"&socialLimit="+e+"&currency="+this.currency+"&aggregate="+this.aggregate).toPromise()];case 1:return[2,i.sent()]}})})},n}(),B=this&&this.__awaiter||function(n,l,e,t){return new(e||(e=Promise))(function(u,i){function o(n){try{a(t.next(n))}catch(n){i(n)}}function r(n){try{a(t.throw(n))}catch(n){i(n)}}function a(n){n.done?u(n.value):new e(function(l){l(n.value)}).then(o,r)}a((t=t.apply(n,l||[])).next())})},_=this&&this.__generator||function(n,l){var e,t,u,i,o={label:0,sent:function(){if(1&u[0])throw u[1];return u[1]},trys:[],ops:[]};return i={next:r(0),throw:r(1),return:r(2)},"function"==typeof Symbol&&(i[Symbol.iterator]=function(){return this}),i;function r(i){return function(r){return function(i){if(e)throw new TypeError("Generator is already executing.");for(;o;)try{if(e=1,t&&(u=t[2&i[0]?"return":i[0]?"throw":"next"])&&!(u=u.call(t,i[1])).done)return u;switch(t=0,u&&(i=[0,u.value]),i[0]){case 0:case 1:u=i;break;case 4:return o.label++,{value:i[1],done:!1};case 5:o.label++,t=i[1],i=[0];continue;case 7:i=o.ops.pop(),o.trys.pop();continue;default:if(!(u=(u=o.trys).length>0&&u[u.length-1])&&(6===i[0]||2===i[0])){o=0;continue}if(3===i[0]&&(!u||i[1]>u[0]&&i[1]<u[3])){o.label=i[1];break}if(6===i[0]&&o.label<u[1]){o.label=u[1],u=i;break}if(u&&o.label<u[2]){o.label=u[2],o.ops.push(i);break}u[2]&&o.ops.pop(),o.trys.pop();continue}i=l.call(n,o)}catch(n){i=[6,n],t=0}finally{e=u=0}if(5&i[0])throw i[1];return{value:i[0]?i[1]:void 0,done:!0}}([i,r])}}},U=function(){function n(n,l){this.http=n,this.jsonp=l,this.baseUrl=window.apiUrl+"/api/slack"}return n.prototype.sendAlert=function(n){return B(this,void 0,void 0,function(){return _(this,function(l){switch(l.label){case 0:return[4,this.http.get(this.baseUrl+"/"+n).toPromise()];case 1:return[2,l.sent()]}})})},n}(),M=e(140),N=function(){return function(){}}(),z=e(87),O=e(537),q=e(538),H=e(539),V=e(540),K=e(541),$=e(542),G=e(543),J=e(544),Z=e(545),X=e(550),Q=e(546),W=e(549),Y=e(547),nn=e(548),ln=e(23),en=e(74),tn=e(36),un=e(4),on=e(64),rn=e(57),an=e(6),sn=e(933),cn=e(124),dn=e(42),pn=e(33),hn=e(13),fn=e(11),gn=e(12),mn=e(934),vn=e(95),bn=e(8),yn=e(25),wn=e(54),kn=e(31),Dn=e(183),Sn=e(79),Cn=e(172),xn=e(80),Pn=e(199),jn=e(105),Rn=e(418),En=e(65),Ln=e(44),Tn=e(90),In=e(139),An=e(104),Fn=u["ɵcrt"]({encapsulation:2,styles:[],data:{}});function Bn(n){return u["ɵvid"](0,[(n()(),u["ɵeld"](0,0,null,null,18,"div",[],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n                    "])),(n()(),u["ɵeld"](2,0,null,null,15,"li",[],null,null,null,null,null)),u["ɵdid"](3,278528,null,0,ln.g,[u.IterableDiffers,u.KeyValueDiffers,u.ElementRef,u.Renderer2],{ngClass:[0,"ngClass"]},null),(n()(),u["ɵted"](-1,null,["\n                        "])),(n()(),u["ɵted"](-1,null,["\n                        "])),(n()(),u["ɵeld"](6,0,null,null,1,"span",[["style","width:90%"]],null,[[null,"click"]],function(n,l,e){var t=!0;"click"===l&&(t=!1!==n.component.documentSelected(e,n.context.$implicit)&&t);return t},null,null)),(n()(),u["ɵted"](7,null,["\n                          ","\n                        "])),(n()(),u["ɵted"](-1,null,["\n                        "])),(n()(),u["ɵted"](-1,null,["\n                        "])),(n()(),u["ɵted"](-1,null,["\n                        "])),(n()(),u["ɵeld"](11,0,null,null,5,"button",[["icon-only",""],["ion-button",""],["style","padding-left: 10px; background: transparent"]],null,[[null,"click"]],function(n,l,e){var t=!0;"click"===l&&(t=!1!==n.component.presentPopover(e,n.context.$implicit)&&t);return t},en.b,en.a)),u["ɵdid"](12,1097728,null,0,tn.a,[[8,""],un.a,u.ElementRef,u.Renderer],null,null),(n()(),u["ɵted"](-1,0,["\n                                "])),(n()(),u["ɵeld"](14,0,null,0,1,"ion-icon",[["name","more"],["role","img"]],[[2,"hide",null]],null,null,null,null)),u["ɵdid"](15,147456,null,0,on.a,[un.a,u.ElementRef,u.Renderer],{name:[0,"name"]},null),(n()(),u["ɵted"](-1,0,["\n                        "])),(n()(),u["ɵted"](-1,null,["\n                      "])),(n()(),u["ɵted"](-1,null,["\n                "]))],function(n,l){n(l,3,0,l.context.$implicit==l.component.documentService.currentDoc?"channel focusable channel-text active ":"channel focusable channel-text ");n(l,15,0,"more")},function(n,l){n(l,7,0,l.context.$implicit.fileName),n(l,14,0,u["ɵnov"](l,15)._hidden)})}function _n(n){return u["ɵvid"](0,[u["ɵqud"](402653184,1,{nav:0}),(n()(),u["ɵted"](-1,null,["\n\n"])),(n()(),u["ɵted"](-1,null,["\n"])),(n()(),u["ɵeld"](3,0,null,null,155,"ion-split-pane",[],null,null,null,null,null)),u["ɵdid"](4,4341760,null,1,rn.b,[u.NgZone,an.a,un.a,u.ElementRef,u.Renderer],null,null),u["ɵqud"](603979776,2,{_setchildren:1}),u["ɵprd"](2048,[[2,4]],rn.a,null,[rn.b]),(n()(),u["ɵted"](-1,null,["\n  "])),(n()(),u["ɵeld"](8,0,null,null,127,"ion-menu",[["role","navigation"]],null,null,null,sn.b,sn.a)),u["ɵdid"](9,245760,null,2,cn.a,[dn.a,u.ElementRef,un.a,an.a,u.Renderer,pn.a,hn.l,fn.a,gn.a],{content:[0,"content"]},null),u["ɵqud"](335544320,3,{menuContent:0}),u["ɵqud"](335544320,4,{menuNav:0}),u["ɵprd"](2048,[[2,4]],rn.a,null,[cn.a]),(n()(),u["ɵted"](-1,0,["\n      "])),(n()(),u["ɵeld"](14,0,null,0,120,"div",[["class","discord"],["style","height: 100%; width: 300px; color:whitesmoke"]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n        "])),(n()(),u["ɵted"](-1,null,["\n        "])),(n()(),u["ɵeld"](17,0,null,null,116,"main",[["class","container"]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n          "])),(n()(),u["ɵeld"](19,0,null,null,27,"aside",[["class","servers"]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n            "])),(n()(),u["ɵeld"](21,0,null,null,12,"div",[["class","servers-collection"]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n              "])),(n()(),u["ɵeld"](23,0,null,null,9,"div",[["aria-label","Friends unread"],["class","server focusable server-friends"],["role","button"]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n                "])),(n()(),u["ɵeld"](25,0,null,null,6,"div",[["class","server-icon"]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n                  "])),(n()(),u["ɵeld"](27,0,null,null,3,":svg:svg",[],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n                    "])),(n()(),u["ɵeld"](29,0,null,null,0,":svg:use",[[":xlink:href","#icon-friends"]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n                  "])),(n()(),u["ɵted"](-1,null,["\n                "])),(n()(),u["ɵted"](-1,null,["\n              "])),(n()(),u["ɵted"](-1,null,["\n            "])),(n()(),u["ɵted"](-1,null,["\n\n          \n            "])),(n()(),u["ɵeld"](35,0,null,null,10,"div",[["class","servers-collection"]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n              "])),(n()(),u["ɵeld"](37,0,null,null,7,"div",[["aria-label","My Server"],["aria-selected","true"],["class","server focusable active"],["role","button"]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n                "])),(n()(),u["ɵeld"](39,0,null,null,4,"div",[["class","server-icon"]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n                 "])),(n()(),u["ɵted"](-1,null,["\n                  "])),(n()(),u["ɵeld"](42,0,null,null,0,"img",[["alt","Avatar"],["class","avatar"]],[[8,"src",4]],null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n                "])),(n()(),u["ɵted"](-1,null,["\n              "])),(n()(),u["ɵted"](-1,null,["\n            "])),(n()(),u["ɵted"](-1,null,["\n          "])),(n()(),u["ɵted"](-1,null,["\n\n\n\n\n          "])),(n()(),u["ɵeld"](48,0,null,null,84,"aside",[["class","channels"]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n            "])),(n()(),u["ɵeld"](50,0,null,null,10,"header",[["class","channels-header focusable"]],null,[[null,"click"]],function(n,l,e){var t=!0;"click"===l&&(t=!1!==n.component.home()&&t);return t},null,null)),(n()(),u["ɵted"](-1,null,["\n\n              "])),(n()(),u["ɵted"](-1,null,["\n              "])),(n()(),u["ɵeld"](53,0,null,null,0,"img",[["class","blockusign-logo"],["height","45px"],["src","./assets/imgs/blockusignLogoSvg.svg"],["width","45px"]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n              "])),(n()(),u["ɵeld"](55,0,null,null,0,"img",[["src","./assets/imgs/blockusignTextLoRes.png"],["style","padding-left: 12px; padding-top: 10px"],["width","120px"]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n             \n              \n            \n\n\n\n              "])),(n()(),u["ɵeld"](57,0,null,null,0,"h3",[["class","channels-header-name"],["role","header"],["style","padding-right: 10px;"]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,[" \n              "])),(n()(),u["ɵted"](-1,null,["\n              "])),(n()(),u["ɵted"](-1,null,["\n\n             \n\n\n            "])),(n()(),u["ɵted"](-1,null,["\n\n            "])),(n()(),u["ɵeld"](62,0,null,null,52,"section",[["class","channels-list"]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n\n              "])),(n()(),u["ɵeld"](64,0,null,null,8,"section",[],null,[[null,"click"]],function(n,l,e){var t=!0;"click"===l&&(t=!1!==n.component.home()&&t);return t},null,null)),(n()(),u["ɵted"](-1,null,["\n                "])),(n()(),u["ɵeld"](66,0,null,null,5,"button",[["icon-end",""],["ion-button",""],["style","float:right;width:100%;background-color:green; color:white; border-radius: 5px; margin-bottom: 20px; margin-top: 20px"]],null,null,null,en.b,en.a)),u["ɵdid"](67,1097728,null,0,tn.a,[[8,""],un.a,u.ElementRef,u.Renderer],null,null),(n()(),u["ɵted"](-1,0,["New Doc\n                  "])),(n()(),u["ɵeld"](69,0,null,0,1,"ion-icon",[["name","md-add"],["role","img"]],[[2,"hide",null]],null,null,null,null)),u["ɵdid"](70,147456,null,0,on.a,[un.a,u.ElementRef,u.Renderer],{name:[0,"name"]},null),(n()(),u["ɵted"](-1,0,["\n                "])),(n()(),u["ɵted"](-1,null,["\n                \n              "])),(n()(),u["ɵted"](-1,null,["\n\n              "])),(n()(),u["ɵeld"](74,0,null,null,4,"header",[["class","channels-list-header"]],null,[[null,"click"]],function(n,l,e){var t=!0;"click"===l&&(t=!1!==n.component.home()&&t);return t},null,null)),(n()(),u["ɵted"](-1,null,["\n                "])),(n()(),u["ɵeld"](76,0,null,null,1,"span",[],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["Documents"])),(n()(),u["ɵted"](-1,null,["\n              "])),(n()(),u["ɵted"](-1,null,["\n\n             \n              \n              "])),(n()(),u["ɵeld"](80,0,null,null,5,"ul",[["class","channels-list-text"]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n                "])),(n()(),u["ɵand"](16777216,null,null,1,null,Bn)),u["ɵdid"](83,802816,null,0,ln.h,[u.ViewContainerRef,u.TemplateRef,u.IterableDiffers],{ngForOf:[0,"ngForOf"]},null),(n()(),u["ɵted"](-1,null,["\n                \n\n                "])),(n()(),u["ɵted"](-1,null,["\n\n              "])),(n()(),u["ɵted"](-1,null,["\n\n\n\n              "])),(n()(),u["ɵted"](-1,null,["\n\n              "])),(n()(),u["ɵeld"](88,0,null,null,4,"header",[["class","channels-list-header focusable"],["style","margin-top:150px"]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n                "])),(n()(),u["ɵeld"](90,0,null,null,1,"span",[],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["Features in progress"])),(n()(),u["ɵted"](-1,null,["\n              "])),(n()(),u["ɵted"](-1,null,["\n              "])),(n()(),u["ɵeld"](94,0,null,null,19,"ul",[["class","channels-list-text"]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n                  "])),(n()(),u["ɵeld"](96,0,null,null,4,"li",[["class","channel focusable channel-text "]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n                      "])),(n()(),u["ɵeld"](98,0,null,null,1,"span",[],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["Templates"])),(n()(),u["ɵted"](-1,null,["\n                    "])),(n()(),u["ɵted"](-1,null,["\n                    "])),(n()(),u["ɵeld"](102,0,null,null,4,"li",[["class","channel focusable channel-text "]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n                        "])),(n()(),u["ɵeld"](104,0,null,null,1,"span",[],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["Analytics"])),(n()(),u["ɵted"](-1,null,["\n                      "])),(n()(),u["ɵted"](-1,null,["\n                "])),(n()(),u["ɵeld"](108,0,null,null,4,"li",[["class","channel focusable channel-text "]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n                  "])),(n()(),u["ɵeld"](110,0,null,null,1,"span",[],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["Smart Contracts"])),(n()(),u["ɵted"](-1,null,["\n                "])),(n()(),u["ɵted"](-1,null,["\n              "])),(n()(),u["ɵted"](-1,null,["\n            "])),(n()(),u["ɵted"](-1,null,["\n\n\n\n            "])),(n()(),u["ɵeld"](116,0,null,null,15,"footer",[["class","channels-footer"]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n              "])),(n()(),u["ɵted"](-1,null,["\n              "])),(n()(),u["ɵeld"](119,0,null,null,0,"img",[["alt","Avatar"],["class","avatar"]],[[8,"src",4]],null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n              "])),(n()(),u["ɵeld"](121,0,null,null,8,"div",[["class","channels-footer-details"]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n                "])),(n()(),u["ɵeld"](123,0,null,null,4,"span",[["class","username"]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n                  "])),(n()(),u["ɵeld"](125,0,null,null,1,"a",[["style","float:right"]],null,[[null,"click"]],function(n,l,e){var t=!0;"click"===l&&(t=!1!==n.component.logout()&&t);return t},null,null)),(n()(),u["ɵted"](126,null,[""," "," "])),(n()(),u["ɵted"](-1,null,["\n                "])),(n()(),u["ɵted"](-1,null,["\n                "])),(n()(),u["ɵted"](-1,null,["\n              "])),(n()(),u["ɵted"](-1,null,["\n              "])),(n()(),u["ɵted"](-1,null,["\n            "])),(n()(),u["ɵted"](-1,null,["\n          "])),(n()(),u["ɵted"](-1,null,["\n\n\n        "])),(n()(),u["ɵted"](-1,null,["\n      "])),(n()(),u["ɵted"](-1,0,["\n   \n  "])),(n()(),u["ɵted"](-1,null,["\n \n  "])),(n()(),u["ɵeld"](137,0,null,null,4,"ion-nav",[["class","centerMe"],["main",""],["swipeBackEnabled","false"]],null,null,null,mn.b,mn.a)),u["ɵdid"](138,4374528,[[1,4],["content",4]],0,vn.a,[[2,bn.a],[2,yn.a],gn.a,un.a,an.a,u.ElementRef,u.NgZone,u.Renderer,u.ComponentFactoryResolver,hn.l,wn.a,[2,kn.a],fn.a,u.ErrorHandler],{swipeBackEnabled:[0,"swipeBackEnabled"],root:[1,"root"]},null),u["ɵprd"](2048,[[2,4]],rn.a,null,[vn.a]),(n()(),u["ɵted"](-1,null,["\n    "])),(n()(),u["ɵted"](-1,null,["\n  "])),(n()(),u["ɵted"](-1,null,["\n  "])),(n()(),u["ɵeld"](143,0,null,null,14,"ion-fab",[["left",""],["menuToggle",""],["top",""]],[[8,"hidden",0]],[[null,"click"]],function(n,l,e){var t=!0;"click"===l&&(t=!1!==u["ɵnov"](n,147).toggle()&&t);return t},Dn.b,Dn.a)),u["ɵdid"](144,1228800,null,2,Sn.a,[an.a],null,null),u["ɵqud"](335544320,5,{_mainButton:0}),u["ɵqud"](603979776,6,{_fabLists:1}),u["ɵdid"](147,1064960,null,0,Cn.a,[dn.a,[2,bn.a],[2,tn.a],[2,xn.a]],{menuToggle:[0,"menuToggle"]},null),u["ɵdid"](148,16384,null,1,Pn.a,[un.a,u.ElementRef,u.Renderer,[2,jn.a],[2,xn.a]],null,null),u["ɵqud"](603979776,7,{_buttons:1}),(n()(),u["ɵted"](-1,0,["\n    "])),(n()(),u["ɵeld"](151,0,null,0,5,"button",[["color","primary"],["ion-fab",""]],null,null,null,Rn.b,Rn.a)),u["ɵdid"](152,49152,[[5,4]],0,En.a,[un.a,u.ElementRef,u.Renderer],{color:[0,"color"]},null),(n()(),u["ɵted"](-1,0,["\n      "])),(n()(),u["ɵeld"](154,0,null,0,1,"ion-icon",[["name","menu"],["role","img"]],[[2,"hide",null]],null,null,null,null)),u["ɵdid"](155,147456,null,0,on.a,[un.a,u.ElementRef,u.Renderer],{name:[0,"name"]},null),(n()(),u["ɵted"](-1,0,["\n    "])),(n()(),u["ɵted"](-1,0,["\n  "])),(n()(),u["ɵted"](-1,null,["\n"])),(n()(),u["ɵted"](-1,null,["\n\n"])),(n()(),u["ɵted"](-1,null,["\n"])),(n()(),u["ɵeld"](161,0,null,null,31,"div",[["style","visibility: hidden"]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n  "])),(n()(),u["ɵeld"](163,0,null,null,7,":svg:svg",[["id","icon-friends"],["viewBox","-289 382 32 27.1"]],null,null,null,null,null)),(n()(),u["ɵeld"](164,0,null,null,1,":svg:style",[["id","style3"]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,[".st0{fill:#FFFFFF;} .st1{opacity:0.6;}"])),(n()(),u["ɵeld"](166,0,null,null,4,":svg:g",[["fill","#fff"],["id","g4145"]],null,null,null,null,null)),(n()(),u["ɵeld"](167,0,null,null,0,":svg:path",[["class","st0"],["d","M-273 409.1c-4.1 0-6.8-.6-7.9-1.7-.5-.6-.6-1.1-.6-1.3 0-.7.1-2.9.6-3.8.1-.3.5-1 4.5-2.4-1.6-1.4-2.6-4-2.6-7.1 0-4.2 2.3-7 5.9-7.1h.1c3.6.1 5.9 2.8 5.9 7.1 0 3.1-1 5.7-2.6 7.1 4 1.4 4.4 2.1 4.5 2.4.4.9.5 3.1.6 3.8 0 .2 0 .7-.6 1.3-1.1 1.1-3.7 1.7-7.8 1.7zm0-2c5.1 0 6.2-.9 6.4-1.1-.1-1.1-.2-2.3-.3-2.7-.6-.4-2.9-1.3-4.8-1.9l-.7-.2-.1-2 .7-.3c1.7-.6 2.8-3.1 2.8-6.1 0-3.1-1.5-5-3.9-5.1-2.5 0-4 2-4 5.1 0 3 1.1 5.5 2.8 6.1l.7.3-.1 2-.7.2c-1.9.6-4.2 1.5-4.8 1.9-.1.4-.3 1.6-.3 2.7.1.2 1.3 1.1 6.3 1.1z"],["id","path5"]],null,null,null,null,null)),(n()(),u["ɵeld"](168,0,null,null,2,":svg:g",[["class","st1"],["id","g7"],["opacity",".6"]],null,null,null,null,null)),(n()(),u["ɵeld"](169,0,null,null,0,":svg:path",[["class","st0"],["d","M-257 402.4c0-.7-.1-2.9-.6-3.8-.1-.3-.5-1-4.5-2.4 1.6-1.4 2.6-4 2.6-7.1 0-4.2-2.3-7-5.9-7.1h-.1c-1.9 0-3.5.8-4.5 2.2.6.3 1.2.6 1.8 1 .7-.8 1.6-1.3 2.8-1.3 2.4 0 3.9 2 3.9 5.1 0 3-1.1 5.5-2.8 6.1l-.7.3.1 2 .7.2c1.9.6 4.3 1.5 4.8 1.9.1.4.3 1.6.3 2.7-.2.2-1 .8-3.8 1 .1.6.2 1.2.2 2 2.5-.2 4.2-.8 5-1.6.7-.5.7-1 .7-1.2z"],["id","path9"]],null,null,null,null,null)),(n()(),u["ɵeld"](170,0,null,null,0,":svg:path",[["class","st0"],["d","M-287 402.3c.1-1.1.2-2.3.3-2.7.6-.4 2.9-1.3 4.8-1.9l.7-.2.1-2-.7-.3c-1.6-.6-2.8-3.1-2.8-6.1 0-3.1 1.5-5 4-5.1 1.2 0 2.1.5 2.8 1.3.5-.4 1.1-.8 1.8-1-1-1.4-2.6-2.2-4.5-2.2h-.1c-3.6 0-5.9 2.8-5.9 7.1 0 3.1 1 5.7 2.6 7.1-4 1.4-4.4 2.1-4.5 2.4-.4.9-.5 3.1-.6 3.8 0 .2 0 .7.6 1.3.8.9 2.5 1.4 5.1 1.6 0-.7.1-1.4.2-2-2.9-.3-3.7-.9-3.9-1.1z"],["id","path11"]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n\n  "])),(n()(),u["ɵeld"](172,0,null,null,1,":svg:svg",[["id","icon-mute"],["viewBox","0 0 16 16"]],null,null,null,null,null)),(n()(),u["ɵeld"](173,0,null,null,0,":svg:path",[["d","M12.5,8v1c0,2.2-1.8,4-4,4h-1c-2.2,0-4-1.8-4-4V8h-1v1 c0,2.8,2.2,5,5,5v1H7c-0.3,0-0.5,0.2-0.5,0.5C6.5,15.8,6.7,16,7,16h2c0.3,0,0.5-0.2,0.5-0.5C9.5,15.2,9.3,15,9,15H8.5v-1 c2.8,0,5-2.2,5-5V8H12.5z M8,12c1.9,0,3.5-1.6,3.5-3.5v-5C11.5,1.6,9.9,0,8,0C6.1,0,4.5,1.6,4.5,3.5v5C4.5,10.4,6.1,12,8,12z M5.5,3.5C5.5,2.1,6.6,1,8,1c1.4,0,2.5,1.1,2.5,2.5v5C10.5,9.9,9.4,11,8,11c-1.4,0-2.5-1.1-2.5-2.5V3.5z"],["fill","#5D6063"]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n  \n  "])),(n()(),u["ɵeld"](175,0,null,null,1,":svg:svg",[["id","icon-deafen"],["viewBox","0 0 16 16"]],null,null,null,null,null)),(n()(),u["ɵeld"](176,0,null,null,0,":svg:path",[["d","M15.9,9C16,8.7,16,8.3,16,8c0-4.4-3.6-8-8-8C3.6,0,0,3.6,0,8 c0,0.3,0,0.7,0.1,1h0C0,9.2,0,9.3,0,9.5v4C0,14.3,0.7,15,1.5,15h2C4.3,15,5,14.3,5,13.5v-4C5,8.7,4.3,8,3.5,8h-2 C1.3,8,1.2,8,1,8.1C1,8.1,1,8,1,8c0-3.9,3.1-7,7-7c3.9,0,7,3.1,7,7c0,0,0,0.1,0,0.1C14.8,8,14.7,8,14.5,8h-2C11.7,8,11,8.7,11,9.5 v4c0,0.8,0.7,1.5,1.5,1.5h2c0.8,0,1.5-0.7,1.5-1.5v-4C16,9.3,16,9.2,15.9,9L15.9,9z M1.5,9h2C3.8,9,4,9.2,4,9.5v4 C4,13.8,3.8,14,3.5,14h-2C1.2,14,1,13.8,1,13.5v-4C1,9.2,1.2,9,1.5,9z M15,13.5c0,0.3-0.2,0.5-0.5,0.5h-2c-0.3,0-0.5-0.2-0.5-0.5 v-4C12,9.2,12.2,9,12.5,9h2C14.8,9,15,9.2,15,9.5V13.5z"],["fill","#5D6063"]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n  \n  "])),(n()(),u["ɵeld"](178,0,null,null,1,":svg:svg",[["id","icon-settings"],["viewBox","0 0 16 16"]],null,null,null,null,null)),(n()(),u["ɵeld"](179,0,null,null,0,":svg:path",[["d","M8,5C6.3,5,5,6.3,5,8c0,1.7,1.3,3,3,3c1.7,0,3-1.3,3-3 C11,6.3,9.7,5,8,5z M8,10c-1.1,0-2-0.9-2-2c0-1.1,0.9-2,2-2s2,0.9,2,2C10,9.1,9.1,10,8,10z M16,8c0-1-0.8-1.9-1.8-2 c-0.1-0.3-0.3-0.7-0.4-1c0.7-0.8,0.6-1.9-0.1-2.7c-0.7-0.7-1.9-0.8-2.7-0.1c-0.3-0.2-0.6-0.3-1-0.4C9.9,0.8,9,0,8,0 C7,0,6.1,0.8,6,1.8C5.7,1.9,5.3,2.1,5,2.2C4.2,1.6,3.1,1.6,2.3,2.3C1.6,3.1,1.6,4.2,2.2,5C2.1,5.3,1.9,5.7,1.8,6C0.8,6.1,0,7,0,8 c0,1,0.8,1.9,1.8,2c0.1,0.3,0.3,0.7,0.4,1c-0.7,0.8-0.6,1.9,0.1,2.7c0.7,0.7,1.9,0.8,2.7,0.1c0.3,0.2,0.6,0.3,1,0.4 C6.1,15.2,7,16,8,16c1,0,1.9-0.8,2-1.8c0.3-0.1,0.7-0.3,1-0.4c0.8,0.7,1.9,0.6,2.7-0.1c0.7-0.7,0.8-1.9,0.1-2.7 c0.2-0.3,0.3-0.6,0.4-1C15.2,9.9,16,9,16,8z M13.4,9c-0.1,0.8-0.5,1.5-0.9,2.1l0.4,0.4c0.4,0.4,0.4,1,0,1.4c-0.4,0.4-1,0.4-1.4,0 l-0.4-0.4C10.5,13,9.8,13.3,9,13.4V14c0,0.6-0.4,1-1,1c-0.6,0-1-0.4-1-1v-0.6c-0.8-0.1-1.5-0.5-2.1-0.9l-0.4,0.4 c-0.4,0.4-1,0.4-1.4,0c-0.4-0.4-0.4-1,0-1.4l0.4-0.4C3,10.5,2.7,9.8,2.6,9H2C1.4,9,1,8.6,1,8c0-0.6,0.4-1,1-1h0.6 C2.7,6.2,3,5.5,3.5,4.9L3.1,4.5c-0.4-0.4-0.4-1,0-1.4c0.4-0.4,1-0.4,1.4,0l0.4,0.4C5.5,3,6.2,2.7,7,2.6V2c0-0.6,0.4-1,1-1 c0.6,0,1,0.4,1,1v0.6c0.8,0.1,1.5,0.5,2.1,0.9l0.4-0.4c0.4-0.4,1-0.4,1.4,0c0.4,0.4,0.4,1,0,1.4l-0.4,0.4C13,5.5,13.3,6.2,13.4,7 H14c0.6,0,1,0.4,1,1c0,0.6-0.4,1-1,1H13.4z"],["fill","#5D6063"]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n  \n  "])),(n()(),u["ɵeld"](181,0,null,null,4,":svg:svg",[["id","icon-dropdown"],["viewBox","0 0 18 18"]],null,null,null,null,null)),(n()(),u["ɵeld"](182,0,null,null,1,":svg:style",[],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,[".dd{stroke:#ABADAF;stroke-width:2px;stroke-dashoffset:1;stroke-dasharray:inherit}"])),(n()(),u["ɵeld"](184,0,null,null,0,":svg:path",[["class","dd"],["d","M4.5 4.5l9 9"],["stroke","#FFF"],["stroke-linecap","round"]],null,null,null,null,null)),(n()(),u["ɵeld"](185,0,null,null,0,":svg:path",[["class","dd"],["d","M13.5 4.5l-9 9"],["stroke","#FFF"],["stroke-linecap","round"]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n  \n  "])),(n()(),u["ɵeld"](187,0,null,null,1,":svg:svg",[["id","icon-invite"],["viewBox","0 0 16 16"]],null,null,null,null,null)),(n()(),u["ɵeld"](188,0,null,null,0,":svg:path",[["d","M6.3,3.4L8,1.7v9.8C8,11.8,8.2,12,8.5,12C8.8,12,9,11.8,9,11.5V1.7l1.7,1.7c0.2,0.2,0.5,0.2,0.7,0c0.2-0.2,0.2-0.5,0-0.7L8.9,0.2c0,0,0,0,0-0.1C8.8,0,8.6,0,8.5,0c0,0,0,0,0,0c0,0,0,0,0,0C8.4,0,8.2,0,8.1,0.1c0,0,0,0,0,0.1L5.6,2.7c-0.2,0.2-0.2,0.5,0,0.7C5.8,3.5,6.1,3.5,6.3,3.4z M14,4h-1.5v1h1C13.8,5,14,5.2,14,5.5v9c0,0.3-0.2,0.5-0.5,0.5h-10C3.2,15,3,14.8,3,14.5v-9C3,5.2,3.2,5,3.5,5h1V4H3C2.4,4,2,4.4,2,5v10c0,0.6,0.4,1,1,1h11c0.6,0,1-0.4,1-1V5C15,4.4,14.6,4,14,4z"],["fill","#fff"]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n  \n  "])),(n()(),u["ɵeld"](190,0,null,null,1,":svg:svg",[["id","icon-channel-settings"],["viewBox","0 0 16 16"]],null,null,null,null,null)),(n()(),u["ɵeld"](191,0,null,null,0,":svg:path",[["d","M8,5C6.3,5,5,6.3,5,8c0,1.7,1.3,3,3,3c1.7,0,3-1.3,3-3 C11,6.3,9.7,5,8,5z M8,10c-1.1,0-2-0.9-2-2c0-1.1,0.9-2,2-2s2,0.9,2,2C10,9.1,9.1,10,8,10z M16,8c0-1-0.8-1.9-1.8-2 c-0.1-0.3-0.3-0.7-0.4-1c0.7-0.8,0.6-1.9-0.1-2.7c-0.7-0.7-1.9-0.8-2.7-0.1c-0.3-0.2-0.6-0.3-1-0.4C9.9,0.8,9,0,8,0 C7,0,6.1,0.8,6,1.8C5.7,1.9,5.3,2.1,5,2.2C4.2,1.6,3.1,1.6,2.3,2.3C1.6,3.1,1.6,4.2,2.2,5C2.1,5.3,1.9,5.7,1.8,6C0.8,6.1,0,7,0,8 c0,1,0.8,1.9,1.8,2c0.1,0.3,0.3,0.7,0.4,1c-0.7,0.8-0.6,1.9,0.1,2.7c0.7,0.7,1.9,0.8,2.7,0.1c0.3,0.2,0.6,0.3,1,0.4 C6.1,15.2,7,16,8,16c1,0,1.9-0.8,2-1.8c0.3-0.1,0.7-0.3,1-0.4c0.8,0.7,1.9,0.6,2.7-0.1c0.7-0.7,0.8-1.9,0.1-2.7 c0.2-0.3,0.3-0.6,0.4-1C15.2,9.9,16,9,16,8z M13.4,9c-0.1,0.8-0.5,1.5-0.9,2.1l0.4,0.4c0.4,0.4,0.4,1,0,1.4c-0.4,0.4-1,0.4-1.4,0 l-0.4-0.4C10.5,13,9.8,13.3,9,13.4V14c0,0.6-0.4,1-1,1c-0.6,0-1-0.4-1-1v-0.6c-0.8-0.1-1.5-0.5-2.1-0.9l-0.4,0.4 c-0.4,0.4-1,0.4-1.4,0c-0.4-0.4-0.4-1,0-1.4l0.4-0.4C3,10.5,2.7,9.8,2.6,9H2C1.4,9,1,8.6,1,8c0-0.6,0.4-1,1-1h0.6 C2.7,6.2,3,5.5,3.5,4.9L3.1,4.5c-0.4-0.4-0.4-1,0-1.4c0.4-0.4,1-0.4,1.4,0l0.4,0.4C5.5,3,6.2,2.7,7,2.6V2c0-0.6,0.4-1,1-1 c0.6,0,1,0.4,1,1v0.6c0.8,0.1,1.5,0.5,2.1,0.9l0.4-0.4c0.4-0.4,1-0.4,1.4,0c0.4,0.4,0.4,1,0,1.4l-0.4,0.4C13,5.5,13.3,6.2,13.4,7 H14c0.6,0,1,0.4,1,1c0,0.6-0.4,1-1,1H13.4z"],["fill","#fff"]],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n"])),(n()(),u["ɵted"](-1,null,["\n"]))],function(n,l){var e=l.component;n(l,9,0,u["ɵnov"](l,138));n(l,70,0,"md-add"),n(l,83,0,e.documentsList);n(l,138,0,"false",e.rootPage);n(l,147,0,"");n(l,152,0,"primary");n(l,155,0,"menu")},function(n,l){var e=l.component;n(l,42,0,e.avatar),n(l,69,0,u["ɵnov"](l,70)._hidden),n(l,119,0,e.avatar),n(l,126,0,e.name,e.loginState),n(l,143,0,u["ɵnov"](l,147).isHidden),n(l,154,0,u["ɵnov"](l,155)._hidden)})}var Un=u["ɵccf"]("ng-component",w,function(n){return u["ɵvid"](0,[(n()(),u["ɵeld"](0,0,null,null,1,"ng-component",[],null,null,null,_n,Fn)),u["ɵdid"](1,49152,null,0,w,[an.a,o.a,r.a,Ln.a,Tn.a,p.a,In.a,dn.a,m.a,An.a],null,null)],null,null)},{},{},[]),Mn=e(94),Nn=e(417),zn=e(35),On=e(32),qn=e(78),Hn=e(121),Vn=u["ɵcrt"]({encapsulation:2,styles:[],data:{}});function Kn(n){return u["ɵvid"](0,[(n()(),u["ɵted"](-1,null,["\n     "])),(n()(),u["ɵeld"](1,0,null,null,0,"br",[],null,null,null,null,null)),(n()(),u["ɵted"](-1,null,["\n      "])),(n()(),u["ɵeld"](3,0,null,null,18,"ion-list",[["style",""]],null,null,null,null,null)),u["ɵdid"](4,16384,null,0,Mn.a,[un.a,u.ElementRef,u.Renderer,an.a,hn.l,fn.a],null,null),(n()(),u["ɵted"](-1,null,["\n        "])),(n()(),u["ɵeld"](6,0,null,null,6,"button",[["class","item item-block"],["ion-item",""]],null,[[null,"click"]],function(n,l,e){var t=!0;"click"===l&&(t=!1!==n.component.documentRemove()&&t);return t},Nn.b,Nn.a)),u["ɵdid"](7,1097728,null,3,zn.a,[On.a,un.a,u.ElementRef,u.Renderer,[2,qn.a]],null,null),u["ɵqud"](335544320,1,{contentLabel:0}),u["ɵqud"](603979776,2,{_buttons:1}),u["ɵqud"](603979776,3,{_icons:1}),u["ɵdid"](11,16384,null,0,Hn.a,[],null,null),(n()(),u["ɵted"](-1,2,["Delete"])),(n()(),u["ɵted"](-1,null,["\n        "])),(n()(),u["ɵeld"](14,0,null,null,6,"button",[["class","item item-block"],["ion-item",""]],null,[[null,"click"]],function(n,l,e){var t=!0;"click"===l&&(t=!1!==n.component.close()&&t);return t},Nn.b,Nn.a)),u["ɵdid"](15,1097728,null,3,zn.a,[On.a,un.a,u.ElementRef,u.Renderer,[2,qn.a]],null,null),u["ɵqud"](335544320,4,{contentLabel:0}),u["ɵqud"](603979776,5,{_buttons:1}),u["ɵqud"](603979776,6,{_icons:1}),u["ɵdid"](19,16384,null,0,Hn.a,[],null,null),(n()(),u["ɵted"](-1,2,["CLOSE X"])),(n()(),u["ɵted"](-1,null,["\n      "])),(n()(),u["ɵted"](-1,null,["\n    "]))],null,null)}var $n=u["ɵccf"]("ng-component",g,function(n){return u["ɵvid"](0,[(n()(),u["ɵeld"](0,0,null,null,1,"ng-component",[],null,null,null,Kn,Vn)),u["ɵdid"](1,49152,null,0,g,[bn.a,p.a,An.a],null,null)],null,null)},{},{},[]),Gn=e(184),Jn=e(165),Zn=e(103),Xn=e(56),Qn=e(218),Wn=e(89),Yn=e(75),nl=e(188),ll=e(119),el=e(186),tl=e(529),ul=e(185),il=e(173),ol=e(187),rl=e(531),al=e(154),sl=u["ɵcmf"](N,[z.b],function(n){return u["ɵmod"]([u["ɵmpd"](512,u.ComponentFactoryResolver,u["ɵCodegenComponentFactoryResolver"],[[8,[O.a,q.a,H.a,V.a,K.a,$.a,G.a,J.a,Z.a,X.a,Q.a,W.a,Y.a,nn.a,Un,$n]],[3,u.ComponentFactoryResolver],u.NgModuleRef]),u["ɵmpd"](5120,u.LOCALE_ID,u["ɵm"],[[3,u.LOCALE_ID]]),u["ɵmpd"](4608,ln.k,ln.j,[u.LOCALE_ID,[2,ln.t]]),u["ɵmpd"](5120,u.APP_ID,u["ɵf"],[]),u["ɵmpd"](5120,u.IterableDiffers,u["ɵk"],[]),u["ɵmpd"](5120,u.KeyValueDiffers,u["ɵl"],[]),u["ɵmpd"](4608,t.c,t.q,[ln.c]),u["ɵmpd"](6144,u.Sanitizer,null,[t.c]),u["ɵmpd"](4608,t.f,Gn.a,[]),u["ɵmpd"](5120,t.d,function(n,l,e,u,i){return[new t.k(n,l),new t.o(e),new t.n(u,i)]},[ln.c,u.NgZone,ln.c,ln.c,t.f]),u["ɵmpd"](4608,t.e,t.e,[t.d,u.NgZone]),u["ɵmpd"](135680,t.m,t.m,[ln.c]),u["ɵmpd"](4608,t.l,t.l,[t.e,t.m]),u["ɵmpd"](6144,u.RendererFactory2,null,[t.l]),u["ɵmpd"](6144,t.p,null,[t.m]),u["ɵmpd"](4608,u.Testability,u.Testability,[u.NgZone]),u["ɵmpd"](4608,t.h,t.h,[ln.c]),u["ɵmpd"](4608,t.i,t.i,[ln.c]),u["ɵmpd"](4608,s.o,s.o,[]),u["ɵmpd"](4608,s.d,s.d,[]),u["ɵmpd"](4608,i.c,i.c,[]),u["ɵmpd"](4608,i.k,i.b,[]),u["ɵmpd"](5120,i.m,i.n,[]),u["ɵmpd"](4608,i.l,i.l,[i.c,i.k,i.m]),u["ɵmpd"](4608,i.j,i.a,[]),u["ɵmpd"](5120,i.e,i.o,[i.l,i.j]),u["ɵmpd"](4608,i.q,i.q,[]),u["ɵmpd"](4608,i.g,i.g,[i.q,i.k]),u["ɵmpd"](5120,i.h,i.p,[i.g,i.j]),u["ɵmpd"](4608,a.j,a.j,[]),u["ɵmpd"](4608,a.h,a.h,[]),u["ɵmpd"](4608,a.g,a.g,[]),u["ɵmpd"](4608,Jn.a,Jn.a,[gn.a,un.a]),u["ɵmpd"](4608,Tn.a,Tn.a,[gn.a,un.a]),u["ɵmpd"](4608,Zn.a,Zn.a,[]),u["ɵmpd"](4608,On.a,On.a,[]),u["ɵmpd"](4608,Xn.a,Xn.a,[an.a]),u["ɵmpd"](4608,pn.a,pn.a,[un.a,an.a,u.NgZone,fn.a]),u["ɵmpd"](4608,Ln.a,Ln.a,[gn.a,un.a]),u["ɵmpd"](5120,ln.f,Qn.c,[ln.r,[2,ln.a],un.a]),u["ɵmpd"](4608,ln.e,ln.e,[ln.f]),u["ɵmpd"](5120,Wn.b,Wn.d,[gn.a,Wn.a]),u["ɵmpd"](5120,kn.a,kn.b,[gn.a,Wn.b,ln.e,Yn.b,u.ComponentFactoryResolver]),u["ɵmpd"](4608,nl.a,nl.a,[gn.a,un.a,kn.a]),u["ɵmpd"](4608,ll.a,ll.a,[gn.a,un.a]),u["ɵmpd"](4608,In.a,In.a,[gn.a,un.a,kn.a]),u["ɵmpd"](4608,el.a,el.a,[un.a,an.a,fn.a,gn.a,hn.l]),u["ɵmpd"](4608,An.a,An.a,[gn.a,un.a]),u["ɵmpd"](4608,wn.a,wn.a,[an.a,un.a]),u["ɵmpd"](4608,o.a,o.a,[]),u["ɵmpd"](4608,r.a,r.a,[]),u["ɵmpd"](4608,m.a,m.a,[Zn.a,i.e]),u["ɵmpd"](4608,L,L,[i.e]),u["ɵmpd"](4608,F,F,[i.e,i.h]),u["ɵmpd"](4608,U,U,[i.e,i.h]),u["ɵmpd"](4608,T.a,T.a,[]),u["ɵmpd"](4608,p.a,p.a,[Zn.a,i.e,m.a]),u["ɵmpd"](4608,M.a,M.a,[Zn.a,i.e]),u["ɵmpd"](512,ln.b,ln.b,[]),u["ɵmpd"](512,u.ErrorHandler,tl.a,[]),u["ɵmpd"](256,un.b,{preloadModules:!0},[]),u["ɵmpd"](1024,ul.a,ul.b,[]),u["ɵmpd"](1024,an.a,an.b,[t.b,ul.a,u.NgZone]),u["ɵmpd"](1024,un.a,un.c,[un.b,an.a]),u["ɵmpd"](512,fn.a,fn.a,[an.a]),u["ɵmpd"](512,dn.a,dn.a,[]),u["ɵmpd"](512,gn.a,gn.a,[un.a,an.a,[2,dn.a]]),u["ɵmpd"](512,hn.l,hn.l,[gn.a]),u["ɵmpd"](256,Wn.a,{links:[{loadChildren:"../pages/annotate/annotate.module.ngfactory#AnnotatePageModuleNgFactory",name:"AnnotatePage",segment:"annotate/:guid",priority:"low",defaultHistory:["HomePage"]},{loadChildren:"../pages/email/email.module.ngfactory#EmailPageModuleNgFactory",name:"EmailPage",segment:"email/:guid",priority:"low",defaultHistory:["AnnotatePage","HomePage"]},{loadChildren:"../pages/review/review.module.ngfactory#ReviewPageModuleNgFactory",name:"ReviewPage",segment:"review/:guid",priority:"low",defaultHistory:["SignPage","EmailPage","AnnotatePage","HomePage"]},{loadChildren:"../pages/sign/sign.module.ngfactory#SignPageModuleNgFactory",name:"SignPage",segment:"sign/:guid",priority:"low",defaultHistory:["EmailPage","AnnotatePage","HomePage"]},{loadChildren:"../pages/home/home.module.ngfactory#HomeModuleNgFactory",name:"HomePage",segment:"home",priority:"low",defaultHistory:[]}]},[]),u["ɵmpd"](512,u.Compiler,u.Compiler,[]),u["ɵmpd"](512,il.a,il.a,[u.Compiler]),u["ɵmpd"](1024,Yn.b,Yn.c,[il.a,u.Injector]),u["ɵmpd"](1024,u.APP_INITIALIZER,function(n,l,e,u,i,o,r,a,s,c,d,p,h){return[t.s(n),ol.a(l),Zn.b(e,u),el.b(i,o,r,a,s),Yn.d(c,d,p,h)]},[[2,u.NgProbeToken],un.a,an.a,fn.a,un.a,an.a,fn.a,gn.a,hn.l,un.a,Wn.a,Yn.b,u.NgZone]),u["ɵmpd"](512,u.ApplicationInitStatus,u.ApplicationInitStatus,[[2,u.APP_INITIALIZER]]),u["ɵmpd"](131584,u.ApplicationRef,u.ApplicationRef,[u.NgZone,u["ɵConsole"],u.Injector,u.ErrorHandler,u.ComponentFactoryResolver,u.ApplicationInitStatus]),u["ɵmpd"](512,u.ApplicationModule,u.ApplicationModule,[u.ApplicationRef]),u["ɵmpd"](512,t.a,t.a,[[3,t.a]]),u["ɵmpd"](512,s.m,s.m,[]),u["ɵmpd"](512,s.e,s.e,[]),u["ɵmpd"](512,s.l,s.l,[]),u["ɵmpd"](512,Qn.a,Qn.a,[]),u["ɵmpd"](512,k.a,k.a,[]),u["ɵmpd"](512,rl.ChartsModule,rl.ChartsModule,[]),u["ɵmpd"](512,i.f,i.f,[]),u["ɵmpd"](512,i.i,i.i,[]),u["ɵmpd"](512,Qn.b,Qn.b,[]),u["ɵmpd"](512,j.a,j.a,[]),u["ɵmpd"](512,D.a,D.a,[]),u["ɵmpd"](512,S.a,S.a,[]),u["ɵmpd"](512,C.a,C.a,[]),u["ɵmpd"](512,a.c,a.c,[]),u["ɵmpd"](512,x.a,x.a,[]),u["ɵmpd"](512,P.a,P.a,[]),u["ɵmpd"](512,N,N,[]),u["ɵmpd"](256,Yn.a,al.a,[]),u["ɵmpd"](256,a.a,{notFoundText:"No items found",typeToSearchText:"Type to search",addTagText:"Add item",loadingText:"Loading...",clearAllText:"Clear all",disableVirtualScroll:!1},[]),u["ɵmpd"](256,z.a,w,[]),u["ɵmpd"](256,ln.a,"/",[])])});Object(u.enableProdMode)(),Object(t.j)().bootstrapModuleFactory(sl)},567:function(n,l){},586:function(n,l){},587:function(n,l){},588:function(n,l){},61:function(n,l,e){"use strict";e.d(l,"a",function(){return t});e(1),e(70),e(16),e(71),e(182);var t=function(){function n(){}return l=n,n.forRoot=function(){return{ngModule:l,providers:[]}},n;var l}()},616:function(n,l,e){var t={"./af":293,"./af.js":293,"./ar":294,"./ar-dz":295,"./ar-dz.js":295,"./ar-kw":296,"./ar-kw.js":296,"./ar-ly":297,"./ar-ly.js":297,"./ar-ma":298,"./ar-ma.js":298,"./ar-sa":299,"./ar-sa.js":299,"./ar-tn":300,"./ar-tn.js":300,"./ar.js":294,"./az":301,"./az.js":301,"./be":302,"./be.js":302,"./bg":303,"./bg.js":303,"./bm":304,"./bm.js":304,"./bn":305,"./bn.js":305,"./bo":306,"./bo.js":306,"./br":307,"./br.js":307,"./bs":308,"./bs.js":308,"./ca":309,"./ca.js":309,"./cs":310,"./cs.js":310,"./cv":311,"./cv.js":311,"./cy":312,"./cy.js":312,"./da":313,"./da.js":313,"./de":314,"./de-at":315,"./de-at.js":315,"./de-ch":316,"./de-ch.js":316,"./de.js":314,"./dv":317,"./dv.js":317,"./el":318,"./el.js":318,"./en-au":319,"./en-au.js":319,"./en-ca":320,"./en-ca.js":320,"./en-gb":321,"./en-gb.js":321,"./en-ie":322,"./en-ie.js":322,"./en-il":323,"./en-il.js":323,"./en-nz":324,"./en-nz.js":324,"./eo":325,"./eo.js":325,"./es":326,"./es-do":327,"./es-do.js":327,"./es-us":328,"./es-us.js":328,"./es.js":326,"./et":329,"./et.js":329,"./eu":330,"./eu.js":330,"./fa":331,"./fa.js":331,"./fi":332,"./fi.js":332,"./fo":333,"./fo.js":333,"./fr":334,"./fr-ca":335,"./fr-ca.js":335,"./fr-ch":336,"./fr-ch.js":336,"./fr.js":334,"./fy":337,"./fy.js":337,"./gd":338,"./gd.js":338,"./gl":339,"./gl.js":339,"./gom-latn":340,"./gom-latn.js":340,"./gu":341,"./gu.js":341,"./he":342,"./he.js":342,"./hi":343,"./hi.js":343,"./hr":344,"./hr.js":344,"./hu":345,"./hu.js":345,"./hy-am":346,"./hy-am.js":346,"./id":347,"./id.js":347,"./is":348,"./is.js":348,"./it":349,"./it.js":349,"./ja":350,"./ja.js":350,"./jv":351,"./jv.js":351,"./ka":352,"./ka.js":352,"./kk":353,"./kk.js":353,"./km":354,"./km.js":354,"./kn":355,"./kn.js":355,"./ko":356,"./ko.js":356,"./ky":357,"./ky.js":357,"./lb":358,"./lb.js":358,"./lo":359,"./lo.js":359,"./lt":360,"./lt.js":360,"./lv":361,"./lv.js":361,"./me":362,"./me.js":362,"./mi":363,"./mi.js":363,"./mk":364,"./mk.js":364,"./ml":365,"./ml.js":365,"./mn":366,"./mn.js":366,"./mr":367,"./mr.js":367,"./ms":368,"./ms-my":369,"./ms-my.js":369,"./ms.js":368,"./mt":370,"./mt.js":370,"./my":371,"./my.js":371,"./nb":372,"./nb.js":372,"./ne":373,"./ne.js":373,"./nl":374,"./nl-be":375,"./nl-be.js":375,"./nl.js":374,"./nn":376,"./nn.js":376,"./pa-in":377,"./pa-in.js":377,"./pl":378,"./pl.js":378,"./pt":379,"./pt-br":380,"./pt-br.js":380,"./pt.js":379,"./ro":381,"./ro.js":381,"./ru":382,"./ru.js":382,"./sd":383,"./sd.js":383,"./se":384,"./se.js":384,"./si":385,"./si.js":385,"./sk":386,"./sk.js":386,"./sl":387,"./sl.js":387,"./sq":388,"./sq.js":388,"./sr":389,"./sr-cyrl":390,"./sr-cyrl.js":390,"./sr.js":389,"./ss":391,"./ss.js":391,"./sv":392,"./sv.js":392,"./sw":393,"./sw.js":393,"./ta":394,"./ta.js":394,"./te":395,"./te.js":395,"./tet":396,"./tet.js":396,"./tg":397,"./tg.js":397,"./th":398,"./th.js":398,"./tl-ph":399,"./tl-ph.js":399,"./tlh":400,"./tlh.js":400,"./tr":401,"./tr.js":401,"./tzl":402,"./tzl.js":402,"./tzm":403,"./tzm-latn":404,"./tzm-latn.js":404,"./tzm.js":403,"./ug-cn":405,"./ug-cn.js":405,"./uk":406,"./uk.js":406,"./ur":407,"./ur.js":407,"./uz":408,"./uz-latn":409,"./uz-latn.js":409,"./uz.js":408,"./vi":410,"./vi.js":410,"./x-pseudo":411,"./x-pseudo.js":411,"./yo":412,"./yo.js":412,"./zh-cn":413,"./zh-cn.js":413,"./zh-hk":414,"./zh-hk.js":414,"./zh-tw":415,"./zh-tw.js":415};function u(n){return e(i(n))}function i(n){var l=t[n];if(!(l+1))throw new Error("Cannot find module '"+n+"'.");return l}u.keys=function(){return Object.keys(t)},u.resolve=i,n.exports=u,u.id=616},70:function(n,l,e){"use strict";e.d(l,"a",function(){return t});e(1),e(16);var t=function(){function n(n,l){this.nav=n,this.documentService=l,console.log("Hello BlockStepsComponent Component"),this.text="Hello World"}return n.prototype.route=function(n){$(".block-pdf-page").empty(),this.nav.push(n,{guid:this.documentService.currentDoc.guid})},n}()},71:function(n,l,e){"use strict";e.d(l,"a",function(){return h});e(1),e(16);var t=e(175),u=(e.n(t),e(176)),i=(e.n(u),e(177)),o=(e.n(i),e(47)),r=(e.n(o),e(562)),a=e.n(r),s=e(39),c=e.n(s),d=this&&this.__awaiter||function(n,l,e,t){return new(e||(e=Promise))(function(u,i){function o(n){try{a(t.next(n))}catch(n){i(n)}}function r(n){try{a(t.throw(n))}catch(n){i(n)}}function a(n){n.done?u(n.value):new e(function(l){l(n.value)}).then(o,r)}a((t=t.apply(n,l||[])).next())})},p=this&&this.__generator||function(n,l){var e,t,u,i,o={label:0,sent:function(){if(1&u[0])throw u[1];return u[1]},trys:[],ops:[]};return i={next:r(0),throw:r(1),return:r(2)},"function"==typeof Symbol&&(i[Symbol.iterator]=function(){return this}),i;function r(i){return function(r){return function(i){if(e)throw new TypeError("Generator is already executing.");for(;o;)try{if(e=1,t&&(u=t[2&i[0]?"return":i[0]?"throw":"next"])&&!(u=u.call(t,i[1])).done)return u;switch(t=0,u&&(i=[0,u.value]),i[0]){case 0:case 1:u=i;break;case 4:return o.label++,{value:i[1],done:!1};case 5:o.label++,t=i[1],i=[0];continue;case 7:i=o.ops.pop(),o.trys.pop();continue;default:if(!(u=(u=o.trys).length>0&&u[u.length-1])&&(6===i[0]||2===i[0])){o=0;continue}if(3===i[0]&&(!u||i[1]>u[0]&&i[1]<u[3])){o.label=i[1];break}if(6===i[0]&&o.label<u[1]){o.label=u[1],u=i;break}if(u&&o.label<u[2]){o.label=u[2],o.ops.push(i);break}u[2]&&o.ops.pop(),o.trys.pop();continue}i=l.call(n,o)}catch(n){i=[6,n],t=0}finally{e=u=0}if(5&i[0])throw i[1];return{value:i[0]?i[1]:void 0,done:!0}}([i,r])}}},h=function(){function n(n,l,e,t,u,i){this.navCtrl=n,this.navParams=l,this.documentService=e,this.changeDetector=t,this.viewContainerRef=u,this.loadingCtrl=i,this.showToolBar=0,this.marginTop="130px",this.DOCUMENT_ID="blockusign/pdf1.txt",this.UI=c.a,this.containerId="pageContainer1",this.canvasId="canvas1",this.selectedElement=null,this.prevElement=null,this.currentX=0,this.currentY=0,this.allowResize=!1,console.log("====> constructor")}return n.prototype.ngOnInit=function(){var n=this;console.log("====> ngOnInit"),$(document).ready(function(){n.loading=n.loadingCtrl.create({content:"Please wait..."}),n.loading.present(),n.init()})},n.prototype.ngOnDestroy=function(){console.log("====> ngOnDestroy")},n.prototype.init=function(){var n=this;if(this.svgDrawer=dragOn(document.querySelector(".dropzone"),{listenTo:".draggable"}),getQueryParam("docData"))this.loading.dismiss();else{if(this.navParams.get("guid")&&!this.documentService.currentDoc){var l=this.navParams.get("guid");this.documentService.getDocumentsIndex(!0).then(function(e){n.documentService.documentsList=e,n.documentService.setCurrentDoc(l),n.getFile()})}else if(this.documentService.currentDoc.guid)this.documentService.setCurrentDoc(this.documentService.currentDoc.guid),this.getFile();else{var e=this.navParams.get("guid");this.documentService.setCurrentDoc(e),this.getFile()}this.yourName=blockstack.loadUserData().profile.name}},n.prototype.getFile=function(){return d(this,void 0,void 0,function(){var n,l;return p(this,function(e){switch(e.label){case 0:return[4,this.documentService.getDocument(this.documentService.currentDoc.guid+".pdf",this.documentService.currentDoc.documentKey)];case 1:return n=e.sent(),this.pdfBuffer=n,l=new Uint8Array(this.pdfBuffer),this.loadPdf(l),[2]}})})},n.prototype.back=function(){this.navCtrl.push("HomePage")},n.prototype.next=function(){this.navCtrl.push("EmailPage",{guid:this.documentService.currentDoc.guid})},n.prototype.clear=function(){this.svgDrawer.cleanHTML(),this.svgDrawer.cleanDrawArea(),this.svgDrawer.updateMetrics(),localStorage.removeItem("svg")},n.prototype.loadPdf=function(n){var l=this;a.a.getDocument({data:n}).promise.then(function(n){n.getPage(1).then(function(n){console.log("Page loaded");var e=n.getViewport(1),t=document.getElementById("canvas1"),u=t.getContext("2d");t.height=e.height,t.width=e.width;n.render({canvasContext:u,viewport:e}).then(function(){return n.getTextContent()}).then(function(t){var u=document.createElement("div");u.setAttribute("class","textLayer"),document.getElementById(""+l.containerId).appendChild(u);var i=new TextLayerBuilder({textLayerDiv:u,pageIndex:n.pageIndex,viewport:e});i.setTextContent(t),i.render(),l.loadSvg(n),l.loading.dismiss()})})},function(n){console.error(n)})},n.prototype.handleClearClick=function(n){confirm("Are you sure you want to throw your work away?")&&(this.page1.innerHTML="")},n.prototype.handleDragStart=function(n){n.style.opacity="0.4"},n.prototype.overLay=function(n){var l=n.pageInfo.view[0]+" "+n.pageInfo.view[1]+" "+n.pageInfo.view[2]+" "+n.pageInfo.view[3];$("#svg-dropzone").css("width","612"),$("#svg-dropzone").css("height","792"),$("#svg-dropzone").attr("width","612"),$("#svg-dropzone").attr("height","792"),$("#svg-dropzone").attr("viewBox",l)},n.prototype.saveSvg=function(){return d(this,void 0,void 0,function(){var n;return p(this,function(l){switch(l.label){case 0:return n="",$(".dragOn-drawArea").each(function(){var l=$(this);""!==l.html()&&(n+=l.html())}),[4,this.documentService.saveAnnotations(this.documentService.currentDoc.guid,n)];case 1:return l.sent(),[4,this.documentService.addMessage(this.documentService.currentDoc.guid,"Updated annotation")];case 2:return l.sent(),[2]}})})},n.prototype.loadSvg=function(n){return d(this,void 0,void 0,function(){var l,e;return p(this,function(t){switch(t.label){case 0:return this.overLay(n),[4,this.documentService.getAnnotations(this.documentService.currentDoc.guid)];case 1:return l=t.sent(),e=null,l&&(e=l.annotations),e&&this.svgDrawer.addHTML(e),[2]}})})},n}()}},[551]);
+webpackJsonp([1],{
+
+/***/ 197:
+/***/ (function(module, exports) {
+
+function webpackEmptyAsyncContext(req) {
+	// Here Promise.resolve().then() is used instead of new Promise() to prevent
+	// uncatched exception popping up in devtools
+	return Promise.resolve().then(function() {
+		throw new Error("Cannot find module '" + req + "'.");
+	});
+}
+webpackEmptyAsyncContext.keys = function() { return []; };
+webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
+module.exports = webpackEmptyAsyncContext;
+webpackEmptyAsyncContext.id = 197;
+
+/***/ }),
+
+/***/ 242:
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"../pages/annotate/annotate.module": [
+		243
+	],
+	"../pages/email/email.module": [
+		393
+	],
+	"../pages/home/home.module": [
+		482
+	],
+	"../pages/review/review.module": [
+		485
+	],
+	"../pages/sign/sign.module": [
+		486
+	]
+};
+function webpackAsyncContext(req) {
+	var ids = map[req];
+	if(!ids)
+		return Promise.reject(new Error("Cannot find module '" + req + "'."));
+	return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(function() {
+		return __webpack_require__(ids[0]);
+	});
+};
+webpackAsyncContext.keys = function webpackAsyncContextKeys() {
+	return Object.keys(map);
+};
+webpackAsyncContext.id = 242;
+module.exports = webpackAsyncContext;
+
+/***/ }),
+
+/***/ 243:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnnotatePageModule", function() { return AnnotatePageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__annotate__ = __webpack_require__(244);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(61);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+//import { AbsoluteDragDirective } from '../../directives/absolute-drag/absolute-drag';
+
+var AnnotatePageModule = (function () {
+    function AnnotatePageModule() {
+    }
+    AnnotatePageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["NgModule"])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_1__annotate__["a" /* AnnotatePage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_1__annotate__["a" /* AnnotatePage */]),
+                __WEBPACK_IMPORTED_MODULE_3__components_components_module__["a" /* BlockStepsComponentModule */]
+            ],
+            entryComponents: [
+                __WEBPACK_IMPORTED_MODULE_1__annotate__["a" /* AnnotatePage */]
+            ],
+            schemas: [__WEBPACK_IMPORTED_MODULE_2__angular_core__["CUSTOM_ELEMENTS_SCHEMA"]]
+        })
+    ], AnnotatePageModule);
+    return AnnotatePageModule;
+}());
+
+//# sourceMappingURL=annotate.module.js.map
+
+/***/ }),
+
+/***/ 244:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AnnotatePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_document_service__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_retry__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_retry___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_retry__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_timeout__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_timeout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_timeout__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_delay__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_delay___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_delay__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+/// https://www.sitepoint.com/custom-pdf-rendering/
+var AnnotatePage = (function () {
+    function AnnotatePage(navCtrl, navParams, documentService, events) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.documentService = documentService;
+        this.events = events;
+    }
+    AnnotatePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-annotate',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/annotate/annotate.html"*/'<ion-content class="no-overflow-page">\n \n  <!-- <ion-grid>\n    <ion-row>\n      <ion-col>\n        <block-steps activeStep="2">\n        </block-steps>\n        <br/>\n        <br/>\n      </ion-col>\n    </ion-row>\n  </ion-grid> -->\n\n  <block-steps activeStep="2">\n  </block-steps> \n        \n\n  <block-pdf showToolBar="true" showSignHere="true" showButtons="true">\n\n  </block-pdf>\n\n  <block-chat>\n    \n  </block-chat>\n\n</ion-content>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/annotate/annotate.html"*/,
+            styles: ['annotate.scss']
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__services_document_service__["a" /* DocumentService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */]])
+    ], AnnotatePage);
+    return AnnotatePage;
+}());
+
+//# sourceMappingURL=annotate.js.map
+
+/***/ }),
+
+/***/ 245:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Document; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Log; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return Message; });
+/* unused harmony export Annotation */
+/* unused harmony export AnnotationTypes */
+/* unused harmony export NameStorageMapping */
+var Document = (function () {
+    function Document() {
+        this.guid = window.guid();
+        this.createdAt = Date.now();
+        this.updatedAt = Date.now();
+        this.hasAnnotations = false;
+        this.step = "Annotate";
+        this.isCompleted = false;
+    }
+    return Document;
+}());
+
+var Log = (function () {
+    function Log() {
+        this.guid = window.guid();
+        this.createdAt = Date.now();
+        this.updatedAt = Date.now();
+    }
+    return Log;
+}());
+
+var Message = (function () {
+    function Message() {
+        this.guid = window.guid();
+        this.createdAt = Date.now();
+        this.updatedAt = Date.now();
+    }
+    return Message;
+}());
+
+// This is an svg representing the annotations
+var Annotation = (function () {
+    function Annotation() {
+    }
+    return Annotation;
+}());
+
+// An array of annotation types, so far just signatures, maybe down the line support Number. OpenText etc...
+var AnnotationTypes = (function () {
+    function AnnotationTypes() {
+        return ["Sign"];
+    }
+    return AnnotationTypes;
+}());
+
+var NameStorageMapping = (function () {
+    function NameStorageMapping() {
+    }
+    return NameStorageMapping;
+}());
+
+// // Index of documents for searching
+// // blockusign/documents.index.json
+// [
+//     {
+//         "guid": "guid",
+//         "fileName": "blockusign/nicktee.id/one.pdf", 
+//         "createdAt": "", 
+//         "updatedAt": "", 
+//         "owner": ["nicktee.id", ""], 
+//         "signer": ["nicktee.id"], 
+//         "hasAnnotations": true,
+//         "step": 5,
+//         "isCompleted": true
+//     },
+//     {
+//         "guid": "guid",
+//         "fileName": "blockusign/nicktee.id/two.pdf", 
+//         "createdAt": "", 
+//         "updatedAt": "", 
+//         "owner": ["nicktee.id", ""], 
+//         "signer": ["nicktee.id"], 
+//         "hasAnnotations": true,
+//         "step": 1,
+//         "isCompleted": false
+//     }
+// ]
+// // documents
+// // blockusign/guid.pdf
+// // documents metadata and annotations
+// // blockusign/guid.json
+// {
+//     annotations: "<img></img><img></img>"
+// }
+//# sourceMappingURL=models.js.map
+
+/***/ }),
+
+/***/ 252:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BlockPdfComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_document_service__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_retry__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_retry___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_retry__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_timeout__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_timeout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_timeout__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_delay__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_delay___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_delay__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_pdfjs_dist_build_pdf__ = __webpack_require__(569);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_pdfjs_dist_build_pdf___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_pdfjs_dist_build_pdf__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_pdf_annotate__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_pdf_annotate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_pdf_annotate__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+
+
+
+/**
+ * Generated class for the BlockPdfComponent component.
+ *
+ * See https://angular.io/api/core/Component for more info on Angular
+ * Components.
+ */
+var BlockPdfComponent = (function () {
+    function BlockPdfComponent(navCtrl, navParams, documentService, changeDetector, viewContainerRef, loadingCtrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.documentService = documentService;
+        this.changeDetector = changeDetector;
+        this.viewContainerRef = viewContainerRef;
+        this.loadingCtrl = loadingCtrl;
+        this.showToolBar = 0;
+        this.marginTop = '130px';
+        this.DOCUMENT_ID = "blockusign/pdf1.txt"; // @TODO not being used, delete in furture
+        this.UI = __WEBPACK_IMPORTED_MODULE_8_pdf_annotate___default.a;
+        this.containerId = "pageContainer1";
+        this.canvasId = "canvas1";
+        this.selectedElement = null;
+        this.prevElement = null;
+        this.currentX = 0;
+        this.currentY = 0;
+        this.allowResize = false;
+        console.log('====> constructor');
+    }
+    BlockPdfComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        console.log('====> ngOnInit');
+        $(document).ready(function () {
+            _this.loading = _this.loadingCtrl.create({
+                content: 'Please wait...'
+            });
+            _this.loading.present();
+            _this.init();
+        });
+    };
+    BlockPdfComponent.prototype.ngOnDestroy = function () {
+        console.log("====> ngOnDestroy");
+    };
+    BlockPdfComponent.prototype.init = function () {
+        //$(".dropzone").off();
+        //let pdfData = this.loadPDFData(); // loads pdf data from localStorage, make sure you uploaded it from home.js
+        var _this = this;
+        this.svgDrawer = dragOn(document.querySelector(".dropzone"), {
+            listenTo: '.draggable'
+        });
+        var docData = getQueryParam('docData');
+        if (docData) {
+            this.loading.dismiss();
+            return;
+        }
+        if (this.navParams.get("guid") && !this.documentService.currentDoc) {
+            var guid_1 = this.navParams.get("guid");
+            this.documentService.getDocumentsIndex(true).then(function (data) {
+                _this.documentService.documentsList = data;
+                _this.documentService.setCurrentDoc(guid_1);
+                _this.getFile();
+                // @todo in side menu highlight selected doc
+            });
+        }
+        else if (this.documentService.currentDoc.guid) {
+            this.documentService.setCurrentDoc(this.documentService.currentDoc.guid);
+            this.getFile();
+        }
+        else {
+            var guid = this.navParams.get("guid");
+            this.documentService.setCurrentDoc(guid);
+            this.getFile();
+        }
+        this.yourName = blockstack.loadUserData().profile.name;
+    };
+    BlockPdfComponent.prototype.getFile = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var data, pdfData;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.documentService.getDocument(this.documentService.currentDoc.guid + ".pdf", this.documentService.currentDoc.documentKey)];
+                    case 1:
+                        data = _a.sent();
+                        this.pdfBuffer = data;
+                        pdfData = new Uint8Array(this.pdfBuffer);
+                        this.loadPdf(pdfData); // loads the pdf to the screen with the text layers
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    BlockPdfComponent.prototype.back = function () {
+        //this.navCtrl.push(ListPage);
+        //this.navCtrl.push("HomePage");
+        //this.navCtrl.setRoot(HomePage);
+        this.navCtrl.push("HomePage");
+    };
+    BlockPdfComponent.prototype.next = function () {
+        this.navCtrl.push("EmailPage", {
+            guid: this.documentService.currentDoc.guid
+        });
+    };
+    BlockPdfComponent.prototype.clear = function () {
+        this.svgDrawer.cleanHTML();
+        this.svgDrawer.cleanDrawArea();
+        this.svgDrawer.updateMetrics();
+        localStorage.removeItem('svg');
+    };
+    BlockPdfComponent.prototype.loadPdf = function (pdfData) {
+        var _this = this;
+        var loadingTask = __WEBPACK_IMPORTED_MODULE_7_pdfjs_dist_build_pdf___default.a.getDocument({ data: pdfData });
+        loadingTask.promise.then(function (pdf) {
+            var pageNumber = 1;
+            pdf.getPage(pageNumber).then(function (page) {
+                console.log('Page loaded');
+                var scale = 1;
+                var viewport = page.getViewport(scale);
+                // Prepare canvas using PDF page dimensions
+                var canvas = document.getElementById('canvas1');
+                var context = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+                // Render PDF page into canvas context
+                var renderContext = {
+                    canvasContext: context,
+                    viewport: viewport
+                };
+                var renderTask = page.render(renderContext)
+                    .then(function () {
+                    // Get text-fragments
+                    return page.getTextContent();
+                }).then(function (textContent) {
+                    // Create div which will hold text-fragments
+                    var textLayerDiv = document.createElement("div");
+                    // Set it's class to textLayer which have required CSS styles
+                    textLayerDiv.setAttribute("class", "textLayer");
+                    // Append newly created div in `div#page-#{pdf_page_number}`
+                    var div = document.getElementById("" + _this.containerId);
+                    div.appendChild(textLayerDiv);
+                    // Create new instance of TextLayerBuilder class
+                    var textLayer = new TextLayerBuilder({
+                        textLayerDiv: textLayerDiv,
+                        pageIndex: page.pageIndex,
+                        viewport: viewport
+                    });
+                    // Set text-fragments
+                    textLayer.setTextContent(textContent);
+                    // Render text-fragments
+                    textLayer.render();
+                    // load svg
+                    _this.loadSvg(page);
+                    _this.loading.dismiss();
+                });
+            });
+        }, function (reason) {
+            // PDF loading error
+            console.error(reason);
+        });
+    };
+    // loadPDFData() {
+    //   let base64pdfData = localStorage.getItem("pdfStr");
+    //   function base64ToUint8Array(base64) {
+    //     let raw = atob(base64);
+    //     let uint8Array = new Uint8Array(new ArrayBuffer(raw.length));
+    //     for (var i = 0, len = raw.length; i < len; ++i) {
+    //       uint8Array[i] = raw.charCodeAt(i);
+    //     }
+    //     return uint8Array;
+    //   }
+    //   return base64ToUint8Array(base64pdfData);
+    // }
+    // setupAnnotations(page, viewport, canvas, $annotationLayerDiv) {
+    //   let canvasOffset = $(canvas).offset();
+    //   let promise = page.getAnnotations().then((annotationsData) => {
+    //     viewport = viewport.clone({
+    //       dontFlip: true
+    //     });
+    //     for (let i = 0; i < annotationsData.length; i++) {
+    //       let data = annotationsData[i];
+    //       let annotation = PDFJS.Annotation.fromData(data);
+    //       if (!annotation || !annotation.hasHtml()) {
+    //         continue;
+    //       }
+    //       let element = annotation.getHtmlElement(page.commonObjs);
+    //       data = annotation.getData();
+    //       let rect = data.rect;
+    //       let view = page.view;
+    //       rect = PDFJS.Util.normalizeRect([
+    //         rect[0],
+    //         view[3] - rect[1] + view[1],
+    //         rect[2],
+    //         view[3] - rect[3] + view[1]
+    //       ]);
+    //       element.style.left = (canvasOffset.left + rect[0]) + 'px';
+    //       element.style.top = (canvasOffset.top + rect[1]) + 'px';
+    //       element.style.position = 'absolute';
+    //       let transform = viewport.transform;
+    //       let transformStr = 'matrix(' + transform.join(',') + ')';
+    //       CustomStyle.setProp('transform', element, transformStr);
+    //       let transformOriginStr = -rect[0] + 'px ' + -rect[1] + 'px';
+    //       CustomStyle.setProp('transformOrigin', element, transformOriginStr);
+    //       if (data.subtype === 'Link' && !data.url) {
+    //         // In this example,  I do not handle the `Link` annotations without url.
+    //         // If you want to handle those links, see `web/page_view.js`.
+    //         continue;
+    //       }
+    //       $annotationLayerDiv.append(element);
+    //       $annotationLayerDiv.append($("#signature"));
+    //     }
+    //   });
+    //   return promise;
+    // }
+    // setActiveToolbarItem(type, button) {
+    //   let active = document.querySelector('.toolbar button.active');
+    //   if (active) {
+    //     active.classList.remove('active');
+    //   }
+    //   if (button) {
+    //     button.classList.add('active');
+    //   }
+    //   if (this.tooltype !== type) {
+    //     localStorage.setItem(`${this.DOCUMENT_ID}/tooltype`, type);
+    //   }
+    //   this.tooltype = type;
+    //   this.UI.UI.enableRect(type);
+    // }
+    // handleToolbarClick(e) {
+    //   if (e.target.nodeName === 'BUTTON') {
+    //     this.setActiveToolbarItem(e.target.getAttribute('data-tooltype'), e.target);
+    //   }
+    // }
+    BlockPdfComponent.prototype.handleClearClick = function (e) {
+        if (confirm('Are you sure you want to throw your work away?')) {
+            //localStorage.removeItem(`${this.DOCUMENT_ID}/annotations`);
+            this.page1.innerHTML = '';
+        }
+    };
+    // setupToolBar() {
+    //   this.tooltype = localStorage.getItem(`${this.DOCUMENT_ID}/tooltype`) || 'area';
+    //   if (this.tooltype) {
+    //     this.setActiveToolbarItem(this.tooltype, document.querySelector(`.toolbar button[data-tooltype=${this.tooltype}]`));
+    //   }
+    // }
+    BlockPdfComponent.prototype.handleDragStart = function (e) {
+        //log("handleDragStart");
+        e.style.opacity = '0.4'; // this ==> e.target is the source node.
+    };
+    ;
+    // set the overlay dimensionss
+    BlockPdfComponent.prototype.overLay = function (page) {
+        var dimensions = page.pageInfo.view[0] + " " + page.pageInfo.view[1] + " " + page.pageInfo.view[2] + " " + page.pageInfo.view[3];
+        $("#svg-dropzone").css("width", "612");
+        $("#svg-dropzone").css("height", "792");
+        $("#svg-dropzone").attr("width", "612");
+        $("#svg-dropzone").attr("height", "792");
+        $("#svg-dropzone").attr("viewBox", dimensions);
+    };
+    BlockPdfComponent.prototype.saveSvg = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var svg;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        svg = "";
+                        $(".dragOn-drawArea").each(function () {
+                            var el = $(this);
+                            if (el.html() !== "") {
+                                svg = svg + el.html();
+                            }
+                        });
+                        //if (svg){
+                        //localStorage.setItem("svg", svg);
+                        return [4 /*yield*/, this.documentService.saveAnnotations(this.documentService.currentDoc.guid, svg)];
+                    case 1:
+                        //if (svg){
+                        //localStorage.setItem("svg", svg);
+                        _a.sent();
+                        return [4 /*yield*/, this.documentService.addMessage(this.documentService.currentDoc.guid, 'Updated annotation')];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    BlockPdfComponent.prototype.loadSvg = function (page) {
+        return __awaiter(this, void 0, void 0, function () {
+            var json, innerHtml;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        //let innerHtml = localStorage.getItem("svg");
+                        // overlay
+                        this.overLay(page);
+                        return [4 /*yield*/, this.documentService.getAnnotations(this.documentService.currentDoc.guid)];
+                    case 1:
+                        json = _a.sent();
+                        innerHtml = null;
+                        if (json) {
+                            innerHtml = json.annotations;
+                        }
+                        if (innerHtml) {
+                            this.svgDrawer.addHTML(innerHtml);
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Object)
+    ], BlockPdfComponent.prototype, "showToolBar", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Number)
+    ], BlockPdfComponent.prototype, "showSignature", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Number)
+    ], BlockPdfComponent.prototype, "showSignHere", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Number)
+    ], BlockPdfComponent.prototype, "showButtons", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Object)
+    ], BlockPdfComponent.prototype, "marginTop", void 0);
+    BlockPdfComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'block-pdf',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-pdf/block-pdf.html"*/'<ion-content class="block-pdf-page" >\n  \n\n  <div class="page" id="pageContainer1" \n    data-page-number="1" \n    style="position:relative;width: 100%; height:100%;overflow-x:auto;overflow-y:auto"\n    [style.margin-top]="marginTop">\n\n    <div id="canvasWrapper" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">\n      <canvas id="canvas1" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px"></canvas>\n    </div>\n    <svg id="svg-dropzone" class="dropzone resizable" xmlns="http://www.w3.org/2000/svg" style="position: absolute; \n                  left: 0px; \n                  top:0px;\n                  z-index: 200000;\n                  padding: 0px 0px 0px 0px; \n                  margin: 0px 0px 0px 0px;">\n\n    </svg>\n    <div class="textLayer"></div>\n  </div>\n\n  <svg class="annotationLayer" xmlns="http://www.w3.org/2000/svg">\n  </svg>\n\n  <img   *ngIf="!showToolBar"  id="sigImg" height="50px" class="draggable draggable-droppable"  src="./../../assets/imgs/sign.png"\n        />\n\n\n<ion-fab *ngIf="showToolBar" top left style="margin-top:1px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab>\n  <ion-grid>\n    <ion-row justify-content-start align-items-center>\n      <ion-col col-auto *ngIf="showSignHere">\n        <img id="sigImg" height="50px" class="draggable draggable-droppable"  src="./../../assets/imgs/sign.png"\n        />\n      </ion-col>\n      <ion-col col-auto *ngIf="showSignature">\n        <svg xmlns="http://www.w3.org/2000/svg" id="signature" class="draggable draggable-droppable" \n          width="200" height="50" viewBox="0 0 200 50" style="clear:both; background:#ffeb8e; border: 1px solid red " opacity="1">\n\n          <text x="50%" y="50%" width="200" height="50" viewBox="0 0 200 50" alignment-baseline="middle" text-anchor="middle" fill="green"\n            font-family="Cedarville Cursive" font-weight="bold" style="font-size: 25px">\n            {{ yourName }}\n          </text>\n\n        </svg>\n      </ion-col>\n      <ion-col col-auto *ngIf="showButtons">\n        <img src="./../../assets/imgs/arrows.svg" height="35px">\n        <span style="color:#757575; font-family: Cedarville Cursive; font-size: 18px; font-weight: bold">drag</span>\n      </ion-col>\n      <!-- <ion-col col-auto style="padding-left: 50px;">\n        <input id="checkBox" type="checkbox">\n        <span style="padding-right: 4px;color:#757575;">Allow Resize</span>\n      </ion-col> -->\n      <ion-col col-auto style="padding-left: 20px;" *ngIf="showButtons">\n        <button ion-fab (click)="saveSvg()" style="position:relative">Save</button>\n      </ion-col>\n      <ion-col col-auto style="padding-left: 5px;" *ngIf="showButtons">\n        <button ion-fab (click)="clear()"  style="position:relative">Clear</button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-fab>\n</ion-content>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-pdf/block-pdf.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__services_document_service__["a" /* DocumentService */],
+            __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"],
+            __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewContainerRef"],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]])
+    ], BlockPdfComponent);
+    return BlockPdfComponent;
+}());
+
+//# sourceMappingURL=block-pdf.js.map
+
+/***/ }),
+
+/***/ 269:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DirectivesModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__absolute_drag_absolute_drag__ = __webpack_require__(623);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+var DirectivesModule = (function () {
+    function DirectivesModule() {
+    }
+    DirectivesModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+            declarations: [__WEBPACK_IMPORTED_MODULE_1__absolute_drag_absolute_drag__["a" /* AbsoluteDragDirective */]],
+            imports: [],
+            exports: [__WEBPACK_IMPORTED_MODULE_1__absolute_drag_absolute_drag__["a" /* AbsoluteDragDirective */]]
+        })
+    ], DirectivesModule);
+    return DirectivesModule;
+}());
+
+//# sourceMappingURL=directives.module.js.map
+
+/***/ }),
+
+/***/ 31:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DocumentService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_models__ = __webpack_require__(245);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_catch__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_catch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__ = __webpack_require__(247);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__blockstack_service__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__models_state__ = __webpack_require__(562);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_observable_of__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_observable_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_rxjs_observable_of__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+/*
+  Generated class for the StorageServiceProvider provider.
+
+  See https://angular.io/guide/dependency-injection for more info on providers
+  and Angular DI.
+*/
+var DocumentService = (function () {
+    //public automerge = Automerge;
+    function DocumentService(events, http, blockStackService) {
+        var _this = this;
+        this.events = events;
+        this.http = http;
+        this.blockStackService = blockStackService;
+        this.indexFileName = "blockusign/documents.index.json";
+        this.state = new __WEBPACK_IMPORTED_MODULE_9__models_state__["a" /* State */]();
+        console.log('Hello StorageServiceProvider Provider');
+        this.documentsList = [];
+        // @TODO - think about putting in checks here is documentsList is empty, 
+        // or there could be a async race issue if they take too long to come back
+        this.getDocumentsIndex(true).then(function (data) {
+            _this.documentsList = data;
+        });
+    }
+    DocumentService.prototype.getDocumentsIndex = function (refresh) {
+        return __awaiter(this, void 0, void 0, function () {
+            var resp, _a, _b, _c;
+            return __generator(this, function (_d) {
+                switch (_d.label) {
+                    case 0:
+                        if (!refresh) return [3 /*break*/, 3];
+                        return [4 /*yield*/, blockstack.getFile(this.indexFileName, { decrypt: true })];
+                    case 1:
+                        resp = _d.sent();
+                        if (resp) {
+                            this.documentsList = JSON.parse(resp);
+                        }
+                        if (!(this.documentsList == null || !resp)) return [3 /*break*/, 3];
+                        _a = this;
+                        _c = (_b = JSON).parse;
+                        return [4 /*yield*/, blockstack.putFile(this.indexFileName, "[]", { encrypt: true })];
+                    case 2:
+                        _a.documentsList = _c.apply(_b, [_d.sent()]);
+                        _d.label = 3;
+                    case 3: return [2 /*return*/, this.documentsList];
+                }
+            });
+        });
+    };
+    DocumentService.prototype.addDocument = function (fileName, fileBuffer) {
+        return __awaiter(this, void 0, void 0, function () {
+            var newDocument, profileData, myEmail, _a, _b, response;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        newDocument = new __WEBPACK_IMPORTED_MODULE_1__models_models__["a" /* Document */]();
+                        newDocument.fileName = fileName;
+                        newDocument.documentKey = this.generateKey();
+                        newDocument.pathAnnotatedDoc = blockstack.loadUserData().profile.apps[window.location.origin];
+                        return [4 /*yield*/, this.blockStackService.getProfileData()];
+                    case 1:
+                        profileData = _c.sent();
+                        myEmail = null;
+                        if (profileData) {
+                            myEmail = JSON.parse(profileData).email;
+                        }
+                        _a = newDocument;
+                        _b = {
+                            name: blockstack.loadUserData().profile.name,
+                            userId: blockstack.loadUserData().username,
+                            email: myEmail
+                        };
+                        return [4 /*yield*/, this.blockStackService.getAppPublicKey()];
+                    case 2:
+                        _a.paths = [(_b.appPublicKey = _c.sent(),
+                                _b.pathToStorage = blockstack.loadUserData().profile.apps[window.location.origin],
+                                _b)];
+                        newDocument.signer = [];
+                        this.documentsList.push(newDocument);
+                        return [4 /*yield*/, blockstack.putFile(this.indexFileName, JSON.stringify(this.documentsList), { encrypt: true })];
+                    case 3:
+                        _c.sent();
+                        this.docBuffer = fileBuffer;
+                        this.currentDoc = newDocument;
+                        return [4 /*yield*/, this.addDocumentBytes(newDocument.guid, fileBuffer, newDocument.documentKey)];
+                    case 4:
+                        response = _c.sent();
+                        return [2 /*return*/, this.documentsList];
+                }
+            });
+        });
+    };
+    DocumentService.prototype.updateDocument = function (documentGuid, doc) {
+        return __awaiter(this, void 0, void 0, function () {
+            var index;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        index = this.documentsList.findIndex(function (i) { return i.guid === documentGuid; });
+                        if (!(index !== -1)) return [3 /*break*/, 2];
+                        this.documentsList[index] = doc;
+                        // write document index
+                        return [4 /*yield*/, blockstack.putFile(this.indexFileName, JSON.stringify(this.documentsList), { encrypt: true })];
+                    case 1:
+                        // write document index
+                        _a.sent();
+                        return [2 /*return*/, true];
+                    case 2: return [2 /*return*/, false];
+                }
+            });
+        });
+    };
+    DocumentService.prototype.removeDocument = function (document) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        // remove item
+                        this.documentsList = this.documentsList.remove(document);
+                        return [4 /*yield*/, blockstack.putFile(this.indexFileName, JSON.stringify(this.documentsList), { encrypt: true })];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, this.removeDocumentBytes(document.guid)];
+                    case 2:
+                        _a.sent();
+                        // remove binary file
+                        return [2 /*return*/, this.documentsList];
+                }
+            });
+        });
+    };
+    DocumentService.prototype.addDocumentBytes = function (guid, doc, documentKey) {
+        return __awaiter(this, void 0, void 0, function () {
+            var encryptedDoc;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        encryptedDoc = this.ecryptDoc(doc, documentKey);
+                        // add blank annotations file
+                        return [4 /*yield*/, this.createAnnotations(guid)];
+                    case 1:
+                        // add blank annotations file
+                        _a.sent();
+                        // add blank log file
+                        return [4 /*yield*/, this.getLog(guid)];
+                    case 2:
+                        // add blank log file
+                        _a.sent();
+                        return [2 /*return*/, blockstack.putFile(guid + ".pdf", encryptedDoc, { encrypt: false }).then(function (data) { })];
+                }
+            });
+        });
+    };
+    DocumentService.prototype.getDocument = function (fileName, documentKey) {
+        return __awaiter(this, void 0, void 0, function () {
+            var resp, encryptedDoc;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, blockstack.getFile(fileName, { decrypt: false })];
+                    case 1:
+                        resp = _a.sent();
+                        if (resp) {
+                            encryptedDoc = resp;
+                            return [2 /*return*/, this.decryptDoc(encryptedDoc, documentKey)];
+                        }
+                        else {
+                            return [2 /*return*/, null];
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    DocumentService.prototype.getDocumentByPath = function (docPath, docKey) {
+        return __awaiter(this, void 0, void 0, function () {
+            var resp, encryptedDoc;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.http.get(docPath).toPromise()];
+                    case 1:
+                        resp = _a.sent();
+                        if (resp) {
+                            encryptedDoc = resp.text();
+                            return [2 /*return*/, this.decryptDoc(encryptedDoc, docKey)];
+                        }
+                        else {
+                            return [2 /*return*/, Object(__WEBPACK_IMPORTED_MODULE_10_rxjs_observable_of__["of"])(null)];
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    DocumentService.prototype.copyDocument = function (newDocument, guid, fileBuffer) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            var myName, myUserId, profileData, myEmail, _a, _b, _c, encryptedDoc, r, annotsResp, theirPath, theirUrl, theirLogDoc, logStr;
+            return __generator(this, function (_d) {
+                switch (_d.label) {
+                    case 0:
+                        console.log("file buffer", fileBuffer);
+                        console.log("guid", guid);
+                        console.log("doc", newDocument);
+                        myName = null;
+                        if (blockstack.loadUserData().profile.name) {
+                            myName = blockstack.loadUserData().profile.name;
+                        }
+                        myUserId = null;
+                        if (blockstack.loadUserData().username) {
+                            myUserId = blockstack.loadUserData().username;
+                        }
+                        return [4 /*yield*/, this.blockStackService.getProfileData()];
+                    case 1:
+                        profileData = _d.sent();
+                        myEmail = null;
+                        if (profileData) {
+                            myEmail = JSON.parse(profileData).email;
+                        }
+                        _b = (_a = newDocument.paths).push;
+                        _c = {
+                            name: myName,
+                            userId: myUserId,
+                            email: myEmail
+                        };
+                        return [4 /*yield*/, this.blockStackService.getAppPublicKey()];
+                    case 2:
+                        _b.apply(_a, [(_c.appPublicKey = _d.sent(),
+                                _c.pathToStorage = blockstack.loadUserData().profile.apps[window.location.origin],
+                                _c)]);
+                        this.documentsList.push(newDocument);
+                        console.log("new doc list", this.documentsList);
+                        return [4 /*yield*/, blockstack.putFile(this.indexFileName, JSON.stringify(this.documentsList), { encrypt: true })];
+                    case 3:
+                        _d.sent();
+                        this.currentDoc = newDocument;
+                        //let response = await this.addDocumentBytes(guid, fileBuffer, newDocument.documentKey);
+                        this.docBuffer = fileBuffer;
+                        encryptedDoc = this.ecryptDoc(fileBuffer, this.currentDoc.documentKey);
+                        return [4 /*yield*/, blockstack.putFile(guid + ".pdf", encryptedDoc, { encrypt: false }).then(function (data) { })];
+                    case 4:
+                        r = _d.sent();
+                        return [4 /*yield*/, this.getAnnotationsByPath(this.currentDoc.pathAnnotatedDoc + guid + ".annotations.json", this.currentDoc.documentKey)];
+                    case 5:
+                        annotsResp = _d.sent();
+                        if (annotsResp) {
+                            this.saveAnnotations(guid, this.currentDocAnnotations.annotations);
+                        }
+                        else {
+                            this.saveAnnotations(guid, "");
+                        }
+                        theirPath = jslinq(this.currentDoc.paths).where(function (el) { return el.email != _this.blockStackService.profile.email; }).toList();
+                        theirUrl = theirPath[0].pathToStorage + guid + '.log.json';
+                        return [4 /*yield*/, this.getLogByPath(theirUrl, this.currentDoc.documentKey)];
+                    case 6:
+                        theirLogDoc = _d.sent();
+                        if (!theirLogDoc) return [3 /*break*/, 8];
+                        logStr = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["save"](theirLogDoc);
+                        return [4 /*yield*/, this.saveLog(guid, logStr)];
+                    case 7:
+                        _d.sent();
+                        return [3 /*break*/, 8];
+                    case 8: return [2 /*return*/, this.documentsList];
+                }
+            });
+        });
+    };
+    DocumentService.prototype.documentExists = function (guid) {
+        var exists = false;
+        var docs = jslinq(this.documentsList).where(function (el) { return el.guid == guid; }).toList();
+        if (docs.length > 0) {
+            exists = true;
+        }
+        return exists;
+    };
+    DocumentService.prototype.addSignerToCurrentDoc = function (nameOrId) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    DocumentService.prototype.removeDocumentBytes = function (guid) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, blockstack.putFile(guid + ".annotations.json", "", { encrypt: false })];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, blockstack.putFile(guid + ".log.json", "", { encrypt: false })];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/, blockstack.putFile(guid + ".pdf", "", { encrypt: false }).then(function (data) { })];
+                }
+            });
+        });
+    };
+    DocumentService.prototype.createAnnotations = function (guid) {
+        return __awaiter(this, void 0, void 0, function () {
+            var json, commit, saveAnnotStr, encrypted;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        json = {
+                            annotations: ""
+                        };
+                        this.currentDocAnnotationsDoc = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["init"]();
+                        commit = blockstack.loadUserData().profile.name + " created annotations on " + this.getDate();
+                        this.currentDocAnnotationsDoc = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["change"](this.currentDocAnnotationsDoc, commit, function (doc) {
+                            doc.annots = [];
+                        });
+                        saveAnnotStr = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["save"](this.currentDocAnnotationsDoc);
+                        encrypted = this.encryptString(saveAnnotStr, this.currentDoc.documentKey);
+                        return [4 /*yield*/, blockstack.putFile(guid + ".annotations.json", encrypted, { encrypt: false })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    DocumentService.prototype.saveAnnotations = function (guid, annotation) {
+        return __awaiter(this, void 0, void 0, function () {
+            var json, commit, saveAnnotStr, encrypted;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        json = {
+                            annotations: annotation
+                        };
+                        commit = blockstack.loadUserData().profile.name + " added annotation on " + this.getDate();
+                        this.currentDocAnnotationsDoc = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["change"](this.currentDocAnnotationsDoc, commit, function (doc) {
+                            doc.annots.insertAt(0, json);
+                        });
+                        saveAnnotStr = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["save"](this.currentDocAnnotationsDoc);
+                        encrypted = this.encryptString(saveAnnotStr, this.currentDoc.documentKey);
+                        return [4 /*yield*/, blockstack.putFile(guid + ".annotations.json", encrypted, { encrypt: false })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    DocumentService.prototype.getAnnotations = function (guid) {
+        return __awaiter(this, void 0, void 0, function () {
+            var resp, decrypted;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, blockstack.getFile(guid + ".annotations.json", { decrypt: false })];
+                    case 1:
+                        resp = _a.sent();
+                        if (resp) {
+                            decrypted = this.decryptString(resp, this.currentDoc.documentKey);
+                            this.currentDocAnnotationsDoc = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["load"](decrypted);
+                            this.currentDocAnnotations = this.currentDocAnnotationsDoc.annots[0]; //JSON.parse(decrypted);
+                        }
+                        if (!resp) {
+                            this.currentDocAnnotations = "";
+                        }
+                        return [2 /*return*/, this.currentDocAnnotations];
+                }
+            });
+        });
+    };
+    DocumentService.prototype.getAnnotationsByPath = function (docPath, docKey) {
+        return __awaiter(this, void 0, void 0, function () {
+            var resp, encryptedDocStr, annotations;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.http.get(docPath).toPromise()];
+                    case 1:
+                        resp = _a.sent();
+                        if (resp) {
+                            encryptedDocStr = JSON.stringify(resp.json());
+                            annotations = this.decryptString(encryptedDocStr, docKey);
+                            this.currentDocAnnotationsDoc = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["load"](annotations);
+                            this.currentDocAnnotations = this.currentDocAnnotationsDoc.annots[0];
+                            //this.currentDocAnnotations = JSON.parse(annotations);
+                        }
+                        if (!resp) {
+                            this.currentDocAnnotations = "";
+                        }
+                        return [2 /*return*/, this.currentDocAnnotations];
+                }
+            });
+        });
+    };
+    DocumentService.prototype.mergeAnnotations = function (guid, theirs, mine) {
+        return __awaiter(this, void 0, void 0, function () {
+            var mergedAnnotations;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!!theirs) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.getAnnotationsByPath(this.currentDoc.pathAnnotatedDoc + guid + ".annotations.json", this.currentDoc.documentKey)];
+                    case 1:
+                        theirs = _a.sent();
+                        theirs = this.currentDocAnnotationsDoc;
+                        _a.label = 2;
+                    case 2:
+                        if (!!mine) return [3 /*break*/, 4];
+                        return [4 /*yield*/, this.getAnnotations(guid)];
+                    case 3:
+                        mine = _a.sent();
+                        mine = this.currentDocAnnotationsDoc;
+                        _a.label = 4;
+                    case 4:
+                        mergedAnnotations = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["merge"](mine, theirs);
+                        console.log("mergedAnnots", mergedAnnotations);
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    DocumentService.prototype.setCurrentDoc = function (guid) {
+        //alert('set curr doc');
+        this.currentDoc = this.documentsList.find(function (x) { return x.guid == guid; });
+        this.events.publish('documentService:setCurrentDoc', this.currentDoc);
+        var span = "span:contains('" + this.currentDoc.fileName + "')";
+        $(document).ready(function () {
+            $(".channels-list-text li").removeClass('active');
+            var s = $(span);
+            s.parent().addClass('active');
+        });
+    };
+    //#region Log (Chat)
+    DocumentService.prototype.getLog = function (guid) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            var logFileName, resp, theirPath, theirUrl, url, theirResp, str, theirDoc, finalDoc, newLog_1, msg, logStr, e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        logFileName = guid + '.log.json';
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 8, , 9]);
+                        return [4 /*yield*/, blockstack.getFile(logFileName, { decrypt: false })];
+                    case 2:
+                        resp = _a.sent();
+                        if (!resp) return [3 /*break*/, 5];
+                        this.logDoc = this.decryptString(resp, this.currentDoc.documentKey);
+                        this.logDoc = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["load"](this.logDoc);
+                        if (!(this.currentDoc.paths.length > 1)) return [3 /*break*/, 4];
+                        this.log = this.logDoc.log;
+                        theirPath = jslinq(this.currentDoc.paths).where(function (el) { return el.email != _this.blockStackService.profile.email; }).toList();
+                        theirUrl = theirPath[0].pathToStorage;
+                        if (!theirUrl) return [3 /*break*/, 4];
+                        url = theirUrl + logFileName;
+                        return [4 /*yield*/, this.http.get(url).toPromise()];
+                    case 3:
+                        theirResp = _a.sent();
+                        // now merge their doc into mine
+                        if (theirResp) {
+                            str = theirResp.text();
+                            str = this.decryptString(str, this.currentDoc.documentKey);
+                            theirDoc = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["load"](str);
+                            finalDoc = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["merge"](theirDoc, this.logDoc);
+                            this.logDoc = finalDoc;
+                        }
+                        _a.label = 4;
+                    case 4:
+                        this.log = this.logDoc.log;
+                        return [3 /*break*/, 7];
+                    case 5:
+                        newLog_1 = new __WEBPACK_IMPORTED_MODULE_1__models_models__["b" /* Log */]();
+                        newLog_1.messages = [];
+                        msg = new __WEBPACK_IMPORTED_MODULE_1__models_models__["c" /* Message */]();
+                        msg.createdBy = blockstack.loadUserData().username;
+                        msg.createdByName = blockstack.loadUserData().profile.name;
+                        msg.email = this.blockStackService.profile.email;
+                        msg.message = "Created Doc";
+                        newLog_1.messages.push(msg);
+                        this.logDoc = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["init"]();
+                        this.logDoc = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["change"](this.logDoc, 'Initialize log - ' + this.getDate(), function (doc) {
+                            doc.log = newLog_1;
+                        });
+                        logStr = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["save"](this.logDoc);
+                        logStr = this.encryptString(logStr, this.currentDoc.documentKey);
+                        return [4 /*yield*/, blockstack.putFile(logFileName, logStr, { encrypt: false })];
+                    case 6:
+                        logStr = _a.sent();
+                        logStr = this.decryptString(logStr, this.currentDoc.documentKey);
+                        console.log('logstr', logStr);
+                        this.logDoc = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["load"](logStr);
+                        this.log = this.logDoc.log;
+                        _a.label = 7;
+                    case 7: return [2 /*return*/, this.log];
+                    case 8:
+                        e_1 = _a.sent();
+                        return [3 /*break*/, 9];
+                    case 9: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    DocumentService.prototype.saveLog = function (guid, logStr) {
+        return __awaiter(this, void 0, void 0, function () {
+            var logFileName;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        logFileName = guid + '.log.json';
+                        logStr = this.encryptString(logStr, this.currentDoc.documentKey);
+                        return [4 /*yield*/, blockstack.putFile(logFileName, logStr, { encrypt: false })];
+                    case 1:
+                        logStr = _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    DocumentService.prototype.getLogByPath = function (docPath, docKey) {
+        return __awaiter(this, void 0, void 0, function () {
+            var resp, encryptedDocStr, chatLog;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.http.get(docPath).toPromise()];
+                    case 1:
+                        resp = _a.sent();
+                        if (resp) {
+                            encryptedDocStr = JSON.stringify(resp.json());
+                            chatLog = this.decryptString(encryptedDocStr, docKey);
+                            this.logDoc = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["load"](chatLog);
+                            this.log = this.logDoc.log;
+                        }
+                        if (!resp) {
+                            this.log = null;
+                        }
+                        return [2 /*return*/, this.logDoc];
+                }
+            });
+        });
+    };
+    DocumentService.prototype.addMessage = function (guid, message) {
+        return __awaiter(this, void 0, void 0, function () {
+            var logFileName, log, msg_1, logStr;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        logFileName = guid + ".log.json";
+                        return [4 /*yield*/, this.getLog(guid)];
+                    case 1:
+                        log = _a.sent();
+                        if (!log) return [3 /*break*/, 3];
+                        msg_1 = new __WEBPACK_IMPORTED_MODULE_1__models_models__["c" /* Message */]();
+                        msg_1.message = message;
+                        msg_1.createdBy = blockstack.loadUserData().username;
+                        msg_1.createdByName = blockstack.loadUserData().profile.name;
+                        msg_1.email = this.blockStackService.profile.email;
+                        this.logDoc = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["change"](this.logDoc, msg_1.createdByName + " added message at " + this.getDate(), function (doc) {
+                            doc.log.messages.push(msg_1);
+                        });
+                        logStr = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["save"](this.logDoc);
+                        logStr = this.encryptString(logStr, this.currentDoc.documentKey);
+                        return [4 /*yield*/, blockstack.putFile(logFileName, logStr, { encrypt: false })];
+                    case 2:
+                        _a.sent();
+                        this.log = this.logDoc.log;
+                        this.events.publish('documentService:addedChat', msg_1);
+                        return [2 /*return*/, this.log];
+                    case 3:
+                        console.error("error getting log file: " + logFileName);
+                        _a.label = 4;
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    //#endregion
+    DocumentService.prototype.updatePartnerPathData = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    //#region Encryption
+    //https://stackoverflow.com/questions/26734033/encrypting-files-with-sjcl-client-side
+    DocumentService.prototype.ecryptDoc = function (doc, key) {
+        var docBits = sjcl.codec.arrayBuffer.toBits(doc);
+        var base64bits = sjcl.codec.base64.fromBits(docBits);
+        var encryptedDoc = sjcl.encrypt(key, base64bits);
+        return encryptedDoc;
+    };
+    DocumentService.prototype.decryptDoc = function (encryptedDoc, key) {
+        var dec = sjcl.decrypt(key, encryptedDoc);
+        var decryptedBase64 = sjcl.codec.base64.toBits(dec);
+        var decryptedDocBits = sjcl.codec.arrayBuffer.fromBits(decryptedBase64);
+        return decryptedDocBits;
+    };
+    DocumentService.prototype.encryptString = function (payload, key) {
+        var encryptedDoc = sjcl.encrypt(key, payload);
+        return encryptedDoc;
+    };
+    DocumentService.prototype.decryptString = function (payload, key) {
+        var dec = sjcl.decrypt(key, payload);
+        return dec;
+    };
+    DocumentService.prototype.generateKey = function () {
+        return window.guid();
+    };
+    //#endregion
+    // watchout
+    DocumentService.prototype.resetStorage = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, blockstack.putFile(this.indexFileName, "[]", { encrypt: true })];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    DocumentService.prototype.testAutoMerge = function () {
+        // // fetch from server state for Nick
+        // let doc1Nick = [{ 'who': 'nick' }];
+        // // init doc
+        // let doc1 = Automerge.init();
+        // let commitMsg = 'Initialize doc from server for nick - ' + this.getDate();
+        // doc1 = Automerge.change(doc1, commitMsg , doc => {
+        //   doc = doc1Nick;
+        // });
+        // console.log(doc1);
+        // // nick adds a row
+        // commitMsg = 'Nick adds a row - ' + this.getDate;
+        // doc1 = Automerge.change(doc1, 'Add card', doc => {
+        //   doc.push({'who': 'nick2'});
+        // });
+        // console.log(doc1);
+        // // Now let's simulate another device, whose application state is doc2. We
+        // // initialise it separately, and merge doc1 into it. After merging, doc2 has
+        // // a copy of all the cards in doc1.
+        // // fetch from server state for Blockusign
+        // let doc1Blockusign1 = [{ 'who': 'nick' }, {'who': 'Blocusign1'}];
+    };
+    DocumentService.prototype.getDate = function () {
+        var d = Date();
+        return d;
+    };
+    DocumentService.prototype.testInitDoc = function () {
+        // 1) init or load Mine
+        this.docMine = this.state.docInit();
+        // 2) Save as string
+        var docStr = this.state.docSave(this.docMine);
+        // 3) Send to server
+        // putFile
+        return docStr;
+    };
+    DocumentService.prototype.testEditDoc = function () {
+        // 1) load Mine
+        //this.docMine;
+        // 2) Edit Doc
+        this.docMine = this.state.docEdit(this.docMine, "nick 1st add - " + this.getDate(), "messages", { 'nick': '1' });
+        // 3) Save to server
+    };
+    DocumentService.prototype.testMerge = function () {
+        // 1) load Mine
+        var docMine = this.testInitDoc();
+        // 2) get Their data data
+        // 3) Merge
+        // 4) Save
+        // return doc
+    };
+    DocumentService.prototype.getMine = function (property, message) {
+        // init doc
+        var docMine = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["init"]();
+        //let commitMsg = 'initDoc - ' + this.getDate();
+        docMine = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["change"](docMine, message, function (doc) {
+            doc[property] = [message];
+        });
+        return docMine;
+    };
+    DocumentService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_6_ionic_angular__["c" /* Events */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* Http */],
+            __WEBPACK_IMPORTED_MODULE_8__blockstack_service__["a" /* BlockStackService */]])
+    ], DocumentService);
+    return DocumentService;
+}());
+
+//# sourceMappingURL=document.service.js.map
+
+/***/ }),
+
+/***/ 393:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EmailPageModule", function() { return EmailPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__email__ = __webpack_require__(626);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ng_select_ng_select__ = __webpack_require__(481);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(25);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+
+
+var EmailPageModule = (function () {
+    function EmailPageModule() {
+    }
+    EmailPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__email__["a" /* EmailPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__email__["a" /* EmailPage */]),
+                __WEBPACK_IMPORTED_MODULE_3__components_components_module__["a" /* BlockStepsComponentModule */],
+                __WEBPACK_IMPORTED_MODULE_4__ng_select_ng_select__["a" /* NgSelectModule */],
+                __WEBPACK_IMPORTED_MODULE_5__angular_forms__["a" /* FormsModule */],
+                __WEBPACK_IMPORTED_MODULE_5__angular_forms__["d" /* ReactiveFormsModule */]
+            ],
+            providers: []
+        })
+    ], EmailPageModule);
+    return EmailPageModule;
+}());
+
+//# sourceMappingURL=email.module.js.map
+
+/***/ }),
+
+/***/ 394:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EmailService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular__ = __webpack_require__(11);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+/*
+  Generated class for the StorageServiceProvider provider.
+
+  See https://angular.io/guide/dependency-injection for more info on providers
+  and Angular DI.
+*/
+var EmailService = (function () {
+    //url = "http://localhost:5000/api/email";
+    function EmailService(events, http) {
+        this.events = events;
+        this.http = http;
+        //url = "https://api.sendgrid.com/v3/mail/send";
+        //apiK = "";
+        this.url = "https://blockusign.co/api/email";
+    }
+    EmailService.prototype.sendEmail = function (to, subject, content) {
+        return __awaiter(this, void 0, void 0, function () {
+            var data, httpOptions, resp;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!to || !subject || !content) {
+                            alert('Must add an email address');
+                            return [2 /*return*/];
+                        }
+                        data = {
+                            "to": to,
+                            "subject": subject,
+                            "content": content
+                        };
+                        httpOptions = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["f" /* RequestOptions */]();
+                        httpOptions.headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Headers */]({
+                            'Content-Type': 'application/json'
+                        });
+                        return [4 /*yield*/, this.http.post(this.url, JSON.stringify(data), httpOptions).toPromise()];
+                    case 1:
+                        resp = _a.sent();
+                        return [2 /*return*/, resp];
+                }
+            });
+        });
+    };
+    EmailService.prototype.catchError = function () {
+    };
+    EmailService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5_ionic_angular__["c" /* Events */], __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]])
+    ], EmailService);
+    return EmailService;
+}());
+
+//# sourceMappingURL=email.service.js.map
+
+/***/ }),
+
+/***/ 482:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeModule", function() { return HomeModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__home__ = __webpack_require__(483);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(61);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+//import { BlockStepsComponent } from '../../components/block-steps/block-steps';
+var HomeModule = (function () {
+    function HomeModule() {
+    }
+    HomeModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["NgModule"])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_1__home__["a" /* HomePage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_1__home__["a" /* HomePage */]),
+                __WEBPACK_IMPORTED_MODULE_3__components_components_module__["a" /* BlockStepsComponentModule */]
+            ],
+            entryComponents: [
+                __WEBPACK_IMPORTED_MODULE_1__home__["a" /* HomePage */]
+            ],
+            schemas: [__WEBPACK_IMPORTED_MODULE_2__angular_core__["CUSTOM_ELEMENTS_SCHEMA"]]
+        })
+    ], HomeModule);
+    return HomeModule;
+}());
+
+//# sourceMappingURL=home.module.js.map
+
+/***/ }),
+
+/***/ 483:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_pdf_annotate__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_pdf_annotate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_pdf_annotate__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_global_service__ = __webpack_require__(484);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_document_service__ = __webpack_require__(31);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+
+
+//const $ = document.querySelectorAll.bind(document);
+/// Pdf js basic example - https://jsfiddle.net/pdfjs/cq0asLqz/?utm_source=website&utm_medium=embed&utm_campaign=cq0asLqz
+/// Annotations sample - http://jsfiddle.net/seikichi/RuDvz/2/
+var HomePage = (function () {
+    function HomePage(navCtrl, loadingCtrl, globalService, documentService, alertCtrl) {
+        this.navCtrl = navCtrl;
+        this.loadingCtrl = loadingCtrl;
+        this.globalService = globalService;
+        this.documentService = documentService;
+        this.alertCtrl = alertCtrl;
+        this.isLoggedIn = false;
+        this.loginState = "Login";
+        this.fileName = "blockusign/pdf1.pdf";
+    }
+    HomePage.prototype.ionViewDidLoad = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                //this.initCamera();
+                this.ekUpload();
+                return [2 /*return*/];
+            });
+        });
+    };
+    HomePage.prototype.next = function () {
+        //this.navCtrl.push(AnnotatePage)
+        //this.navCtrl.setRoot(ListPage);
+        this.navCtrl.push("AnnotatePage", {
+            guid: this.documentService.currentDoc.guid
+        });
+    };
+    HomePage.prototype.saveFile = function (fileName) {
+        return __awaiter(this, void 0, void 0, function () {
+            var documentList;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.documentService.addDocument(fileName, this.pdfBuffer)];
+                    case 1:
+                        documentList = _a.sent();
+                        this.next();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    HomePage.prototype.getFile = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var data;
+            return __generator(this, function (_a) {
+                data = this.documentService.getDocument(this.fileName, this.documentService.currentDoc.documentKey);
+                this.pdfBuffer = data;
+                return [2 /*return*/];
+            });
+        });
+    };
+    HomePage.prototype.loadFile = function () {
+        var _this = this;
+        this.loading = this.loadingCtrl.create({
+            content: 'Please wait...'
+        });
+        //this.loading.present();
+        var fileInput = document.getElementById('file-upload');
+        var firstFile = fileInput.files[0];
+        var startByte = 0;
+        var endByte = firstFile.size;
+        var opt_startByte = startByte.toString();
+        var opt_stopByte = endByte.toString();
+        var files = document.getElementById('file-upload').files;
+        if (!files.length) {
+            alert('Please select a file!');
+            return;
+        }
+        var file = files[0];
+        var start = parseInt(opt_startByte) || 0;
+        var stop = parseInt(opt_stopByte) || file.size - 1;
+        var filename = "";
+        var reader = new FileReader();
+        // If we use onloadend, we need to check the readyState.
+        reader.onloadend = function (evt) {
+            if (evt.target.readyState == FileReader.DONE) {
+                // document.getElementById('byte_content').textContent = evt.target.result;
+                // document.getElementById('byte_range').textContent =
+                //     ['Read bytes: ', start + 1, ' - ', stop + 1,
+                //         ' of ', file.size, ' byte file'].join('');
+            }
+            filename = fileInput.files[0].name;
+            _this.newDocModal(filename);
+            //localStorage.setItem("FileName", filename);
+        };
+        var blob = file.slice(start, stop + 1);
+        //reader.readAsBinaryString(blob);
+        reader.onload = function (evt) {
+            var arraybuffer = evt.target.result;
+            _this.pdfBuffer = arraybuffer;
+            //this.saveFile();
+            var pdfData = new Uint8Array(arraybuffer);
+            //this.savePdfAsString(pdfData);
+            _this.createPdf(pdfData);
+        };
+        reader.readAsArrayBuffer(blob);
+    };
+    HomePage.prototype.createPdf = function (pdfData) {
+        var _this = this;
+        // Loaded via <script> tag, create shortcut to access PDF.js exports.
+        var pdfjsLib = window['pdfjs-dist/build/pdf'];
+        pdfjsLib.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+        __WEBPACK_IMPORTED_MODULE_3_pdf_annotate___default.a.setStoreAdapter(new __WEBPACK_IMPORTED_MODULE_3_pdf_annotate___default.a.LocalStoreAdapter());
+        var loadingTask = pdfjsLib.getDocument({ data: pdfData });
+        loadingTask.promise.then(function (pdf) {
+            console.log('PDF loaded');
+            var pageNumber = 1;
+            pdf.getPage(pageNumber).then(function (page) {
+                console.log('Page loaded');
+                var scale = 1.5;
+                var viewport = page.getViewport(scale);
+                // Prepare canvas using PDF page dimensions
+                var canvas = document.getElementById('the-canvas');
+                var context = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+                // Render PDF page into canvas context
+                var renderContext = {
+                    canvasContext: context,
+                    viewport: viewport
+                };
+                var renderTask = page.render(renderContext);
+                renderTask.then(function () {
+                    console.log('Page rendered');
+                    _this.loading.dismiss();
+                });
+            });
+        }, function (reason) {
+            // PDF loading error
+            console.error(reason);
+            _this.loading.dismiss();
+        });
+    };
+    HomePage.prototype.savePdfAsString = function (pdf) {
+        this.largeuint8ArrToString(pdf, function (strPdf) {
+            var base64StringPdf = btoa(strPdf);
+            //localStorage.setItem("pdfStr", base64StringPdf);
+        });
+    };
+    HomePage.prototype.getPdfFromString = function (base64PdfString) {
+        // decode base64 string, remove space for IE compatibility
+        var binary = atob(base64PdfString.replace(/\s/g, ''));
+        var len = binary.length;
+        var arraybuffer = new ArrayBuffer(len);
+        var pdfData = new Uint8Array(arraybuffer);
+    };
+    HomePage.prototype.largeuint8ArrToString = function (uint8arr, callback) {
+        var bb = new Blob([uint8arr]);
+        var f = new FileReader();
+        f.onload = function (e) {
+            callback(e.target.result);
+        };
+        f.readAsBinaryString(bb);
+    };
+    // File Upload https://codepen.io/mattsince87/pen/yadZXv?editors=0010#0
+    HomePage.prototype.ekUpload = function () {
+        var self = this;
+        function Init() {
+            console.log("Upload Initialised");
+            var fileSelect = document.getElementById('file-upload'), fileDrag = document.getElementById('file-drag'), submitButton = document.getElementById('submit-button');
+            fileSelect.addEventListener('change', fileSelectHandler, false);
+            // Is XHR2 available?
+            var xhr = new XMLHttpRequest();
+            if (xhr.upload) {
+                // File Drop
+                fileDrag.addEventListener('dragover', fileDragHover, false);
+                fileDrag.addEventListener('dragleave', fileDragHover, false);
+                fileDrag.addEventListener('drop', fileSelectHandler, false);
+            }
+        }
+        function fileDragHover(e) {
+            var fileDrag = document.getElementById('file-drag');
+            e.stopPropagation();
+            e.preventDefault();
+            fileDrag.className = (e.type === 'dragover' ? 'hover' : 'modal-body file-upload');
+        }
+        function fileSelectHandler(e) {
+            // Fetch FileList object
+            var files = e.target.files || e.dataTransfer.files;
+            // Cancel event and hover styling
+            fileDragHover(e);
+            // Process all File objects
+            for (var i = 0, f; f = files[i]; i++) {
+                // parseFile(f);
+                self.loadFile();
+                uploadFile(f);
+            }
+        }
+        // Output
+        function output(msg) {
+            // Response
+            var m = document.getElementById('messages');
+            m.innerHTML = msg;
+        }
+        function setProgressMaxValue(e) {
+            var pBar = document.getElementById('file-progress');
+            if (e.lengthComputable) {
+                pBar.max = e.total;
+            }
+        }
+        function updateFileProgress(e) {
+            var pBar = document.getElementById('file-progress');
+            if (e.lengthComputable) {
+                pBar.value = e.loaded;
+            }
+        }
+        function uploadFile(file) {
+            var xhr = new XMLHttpRequest(), fileInput = document.getElementById('class-roster-file'), pBar = document.getElementById('file-progress'), fileSizeLimit = 2048; // In MB
+            if (xhr.upload) {
+                // Check if file is less than x MB
+                if (file.size <= fileSizeLimit * 1024 * 1024) {
+                    // Progress bar
+                    pBar.style.display = 'inline';
+                    xhr.upload.addEventListener('loadstart', setProgressMaxValue, false);
+                    xhr.upload.addEventListener('progress', updateFileProgress, false);
+                    // File received / failed
+                    xhr.onreadystatechange = function (e) {
+                        if (xhr.readyState == 4) {
+                            // Everything is good!
+                            // progress.className = (xhr.status == 200 ? "success" : "failure");
+                            // document.location.reload(true);
+                        }
+                    };
+                    // Start upload
+                    xhr.open('POST', document.getElementById('file-upload-form').action, true);
+                    xhr.setRequestHeader('X-File-Name', file.name);
+                    xhr.setRequestHeader('X-File-Size', file.size);
+                    xhr.setRequestHeader('Content-Type', 'multipart/form-data');
+                    xhr.send(file);
+                }
+                else {
+                    output('Please upload a smaller file (< ' + fileSizeLimit + ' MB).');
+                }
+            }
+        }
+        // Check for the various File API support.
+        if (window.File && window.FileList && window.FileReader) {
+            Init();
+        }
+        else {
+            document.getElementById('file-drag').style.display = 'none';
+        }
+    };
+    HomePage.prototype.newDocModal = function (fileName) {
+        var _this = this;
+        var alert = this.alertCtrl.create({
+            title: 'Document Name',
+            inputs: [
+                {
+                    name: 'fileName',
+                    placeholder: '',
+                    value: fileName
+                }
+            ],
+            buttons: [
+                {
+                    text: 'Cancel',
+                    role: 'cancel',
+                    handler: function (data) {
+                        console.log('Cancel clicked');
+                    }
+                },
+                {
+                    text: 'Ok',
+                    handler: function (data) {
+                        // save here
+                        _this.saveFile(data.fileName);
+                        if (true) {
+                            // logged in!
+                        }
+                        else {
+                            // invalid login
+                            return false;
+                        }
+                    }
+                }
+            ]
+        });
+        alert.present();
+    };
+    HomePage.prototype.initCamera = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            var devices, rearCamera, mediaOptions, mediaConfig, playStream, process, video;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, navigator.mediaDevices.enumerateDevices()];
+                    case 1:
+                        devices = _a.sent();
+                        ;
+                        rearCamera = devices.find(function (device) { return (device.kind === 'videoinput' && device.label.includes('back')); });
+                        if (rearCamera) {
+                            mediaOptions = {
+                                deviceId: { exact: rearCamera.deviceId }
+                            };
+                        }
+                        else {
+                            mediaOptions = true;
+                        }
+                        mediaConfig = {
+                            video: mediaOptions
+                        };
+                        playStream = function (video, src) {
+                            video.src = src;
+                            video.play();
+                        };
+                        process = function (video) {
+                            var mediaDevices = navigator.mediaDevices;
+                            mediaDevices.getUserMedia(mediaConfig).then(function (stream) {
+                                var videoTracks = stream.getVideoTracks();
+                                console.log('Got stream with constraints:', mediaConfig);
+                                console.log('Using video device: ' + videoTracks[0].label);
+                                // stream.onended = function() {
+                                //   console.log('Stream ended');
+                                // };
+                                window.stream = stream; // make variable available to console
+                                video.srcObject = stream;
+                            }).catch(function (err) {
+                                // alert(err);
+                                alert("Not support get stream from camera!");
+                            });
+                        };
+                        video = $("#video")[0];
+                        process(video);
+                        this.canvasCamera = $("#canvasCamera")[0];
+                        this.cameraContext = this.canvasCamera.getContext("2d");
+                        $("#snap").on('click', function () {
+                            _this.cameraContext.drawImage(video, 0, 0, 612, 792);
+                        });
+                        $("#downloadpdf").on('click', this.savePDF);
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    HomePage.prototype.savePDF = function () {
+        try {
+            this.canvasCamera = $("#canvasCamera")[0];
+            var imgData = this.canvasCamera.toDataURL("image/jpeg", 1.0);
+            var pdf = new jsPDF('p', 'mm', [297, 210]);
+            pdf.addImage(imgData, 'JPEG', 5, 5);
+            var namefile = prompt("insert name of file");
+            pdf.save(namefile + ".pdf");
+        }
+        catch (e) {
+            alert("Error description: " + e.message);
+        }
+    };
+    HomePage.prototype.testPublicKeyFile = function () {
+        var _this = this;
+        var myPublicKey = blockstack.getPublicKeyFromPrivate(blockstack.loadUserData().appPrivateKey);
+        var yourPublicKey = "02563f0f1d5c5429fa8fdb3d8fc4b0464dac70b07cd8249f0ef17bcf2c93ed7469";
+        if (blockstack.loadUserData().profile.name == "nick tee") {
+            // write for you
+            this.testPutFile(yourPublicKey);
+            // write for me
+            this.testPutFile(myPublicKey).then(function () {
+                // read for me
+                _this.testGetFile(myPublicKey);
+            });
+        }
+        if (blockstack.loadUserData().profile.name == "Demo User BlockSign") {
+            // read for me
+            this.testGetFile(myPublicKey);
+        }
+    };
+    HomePage.prototype.testPutFile = function (publicKey) {
+        var encryptOptions = { encrypt: publicKey };
+        var path = "testFile.json";
+        var fileContent = "{stuff: 'from nicktee.id'}";
+        // put and encrypt the file
+        return blockstack.putFile(path, fileContent, encryptOptions)
+            .then(function (publicURL) {
+            console.log("testPublicKeyFile ===> " + publicURL);
+        });
+    };
+    HomePage.prototype.testGetFile = function (publicKey) {
+        var decryptOptions = {
+            decrypt: true
+        };
+        var fullReadUrl = "../../hub/18kTskBpTh1mznsypu1fhJ27dxbC1SwXEK/testFile.json";
+        return blockstack.getFile(fullReadUrl, decryptOptions).then(function (readContent) {
+            console.log("testPublicKeyFile ===> " + readContent);
+        });
+    };
+    HomePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-home',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/home/home.html"*/'<ion-content>\n\n<block-steps activeStep="1">\n</block-steps>\n<br/><br/>\n\n  <ion-grid>\n\n    <ion-row class="uploader-row">\n      <ion-col>\n\n        <div >\n          <!-- Upload  -->\n          <form id="file-upload-form" class="uploader">\n            <input id="file-upload" type="file" name="fileUpload" accept=".pdf" />\n            <label for="file-upload" id="file-drag">\n              <img id="file-image" src="#" alt="Preview" class="hidden">\n              <div id="start">\n                <i class="fa fa-download" aria-hidden="true"></i>\n                <div>Select a PDF</div>\n                <div id="notimage" class="hidden">Please select an image</div>\n                <span id="file-upload-btn" class="btn btn-primary">Select a file</span>\n              </div>\n              <div id="response" class="hidden">\n                <div id="messages"></div>\n                <progress class="progress" id="file-progress" value="0">\n                  <span>0</span>%\n                </progress>\n              </div>\n            </label>\n          </form>\n\n          <!-- <label class="item item-input"> -->\n          <!-- <input type="file" id="files" name="file" (submit)="loadFile()" /> -->\n          <!-- </label> -->\n          <!-- <div class="preview-img">\n                          <img id="myImage" width="150" height="150" size="30" /> </div> -->\n          <!-- <span class="readBytesButtons">\n                                  <button data-startbyte="0" data-endbyte="4">1-5</button>\n                                  <button data-startbyte="5" data-endbyte="14">6-15</button>\n                                  <button data-startbyte="6" data-endbyte="7">7-8</button>\n                                  <button>entire file</button>\n                                </span> -->\n          <!-- <div id="byte_range"></div>\n                                <div id="byte_content"></div> -->\n\n          <!-- <button ion-button (click)="next()" style="margin-left: 50px; padding: 10px 10px 10px 10px; background: green; height: 45px;">\n            Next &nbsp;\n            <ion-icon name="arrow-forward"></ion-icon>\n          </button>  -->\n          <!-- <button ion-button (click)="saveFile()">Save File</button>\n                      <button ion-button (click)="getFile()">Get File</button> -->\n\n\n\n        </div>\n      </ion-col>\n    </ion-row>\n\n\n    <!-- <ion-row>\n      <ion-col>\n        <video id="video" width="612" height="792"></video>\n        <canvas id="canvasCamera" width="612" height="792"></canvas>\n      </ion-col>\n    </ion-row>\n -->\n\n    <ion-row>\n      <ion-col>\n        <div>\n          <br/>\n          <canvas id="the-canvas"></canvas>\n        </div>\n      </ion-col>\n    </ion-row>\n\n  </ion-grid>\n\n\n  <!-- <steps>\n    \n  </steps> -->\n\n  <!-- <ion-fab top left style="margin-top:130px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab>\n    <button id="snap">Snap Photo</button>\n    <button id="downloadpdf">Download as pdf</button>\n  </ion-fab> -->\n</ion-content>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/home/home.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_4__services_global_service__["a" /* GlobalService */],
+            __WEBPACK_IMPORTED_MODULE_5__services_document_service__["a" /* DocumentService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+    ], HomePage);
+    return HomePage;
+}());
+
+//# sourceMappingURL=home.js.map
+
+/***/ }),
+
+/***/ 484:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GlobalService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var GlobalService = (function () {
+    function GlobalService() {
+        this.GaiUrl = "http://21312";
+    }
+    GlobalService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [])
+    ], GlobalService);
+    return GlobalService;
+}());
+
+//# sourceMappingURL=global.service.js.map
+
+/***/ }),
+
+/***/ 485:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReviewPageModule", function() { return ReviewPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__review__ = __webpack_require__(895);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(61);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+var ReviewPageModule = (function () {
+    function ReviewPageModule() {
+    }
+    ReviewPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__review__["a" /* ReviewPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__review__["a" /* ReviewPage */]),
+                __WEBPACK_IMPORTED_MODULE_3__components_components_module__["a" /* BlockStepsComponentModule */]
+            ],
+        })
+    ], ReviewPageModule);
+    return ReviewPageModule;
+}());
+
+//# sourceMappingURL=review.module.js.map
+
+/***/ }),
+
+/***/ 486:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignPageModule", function() { return SignPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sign__ = __webpack_require__(896);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(61);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+var SignPageModule = (function () {
+    function SignPageModule() {
+    }
+    SignPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__sign__["a" /* SignPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__sign__["a" /* SignPage */]),
+                __WEBPACK_IMPORTED_MODULE_3__components_components_module__["a" /* BlockStepsComponentModule */]
+            ],
+        })
+    ], SignPageModule);
+    return SignPageModule;
+}());
+
+//# sourceMappingURL=sign.module.js.map
+
+/***/ }),
+
+/***/ 535:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OptionsPopoverPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_document_service__ = __webpack_require__(31);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+var OptionsPopoverPage = (function () {
+    function OptionsPopoverPage(viewCtrl, documentService, toastCtrl) {
+        this.viewCtrl = viewCtrl;
+        this.documentService = documentService;
+        this.toastCtrl = toastCtrl;
+        this.doc = this.viewCtrl.data.selectedDoc;
+    }
+    OptionsPopoverPage.prototype.close = function () {
+        this.viewCtrl.dismiss();
+    };
+    OptionsPopoverPage.prototype.documentRemove = function (selectedDocument) {
+        return __awaiter(this, void 0, void 0, function () {
+            var toast;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.documentService.removeDocument(this.doc)];
+                    case 1:
+                        _a.sent();
+                        toast = this.toastCtrl.create({
+                            message: 'Document deleted!',
+                            duration: 3000,
+                            position: 'middle'
+                        });
+                        toast.present();
+                        this.viewCtrl.dismiss();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    OptionsPopoverPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            template: "\n     <br/>\n      <ion-list style=\"\">\n        <button ion-item (click)=\"documentRemove()\">Delete</button>\n        <button ion-item (click)=\"close()\">CLOSE X</button>\n      </ion-list>\n    "
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ViewController */], __WEBPACK_IMPORTED_MODULE_2__services_document_service__["a" /* DocumentService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* ToastController */]])
+    ], OptionsPopoverPage);
+    return OptionsPopoverPage;
+}());
+
+//# sourceMappingURL=options.popover.page.js.map
+
+/***/ }),
+
+/***/ 536:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(537);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(541);
+
+
+Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
+//# sourceMappingURL=main.js.map
+
+/***/ }),
+
+/***/ 541:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(526);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_splash_screen__ = __webpack_require__(529);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_charts__ = __webpack_require__(917);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_charts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_ng2_charts__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ng_select_ng_select__ = __webpack_require__(481);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_component__ = __webpack_require__(965);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__options_popover_page__ = __webpack_require__(535);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__directives_directives_module__ = __webpack_require__(269);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_home_home_module__ = __webpack_require__(482);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_annotate_annotate_module__ = __webpack_require__(243);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_sign_sign_module__ = __webpack_require__(486);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_email_email_module__ = __webpack_require__(393);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_review_review_module__ = __webpack_require__(485);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_components_module__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__services_coin_service__ = __webpack_require__(966);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_global_service__ = __webpack_require__(484);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__services_cryptocompare_service__ = __webpack_require__(967);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__services_slack_service__ = __webpack_require__(968);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__services_document_service__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__services_email_service__ = __webpack_require__(394);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__services_blockstack_service__ = __webpack_require__(73);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//import { HomePage } from './../pages/home/home';
+//import { AnnotatePage } from './../pages/annotate/annotate';
+
+
+
+
+
+
+
+var AppModule = (function () {
+    function AppModule() {
+    }
+    AppModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* MyApp */],
+                __WEBPACK_IMPORTED_MODULE_10__options_popover_page__["a" /* OptionsPopoverPage */]
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
+                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* MyApp */], {
+                    preloadModules: true
+                }, {
+                    links: [
+                        { loadChildren: '../pages/annotate/annotate.module#AnnotatePageModule', name: 'AnnotatePage', segment: 'annotate/:guid', priority: 'low', defaultHistory: ['HomePage'] },
+                        { loadChildren: '../pages/email/email.module#EmailPageModule', name: 'EmailPage', segment: 'email/:guid', priority: 'low', defaultHistory: ['AnnotatePage', 'HomePage'] },
+                        { loadChildren: '../pages/home/home.module#HomeModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/review/review.module#ReviewPageModule', name: 'ReviewPage', segment: 'review/:guid', priority: 'low', defaultHistory: ['SignPage', 'EmailPage', 'AnnotatePage', 'HomePage'] },
+                        { loadChildren: '../pages/sign/sign.module#SignPageModule', name: 'SignPage', segment: 'sign/:guid', priority: 'low', defaultHistory: ['EmailPage', 'AnnotatePage', 'HomePage'] }
+                    ]
+                }),
+                __WEBPACK_IMPORTED_MODULE_11__directives_directives_module__["a" /* DirectivesModule */],
+                __WEBPACK_IMPORTED_MODULE_6_ng2_charts__["ChartsModule"],
+                __WEBPACK_IMPORTED_MODULE_3__angular_http__["c" /* HttpModule */],
+                __WEBPACK_IMPORTED_MODULE_3__angular_http__["e" /* JsonpModule */],
+                __WEBPACK_IMPORTED_MODULE_12__pages_home_home_module__["HomeModule"],
+                __WEBPACK_IMPORTED_MODULE_13__pages_annotate_annotate_module__["AnnotatePageModule"],
+                __WEBPACK_IMPORTED_MODULE_14__pages_sign_sign_module__["SignPageModule"],
+                __WEBPACK_IMPORTED_MODULE_15__pages_email_email_module__["EmailPageModule"],
+                __WEBPACK_IMPORTED_MODULE_16__pages_review_review_module__["ReviewPageModule"],
+                __WEBPACK_IMPORTED_MODULE_7__ng_select_ng_select__["a" /* NgSelectModule */],
+                __WEBPACK_IMPORTED_MODULE_8__angular_forms__["a" /* FormsModule */],
+                __WEBPACK_IMPORTED_MODULE_17__components_components_module__["a" /* BlockStepsComponentModule */]
+            ],
+            bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicApp */]],
+            entryComponents: [
+                __WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* MyApp */],
+                __WEBPACK_IMPORTED_MODULE_10__options_popover_page__["a" /* OptionsPopoverPage */]
+            ],
+            providers: [
+                __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__["a" /* StatusBar */],
+                __WEBPACK_IMPORTED_MODULE_5__ionic_native_splash_screen__["a" /* SplashScreen */],
+                __WEBPACK_IMPORTED_MODULE_24__services_blockstack_service__["a" /* BlockStackService */],
+                __WEBPACK_IMPORTED_MODULE_18__services_coin_service__["a" /* CoinService */],
+                __WEBPACK_IMPORTED_MODULE_20__services_cryptocompare_service__["a" /* CryptoCompareService */],
+                __WEBPACK_IMPORTED_MODULE_21__services_slack_service__["a" /* SlackService */],
+                __WEBPACK_IMPORTED_MODULE_19__services_global_service__["a" /* GlobalService */],
+                { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ErrorHandler"], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicErrorHandler */] },
+                __WEBPACK_IMPORTED_MODULE_22__services_document_service__["a" /* DocumentService */],
+                __WEBPACK_IMPORTED_MODULE_23__services_email_service__["a" /* EmailService */]
+            ]
+        })
+    ], AppModule);
+    return AppModule;
+}());
+
+//# sourceMappingURL=app.module.js.map
+
+/***/ }),
+
+/***/ 562:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return State; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_automerge_dist_automerge_js__ = __webpack_require__(247);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_automerge_dist_automerge_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_automerge_dist_automerge_js__);
+
+var State = (function () {
+    function State() {
+    }
+    // 1) Init
+    State.prototype.docInit = function () {
+        // init doc
+        var docMine = __WEBPACK_IMPORTED_MODULE_0_automerge_dist_automerge_js__["init"]();
+        return docMine;
+    };
+    // 1) Or Get Mine
+    State.prototype.docLoadMine = function (mine) {
+        return __WEBPACK_IMPORTED_MODULE_0_automerge_dist_automerge_js__["load"](mine);
+    };
+    // 2) Get Theirs
+    State.prototype.docLoadTheirs = function (theirs) {
+        return __WEBPACK_IMPORTED_MODULE_0_automerge_dist_automerge_js__["load"](theirs);
+    };
+    // 3) Merge theirs into mine, and sort by updatedAt date
+    State.prototype.docMerge = function (mine, theirs) {
+        return __WEBPACK_IMPORTED_MODULE_0_automerge_dist_automerge_js__["merge"](mine, theirs);
+    };
+    // 4) Save the merged state
+    State.prototype.docSave = function (doc) {
+        return __WEBPACK_IMPORTED_MODULE_0_automerge_dist_automerge_js__["save"](doc);
+    };
+    // 5) Add my changes
+    State.prototype.docEdit = function (mine, commit, property, data) {
+        mine = __WEBPACK_IMPORTED_MODULE_0_automerge_dist_automerge_js__["change"](mine, commit, function (doc) {
+            doc[property] = data;
+        });
+        return mine;
+    };
+    State.prototype.docHistory = function (doc) {
+        return __WEBPACK_IMPORTED_MODULE_0_automerge_dist_automerge_js__["getHistory"](doc).map(function (state) { return [state.change.message, state.snapshot.cards.length]; });
+    };
+    return State;
+}());
+
+//let state = new State();
+//# sourceMappingURL=state.js.map
+
+/***/ }),
+
+/***/ 568:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BlockStepsComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_document_service__ = __webpack_require__(31);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the BlockStepsComponent component.
+ *
+ * See https://angular.io/api/core/Component for more info on Angular
+ * Components.
+ */
+var BlockStepsComponent = (function () {
+    function BlockStepsComponent(nav, documentService) {
+        this.nav = nav;
+        this.documentService = documentService;
+        console.log('Hello BlockStepsComponent Component');
+        this.text = 'Hello World';
+    }
+    BlockStepsComponent.prototype.route = function (page) {
+        // try{
+        //   this.nav.pop();
+        // }
+        // catch(e) {
+        //   // nothing to pop
+        // };
+        $('.block-pdf-page').empty();
+        this.nav.push(page, {
+            guid: this.documentService.currentDoc.guid
+        });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Object)
+    ], BlockStepsComponent.prototype, "activeStep", void 0);
+    BlockStepsComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'block-steps',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-steps/block-steps.html"*/'<!-- Generated template for the BlockStepsComponent component -->\n<!-- <h1>\n    {{ activeStep }}\n</h1>\n\n<div>\n    <ng-content select=".step1"></ng-content>\n</div>\n<h2>\n    <ng-content select=".step2"></ng-content>\n</h2> -->\n\n\n <div class="steps-wrapper">\n    <ul class="steps">\n      <li [ngClass]="activeStep == \'1\' ? \'step active\': \'step\'" (click)="route(\'HomePage\')">\n        <div class="step-info">\n          <span class="step-name">Upload</span>\n        </div>\n      </li>\n      <li [ngClass]="activeStep == \'2\' ? \'step active\': \'step\'" (click)="route(\'AnnotatePage\')">\n        <div class="step-info">\n          <span class="step-name">Annotate</span>\n        </div>\n      </li>\n      <li [ngClass]="activeStep == \'3\' ? \'step active\': \'step\'" (click)="route(\'EmailPage\')">\n        <div class="step-info">\n          <span class="step-name">Email</span>\n        </div>\n      </li>\n      <li [ngClass]="activeStep == \'4\' ? \'step active\': \'step\'" (click)="route(\'SignPage\')">\n        <div class="step-info">\n          <span class="step-name">Sign</span>\n        </div>\n      </li>\n      <li [ngClass]="activeStep == \'5\' ? \'step active\': \'step\'" (click)="route(\'ReviewPage\')">\n        <div class="step-info">\n          <span class="step-name">Review</span>\n        </div>\n      </li>\n    </ul>\n  </div>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-steps/block-steps.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__services_document_service__["a" /* DocumentService */]])
+    ], BlockStepsComponent);
+    return BlockStepsComponent;
+}());
+
+//# sourceMappingURL=block-steps.js.map
+
+/***/ }),
+
+/***/ 574:
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 593:
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 594:
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 595:
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 61:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BlockStepsComponentModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__block_steps_block_steps__ = __webpack_require__(568);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__block_pdf_block_pdf__ = __webpack_require__(252);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_directives_module__ = __webpack_require__(269);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__block_chat_block_chat__ = __webpack_require__(624);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+
+var BlockStepsComponentModule = (function () {
+    function BlockStepsComponentModule() {
+    }
+    BlockStepsComponentModule_1 = BlockStepsComponentModule;
+    BlockStepsComponentModule.forRoot = function () {
+        return {
+            ngModule: BlockStepsComponentModule_1,
+            providers: []
+        };
+    };
+    BlockStepsComponentModule = BlockStepsComponentModule_1 = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+            declarations: [__WEBPACK_IMPORTED_MODULE_1__block_steps_block_steps__["a" /* BlockStepsComponent */],
+                __WEBPACK_IMPORTED_MODULE_3__block_pdf_block_pdf__["a" /* BlockPdfComponent */],
+                __WEBPACK_IMPORTED_MODULE_5__block_chat_block_chat__["a" /* BlockChatComponent */]],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* IonicModule */],
+                __WEBPACK_IMPORTED_MODULE_4__directives_directives_module__["a" /* DirectivesModule */]
+            ],
+            exports: [__WEBPACK_IMPORTED_MODULE_1__block_steps_block_steps__["a" /* BlockStepsComponent */],
+                __WEBPACK_IMPORTED_MODULE_3__block_pdf_block_pdf__["a" /* BlockPdfComponent */],
+                __WEBPACK_IMPORTED_MODULE_5__block_chat_block_chat__["a" /* BlockChatComponent */]]
+        })
+    ], BlockStepsComponentModule);
+    return BlockStepsComponentModule;
+    var BlockStepsComponentModule_1;
+}());
+
+//# sourceMappingURL=components.module.js.map
+
+/***/ }),
+
+/***/ 623:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AbsoluteDragDirective; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/**
+ * Generated class for the AbsoluteDragDirective directive.
+ *
+ * See https://angular.io/api/core/Directive for more info on Angular
+ * Directives.
+ */
+var AbsoluteDragDirective = (function () {
+    function AbsoluteDragDirective(element, renderer, domCtrl) {
+        this.element = element;
+        this.renderer = renderer;
+        this.domCtrl = domCtrl;
+    }
+    AbsoluteDragDirective.prototype.ngAfterViewInit = function () {
+        this.initDragOn();
+        // this.renderer.setElementStyle(this.element.nativeElement, 'position', 'absolute');
+        // this.renderer.setElementStyle(this.element.nativeElement, 'left', this.startLeft + 'px');
+        // this.renderer.setElementStyle(this.element.nativeElement, 'top', this.startTop + 'px');
+        //let hammer = new window['Hammer'](this.element.nativeElement);
+        // hammer.get('pan').set({ direction: window['Hammer'].DIRECTION_ALL });
+        // hammer.on('pan', (ev) => {
+        //   this.handlePan(ev);
+        // });
+    };
+    AbsoluteDragDirective.prototype.ngOnDestroy = function () {
+        //this.svgDrawer.off();
+        //this.svgDrawer.remove();
+        //$(this.svgDrawer.elem).remove();
+        this.startLeft = null;
+        this.startTop = null;
+    };
+    // handlePan(ev){
+    //     let newLeft = ev.center.x;
+    //     let newTop = ev.center.y;
+    //     this.domCtrl.write(() => {
+    //         this.renderer.setElementStyle(this.element.nativeElement, 'left', newLeft + 'px');
+    //         this.renderer.setElementStyle(this.element.nativeElement, 'top', newTop + 'px');
+    //     });
+    // }
+    AbsoluteDragDirective.prototype.initDragOn = function () {
+        try {
+            this.svgDrawer = dragOn(document.querySelector(".dropzone"), {
+                listenTo: '.draggable'
+            });
+        }
+        catch (e) { }
+        // target elements with the "resizable" class
+        // interact('.resizable')
+        //   .resizable({
+        //     // preserveAspectRatio: true,
+        //     edges: {
+        //       left: true,
+        //       right: true,
+        //       bottom: true,
+        //       top: true
+        //     }
+        //   })
+        //   .on('resizemove', (event) => {
+        //     svgDrawer.updateMetrics();
+        //     var target = event.target,
+        //       x = (parseFloat(target.getAttribute('data-x')) || 0),
+        //       y = (parseFloat(target.getAttribute('data-y')) || 0);
+        //     // update the element's style
+        //     target.style.width = event.rect.width + 'px';
+        //     target.style.height = event.rect.height + 'px';
+        //     // translate when resizing from top or left edges
+        //     x += event.deltaRect.left;
+        //     y += event.deltaRect.top;
+        //     target.style.webkitTransform = target.style.transform =
+        //       'translate(' + x + 'px,' + y + 'px)';
+        //     target.setAttribute('data-x', x);
+        //     target.setAttribute('data-y', y);
+        //   });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('startLeft'),
+        __metadata("design:type", Object)
+    ], AbsoluteDragDirective.prototype, "startLeft", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('startTop'),
+        __metadata("design:type", Object)
+    ], AbsoluteDragDirective.prototype, "startTop", void 0);
+    AbsoluteDragDirective = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"])({
+            selector: '[absolute-drag]' // Attribute selector
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* DomController */]])
+    ], AbsoluteDragDirective);
+    return AbsoluteDragDirective;
+}());
+
+//# sourceMappingURL=absolute-drag.js.map
+
+/***/ }),
+
+/***/ 624:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BlockChatComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_document_service__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_models__ = __webpack_require__(245);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_moment__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_moment__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+/**
+ * https://codepen.io/mehmetmert/pen/zbKpv
+ */
+var BlockChatComponent = (function () {
+    function BlockChatComponent(documentService, events, blockstackService) {
+        this.documentService = documentService;
+        this.events = events;
+        this.blockstackService = blockstackService;
+    }
+    BlockChatComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.doc = new __WEBPACK_IMPORTED_MODULE_2__models_models__["a" /* Document */]();
+        if (this.documentService.currentDoc) {
+            this.doc = this.documentService.currentDoc;
+            this.getLogData();
+        }
+        else {
+            this.subscription = this.events.subscribe('documentService:setCurrentDoc', function (currentDoc) { return __awaiter(_this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    this.doc = currentDoc;
+                    this.getLogData();
+                    return [2 /*return*/];
+                });
+            }); });
+        }
+        this.chatSubscription = this.events.subscribe('documentService:addedChat', function (msg) { return __awaiter(_this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                setTimeout(function () {
+                    _this.getLogData();
+                }, 1000);
+                return [2 /*return*/];
+            });
+        }); });
+    };
+    BlockChatComponent.prototype.ngOnDestroy = function () {
+        if (this.subscription) {
+            this.subscription.unsubscribe();
+        }
+        if (this.chatSubscription) {
+            this.chatSubscription.unsubscribe();
+        }
+    };
+    BlockChatComponent.prototype.getLogData = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                $(document).ready(function () { return __awaiter(_this, void 0, void 0, function () {
+                    var logData, template, orderedMessages, _loop_1, this_1, _i, orderedMessages_1, item;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0: return [4 /*yield*/, this.documentService.getLog(this.doc.guid)];
+                            case 1:
+                                logData = _a.sent();
+                                $('.chat-head').html(this.doc.fileName);
+                                template = "";
+                                orderedMessages = jslinq(logData.messages).orderBy(function (el) { return el.updatedAt; }).toList();
+                                _loop_1 = function (item) {
+                                    var d = item.updatedAt;
+                                    var formatDate = __WEBPACK_IMPORTED_MODULE_5_moment__(d).calendar(d);
+                                    var uid = item.createdBy;
+                                    try {
+                                        uid = item.createdBy.replace('.id', '');
+                                    }
+                                    catch (e) {
+                                        console.log('user does not have .id');
+                                    }
+                                    ;
+                                    var uName = item.createdByName;
+                                    var uidClass = 'block-pic-' + uid;
+                                    this_1.blockstackService.getPicUrl(uName).then(function (picUrl) {
+                                        $('.' + uidClass).attr('src', picUrl);
+                                    });
+                                    template = template + ("  \n        <div class=\"chat-message clearfix\">\n        <img class=\"" + uidClass + "\" src=\"http://www.gravatar.com/avatar/?d=identicon\" alt=\"\" width=\"32\" height=\"32\">\n        <div class=\"chat-message-content clearfix\">\n          <span class=\"chat-time\">" + formatDate + "</span>\n          <h5>" + item.email + "</h5>\n          <p>" + item.message + "</p>\n        </div> \n        </div>\n        <hr style='margin-top:5px' />\n        ");
+                                };
+                                this_1 = this;
+                                for (_i = 0, orderedMessages_1 = orderedMessages; _i < orderedMessages_1.length; _i++) {
+                                    item = orderedMessages_1[_i];
+                                    _loop_1(item);
+                                }
+                                //setTimeout( () =>{ // hack?
+                                $('.log-history').html(template);
+                                $('.chat-history').scrollTop($('.log-history').height());
+                                return [2 /*return*/];
+                        }
+                    });
+                }); });
+                return [2 /*return*/];
+            });
+        });
+    };
+    BlockChatComponent.prototype.minimize = function () {
+        $('.chat').slideToggle(300, 'swing');
+        $('.chat-message-counter').fadeToggle(300, 'swing');
+    };
+    BlockChatComponent.prototype.addMessage = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.documentService.addMessage(this.doc.guid, this.message)];
+                    case 1:
+                        _a.sent();
+                        this.events.publish('documentService:addedChat', this.message);
+                        this.message = null;
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    BlockChatComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'block-chat',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-chat/block-chat.html"*/'<div class="block-chat">\n  <ion-fab bottom right>\n    <div id="live-chat" class="shadow6">\n\n      <header class="clearfix" (click)="minimize()">\n        <!-- <a class="chat-close"  >x</a>-->\n        <h4>\n          <span class="chat-head"></span> - Log</h4>\n        <!-- <span style="opacity:.6; padding-left:30px;">YOURNAME/THEIRNAME</span> -->\n        <span class="chat-message-counter">3</span>\n      </header>\n      <div class="chat">\n        <div class="chat-history">\n          <div class="log-history">\n           \n          </div>\n        </div>\n        <!-- <p class="chat-feedback">Your partner is typing…</p> -->\n        <form>\n          <fieldset>\n            <input type="text" name="addMsg" placeholder="Type your message…" autofocus [(ngModel)]="message" (keydown.enter)="addMessage($event)"\n            />\n          </fieldset>\n        </form>\n\n      </div>\n      <!-- end chat -->\n\n    </div>\n    <!-- end live-chat -->\n  </ion-fab>\n\n</div>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-chat/block-chat.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_document_service__["a" /* DocumentService */],
+            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* Events */],
+            __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__["a" /* BlockStackService */]])
+    ], BlockChatComponent);
+    return BlockChatComponent;
+}());
+
+//# sourceMappingURL=block-chat.js.map
+
+/***/ }),
+
+/***/ 625:
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./af": 270,
+	"./af.js": 270,
+	"./ar": 271,
+	"./ar-dz": 272,
+	"./ar-dz.js": 272,
+	"./ar-kw": 273,
+	"./ar-kw.js": 273,
+	"./ar-ly": 274,
+	"./ar-ly.js": 274,
+	"./ar-ma": 275,
+	"./ar-ma.js": 275,
+	"./ar-sa": 276,
+	"./ar-sa.js": 276,
+	"./ar-tn": 277,
+	"./ar-tn.js": 277,
+	"./ar.js": 271,
+	"./az": 278,
+	"./az.js": 278,
+	"./be": 279,
+	"./be.js": 279,
+	"./bg": 280,
+	"./bg.js": 280,
+	"./bm": 281,
+	"./bm.js": 281,
+	"./bn": 282,
+	"./bn.js": 282,
+	"./bo": 283,
+	"./bo.js": 283,
+	"./br": 284,
+	"./br.js": 284,
+	"./bs": 285,
+	"./bs.js": 285,
+	"./ca": 286,
+	"./ca.js": 286,
+	"./cs": 287,
+	"./cs.js": 287,
+	"./cv": 288,
+	"./cv.js": 288,
+	"./cy": 289,
+	"./cy.js": 289,
+	"./da": 290,
+	"./da.js": 290,
+	"./de": 291,
+	"./de-at": 292,
+	"./de-at.js": 292,
+	"./de-ch": 293,
+	"./de-ch.js": 293,
+	"./de.js": 291,
+	"./dv": 294,
+	"./dv.js": 294,
+	"./el": 295,
+	"./el.js": 295,
+	"./en-au": 296,
+	"./en-au.js": 296,
+	"./en-ca": 297,
+	"./en-ca.js": 297,
+	"./en-gb": 298,
+	"./en-gb.js": 298,
+	"./en-ie": 299,
+	"./en-ie.js": 299,
+	"./en-il": 300,
+	"./en-il.js": 300,
+	"./en-nz": 301,
+	"./en-nz.js": 301,
+	"./eo": 302,
+	"./eo.js": 302,
+	"./es": 303,
+	"./es-do": 304,
+	"./es-do.js": 304,
+	"./es-us": 305,
+	"./es-us.js": 305,
+	"./es.js": 303,
+	"./et": 306,
+	"./et.js": 306,
+	"./eu": 307,
+	"./eu.js": 307,
+	"./fa": 308,
+	"./fa.js": 308,
+	"./fi": 309,
+	"./fi.js": 309,
+	"./fo": 310,
+	"./fo.js": 310,
+	"./fr": 311,
+	"./fr-ca": 312,
+	"./fr-ca.js": 312,
+	"./fr-ch": 313,
+	"./fr-ch.js": 313,
+	"./fr.js": 311,
+	"./fy": 314,
+	"./fy.js": 314,
+	"./gd": 315,
+	"./gd.js": 315,
+	"./gl": 316,
+	"./gl.js": 316,
+	"./gom-latn": 317,
+	"./gom-latn.js": 317,
+	"./gu": 318,
+	"./gu.js": 318,
+	"./he": 319,
+	"./he.js": 319,
+	"./hi": 320,
+	"./hi.js": 320,
+	"./hr": 321,
+	"./hr.js": 321,
+	"./hu": 322,
+	"./hu.js": 322,
+	"./hy-am": 323,
+	"./hy-am.js": 323,
+	"./id": 324,
+	"./id.js": 324,
+	"./is": 325,
+	"./is.js": 325,
+	"./it": 326,
+	"./it.js": 326,
+	"./ja": 327,
+	"./ja.js": 327,
+	"./jv": 328,
+	"./jv.js": 328,
+	"./ka": 329,
+	"./ka.js": 329,
+	"./kk": 330,
+	"./kk.js": 330,
+	"./km": 331,
+	"./km.js": 331,
+	"./kn": 332,
+	"./kn.js": 332,
+	"./ko": 333,
+	"./ko.js": 333,
+	"./ky": 334,
+	"./ky.js": 334,
+	"./lb": 335,
+	"./lb.js": 335,
+	"./lo": 336,
+	"./lo.js": 336,
+	"./lt": 337,
+	"./lt.js": 337,
+	"./lv": 338,
+	"./lv.js": 338,
+	"./me": 339,
+	"./me.js": 339,
+	"./mi": 340,
+	"./mi.js": 340,
+	"./mk": 341,
+	"./mk.js": 341,
+	"./ml": 342,
+	"./ml.js": 342,
+	"./mn": 343,
+	"./mn.js": 343,
+	"./mr": 344,
+	"./mr.js": 344,
+	"./ms": 345,
+	"./ms-my": 346,
+	"./ms-my.js": 346,
+	"./ms.js": 345,
+	"./mt": 347,
+	"./mt.js": 347,
+	"./my": 348,
+	"./my.js": 348,
+	"./nb": 349,
+	"./nb.js": 349,
+	"./ne": 350,
+	"./ne.js": 350,
+	"./nl": 351,
+	"./nl-be": 352,
+	"./nl-be.js": 352,
+	"./nl.js": 351,
+	"./nn": 353,
+	"./nn.js": 353,
+	"./pa-in": 354,
+	"./pa-in.js": 354,
+	"./pl": 355,
+	"./pl.js": 355,
+	"./pt": 356,
+	"./pt-br": 357,
+	"./pt-br.js": 357,
+	"./pt.js": 356,
+	"./ro": 358,
+	"./ro.js": 358,
+	"./ru": 359,
+	"./ru.js": 359,
+	"./sd": 360,
+	"./sd.js": 360,
+	"./se": 361,
+	"./se.js": 361,
+	"./si": 362,
+	"./si.js": 362,
+	"./sk": 363,
+	"./sk.js": 363,
+	"./sl": 364,
+	"./sl.js": 364,
+	"./sq": 365,
+	"./sq.js": 365,
+	"./sr": 366,
+	"./sr-cyrl": 367,
+	"./sr-cyrl.js": 367,
+	"./sr.js": 366,
+	"./ss": 368,
+	"./ss.js": 368,
+	"./sv": 369,
+	"./sv.js": 369,
+	"./sw": 370,
+	"./sw.js": 370,
+	"./ta": 371,
+	"./ta.js": 371,
+	"./te": 372,
+	"./te.js": 372,
+	"./tet": 373,
+	"./tet.js": 373,
+	"./tg": 374,
+	"./tg.js": 374,
+	"./th": 375,
+	"./th.js": 375,
+	"./tl-ph": 376,
+	"./tl-ph.js": 376,
+	"./tlh": 377,
+	"./tlh.js": 377,
+	"./tr": 378,
+	"./tr.js": 378,
+	"./tzl": 379,
+	"./tzl.js": 379,
+	"./tzm": 380,
+	"./tzm-latn": 381,
+	"./tzm-latn.js": 381,
+	"./tzm.js": 380,
+	"./ug-cn": 382,
+	"./ug-cn.js": 382,
+	"./uk": 383,
+	"./uk.js": 383,
+	"./ur": 384,
+	"./ur.js": 384,
+	"./uz": 385,
+	"./uz-latn": 386,
+	"./uz-latn.js": 386,
+	"./uz.js": 385,
+	"./vi": 387,
+	"./vi.js": 387,
+	"./x-pseudo": 388,
+	"./x-pseudo.js": 388,
+	"./yo": 389,
+	"./yo.js": 389,
+	"./zh-cn": 390,
+	"./zh-cn.js": 390,
+	"./zh-hk": 391,
+	"./zh-hk.js": 391,
+	"./zh-tw": 392,
+	"./zh-tw.js": 392
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 625;
+
+/***/ }),
+
+/***/ 626:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EmailPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_document_service__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_email_service__ = __webpack_require__(394);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs__ = __webpack_require__(637);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+
+
+/**
+ * Generated class for the SignPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var EmailPage = (function () {
+    function EmailPage(navCtrl, navParams, documentService, emailService, blockStackService, chg, loadingCtrl) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.documentService = documentService;
+        this.emailService = emailService;
+        this.blockStackService = blockStackService;
+        this.chg = chg;
+        this.loadingCtrl = loadingCtrl;
+        this.email = "";
+        this.people3 = [];
+        this.people3Loading = false;
+        this.selectedUser = [];
+        this.people3Typeahead = new __WEBPACK_IMPORTED_MODULE_6_rxjs__["Subject"]();
+        if (this.navParams.get("guid") && !this.documentService.currentDoc) {
+            var guid_1 = this.navParams.get("guid");
+            this.documentService.getDocumentsIndex(true).then(function (data) {
+                _this.documentService.documentsList = data;
+                _this.documentService.setCurrentDoc(guid_1);
+                //this.getFile();
+                // @todo in side menu highlight selected doc
+            });
+        }
+        else {
+            //this.getFile();
+        }
+    }
+    EmailPage.prototype.ionViewDidLoad = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                console.log('ionViewDidLoad SignPage');
+                this.lookup();
+                this.loadPeople3();
+                return [2 /*return*/];
+            });
+        });
+    };
+    EmailPage.prototype.next = function () {
+        this.navCtrl.push("SignPage", {
+            guid: this.documentService.currentDoc.guid
+        });
+    };
+    EmailPage.prototype.back = function () {
+        this.navCtrl.push("AnnotatePage", {
+            guid: this.documentService.currentDoc.guid
+        });
+    };
+    EmailPage.prototype.getUrl = function () {
+        return window.location.href;
+    };
+    EmailPage.prototype.lookup = function () {
+        blockstack.lookupProfile("blockusign1.id")
+            .then(function (profile) {
+            var data = profile;
+        })
+            .catch(function (error) {
+            console.log('could not resolve profile');
+        });
+    };
+    EmailPage.prototype.searchUser = function (user) {
+        return __awaiter(this, void 0, void 0, function () {
+            var resp;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.blockStackService.searchUser(user)];
+                    case 1:
+                        resp = _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    EmailPage.prototype.loadPeople3 = function () {
+        var _this = this;
+        this.people3Typeahead.pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators__["tap"])(function () { return _this.people3Loading = true; }), Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators__["distinctUntilChanged"])(), Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators__["debounceTime"])(375), Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators__["switchMap"])(function (term) {
+            return _this.blockStackService.searchUser(term);
+        })).subscribe(function (x) {
+            _this.people3 = x;
+            _this.people3Loading = false;
+            //this.chg.markForCheck();
+            console.log("ppl loading false");
+        }, function () {
+            _this.people3 = [];
+            console.log("[]");
+        });
+    };
+    EmailPage.prototype.sendEmail = function (e) {
+        return __awaiter(this, void 0, void 0, function () {
+            var documentLink, subject, content;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!this.email) {
+                            alert('Please enter an email address');
+                            return [2 /*return*/];
+                        }
+                        this.loading = this.loadingCtrl.create({
+                            content: 'Please wait...'
+                        });
+                        this.loading.present();
+                        documentLink = window.location.origin + "/#/sign/" + this.documentService.currentDoc.guid + "/?docData=" + btoa(JSON.stringify(this.documentService.currentDoc));
+                        subject = blockstack.loadUserData().profile.name + " has sent you a document to sign - " + this.documentService.currentDoc.fileName;
+                        content = "Please click this link and sign the document. Thanks! <br/><br/>" + documentLink;
+                        return [4 /*yield*/, this.emailService.sendEmail(this.email, subject, content)];
+                    case 1:
+                        _a.sent();
+                        // add as signer
+                        this.documentService.currentDoc.signer.push(this.email);
+                        return [4 /*yield*/, this.documentService.updateDocument(this.documentService.currentDoc.guid, this.documentService.currentDoc)];
+                    case 2:
+                        _a.sent();
+                        this.loading.dismiss();
+                        alert('Email sent!');
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    EmailPage.prototype.clickedUser = function () {
+        // @todo spoofed
+        setTimeout(function () {
+            alert('Email not found. Please enter below');
+        }, 1000);
+    };
+    EmailPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-email',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/email/email.html"*/'<ion-content class="no-overflow-page email-page">\n\n  <ion-grid>\n    <ion-row>\n      <ion-col width-100>\n\n        <block-steps activeStep="3">\n        </block-steps>\n\n\n        <br/>\n        <br/>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-grid>\n    <ion-row align-items-left>\n      <ion-col>\n        <ng-select style="width:460px; background-color:whitesmoke; border-radius:2px; padding-left:10px" \n          [items]="people3"\n          [multiple]="false" \n          bindLabel="username" \n          [(ngModel)]="selectedUser"  \n          (change)="searchUser($event)" \n          [typeahead]="people3Typeahead"\n          placeholder="Select signer..."\n          >\n          <ng-template ng-label-tmp let-item="item" let-clear="clear" >\n            <span class="ng-value-label">\n              <img [src]="item.profile.image && item.profile.image[0].contentUrl" width="20px" height="20px"> {{item.username}}</span>\n              <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>\n          </ng-template>\n          <ng-template ng-option-tmp let-item="item">\n            <span style="width:100%" (click)="clickedUser()">\n                <img [src]="item.profile.image && item.profile.image[0].contentUrl" width="20px" height="20px"> {{item.username}}\n            </span>\n          </ng-template>\n        </ng-select>\n      </ion-col>\n      <ion-col>\n        <h3>or</h3>\n      </ion-col>\n      <ion-col style="width:460px; background-color:transparent; ">\n        <!-- <ion-item  style="width:460px; background-color:transparent; " >\n          <ion-input style="width:460px;" placeholder="[Enter Email]" [(ngModel)]="email"></ion-input>\n        </ion-item> -->\n        \n        <input class="classic-input" type="email" placeholder="Email To..." [(ngModel)]="email" autofocus>\n   \n      </ion-col>\n      <ion-col>\n        <button ion-button (click)="sendEmail($event)">Send Email</button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  \n  <block-pdf marginTop="50px" >\n  </block-pdf>\n \n\n  \n\n  <!-- <ion-card>\n\n    <ion-card-header>\n      Work In Progress\n    </ion-card-header>\n\n    <ion-card-content>\n      <img src="./../../assets/imgs/bugcode.jpg"  style="max-width: 300px;"/>\n      <br />\n      <p>\n        Want this feature faster? Considering donating here: BTC - <ion-input value="1Jw3xsPzmYus3ke4XYXAHHyzpxD1sjQVta" style="font-size: large"></ion-input>\n      </p>\n\n      <p>\n        <br/>\n        The email feature will be enabled in the next release. For now, copy and paste this link to sign. Right now, only you can\n        sign the document. The next release will allow you to send this document to somebody else to sign using <a href="https://blockstack.org/tutorials/multi-player-storage" target="_blank">Blockstacks\n          muli-player storage.</a>\n        <br/>\n      </p>\n\n\n      <ion-input [value]="getUrl()" style="font-size: large"></ion-input>\n\n\n\n\n      <ion-input [value]="getUrl()" style="font-size: large"></ion-input>\n\n\n    </ion-card-content>\n\n  </ion-card>\n -->\n\n\n\n\n\n\n</ion-content>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/email/email.html"*/,
+            changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectionStrategy"].Default,
+            encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__services_document_service__["a" /* DocumentService */],
+            __WEBPACK_IMPORTED_MODULE_3__services_email_service__["a" /* EmailService */],
+            __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__["a" /* BlockStackService */],
+            __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]])
+    ], EmailPage);
+    return EmailPage;
+}());
+
+//# sourceMappingURL=email.js.map
+
+/***/ }),
+
+/***/ 73:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BlockStackService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular__ = __webpack_require__(11);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+
+var BlockStackService = (function () {
+    function BlockStackService(events, http) {
+        this.events = events;
+        this.http = http;
+        this.picCache = [];
+        this.blockusignProfileUrl = "blockusign.profile.json";
+        //url = "https://blockusign.co/api/email";
+        this.url = "http://localhost:5000/api/profile";
+    }
+    BlockStackService.prototype.searchUser = function (user) {
+        return __awaiter(this, void 0, void 0, function () {
+            var resp;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.http.get("https://core.blockstack.org/v1/search?query=" + user).map(function (r) { return r.json().results; }).toPromise()];
+                    case 1:
+                        resp = _a.sent();
+                        return [2 /*return*/, resp];
+                }
+            });
+        });
+    };
+    BlockStackService.prototype.getPicUrl = function (userId) {
+        return __awaiter(this, void 0, void 0, function () {
+            var picUrl, isInCache, resp, respObj, e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        picUrl = "http://www.gravatar.com/avatar/?d=identicon";
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        if (!userId) {
+                            return [2 /*return*/, picUrl];
+                        }
+                        isInCache = this.picCache.filter(function (item) { return item.id === userId; })[0];
+                        if (isInCache) {
+                            return [2 /*return*/, this.picCache.filter(function (item) { return item.id === userId; })[0].pic];
+                        }
+                        return [4 /*yield*/, this.http.get("https://core.blockstack.org/v1/search?query=" + userId).toPromise()];
+                    case 2:
+                        resp = _a.sent();
+                        respObj = JSON.parse(resp.text());
+                        if (respObj.results.length > 0) {
+                            picUrl = respObj.results[0].profile.image[0].contentUrl;
+                        }
+                        this.picCache.push({
+                            id: userId,
+                            pic: picUrl
+                        });
+                        return [3 /*break*/, 4];
+                    case 3:
+                        e_1 = _a.sent();
+                        console.log('Unable to getpic url');
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/, picUrl];
+                }
+            });
+        });
+    };
+    BlockStackService.prototype.getProfileData = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var profileData, myProfile;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, blockstack.getFile(this.blockusignProfileUrl, { decrypt: false })];
+                    case 1:
+                        profileData = _a.sent();
+                        myProfile = JSON.parse(profileData);
+                        if (myProfile) {
+                            this.profile = myProfile;
+                        }
+                        return [2 /*return*/, profileData];
+                }
+            });
+        });
+    };
+    BlockStackService.prototype.setProfileData = function (email) {
+        return __awaiter(this, void 0, void 0, function () {
+            var storagePath, json, _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        storagePath = blockstack.loadUserData().profile.apps[window.location.origin];
+                        _a = {
+                            email: email,
+                            storagePath: storagePath
+                        };
+                        return [4 /*yield*/, this.getAppPublicKey()];
+                    case 1:
+                        json = (_a.appPublicKey = _b.sent(),
+                            _a);
+                        return [4 /*yield*/, blockstack.putFile(this.blockusignProfileUrl, JSON.stringify(json), { encrypt: false })];
+                    case 2: return [2 /*return*/, _b.sent()];
+                }
+            });
+        });
+    };
+    BlockStackService.prototype.clearProfileData = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var json;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        json = {};
+                        return [4 /*yield*/, blockstack.putFile(this.blockusignProfileUrl, JSON.stringify(json), { encrypt: false })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    BlockStackService.prototype.getAppPublicKey = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var myPublicKey;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, blockstack.getPublicKeyFromPrivate(blockstack.loadUserData().appPrivateKey)];
+                    case 1:
+                        myPublicKey = _a.sent();
+                        return [2 /*return*/, myPublicKey];
+                }
+            });
+        });
+    };
+    BlockStackService.prototype.writeGlobalProfile = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var httpOptions;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        httpOptions = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["f" /* RequestOptions */]();
+                        httpOptions.headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Headers */]({
+                            'Content-Type': 'application/json'
+                        });
+                        return [4 /*yield*/, this.http.post("url", JSON.stringify(this.profile), httpOptions)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    BlockStackService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5_ionic_angular__["c" /* Events */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]])
+    ], BlockStackService);
+    return BlockStackService;
+}());
+
+//# sourceMappingURL=blockstack.service.js.map
+
+/***/ }),
+
+/***/ 895:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ReviewPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_document_service__ = __webpack_require__(31);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the SignPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var ReviewPage = (function () {
+    function ReviewPage(navCtrl, navParams, documentService) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.documentService = documentService;
+        if (this.navParams.get("guid") && !this.documentService.currentDoc) {
+            var guid_1 = this.navParams.get("guid");
+            this.documentService.getDocumentsIndex(true).then(function (data) {
+                _this.documentService.documentsList = data;
+                _this.documentService.setCurrentDoc(guid_1);
+                //this.getFile();
+                // @todo in side menu highlight selected doc
+            });
+        }
+        else {
+            //this.getFile();
+        }
+    }
+    ReviewPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad SignPage');
+    };
+    ReviewPage.prototype.back = function () {
+        this.navCtrl.push("SignPage", {
+            guid: this.documentService.currentDoc.guid
+        });
+    };
+    ReviewPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-review',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/review/review.html"*/'<ion-content class="no-overflow-page">\n\n  <ion-grid>\n    <ion-row>\n      <ion-col width-100>\n        <block-steps activeStep="5">\n        </block-steps>\n        <br/>\n        <br/>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <block-pdf marginTop="0px">\n\n  </block-pdf>\n  \n<!-- \n  <ion-card>\n\n      <ion-card-header>\n        Work In Progress\n      </ion-card-header>\n  \n      <ion-card-content>\n        <img src="./../../assets/imgs/bugcode.jpg"  style="max-width: 300px;"/>\n        <br />\n        <p>\n          Want this feature faster? Considering donating here: BTC - <ion-input value="1Jw3xsPzmYus3ke4XYXAHHyzpxD1sjQVta" style="font-size: large"></ion-input>\n        </p>\n  \n\n      </ion-card-content>\n  \n    </ion-card> -->\n\n</ion-content>\n'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/review/review.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__services_document_service__["a" /* DocumentService */]])
+    ], ReviewPage);
+    return ReviewPage;
+}());
+
+//# sourceMappingURL=review.js.map
+
+/***/ }),
+
+/***/ 896:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SignPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_document_service__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_block_pdf_block_pdf__ = __webpack_require__(252);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+/**
+ * Generated class for the SignPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var SignPage = (function () {
+    function SignPage(navCtrl, navParams, documentService) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.documentService = documentService;
+    }
+    SignPage.prototype.ionViewDidLoad = function () {
+        this.init();
+    };
+    SignPage.prototype.init = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            var docData, guid_1, jsonDoc, doc, resp, guid, path, fileBuffer, copied;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        docData = getQueryParam('docData');
+                        if (!(this.navParams.get("guid") && !this.documentService.currentDoc && !docData)) return [3 /*break*/, 1];
+                        guid_1 = this.navParams.get("guid");
+                        this.documentService.getDocumentsIndex(true).then(function (data) {
+                            _this.documentService.documentsList = data;
+                            _this.documentService.setCurrentDoc(guid_1);
+                        });
+                        return [3 /*break*/, 8];
+                    case 1:
+                        if (!(this.navParams.get("guid") && !this.documentService.currentDoc && docData)) return [3 /*break*/, 7];
+                        jsonDoc = atob(docData);
+                        doc = JSON.parse(jsonDoc);
+                        return [4 /*yield*/, this.documentService.getDocumentsIndex(true)];
+                    case 2:
+                        resp = _a.sent();
+                        this.documentService.documentsList = resp;
+                        guid = this.navParams.get("guid");
+                        if (!this.documentService.documentExists(guid)) return [3 /*break*/, 3];
+                        this.documentService.setCurrentDoc(guid);
+                        return [3 /*break*/, 6];
+                    case 3:
+                        path = doc.pathAnnotatedDoc + this.navParams.get("guid") + ".pdf";
+                        console.log(path);
+                        return [4 /*yield*/, this.documentService.getDocumentByPath(path, doc.documentKey)];
+                    case 4:
+                        fileBuffer = _a.sent();
+                        return [4 /*yield*/, this.documentService.copyDocument(doc, guid, fileBuffer)];
+                    case 5:
+                        copied = _a.sent();
+                        this.blockPdf.ngOnInit();
+                        _a.label = 6;
+                    case 6: return [3 /*break*/, 8];
+                    case 7:
+                        console.log('Error, must pass in guid');
+                        _a.label = 8;
+                    case 8:
+                        console.log('ionViewDidLoad SignPage');
+                        this.name = blockstack.loadUserData().profile.name;
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    SignPage.prototype.next = function () {
+        this.navCtrl.push("ReviewPage", {
+            guid: this.documentService.currentDoc.guid
+        });
+    };
+    SignPage.prototype.back = function () {
+        this.navCtrl.push("EmailPage", {
+            guid: this.documentService.currentDoc.guid
+        });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_3__components_block_pdf_block_pdf__["a" /* BlockPdfComponent */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3__components_block_pdf_block_pdf__["a" /* BlockPdfComponent */])
+    ], SignPage.prototype, "blockPdf", void 0);
+    SignPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-sign',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/sign/sign.html"*/'<!-- <ion-header>\n  <ion-navbar>\n    <ion-title>sign</ion-title>\n  </ion-navbar>\n</ion-header> -->\n<ion-content class="no-overflow-page">\n\n  <ion-grid>\n    <ion-row>\n      <ion-col width-100>\n        <block-steps activeStep="4" ></block-steps>\n        <br/>\n        <br/>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <block-pdf #blockpdf showToolBar="true" showSignature="true" showButtons="true">\n\n  </block-pdf>\n\n<!-- \n  <ion-card>\n\n     \n      <ion-card-header>\n        Work In Progress\n      </ion-card-header>\n  \n      <ion-card-content>\n        <img src="./../../assets/imgs/officespace.jpg"  style="max-width: 300px;"/>\n        <br />\n        <p>\n          Want this feature faster? Considering donating here: BTC - <ion-input value="1Jw3xsPzmYus3ke4XYXAHHyzpxD1sjQVta" style="font-size: large"></ion-input>\n        </p>\n  \n        <p>\n          <br/>\n            The signing feature will be enabled in the next release using <a href="https://blockstack.org/tutorials/multi-player-storage" target="_blank">Blockstacks\n            muli-player storage.</a>\n          <br/>\n        </p>\n  \n\n  \n  \n      </ion-card-content>\n  \n    </ion-card> -->\n\n</ion-content>\n'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/sign/sign.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__services_document_service__["a" /* DocumentService */]])
+    ], SignPage);
+    return SignPage;
+}());
+
+//# sourceMappingURL=sign.js.map
+
+/***/ }),
+
+/***/ 965:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(526);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(529);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(483);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_annotate_annotate__ = __webpack_require__(244);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_document_service__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__options_popover_page__ = __webpack_require__(535);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_blockstack_service__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_toPromise__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_toPromise__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+var $ = document.querySelectorAll.bind(document);
+
+var MyApp = (function () {
+    function MyApp(platform, statusBar, splashScreen, loadingCtrl, alertCtrl, documentService, popoverCtrl, menuCtrl, blockStackService, toastCntrl) {
+        this.platform = platform;
+        this.statusBar = statusBar;
+        this.splashScreen = splashScreen;
+        this.loadingCtrl = loadingCtrl;
+        this.alertCtrl = alertCtrl;
+        this.documentService = documentService;
+        this.popoverCtrl = popoverCtrl;
+        this.menuCtrl = menuCtrl;
+        this.blockStackService = blockStackService;
+        this.toastCntrl = toastCntrl;
+        this.rootPage = __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */];
+        this.isLoggedIn = false;
+        this.loginState = "Login";
+        this.fileName = "blockusign/pdf1.pdf";
+        this.avatar = "http://www.gravatar.com/avatar/?d=identicon";
+        this.initializeApp();
+        // used for an example of ngFor and navigation
+        this.pages = [
+            { title: '1). Upload PDF', component: __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */] },
+            { title: '2). Annotate PDF', component: __WEBPACK_IMPORTED_MODULE_5__pages_annotate_annotate__["a" /* AnnotatePage */] }
+        ];
+        // global vars
+        if (window.location.host.includes("localhost")) {
+            window.apiUrl = "http://localhost:5000";
+        }
+        else {
+            window.apiUrl = "";
+        }
+    }
+    MyApp.prototype.initializeApp = function () {
+        var _this = this;
+        this.platform.ready().then(function () {
+            // Okay, so the platform is ready and our plugins are available.
+            // Here you can do any higher level native things you might need.
+            _this.statusBar.styleDefault();
+            _this.splashScreen.hide();
+            _this.showProfile();
+            _this.setupDiscordMenu();
+        });
+    };
+    // openPage(page) {
+    //   // Reset the content nav to have just this page
+    //   // we wouldn't want the back button to show in this scenario
+    //   this.nav.setRoot(page.component);
+    // }
+    MyApp.prototype.login = function () {
+        var origin = window.location.origin;
+        blockstack.redirectToSignIn(origin, origin + '/manifest.json', ['store_write', 'publish_data', 'email']);
+    };
+    MyApp.prototype.next = function () {
+        this.menuCtrl.close();
+        // if (this.nav.getActive().name == "AnnotatePage") {
+        //  this.nav.pop();
+        // }
+        // else{
+        //   jQuery('.block-pdf-page').empty();
+        // }
+        this.nav.setRoot("HomePage");
+        var guid = this.documentService.currentDoc.guid;
+        this.nav.push("AnnotatePage", {
+            guid: guid
+        });
+    };
+    MyApp.prototype.home = function () {
+        this.menuCtrl.close();
+        this.nav.setRoot("HomePage");
+        this.clearActive();
+    };
+    MyApp.prototype.logout = function () {
+        blockstack.signUserOut(window.location.origin);
+    };
+    MyApp.prototype.showProfile = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            var profile, profileData, myProfile;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!blockstack.isUserSignedIn()) return [3 /*break*/, 2];
+                        profile = blockstack.loadUserData();
+                        this.name = profile.username;
+                        this.isLoggedIn = true;
+                        try {
+                            this.avatar = profile.profile.image[0].contentUrl;
+                        }
+                        catch (e) {
+                            console.log('no profile pic');
+                        }
+                        this.loginState = "[Logout]";
+                        this.documentService.getDocumentsIndex(true).then(function (data) {
+                            _this.documentsList = data;
+                        });
+                        return [4 /*yield*/, this.blockStackService.getProfileData()];
+                    case 1:
+                        profileData = _a.sent();
+                        if (!profileData) {
+                            this.profileModal(this.email);
+                        }
+                        else {
+                            myProfile = JSON.parse(profileData);
+                            if (!myProfile.email) {
+                                this.profileModal(this.email);
+                            }
+                            else {
+                                this.name = myProfile.email;
+                            }
+                        }
+                        return [3 /*break*/, 3];
+                    case 2:
+                        if (blockstack.isSignInPending()) {
+                            blockstack.handlePendingSignIn().then(function (userData) {
+                                window.location = window.location.origin;
+                                this.documentsGetList();
+                            });
+                        }
+                        else {
+                            if (localStorage.getItem('signUp') !== 'true') {
+                                window.location.href = "signup.html";
+                            }
+                            else {
+                                localStorage.setItem('signUp', 'true');
+                                this.login();
+                            }
+                        }
+                        _a.label = 3;
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    MyApp.prototype.setupDiscordMenu = function () {
+        $(".focusable, .button").forEach(function (el) {
+            // blur only on mouse click
+            // for accessibility, keep focus when keyboard focused
+            el.addEventListener("mousedown", function (e) { return e.preventDefault(); });
+            el.setAttribute("tabindex", "0");
+        });
+        $(".server").forEach(function (el) {
+            el.addEventListener("click", function () {
+                var activeServer = $(".server.active")[0];
+                activeServer.classList.remove("active");
+                activeServer.removeAttribute("aria-selected");
+                el.classList.add("active");
+                el.setAttribute("aria-selected", true);
+            });
+        });
+        $(".channel-text").forEach(function (el) {
+            el.addEventListener("click", function () {
+                $(".channel-text.active")[0].classList.remove("active");
+                el.classList.add("active");
+            });
+        });
+        // focus/blur on channel header click
+        $(".channels-header")[0].addEventListener("click", function (e) {
+            e.preventDefault();
+            var focused = document.activeElement === e.target;
+            focused ? e.target.blur() : e.target.focus();
+        });
+    };
+    MyApp.prototype.documentSelected = function (e, selectedDocument) {
+        this.documentService.currentDoc = selectedDocument;
+        this.next();
+    };
+    MyApp.prototype.documentsGetList = function () {
+        var _this = this;
+        this.documentService.getDocumentsIndex(true).then(function (data) {
+            _this.documentsList = data;
+        });
+    };
+    MyApp.prototype.presentPopover = function (myEvent, item) {
+        var popover = this.popoverCtrl.create(__WEBPACK_IMPORTED_MODULE_7__options_popover_page__["a" /* OptionsPopoverPage */], { selectedDoc: item });
+        popover.present({
+            ev: myEvent,
+        });
+    };
+    MyApp.prototype.clearActive = function () {
+        $(".channel-text").forEach(function (el) {
+            try {
+                $(".channel-text.active")[0].classList.remove("active");
+            }
+            catch (e) { }
+        });
+    };
+    MyApp.prototype.profileModal = function (email) {
+        var _this = this;
+        var alert = this.alertCtrl.create({
+            title: 'Please enter your email',
+            enableBackdropDismiss: false,
+            inputs: [
+                {
+                    name: 'email',
+                    placeholder: 'email',
+                    value: email
+                }
+            ],
+            buttons: [
+                // {
+                //   text: 'Cancel',
+                //   role: 'cancel',
+                //   handler: data => {
+                //     console.log('Cancel clicked');
+                //   }
+                // },
+                {
+                    text: 'Ok',
+                    handler: function (data) {
+                        // save here
+                        _this.blockStackService.setProfileData(data.email);
+                        if (data.email.indexOf("@") != -1) {
+                            // logged in!
+                        }
+                        else {
+                            // invalid login
+                            _this.showErrorToast('Invalid Email');
+                            return false;
+                        }
+                    }
+                }
+            ]
+        });
+        alert.present();
+    };
+    MyApp.prototype.showErrorToast = function (data) {
+        var toast = this.toastCntrl.create({
+            message: data,
+            duration: 3000,
+            position: 'top'
+        });
+        toast.onDidDismiss(function () {
+            console.log('Dismissed toast');
+        });
+        toast.present();
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */])
+    ], MyApp.prototype, "nav", void 0);
+    MyApp = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/app/app.html"*/'<!-- <ion-menu [content]="content" scroll="false" >\n  \n\n  <ion-content scroll="false">\n    <ion-list scroll="false">\n      <button scroll="false" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n        {{p.title}}\n      </button>\n    </ion-list>\n  </ion-content>\n</ion-menu> -->\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-split-pane >\n  <ion-menu [content]="content" >\n      <div class="discord" style="height: 100%; width: 300px; color:whitesmoke">\n        <!-- https://codepen.io/thesbros/pen/vxpMPp -->\n        <main class="container">\n          <aside class="servers">\n            <div class="servers-collection">\n              <div class="server focusable server-friends" role="button" aria-label="Friends unread">\n                <div class="server-icon">\n                  <svg>\n                    <use xlink:href="#icon-friends" />\n                  </svg>\n                </div>\n              </div>\n            </div>\n\n          \n            <div class="servers-collection">\n              <div class="server focusable active" role="button" aria-label="My Server" aria-selected="true">\n                <div class="server-icon">\n                 <!-- <img src="https://discordapp.com/assets/0e291f67c9274a1abdddeb3fd919cbaa.png" /> -->\n                  <img class="avatar" alt="Avatar" [src]="avatar" />\n                </div>\n              </div>\n            </div>\n          </aside>\n\n\n\n\n          <aside class="channels">\n            <header class="channels-header focusable" (click)="home()">\n\n              <!-- <img src="./assets/imgs/blockusign.png" height="45px" width="45px" /> -->\n              <img src="./assets/imgs/blockusignLogoSvg.svg" height="45px" width="45px" class="blockusign-logo" />\n              <img src="./assets/imgs/blockusignTextLoRes.png" width="120px" style="padding-left: 12px; padding-top: 10px" />\n             \n              \n            \n\n\n\n              <h3 role="header" class="channels-header-name" style="padding-right: 10px;"></h3> \n              <!-- <button ion-button style="padding: 10px 10px 10px 10px; background: green; height: 45px;"> NEW + </button> -->\n              <!-- <svg role="button" aria-label="Dropdown" class="channels-header-dropdown">\n                <use xlink:href="#icon-dropdown" />\n              </svg> -->\n\n             \n\n\n            </header>\n\n            <section class="channels-list">\n\n              <section  (click)="home()">\n                <button ion-button icon-end \n                  style="float:right;width:100%;background-color:green; color:white; border-radius: 5px; margin-bottom: 20px; margin-top: 20px">New Doc\n                  <ion-icon name="md-add"></ion-icon>\n                </button>\n                \n              </section>\n\n              <header class="channels-list-header" (click)="home()">\n                <span>Documents</span>\n              </header>\n\n             \n              \n              <ul class="channels-list-text" >\n                <div *ngFor="let item of documentsList">\n                    <li [ngClass]="(item == documentService.currentDoc) ? \'channel focusable channel-text active \' : \'channel focusable channel-text \' " >\n                        <!-- <span class="channel-name">blockusign nda.pdf</span> -->\n                        <span (click)="documentSelected($event, item)" style="width:90%">\n                          {{ item.fileName }}\n                        </span>\n                        <!-- <button class="button" role="button" aria-label="Invite" >\n                            <ion-icon md="md-trash" (click)="documentRemove(item)"></ion-icon>\n                        </button> -->\n                        <!-- <button class="button" role="button" aria-label="settings">\n                          <svg>\n                            <use xlink:href="#icon-channel-settings" />\n                          </svg>\n                        </button> -->\n                        <button ion-button icon-only  style="padding-left: 10px; background: transparent" (click)="presentPopover($event, item)">\n                                <ion-icon name="more"></ion-icon>\n                        </button>\n                      </li>\n                </div>\n                \n\n                <!-- <li class="channel focusable channel-text active">\n                  <span>my photo release form.pdf</span>\n                  <button class="button" role="button" aria-label="Invite">\n                    <svg>\n                      <use xlink:href="#icon-invite" />\n                    </svg>\n                  </button>\n                  <button class="button" role="button" aria-label="settings">\n                    <svg>\n                      <use xlink:href="#icon-channel-settings" />\n                    </svg>\n                  </button>\n                </li>\n\n                <li class="channel focusable channel-text">\n                  <span>may lease.pdf</span>\n                  <button class="button" role="button" aria-label="Invite">\n                    <svg>\n                      <use xlink:href="#icon-invite" />\n                    </svg>\n                  </button>\n                  <button class="button" role="button" aria-label="settings">\n                    <svg>\n                      <use xlink:href="#icon-channel-settings" />\n                    </svg>\n                  </button>\n                </li>\n\n                <li class="channel focusable channel-text">\n                  <span >escrow agreement.pdf</span>\n                  <button class="button" role="button" aria-label="Invite">\n                    <svg>\n                      <use xlink:href="#icon-invite" />\n                    </svg>\n                  </button>\n                  <button class="button" role="button" aria-label="settings">\n                    <svg>\n                      <use xlink:href="#icon-channel-settings" />\n                    </svg>\n                  </button>\n                </li> -->\n\n              </ul>\n\n\n\n              <!-- <header class="channels-list-header focusable">\n                <span>Templates</span>\n              </header>\n\n              <ul class="channels-list-text">\n                <li class="channel focusable channel-text ">\n                  <span class="channel-name">COMING SOON</span>\n                </li>\n              </ul>\n\n              <header class="channels-list-header focusable">\n                <span>Analytics</span>\n              </header>\n              <ul class="channels-list-text">\n                <li class="channel focusable channel-text ">\n                  <span class="channel-name">COMING SOON</span>\n                </li>\n              </ul> -->\n\n              <header class="channels-list-header focusable" style="margin-top:150px">\n                <span>Features in progress</span>\n              </header>\n              <ul class="channels-list-text">\n                  <li class="channel focusable channel-text ">\n                      <span>Templates</span>\n                    </li>\n                    <li class="channel focusable channel-text ">\n                        <span>Analytics</span>\n                      </li>\n                <li class="channel focusable channel-text ">\n                  <span>Smart Contracts</span>\n                </li>\n              </ul>\n            </section>\n\n\n\n            <footer class="channels-footer">\n              <!-- <img class="avatar" alt="Avatar" src="https://discordapp.com/assets/0e291f67c9274a1abdddeb3fd919cbaa.png" /> -->\n              <img class="avatar" alt="Avatar" [src]="avatar" />\n              <div class="channels-footer-details">\n                <span class="username">\n                  <a (click)="logout()" style="float:right">{{name}} {{ loginState }} </a>\n                </span>\n                <!-- <span class="tag">#0001</span> -->\n              </div>\n              <!-- <div class="channels-footer-controls button-group">\n                        <button role="button" aria-label="Mute" class="button button-mute"><svg><use xlink:href="#icon-mute" /></svg></button>\n                        <button role="button" aria-label="Deafen" class="button button-deafen"><svg><use xlink:href="#icon-deafen" /></svg></button>\n                        <button role="button" aria-label="Settings" class="button button-settings"><svg><use xlink:href="#icon-settings" /></svg></button>\n                      </div> -->\n            </footer>\n          </aside>\n\n\n        </main>\n      </div>\n   \n  </ion-menu>\n \n  <ion-nav [root]="rootPage" main #content swipeBackEnabled="false" class="centerMe">\n    <!-- content injected here -->\n  </ion-nav>\n  <ion-fab left top menuToggle>\n    <button ion-fab color="light" color="primary">\n      <ion-icon name="menu"></ion-icon>\n    </button>\n  </ion-fab>\n</ion-split-pane>\n\n<!-- ICONS -->\n<div style="visibility: hidden">\n  <svg id="icon-friends" viewBox="-289 382 32 27.1"><style id="style3">.st0{fill:#FFFFFF;} .st1{opacity:0.6;}</style><g id="g4145" fill="#fff"><path id="path5" d="M-273 409.1c-4.1 0-6.8-.6-7.9-1.7-.5-.6-.6-1.1-.6-1.3 0-.7.1-2.9.6-3.8.1-.3.5-1 4.5-2.4-1.6-1.4-2.6-4-2.6-7.1 0-4.2 2.3-7 5.9-7.1h.1c3.6.1 5.9 2.8 5.9 7.1 0 3.1-1 5.7-2.6 7.1 4 1.4 4.4 2.1 4.5 2.4.4.9.5 3.1.6 3.8 0 .2 0 .7-.6 1.3-1.1 1.1-3.7 1.7-7.8 1.7zm0-2c5.1 0 6.2-.9 6.4-1.1-.1-1.1-.2-2.3-.3-2.7-.6-.4-2.9-1.3-4.8-1.9l-.7-.2-.1-2 .7-.3c1.7-.6 2.8-3.1 2.8-6.1 0-3.1-1.5-5-3.9-5.1-2.5 0-4 2-4 5.1 0 3 1.1 5.5 2.8 6.1l.7.3-.1 2-.7.2c-1.9.6-4.2 1.5-4.8 1.9-.1.4-.3 1.6-.3 2.7.1.2 1.3 1.1 6.3 1.1z" class="st0"/><g id="g7" class="st1" opacity=".6"><path id="path9" d="M-257 402.4c0-.7-.1-2.9-.6-3.8-.1-.3-.5-1-4.5-2.4 1.6-1.4 2.6-4 2.6-7.1 0-4.2-2.3-7-5.9-7.1h-.1c-1.9 0-3.5.8-4.5 2.2.6.3 1.2.6 1.8 1 .7-.8 1.6-1.3 2.8-1.3 2.4 0 3.9 2 3.9 5.1 0 3-1.1 5.5-2.8 6.1l-.7.3.1 2 .7.2c1.9.6 4.3 1.5 4.8 1.9.1.4.3 1.6.3 2.7-.2.2-1 .8-3.8 1 .1.6.2 1.2.2 2 2.5-.2 4.2-.8 5-1.6.7-.5.7-1 .7-1.2z" class="st0"/><path id="path11" d="M-287 402.3c.1-1.1.2-2.3.3-2.7.6-.4 2.9-1.3 4.8-1.9l.7-.2.1-2-.7-.3c-1.6-.6-2.8-3.1-2.8-6.1 0-3.1 1.5-5 4-5.1 1.2 0 2.1.5 2.8 1.3.5-.4 1.1-.8 1.8-1-1-1.4-2.6-2.2-4.5-2.2h-.1c-3.6 0-5.9 2.8-5.9 7.1 0 3.1 1 5.7 2.6 7.1-4 1.4-4.4 2.1-4.5 2.4-.4.9-.5 3.1-.6 3.8 0 .2 0 .7.6 1.3.8.9 2.5 1.4 5.1 1.6 0-.7.1-1.4.2-2-2.9-.3-3.7-.9-3.9-1.1z" class="st0"/></g></g></svg>\n\n  <svg id="icon-mute" viewBox="0 0 16 16"><path fill="#5D6063" d="M12.5,8v1c0,2.2-1.8,4-4,4h-1c-2.2,0-4-1.8-4-4V8h-1v1 c0,2.8,2.2,5,5,5v1H7c-0.3,0-0.5,0.2-0.5,0.5C6.5,15.8,6.7,16,7,16h2c0.3,0,0.5-0.2,0.5-0.5C9.5,15.2,9.3,15,9,15H8.5v-1 c2.8,0,5-2.2,5-5V8H12.5z M8,12c1.9,0,3.5-1.6,3.5-3.5v-5C11.5,1.6,9.9,0,8,0C6.1,0,4.5,1.6,4.5,3.5v5C4.5,10.4,6.1,12,8,12z M5.5,3.5C5.5,2.1,6.6,1,8,1c1.4,0,2.5,1.1,2.5,2.5v5C10.5,9.9,9.4,11,8,11c-1.4,0-2.5-1.1-2.5-2.5V3.5z"/></svg>\n  \n  <svg id="icon-deafen" viewBox="0 0 16 16"><path fill="#5D6063" d="M15.9,9C16,8.7,16,8.3,16,8c0-4.4-3.6-8-8-8C3.6,0,0,3.6,0,8 c0,0.3,0,0.7,0.1,1h0C0,9.2,0,9.3,0,9.5v4C0,14.3,0.7,15,1.5,15h2C4.3,15,5,14.3,5,13.5v-4C5,8.7,4.3,8,3.5,8h-2 C1.3,8,1.2,8,1,8.1C1,8.1,1,8,1,8c0-3.9,3.1-7,7-7c3.9,0,7,3.1,7,7c0,0,0,0.1,0,0.1C14.8,8,14.7,8,14.5,8h-2C11.7,8,11,8.7,11,9.5 v4c0,0.8,0.7,1.5,1.5,1.5h2c0.8,0,1.5-0.7,1.5-1.5v-4C16,9.3,16,9.2,15.9,9L15.9,9z M1.5,9h2C3.8,9,4,9.2,4,9.5v4 C4,13.8,3.8,14,3.5,14h-2C1.2,14,1,13.8,1,13.5v-4C1,9.2,1.2,9,1.5,9z M15,13.5c0,0.3-0.2,0.5-0.5,0.5h-2c-0.3,0-0.5-0.2-0.5-0.5 v-4C12,9.2,12.2,9,12.5,9h2C14.8,9,15,9.2,15,9.5V13.5z"/></svg>\n  \n  <svg id="icon-settings" viewBox="0 0 16 16"><path fill="#5D6063" d="M8,5C6.3,5,5,6.3,5,8c0,1.7,1.3,3,3,3c1.7,0,3-1.3,3-3 C11,6.3,9.7,5,8,5z M8,10c-1.1,0-2-0.9-2-2c0-1.1,0.9-2,2-2s2,0.9,2,2C10,9.1,9.1,10,8,10z M16,8c0-1-0.8-1.9-1.8-2 c-0.1-0.3-0.3-0.7-0.4-1c0.7-0.8,0.6-1.9-0.1-2.7c-0.7-0.7-1.9-0.8-2.7-0.1c-0.3-0.2-0.6-0.3-1-0.4C9.9,0.8,9,0,8,0 C7,0,6.1,0.8,6,1.8C5.7,1.9,5.3,2.1,5,2.2C4.2,1.6,3.1,1.6,2.3,2.3C1.6,3.1,1.6,4.2,2.2,5C2.1,5.3,1.9,5.7,1.8,6C0.8,6.1,0,7,0,8 c0,1,0.8,1.9,1.8,2c0.1,0.3,0.3,0.7,0.4,1c-0.7,0.8-0.6,1.9,0.1,2.7c0.7,0.7,1.9,0.8,2.7,0.1c0.3,0.2,0.6,0.3,1,0.4 C6.1,15.2,7,16,8,16c1,0,1.9-0.8,2-1.8c0.3-0.1,0.7-0.3,1-0.4c0.8,0.7,1.9,0.6,2.7-0.1c0.7-0.7,0.8-1.9,0.1-2.7 c0.2-0.3,0.3-0.6,0.4-1C15.2,9.9,16,9,16,8z M13.4,9c-0.1,0.8-0.5,1.5-0.9,2.1l0.4,0.4c0.4,0.4,0.4,1,0,1.4c-0.4,0.4-1,0.4-1.4,0 l-0.4-0.4C10.5,13,9.8,13.3,9,13.4V14c0,0.6-0.4,1-1,1c-0.6,0-1-0.4-1-1v-0.6c-0.8-0.1-1.5-0.5-2.1-0.9l-0.4,0.4 c-0.4,0.4-1,0.4-1.4,0c-0.4-0.4-0.4-1,0-1.4l0.4-0.4C3,10.5,2.7,9.8,2.6,9H2C1.4,9,1,8.6,1,8c0-0.6,0.4-1,1-1h0.6 C2.7,6.2,3,5.5,3.5,4.9L3.1,4.5c-0.4-0.4-0.4-1,0-1.4c0.4-0.4,1-0.4,1.4,0l0.4,0.4C5.5,3,6.2,2.7,7,2.6V2c0-0.6,0.4-1,1-1 c0.6,0,1,0.4,1,1v0.6c0.8,0.1,1.5,0.5,2.1,0.9l0.4-0.4c0.4-0.4,1-0.4,1.4,0c0.4,0.4,0.4,1,0,1.4l-0.4,0.4C13,5.5,13.3,6.2,13.4,7 H14c0.6,0,1,0.4,1,1c0,0.6-0.4,1-1,1H13.4z"/></svg>\n  \n  <svg id="icon-dropdown" viewBox="0 0 18 18"><style>.dd{stroke:#ABADAF;stroke-width:2px;stroke-dashoffset:1;stroke-dasharray:inherit}</style><path class="dd" stroke="#FFF" d="M4.5 4.5l9 9" stroke-linecap="round"></path><path class="dd" stroke="#FFF" d="M13.5 4.5l-9 9" stroke-linecap="round"></path></svg>\n  \n  <svg id="icon-invite" viewBox="0 0 16 16"><path fill="#fff" d="M6.3,3.4L8,1.7v9.8C8,11.8,8.2,12,8.5,12C8.8,12,9,11.8,9,11.5V1.7l1.7,1.7c0.2,0.2,0.5,0.2,0.7,0c0.2-0.2,0.2-0.5,0-0.7L8.9,0.2c0,0,0,0,0-0.1C8.8,0,8.6,0,8.5,0c0,0,0,0,0,0c0,0,0,0,0,0C8.4,0,8.2,0,8.1,0.1c0,0,0,0,0,0.1L5.6,2.7c-0.2,0.2-0.2,0.5,0,0.7C5.8,3.5,6.1,3.5,6.3,3.4z M14,4h-1.5v1h1C13.8,5,14,5.2,14,5.5v9c0,0.3-0.2,0.5-0.5,0.5h-10C3.2,15,3,14.8,3,14.5v-9C3,5.2,3.2,5,3.5,5h1V4H3C2.4,4,2,4.4,2,5v10c0,0.6,0.4,1,1,1h11c0.6,0,1-0.4,1-1V5C15,4.4,14.6,4,14,4z"/></svg>\n  \n  <svg id="icon-channel-settings" viewBox="0 0 16 16"><path fill="#fff" d="M8,5C6.3,5,5,6.3,5,8c0,1.7,1.3,3,3,3c1.7,0,3-1.3,3-3 C11,6.3,9.7,5,8,5z M8,10c-1.1,0-2-0.9-2-2c0-1.1,0.9-2,2-2s2,0.9,2,2C10,9.1,9.1,10,8,10z M16,8c0-1-0.8-1.9-1.8-2 c-0.1-0.3-0.3-0.7-0.4-1c0.7-0.8,0.6-1.9-0.1-2.7c-0.7-0.7-1.9-0.8-2.7-0.1c-0.3-0.2-0.6-0.3-1-0.4C9.9,0.8,9,0,8,0 C7,0,6.1,0.8,6,1.8C5.7,1.9,5.3,2.1,5,2.2C4.2,1.6,3.1,1.6,2.3,2.3C1.6,3.1,1.6,4.2,2.2,5C2.1,5.3,1.9,5.7,1.8,6C0.8,6.1,0,7,0,8 c0,1,0.8,1.9,1.8,2c0.1,0.3,0.3,0.7,0.4,1c-0.7,0.8-0.6,1.9,0.1,2.7c0.7,0.7,1.9,0.8,2.7,0.1c0.3,0.2,0.6,0.3,1,0.4 C6.1,15.2,7,16,8,16c1,0,1.9-0.8,2-1.8c0.3-0.1,0.7-0.3,1-0.4c0.8,0.7,1.9,0.6,2.7-0.1c0.7-0.7,0.8-1.9,0.1-2.7 c0.2-0.3,0.3-0.6,0.4-1C15.2,9.9,16,9,16,8z M13.4,9c-0.1,0.8-0.5,1.5-0.9,2.1l0.4,0.4c0.4,0.4,0.4,1,0,1.4c-0.4,0.4-1,0.4-1.4,0 l-0.4-0.4C10.5,13,9.8,13.3,9,13.4V14c0,0.6-0.4,1-1,1c-0.6,0-1-0.4-1-1v-0.6c-0.8-0.1-1.5-0.5-2.1-0.9l-0.4,0.4 c-0.4,0.4-1,0.4-1.4,0c-0.4-0.4-0.4-1,0-1.4l0.4-0.4C3,10.5,2.7,9.8,2.6,9H2C1.4,9,1,8.6,1,8c0-0.6,0.4-1,1-1h0.6 C2.7,6.2,3,5.5,3.5,4.9L3.1,4.5c-0.4-0.4-0.4-1,0-1.4c0.4-0.4,1-0.4,1.4,0l0.4,0.4C5.5,3,6.2,2.7,7,2.6V2c0-0.6,0.4-1,1-1 c0.6,0,1,0.4,1,1v0.6c0.8,0.1,1.5,0.5,2.1,0.9l0.4-0.4c0.4-0.4,1-0.4,1.4,0c0.4,0.4,0.4,1,0,1.4l-0.4,0.4C13,5.5,13.3,6.2,13.4,7 H14c0.6,0,1,0.4,1,1c0,0.6-0.4,1-1,1H13.4z"/></svg>\n</div>\n'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/app/app.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */],
+            __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],
+            __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_6__services_document_service__["a" /* DocumentService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* PopoverController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* MenuController */],
+            __WEBPACK_IMPORTED_MODULE_8__services_blockstack_service__["a" /* BlockStackService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* ToastController */]])
+    ], MyApp);
+    return MyApp;
+}());
+
+//# sourceMappingURL=app.component.js.map
+
+/***/ }),
+
+/***/ 966:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CoinService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+var CoinService = (function () {
+    function CoinService(http) {
+        this.http = http;
+        this.baseUrl = "https://min-api.cryptocompare.com/data/histohour?fsym=";
+        this.coin = "IOT";
+        this.symbol = "IOT";
+        this.params = "&tsym=USD&limit=60&aggregate=3&e=CCCAGG";
+        this.url = "";
+    }
+    CoinService.prototype.getCoin = function (coin) {
+        return __awaiter(this, void 0, void 0, function () {
+            var response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        this.coin = coin;
+                        this.url = this.baseUrl + this.coin + this.params;
+                        return [4 /*yield*/, this.http.get(this.url).toPromise()];
+                    case 1:
+                        response = _a.sent();
+                        return [2 /*return*/, response];
+                }
+            });
+        });
+    };
+    CoinService.prototype.getAllCoins = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var resp;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.http.get("https://min-api.cryptocompare.com/data/all/coinlist").toPromise()];
+                    case 1:
+                        resp = _a.sent();
+                        return [2 /*return*/, resp];
+                }
+            });
+        });
+    };
+    CoinService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
+    ], CoinService);
+    return CoinService;
+}());
+
+//# sourceMappingURL=coin.service.js.map
+
+/***/ }),
+
+/***/ 967:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CryptoCompareService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+var CryptoCompareService = (function () {
+    function CryptoCompareService(http, jsonp) {
+        this.http = http;
+        this.jsonp = jsonp;
+        this.baseUrl = "https://www.cryptocompare.com/api/data";
+        this.apiUrl = window.apiUrl; //http://localhost:5000 http://popbot2.azurewebsites.net
+        this.currency = "BTC";
+        this.aggregate = "1";
+    }
+    CryptoCompareService.prototype.getTopCoins = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var url, response, coinRefResponse, coinsRef, topCoins;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        url = "https://api.coinmarketcap.com/v1/ticker/?limit=377";
+                        return [4 /*yield*/, this.http.get(url).toPromise()];
+                    case 1:
+                        response = _a.sent();
+                        return [4 /*yield*/, this.http.get("https://min-api.cryptocompare.com/data/all/coinlist").toPromise()];
+                    case 2:
+                        coinRefResponse = _a.sent();
+                        coinsRef = coinRefResponse.json().Data;
+                        topCoins = {};
+                        response.json().forEach(function (element) {
+                            var coinData = coinsRef[element.symbol];
+                            if (coinData) {
+                                coinData.rank = element.rank;
+                                topCoins[element.symbol] = coinData;
+                            }
+                            else {
+                                console.error("Cannot find " + element.symbol);
+                            }
+                        });
+                        return [2 /*return*/, topCoins];
+                }
+            });
+        });
+    };
+    CryptoCompareService.prototype.getSocialStats = function (coinId, limit) {
+        return __awaiter(this, void 0, void 0, function () {
+            var api, response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!coinId)
+                            coinId = 306304;
+                        if (!limit)
+                            limit = 337;
+                        api = "/socialstatshistohour/?aggregate=1&id=" + coinId + "&limit=" + limit;
+                        this.url = this.baseUrl + api;
+                        return [4 /*yield*/, this.http.get(this.url).toPromise()];
+                    case 1:
+                        response = _a.sent();
+                        return [2 /*return*/, response];
+                }
+            });
+        });
+    };
+    CryptoCompareService.prototype.getCoins = function (coinLimit, histPriceLimit, socialLimit, currency, aggregate) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        this.currency = currency;
+                        this.aggregate = aggregate;
+                        if (!coinLimit)
+                            coinLimit = 10;
+                        if (!histPriceLimit)
+                            histPriceLimit = 24;
+                        if (!socialLimit)
+                            socialLimit = 24;
+                        return [4 /*yield*/, this.http.get(this.apiUrl + "/api/coins?coinLimit=" + coinLimit + "&histPriceLimit=" + histPriceLimit + "&socialLimit=" + socialLimit + "&currency=" + this.currency + "&aggregate=" + this.aggregate).toPromise()];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    CryptoCompareService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Jsonp */]])
+    ], CryptoCompareService);
+    return CryptoCompareService;
+}());
+
+//# sourceMappingURL=cryptocompare.service.js.map
+
+/***/ }),
+
+/***/ 968:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SlackService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+var SlackService = (function () {
+    function SlackService(http, jsonp) {
+        this.http = http;
+        this.jsonp = jsonp;
+        this.baseUrl = window.apiUrl + "/api/slack"; //"https://hooks.slack.com/services/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";
+    }
+    SlackService.prototype.sendAlert = function (msg) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.http.get(this.baseUrl + "/" + msg).toPromise()];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    SlackService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Jsonp */]])
+    ], SlackService);
+    return SlackService;
+}());
+
+//# sourceMappingURL=slack.service.js.map
+
+/***/ })
+
+},[536]);
+//# sourceMappingURL=main.js.map

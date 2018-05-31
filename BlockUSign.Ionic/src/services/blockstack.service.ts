@@ -10,6 +10,8 @@ import { Events } from 'ionic-angular';
 import { map } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import { delay } from 'rxjs/operator/delay';
+import { Headers, RequestOptionsArgs, RequestOptions } from '@angular/http';
+import { HttpHeaders } from '@angular/common/http';
 declare let blockstack: any;
 
 @Injectable()
@@ -18,6 +20,9 @@ export class BlockStackService {
   public picCache = [];
   public blockusignProfileUrl = "blockusign.profile.json";
   public profile;
+  //url = "https://blockusign.co/api/email";
+  url = "http://localhost:5000/api/profile";
+
  
   constructor(
     public events: Events,
@@ -104,6 +109,16 @@ export class BlockStackService {
   async getAppPublicKey(){
     var myPublicKey  = await blockstack.getPublicKeyFromPrivate(blockstack.loadUserData().appPrivateKey);
     return myPublicKey;
+  }
+
+  async writeGlobalProfile(){
+    let httpOptions = new RequestOptions();
+    httpOptions.headers = new Headers(
+      {
+        'Content-Type': 'application/json'
+      }
+    );
+    return await this.http.post("url", JSON.stringify(this.profile), httpOptions)
   }
 
 }

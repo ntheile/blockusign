@@ -98,7 +98,7 @@ export class MyApp {
 
   login() {
     const origin = window.location.origin
-    blockstack.redirectToSignIn(origin, origin + '/manifest.json', ['store_write', 'publish_data'])
+    blockstack.redirectToSignIn(origin, origin + '/manifest.json', ['store_write', 'publish_data', 'email'])
   }
 
   next() {
