@@ -12,6 +12,7 @@ using SendGrid;
 using SendGrid.Helpers.Mail;
 using RestSharp;
 using Newtonsoft.Json.Linq;
+using MebiusLib;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -37,23 +38,16 @@ namespace BlockUSign.Backend
         [HttpGet]
         public async Task<string> Get()
         {
-            var token = Config["GaiaToken"];
-            var client = new RestClient("https://gaia.blockstack.org/hub/1PoZGGAuQ4yPj72TrXbG4pKbgB9tvCUqQ1/d9b9b273-d2a3-2e2f-5581-8c70bf338311.log.json");
+            var password = Config["DecryptKey"];
+            var client = new RestClient("https://gaia.blockstack.org/hub/18kTskBpTh1mznsypu1fhJ27dxbC1SwXEK/d15adc7a-c4bf-cc20-b88a-e6c29f2adcde.annotations.json");
             var request = new RestRequest(Method.GET);
             IRestResponse response = await client.ExecuteAsync(request);
-            dynamic encryptedData = JObject.Parse(response.Content.ToString());
-            //var enByte = encryptedData.to
-            var cypherText = "";
-            //foreach (var property in encryptedData.Properties())
-            //{
-            //                    Console.WriteLine("{0} - {1}", property.Name, property.Value);
+            string encryptedData = response.Content;
+      
+            SJCLDecryptor sd = new SJCLDecryptor(encryptedData, password);
+            string decodedString = sd.Plaintext;
 
-            //var data = dectrypto.VerifyData(System.Text.Encoding.Unicode.GetBytes(cypherText), System.Text.Encoding.Unicode.GetBytes(token));
-
-            //var d  = encryptedData.SelectToken("ct").ToString();
-            var d = encryptedData.ct;
-
-            return d;
+            return decodedString;
 
         }
 
