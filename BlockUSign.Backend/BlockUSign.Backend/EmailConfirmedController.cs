@@ -38,7 +38,10 @@ namespace BlockUSign.Backend
         [HttpGet]
         public async Task<string> Get()
         {
-            var password = Config["DecryptKey"];
+
+            //@todo check if the code matches...if so you can write to the global profile index
+
+            var password = Config["EmailConfirmKey"];
             var client = new RestClient("https://gaia.blockstack.org/hub/18kTskBpTh1mznsypu1fhJ27dxbC1SwXEK/d15adc7a-c4bf-cc20-b88a-e6c29f2adcde.annotations.json");
             var request = new RestRequest(Method.GET);
             IRestResponse response = await client.ExecuteAsync(request);
