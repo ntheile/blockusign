@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
-
+using Microsoft.AspNetCore.Rewrite;
+using System.Text;
 
 namespace BlockUSign.Backend
 {
@@ -48,6 +49,9 @@ namespace BlockUSign.Backend
                 app.UseDeveloperExceptionPage();
             }
 
+
+            app.UseRewriter(new RewriteOptions().Add(new RedirectWwwRule()));
+
             app.UseCors("CorsPolicy");
             DefaultFilesOptions options = new DefaultFilesOptions();
             options.DefaultFileNames.Clear();
@@ -63,7 +67,38 @@ namespace BlockUSign.Backend
                     template: "{controller}/{action=Index}/{id?}");
             });
 
-
         }
     }
+
+    public class RedirectWwwRule : Microsoft.AspNetCore.Rewrite.IRule
+    {
+        public int StatusCode { get; } = (int)System.Net.HttpStatusCode.MovedPermanently;
+        public bool ExcludeLocalhost { get; set; } = true;
+
+        public void ApplyRule(RewriteContext context)
+        {
+            var request = context.HttpContext.Request;
+            var host = request.Host;
+            if (host.Host.StartsWith("www", StringComparison.OrdinalIgnoreCase))
+            {
+                context.Result = RuleResult.ContinueRules;
+                string newPath = request.Scheme + "://" + host.Value.Replace("www.", "") + request.PathBase + request.Path + request.QueryString;
+                var response = context.HttpContext.Response;
+                response.StatusCode = StatusCode;
+                response.Headers[Microsoft.Net.Http.Headers.HeaderNames.Location] = newPath;
+                context.Result = RuleResult.EndResponse; // Do not continue processing the request      
+
+                return;
+            }
+            else{
+                context.Result = RuleResult.ContinueRules;
+                return;
+            }
+
+     
+        }
+
+    }
+
+
 }
