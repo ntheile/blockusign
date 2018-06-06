@@ -59,6 +59,7 @@ namespace BlockUSign.Backend
         [HttpGet("{id}")]
         public string Get(int id)
         {
+           
             return "value";
         }
 
@@ -100,7 +101,7 @@ namespace BlockUSign.Backend
         }
     }
 
-    public class EmailConfirmJson
+    public class EmailJson
     {
         public string to { get; set; }
         public string content { get; set; }
