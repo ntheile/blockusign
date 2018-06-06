@@ -45,15 +45,6 @@ namespace BlockUSign.Backend
             var password = Config["EmailConfirmKey"];
             var gaiaToken = Config["GaiaToken"];
 
-          
-            //var client3 = new RestClient("https://gaia.blockstack.org/hub/1PoZGGAuQ4yPj72TrXbG4pKbgB9tvCUqQ1/blockusign/email.confirmations.json");
-            //var request3 = new RestRequest(Method.POST);
-            //client3.AddDefaultHeader("Content-Type", "application/json");
-            //client3.AddDefaultHeader("Authorization", "");
-            //request3.AddParameter("application/json", "", ParameterType.RequestBody);
-
-            //IRestResponse r3 = client3.Execute(request3);
-
 
             // 1. gererate code
             string code = Guid.NewGuid().ToString();
@@ -72,7 +63,8 @@ namespace BlockUSign.Backend
 
             EmailConfirmJson emailConfirmList = JsonConvert.DeserializeObject<EmailConfirmJson>(decodedString);
 
-            if (emailConfirmList == null ){
+            if (emailConfirmList == null)
+            {
                 // search in list and addd
                 emailConfirmList = new EmailConfirmJson();
                 emailConfirmList.emailConfirms = new List<EmailConfirm>();
@@ -84,19 +76,21 @@ namespace BlockUSign.Backend
             emailConfirmList.emailConfirms.Add(emailConfirms);
             string json = JsonConvert.SerializeObject(emailConfirmList);
             json = simpleEncypt.Encrypt(json);
-            var client2 = new RestClient("https://gaia.blockstack.org/hub/1PoZGGAuQ4yPj72TrXbG4pKbgB9tvCUqQ1/blockusign/email.confirmations.json");
+
+
+            var client2 = new RestClient("https://hub.blockstack.org/store/1PoZGGAuQ4yPj72TrXbG4pKbgB9tvCUqQ1/blockusign/email.confirmations.json");
             var request2 = new RestRequest(Method.POST);
             request2.AddHeader("Content-Type", "application/json");
             request2.AddHeader("Authorization", gaiaToken);
             request2.AddParameter("application/json", json, ParameterType.RequestBody);
 
-            IRestResponse r =  client2.Execute(request2);
+            IRestResponse response2 = client2.Execute(request2);
 
 
             // 4. email the code to the user
 
 
-            return "ok";
+            return response2.StatusCode.ToString();
         }
 
 
@@ -106,42 +100,18 @@ namespace BlockUSign.Backend
         [HttpGet("{email}/{code}")]
         public async Task<string> Get(string email, string code)
         {
-            var loggingHandler = new HttpLoggingHandler(new HttpClientHandler(),
-                                            RequestAction,
-                                            ResponseAction);
 
             //@todo check if the code matches...if so you can write to the global profile index
-            //HttpClient client44 = new HttpClient(loggingHandler);
-
-            //client44.DefaultRequestHeaders.Accept.Clear();
-            //client44.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", "");
-            //var stringTask = await client44.PostAsync(
-                //new Uri("http://localhost:8889/hub/1PoZGGAuQ4yPj72TrXbG4pKbgB9tvCUqQ1/blockusign"),
-                //new StringContent("shit",
-                                  //Encoding.UTF8, "application/json"));
-
             var gaiaToken = Config["GaiaToken"];
-            var client2 = new RestClient("https://gaia.blockstack.org");
-            //var request2 = new RestRequest(Method.POST);
-            //request2.AddHeader("Content-Type", "application/json");
-            //request2.AddHeader("Authorization", gaiaToken);
-            //request2.AddParameter("application/json", "{'shit': 'yeah'}", ParameterType.RequestBody);
-
-            //IRestResponse r = client2.Execute(request2);
-
-            var em = new EmailJson();
-            em.content = "shit storm";
-
-            var request = new RestSharp.RestRequest("/hub/1PoZGGAuQ4yPj72TrXbG4pKbgB9tvCUqQ1/blockusign/email.confirmations.json", RestSharp.Method.POST)
-            { 
-                RequestFormat = RestSharp.DataFormat.Json 
-            }.AddBody(em)
-             .AddHeader("Authorization", gaiaToken);
-
-            var response = client2.Execute(request);
-
-           
-            return "value";
+            var client = new RestClient("https://hub.blockstack.org/store/1PoZGGAuQ4yPj72TrXbG4pKbgB9tvCUqQ1/blockusign/email.confirmations.json");
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("content-type", "application/json");
+            request.AddHeader("Authorization", gaiaToken);
+            request.AddParameter("application/json",
+                                 "pdCgfHpx11nXzDE5mfccAH9x+dtpTkObZ4XuxJjNISy5EByl/5FL5XIJ0a+vXx2nKMfCHl5NSUxm4PreDJAWnnnvlnFotDMTNXuYDa1YiQphHwnIKw5p/dHnGRTR/PYj"
+                                 , ParameterType.RequestBody);
+            IRestResponse response = client.Execute(request);
+            return "ok";
         }
 
         // POST api/values
@@ -183,88 +153,19 @@ namespace BlockUSign.Backend
         }
 
 
-        async Task ResponseAction(HttpResponseMessage httpResponseMessage)
-    {
-        string content = null;
-        if (httpResponseMessage.Content != null)
+
+        public class EmailConfirmJson
         {
-            content = await httpResponseMessage.Content.ReadAsStringAsync();
-            content = content.Substring(0, Math.Min(100, content.Length)) + "...";
+            public List<EmailConfirm> emailConfirms;
         }
-       
-            ////var fs = new FormattedString();
-            //fs.Spans.Add(new Span { Text = "Status: " });
-            //fs.Spans.Add(new Span { Text = httpResponseMessage.StatusCode.ToString(), FontAttributes = FontAttributes.Bold });
-            //fs.Spans.Add(NewLine());
-            //if (httpResponseMessage.Headers.Any())
-            //{
-            //    fs.Spans.Add(new Span { Text = "Headers:" });
-            //    fs.Spans.Add(NewLine());
-            //    foreach (var header in httpResponseMessage.Headers)
-            //    {
-            //        fs.Spans.Add(new Span { Text = "\t•" + header.Key + ": " });
-            //        fs.Spans.Add(new Span { Text = String.Join(",", header.Value), FontAttributes = FontAttributes.Bold });
-            //        fs.Spans.Add(NewLine());
-            //    }
-            //}
-            //if (content != null)
-            //{
-            //    fs.Spans.Add(new Span { Text = "Content: " });
-            //    fs.Spans.Add(new Span { Text = content, FontAttributes = FontAttributes.Bold });
-            //}
-          
 
-    }
-
-    async Task RequestAction(HttpRequestMessage httpRequestMessage)
-    {
-        string content = null;
-        if (httpRequestMessage.Content != null)
+        public class EmailConfirm
         {
-            content = await httpRequestMessage.Content.ReadAsStringAsync();
+            public string email { get; set; }
+            public List<string> codes { get; set; }
         }
-      
-            //var fs = new FormattedString();
-            //fs.Spans.Add(new Span { Text = "URL: " });
-            //fs.Spans.Add(new Span { Text = httpRequestMessage.RequestUri.ToString(), FontAttributes = FontAttributes.Bold });
-            //fs.Spans.Add(NewLine());
-            //fs.Spans.Add(new Span { Text = "Method: " });
-            //fs.Spans.Add(new Span { Text = httpRequestMessage.Method.ToString(), FontAttributes = FontAttributes.Bold });
-            //fs.Spans.Add(NewLine());
-            if (httpRequestMessage.Headers.Any())
-            {
-                //fs.Spans.Add(new Span { Text = "Headers:" });
-                //fs.Spans.Add(NewLine());
-                foreach (var header in httpRequestMessage.Headers)
-                {
-                   // fs.Spans.Add(new Span { Text = "\t•" + header.Key + ": " });
-                    //fs.Spans.Add(new Span { Text = String.Join(",", header.Value), FontAttributes = FontAttributes.Bold });
-                }
-            }
-            if (content != null)
-            {
-                //fs.Spans.Add(new Span { Text = "Content: " });
-                //fs.Spans.Add(new Span { Text = content, FontAttributes = FontAttributes.Bold });
-            }
-         
-    }
-   
+
 
     }
-
-
-    public class EmailConfirmJson
-    {
-        public List<EmailConfirm> emailConfirms;
-    }
-
-    public class EmailConfirm
-    {
-        public string email { get; set; }
-        public List<string> codes { get; set; }
-    }
-
-
-   
 
 }
