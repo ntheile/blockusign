@@ -53,8 +53,13 @@ export class EmailService {
 
   }
   
-  catchError () {
+  async updateCachedEmails(){
 
+  }
+
+  // @todo when you send a document to an email address save it, so weh can query it in the lookup next time
+  async getCachedEmails(){
+    
   }
 
 }

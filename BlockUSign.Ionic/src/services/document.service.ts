@@ -71,6 +71,7 @@ export class DocumentService {
     let newDocument = new Document();
     newDocument.fileName = fileName;
     newDocument.documentKey = this.generateKey();
+    newDocument.code = this.generateKey();
     newDocument.pathAnnotatedDoc = blockstack.loadUserData().profile.apps[window.location.origin];
     let profileData = await this.blockStackService.getProfileData();
     let myEmail = null;
@@ -435,6 +436,8 @@ export class DocumentService {
     
   }
 
+
+ 
 
   //#region Encryption
   //https://stackoverflow.com/questions/26734033/encrypting-files-with-sjcl-client-side

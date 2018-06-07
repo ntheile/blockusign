@@ -1,6 +1,7 @@
 export class Document{
     public fileName: string;
     public documentKey: string; // the key to decrypt the doc
+    public code: string; // the code to allow a map to be created between the docuemnt guid an an array of replicated storage bucket locations to be stored in the global.map.json on the blockusign1 global storage bucket
     public guid: any;
     public createdAt: Date; 
     public updatedAt: Date; 

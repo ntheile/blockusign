@@ -36,121 +36,126 @@ namespace BlockUSign.Backend
         }
 
 
-        // 1. generate code
-        // 2. send email
-        // GET: api/emailconfirmed?email=name@email.com
-        [HttpGet]
-        public async Task<string> Get(string email)
-        {
-            var password = Config["EmailConfirmKey"];
-            var gaiaToken = Config["GaiaToken"];
+        //// 1. generate code
+        //// 2. send email
+        //// GET: api/emailconfirmed?email=name@email.com
+        //[HttpGet]
+        //public async Task<string> Get(string email)
+        //{
+        //    var password = Config["EmailConfirmKey"];
+        //    var gaiaToken = Config["GaiaToken"];
 
 
-            // 1. gererate code
-            string code = Guid.NewGuid().ToString();
+        //    // 1. gererate code
+        //    string code = Guid.NewGuid().ToString();
 
-            SimpleEncypt simpleEncypt = new SimpleEncypt(password);
-            // string strEncrypted = simpleEncypt.Encrypt("hi");
-            //string strDecr = simpleEncypt.Decrypt(strEncrypted);
-
-
-            // 2. query email.confirmations.json
-            var client = new RestClient("https://gaia.blockstack.org/hub/1PoZGGAuQ4yPj72TrXbG4pKbgB9tvCUqQ1/blockusign/email.confirmations.json");
-            var request = new RestRequest(Method.GET);
-            IRestResponse response = await client.ExecuteAsync(request);
-            string encryptedData = response.Content;
-            string decodedString = simpleEncypt.Decrypt(encryptedData);
-
-            EmailConfirmJson emailConfirmList = JsonConvert.DeserializeObject<EmailConfirmJson>(decodedString);
-
-            if (emailConfirmList == null)
-            {
-                // search in list and addd
-                emailConfirmList = new EmailConfirmJson();
-                emailConfirmList.emailConfirms = new List<EmailConfirm>();
-            }
+        //    SimpleEncypt simpleEncypt = new SimpleEncypt(password);
+        //    // string strEncrypted = simpleEncypt.Encrypt("hi");
+        //    //string strDecr = simpleEncypt.Decrypt(strEncrypted);
 
 
-            // 3. append or add new row for confimations
-            EmailConfirm emailConfirms = new EmailConfirm { email = email, codes = new List<string> { code } };
-            emailConfirmList.emailConfirms.Add(emailConfirms);
-            string json = JsonConvert.SerializeObject(emailConfirmList);
-            json = simpleEncypt.Encrypt(json);
+        //    // 2. query email.confirmations.json
+        //    var client = new RestClient("https://gaia.blockstack.org/hub/1PoZGGAuQ4yPj72TrXbG4pKbgB9tvCUqQ1/blockusign/email.confirmations.json");
+        //    var request = new RestRequest(Method.GET);
+        //    IRestResponse response = await client.ExecuteAsync(request);
+        //    string encryptedData = response.Content;
+        //    string decodedString = simpleEncypt.Decrypt(encryptedData);
+
+        //    EmailConfirmJson emailConfirmList = JsonConvert.DeserializeObject<EmailConfirmJson>(decodedString);
+
+        //    if (emailConfirmList == null)
+        //    {
+        //        // search in list and addd
+        //        emailConfirmList = new EmailConfirmJson();
+        //        emailConfirmList.emailConfirms = new List<EmailConfirm>();
+        //    }
+
+        //    // 3. append or add new row for confimations         
+        //    if ( emailConfirmList.emailConfirms.FirstOrDefault(a => a.email == email) != null  ) 
+        //    {
+        //        emailConfirmList.emailConfirms.FirstOrDefault(a => a.email == email).codes.Add(code);
+        //    }
+        //    else{
+              
+        //        EmailConfirm emailConfirms = new EmailConfirm { email = email, codes = new List<string> { code } };
+        //        emailConfirmList.emailConfirms.Add(emailConfirms);
+        //    }
+          
+        //    string json = JsonConvert.SerializeObject(emailConfirmList);
+        //    json = simpleEncypt.Encrypt(json);
 
 
-            var client2 = new RestClient("https://hub.blockstack.org/store/1PoZGGAuQ4yPj72TrXbG4pKbgB9tvCUqQ1/blockusign/email.confirmations.json");
-            var request2 = new RestRequest(Method.POST);
-            request2.AddHeader("Content-Type", "application/json");
-            request2.AddHeader("Authorization", gaiaToken);
-            request2.AddParameter("application/json", json, ParameterType.RequestBody);
+        //    var client2 = new RestClient("https://hub.blockstack.org/store/1PoZGGAuQ4yPj72TrXbG4pKbgB9tvCUqQ1/blockusign/email.confirmations.json");
+        //    var request2 = new RestRequest(Method.POST);
+        //    request2.AddHeader("Content-Type", "application/json");
+        //    request2.AddHeader("Authorization", gaiaToken);
+        //    request2.AddParameter("application/json", json, ParameterType.RequestBody);
 
-            IRestResponse response2 = client2.Execute(request2);
-
-
-            // 4. email the code to the user
+        //    IRestResponse response2 = client2.Execute(request2);
 
 
-            return response2.StatusCode.ToString();
-        }
+        //    // 4. email the code to the user
+        //    var emailer = new EmailController(Config);
+        //    var emailResp = await emailer.Post(new EmailJson
+        //    {
+        //        content = "Please enter this code to validate your email " + code,
+        //        subject = "Please enter this code to validate your email",
+        //        to = email
+        //    });
 
 
-        // 1. confirm email
-        // 2. purge old code from list
-        // 3. write to global.profile and match email with 
-        [HttpGet("{email}/{code}")]
-        public async Task<string> Get(string email, string code)
-        {
-
-            //@todo check if the code matches...if so you can write to the global profile index
-            var gaiaToken = Config["GaiaToken"];
-            var client = new RestClient("https://hub.blockstack.org/store/1PoZGGAuQ4yPj72TrXbG4pKbgB9tvCUqQ1/blockusign/email.confirmations.json");
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("content-type", "application/json");
-            request.AddHeader("Authorization", gaiaToken);
-            request.AddParameter("application/json",
-                                 "pdCgfHpx11nXzDE5mfccAH9x+dtpTkObZ4XuxJjNISy5EByl/5FL5XIJ0a+vXx2nKMfCHl5NSUxm4PreDJAWnnnvlnFotDMTNXuYDa1YiQphHwnIKw5p/dHnGRTR/PYj"
-                                 , ParameterType.RequestBody);
-            IRestResponse response = client.Execute(request);
-            return "ok";
-        }
-
-        // POST api/values
-        [HttpPost]
-        public async Task<IEnumerable<string>> Post([FromBody]EmailJson value)
-        {
-            var apiKey = Config["SendGridKey"];
-            var client = new SendGridClient(apiKey);
-            var from = new EmailAddress("blockusign@outlook.com", "Blockusign");
-            var sub = value.subject; //"PLease review new document id ref1234";
-            var too = new EmailAddress(value.to, "");
-            //var plainTextContent = "and easy to do anywhere, even with C#";
-            var htmlContent = value.content;//"<strong>and easy to do anywhere, even with C#</strong>";
-            var msg = MailHelper.CreateSingleEmail(from, too, sub, null, htmlContent);
-            var response = await client.SendEmailAsync(msg);
+        //    return response2.StatusCode.ToString();
+        //}
 
 
-            var result = "error";
-            if (response.StatusCode == System.Net.HttpStatusCode.Accepted)
+        //// 1. confirm email
+        //// 2. purge old code from list
+        //// 3. write to global.profile and match email with 
+        //[HttpGet("{email}/{code}/{publicKey}")]
+        //public async Task<string> Get(string email, string code, string publicKey)
+        //{
 
-            {
-                result = "ok";
-            }
+        //    //@todo check if the code matches...if so you can write to the global profile index
+        //    SimpleEncypt simpleEncypt = new SimpleEncypt(password);
+        //    // 1. confirm email
+        //    var client = new RestClient("https://gaia.blockstack.org/hub/1PoZGGAuQ4yPj72TrXbG4pKbgB9tvCUqQ1/blockusign/email.confirmations.json");
+        //    var request = new RestRequest(Method.GET);
+        //    IRestResponse response = await client.ExecuteAsync(request);
+        //    string encryptedData = response.Content;
+        //    string decodedString = simpleEncypt.Decrypt(encryptedData);
+        //    EmailConfirmJson emailConfirmList = JsonConvert.DeserializeObject<EmailConfirmJson>(decodedString);
+        //    if (emailConfirmList == null)
+        //    {
+        //        // search in list and addd
+        //        return "null list";
+        //    }
+        //    var emailConfirmation = emailConfirmList.emailConfirms.FirstOrDefault(a => a.email == email);
+        //    if (emailConfirmation != null && emailConfirmation.codes.Contains(code) )
+        //    {
+        //        // write to global profile
+        //        var gaiaToken = Config["GaiaToken"];
+        //        var client = new RestClient("https://hub.blockstack.org/store/1PoZGGAuQ4yPj72TrXbG4pKbgB9tvCUqQ1/blockusign/global.profile.json");
+        //        var request = new RestRequest(Method.POST);
 
-            return new string[] { result };
+        //        var publicProfile = new PublicProfile{
+        //            publicKey = publicKey
+        //        }
 
-        }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+        //        request.AddHeader("content-type", "application/json");
+        //        request.AddHeader("Authorization", gaiaToken);
+        //        request.AddParameter("application/json",
+        //                             "pdCgfHpx11nXzDE5mfccAH9x+dtpTkObZ4XuxJjNISy5EByl/5FL5XIJ0a+vXx2nKMfCHl5NSUxm4PreDJAWnnnvlnFotDMTNXuYDa1YiQphHwnIKw5p/dHnGRTR/PYj"
+        //                             , ParameterType.RequestBody);
+        //        IRestResponse response = client.Execute(request);
+        //    }
+        //    else{
+        //        return "bad code";
+        //    }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+           
+        //    return "ok";
+        //}
 
 
 
@@ -164,6 +169,14 @@ namespace BlockUSign.Backend
             public string email { get; set; }
             public List<string> codes { get; set; }
         }
+
+        public class PublicProfile
+        {
+            public string email { get; set; }
+            public string publicKey { get; set; }
+            public string storage { get; set; }
+        }
+            
 
 
     }
