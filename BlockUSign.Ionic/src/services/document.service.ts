@@ -72,6 +72,12 @@ export class DocumentService {
     newDocument.fileName = fileName;
     newDocument.documentKey = this.generateKey();
     newDocument.code = this.generateKey();
+
+    // @todo add code - write to /api/Code?docGuid=12345&code=12345
+    await this.writeCode(newDocument.guid, newDocument.code);
+    // @todo add my storage path - write to /api/DocStorageMap?docGuid=12345&code=12345&storagePath=urlEncode(pathToStorage)
+    await this.addDocStoragePath(newDocument.guid, newDocument.code, blockstack.loadUserData().profile.apps[window.location.origin]);
+
     newDocument.pathAnnotatedDoc = blockstack.loadUserData().profile.apps[window.location.origin];
     let profileData = await this.blockStackService.getProfileData();
     let myEmail = null;
@@ -185,6 +191,10 @@ export class DocumentService {
     let encryptedDoc = this.ecryptDoc(fileBuffer, this.currentDoc.documentKey);
     let r = await blockstack.putFile(guid + ".pdf", encryptedDoc, { encrypt: false }).then((data) => { });
 
+
+    // @todo add my storage path - write to /api/DocStorageMap?docGuid=12345&code=12345&storagePath=urlEncode(pathToStorage)
+
+
     // @todo now copy annotations
     let annotsResp = await this.getAnnotationsByPath(this.currentDoc.pathAnnotatedDoc + guid + ".annotations.json", this.currentDoc.documentKey);
     if (annotsResp) {
@@ -194,6 +204,8 @@ export class DocumentService {
       this.saveAnnotations(guid, "");
     }
     
+
+
 
     // @todo now copy chat log
     let theirPath = jslinq(this.currentDoc.paths).where( (el) => el.email != this.blockStackService.profile.email  ).toList();
@@ -434,6 +446,16 @@ export class DocumentService {
 
   async updatePartnerPathData(){
     
+  }
+
+  async writeCode(docGuid, code){
+    return this.http.get("https://blockusign.co/api/Code?docGuid="+docGuid+"&code=" + code).toPromise();
+  }
+
+  async addDocStoragePath(docGuid, code, storagePath){
+    var encodedStoragePath = encodeURIComponent(storagePath);
+    var url = "/api/DocStorageMap?docGuid="+docGuid+"&code=" + code + "&storagePath=" + encodedStoragePath;
+    return this.http.get("https://blockusign.co"+ url).toPromise();
   }
 
 

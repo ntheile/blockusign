@@ -838,9 +838,19 @@ var DocumentService = (function () {
                         newDocument.fileName = fileName;
                         newDocument.documentKey = this.generateKey();
                         newDocument.code = this.generateKey();
+                        // @todo add code - write to /api/Code?docGuid=12345&code=12345
+                        return [4 /*yield*/, this.writeCode(newDocument.guid, newDocument.code)];
+                    case 1:
+                        // @todo add code - write to /api/Code?docGuid=12345&code=12345
+                        _c.sent();
+                        // @todo add my storage path - write to /api/DocStorageMap?docGuid=12345&code=12345&storagePath=urlEncode(pathToStorage)
+                        return [4 /*yield*/, this.addDocStoragePath(newDocument.guid, newDocument.code, blockstack.loadUserData().profile.apps[window.location.origin])];
+                    case 2:
+                        // @todo add my storage path - write to /api/DocStorageMap?docGuid=12345&code=12345&storagePath=urlEncode(pathToStorage)
+                        _c.sent();
                         newDocument.pathAnnotatedDoc = blockstack.loadUserData().profile.apps[window.location.origin];
                         return [4 /*yield*/, this.blockStackService.getProfileData()];
-                    case 1:
+                    case 3:
                         profileData = _c.sent();
                         myEmail = null;
                         if (profileData) {
@@ -853,19 +863,19 @@ var DocumentService = (function () {
                             email: myEmail
                         };
                         return [4 /*yield*/, this.blockStackService.getAppPublicKey()];
-                    case 2:
+                    case 4:
                         _a.paths = [(_b.appPublicKey = _c.sent(),
                                 _b.pathToStorage = blockstack.loadUserData().profile.apps[window.location.origin],
                                 _b)];
                         newDocument.signer = [];
                         this.documentsList.push(newDocument);
                         return [4 /*yield*/, blockstack.putFile(this.indexFileName, JSON.stringify(this.documentsList), { encrypt: true })];
-                    case 3:
+                    case 5:
                         _c.sent();
                         this.docBuffer = fileBuffer;
                         this.currentDoc = newDocument;
                         return [4 /*yield*/, this.addDocumentBytes(newDocument.guid, fileBuffer, newDocument.documentKey)];
-                    case 4:
+                    case 6:
                         response = _c.sent();
                         return [2 /*return*/, this.documentsList];
                 }
@@ -1350,6 +1360,23 @@ var DocumentService = (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 return [2 /*return*/];
+            });
+        });
+    };
+    DocumentService.prototype.writeCode = function (docGuid, code) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, this.http.get("https://blockusign.co/api/Code?docGuid=" + docGuid + "&code=" + code).toPromise()];
+            });
+        });
+    };
+    DocumentService.prototype.addDocStoragePath = function (docGuid, code, storagePath) {
+        return __awaiter(this, void 0, void 0, function () {
+            var encodedStoragePath, url;
+            return __generator(this, function (_a) {
+                encodedStoragePath = encodeURIComponent(storagePath);
+                url = "/api/DocStorageMap?docGuid=" + docGuid + "&code=" + code + "&storagePath=" + encodedStoragePath;
+                return [2 /*return*/, this.http.get("https://blockusign.co" + url).toPromise()];
             });
         });
     };
