@@ -1145,17 +1145,38 @@ var DocumentService = (function () {
     };
     DocumentService.prototype.getAnnotations = function (guid) {
         return __awaiter(this, void 0, void 0, function () {
-            var resp, decrypted;
+            var annoatationsFileName, resp, decrypted, theirPath, theirUrl, url, theirResp, str, theirDoc, finalDoc;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, blockstack.getFile(guid + ".annotations.json", { decrypt: false })];
+                    case 0:
+                        annoatationsFileName = guid + ".annotations.json";
+                        return [4 /*yield*/, blockstack.getFile(annoatationsFileName, { decrypt: false })];
                     case 1:
                         resp = _a.sent();
-                        if (resp) {
-                            decrypted = this.decryptString(resp, this.currentDoc.documentKey);
-                            this.currentDocAnnotationsDoc = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["load"](decrypted);
-                            this.currentDocAnnotations = this.currentDocAnnotationsDoc.annots[0]; //JSON.parse(decrypted);
+                        if (!resp) return [3 /*break*/, 4];
+                        decrypted = this.decryptString(resp, this.currentDoc.documentKey);
+                        this.currentDocAnnotationsDoc = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["load"](decrypted);
+                        this.currentDocAnnotations = this.currentDocAnnotationsDoc.annots[0]; //JSON.parse(decrypted);
+                        theirPath = jslinq(this.docStorageMaps.storagePaths).where(function (el) { return el != blockstack.loadUserData().profile.apps[window.location.origin]; }).toList();
+                        theirUrl = theirPath[0];
+                        if (!theirUrl) return [3 /*break*/, 3];
+                        url = theirUrl + annoatationsFileName;
+                        return [4 /*yield*/, this.http.get(url).toPromise()];
+                    case 2:
+                        theirResp = _a.sent();
+                        // now merge their doc into mine
+                        if (theirResp) {
+                            str = theirResp.text();
+                            str = this.decryptString(str, this.currentDoc.documentKey);
+                            theirDoc = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["load"](str);
+                            finalDoc = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["merge"](theirDoc, this.currentDocAnnotationsDoc);
+                            this.currentDocAnnotationsDoc = finalDoc;
                         }
+                        _a.label = 3;
+                    case 3:
+                        this.currentDocAnnotations = this.currentDocAnnotationsDoc.annots[0];
+                        _a.label = 4;
+                    case 4:
                         if (!resp) {
                             this.currentDocAnnotations = "";
                         }
@@ -1187,33 +1208,18 @@ var DocumentService = (function () {
             });
         });
     };
-    DocumentService.prototype.mergeAnnotations = function (guid, theirs, mine) {
-        return __awaiter(this, void 0, void 0, function () {
-            var mergedAnnotations;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (!!theirs) return [3 /*break*/, 2];
-                        return [4 /*yield*/, this.getAnnotationsByPath(this.currentDoc.pathAnnotatedDoc + guid + ".annotations.json", this.currentDoc.documentKey)];
-                    case 1:
-                        theirs = _a.sent();
-                        theirs = this.currentDocAnnotationsDoc;
-                        _a.label = 2;
-                    case 2:
-                        if (!!mine) return [3 /*break*/, 4];
-                        return [4 /*yield*/, this.getAnnotations(guid)];
-                    case 3:
-                        mine = _a.sent();
-                        mine = this.currentDocAnnotationsDoc;
-                        _a.label = 4;
-                    case 4:
-                        mergedAnnotations = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["merge"](mine, theirs);
-                        console.log("mergedAnnots", mergedAnnotations);
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
+    // async mergeAnnotations(guid, theirs?, mine?){
+    //   if (!theirs){
+    //     theirs = await this.getAnnotationsByPath(this.currentDoc.pathAnnotatedDoc + guid + ".annotations.json", this.currentDoc.documentKey);
+    //     theirs = this.currentDocAnnotationsDoc;
+    //   }
+    //   if (!mine){
+    //     mine =  await this.getAnnotations(guid);
+    //     mine = this.currentDocAnnotationsDoc;
+    //   }
+    //   let mergedAnnotations = Automerge.merge(mine, theirs);
+    //   console.log("mergedAnnots", mergedAnnotations);
+    // }
     DocumentService.prototype.setCurrentDoc = function (guid) {
         return __awaiter(this, void 0, void 0, function () {
             var span;
@@ -1254,8 +1260,6 @@ var DocumentService = (function () {
                         if (!resp) return [3 /*break*/, 5];
                         this.logDoc = this.decryptString(resp, this.currentDoc.documentKey);
                         this.logDoc = __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__["load"](this.logDoc);
-                        // now get their doc, if there is a signer
-                        //if (this.currentDoc.paths.length > 1){
                         this.log = this.logDoc.log;
                         theirPath = jslinq(this.docStorageMaps.storagePaths).where(function (el) { return el != blockstack.loadUserData().profile.apps[window.location.origin]; }).toList();
                         theirUrl = theirPath[0];
@@ -1274,7 +1278,6 @@ var DocumentService = (function () {
                         }
                         _a.label = 4;
                     case 4:
-                        //}
                         this.log = this.logDoc.log;
                         return [3 /*break*/, 7];
                     case 5:

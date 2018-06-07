@@ -272,18 +272,37 @@ export class DocumentService {
   }
 
   async getAnnotations(guid: string) {
-    let resp = await blockstack.getFile(guid + ".annotations.json", { decrypt: false });
+
+    let annoatationsFileName = guid + ".annotations.json";
+    let resp = await blockstack.getFile(annoatationsFileName, { decrypt: false });
     if (resp) {
       let decrypted = this.decryptString(resp, this.currentDoc.documentKey);
       this.currentDocAnnotationsDoc = Automerge.load(decrypted);
       this.currentDocAnnotations =  this.currentDocAnnotationsDoc.annots[0];//JSON.parse(decrypted);
+      // now merge annotations
+      let theirPath = jslinq(this.docStorageMaps.storagePaths).where( (el) => el != blockstack.loadUserData().profile.apps[window.location.origin]  ).toList();
+      // @todo in the future maybe support mutiple parties signing a doc and allow more than 2 storage paths
+      let theirUrl = theirPath[0];
+      if (theirUrl){
+        let url = theirUrl + annoatationsFileName;
+        let theirResp = await this.http.get(url).toPromise(); 
+        // now merge their doc into mine
+        if (theirResp){
+          let str = theirResp.text();
+          str = this.decryptString(str, this.currentDoc.documentKey);
+          let theirDoc = Automerge.load(str);
+          let finalDoc = Automerge.merge(theirDoc, this.currentDocAnnotationsDoc)
+          this.currentDocAnnotationsDoc = finalDoc;
+        }
+      }
+      this.currentDocAnnotations = this.currentDocAnnotationsDoc.annots[0];
+
     }
     if (!resp) {
       this.currentDocAnnotations = "";
     }
 
    
-
     return this.currentDocAnnotations;
   }
 
@@ -303,22 +322,22 @@ export class DocumentService {
     return this.currentDocAnnotations;
   }
 
-  async mergeAnnotations(guid, theirs?, mine?){
-    if (!theirs){
-      theirs = await this.getAnnotationsByPath(this.currentDoc.pathAnnotatedDoc + guid + ".annotations.json", this.currentDoc.documentKey);
-      theirs = this.currentDocAnnotationsDoc;
-    }
-    if (!mine){
-      mine =  await this.getAnnotations(guid);
-      mine = this.currentDocAnnotationsDoc;
-    }
+  // async mergeAnnotations(guid, theirs?, mine?){
+  //   if (!theirs){
+  //     theirs = await this.getAnnotationsByPath(this.currentDoc.pathAnnotatedDoc + guid + ".annotations.json", this.currentDoc.documentKey);
+  //     theirs = this.currentDocAnnotationsDoc;
+  //   }
+  //   if (!mine){
+  //     mine =  await this.getAnnotations(guid);
+  //     mine = this.currentDocAnnotationsDoc;
+  //   }
     
    
-    let mergedAnnotations = Automerge.merge(mine, theirs);
+  //   let mergedAnnotations = Automerge.merge(mine, theirs);
 
-    console.log("mergedAnnots", mergedAnnotations);
+  //   console.log("mergedAnnots", mergedAnnotations);
 
-  }
+  // }
 
   async setCurrentDoc(guid: string) {
     //alert('set curr doc');
@@ -346,29 +365,21 @@ export class DocumentService {
       if (resp) {
           this.logDoc = this.decryptString(resp, this.currentDoc.documentKey);
           this.logDoc =  Automerge.load(this.logDoc);
-          
-          // now get their doc, if there is a signer
-          //if (this.currentDoc.paths.length > 1){
-            this.log = this.logDoc.log;
-            
-            //let theirPath = jslinq(this.currentDoc.paths).where( (el) => el.email != this.blockStackService.profile.email  ).toList();
-            let theirPath = jslinq(this.docStorageMaps.storagePaths).where( (el) => el != blockstack.loadUserData().profile.apps[window.location.origin]  ).toList();
-            let theirUrl = theirPath[0];
-            //let theirUrl = this.currentDoc.paths.find( x=> x.userId == this.currentDoc.signer[0] || x.name == this.currentDoc.signer[0]  );
-           // let theirUrl = theirPath[0].pathToStorage
-            if (theirUrl){
-              let url = theirUrl + logFileName;
-              let theirResp = await this.http.get(url).toPromise(); 
-              // now merge their doc into mine
-              if (theirResp){
-                let str = theirResp.text();
-                str = this.decryptString(str, this.currentDoc.documentKey);
-                let theirDoc = Automerge.load(str);
-                let finalDoc = Automerge.merge(theirDoc, this.logDoc)
-                this.logDoc = finalDoc;
-              }
+          this.log = this.logDoc.log;
+          let theirPath = jslinq(this.docStorageMaps.storagePaths).where( (el) => el != blockstack.loadUserData().profile.apps[window.location.origin]  ).toList();
+          let theirUrl = theirPath[0];
+          if (theirUrl){
+            let url = theirUrl + logFileName;
+            let theirResp = await this.http.get(url).toPromise(); 
+            // now merge their doc into mine
+            if (theirResp){
+              let str = theirResp.text();
+              str = this.decryptString(str, this.currentDoc.documentKey);
+              let theirDoc = Automerge.load(str);
+              let finalDoc = Automerge.merge(theirDoc, this.logDoc)
+              this.logDoc = finalDoc;
             }
-          //}
+          }
           this.log = this.logDoc.log;
       }
       // init new doc
