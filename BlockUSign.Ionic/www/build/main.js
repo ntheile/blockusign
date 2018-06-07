@@ -107,14 +107,15 @@ var AnnotatePageModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_document_service__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_retry__ = __webpack_require__(142);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_retry___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_retry__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_timeout__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_timeout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_timeout__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_delay__ = __webpack_require__(144);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_delay___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_delay__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_block_chat_block_chat__ = __webpack_require__(624);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_retry__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_retry___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_retry__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_timeout__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_timeout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_timeout__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_delay__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_delay___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_delay__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_map__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_map__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -131,6 +132,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /// https://www.sitepoint.com/custom-pdf-rendering/
 var AnnotatePage = (function () {
     function AnnotatePage(navCtrl, navParams, documentService, events) {
@@ -139,17 +141,22 @@ var AnnotatePage = (function () {
         this.documentService = documentService;
         this.events = events;
     }
+    AnnotatePage.prototype.ionViewWillLeave = function () {
+        this.blockChat.ngOnDestroy();
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("blockChat"),
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__components_block_chat_block_chat__["a" /* BlockChatComponent */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__components_block_chat_block_chat__["a" /* BlockChatComponent */]) === "function" && _a || Object)
+    ], AnnotatePage.prototype, "blockChat", void 0);
     AnnotatePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-annotate',template:/*ion-inline-start:"N:\code\git\blockusign\BlockUSign.Ionic\src\pages\annotate\annotate.html"*/'<ion-content class="no-overflow-page">\n\n \n\n  <!-- <ion-grid>\n\n    <ion-row>\n\n      <ion-col>\n\n        <block-steps activeStep="2">\n\n        </block-steps>\n\n        <br/>\n\n        <br/>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid> -->\n\n\n\n  <block-steps activeStep="2">\n\n  </block-steps> \n\n        \n\n\n\n  <block-pdf showToolBar="true" showSignHere="true" showButtons="true">\n\n\n\n  </block-pdf>\n\n\n\n  <block-chat>\n\n    \n\n  </block-chat>\n\n\n\n</ion-content>'/*ion-inline-end:"N:\code\git\blockusign\BlockUSign.Ionic\src\pages\annotate\annotate.html"*/,
+            selector: 'page-annotate',template:/*ion-inline-start:"N:\code\git\blockusign\BlockUSign.Ionic\src\pages\annotate\annotate.html"*/'<ion-content class="no-overflow-page">\n\n \n\n  <!-- <ion-grid>\n\n    <ion-row>\n\n      <ion-col>\n\n        <block-steps activeStep="2">\n\n        </block-steps>\n\n        <br/>\n\n        <br/>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid> -->\n\n\n\n  <block-steps activeStep="2">\n\n  </block-steps> \n\n        \n\n\n\n  <block-pdf showToolBar="true" showSignHere="true" showButtons="true">\n\n\n\n  </block-pdf>\n\n\n\n  <block-chat #blockChat>\n\n    \n\n  </block-chat>\n\n\n\n</ion-content>'/*ion-inline-end:"N:\code\git\blockusign\BlockUSign.Ionic\src\pages\annotate\annotate.html"*/,
             styles: ['annotate.scss']
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__services_document_service__["a" /* DocumentService */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */]])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__services_document_service__["a" /* DocumentService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_document_service__["a" /* DocumentService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */]) === "function" && _e || Object])
     ], AnnotatePage);
     return AnnotatePage;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=annotate.js.map
@@ -1524,10 +1531,11 @@ var DocumentService = (function () {
     };
     DocumentService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["c" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["c" /* Events */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* Http */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_8__blockstack_service__["a" /* BlockStackService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__blockstack_service__["a" /* BlockStackService */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_6_ionic_angular__["c" /* Events */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* Http */],
+            __WEBPACK_IMPORTED_MODULE_8__blockstack_service__["a" /* BlockStackService */]])
     ], DocumentService);
     return DocumentService;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=document.service.js.map
@@ -2967,28 +2975,33 @@ var BlockChatComponent = (function () {
         this.doc = new __WEBPACK_IMPORTED_MODULE_2__models_models__["a" /* Document */]();
         if (this.documentService.currentDoc) {
             this.doc = this.documentService.currentDoc;
-            this.getLogData();
+            this.initChatPolling();
         }
         else {
             this.subscription = this.events.subscribe('documentService:setCurrentDoc', function (currentDoc) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     this.doc = currentDoc;
-                    this.getLogData();
+                    this.initChatPolling();
                     return [2 /*return*/];
                 });
             }); });
         }
         this.chatSubscription = this.events.subscribe('documentService:addedChat', function (msg) { return __awaiter(_this, void 0, void 0, function () {
-            var _this = this;
             return __generator(this, function (_a) {
-                setTimeout(function () {
-                    _this.getLogData();
-                }, 1000);
                 return [2 /*return*/];
             });
         }); });
     };
+    BlockChatComponent.prototype.initChatPolling = function () {
+        var _this = this;
+        this.chatPolling = setInterval(function () {
+            setTimeout(function () {
+                _this.getLogData();
+            }, 1000);
+        }, 3000);
+    };
     BlockChatComponent.prototype.ngOnDestroy = function () {
+        clearInterval(this.chatPolling);
         if (this.subscription) {
             this.subscription.unsubscribe();
         }
@@ -3066,11 +3079,10 @@ var BlockChatComponent = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'block-chat',template:/*ion-inline-start:"N:\code\git\blockusign\BlockUSign.Ionic\src\components\block-chat\block-chat.html"*/'<div class="block-chat">\n\n  <ion-fab bottom right>\n\n    <div id="live-chat" class="shadow6">\n\n\n\n      <header class="clearfix" (click)="minimize()">\n\n        <!-- <a class="chat-close"  >x</a>-->\n\n        <h4>\n\n          <span class="chat-head"></span> - Log</h4>\n\n        <!-- <span style="opacity:.6; padding-left:30px;">YOURNAME/THEIRNAME</span> -->\n\n        <span class="chat-message-counter">3</span>\n\n      </header>\n\n      <div class="chat">\n\n        <div class="chat-history">\n\n          <div class="log-history">\n\n           \n\n          </div>\n\n        </div>\n\n        <!-- <p class="chat-feedback">Your partner is typing…</p> -->\n\n        <form>\n\n          <fieldset>\n\n            <input type="text" name="addMsg" placeholder="Type your message…" autofocus [(ngModel)]="message" (keydown.enter)="addMessage($event)"\n\n            />\n\n          </fieldset>\n\n        </form>\n\n\n\n      </div>\n\n      <!-- end chat -->\n\n\n\n    </div>\n\n    <!-- end live-chat -->\n\n  </ion-fab>\n\n\n\n</div>'/*ion-inline-end:"N:\code\git\blockusign\BlockUSign.Ionic\src\components\block-chat\block-chat.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_document_service__["a" /* DocumentService */],
-            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* Events */],
-            __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__["a" /* BlockStackService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_document_service__["a" /* DocumentService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_document_service__["a" /* DocumentService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* Events */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__["a" /* BlockStackService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__["a" /* BlockStackService */]) === "function" && _c || Object])
     ], BlockChatComponent);
     return BlockChatComponent;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=block-chat.js.map

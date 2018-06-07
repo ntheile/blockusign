@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, IonicPage, Segment, Events } from 'ionic-angular';
 import { DocumentService } from '../../services/document.service';
+import { BlockChatComponent } from './../../components/block-chat/block-chat';
 import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/timeout';
 import 'rxjs/add/operator/delay';
@@ -23,14 +24,19 @@ declare var blockstack: any;
 })
 export class AnnotatePage {
 
+  @ViewChild("blockChat") blockChat: BlockChatComponent;
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 
     public documentService: DocumentService,
     public events: Events
   ) {
-   
+    
   }
 
+  ionViewWillLeave(){
+    this.blockChat.ngOnDestroy();
+  }
 
 }

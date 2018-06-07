@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { DocumentService } from './../../services/document.service';
 import { Document, Log, Message } from './../../models/models';
@@ -15,12 +15,13 @@ declare let jslinq: any;
   selector: 'block-chat',
   templateUrl: 'block-chat.html',
 })
-export class BlockChatComponent {
+export class BlockChatComponent implements OnDestroy, OnInit{
 
   public doc: Document;
   public message;
   public subscription;
   public chatSubscription;
+  public chatPolling;
  
   constructor(
     public documentService: DocumentService, 
@@ -37,35 +38,56 @@ export class BlockChatComponent {
     
     if (this.documentService.currentDoc){
       this.doc = this.documentService.currentDoc;
-      this.getLogData();
+      this.initChatPolling();
     }
     else{
       this.subscription = this.events.subscribe('documentService:setCurrentDoc', async (currentDoc) => {
         this.doc = currentDoc;
-        this.getLogData();
+        this.initChatPolling();
       });
     }
 
     this.chatSubscription = this.events.subscribe('documentService:addedChat', async (msg) => {
 
-      setTimeout( () =>{ // hack?
-        this.getLogData();
-      }, 1000 );
+      //while(true == true){
 
-      
+      // setInterval(() =>{ 
+      //    setTimeout( () =>{ // hack?
+      //    this.getLogData();
+      //    }, 1000 );
+      // }, 3000);
+
+        // setTimeout( () =>{ // hack?
+        // this.getLogData();
+        // }, 1000 );
+      //}
+
     });
     
 
   }
 
+
+  initChatPolling(){
+    this.chatPolling = setInterval( () =>{ 
+      setTimeout( () =>{ // hack?
+        this.getLogData();
+      }, 1000 );
+    }, 3000);
+  }
+
+
   ngOnDestroy(){
+    
+    clearInterval(this.chatPolling);
+    
     if (this.subscription){
       this.subscription.unsubscribe();
     }
-
     if (this.chatSubscription){
       this.chatSubscription.unsubscribe();
     }
+    
   }
 
   async getLogData(){
