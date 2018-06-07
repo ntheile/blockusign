@@ -66,6 +66,10 @@ export class Annotation{
     }
 }
 
+export class DocStorageMaps{
+    public storagePaths: Array<string>;
+}
+
 // An array of annotation types, so far just signatures, maybe down the line support Number. OpenText etc...
 export class AnnotationTypes{
     constructor(){

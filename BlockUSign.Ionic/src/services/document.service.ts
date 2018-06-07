@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Document, Log, Message } from './../models/models';
+import { Document, Log, Message, DocStorageMaps } from './../models/models';
 import 'rxjs/add/operator/toPromise';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -36,6 +36,9 @@ export class DocumentService {
   public currentDocAnnotations;
   public logDoc: any;
   public log: Log;
+  public docStorageMaps: DocStorageMaps;
+  public urlBlockusignGlobalStore = "https://gaia.blockstack.org/hub/1PoZGGAuQ4yPj72TrXbG4pKbgB9tvCUqQ1/blockusign";
+  public urlBlockusign =  "https://blockusign.co"; //"https://blockusign.co"; // "http://localhost:52657";
   //public automerge = Automerge;
 
   constructor(
@@ -73,9 +76,9 @@ export class DocumentService {
     newDocument.documentKey = this.generateKey();
     newDocument.code = this.generateKey();
 
-    // @todo add code - write to /api/Code?docGuid=12345&code=12345
+    // write to /api/Code?docGuid=12345&code=12345
     await this.writeCode(newDocument.guid, newDocument.code);
-    // @todo add my storage path - write to /api/DocStorageMap?docGuid=12345&code=12345&storagePath=urlEncode(pathToStorage)
+    // add my storage path - write to /api/DocStorageMap?docGuid=12345&code=12345&storagePath=urlEncode(pathToStorage)
     await this.addDocStoragePath(newDocument.guid, newDocument.code, blockstack.loadUserData().profile.apps[window.location.origin]);
 
     newDocument.pathAnnotatedDoc = blockstack.loadUserData().profile.apps[window.location.origin];
@@ -192,10 +195,10 @@ export class DocumentService {
     let r = await blockstack.putFile(guid + ".pdf", encryptedDoc, { encrypt: false }).then((data) => { });
 
 
-    // @todo add my storage path - write to /api/DocStorageMap?docGuid=12345&code=12345&storagePath=urlEncode(pathToStorage)
+    // add my storage path - write to /api/DocStorageMap?docGuid=12345&code=12345&storagePath=urlEncode(pathToStorage)
+    await this.addDocStoragePath(newDocument.guid, newDocument.code, blockstack.loadUserData().profile.apps[window.location.origin]);
 
-
-    // @todo now copy annotations
+    //  now copy annotations
     let annotsResp = await this.getAnnotationsByPath(this.currentDoc.pathAnnotatedDoc + guid + ".annotations.json", this.currentDoc.documentKey);
     if (annotsResp) {
       this.saveAnnotations(guid, this.currentDocAnnotations.annotations);
@@ -203,11 +206,8 @@ export class DocumentService {
     else{
       this.saveAnnotations(guid, "");
     }
-    
 
-
-
-    // @todo now copy chat log
+    // now copy chat log
     let theirPath = jslinq(this.currentDoc.paths).where( (el) => el.email != this.blockStackService.profile.email  ).toList();
     let theirUrl = theirPath[0].pathToStorage + guid + '.log.json';
     let theirLogDoc = await this.getLogByPath(theirUrl, this.currentDoc.documentKey);
@@ -320,9 +320,12 @@ export class DocumentService {
 
   }
 
-  setCurrentDoc(guid: string) {
+  async setCurrentDoc(guid: string) {
     //alert('set curr doc');
     this.currentDoc = this.documentsList.find(x => x.guid == guid);
+
+    await this.getDocStorageMaps(this.currentDoc.guid);
+
     this.events.publish('documentService:setCurrentDoc', this.currentDoc);
     let span = "span:contains('" + this.currentDoc.fileName + "')";
     $(document).ready(function () {
@@ -343,14 +346,16 @@ export class DocumentService {
       if (resp) {
           this.logDoc = this.decryptString(resp, this.currentDoc.documentKey);
           this.logDoc =  Automerge.load(this.logDoc);
+          
           // now get their doc, if there is a signer
-          if (this.currentDoc.paths.length > 1){
+          //if (this.currentDoc.paths.length > 1){
             this.log = this.logDoc.log;
             
-            let theirPath = jslinq(this.currentDoc.paths).where( (el) => el.email != this.blockStackService.profile.email  ).toList();
-
+            //let theirPath = jslinq(this.currentDoc.paths).where( (el) => el.email != this.blockStackService.profile.email  ).toList();
+            let theirPath = jslinq(this.docStorageMaps.storagePaths).where( (el) => el != blockstack.loadUserData().profile.apps[window.location.origin]  ).toList();
+            let theirUrl = theirPath[0];
             //let theirUrl = this.currentDoc.paths.find( x=> x.userId == this.currentDoc.signer[0] || x.name == this.currentDoc.signer[0]  );
-            let theirUrl = theirPath[0].pathToStorage
+           // let theirUrl = theirPath[0].pathToStorage
             if (theirUrl){
               let url = theirUrl + logFileName;
               let theirResp = await this.http.get(url).toPromise(); 
@@ -363,7 +368,7 @@ export class DocumentService {
                 this.logDoc = finalDoc;
               }
             }
-          }
+          //}
           this.log = this.logDoc.log;
       }
       // init new doc
@@ -449,15 +454,21 @@ export class DocumentService {
   }
 
   async writeCode(docGuid, code){
-    return this.http.get("https://blockusign.co/api/Code?docGuid="+docGuid+"&code=" + code).toPromise();
+    return this.http.get(this.urlBlockusign + "/api/Code?docGuid="+docGuid+"&code=" + code).toPromise();
   }
 
   async addDocStoragePath(docGuid, code, storagePath){
     var encodedStoragePath = encodeURIComponent(storagePath);
     var url = "/api/DocStorageMap?docGuid="+docGuid+"&code=" + code + "&storagePath=" + encodedStoragePath;
-    return this.http.get("https://blockusign.co"+ url).toPromise();
+    return this.http.get(this.urlBlockusign + url).toPromise();
   }
 
+
+  async getDocStorageMaps(docGuid){
+    var resp = await this.http.get(this.urlBlockusignGlobalStore + "/" + docGuid + ".doc.storage.map.json").toPromise();
+    this.docStorageMaps = resp.json();
+    return this.docStorageMaps;
+  }
 
  
 
