@@ -1,65 +1,63 @@
-<ion-content class="block-pdf-page" >
-  
+<ion-content class="block-pdf-page">
 
-  <div class="page" id="pageContainer1" 
-    data-page-number="1" 
-    style="position:relative;width: 100%; height:100%;overflow-x:auto;overflow-y:auto"
+
+  <div class="page" id="pageContainer1" data-page-number="1" style="position:relative;width: 100%; height:100%;overflow-x:auto;overflow-y:auto"
     [style.margin-top]="marginTop">
-
     <div id="canvasWrapper" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
-      <canvas id="canvas1" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px"></canvas>
+      <div>
+        <svg id="svg-dropzone" class="svg-dropzone dropzone resizable" xmlns="http://www.w3.org/2000/svg" style="position: absolute; 
+        left: 0px; 
+        top:0px;
+        z-index: 200000;
+        padding: 0px 0px 0px 0px; 
+        margin: 0px 0px 0px 0px; " width="612" height="792" viewBox="0 0 612 792">
+      </svg> 
+      <div class="textLayer"></div>
+      </div>
+      
     </div>
-    <svg id="svg-dropzone" class="dropzone resizable" xmlns="http://www.w3.org/2000/svg" style="position: absolute; 
-                  left: 0px; 
-                  top:0px;
-                  z-index: 200000;
-                  padding: 0px 0px 0px 0px; 
-                  margin: 0px 0px 0px 0px;">
 
-    </svg>
-    <div class="textLayer"></div>
   </div>
 
   <svg class="annotationLayer" xmlns="http://www.w3.org/2000/svg">
   </svg>
 
-  <img   *ngIf="!showToolBar"  id="sigImg" height="50px" class="draggable draggable-droppable"  src="./../../assets/imgs/sign.png"
-        />
+  <img *ngIf="!showToolBar" id="sigImg" height="50px" class="draggable draggable-droppable" src="./../../assets/imgs/sign.png"
+  />
 
 
-<ion-fab *ngIf="showToolBar" top left style="margin-top:1px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab>
-  <ion-grid>
-    <ion-row justify-content-start align-items-center>
-      <ion-col col-auto *ngIf="showSignHere">
-        <img id="sigImg" height="50px" class="draggable draggable-droppable"  src="./../../assets/imgs/sign.png"
-        />
-      </ion-col>
-      <ion-col col-auto *ngIf="showSignature">
-        <svg xmlns="http://www.w3.org/2000/svg" id="signature" class="draggable draggable-droppable" 
-          width="200" height="50" viewBox="0 0 200 50" style="clear:both; background:#ffeb8e; border: 1px solid red " opacity="1">
+  <ion-fab *ngIf="showToolBar" top left style="margin-top:1px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab>
+    <ion-grid>
+      <ion-row justify-content-start align-items-center>
+        <ion-col col-auto *ngIf="showSignHere">
+          <img id="sigImg" height="50px" class="draggable draggable-droppable" src="./../../assets/imgs/sign.png" />
+        </ion-col>
+        <ion-col col-auto *ngIf="showSignature">
+          <svg xmlns="http://www.w3.org/2000/svg" id="signature" class="draggable draggable-droppable" width="200" height="50" viewBox="0 0 200 50"
+            style="clear:both; background:#ffeb8e; border: 1px solid red " opacity="1">
 
-          <text x="50%" y="50%" width="200" height="50" viewBox="0 0 200 50" alignment-baseline="middle" text-anchor="middle" fill="green"
-            font-family="Cedarville Cursive" font-weight="bold" style="font-size: 25px">
-            {{ yourName }}
-          </text>
+            <text x="50%" y="50%" width="200" height="50" viewBox="0 0 200 50" alignment-baseline="middle" text-anchor="middle" fill="green"
+              font-family="Cedarville Cursive" font-weight="bold" style="font-size: 25px">
+              {{ yourName }}
+            </text>
 
-        </svg>
-      </ion-col>
-      <ion-col col-auto *ngIf="showButtons">
-        <img src="./../../assets/imgs/arrows.svg" height="35px">
-        <span style="color:#757575; font-family: Cedarville Cursive; font-size: 18px; font-weight: bold">drag</span>
-      </ion-col>
-      <!-- <ion-col col-auto style="padding-left: 50px;">
+          </svg>
+        </ion-col>
+        <ion-col col-auto *ngIf="showButtons">
+          <img src="./../../assets/imgs/arrows.svg" height="35px">
+          <span style="color:#757575; font-family: Cedarville Cursive; font-size: 18px; font-weight: bold">drag</span>
+        </ion-col>
+        <!-- <ion-col col-auto style="padding-left: 50px;">
         <input id="checkBox" type="checkbox">
         <span style="padding-right: 4px;color:#757575;">Allow Resize</span>
       </ion-col> -->
-      <ion-col col-auto style="padding-left: 20px;" *ngIf="showButtons">
-        <button ion-fab (click)="saveSvg()" style="position:relative">Save</button>
-      </ion-col>
-      <ion-col col-auto style="padding-left: 5px;" *ngIf="showButtons">
-        <button ion-fab (click)="clear()"  style="position:relative">Clear</button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-fab>
+        <ion-col col-auto style="padding-left: 20px;" *ngIf="showButtons">
+          <button ion-fab (click)="saveSvg()" style="position:relative">Save</button>
+        </ion-col>
+        <ion-col col-auto style="padding-left: 5px;" *ngIf="showButtons">
+          <button ion-fab (click)="clear()" style="position:relative">Clear</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-fab>
 </ion-content>

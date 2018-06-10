@@ -1,7 +1,6 @@
 import { Component, ViewChild, Input, ChangeDetectionStrategy, ChangeDetectorRef, ViewContainerRef } from '@angular/core';
 import { NavController, NavParams, IonicPage, Segment, LoadingController } from 'ionic-angular';
 import { CryptoCompareService } from '../../services/cryptocompare.service'
-//import { HomePage } from '../home/home';
 import { AbsoluteDragDirective } from '../../directives/absolute-drag/absolute-drag';
 import { DocumentService } from '../../services/document.service';
 import 'rxjs/add/operator/retry';
@@ -13,13 +12,9 @@ import pdfjsLib from 'pdfjs-dist/build/pdf';
 import PDFAnnotate from 'pdf-annotate';
 import annotations from './annotations';
 import mockViewport from './mockViewport'
-//import { SignPage } from '../sign/sign';
-//import { EmailPage } from '../email/email';
 import { MyApp } from '../../app/app.component';
-
 declare let CustomStyle: any;
 declare var $: any;
-//const $ = document.querySelectorAll.bind(document);
 declare var window: any;
 declare let TextLayerBuilder: any;
 declare let canvas: any;
@@ -64,7 +59,9 @@ export class BlockPdfComponent {
   public tooltype: any;
   public containerId: string = "pageContainer1";
   public canvasId: string = "canvas1";
-  //fileName = "blockusign/pdf1.pdf";
+  currPage = 1; //Pages are 1-based not 0-based
+  numPages = 0;
+  thePDF = null;  
   pdfBuffer: any;
   selectedElement = null;
   prevElement = null;
@@ -83,13 +80,13 @@ export class BlockPdfComponent {
     public loadingCtrl: LoadingController
   ) {
     console.log('====> constructor');
-    
+
   }
 
 
   ngOnInit() {
     console.log('====> ngOnInit');
-    $( document ).ready( () => {
+    $(document).ready(() => {
 
       this.loading = this.loadingCtrl.create({
         content: 'Please wait...'
@@ -98,7 +95,7 @@ export class BlockPdfComponent {
 
       this.init();
     });
-    
+
   }
 
   ngOnDestroy() {
@@ -107,15 +104,14 @@ export class BlockPdfComponent {
   }
 
   init() {
-    //$(".dropzone").off();
-    //let pdfData = this.loadPDFData(); // loads pdf data from localStorage, make sure you uploaded it from home.js
+    
 
-    this.svgDrawer  = dragOn(document.querySelector(".dropzone"), {
+    this.svgDrawer = dragOn(document.querySelector(".dropzone"), {
       listenTo: '.draggable'
     });
 
     let docData = getQueryParam('docData');
-    if (docData){
+    if (docData) {
       this.loading.dismiss();
       return;
     }
@@ -152,37 +148,10 @@ export class BlockPdfComponent {
 
     this.loadPdf(pdfData); // loads the pdf to the screen with the text layers
 
-    //this.setupToolBar();
-
-    //this.page1 = document.querySelector(`#${this.containerId} .annotationLayer`);
-    //this.page2 = document.querySelector('#pageContainer2 .annotationLayer');
-
-    //PDFJS.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
-    //PDFAnnotate.setStoreAdapter(new PDFAnnotate.LocalStoreAdapter());
-
-    // Promise.all([
-    //   PDFAnnotate.getAnnotations(this.DOCUMENT_ID, 1),
-    //   //PDFAnnotate.getAnnotations(this.DOCUMENT_ID, 2)
-    // ]).then(([ann1, ann2]) => {
-
-    //   let RENDER_OPTIONS = {
-    //     documentId: this.DOCUMENT_ID,
-    //     pdfDocument: pdfData,
-    //     scale: 1,
-    //     rotate: 0
-    //   };
-
-    //   PDFAnnotate.render(this.page1, mockViewport(this.page1), ann1);
-    //   //PDFAnnotate.render(this.page2, mockViewport(this.page2), ann2);
-
-    // });
-
   }
 
   back() {
-    //this.navCtrl.push(ListPage);
-    //this.navCtrl.push("HomePage");
-    //this.navCtrl.setRoot(HomePage);
+    
     this.navCtrl.push("HomePage");
   }
 
@@ -205,69 +174,20 @@ export class BlockPdfComponent {
 
     loadingTask.promise.then((pdf) => {
 
-      let pageNumber = 1;
-      pdf.getPage(pageNumber).then((page) => {
-        console.log('Page loaded');
+      this.numPages = pdf.numPages;
+      this.thePDF = pdf;
+      
+      let viewer = document.getElementById('canvasWrapper');
+      let page;
+      for (page = 1; page <= pdf.numPages; page++) {
+        let canvas = document.createElement("canvas");
+        viewer.appendChild(canvas);
+        this.renderPage(page, canvas);
+      }
 
-        let scale = 1;
-        let viewport = page.getViewport(scale);
+      this.loadSvg(1);
 
-        // Prepare canvas using PDF page dimensions
-        let canvas = document.getElementById('canvas1');
-        let context = (<any>canvas).getContext('2d');
-        (<any>canvas).height = viewport.height;
-        (<any>canvas).width = viewport.width;
-
-
-
-        // Render PDF page into canvas context
-        let renderContext = {
-          canvasContext: context,
-          viewport: viewport
-        };
-        let renderTask = page.render(renderContext)
-          .then(() => {
-
-            // Get text-fragments
-            return page.getTextContent();
-          }).then((textContent) => {
-            // Create div which will hold text-fragments
-            let textLayerDiv = document.createElement("div");
-
-            // Set it's class to textLayer which have required CSS styles
-            textLayerDiv.setAttribute("class", "textLayer");
-
-            // Append newly created div in `div#page-#{pdf_page_number}`
-            let div = document.getElementById(`${this.containerId}`);
-            div.appendChild(textLayerDiv);
-
-
-
-            // Create new instance of TextLayerBuilder class
-            let textLayer = new TextLayerBuilder({
-              textLayerDiv: textLayerDiv,
-              pageIndex: page.pageIndex,
-              viewport: viewport
-            });
-
-            // Set text-fragments
-            textLayer.setTextContent(textContent);
-
-
-
-
-            // Render text-fragments
-            textLayer.render();
-
-
-
-            // load svg
-            this.loadSvg(page);
-
-            this.loading.dismiss();
-
-          });
-      });
+      this.loading.dismiss();
 
     }, (reason) => {
 
@@ -278,94 +198,54 @@ export class BlockPdfComponent {
 
   }
 
-  // loadPDFData() {
 
-  //   let base64pdfData = localStorage.getItem("pdfStr");
-  //   function base64ToUint8Array(base64) {
-  //     let raw = atob(base64);
-  //     let uint8Array = new Uint8Array(new ArrayBuffer(raw.length));
-  //     for (var i = 0, len = raw.length; i < len; ++i) {
-  //       uint8Array[i] = raw.charCodeAt(i);
-  //     }
-  //     return uint8Array;
-  //   }
-  //   return base64ToUint8Array(base64pdfData);
+  renderPage(pageNumber, canvas) {
+    this.thePDF.getPage(pageNumber).then(function (page) {
+      let viewport = page.getViewport(1);
+      canvas.height = viewport.height;
+      canvas.width = viewport.width;
+     
+      // Render PDF page into canvas context
+      let renderContext = {
+        canvasContext: canvas.getContext('2d'),
+        viewport: viewport
+      };
 
-  // }
+      let renderTask = page.render(renderContext).then(() => {
 
-  // setupAnnotations(page, viewport, canvas, $annotationLayerDiv) {
+          // Get text-fragments
+          return page.getTextContent();
+        }).then((textContent) => {
+          // Create div which will hold text-fragments
+          let textLayerDiv = document.createElement("div");
 
-  //   let canvasOffset = $(canvas).offset();
-  //   let promise = page.getAnnotations().then((annotationsData) => {
-  //     viewport = viewport.clone({
-  //       dontFlip: true
-  //     });
-  //     for (let i = 0; i < annotationsData.length; i++) {
-  //       let data = annotationsData[i];
-  //       let annotation = PDFJS.Annotation.fromData(data);
-  //       if (!annotation || !annotation.hasHtml()) {
-  //         continue;
-  //       }
-  //       let element = annotation.getHtmlElement(page.commonObjs);
-  //       data = annotation.getData();
-  //       let rect = data.rect;
-  //       let view = page.view;
-  //       rect = PDFJS.Util.normalizeRect([
-  //         rect[0],
-  //         view[3] - rect[1] + view[1],
-  //         rect[2],
-  //         view[3] - rect[3] + view[1]
-  //       ]);
-  //       element.style.left = (canvasOffset.left + rect[0]) + 'px';
-  //       element.style.top = (canvasOffset.top + rect[1]) + 'px';
-  //       element.style.position = 'absolute';
+          // Set it's class to textLayer which have required CSS styles
+          textLayerDiv.setAttribute("class", "textLayer");
 
-  //       let transform = viewport.transform;
-  //       let transformStr = 'matrix(' + transform.join(',') + ')';
-  //       CustomStyle.setProp('transform', element, transformStr);
-  //       let transformOriginStr = -rect[0] + 'px ' + -rect[1] + 'px';
-  //       CustomStyle.setProp('transformOrigin', element, transformOriginStr);
-
-  //       if (data.subtype === 'Link' && !data.url) {
-  //         // In this example,  I do not handle the `Link` annotations without url.
-  //         // If you want to handle those links, see `web/page_view.js`.
-  //         continue;
-  //       }
-  //       $annotationLayerDiv.append(element);
-  //       $annotationLayerDiv.append($("#signature"));
-  //     }
-
-  //   });
-
-  //   return promise;
-
-  // }
-
-  // setActiveToolbarItem(type, button) {
-
-  //   let active = document.querySelector('.toolbar button.active');
-  //   if (active) {
-  //     active.classList.remove('active');
-  //   }
-  //   if (button) {
-  //     button.classList.add('active');
-  //   }
-  //   if (this.tooltype !== type) {
-  //     localStorage.setItem(`${this.DOCUMENT_ID}/tooltype`, type);
-  //   }
-  //   this.tooltype = type;
-  //   this.UI.UI.enableRect(type);
-
-  // }
+          // Append newly created div in `div#page-#{pdf_page_number}`
+          //let div = document.getElementById(`${this.containerId}`);
+          let div = document.getElementById(`canvasWrapper`);
+          div.appendChild(textLayerDiv);
 
 
-  // handleToolbarClick(e) {
 
-  //   if (e.target.nodeName === 'BUTTON') {
-  //     this.setActiveToolbarItem(e.target.getAttribute('data-tooltype'), e.target);
-  //   }
+          //Create new instance of TextLayerBuilder class
+          let textLayer = new TextLayerBuilder({
+            textLayerDiv: textLayerDiv,
+            pageIndex: page.pageIndex,
+            viewport: viewport
+          });
 
-  // }
+          // Set text-fragments
+          textLayer.setTextContent(textContent);
+
+          // Render text-fragments
+          textLayer.render();
+
+        });
+
+    });
+  }
 
   handleClearClick(e) {
 
@@ -376,14 +256,6 @@ export class BlockPdfComponent {
 
   }
 
-  // setupToolBar() {
-  //   this.tooltype = localStorage.getItem(`${this.DOCUMENT_ID}/tooltype`) || 'area';
-  //   if (this.tooltype) {
-  //     this.setActiveToolbarItem(this.tooltype, document.querySelector(`.toolbar button[data-tooltype=${this.tooltype}]`));
-  //   }
-
-  // }
-
   handleDragStart(e) {
     //log("handleDragStart");
     e.style.opacity = '0.4'; // this ==> e.target is the source node.
@@ -392,17 +264,17 @@ export class BlockPdfComponent {
   // set the overlay dimensionss
   overLay(page: any) {
 
-    let dimensions = page.pageInfo.view[0] + " " + page.pageInfo.view[1] + " " + page.pageInfo.view[2] + " " + page.pageInfo.view[3];
+    let h = this.numPages * 792;
+
     $("#svg-dropzone").css("width", "612");
-    $("#svg-dropzone").css("height", "792");
+    $("#svg-dropzone").css("height", h);
     $("#svg-dropzone").attr("width", "612");
-    $("#svg-dropzone").attr("height", "792");
-    $("#svg-dropzone").attr("viewBox", dimensions);
+    $("#svg-dropzone").attr("height", h);
+    $("#svg-dropzone").attr("viewBox", "0 0 612 " + h);
   }
 
   async saveSvg() {
-    //let svg = $(".dragOn-drawArea").last().html();
-
+   
     let svg = "";
     $(".dragOn-drawArea").each(function () {
       let el = $(this);
@@ -411,18 +283,15 @@ export class BlockPdfComponent {
       }
     });
 
-    //if (svg){
-    //localStorage.setItem("svg", svg);
+    
     await this.documentService.saveAnnotations(this.documentService.currentDoc.guid, svg);
 
     await this.documentService.addMessage(this.documentService.currentDoc.guid, 'Updated annotation');
 
-    //}
   }
 
   async loadSvg(page: any) {
-    //let innerHtml = localStorage.getItem("svg");
-
+  
     // overlay
     this.overLay(page);
 
@@ -435,10 +304,6 @@ export class BlockPdfComponent {
     if (innerHtml) {
       this.svgDrawer.addHTML(innerHtml);
     }
-
-    //this.changeDetector.markForCheck();
-
-
 
   }
 

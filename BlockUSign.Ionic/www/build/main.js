@@ -1378,6 +1378,9 @@ var BlockPdfComponent = (function () {
         this.UI = __WEBPACK_IMPORTED_MODULE_8_pdf_annotate___default.a;
         this.containerId = "pageContainer1";
         this.canvasId = "canvas1";
+        this.currPage = 1; //Pages are 1-based not 0-based
+        this.numPages = 0;
+        this.thePDF = null;
         this.selectedElement = null;
         this.prevElement = null;
         this.currentX = 0;
@@ -1400,8 +1403,6 @@ var BlockPdfComponent = (function () {
         console.log("====> ngOnDestroy");
     };
     BlockPdfComponent.prototype.init = function () {
-        //$(".dropzone").off();
-        //let pdfData = this.loadPDFData(); // loads pdf data from localStorage, make sure you uploaded it from home.js
         var _this = this;
         this.svgDrawer = dragOn(document.querySelector(".dropzone"), {
             listenTo: '.draggable'
@@ -1448,9 +1449,6 @@ var BlockPdfComponent = (function () {
         });
     };
     BlockPdfComponent.prototype.back = function () {
-        //this.navCtrl.push(ListPage);
-        //this.navCtrl.push("HomePage");
-        //this.navCtrl.setRoot(HomePage);
         this.navCtrl.push("HomePage");
     };
     BlockPdfComponent.prototype.next = function () {
@@ -1468,137 +1466,63 @@ var BlockPdfComponent = (function () {
         var _this = this;
         var loadingTask = __WEBPACK_IMPORTED_MODULE_7_pdfjs_dist_build_pdf___default.a.getDocument({ data: pdfData });
         loadingTask.promise.then(function (pdf) {
-            var pageNumber = 1;
-            pdf.getPage(pageNumber).then(function (page) {
-                console.log('Page loaded');
-                var scale = 1;
-                var viewport = page.getViewport(scale);
-                // Prepare canvas using PDF page dimensions
-                var canvas = document.getElementById('canvas1');
-                var context = canvas.getContext('2d');
-                canvas.height = viewport.height;
-                canvas.width = viewport.width;
-                // Render PDF page into canvas context
-                var renderContext = {
-                    canvasContext: context,
-                    viewport: viewport
-                };
-                var renderTask = page.render(renderContext)
-                    .then(function () {
-                    // Get text-fragments
-                    return page.getTextContent();
-                }).then(function (textContent) {
-                    // Create div which will hold text-fragments
-                    var textLayerDiv = document.createElement("div");
-                    // Set it's class to textLayer which have required CSS styles
-                    textLayerDiv.setAttribute("class", "textLayer");
-                    // Append newly created div in `div#page-#{pdf_page_number}`
-                    var div = document.getElementById("" + _this.containerId);
-                    div.appendChild(textLayerDiv);
-                    // Create new instance of TextLayerBuilder class
-                    var textLayer = new TextLayerBuilder({
-                        textLayerDiv: textLayerDiv,
-                        pageIndex: page.pageIndex,
-                        viewport: viewport
-                    });
-                    // Set text-fragments
-                    textLayer.setTextContent(textContent);
-                    // Render text-fragments
-                    textLayer.render();
-                    // load svg
-                    _this.loadSvg(page);
-                    _this.loading.dismiss();
-                });
-            });
+            _this.numPages = pdf.numPages;
+            _this.thePDF = pdf;
+            var viewer = document.getElementById('canvasWrapper');
+            var page;
+            for (page = 1; page <= pdf.numPages; page++) {
+                var canvas_1 = document.createElement("canvas");
+                viewer.appendChild(canvas_1);
+                _this.renderPage(page, canvas_1);
+            }
+            _this.loadSvg(1);
+            _this.loading.dismiss();
         }, function (reason) {
             // PDF loading error
             console.error(reason);
         });
     };
-    // loadPDFData() {
-    //   let base64pdfData = localStorage.getItem("pdfStr");
-    //   function base64ToUint8Array(base64) {
-    //     let raw = atob(base64);
-    //     let uint8Array = new Uint8Array(new ArrayBuffer(raw.length));
-    //     for (var i = 0, len = raw.length; i < len; ++i) {
-    //       uint8Array[i] = raw.charCodeAt(i);
-    //     }
-    //     return uint8Array;
-    //   }
-    //   return base64ToUint8Array(base64pdfData);
-    // }
-    // setupAnnotations(page, viewport, canvas, $annotationLayerDiv) {
-    //   let canvasOffset = $(canvas).offset();
-    //   let promise = page.getAnnotations().then((annotationsData) => {
-    //     viewport = viewport.clone({
-    //       dontFlip: true
-    //     });
-    //     for (let i = 0; i < annotationsData.length; i++) {
-    //       let data = annotationsData[i];
-    //       let annotation = PDFJS.Annotation.fromData(data);
-    //       if (!annotation || !annotation.hasHtml()) {
-    //         continue;
-    //       }
-    //       let element = annotation.getHtmlElement(page.commonObjs);
-    //       data = annotation.getData();
-    //       let rect = data.rect;
-    //       let view = page.view;
-    //       rect = PDFJS.Util.normalizeRect([
-    //         rect[0],
-    //         view[3] - rect[1] + view[1],
-    //         rect[2],
-    //         view[3] - rect[3] + view[1]
-    //       ]);
-    //       element.style.left = (canvasOffset.left + rect[0]) + 'px';
-    //       element.style.top = (canvasOffset.top + rect[1]) + 'px';
-    //       element.style.position = 'absolute';
-    //       let transform = viewport.transform;
-    //       let transformStr = 'matrix(' + transform.join(',') + ')';
-    //       CustomStyle.setProp('transform', element, transformStr);
-    //       let transformOriginStr = -rect[0] + 'px ' + -rect[1] + 'px';
-    //       CustomStyle.setProp('transformOrigin', element, transformOriginStr);
-    //       if (data.subtype === 'Link' && !data.url) {
-    //         // In this example,  I do not handle the `Link` annotations without url.
-    //         // If you want to handle those links, see `web/page_view.js`.
-    //         continue;
-    //       }
-    //       $annotationLayerDiv.append(element);
-    //       $annotationLayerDiv.append($("#signature"));
-    //     }
-    //   });
-    //   return promise;
-    // }
-    // setActiveToolbarItem(type, button) {
-    //   let active = document.querySelector('.toolbar button.active');
-    //   if (active) {
-    //     active.classList.remove('active');
-    //   }
-    //   if (button) {
-    //     button.classList.add('active');
-    //   }
-    //   if (this.tooltype !== type) {
-    //     localStorage.setItem(`${this.DOCUMENT_ID}/tooltype`, type);
-    //   }
-    //   this.tooltype = type;
-    //   this.UI.UI.enableRect(type);
-    // }
-    // handleToolbarClick(e) {
-    //   if (e.target.nodeName === 'BUTTON') {
-    //     this.setActiveToolbarItem(e.target.getAttribute('data-tooltype'), e.target);
-    //   }
-    // }
+    BlockPdfComponent.prototype.renderPage = function (pageNumber, canvas) {
+        this.thePDF.getPage(pageNumber).then(function (page) {
+            var viewport = page.getViewport(1);
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+            // Render PDF page into canvas context
+            var renderContext = {
+                canvasContext: canvas.getContext('2d'),
+                viewport: viewport
+            };
+            var renderTask = page.render(renderContext).then(function () {
+                // Get text-fragments
+                return page.getTextContent();
+            }).then(function (textContent) {
+                // Create div which will hold text-fragments
+                var textLayerDiv = document.createElement("div");
+                // Set it's class to textLayer which have required CSS styles
+                textLayerDiv.setAttribute("class", "textLayer");
+                // Append newly created div in `div#page-#{pdf_page_number}`
+                //let div = document.getElementById(`${this.containerId}`);
+                var div = document.getElementById("canvasWrapper");
+                div.appendChild(textLayerDiv);
+                //Create new instance of TextLayerBuilder class
+                var textLayer = new TextLayerBuilder({
+                    textLayerDiv: textLayerDiv,
+                    pageIndex: page.pageIndex,
+                    viewport: viewport
+                });
+                // Set text-fragments
+                textLayer.setTextContent(textContent);
+                // Render text-fragments
+                textLayer.render();
+            });
+        });
+    };
     BlockPdfComponent.prototype.handleClearClick = function (e) {
         if (confirm('Are you sure you want to throw your work away?')) {
             //localStorage.removeItem(`${this.DOCUMENT_ID}/annotations`);
             this.page1.innerHTML = '';
         }
     };
-    // setupToolBar() {
-    //   this.tooltype = localStorage.getItem(`${this.DOCUMENT_ID}/tooltype`) || 'area';
-    //   if (this.tooltype) {
-    //     this.setActiveToolbarItem(this.tooltype, document.querySelector(`.toolbar button[data-tooltype=${this.tooltype}]`));
-    //   }
-    // }
     BlockPdfComponent.prototype.handleDragStart = function (e) {
         //log("handleDragStart");
         e.style.opacity = '0.4'; // this ==> e.target is the source node.
@@ -1606,12 +1530,12 @@ var BlockPdfComponent = (function () {
     ;
     // set the overlay dimensionss
     BlockPdfComponent.prototype.overLay = function (page) {
-        var dimensions = page.pageInfo.view[0] + " " + page.pageInfo.view[1] + " " + page.pageInfo.view[2] + " " + page.pageInfo.view[3];
+        var h = this.numPages * 792;
         $("#svg-dropzone").css("width", "612");
-        $("#svg-dropzone").css("height", "792");
+        $("#svg-dropzone").css("height", h);
         $("#svg-dropzone").attr("width", "612");
-        $("#svg-dropzone").attr("height", "792");
-        $("#svg-dropzone").attr("viewBox", dimensions);
+        $("#svg-dropzone").attr("height", h);
+        $("#svg-dropzone").attr("viewBox", "0 0 612 " + h);
     };
     BlockPdfComponent.prototype.saveSvg = function () {
         return __awaiter(this, void 0, void 0, function () {
@@ -1626,12 +1550,8 @@ var BlockPdfComponent = (function () {
                                 svg = svg + el.html();
                             }
                         });
-                        //if (svg){
-                        //localStorage.setItem("svg", svg);
                         return [4 /*yield*/, this.documentService.saveAnnotations(this.documentService.currentDoc.guid, svg)];
                     case 1:
-                        //if (svg){
-                        //localStorage.setItem("svg", svg);
                         _a.sent();
                         return [4 /*yield*/, this.documentService.addMessage(this.documentService.currentDoc.guid, 'Updated annotation')];
                     case 2:
@@ -1647,7 +1567,6 @@ var BlockPdfComponent = (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        //let innerHtml = localStorage.getItem("svg");
                         // overlay
                         this.overLay(page);
                         return [4 /*yield*/, this.documentService.getAnnotations(this.documentService.currentDoc.guid)];
@@ -1687,16 +1606,12 @@ var BlockPdfComponent = (function () {
     ], BlockPdfComponent.prototype, "marginTop", void 0);
     BlockPdfComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'block-pdf',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-pdf/block-pdf.html"*/'<ion-content class="block-pdf-page" >\n  \n\n  <div class="page" id="pageContainer1" \n    data-page-number="1" \n    style="position:relative;width: 100%; height:100%;overflow-x:auto;overflow-y:auto"\n    [style.margin-top]="marginTop">\n\n    <div id="canvasWrapper" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">\n      <canvas id="canvas1" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px"></canvas>\n    </div>\n    <svg id="svg-dropzone" class="dropzone resizable" xmlns="http://www.w3.org/2000/svg" style="position: absolute; \n                  left: 0px; \n                  top:0px;\n                  z-index: 200000;\n                  padding: 0px 0px 0px 0px; \n                  margin: 0px 0px 0px 0px;">\n\n    </svg>\n    <div class="textLayer"></div>\n  </div>\n\n  <svg class="annotationLayer" xmlns="http://www.w3.org/2000/svg">\n  </svg>\n\n  <img   *ngIf="!showToolBar"  id="sigImg" height="50px" class="draggable draggable-droppable"  src="./../../assets/imgs/sign.png"\n        />\n\n\n<ion-fab *ngIf="showToolBar" top left style="margin-top:1px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab>\n  <ion-grid>\n    <ion-row justify-content-start align-items-center>\n      <ion-col col-auto *ngIf="showSignHere">\n        <img id="sigImg" height="50px" class="draggable draggable-droppable"  src="./../../assets/imgs/sign.png"\n        />\n      </ion-col>\n      <ion-col col-auto *ngIf="showSignature">\n        <svg xmlns="http://www.w3.org/2000/svg" id="signature" class="draggable draggable-droppable" \n          width="200" height="50" viewBox="0 0 200 50" style="clear:both; background:#ffeb8e; border: 1px solid red " opacity="1">\n\n          <text x="50%" y="50%" width="200" height="50" viewBox="0 0 200 50" alignment-baseline="middle" text-anchor="middle" fill="green"\n            font-family="Cedarville Cursive" font-weight="bold" style="font-size: 25px">\n            {{ yourName }}\n          </text>\n\n        </svg>\n      </ion-col>\n      <ion-col col-auto *ngIf="showButtons">\n        <img src="./../../assets/imgs/arrows.svg" height="35px">\n        <span style="color:#757575; font-family: Cedarville Cursive; font-size: 18px; font-weight: bold">drag</span>\n      </ion-col>\n      <!-- <ion-col col-auto style="padding-left: 50px;">\n        <input id="checkBox" type="checkbox">\n        <span style="padding-right: 4px;color:#757575;">Allow Resize</span>\n      </ion-col> -->\n      <ion-col col-auto style="padding-left: 20px;" *ngIf="showButtons">\n        <button ion-fab (click)="saveSvg()" style="position:relative">Save</button>\n      </ion-col>\n      <ion-col col-auto style="padding-left: 5px;" *ngIf="showButtons">\n        <button ion-fab (click)="clear()"  style="position:relative">Clear</button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-fab>\n</ion-content>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-pdf/block-pdf.html"*/,
+            selector: 'block-pdf',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-pdf/block-pdf.html"*/'<ion-content class="block-pdf-page">\n\n\n  <div class="page" id="pageContainer1" data-page-number="1" style="position:relative;width: 100%; height:100%;overflow-x:auto;overflow-y:auto"\n    [style.margin-top]="marginTop">\n    <div id="canvasWrapper" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">\n      <div>\n        <svg id="svg-dropzone" class="svg-dropzone dropzone resizable" xmlns="http://www.w3.org/2000/svg" style="position: absolute; \n        left: 0px; \n        top:0px;\n        z-index: 200000;\n        padding: 0px 0px 0px 0px; \n        margin: 0px 0px 0px 0px; " width="612" height="792" viewBox="0 0 612 792">\n      </svg> \n      <div class="textLayer"></div>\n      </div>\n      \n    </div>\n\n  </div>\n\n  <svg class="annotationLayer" xmlns="http://www.w3.org/2000/svg">\n  </svg>\n\n  <img *ngIf="!showToolBar" id="sigImg" height="50px" class="draggable draggable-droppable" src="./../../assets/imgs/sign.png"\n  />\n\n\n  <ion-fab *ngIf="showToolBar" top left style="margin-top:1px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab>\n    <ion-grid>\n      <ion-row justify-content-start align-items-center>\n        <ion-col col-auto *ngIf="showSignHere">\n          <img id="sigImg" height="50px" class="draggable draggable-droppable" src="./../../assets/imgs/sign.png" />\n        </ion-col>\n        <ion-col col-auto *ngIf="showSignature">\n          <svg xmlns="http://www.w3.org/2000/svg" id="signature" class="draggable draggable-droppable" width="200" height="50" viewBox="0 0 200 50"\n            style="clear:both; background:#ffeb8e; border: 1px solid red " opacity="1">\n\n            <text x="50%" y="50%" width="200" height="50" viewBox="0 0 200 50" alignment-baseline="middle" text-anchor="middle" fill="green"\n              font-family="Cedarville Cursive" font-weight="bold" style="font-size: 25px">\n              {{ yourName }}\n            </text>\n\n          </svg>\n        </ion-col>\n        <ion-col col-auto *ngIf="showButtons">\n          <img src="./../../assets/imgs/arrows.svg" height="35px">\n          <span style="color:#757575; font-family: Cedarville Cursive; font-size: 18px; font-weight: bold">drag</span>\n        </ion-col>\n        <!-- <ion-col col-auto style="padding-left: 50px;">\n        <input id="checkBox" type="checkbox">\n        <span style="padding-right: 4px;color:#757575;">Allow Resize</span>\n      </ion-col> -->\n        <ion-col col-auto style="padding-left: 20px;" *ngIf="showButtons">\n          <button ion-fab (click)="saveSvg()" style="position:relative">Save</button>\n        </ion-col>\n        <ion-col col-auto style="padding-left: 5px;" *ngIf="showButtons">\n          <button ion-fab (click)="clear()" style="position:relative">Clear</button>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-fab>\n</ion-content>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-pdf/block-pdf.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__services_document_service__["a" /* DocumentService */],
-            __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"],
-            __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewContainerRef"],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_document_service__["a" /* DocumentService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_document_service__["a" /* DocumentService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewContainerRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewContainerRef"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _f || Object])
     ], BlockPdfComponent);
     return BlockPdfComponent;
+    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=block-pdf.js.map
