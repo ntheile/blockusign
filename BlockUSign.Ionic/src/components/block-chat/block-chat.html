@@ -5,21 +5,24 @@
       <header class="clearfix" (click)="minimize()">
         <!-- <a class="chat-close"  >x</a>-->
         <h4>
-          <span class="chat-head"></span> - Log</h4>
+          <span class="chat-head"></span> - Log
+         
+        </h4>
         <!-- <span style="opacity:.6; padding-left:30px;">YOURNAME/THEIRNAME</span> -->
         <span class="chat-message-counter">3</span>
       </header>
       <div class="chat">
         <div class="chat-history">
           <div class="log-history">
-           
+            
           </div>
+          
         </div>
         <!-- <p class="chat-feedback">Your partner is typing…</p> -->
         <form>
           <fieldset>
             <input type="text" name="addMsg" placeholder="Type your message…" autofocus [(ngModel)]="message" (keydown.enter)="addMessage($event)"
-            />
+            /> <ion-spinner id="loadSpin" ></ion-spinner>
           </fieldset>
         </form>
 

@@ -340,9 +340,11 @@ var BlockChatComponent = (function () {
         this.documentService = documentService;
         this.events = events;
         this.blockstackService = blockstackService;
+        this.firstLoad = true;
     }
     BlockChatComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.firstLoad = true;
         this.doc = new __WEBPACK_IMPORTED_MODULE_2__models_models__["a" /* Document */]();
         if (this.documentService.currentDoc) {
             this.doc = this.documentService.currentDoc;
@@ -367,7 +369,7 @@ var BlockChatComponent = (function () {
         var _this = this;
         this.chatPolling = setInterval(function () {
             setTimeout(function () {
-                _this.getLogData();
+                _this.getLogData(true);
             }, 1000);
         }, 3000);
     };
@@ -380,7 +382,7 @@ var BlockChatComponent = (function () {
             this.chatSubscription.unsubscribe();
         }
     };
-    BlockChatComponent.prototype.getLogData = function () {
+    BlockChatComponent.prototype.getLogData = function (isPoll) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
@@ -419,7 +421,13 @@ var BlockChatComponent = (function () {
                                 }
                                 //setTimeout( () =>{ // hack?
                                 $('.log-history').html(template);
-                                $('.chat-history').scrollTop($('.log-history').height());
+                                //$('.chat-history').scrollTop($('.log-history').height());
+                                // }, 300 );
+                                if (this.firstLoad) {
+                                    $('.chat-history').scrollTop($('.log-history').height());
+                                    this.firstLoad = false;
+                                    $("#loadSpin").hide();
+                                }
                                 return [2 /*return*/];
                         }
                     });
@@ -436,11 +444,14 @@ var BlockChatComponent = (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.documentService.addMessage(this.doc.guid, this.message)];
+                    case 0:
+                        $("#loadSpin").show();
+                        return [4 /*yield*/, this.documentService.addMessage(this.doc.guid, this.message)];
                     case 1:
                         _a.sent();
                         this.events.publish('documentService:addedChat', this.message);
                         this.message = null;
+                        this.firstLoad = true;
                         return [2 /*return*/];
                 }
             });
@@ -448,13 +459,12 @@ var BlockChatComponent = (function () {
     };
     BlockChatComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'block-chat',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-chat/block-chat.html"*/'<div class="block-chat">\n  <ion-fab bottom right>\n    <div id="live-chat" class="shadow6">\n\n      <header class="clearfix" (click)="minimize()">\n        <!-- <a class="chat-close"  >x</a>-->\n        <h4>\n          <span class="chat-head"></span> - Log</h4>\n        <!-- <span style="opacity:.6; padding-left:30px;">YOURNAME/THEIRNAME</span> -->\n        <span class="chat-message-counter">3</span>\n      </header>\n      <div class="chat">\n        <div class="chat-history">\n          <div class="log-history">\n           \n          </div>\n        </div>\n        <!-- <p class="chat-feedback">Your partner is typing…</p> -->\n        <form>\n          <fieldset>\n            <input type="text" name="addMsg" placeholder="Type your message…" autofocus [(ngModel)]="message" (keydown.enter)="addMessage($event)"\n            />\n          </fieldset>\n        </form>\n\n      </div>\n      <!-- end chat -->\n\n    </div>\n    <!-- end live-chat -->\n  </ion-fab>\n\n</div>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-chat/block-chat.html"*/,
+            selector: 'block-chat',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-chat/block-chat.html"*/'<div class="block-chat">\n  <ion-fab bottom right>\n    <div id="live-chat" class="shadow6">\n\n      <header class="clearfix" (click)="minimize()">\n        <!-- <a class="chat-close"  >x</a>-->\n        <h4>\n          <span class="chat-head"></span> - Log\n         \n        </h4>\n        <!-- <span style="opacity:.6; padding-left:30px;">YOURNAME/THEIRNAME</span> -->\n        <span class="chat-message-counter">3</span>\n      </header>\n      <div class="chat">\n        <div class="chat-history">\n          <div class="log-history">\n            \n          </div>\n          \n        </div>\n        <!-- <p class="chat-feedback">Your partner is typing…</p> -->\n        <form>\n          <fieldset>\n            <input type="text" name="addMsg" placeholder="Type your message…" autofocus [(ngModel)]="message" (keydown.enter)="addMessage($event)"\n            /> <ion-spinner id="loadSpin" ></ion-spinner>\n          </fieldset>\n        </form>\n\n      </div>\n      <!-- end chat -->\n\n    </div>\n    <!-- end live-chat -->\n  </ion-fab>\n\n</div>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-chat/block-chat.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_document_service__["a" /* DocumentService */],
-            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* Events */],
-            __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__["a" /* BlockStackService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_document_service__["a" /* DocumentService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_document_service__["a" /* DocumentService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* Events */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__["a" /* BlockStackService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__["a" /* BlockStackService */]) === "function" && _c || Object])
     ], BlockChatComponent);
     return BlockChatComponent;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=block-chat.js.map

@@ -22,7 +22,8 @@ export class BlockChatComponent implements OnDestroy, OnInit{
   public subscription;
   public chatSubscription;
   public chatPolling;
- 
+  firstLoad = true;
+  
   constructor(
     public documentService: DocumentService, 
     public events: Events,
@@ -33,7 +34,7 @@ export class BlockChatComponent implements OnDestroy, OnInit{
 
   ngOnInit(){
     
-   
+    this.firstLoad = true;
     this.doc = new Document();
     
     if (this.documentService.currentDoc){
@@ -48,20 +49,7 @@ export class BlockChatComponent implements OnDestroy, OnInit{
     }
 
     this.chatSubscription = this.events.subscribe('documentService:addedChat', async (msg) => {
-
-      //while(true == true){
-
-      // setInterval(() =>{ 
-      //    setTimeout( () =>{ // hack?
-      //    this.getLogData();
-      //    }, 1000 );
-      // }, 3000);
-
-        // setTimeout( () =>{ // hack?
-        // this.getLogData();
-        // }, 1000 );
-      //}
-
+      
     });
     
 
@@ -71,9 +59,10 @@ export class BlockChatComponent implements OnDestroy, OnInit{
   initChatPolling(){
     this.chatPolling = setInterval( () =>{ 
       setTimeout( () =>{ // hack?
-        this.getLogData();
+        this.getLogData(true);
       }, 1000 );
     }, 3000);
+
   }
 
 
@@ -90,10 +79,13 @@ export class BlockChatComponent implements OnDestroy, OnInit{
     
   }
 
-  async getLogData(){
+  async getLogData(isPoll){
 
-
+    
     $(document).ready(async ()=>{
+
+
+   
       let logData: Log = await this.documentService.getLog(this.doc.guid);
 
       $('.chat-head').html(this.doc.fileName);
@@ -136,12 +128,18 @@ export class BlockChatComponent implements OnDestroy, OnInit{
 
       //setTimeout( () =>{ // hack?
         $('.log-history').html(template);
-        $('.chat-history').scrollTop($('.log-history').height());
+        //$('.chat-history').scrollTop($('.log-history').height());
      // }, 300 );
 
-     
-    });
+     if (this.firstLoad) {
+      $('.chat-history').scrollTop($('.log-history').height()); 
+      this.firstLoad = false;
+      $("#loadSpin").hide();
+     }
 
+
+    });
+  
     
   }
 
@@ -151,13 +149,14 @@ export class BlockChatComponent implements OnDestroy, OnInit{
   }
 
   async addMessage(){
+    $("#loadSpin").show();
     await this.documentService.addMessage(this.doc.guid, this.message);
     this.events.publish('documentService:addedChat', this.message);
     this.message = null;
-
+    this.firstLoad = true;
+    
     // @todo optimize this with lazy load adding of new message
     //await this.getLogData();
-    
   }
 
 }
