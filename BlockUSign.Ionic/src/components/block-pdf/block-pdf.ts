@@ -44,6 +44,7 @@ export class BlockPdfComponent {
   svgDrawer;
 
   @Input() showToolBar = 0;
+  @Input() locked = false;
   @Input() showSignature: 0;
   @Input() showSignHere: 0;
   @Input() showButtons: 0;
@@ -302,7 +303,7 @@ export class BlockPdfComponent {
     }
 
     if (innerHtml) {
-      this.svgDrawer.addHTML(innerHtml);
+      this.svgDrawer.addHTML(innerHtml, this.locked);
     }
 
   }
