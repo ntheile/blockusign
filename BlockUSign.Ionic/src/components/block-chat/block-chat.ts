@@ -134,7 +134,7 @@ export class BlockChatComponent implements OnDestroy, OnInit{
      if (this.firstLoad) {
       $('.chat-history').scrollTop($('.log-history').height()); 
       this.firstLoad = false;
-      $("#loadSpin").hide();
+      $(".loadSpin").hide();
      }
 
 
@@ -149,12 +149,12 @@ export class BlockChatComponent implements OnDestroy, OnInit{
   }
 
   async addMessage(){
-    $("#loadSpin").show();
+    $(".loadSpin").show();
     await this.documentService.addMessage(this.doc.guid, this.message);
     this.events.publish('documentService:addedChat', this.message);
     this.message = null;
     this.firstLoad = true;
-    $("#loadSpin").hide();
+    $(".loadSpin").hide();
     // @todo optimize this with lazy load adding of new message
     //await this.getLogData();
   }

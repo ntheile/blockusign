@@ -29,6 +29,7 @@ import { ToastController } from 'ionic-angular';
     }
 
     async documentRemove(selectedDocument){
+        window.location.hash = '';
         await this.documentService.removeDocument( this.doc );
         let toast = this.toastCtrl.create({
             message: 'Document deleted!',

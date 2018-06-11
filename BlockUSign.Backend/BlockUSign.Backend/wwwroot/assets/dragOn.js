@@ -460,7 +460,7 @@
         cleanDrawArea: function (selector) {
             this.drawArea.innerHTML = "";
         },
-        addHTML: function (innerHTMLStr) {
+        addHTML: function (innerHTMLStr, locked) {
 
             this.drawArea.innerHTML = innerHTMLStr;
 
@@ -513,7 +513,8 @@
 
                 var that = this;
 
-                interact(elemImage)
+                if(locked == false){
+                    interact(elemImage)
                     .draggable(interactBasicOptions.draggable)
                     .on("dragmove", function (event) {
                         var target = event.target,
@@ -529,6 +530,9 @@
                         target.setAttribute("x", x);
                         target.setAttribute("y", y);
                     })
+                }
+
+               
                 //.resizable(interactBasicOptions.resizable)
                 //.on("resizemove", function (event) {
                 // var target = event.target;

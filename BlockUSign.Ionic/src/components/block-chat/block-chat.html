@@ -21,8 +21,8 @@
         <!-- <p class="chat-feedback">Your partner is typing…</p> -->
         <form>
           <fieldset>
-            <input type="text" name="addMsg" placeholder="Type your message…" autofocus [(ngModel)]="message" (keydown.enter)="addMessage($event)"
-            /> <ion-spinner id="loadSpin" ></ion-spinner>
+            <input type="text" name="addMsg" placeholder="Type your message…" autofocus [(ngModel)]="message" (keydown.enter)="addMessage($event)"/> 
+            <ion-spinner class="loadSpin" ></ion-spinner> 
           </fieldset>
         </form>
 
