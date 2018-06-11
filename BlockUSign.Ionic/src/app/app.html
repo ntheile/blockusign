@@ -29,12 +29,31 @@
 
           
             <div class="servers-collection">
-              <div class="server focusable active" role="button" aria-label="My Server" aria-selected="true">
-                <div class="server-icon">
-                 <!-- <img src="https://discordapp.com/assets/0e291f67c9274a1abdddeb3fd919cbaa.png" /> -->
-                  <img class="avatar" alt="Avatar" [src]="avatar" />
-                </div>
+              <div class="server focusable active" 
+              role="button" aria-label="My Server" 
+              (click)="filterDocumentList('all', $event)">
+                  <div class="server-icon" style="font-weight:bold">
+                    <!-- <img src="https://discordapp.com/assets/0e291f67c9274a1abdddeb3fd919cbaa.png" /> -->
+                    ALL
+                  </div>
+                 
               </div>
+              <div *ngFor="let collaborator of documentService.documentsList">
+                  <div class="server focusable " 
+                    role="button" 
+                    aria-label="My Server" 
+                    *ngIf="collaborator.signer.length > 0"
+                    (click)="filterDocumentList(collaborator.signer[0], $event)">
+                      <div class="server-icon">
+                       <!-- <img src="https://discordapp.com/assets/0e291f67c9274a1abdddeb3fd919cbaa.png" /> -->
+                       {{ collaborator.signer[0].charAt(0).toUpperCase()  }}
+                        
+                      </div>
+                      <span>{{ collaborator.signer[0]  }}</span>
+                    </div>
+              </div>
+              
+            
             </div>
           </aside>
 

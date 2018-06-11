@@ -28495,7 +28495,7 @@ html, body, * {
   border-radius: 25px;
   background-color: #2E3136;
   background-repeat: no-repeat;
-  margin-bottom: 8px;
+  margin-bottom: 28px;
   cursor: pointer;
   position: relative;
 }
@@ -28589,6 +28589,16 @@ html, body, * {
 .discord .server.active.unread::before {
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
+}
+
+.discord .server span {
+  font-size: 12px;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .discord .button {

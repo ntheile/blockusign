@@ -500,7 +500,7 @@
       border-radius: 25px;
       background-color: $server-bg;
       background-repeat: no-repeat;
-      margin-bottom: 8px;
+      margin-bottom: 28px;
       cursor: pointer;
       position: relative;
       
@@ -586,6 +586,16 @@
       }
       
       &.active.unread::before { transition: all 0.2s ease-in-out; }
+
+      span {
+        font-size:12px; 
+        display: inline-block; 
+        white-space: nowrap;
+        overflow: hidden; 
+        text-overflow:ellipsis;
+        padding-top: 5px;
+        padding-bottom: 5px;
+      }
   }
   
   // BUTTON

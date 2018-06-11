@@ -145,7 +145,7 @@ export class MyApp {
 
       this.loginState = "[Logout]";
       this.documentService.getDocumentsIndex(true).then((data) => {
-        this.documentsList = data;
+        this.documentsList = this.documentService.documentsListFiltered; //data;
       });
 
       //if (!profile.username) {
@@ -231,7 +231,7 @@ export class MyApp {
 
   documentsGetList() {
     this.documentService.getDocumentsIndex(true).then((data) => {
-      this.documentsList = data;
+      this.documentsList = this.documentService.documentsListFiltered; //data;
     });
   }
 
@@ -310,6 +310,20 @@ export class MyApp {
     toast.present();
   }
 
+
+  filterDocumentList(signer, e){
+    this.documentService.filterDocuments(signer);
+    this.documentsList = this.documentService.documentsListFiltered;
+   
+
+    const activeServer = $(".server.active")[0];
+    activeServer.classList.remove("active");
+    activeServer.removeAttribute("aria-selected");
+
+    e.currentTarget.classList.add("active");
+    e.currentTarget.setAttribute("aria-selected", true);
+    
+  }
 
 }
 

@@ -10,26 +10,20 @@ import { Events } from 'ionic-angular';
 import * as moment from 'moment';
 import * as Automerge from 'automerge/dist/automerge.js';
 import { BlockStackService } from './blockstack.service';
+import { State } from './../models/state';
+import { of } from 'rxjs/observable/of';
 declare let jslinq: any;
-//const Automerge = require('automerge');
 declare let blockstack: any;
 declare let sjcl: any;
 declare let $: any;
 
-import { State } from './../models/state';
-import { of } from 'rxjs/observable/of';
 
-/*
-  Generated class for the StorageServiceProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class DocumentService {
 
   private indexFileName = "blockusign/documents.index.json";
   public documentsList: Array<Document>;
+  public documentsListFiltered: Array<Document>;
   public docBuffer: any;
   public currentDoc: Document;
   public currentDocAnnotationsDoc;
@@ -39,7 +33,7 @@ export class DocumentService {
   public docStorageMaps: DocStorageMaps;
   public urlBlockusignGlobalStore = "https://gaia.blockstack.org/hub/1PoZGGAuQ4yPj72TrXbG4pKbgB9tvCUqQ1/blockusign";
   public urlBlockusign =  "https://blockusign.co"; //"https://blockusign.co"; // "http://localhost:52657";
-  //public automerge = Automerge;
+ 
 
   constructor(
     public events: Events, 
@@ -54,6 +48,9 @@ export class DocumentService {
     this.getDocumentsIndex(true).then((data) => {
       this.documentsList = data;
     });
+
+
+
   }
 
   async getDocumentsIndex(refresh: boolean) {
@@ -65,6 +62,7 @@ export class DocumentService {
       if (this.documentsList == null || !resp) {
         this.documentsList = JSON.parse(await blockstack.putFile(this.indexFileName, "[]", { encrypt: true }));
       }
+      this.documentsListFiltered = this.documentsList;
     }
     return this.documentsList;
   }
@@ -231,11 +229,6 @@ export class DocumentService {
     return exists;
   }
 
-  async addSignerToCurrentDoc(nameOrId){
-
-    
-    
-  }
 
   async removeDocumentBytes(guid: string) {
     await blockstack.putFile(guid + ".annotations.json", "", { encrypt: false });
@@ -322,22 +315,6 @@ export class DocumentService {
     return this.currentDocAnnotations;
   }
 
-  // async mergeAnnotations(guid, theirs?, mine?){
-  //   if (!theirs){
-  //     theirs = await this.getAnnotationsByPath(this.currentDoc.pathAnnotatedDoc + guid + ".annotations.json", this.currentDoc.documentKey);
-  //     theirs = this.currentDocAnnotationsDoc;
-  //   }
-  //   if (!mine){
-  //     mine =  await this.getAnnotations(guid);
-  //     mine = this.currentDocAnnotationsDoc;
-  //   }
-    
-   
-  //   let mergedAnnotations = Automerge.merge(mine, theirs);
-
-  //   console.log("mergedAnnots", mergedAnnotations);
-
-  // }
 
   async setCurrentDoc(guid: string) {
     //alert('set curr doc');
@@ -510,44 +487,9 @@ export class DocumentService {
   }
   //#endregion
 
-
-
   // watchout
   async resetStorage() {
     await blockstack.putFile(this.indexFileName, "[]", { encrypt: true });
-  }
-
-
-  testAutoMerge() {
-
-    // // fetch from server state for Nick
-    // let doc1Nick = [{ 'who': 'nick' }];
-
-    // // init doc
-    // let doc1 = Automerge.init();
-    // let commitMsg = 'Initialize doc from server for nick - ' + this.getDate();
-    // doc1 = Automerge.change(doc1, commitMsg , doc => {
-    //   doc = doc1Nick;
-    // });
-
-    // console.log(doc1);
-
-    // // nick adds a row
-    // commitMsg = 'Nick adds a row - ' + this.getDate;
-    // doc1 = Automerge.change(doc1, 'Add card', doc => {
-    //   doc.push({'who': 'nick2'});
-    // });
-
-    // console.log(doc1);
-
-
-    // // Now let's simulate another device, whose application state is doc2. We
-    // // initialise it separately, and merge doc1 into it. After merging, doc2 has
-    // // a copy of all the cards in doc1.
-    // // fetch from server state for Blockusign
-
-    // let doc1Blockusign1 = [{ 'who': 'nick' }, {'who': 'Blocusign1'}];
-
   }
 
   getDate() {
@@ -555,132 +497,16 @@ export class DocumentService {
     return d;
   }
 
-
-
-
-  doc;
-  docMine;
-  docYours;
-  state = new State();
-
-  testInitDoc() {
-
-    // 1) init or load Mine
-    this.docMine = this.state.docInit();
-   
-    // 2) Save as string
-    let docStr = this.state.docSave(this.docMine);
-    
-    // 3) Send to server
-    // putFile
-
-    return docStr;
-    
-  }
-
-  testEditDoc(){
-    // 1) load Mine
-    //this.docMine;
-
-    // 2) Edit Doc
-    this.docMine = this.state.docEdit(this.docMine, "nick 1st add - " + this.getDate(), "messages", {'nick': '1'} );
-
-
-    // 3) Save to server
-    
-  }
-
-  testMerge(){
-
-    // 1) load Mine
-    let docMine = this.testInitDoc();
-    
-    // 2) get Their data data
-
-    // 3) Merge
-
-    // 4) Save
-    
-
-    // return doc
-
-
+  async filterDocuments(signer){
+    if (signer == "all"){
+      this.documentsListFiltered = this.documentsList;
+    }
+    else{
+      this.documentsListFiltered = jslinq(this.documentsList).where( (el) => el.signer[0] == signer ).toList();
+    } 
+    return this.documentsListFiltered;
   }
 
   
-
-
-  getMine(property, message){
-     // init doc
-     let docMine = Automerge.init();
-     //let commitMsg = 'initDoc - ' + this.getDate();
-     docMine = Automerge.change(docMine, message , doc => {
-        
-        doc[property] = [message];
-     });
-     return docMine;
-  }
-
-  // save2Mine(docMine, message){
-  //   docMine = Automerge.change(docMine, message, doc => {
-  //     doc.chat.push(message);
-  //   });
-  //   return docMine;
-  // }
-
-  // mergeYours(){
-  //   this.docYours = Automerge.init()
-  //   this.docYours = Automerge.merge(this.docYours, this.docMine);
-
-  //   this.docYours = Automerge.change(this.docYours, 'save2Yours - ' + this.getDate() , doc => {
-
-  //     let msg = new Message();
-  //     msg.message = "yours 3";
-  //     msg.createdBy = blockstack.loadUserData().username;
-  //     msg.createdByName = blockstack.loadUserData().profile.name;
-  //     doc.chat.push(msg);
-
-  //   });
-
-  //   console.log(this.docYours);
-  //   return this.docYours;
-  // }
-
-
-  // save4Mine(){
-  //   this.docMine = Automerge.change(this.docMine, 'save3Me - ' + this.getDate(), doc => {
-
-  //     let msg = new Message();
-  //     msg.message = "me 4";
-  //     msg.createdBy = blockstack.loadUserData().username;
-  //     msg.createdByName = blockstack.loadUserData().profile.name;
-  //     doc.chat.push(msg);
-
-  //   });
-  //   return this.docMine;
-  // }
-
-  // sync(){
-  //   this.doc = Automerge.merge(this.docMine, this.docYours);
-  //   console.log(this.doc);
-
-  //   // sort by date
-  //   console.log(
-  //     jslinq(this.doc.chat).orderBy( (el) => el.updatedAt ).toList()
-  //   ); 
-
-  //   return this.doc;
-  // }
-
-  // genMessage(content){
-  //   let msg = new Message();
-  //   msg.message = content;
-  //   msg.createdBy = blockstack.loadUserData().username;
-  //   msg.createdByName = blockstack.loadUserData().profile.name;
-  //   return msg;
-  // }
-
-
-
 }
 
