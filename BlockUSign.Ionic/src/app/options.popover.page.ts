@@ -1,5 +1,5 @@
-import { Component } from "@angular/core";
-import { ViewController } from "ionic-angular";
+import { Component, ViewChild } from "@angular/core";
+import { ViewController, NavController} from "ionic-angular";
 import { DocumentService } from './../services/document.service';
 import { ToastController } from 'ionic-angular';
 
@@ -13,10 +13,13 @@ import { ToastController } from 'ionic-angular';
     `
   })
   export class OptionsPopoverPage {
-    
     doc: any;
-
-    constructor(public viewCtrl: ViewController, public documentService: DocumentService, private toastCtrl: ToastController) {
+    constructor(
+      public viewCtrl: ViewController, 
+      public documentService: DocumentService, 
+      private toastCtrl: ToastController,
+      private nav: NavController
+    ) {
         this.doc = this.viewCtrl.data.selectedDoc;
 
     }
@@ -35,6 +38,8 @@ import { ToastController } from 'ionic-angular';
         toast.present();
         
         this.viewCtrl.dismiss();
+
+        window.location.hash = '';
     }
 
   }

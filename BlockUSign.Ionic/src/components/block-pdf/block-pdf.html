@@ -31,6 +31,7 @@
       <ion-row justify-content-start align-items-center>
         <ion-col col-auto *ngIf="showSignHere">
           <img id="sigImg" height="50px" class="draggable draggable-droppable" src="./../../assets/imgs/sign.png" />
+          
         </ion-col>
         <ion-col col-auto *ngIf="showSignature">
           <svg xmlns="http://www.w3.org/2000/svg" id="signature" class="draggable draggable-droppable" width="200" height="50" viewBox="0 0 200 50"
@@ -56,6 +57,11 @@
         </ion-col>
         <ion-col col-auto style="padding-left: 5px;" *ngIf="showButtons">
           <button ion-fab (click)="clear()" style="position:relative">Clear</button>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-top: -15px; margin-bottom: -8px">
+        <ion-col>
+           <span style="font-size: .75rem; color:#757575;">*drag off screen to delete</span>
         </ion-col>
       </ion-row>
     </ion-grid>

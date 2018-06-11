@@ -25,16 +25,16 @@ var map = {
 		243
 	],
 	"../pages/email/email.module": [
-		396
-	],
-	"../pages/home/home.module": [
-		485
-	],
-	"../pages/review/review.module": [
 		394
 	],
+	"../pages/home/home.module": [
+		484
+	],
+	"../pages/review/review.module": [
+		393
+	],
 	"../pages/sign/sign.module": [
-		395
+		483
 	]
 };
 function webpackAsyncContext(req) {
@@ -107,7 +107,7 @@ var AnnotatePageModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_document_service__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_block_chat_block_chat__ = __webpack_require__(248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_block_chat_block_chat__ = __webpack_require__(247);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_retry__ = __webpack_require__(142);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_retry___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_retry__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_timeout__ = __webpack_require__(143);
@@ -270,7 +270,7 @@ var NameStorageMapping = (function () {
 
 /***/ }),
 
-/***/ 248:
+/***/ 247:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -452,6 +452,7 @@ var BlockChatComponent = (function () {
                         this.events.publish('documentService:addedChat', this.message);
                         this.message = null;
                         this.firstLoad = true;
+                        $("#loadSpin").hide();
                         return [2 /*return*/];
                 }
             });
@@ -461,10 +462,11 @@ var BlockChatComponent = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'block-chat',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-chat/block-chat.html"*/'<div class="block-chat">\n  <ion-fab bottom right>\n    <div id="live-chat" class="shadow6">\n\n      <header class="clearfix" (click)="minimize()">\n        <!-- <a class="chat-close"  >x</a>-->\n        <h4>\n          <span class="chat-head"></span> - Log\n         \n        </h4>\n        <!-- <span style="opacity:.6; padding-left:30px;">YOURNAME/THEIRNAME</span> -->\n        <span class="chat-message-counter">3</span>\n      </header>\n      <div class="chat">\n        <div class="chat-history">\n          <div class="log-history">\n            \n          </div>\n          \n        </div>\n        <!-- <p class="chat-feedback">Your partner is typing…</p> -->\n        <form>\n          <fieldset>\n            <input type="text" name="addMsg" placeholder="Type your message…" autofocus [(ngModel)]="message" (keydown.enter)="addMessage($event)"\n            /> <ion-spinner id="loadSpin" ></ion-spinner>\n          </fieldset>\n        </form>\n\n      </div>\n      <!-- end chat -->\n\n    </div>\n    <!-- end live-chat -->\n  </ion-fab>\n\n</div>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-chat/block-chat.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_document_service__["a" /* DocumentService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_document_service__["a" /* DocumentService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* Events */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__["a" /* BlockStackService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__["a" /* BlockStackService */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_document_service__["a" /* DocumentService */],
+            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* Events */],
+            __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__["a" /* BlockStackService */]])
     ], BlockChatComponent);
     return BlockChatComponent;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=block-chat.js.map
@@ -486,7 +488,7 @@ var BlockChatComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_catch__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_catch__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__ = __webpack_require__(247);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__ = __webpack_require__(562);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__blockstack_service__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_observable_of__ = __webpack_require__(141);
@@ -1216,17 +1218,18 @@ var DocumentService = (function () {
     };
     DocumentService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["c" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["c" /* Events */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* Http */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_8__blockstack_service__["a" /* BlockStackService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__blockstack_service__["a" /* BlockStackService */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_6_ionic_angular__["c" /* Events */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* Http */],
+            __WEBPACK_IMPORTED_MODULE_8__blockstack_service__["a" /* BlockStackService */]])
     ], DocumentService);
     return DocumentService;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=document.service.js.map
 
 /***/ }),
 
-/***/ 377:
+/***/ 376:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1242,7 +1245,7 @@ var DocumentService = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_delay___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_delay__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_pdfjs_dist_build_pdf__ = __webpack_require__(571);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_pdfjs_dist_build_pdf__ = __webpack_require__(570);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_pdfjs_dist_build_pdf___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_pdfjs_dist_build_pdf__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_pdf_annotate__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_pdf_annotate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_pdf_annotate__);
@@ -1547,7 +1550,7 @@ var BlockPdfComponent = (function () {
     ], BlockPdfComponent.prototype, "marginTop", void 0);
     BlockPdfComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'block-pdf',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-pdf/block-pdf.html"*/'<ion-content class="block-pdf-page">\n\n\n  <div class="page" id="pageContainer1" data-page-number="1" style="position:relative;width: 100%; height:100%;overflow-x:auto;overflow-y:auto"\n    [style.margin-top]="marginTop">\n    <div id="canvasWrapper" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">\n      <div>\n        <svg id="svg-dropzone" class="svg-dropzone dropzone resizable" xmlns="http://www.w3.org/2000/svg" style="position: absolute; \n        left: 0px; \n        top:0px;\n        z-index: 200000;\n        padding: 0px 0px 0px 0px; \n        margin: 0px 0px 0px 0px; " width="612" height="792" viewBox="0 0 612 792">\n      </svg> \n      <div class="textLayer"></div>\n      </div>\n      \n    </div>\n\n  </div>\n\n  <svg class="annotationLayer" xmlns="http://www.w3.org/2000/svg">\n  </svg>\n\n  <img *ngIf="!showToolBar" id="sigImg" height="50px" class="draggable draggable-droppable" src="./../../assets/imgs/sign.png"\n  />\n\n\n  <ion-fab *ngIf="showToolBar" top left style="margin-top:1px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab>\n    <ion-grid>\n      <ion-row justify-content-start align-items-center>\n        <ion-col col-auto *ngIf="showSignHere">\n          <img id="sigImg" height="50px" class="draggable draggable-droppable" src="./../../assets/imgs/sign.png" />\n        </ion-col>\n        <ion-col col-auto *ngIf="showSignature">\n          <svg xmlns="http://www.w3.org/2000/svg" id="signature" class="draggable draggable-droppable" width="200" height="50" viewBox="0 0 200 50"\n            style="clear:both; background:#ffeb8e; border: 1px solid red " opacity="1">\n\n            <text x="50%" y="50%" width="200" height="50" viewBox="0 0 200 50" alignment-baseline="middle" text-anchor="middle" fill="green"\n              font-family="Cedarville Cursive" font-weight="bold" style="font-size: 25px">\n              {{ yourName }}\n            </text>\n\n          </svg>\n        </ion-col>\n        <ion-col col-auto *ngIf="showButtons">\n          <img src="./../../assets/imgs/arrows.svg" height="35px">\n          <span style="color:#757575; font-family: Cedarville Cursive; font-size: 18px; font-weight: bold">drag</span>\n        </ion-col>\n        <!-- <ion-col col-auto style="padding-left: 50px;">\n        <input id="checkBox" type="checkbox">\n        <span style="padding-right: 4px;color:#757575;">Allow Resize</span>\n      </ion-col> -->\n        <ion-col col-auto style="padding-left: 20px;" *ngIf="showButtons">\n          <button ion-fab (click)="saveSvg()" style="position:relative">Save</button>\n        </ion-col>\n        <ion-col col-auto style="padding-left: 5px;" *ngIf="showButtons">\n          <button ion-fab (click)="clear()" style="position:relative">Clear</button>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-fab>\n</ion-content>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-pdf/block-pdf.html"*/,
+            selector: 'block-pdf',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-pdf/block-pdf.html"*/'<ion-content class="block-pdf-page">\n\n\n  <div class="page" id="pageContainer1" data-page-number="1" style="position:relative;width: 100%; height:100%;overflow-x:auto;overflow-y:auto"\n    [style.margin-top]="marginTop">\n    <div id="canvasWrapper" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">\n      <div>\n        <svg id="svg-dropzone" class="svg-dropzone dropzone resizable" xmlns="http://www.w3.org/2000/svg" style="position: absolute; \n        left: 0px; \n        top:0px;\n        z-index: 200000;\n        padding: 0px 0px 0px 0px; \n        margin: 0px 0px 0px 0px; " width="612" height="792" viewBox="0 0 612 792">\n      </svg> \n      <div class="textLayer"></div>\n      </div>\n      \n    </div>\n\n  </div>\n\n  <svg class="annotationLayer" xmlns="http://www.w3.org/2000/svg">\n  </svg>\n\n  <img *ngIf="!showToolBar" id="sigImg" height="50px" class="draggable draggable-droppable" src="./../../assets/imgs/sign.png"\n  />\n\n\n  <ion-fab *ngIf="showToolBar" top left style="margin-top:1px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab>\n    <ion-grid>\n      <ion-row justify-content-start align-items-center>\n        <ion-col col-auto *ngIf="showSignHere">\n          <img id="sigImg" height="50px" class="draggable draggable-droppable" src="./../../assets/imgs/sign.png" />\n          \n        </ion-col>\n        <ion-col col-auto *ngIf="showSignature">\n          <svg xmlns="http://www.w3.org/2000/svg" id="signature" class="draggable draggable-droppable" width="200" height="50" viewBox="0 0 200 50"\n            style="clear:both; background:#ffeb8e; border: 1px solid red " opacity="1">\n\n            <text x="50%" y="50%" width="200" height="50" viewBox="0 0 200 50" alignment-baseline="middle" text-anchor="middle" fill="green"\n              font-family="Cedarville Cursive" font-weight="bold" style="font-size: 25px">\n              {{ yourName }}\n            </text>\n\n          </svg>\n        </ion-col>\n        <ion-col col-auto *ngIf="showButtons">\n          <img src="./../../assets/imgs/arrows.svg" height="35px">\n          <span style="color:#757575; font-family: Cedarville Cursive; font-size: 18px; font-weight: bold">drag</span>\n        </ion-col>\n        <!-- <ion-col col-auto style="padding-left: 50px;">\n        <input id="checkBox" type="checkbox">\n        <span style="padding-right: 4px;color:#757575;">Allow Resize</span>\n      </ion-col> -->\n        <ion-col col-auto style="padding-left: 20px;" *ngIf="showButtons">\n          <button ion-fab (click)="saveSvg()" style="position:relative">Save</button>\n        </ion-col>\n        <ion-col col-auto style="padding-left: 5px;" *ngIf="showButtons">\n          <button ion-fab (click)="clear()" style="position:relative">Clear</button>\n        </ion-col>\n      </ion-row>\n      <ion-row style="margin-top: -15px; margin-bottom: -8px">\n        <ion-col>\n           <span style="font-size: .75rem; color:#757575;">*drag off screen to delete</span>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-fab>\n</ion-content>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-pdf/block-pdf.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],
@@ -1563,13 +1566,13 @@ var BlockPdfComponent = (function () {
 
 /***/ }),
 
-/***/ 393:
+/***/ 392:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DirectivesModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__absolute_drag_absolute_drag__ = __webpack_require__(625);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__absolute_drag_absolute_drag__ = __webpack_require__(624);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1595,7 +1598,7 @@ var DirectivesModule = (function () {
 
 /***/ }),
 
-/***/ 394:
+/***/ 393:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1603,7 +1606,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReviewPageModule", function() { return ReviewPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__review__ = __webpack_require__(626);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__review__ = __webpack_require__(625);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(61);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1636,48 +1639,7 @@ var ReviewPageModule = (function () {
 
 /***/ }),
 
-/***/ 395:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignPageModule", function() { return SignPageModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sign__ = __webpack_require__(627);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(61);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-
-var SignPageModule = (function () {
-    function SignPageModule() {
-    }
-    SignPageModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
-            declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__sign__["a" /* SignPage */],
-            ],
-            imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__sign__["a" /* SignPage */]),
-                __WEBPACK_IMPORTED_MODULE_3__components_components_module__["a" /* BlockStepsComponentModule */]
-            ],
-        })
-    ], SignPageModule);
-    return SignPageModule;
-}());
-
-//# sourceMappingURL=sign.module.js.map
-
-/***/ }),
-
-/***/ 396:
+/***/ 394:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1685,9 +1647,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EmailPageModule", function() { return EmailPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__email__ = __webpack_require__(628);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__email__ = __webpack_require__(626);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ng_select_ng_select__ = __webpack_require__(484);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ng_select_ng_select__ = __webpack_require__(482);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(25);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1727,7 +1689,7 @@ var EmailPageModule = (function () {
 
 /***/ }),
 
-/***/ 397:
+/***/ 395:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1859,14 +1821,55 @@ var EmailService = (function () {
 
 /***/ }),
 
-/***/ 485:
+/***/ 483:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignPageModule", function() { return SignPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sign__ = __webpack_require__(895);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(61);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+var SignPageModule = (function () {
+    function SignPageModule() {
+    }
+    SignPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__sign__["a" /* SignPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__sign__["a" /* SignPage */]),
+                __WEBPACK_IMPORTED_MODULE_3__components_components_module__["a" /* BlockStepsComponentModule */]
+            ],
+        })
+    ], SignPageModule);
+    return SignPageModule;
+}());
+
+//# sourceMappingURL=sign.module.js.map
+
+/***/ }),
+
+/***/ 484:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeModule", function() { return HomeModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__home__ = __webpack_require__(486);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__home__ = __webpack_require__(485);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(61);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1905,7 +1908,7 @@ var HomeModule = (function () {
 
 /***/ }),
 
-/***/ 486:
+/***/ 485:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1916,7 +1919,7 @@ var HomeModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_pdf_annotate__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_pdf_annotate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_pdf_annotate__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_global_service__ = __webpack_require__(487);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_global_service__ = __webpack_require__(486);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_document_service__ = __webpack_require__(31);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2375,7 +2378,7 @@ var HomePage = (function () {
 
 /***/ }),
 
-/***/ 487:
+/***/ 486:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2406,7 +2409,7 @@ var GlobalService = (function () {
 
 /***/ }),
 
-/***/ 536:
+/***/ 535:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2463,10 +2466,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 
 var OptionsPopoverPage = (function () {
-    function OptionsPopoverPage(viewCtrl, documentService, toastCtrl) {
+    function OptionsPopoverPage(viewCtrl, documentService, toastCtrl, nav) {
         this.viewCtrl = viewCtrl;
         this.documentService = documentService;
         this.toastCtrl = toastCtrl;
+        this.nav = nav;
         this.doc = this.viewCtrl.data.selectedDoc;
     }
     OptionsPopoverPage.prototype.close = function () {
@@ -2487,6 +2491,7 @@ var OptionsPopoverPage = (function () {
                         });
                         toast.present();
                         this.viewCtrl.dismiss();
+                        window.location.hash = '';
                         return [2 /*return*/];
                 }
             });
@@ -2496,22 +2501,23 @@ var OptionsPopoverPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             template: "\n     <br/>\n      <ion-list style=\"\">\n        <button ion-item (click)=\"documentRemove()\">Delete</button>\n        <button ion-item (click)=\"close()\">CLOSE X</button>\n      </ion-list>\n    "
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ViewController */], __WEBPACK_IMPORTED_MODULE_2__services_document_service__["a" /* DocumentService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* ToastController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ViewController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_document_service__["a" /* DocumentService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_document_service__["a" /* DocumentService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* ToastController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" && _d || Object])
     ], OptionsPopoverPage);
     return OptionsPopoverPage;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=options.popover.page.js.map
 
 /***/ }),
 
-/***/ 537:
+/***/ 536:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(538);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(542);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(537);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(541);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -2519,7 +2525,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 542:
+/***/ 541:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2528,27 +2534,27 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(527);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_splash_screen__ = __webpack_require__(530);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_charts__ = __webpack_require__(917);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(526);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_splash_screen__ = __webpack_require__(529);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_charts__ = __webpack_require__(916);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_charts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_ng2_charts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ng_select_ng_select__ = __webpack_require__(484);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ng_select_ng_select__ = __webpack_require__(482);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_component__ = __webpack_require__(965);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__options_popover_page__ = __webpack_require__(536);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__directives_directives_module__ = __webpack_require__(393);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_home_home_module__ = __webpack_require__(485);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_component__ = __webpack_require__(964);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__options_popover_page__ = __webpack_require__(535);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__directives_directives_module__ = __webpack_require__(392);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_home_home_module__ = __webpack_require__(484);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_annotate_annotate_module__ = __webpack_require__(243);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_sign_sign_module__ = __webpack_require__(395);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_email_email_module__ = __webpack_require__(396);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_review_review_module__ = __webpack_require__(394);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_sign_sign_module__ = __webpack_require__(483);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_email_email_module__ = __webpack_require__(394);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_review_review_module__ = __webpack_require__(393);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_components_module__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__services_coin_service__ = __webpack_require__(966);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_global_service__ = __webpack_require__(487);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__services_cryptocompare_service__ = __webpack_require__(967);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__services_slack_service__ = __webpack_require__(968);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__services_coin_service__ = __webpack_require__(965);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_global_service__ = __webpack_require__(486);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__services_cryptocompare_service__ = __webpack_require__(966);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__services_slack_service__ = __webpack_require__(967);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__services_document_service__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__services_email_service__ = __webpack_require__(397);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__services_email_service__ = __webpack_require__(395);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__services_blockstack_service__ = __webpack_require__(73);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2600,8 +2606,8 @@ var AppModule = (function () {
                     links: [
                         { loadChildren: '../pages/annotate/annotate.module#AnnotatePageModule', name: 'AnnotatePage', segment: 'annotate/:guid', priority: 'low', defaultHistory: ['HomePage'] },
                         { loadChildren: '../pages/review/review.module#ReviewPageModule', name: 'ReviewPage', segment: 'review/:guid', priority: 'low', defaultHistory: ['SignPage', 'EmailPage', 'AnnotatePage', 'HomePage'] },
-                        { loadChildren: '../pages/sign/sign.module#SignPageModule', name: 'SignPage', segment: 'sign/:guid', priority: 'low', defaultHistory: ['EmailPage', 'AnnotatePage', 'HomePage'] },
                         { loadChildren: '../pages/email/email.module#EmailPageModule', name: 'EmailPage', segment: 'email/:guid', priority: 'low', defaultHistory: ['AnnotatePage', 'HomePage'] },
+                        { loadChildren: '../pages/sign/sign.module#SignPageModule', name: 'SignPage', segment: 'sign/:guid', priority: 'low', defaultHistory: ['EmailPage', 'AnnotatePage', 'HomePage'] },
                         { loadChildren: '../pages/home/home.module#HomeModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] }
                     ]
                 }),
@@ -2644,256 +2650,256 @@ var AppModule = (function () {
 
 /***/ }),
 
-/***/ 564:
+/***/ 563:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 250,
-	"./af.js": 250,
-	"./ar": 251,
-	"./ar-dz": 252,
-	"./ar-dz.js": 252,
-	"./ar-kw": 253,
-	"./ar-kw.js": 253,
-	"./ar-ly": 254,
-	"./ar-ly.js": 254,
-	"./ar-ma": 255,
-	"./ar-ma.js": 255,
-	"./ar-sa": 256,
-	"./ar-sa.js": 256,
-	"./ar-tn": 257,
-	"./ar-tn.js": 257,
-	"./ar.js": 251,
-	"./az": 258,
-	"./az.js": 258,
-	"./be": 259,
-	"./be.js": 259,
-	"./bg": 260,
-	"./bg.js": 260,
-	"./bm": 261,
-	"./bm.js": 261,
-	"./bn": 262,
-	"./bn.js": 262,
-	"./bo": 263,
-	"./bo.js": 263,
-	"./br": 264,
-	"./br.js": 264,
-	"./bs": 265,
-	"./bs.js": 265,
-	"./ca": 266,
-	"./ca.js": 266,
-	"./cs": 267,
-	"./cs.js": 267,
-	"./cv": 268,
-	"./cv.js": 268,
-	"./cy": 269,
-	"./cy.js": 269,
-	"./da": 270,
-	"./da.js": 270,
-	"./de": 271,
-	"./de-at": 272,
-	"./de-at.js": 272,
-	"./de-ch": 273,
-	"./de-ch.js": 273,
-	"./de.js": 271,
-	"./dv": 274,
-	"./dv.js": 274,
-	"./el": 275,
-	"./el.js": 275,
-	"./en-au": 276,
-	"./en-au.js": 276,
-	"./en-ca": 277,
-	"./en-ca.js": 277,
-	"./en-gb": 278,
-	"./en-gb.js": 278,
-	"./en-ie": 279,
-	"./en-ie.js": 279,
-	"./en-il": 280,
-	"./en-il.js": 280,
-	"./en-nz": 281,
-	"./en-nz.js": 281,
-	"./eo": 282,
-	"./eo.js": 282,
-	"./es": 283,
-	"./es-do": 284,
-	"./es-do.js": 284,
-	"./es-us": 285,
-	"./es-us.js": 285,
-	"./es.js": 283,
-	"./et": 286,
-	"./et.js": 286,
-	"./eu": 287,
-	"./eu.js": 287,
-	"./fa": 288,
-	"./fa.js": 288,
-	"./fi": 289,
-	"./fi.js": 289,
-	"./fo": 290,
-	"./fo.js": 290,
-	"./fr": 291,
-	"./fr-ca": 292,
-	"./fr-ca.js": 292,
-	"./fr-ch": 293,
-	"./fr-ch.js": 293,
-	"./fr.js": 291,
-	"./fy": 294,
-	"./fy.js": 294,
-	"./gd": 295,
-	"./gd.js": 295,
-	"./gl": 296,
-	"./gl.js": 296,
-	"./gom-latn": 297,
-	"./gom-latn.js": 297,
-	"./gu": 298,
-	"./gu.js": 298,
-	"./he": 299,
-	"./he.js": 299,
-	"./hi": 300,
-	"./hi.js": 300,
-	"./hr": 301,
-	"./hr.js": 301,
-	"./hu": 302,
-	"./hu.js": 302,
-	"./hy-am": 303,
-	"./hy-am.js": 303,
-	"./id": 304,
-	"./id.js": 304,
-	"./is": 305,
-	"./is.js": 305,
-	"./it": 306,
-	"./it.js": 306,
-	"./ja": 307,
-	"./ja.js": 307,
-	"./jv": 308,
-	"./jv.js": 308,
-	"./ka": 309,
-	"./ka.js": 309,
-	"./kk": 310,
-	"./kk.js": 310,
-	"./km": 311,
-	"./km.js": 311,
-	"./kn": 312,
-	"./kn.js": 312,
-	"./ko": 313,
-	"./ko.js": 313,
-	"./ky": 314,
-	"./ky.js": 314,
-	"./lb": 315,
-	"./lb.js": 315,
-	"./lo": 316,
-	"./lo.js": 316,
-	"./lt": 317,
-	"./lt.js": 317,
-	"./lv": 318,
-	"./lv.js": 318,
-	"./me": 319,
-	"./me.js": 319,
-	"./mi": 320,
-	"./mi.js": 320,
-	"./mk": 321,
-	"./mk.js": 321,
-	"./ml": 322,
-	"./ml.js": 322,
-	"./mn": 323,
-	"./mn.js": 323,
-	"./mr": 324,
-	"./mr.js": 324,
-	"./ms": 325,
-	"./ms-my": 326,
-	"./ms-my.js": 326,
-	"./ms.js": 325,
-	"./mt": 327,
-	"./mt.js": 327,
-	"./my": 328,
-	"./my.js": 328,
-	"./nb": 329,
-	"./nb.js": 329,
-	"./ne": 330,
-	"./ne.js": 330,
-	"./nl": 331,
-	"./nl-be": 332,
-	"./nl-be.js": 332,
-	"./nl.js": 331,
-	"./nn": 333,
-	"./nn.js": 333,
-	"./pa-in": 334,
-	"./pa-in.js": 334,
-	"./pl": 335,
-	"./pl.js": 335,
-	"./pt": 336,
-	"./pt-br": 337,
-	"./pt-br.js": 337,
-	"./pt.js": 336,
-	"./ro": 338,
-	"./ro.js": 338,
-	"./ru": 339,
-	"./ru.js": 339,
-	"./sd": 340,
-	"./sd.js": 340,
-	"./se": 341,
-	"./se.js": 341,
-	"./si": 342,
-	"./si.js": 342,
-	"./sk": 343,
-	"./sk.js": 343,
-	"./sl": 344,
-	"./sl.js": 344,
-	"./sq": 345,
-	"./sq.js": 345,
-	"./sr": 346,
-	"./sr-cyrl": 347,
-	"./sr-cyrl.js": 347,
-	"./sr.js": 346,
-	"./ss": 348,
-	"./ss.js": 348,
-	"./sv": 349,
-	"./sv.js": 349,
-	"./sw": 350,
-	"./sw.js": 350,
-	"./ta": 351,
-	"./ta.js": 351,
-	"./te": 352,
-	"./te.js": 352,
-	"./tet": 353,
-	"./tet.js": 353,
-	"./tg": 354,
-	"./tg.js": 354,
-	"./th": 355,
-	"./th.js": 355,
-	"./tl-ph": 356,
-	"./tl-ph.js": 356,
-	"./tlh": 357,
-	"./tlh.js": 357,
-	"./tr": 358,
-	"./tr.js": 358,
-	"./tzl": 359,
-	"./tzl.js": 359,
-	"./tzm": 360,
-	"./tzm-latn": 361,
-	"./tzm-latn.js": 361,
-	"./tzm.js": 360,
-	"./ug-cn": 362,
-	"./ug-cn.js": 362,
-	"./uk": 363,
-	"./uk.js": 363,
-	"./ur": 364,
-	"./ur.js": 364,
-	"./uz": 365,
-	"./uz-latn": 366,
-	"./uz-latn.js": 366,
-	"./uz.js": 365,
-	"./vi": 367,
-	"./vi.js": 367,
-	"./x-pseudo": 368,
-	"./x-pseudo.js": 368,
-	"./yo": 369,
-	"./yo.js": 369,
-	"./zh-cn": 370,
-	"./zh-cn.js": 370,
-	"./zh-hk": 371,
-	"./zh-hk.js": 371,
-	"./zh-tw": 372,
-	"./zh-tw.js": 372
+	"./af": 249,
+	"./af.js": 249,
+	"./ar": 250,
+	"./ar-dz": 251,
+	"./ar-dz.js": 251,
+	"./ar-kw": 252,
+	"./ar-kw.js": 252,
+	"./ar-ly": 253,
+	"./ar-ly.js": 253,
+	"./ar-ma": 254,
+	"./ar-ma.js": 254,
+	"./ar-sa": 255,
+	"./ar-sa.js": 255,
+	"./ar-tn": 256,
+	"./ar-tn.js": 256,
+	"./ar.js": 250,
+	"./az": 257,
+	"./az.js": 257,
+	"./be": 258,
+	"./be.js": 258,
+	"./bg": 259,
+	"./bg.js": 259,
+	"./bm": 260,
+	"./bm.js": 260,
+	"./bn": 261,
+	"./bn.js": 261,
+	"./bo": 262,
+	"./bo.js": 262,
+	"./br": 263,
+	"./br.js": 263,
+	"./bs": 264,
+	"./bs.js": 264,
+	"./ca": 265,
+	"./ca.js": 265,
+	"./cs": 266,
+	"./cs.js": 266,
+	"./cv": 267,
+	"./cv.js": 267,
+	"./cy": 268,
+	"./cy.js": 268,
+	"./da": 269,
+	"./da.js": 269,
+	"./de": 270,
+	"./de-at": 271,
+	"./de-at.js": 271,
+	"./de-ch": 272,
+	"./de-ch.js": 272,
+	"./de.js": 270,
+	"./dv": 273,
+	"./dv.js": 273,
+	"./el": 274,
+	"./el.js": 274,
+	"./en-au": 275,
+	"./en-au.js": 275,
+	"./en-ca": 276,
+	"./en-ca.js": 276,
+	"./en-gb": 277,
+	"./en-gb.js": 277,
+	"./en-ie": 278,
+	"./en-ie.js": 278,
+	"./en-il": 279,
+	"./en-il.js": 279,
+	"./en-nz": 280,
+	"./en-nz.js": 280,
+	"./eo": 281,
+	"./eo.js": 281,
+	"./es": 282,
+	"./es-do": 283,
+	"./es-do.js": 283,
+	"./es-us": 284,
+	"./es-us.js": 284,
+	"./es.js": 282,
+	"./et": 285,
+	"./et.js": 285,
+	"./eu": 286,
+	"./eu.js": 286,
+	"./fa": 287,
+	"./fa.js": 287,
+	"./fi": 288,
+	"./fi.js": 288,
+	"./fo": 289,
+	"./fo.js": 289,
+	"./fr": 290,
+	"./fr-ca": 291,
+	"./fr-ca.js": 291,
+	"./fr-ch": 292,
+	"./fr-ch.js": 292,
+	"./fr.js": 290,
+	"./fy": 293,
+	"./fy.js": 293,
+	"./gd": 294,
+	"./gd.js": 294,
+	"./gl": 295,
+	"./gl.js": 295,
+	"./gom-latn": 296,
+	"./gom-latn.js": 296,
+	"./gu": 297,
+	"./gu.js": 297,
+	"./he": 298,
+	"./he.js": 298,
+	"./hi": 299,
+	"./hi.js": 299,
+	"./hr": 300,
+	"./hr.js": 300,
+	"./hu": 301,
+	"./hu.js": 301,
+	"./hy-am": 302,
+	"./hy-am.js": 302,
+	"./id": 303,
+	"./id.js": 303,
+	"./is": 304,
+	"./is.js": 304,
+	"./it": 305,
+	"./it.js": 305,
+	"./ja": 306,
+	"./ja.js": 306,
+	"./jv": 307,
+	"./jv.js": 307,
+	"./ka": 308,
+	"./ka.js": 308,
+	"./kk": 309,
+	"./kk.js": 309,
+	"./km": 310,
+	"./km.js": 310,
+	"./kn": 311,
+	"./kn.js": 311,
+	"./ko": 312,
+	"./ko.js": 312,
+	"./ky": 313,
+	"./ky.js": 313,
+	"./lb": 314,
+	"./lb.js": 314,
+	"./lo": 315,
+	"./lo.js": 315,
+	"./lt": 316,
+	"./lt.js": 316,
+	"./lv": 317,
+	"./lv.js": 317,
+	"./me": 318,
+	"./me.js": 318,
+	"./mi": 319,
+	"./mi.js": 319,
+	"./mk": 320,
+	"./mk.js": 320,
+	"./ml": 321,
+	"./ml.js": 321,
+	"./mn": 322,
+	"./mn.js": 322,
+	"./mr": 323,
+	"./mr.js": 323,
+	"./ms": 324,
+	"./ms-my": 325,
+	"./ms-my.js": 325,
+	"./ms.js": 324,
+	"./mt": 326,
+	"./mt.js": 326,
+	"./my": 327,
+	"./my.js": 327,
+	"./nb": 328,
+	"./nb.js": 328,
+	"./ne": 329,
+	"./ne.js": 329,
+	"./nl": 330,
+	"./nl-be": 331,
+	"./nl-be.js": 331,
+	"./nl.js": 330,
+	"./nn": 332,
+	"./nn.js": 332,
+	"./pa-in": 333,
+	"./pa-in.js": 333,
+	"./pl": 334,
+	"./pl.js": 334,
+	"./pt": 335,
+	"./pt-br": 336,
+	"./pt-br.js": 336,
+	"./pt.js": 335,
+	"./ro": 337,
+	"./ro.js": 337,
+	"./ru": 338,
+	"./ru.js": 338,
+	"./sd": 339,
+	"./sd.js": 339,
+	"./se": 340,
+	"./se.js": 340,
+	"./si": 341,
+	"./si.js": 341,
+	"./sk": 342,
+	"./sk.js": 342,
+	"./sl": 343,
+	"./sl.js": 343,
+	"./sq": 344,
+	"./sq.js": 344,
+	"./sr": 345,
+	"./sr-cyrl": 346,
+	"./sr-cyrl.js": 346,
+	"./sr.js": 345,
+	"./ss": 347,
+	"./ss.js": 347,
+	"./sv": 348,
+	"./sv.js": 348,
+	"./sw": 349,
+	"./sw.js": 349,
+	"./ta": 350,
+	"./ta.js": 350,
+	"./te": 351,
+	"./te.js": 351,
+	"./tet": 352,
+	"./tet.js": 352,
+	"./tg": 353,
+	"./tg.js": 353,
+	"./th": 354,
+	"./th.js": 354,
+	"./tl-ph": 355,
+	"./tl-ph.js": 355,
+	"./tlh": 356,
+	"./tlh.js": 356,
+	"./tr": 357,
+	"./tr.js": 357,
+	"./tzl": 358,
+	"./tzl.js": 358,
+	"./tzm": 359,
+	"./tzm-latn": 360,
+	"./tzm-latn.js": 360,
+	"./tzm.js": 359,
+	"./ug-cn": 361,
+	"./ug-cn.js": 361,
+	"./uk": 362,
+	"./uk.js": 362,
+	"./ur": 363,
+	"./ur.js": 363,
+	"./uz": 364,
+	"./uz-latn": 365,
+	"./uz-latn.js": 365,
+	"./uz.js": 364,
+	"./vi": 366,
+	"./vi.js": 366,
+	"./x-pseudo": 367,
+	"./x-pseudo.js": 367,
+	"./yo": 368,
+	"./yo.js": 368,
+	"./zh-cn": 369,
+	"./zh-cn.js": 369,
+	"./zh-hk": 370,
+	"./zh-hk.js": 370,
+	"./zh-tw": 371,
+	"./zh-tw.js": 371
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -2909,11 +2915,11 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 564;
+webpackContext.id = 563;
 
 /***/ }),
 
-/***/ 570:
+/***/ 569:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2975,7 +2981,14 @@ var BlockStepsComponent = (function () {
 
 /***/ }),
 
-/***/ 576:
+/***/ 575:
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 594:
 /***/ (function(module, exports) {
 
 /* (ignored) */
@@ -2996,24 +3009,17 @@ var BlockStepsComponent = (function () {
 
 /***/ }),
 
-/***/ 597:
-/***/ (function(module, exports) {
-
-/* (ignored) */
-
-/***/ }),
-
 /***/ 61:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BlockStepsComponentModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__block_steps_block_steps__ = __webpack_require__(570);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__block_steps_block_steps__ = __webpack_require__(569);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__block_pdf_block_pdf__ = __webpack_require__(377);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_directives_module__ = __webpack_require__(393);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__block_chat_block_chat__ = __webpack_require__(248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__block_pdf_block_pdf__ = __webpack_require__(376);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_directives_module__ = __webpack_require__(392);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__block_chat_block_chat__ = __webpack_require__(247);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3058,7 +3064,7 @@ var BlockStepsComponentModule = (function () {
 
 /***/ }),
 
-/***/ 625:
+/***/ 624:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3170,7 +3176,7 @@ var AbsoluteDragDirective = (function () {
 
 /***/ }),
 
-/***/ 626:
+/***/ 625:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3236,158 +3242,7 @@ var ReviewPage = (function () {
 
 /***/ }),
 
-/***/ 627:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SignPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_document_service__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_block_pdf_block_pdf__ = __webpack_require__(377);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-/**
- * Generated class for the SignPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var SignPage = (function () {
-    function SignPage(navCtrl, navParams, documentService) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.documentService = documentService;
-    }
-    SignPage.prototype.ionViewDidLoad = function () {
-        this.init();
-    };
-    SignPage.prototype.init = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            var docData, guid_1, jsonDoc, doc, resp, guid, path, fileBuffer, copied;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        docData = getQueryParam('docData');
-                        if (!(this.navParams.get("guid") && !this.documentService.currentDoc && !docData)) return [3 /*break*/, 1];
-                        guid_1 = this.navParams.get("guid");
-                        this.documentService.getDocumentsIndex(true).then(function (data) {
-                            _this.documentService.documentsList = data;
-                            _this.documentService.setCurrentDoc(guid_1);
-                        });
-                        return [3 /*break*/, 8];
-                    case 1:
-                        if (!(this.navParams.get("guid") && !this.documentService.currentDoc && docData)) return [3 /*break*/, 7];
-                        jsonDoc = atob(docData);
-                        doc = JSON.parse(jsonDoc);
-                        return [4 /*yield*/, this.documentService.getDocumentsIndex(true)];
-                    case 2:
-                        resp = _a.sent();
-                        this.documentService.documentsList = resp;
-                        guid = this.navParams.get("guid");
-                        if (!this.documentService.documentExists(guid)) return [3 /*break*/, 3];
-                        this.documentService.setCurrentDoc(guid);
-                        return [3 /*break*/, 6];
-                    case 3:
-                        path = doc.pathAnnotatedDoc + this.navParams.get("guid") + ".pdf";
-                        console.log(path);
-                        return [4 /*yield*/, this.documentService.getDocumentByPath(path, doc.documentKey)];
-                    case 4:
-                        fileBuffer = _a.sent();
-                        return [4 /*yield*/, this.documentService.copyDocument(doc, guid, fileBuffer)];
-                    case 5:
-                        copied = _a.sent();
-                        this.blockPdf.ngOnInit();
-                        _a.label = 6;
-                    case 6: return [3 /*break*/, 8];
-                    case 7:
-                        console.log('Error, must pass in guid');
-                        _a.label = 8;
-                    case 8:
-                        console.log('ionViewDidLoad SignPage');
-                        this.name = blockstack.loadUserData().profile.name;
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    SignPage.prototype.next = function () {
-        this.navCtrl.push("ReviewPage", {
-            guid: this.documentService.currentDoc.guid
-        });
-    };
-    SignPage.prototype.back = function () {
-        this.navCtrl.push("EmailPage", {
-            guid: this.documentService.currentDoc.guid
-        });
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_3__components_block_pdf_block_pdf__["a" /* BlockPdfComponent */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3__components_block_pdf_block_pdf__["a" /* BlockPdfComponent */])
-    ], SignPage.prototype, "blockPdf", void 0);
-    SignPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-sign',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/sign/sign.html"*/'<!-- <ion-header>\n  <ion-navbar>\n    <ion-title>sign</ion-title>\n  </ion-navbar>\n</ion-header> -->\n<ion-content class="no-overflow-page">\n\n  <ion-grid>\n    <ion-row>\n      <ion-col width-100>\n        <block-steps activeStep="4" ></block-steps>\n        <br/>\n        <br/>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <block-pdf #blockpdf showToolBar="true" showSignature="true" showButtons="true">\n\n  </block-pdf>\n\n<!-- \n  <ion-card>\n\n     \n      <ion-card-header>\n        Work In Progress\n      </ion-card-header>\n  \n      <ion-card-content>\n        <img src="./../../assets/imgs/officespace.jpg"  style="max-width: 300px;"/>\n        <br />\n        <p>\n          Want this feature faster? Considering donating here: BTC - <ion-input value="1Jw3xsPzmYus3ke4XYXAHHyzpxD1sjQVta" style="font-size: large"></ion-input>\n        </p>\n  \n        <p>\n          <br/>\n            The signing feature will be enabled in the next release using <a href="https://blockstack.org/tutorials/multi-player-storage" target="_blank">Blockstacks\n            muli-player storage.</a>\n          <br/>\n        </p>\n  \n\n  \n  \n      </ion-card-content>\n  \n    </ion-card> -->\n\n</ion-content>\n'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/sign/sign.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__services_document_service__["a" /* DocumentService */]])
-    ], SignPage);
-    return SignPage;
-}());
-
-//# sourceMappingURL=sign.js.map
-
-/***/ }),
-
-/***/ 628:
+/***/ 626:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3395,11 +3250,11 @@ var SignPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_document_service__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_email_service__ = __webpack_require__(397);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_email_service__ = __webpack_require__(395);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs__ = __webpack_require__(639);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs__ = __webpack_require__(637);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3822,19 +3677,170 @@ var BlockStackService = (function () {
 
 /***/ }),
 
-/***/ 965:
+/***/ 895:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SignPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_document_service__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_block_pdf_block_pdf__ = __webpack_require__(376);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+/**
+ * Generated class for the SignPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var SignPage = (function () {
+    function SignPage(navCtrl, navParams, documentService) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.documentService = documentService;
+    }
+    SignPage.prototype.ionViewDidLoad = function () {
+        this.init();
+    };
+    SignPage.prototype.init = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            var docData, guid_1, jsonDoc, doc, resp, guid, path, fileBuffer, copied;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        docData = getQueryParam('docData');
+                        if (!(this.navParams.get("guid") && !this.documentService.currentDoc && !docData)) return [3 /*break*/, 1];
+                        guid_1 = this.navParams.get("guid");
+                        this.documentService.getDocumentsIndex(true).then(function (data) {
+                            _this.documentService.documentsList = data;
+                            _this.documentService.setCurrentDoc(guid_1);
+                        });
+                        return [3 /*break*/, 8];
+                    case 1:
+                        if (!(this.navParams.get("guid") && !this.documentService.currentDoc && docData)) return [3 /*break*/, 7];
+                        jsonDoc = atob(docData);
+                        doc = JSON.parse(jsonDoc);
+                        return [4 /*yield*/, this.documentService.getDocumentsIndex(true)];
+                    case 2:
+                        resp = _a.sent();
+                        this.documentService.documentsList = resp;
+                        guid = this.navParams.get("guid");
+                        if (!this.documentService.documentExists(guid)) return [3 /*break*/, 3];
+                        this.documentService.setCurrentDoc(guid);
+                        return [3 /*break*/, 6];
+                    case 3:
+                        path = doc.pathAnnotatedDoc + this.navParams.get("guid") + ".pdf";
+                        console.log(path);
+                        return [4 /*yield*/, this.documentService.getDocumentByPath(path, doc.documentKey)];
+                    case 4:
+                        fileBuffer = _a.sent();
+                        return [4 /*yield*/, this.documentService.copyDocument(doc, guid, fileBuffer)];
+                    case 5:
+                        copied = _a.sent();
+                        this.blockPdf.ngOnInit();
+                        _a.label = 6;
+                    case 6: return [3 /*break*/, 8];
+                    case 7:
+                        console.log('Error, must pass in guid');
+                        _a.label = 8;
+                    case 8:
+                        console.log('ionViewDidLoad SignPage');
+                        this.name = blockstack.loadUserData().profile.name;
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    SignPage.prototype.next = function () {
+        this.navCtrl.push("ReviewPage", {
+            guid: this.documentService.currentDoc.guid
+        });
+    };
+    SignPage.prototype.back = function () {
+        this.navCtrl.push("EmailPage", {
+            guid: this.documentService.currentDoc.guid
+        });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_3__components_block_pdf_block_pdf__["a" /* BlockPdfComponent */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3__components_block_pdf_block_pdf__["a" /* BlockPdfComponent */])
+    ], SignPage.prototype, "blockPdf", void 0);
+    SignPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-sign',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/sign/sign.html"*/'<!-- <ion-header>\n  <ion-navbar>\n    <ion-title>sign</ion-title>\n  </ion-navbar>\n</ion-header> -->\n<ion-content class="no-overflow-page">\n\n  <ion-grid>\n    <ion-row>\n      <ion-col width-100>\n        <block-steps activeStep="4" ></block-steps>\n        <br/>\n        <br/>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <block-pdf #blockpdf showToolBar="true" showSignature="true" showButtons="true">\n\n  </block-pdf>\n\n<!-- \n  <ion-card>\n\n     \n      <ion-card-header>\n        Work In Progress\n      </ion-card-header>\n  \n      <ion-card-content>\n        <img src="./../../assets/imgs/officespace.jpg"  style="max-width: 300px;"/>\n        <br />\n        <p>\n          Want this feature faster? Considering donating here: BTC - <ion-input value="1Jw3xsPzmYus3ke4XYXAHHyzpxD1sjQVta" style="font-size: large"></ion-input>\n        </p>\n  \n        <p>\n          <br/>\n            The signing feature will be enabled in the next release using <a href="https://blockstack.org/tutorials/multi-player-storage" target="_blank">Blockstacks\n            muli-player storage.</a>\n          <br/>\n        </p>\n  \n\n  \n  \n      </ion-card-content>\n  \n    </ion-card> -->\n\n</ion-content>\n'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/sign/sign.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__services_document_service__["a" /* DocumentService */]])
+    ], SignPage);
+    return SignPage;
+}());
+
+//# sourceMappingURL=sign.js.map
+
+/***/ }),
+
+/***/ 964:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(527);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(530);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(486);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(526);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(529);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(485);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_annotate_annotate__ = __webpack_require__(244);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_document_service__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__options_popover_page__ = __webpack_require__(536);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__options_popover_page__ = __webpack_require__(535);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_blockstack_service__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_toPromise__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_toPromise__);
@@ -4143,22 +4149,30 @@ var MyApp = (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */]),
-        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */]) === "function" && _a || Object)
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */])
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/app/app.html"*/'<!-- <ion-menu [content]="content" scroll="false" >\n  \n\n  <ion-content scroll="false">\n    <ion-list scroll="false">\n      <button scroll="false" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n        {{p.title}}\n      </button>\n    </ion-list>\n  </ion-content>\n</ion-menu> -->\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-split-pane >\n  <ion-menu [content]="content" >\n      <div class="discord" style="height: 100%; width: 300px; color:whitesmoke">\n        <!-- https://codepen.io/thesbros/pen/vxpMPp -->\n        <main class="container">\n          <aside class="servers">\n            <div class="servers-collection">\n              <div class="server focusable server-friends" role="button" aria-label="Friends unread">\n                <div class="server-icon">\n                  <svg>\n                    <use xlink:href="#icon-friends" />\n                  </svg>\n                </div>\n              </div>\n            </div>\n\n          \n            <div class="servers-collection">\n              <div class="server focusable active" \n              role="button" aria-label="My Server" \n              (click)="filterDocumentList(\'all\', $event)">\n                  <div class="server-icon" style="font-weight:bold">\n                    <!-- <img src="https://discordapp.com/assets/0e291f67c9274a1abdddeb3fd919cbaa.png" /> -->\n                    ALL\n                  </div>\n                 \n              </div>\n              <div *ngFor="let collaborator of documentService.documentsList">\n                  <div class="server focusable " \n                    role="button" \n                    aria-label="My Server" \n                    *ngIf="collaborator.signer.length > 0"\n                    (click)="filterDocumentList(collaborator.signer[0], $event)">\n                      <div class="server-icon">\n                       <!-- <img src="https://discordapp.com/assets/0e291f67c9274a1abdddeb3fd919cbaa.png" /> -->\n                       {{ collaborator.signer[0].charAt(0).toUpperCase()  }}\n                        \n                      </div>\n                      <span>{{ collaborator.signer[0]  }}</span>\n                    </div>\n              </div>\n              \n            \n            </div>\n          </aside>\n\n\n\n\n          <aside class="channels">\n            <header class="channels-header focusable" (click)="home()">\n\n              <!-- <img src="./assets/imgs/blockusign.png" height="45px" width="45px" /> -->\n              <img src="./assets/imgs/blockusignLogoSvg.svg" height="45px" width="45px" class="blockusign-logo" />\n              <img src="./assets/imgs/blockusignTextLoRes.png" width="120px" style="padding-left: 12px; padding-top: 10px" />\n             \n              \n            \n\n\n\n              <h3 role="header" class="channels-header-name" style="padding-right: 10px;"></h3> \n              <!-- <button ion-button style="padding: 10px 10px 10px 10px; background: green; height: 45px;"> NEW + </button> -->\n              <!-- <svg role="button" aria-label="Dropdown" class="channels-header-dropdown">\n                <use xlink:href="#icon-dropdown" />\n              </svg> -->\n\n             \n\n\n            </header>\n\n            <section class="channels-list">\n\n              <section  (click)="home()">\n                <button ion-button icon-end \n                  style="float:right;width:100%;background-color:green; color:white; border-radius: 5px; margin-bottom: 20px; margin-top: 20px">New Doc\n                  <ion-icon name="md-add"></ion-icon>\n                </button>\n                \n              </section>\n\n              <header class="channels-list-header" (click)="home()">\n                <span>Documents</span>\n              </header>\n\n             \n              \n              <ul class="channels-list-text" >\n                <div *ngFor="let item of documentsList">\n                    <li [ngClass]="(item == documentService.currentDoc) ? \'channel focusable channel-text active \' : \'channel focusable channel-text \' " >\n                        <!-- <span class="channel-name">blockusign nda.pdf</span> -->\n                        <span (click)="documentSelected($event, item)" style="width:90%">\n                          {{ item.fileName }}\n                        </span>\n                        <!-- <button class="button" role="button" aria-label="Invite" >\n                            <ion-icon md="md-trash" (click)="documentRemove(item)"></ion-icon>\n                        </button> -->\n                        <!-- <button class="button" role="button" aria-label="settings">\n                          <svg>\n                            <use xlink:href="#icon-channel-settings" />\n                          </svg>\n                        </button> -->\n                        <button ion-button icon-only  style="padding-left: 10px; background: transparent" (click)="presentPopover($event, item)">\n                                <ion-icon name="more"></ion-icon>\n                        </button>\n                      </li>\n                </div>\n                \n\n                <!-- <li class="channel focusable channel-text active">\n                  <span>my photo release form.pdf</span>\n                  <button class="button" role="button" aria-label="Invite">\n                    <svg>\n                      <use xlink:href="#icon-invite" />\n                    </svg>\n                  </button>\n                  <button class="button" role="button" aria-label="settings">\n                    <svg>\n                      <use xlink:href="#icon-channel-settings" />\n                    </svg>\n                  </button>\n                </li>\n\n                <li class="channel focusable channel-text">\n                  <span>may lease.pdf</span>\n                  <button class="button" role="button" aria-label="Invite">\n                    <svg>\n                      <use xlink:href="#icon-invite" />\n                    </svg>\n                  </button>\n                  <button class="button" role="button" aria-label="settings">\n                    <svg>\n                      <use xlink:href="#icon-channel-settings" />\n                    </svg>\n                  </button>\n                </li>\n\n                <li class="channel focusable channel-text">\n                  <span >escrow agreement.pdf</span>\n                  <button class="button" role="button" aria-label="Invite">\n                    <svg>\n                      <use xlink:href="#icon-invite" />\n                    </svg>\n                  </button>\n                  <button class="button" role="button" aria-label="settings">\n                    <svg>\n                      <use xlink:href="#icon-channel-settings" />\n                    </svg>\n                  </button>\n                </li> -->\n\n              </ul>\n\n\n\n              <!-- <header class="channels-list-header focusable">\n                <span>Templates</span>\n              </header>\n\n              <ul class="channels-list-text">\n                <li class="channel focusable channel-text ">\n                  <span class="channel-name">COMING SOON</span>\n                </li>\n              </ul>\n\n              <header class="channels-list-header focusable">\n                <span>Analytics</span>\n              </header>\n              <ul class="channels-list-text">\n                <li class="channel focusable channel-text ">\n                  <span class="channel-name">COMING SOON</span>\n                </li>\n              </ul> -->\n\n              <header class="channels-list-header focusable" style="margin-top:150px">\n                <span>Features in progress</span>\n              </header>\n              <ul class="channels-list-text">\n                  <li class="channel focusable channel-text ">\n                      <span>Templates</span>\n                    </li>\n                    <li class="channel focusable channel-text ">\n                        <span>Analytics</span>\n                      </li>\n                <li class="channel focusable channel-text ">\n                  <span>Smart Contracts</span>\n                </li>\n              </ul>\n            </section>\n\n\n\n            <footer class="channels-footer">\n              <!-- <img class="avatar" alt="Avatar" src="https://discordapp.com/assets/0e291f67c9274a1abdddeb3fd919cbaa.png" /> -->\n              <img class="avatar" alt="Avatar" [src]="avatar" />\n              <div class="channels-footer-details">\n                <span class="username">\n                  <a (click)="logout()" style="float:right">{{name}} {{ loginState }} </a>\n                </span>\n                <!-- <span class="tag">#0001</span> -->\n              </div>\n              <!-- <div class="channels-footer-controls button-group">\n                        <button role="button" aria-label="Mute" class="button button-mute"><svg><use xlink:href="#icon-mute" /></svg></button>\n                        <button role="button" aria-label="Deafen" class="button button-deafen"><svg><use xlink:href="#icon-deafen" /></svg></button>\n                        <button role="button" aria-label="Settings" class="button button-settings"><svg><use xlink:href="#icon-settings" /></svg></button>\n                      </div> -->\n            </footer>\n          </aside>\n\n\n        </main>\n      </div>\n   \n  </ion-menu>\n \n  <ion-nav [root]="rootPage" main #content swipeBackEnabled="false" class="centerMe">\n    <!-- content injected here -->\n  </ion-nav>\n  <ion-fab left top menuToggle>\n    <button ion-fab color="light" color="primary">\n      <ion-icon name="menu"></ion-icon>\n    </button>\n  </ion-fab>\n</ion-split-pane>\n\n<!-- ICONS -->\n<div style="visibility: hidden">\n  <svg id="icon-friends" viewBox="-289 382 32 27.1"><style id="style3">.st0{fill:#FFFFFF;} .st1{opacity:0.6;}</style><g id="g4145" fill="#fff"><path id="path5" d="M-273 409.1c-4.1 0-6.8-.6-7.9-1.7-.5-.6-.6-1.1-.6-1.3 0-.7.1-2.9.6-3.8.1-.3.5-1 4.5-2.4-1.6-1.4-2.6-4-2.6-7.1 0-4.2 2.3-7 5.9-7.1h.1c3.6.1 5.9 2.8 5.9 7.1 0 3.1-1 5.7-2.6 7.1 4 1.4 4.4 2.1 4.5 2.4.4.9.5 3.1.6 3.8 0 .2 0 .7-.6 1.3-1.1 1.1-3.7 1.7-7.8 1.7zm0-2c5.1 0 6.2-.9 6.4-1.1-.1-1.1-.2-2.3-.3-2.7-.6-.4-2.9-1.3-4.8-1.9l-.7-.2-.1-2 .7-.3c1.7-.6 2.8-3.1 2.8-6.1 0-3.1-1.5-5-3.9-5.1-2.5 0-4 2-4 5.1 0 3 1.1 5.5 2.8 6.1l.7.3-.1 2-.7.2c-1.9.6-4.2 1.5-4.8 1.9-.1.4-.3 1.6-.3 2.7.1.2 1.3 1.1 6.3 1.1z" class="st0"/><g id="g7" class="st1" opacity=".6"><path id="path9" d="M-257 402.4c0-.7-.1-2.9-.6-3.8-.1-.3-.5-1-4.5-2.4 1.6-1.4 2.6-4 2.6-7.1 0-4.2-2.3-7-5.9-7.1h-.1c-1.9 0-3.5.8-4.5 2.2.6.3 1.2.6 1.8 1 .7-.8 1.6-1.3 2.8-1.3 2.4 0 3.9 2 3.9 5.1 0 3-1.1 5.5-2.8 6.1l-.7.3.1 2 .7.2c1.9.6 4.3 1.5 4.8 1.9.1.4.3 1.6.3 2.7-.2.2-1 .8-3.8 1 .1.6.2 1.2.2 2 2.5-.2 4.2-.8 5-1.6.7-.5.7-1 .7-1.2z" class="st0"/><path id="path11" d="M-287 402.3c.1-1.1.2-2.3.3-2.7.6-.4 2.9-1.3 4.8-1.9l.7-.2.1-2-.7-.3c-1.6-.6-2.8-3.1-2.8-6.1 0-3.1 1.5-5 4-5.1 1.2 0 2.1.5 2.8 1.3.5-.4 1.1-.8 1.8-1-1-1.4-2.6-2.2-4.5-2.2h-.1c-3.6 0-5.9 2.8-5.9 7.1 0 3.1 1 5.7 2.6 7.1-4 1.4-4.4 2.1-4.5 2.4-.4.9-.5 3.1-.6 3.8 0 .2 0 .7.6 1.3.8.9 2.5 1.4 5.1 1.6 0-.7.1-1.4.2-2-2.9-.3-3.7-.9-3.9-1.1z" class="st0"/></g></g></svg>\n\n  <svg id="icon-mute" viewBox="0 0 16 16"><path fill="#5D6063" d="M12.5,8v1c0,2.2-1.8,4-4,4h-1c-2.2,0-4-1.8-4-4V8h-1v1 c0,2.8,2.2,5,5,5v1H7c-0.3,0-0.5,0.2-0.5,0.5C6.5,15.8,6.7,16,7,16h2c0.3,0,0.5-0.2,0.5-0.5C9.5,15.2,9.3,15,9,15H8.5v-1 c2.8,0,5-2.2,5-5V8H12.5z M8,12c1.9,0,3.5-1.6,3.5-3.5v-5C11.5,1.6,9.9,0,8,0C6.1,0,4.5,1.6,4.5,3.5v5C4.5,10.4,6.1,12,8,12z M5.5,3.5C5.5,2.1,6.6,1,8,1c1.4,0,2.5,1.1,2.5,2.5v5C10.5,9.9,9.4,11,8,11c-1.4,0-2.5-1.1-2.5-2.5V3.5z"/></svg>\n  \n  <svg id="icon-deafen" viewBox="0 0 16 16"><path fill="#5D6063" d="M15.9,9C16,8.7,16,8.3,16,8c0-4.4-3.6-8-8-8C3.6,0,0,3.6,0,8 c0,0.3,0,0.7,0.1,1h0C0,9.2,0,9.3,0,9.5v4C0,14.3,0.7,15,1.5,15h2C4.3,15,5,14.3,5,13.5v-4C5,8.7,4.3,8,3.5,8h-2 C1.3,8,1.2,8,1,8.1C1,8.1,1,8,1,8c0-3.9,3.1-7,7-7c3.9,0,7,3.1,7,7c0,0,0,0.1,0,0.1C14.8,8,14.7,8,14.5,8h-2C11.7,8,11,8.7,11,9.5 v4c0,0.8,0.7,1.5,1.5,1.5h2c0.8,0,1.5-0.7,1.5-1.5v-4C16,9.3,16,9.2,15.9,9L15.9,9z M1.5,9h2C3.8,9,4,9.2,4,9.5v4 C4,13.8,3.8,14,3.5,14h-2C1.2,14,1,13.8,1,13.5v-4C1,9.2,1.2,9,1.5,9z M15,13.5c0,0.3-0.2,0.5-0.5,0.5h-2c-0.3,0-0.5-0.2-0.5-0.5 v-4C12,9.2,12.2,9,12.5,9h2C14.8,9,15,9.2,15,9.5V13.5z"/></svg>\n  \n  <svg id="icon-settings" viewBox="0 0 16 16"><path fill="#5D6063" d="M8,5C6.3,5,5,6.3,5,8c0,1.7,1.3,3,3,3c1.7,0,3-1.3,3-3 C11,6.3,9.7,5,8,5z M8,10c-1.1,0-2-0.9-2-2c0-1.1,0.9-2,2-2s2,0.9,2,2C10,9.1,9.1,10,8,10z M16,8c0-1-0.8-1.9-1.8-2 c-0.1-0.3-0.3-0.7-0.4-1c0.7-0.8,0.6-1.9-0.1-2.7c-0.7-0.7-1.9-0.8-2.7-0.1c-0.3-0.2-0.6-0.3-1-0.4C9.9,0.8,9,0,8,0 C7,0,6.1,0.8,6,1.8C5.7,1.9,5.3,2.1,5,2.2C4.2,1.6,3.1,1.6,2.3,2.3C1.6,3.1,1.6,4.2,2.2,5C2.1,5.3,1.9,5.7,1.8,6C0.8,6.1,0,7,0,8 c0,1,0.8,1.9,1.8,2c0.1,0.3,0.3,0.7,0.4,1c-0.7,0.8-0.6,1.9,0.1,2.7c0.7,0.7,1.9,0.8,2.7,0.1c0.3,0.2,0.6,0.3,1,0.4 C6.1,15.2,7,16,8,16c1,0,1.9-0.8,2-1.8c0.3-0.1,0.7-0.3,1-0.4c0.8,0.7,1.9,0.6,2.7-0.1c0.7-0.7,0.8-1.9,0.1-2.7 c0.2-0.3,0.3-0.6,0.4-1C15.2,9.9,16,9,16,8z M13.4,9c-0.1,0.8-0.5,1.5-0.9,2.1l0.4,0.4c0.4,0.4,0.4,1,0,1.4c-0.4,0.4-1,0.4-1.4,0 l-0.4-0.4C10.5,13,9.8,13.3,9,13.4V14c0,0.6-0.4,1-1,1c-0.6,0-1-0.4-1-1v-0.6c-0.8-0.1-1.5-0.5-2.1-0.9l-0.4,0.4 c-0.4,0.4-1,0.4-1.4,0c-0.4-0.4-0.4-1,0-1.4l0.4-0.4C3,10.5,2.7,9.8,2.6,9H2C1.4,9,1,8.6,1,8c0-0.6,0.4-1,1-1h0.6 C2.7,6.2,3,5.5,3.5,4.9L3.1,4.5c-0.4-0.4-0.4-1,0-1.4c0.4-0.4,1-0.4,1.4,0l0.4,0.4C5.5,3,6.2,2.7,7,2.6V2c0-0.6,0.4-1,1-1 c0.6,0,1,0.4,1,1v0.6c0.8,0.1,1.5,0.5,2.1,0.9l0.4-0.4c0.4-0.4,1-0.4,1.4,0c0.4,0.4,0.4,1,0,1.4l-0.4,0.4C13,5.5,13.3,6.2,13.4,7 H14c0.6,0,1,0.4,1,1c0,0.6-0.4,1-1,1H13.4z"/></svg>\n  \n  <svg id="icon-dropdown" viewBox="0 0 18 18"><style>.dd{stroke:#ABADAF;stroke-width:2px;stroke-dashoffset:1;stroke-dasharray:inherit}</style><path class="dd" stroke="#FFF" d="M4.5 4.5l9 9" stroke-linecap="round"></path><path class="dd" stroke="#FFF" d="M13.5 4.5l-9 9" stroke-linecap="round"></path></svg>\n  \n  <svg id="icon-invite" viewBox="0 0 16 16"><path fill="#fff" d="M6.3,3.4L8,1.7v9.8C8,11.8,8.2,12,8.5,12C8.8,12,9,11.8,9,11.5V1.7l1.7,1.7c0.2,0.2,0.5,0.2,0.7,0c0.2-0.2,0.2-0.5,0-0.7L8.9,0.2c0,0,0,0,0-0.1C8.8,0,8.6,0,8.5,0c0,0,0,0,0,0c0,0,0,0,0,0C8.4,0,8.2,0,8.1,0.1c0,0,0,0,0,0.1L5.6,2.7c-0.2,0.2-0.2,0.5,0,0.7C5.8,3.5,6.1,3.5,6.3,3.4z M14,4h-1.5v1h1C13.8,5,14,5.2,14,5.5v9c0,0.3-0.2,0.5-0.5,0.5h-10C3.2,15,3,14.8,3,14.5v-9C3,5.2,3.2,5,3.5,5h1V4H3C2.4,4,2,4.4,2,5v10c0,0.6,0.4,1,1,1h11c0.6,0,1-0.4,1-1V5C15,4.4,14.6,4,14,4z"/></svg>\n  \n  <svg id="icon-channel-settings" viewBox="0 0 16 16"><path fill="#fff" d="M8,5C6.3,5,5,6.3,5,8c0,1.7,1.3,3,3,3c1.7,0,3-1.3,3-3 C11,6.3,9.7,5,8,5z M8,10c-1.1,0-2-0.9-2-2c0-1.1,0.9-2,2-2s2,0.9,2,2C10,9.1,9.1,10,8,10z M16,8c0-1-0.8-1.9-1.8-2 c-0.1-0.3-0.3-0.7-0.4-1c0.7-0.8,0.6-1.9-0.1-2.7c-0.7-0.7-1.9-0.8-2.7-0.1c-0.3-0.2-0.6-0.3-1-0.4C9.9,0.8,9,0,8,0 C7,0,6.1,0.8,6,1.8C5.7,1.9,5.3,2.1,5,2.2C4.2,1.6,3.1,1.6,2.3,2.3C1.6,3.1,1.6,4.2,2.2,5C2.1,5.3,1.9,5.7,1.8,6C0.8,6.1,0,7,0,8 c0,1,0.8,1.9,1.8,2c0.1,0.3,0.3,0.7,0.4,1c-0.7,0.8-0.6,1.9,0.1,2.7c0.7,0.7,1.9,0.8,2.7,0.1c0.3,0.2,0.6,0.3,1,0.4 C6.1,15.2,7,16,8,16c1,0,1.9-0.8,2-1.8c0.3-0.1,0.7-0.3,1-0.4c0.8,0.7,1.9,0.6,2.7-0.1c0.7-0.7,0.8-1.9,0.1-2.7 c0.2-0.3,0.3-0.6,0.4-1C15.2,9.9,16,9,16,8z M13.4,9c-0.1,0.8-0.5,1.5-0.9,2.1l0.4,0.4c0.4,0.4,0.4,1,0,1.4c-0.4,0.4-1,0.4-1.4,0 l-0.4-0.4C10.5,13,9.8,13.3,9,13.4V14c0,0.6-0.4,1-1,1c-0.6,0-1-0.4-1-1v-0.6c-0.8-0.1-1.5-0.5-2.1-0.9l-0.4,0.4 c-0.4,0.4-1,0.4-1.4,0c-0.4-0.4-0.4-1,0-1.4l0.4-0.4C3,10.5,2.7,9.8,2.6,9H2C1.4,9,1,8.6,1,8c0-0.6,0.4-1,1-1h0.6 C2.7,6.2,3,5.5,3.5,4.9L3.1,4.5c-0.4-0.4-0.4-1,0-1.4c0.4-0.4,1-0.4,1.4,0l0.4,0.4C5.5,3,6.2,2.7,7,2.6V2c0-0.6,0.4-1,1-1 c0.6,0,1,0.4,1,1v0.6c0.8,0.1,1.5,0.5,2.1,0.9l0.4-0.4c0.4-0.4,1-0.4,1.4,0c0.4,0.4,0.4,1,0,1.4l-0.4,0.4C13,5.5,13.3,6.2,13.4,7 H14c0.6,0,1,0.4,1,1c0,0.6-0.4,1-1,1H13.4z"/></svg>\n</div>\n'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/app/app.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_6__services_document_service__["a" /* DocumentService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__services_document_service__["a" /* DocumentService */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* PopoverController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* PopoverController */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* MenuController */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_8__services_blockstack_service__["a" /* BlockStackService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__services_blockstack_service__["a" /* BlockStackService */]) === "function" && _k || Object, typeof (_l = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* ToastController */]) === "function" && _l || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */],
+            __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],
+            __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_6__services_document_service__["a" /* DocumentService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* PopoverController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* MenuController */],
+            __WEBPACK_IMPORTED_MODULE_8__services_blockstack_service__["a" /* BlockStackService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* ToastController */]])
     ], MyApp);
     return MyApp;
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
 }());
 
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
 
-/***/ 966:
+/***/ 965:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4266,7 +4280,7 @@ var CoinService = (function () {
 
 /***/ }),
 
-/***/ 967:
+/***/ 966:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4414,7 +4428,7 @@ var CryptoCompareService = (function () {
 
 /***/ }),
 
-/***/ 968:
+/***/ 967:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4500,5 +4514,5 @@ var SlackService = (function () {
 
 /***/ })
 
-},[537]);
+},[536]);
 //# sourceMappingURL=main.js.map

@@ -154,7 +154,7 @@ export class BlockChatComponent implements OnDestroy, OnInit{
     this.events.publish('documentService:addedChat', this.message);
     this.message = null;
     this.firstLoad = true;
-    
+    $("#loadSpin").hide();
     // @todo optimize this with lazy load adding of new message
     //await this.getLogData();
   }
