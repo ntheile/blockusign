@@ -325,6 +325,25 @@ export class MyApp {
     
   }
 
+  copyBtc(){
+    let el = document.getElementById('btc');
+
+    el.select();
+    document.execCommand("copy");
+
+    let toast = this.toastCntrl.create({
+      message: 'BTC Address copied ' + el.value,
+      duration: 2000,
+      position: 'middle'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
+  }
+
 }
 
 

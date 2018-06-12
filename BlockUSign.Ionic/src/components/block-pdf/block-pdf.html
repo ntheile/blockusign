@@ -49,8 +49,10 @@
             </text>
 
           </svg>
+          <span class="editSig" >
+              <ion-icon name="md-create" (click)="editSignature()" style="color: black"></ion-icon>
+          </span>
           
-          <ion-icon class="editSig" name="ios-create" (click)="editSignature()"></ion-icon>
         </ion-col>
         <ion-col col-auto *ngIf="showButtons">
           <img src="./../../assets/imgs/arrows.svg" height="35px">
