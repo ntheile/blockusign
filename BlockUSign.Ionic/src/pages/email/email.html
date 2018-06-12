@@ -1,20 +1,15 @@
-<ion-content class="no-overflow-page email-page">
+<ion-content class="email-page">
 
   <ion-grid>
     <ion-row>
       <ion-col width-100>
-
         <block-steps activeStep="3">
         </block-steps>
-
-
-        <br/>
-        <br/>
       </ion-col>
     </ion-row>
   </ion-grid>
 
-  <ion-grid>
+  <ion-grid style="position: relative">
     <ion-row align-items-left>
       <ion-col>
         <ng-select style="width:460px; background-color:whitesmoke; border-radius:2px; padding-left:10px" 
@@ -56,50 +51,8 @@
   </ion-grid>
 
   
-  <block-pdf marginTop="50px" locked="true" >
+  <block-pdf marginTop="10px" locked="true" >
   </block-pdf>
  
-
-  
-
-  <!-- <ion-card>
-
-    <ion-card-header>
-      Work In Progress
-    </ion-card-header>
-
-    <ion-card-content>
-      <img src="./../../assets/imgs/bugcode.jpg"  style="max-width: 300px;"/>
-      <br />
-      <p>
-        Want this feature faster? Considering donating here: BTC - <ion-input value="1Jw3xsPzmYus3ke4XYXAHHyzpxD1sjQVta" style="font-size: large"></ion-input>
-      </p>
-
-      <p>
-        <br/>
-        The email feature will be enabled in the next release. For now, copy and paste this link to sign. Right now, only you can
-        sign the document. The next release will allow you to send this document to somebody else to sign using <a href="https://blockstack.org/tutorials/multi-player-storage" target="_blank">Blockstacks
-          muli-player storage.</a>
-        <br/>
-      </p>
-
-
-      <ion-input [value]="getUrl()" style="font-size: large"></ion-input>
-
-
-
-
-      <ion-input [value]="getUrl()" style="font-size: large"></ion-input>
-
-
-    </ion-card-content>
-
-  </ion-card>
- -->
-
-
-
-
-
 
 </ion-content>

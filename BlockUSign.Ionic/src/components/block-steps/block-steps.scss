@@ -87,4 +87,12 @@
     content: '✓';
    }
     
-   
+
+   @media (max-width:499px){
+
+    .step-info{
+      display: none;
+    }
+
+   }
+

@@ -28719,7 +28719,8 @@ html, body, * {
 }
 
 .no-overflow-page .scroll-content {
-  overflow-y: hidden;
+  overflow-y: hidden !important;
+  padding-bottom: 125px !important;
 }
 
 .classic-input {
@@ -29054,6 +29055,21 @@ img.draggable.drag-can-drop {
   overflow-x: scroll !important;
 }
 
+.editSig {
+  color: white;
+  top: -10px;
+  position: absolute;
+  right: 0px;
+  font-size: 25px;
+  z-index: 999999;
+  border: black;
+}
+
+.editSig:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
 /* Steps https://codepen.io/praveenpuglia/pen/WpEvwO */
 .steps-wrapper {
   margin: 0;
@@ -29158,6 +29174,12 @@ img.draggable.drag-can-drop {
 
 .step.completed::before {
   content: '✓';
+}
+
+@media (max-width: 499px) {
+  .step-info {
+    display: none;
+  }
 }
 
 .page {

@@ -1,7 +1,7 @@
 <ion-content class="block-pdf-page">
 
 
-  <div class="page" id="pageContainer1" data-page-number="1" style="position:relative;width: 100%; height:100%;overflow-x:auto;overflow-y:auto"
+  <div class="page" id="pageContainer1" data-page-number="1" style="position:relative;width: 100%; height:100%;"
     [style.margin-top]="marginTop">
     <div id="canvasWrapper" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
       <div>
@@ -20,12 +20,15 @@
 
   </div>
 
+  <br/><br/><br/><br/>
+
   <svg class="annotationLayer" xmlns="http://www.w3.org/2000/svg">
   </svg>
 
   <img *ngIf="!showToolBar" id="sigImg" height="50px" class="draggable draggable-droppable" src="./../../assets/imgs/sign.png"
   />
-
+  
+ 
 
   <ion-fab *ngIf="showToolBar" top left style="margin-top:1px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab>
     <ion-grid>
@@ -34,9 +37,11 @@
           <img id="sigImg" height="50px" class="draggable draggable-droppable" src="./../../assets/imgs/sign.png" />
           
         </ion-col>
-        <ion-col col-auto *ngIf="showSignature">
+        <ion-col col-auto *ngIf="showSignature" style="position: relative;">
           <svg xmlns="http://www.w3.org/2000/svg" id="signature" class="draggable draggable-droppable" width="200" height="50" viewBox="0 0 200 50"
             style="clear:both; background:#ffeb8e; border: 1px solid red " opacity="1">
+
+           
 
             <text x="50%" y="50%" width="200" height="50" viewBox="0 0 200 50" alignment-baseline="middle" text-anchor="middle" fill="green"
               font-family="Cedarville Cursive" font-weight="bold" style="font-size: 25px">
@@ -44,10 +49,12 @@
             </text>
 
           </svg>
+          
+          <ion-icon class="editSig" name="ios-create" (click)="editSignature()"></ion-icon>
         </ion-col>
         <ion-col col-auto *ngIf="showButtons">
           <img src="./../../assets/imgs/arrows.svg" height="35px">
-          <span style="color:#757575; font-family: Cedarville Cursive; font-size: 18px; font-weight: bold">drag</span>
+          <span style="color:whitesmoke; font-family: Cedarville Cursive; font-size: 18px; font-weight: bold">drag</span>
         </ion-col>
         <!-- <ion-col col-auto style="padding-left: 50px;">
         <input id="checkBox" type="checkbox">
@@ -62,9 +69,10 @@
       </ion-row>
       <ion-row style="margin-top: -15px; margin-bottom: -8px">
         <ion-col>
-           <span style="font-size: .75rem; color:#757575;">*drag off screen to delete</span>
+           <span style="font-size: .75rem; color:#757575;">*drag off screen to delete. click edit to change signature name</span>
         </ion-col>
       </ion-row>
     </ion-grid>
   </ion-fab>
+
 </ion-content>

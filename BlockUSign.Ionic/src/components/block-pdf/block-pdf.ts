@@ -1,5 +1,5 @@
 import { Component, ViewChild, Input, ChangeDetectionStrategy, ChangeDetectorRef, ViewContainerRef } from '@angular/core';
-import { NavController, NavParams, IonicPage, Segment, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, IonicPage, Segment, LoadingController, AlertController } from 'ionic-angular';
 import { CryptoCompareService } from '../../services/cryptocompare.service'
 import { AbsoluteDragDirective } from '../../directives/absolute-drag/absolute-drag';
 import { DocumentService } from '../../services/document.service';
@@ -78,7 +78,8 @@ export class BlockPdfComponent {
     public documentService: DocumentService,
     private changeDetector: ChangeDetectorRef,
     private viewContainerRef: ViewContainerRef,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    private alertCtrl: AlertController,
   ) {
     console.log('====> constructor');
 
@@ -137,6 +138,11 @@ export class BlockPdfComponent {
     }
 
     this.yourName = blockstack.loadUserData().profile.name;
+
+    if (this.yourName == null || this.yourName == "" || this.yourName == undefined){
+      this.yourName = "[Edit Name]"
+    }
+
   }
 
 
@@ -307,5 +313,45 @@ export class BlockPdfComponent {
     }
 
   }
+
+  public editSignature(){
+    
+
+    let sig;
+
+    let alert = this.alertCtrl.create({
+      title: 'Please enter a new Signature',
+      enableBackdropDismiss: false,
+      inputs: [
+        {
+          name: 'sig',
+          placeholder: 'signature',
+          value: sig
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Ok',
+          handler: data => {
+            this.yourName = data.sig;
+
+            if (this.yourName == null || this.yourName == "" || this.yourName == undefined){
+              this.yourName = "[Edit Name]"
+            }
+
+          }
+        }
+      ]
+    });
+    alert.present();
+  
+}
 
 }

@@ -697,7 +697,8 @@
   
 .no-overflow-page {
     .scroll-content {
-        overflow-y: hidden;
+        overflow-y: hidden !important;
+        padding-bottom: 125px !important;
     }
 }
 

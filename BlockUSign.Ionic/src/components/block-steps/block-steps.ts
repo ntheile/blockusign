@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { NavController, IonicPage } from 'ionic-angular';
+import { NavController, IonicPage, AlertController } from 'ionic-angular';
 import { DocumentService } from '../../services/document.service';
 declare let $: any;
 
@@ -15,12 +15,15 @@ declare let $: any;
 })
 export class BlockStepsComponent {
 
-
   @Input() activeStep;
-
+  
   text: string;
 
-  constructor(private nav: NavController, private documentService: DocumentService) {
+  constructor(
+    private nav: NavController, 
+    private documentService: DocumentService,
+   
+  ) {
     console.log('Hello BlockStepsComponent Component');
     this.text = 'Hello World';
   }
@@ -37,5 +40,7 @@ export class BlockStepsComponent {
       guid: this.documentService.currentDoc.guid
     });
   }
+
+ 
 
 }

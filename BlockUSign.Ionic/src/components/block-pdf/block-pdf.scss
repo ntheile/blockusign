@@ -113,4 +113,18 @@
     }
 }
 
+.editSig{
+    color: white;
+    top: -10px;
+    position: absolute;
+    right: 0px; 
+    font-size:25px; 
+    z-index:999999; 
+    border: black 
+}
+
+.editSig:hover{
+    opacity: 0.8;
+    cursor: pointer;
+}
 

@@ -1,16 +1,3 @@
-<!-- Generated template for the BlockStepsComponent component -->
-<!-- <h1>
-    {{ activeStep }}
-</h1>
-
-<div>
-    <ng-content select=".step1"></ng-content>
-</div>
-<h2>
-    <ng-content select=".step2"></ng-content>
-</h2> -->
-
-
  <div class="steps-wrapper">
     <ul class="steps">
       <li [ngClass]="activeStep == '1' ? 'step active': 'step'" (click)="route('HomePage')">
