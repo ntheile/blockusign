@@ -1,5 +1,5 @@
-import { Component, ViewChild, Input, ChangeDetectionStrategy, ChangeDetectorRef, ViewContainerRef } from '@angular/core';
-import { NavController, NavParams, IonicPage, Segment, LoadingController, AlertController } from 'ionic-angular';
+import { Component, ViewChild, Input, ChangeDetectionStrategy, ChangeDetectorRef, ViewContainerRef, AfterViewInit, OnDestroy, OnInit } from '@angular/core';
+import { NavController, NavParams, IonicPage, Segment, LoadingController, AlertController, PopoverController } from 'ionic-angular';
 import { CryptoCompareService } from '../../services/cryptocompare.service'
 import { AbsoluteDragDirective } from '../../directives/absolute-drag/absolute-drag';
 import { DocumentService } from '../../services/document.service';
@@ -13,6 +13,7 @@ import PDFAnnotate from 'pdf-annotate';
 import annotations from './annotations';
 import mockViewport from './mockViewport'
 import { MyApp } from '../../app/app.component';
+//import { EmojiPopoverPage } from '../../app/emoji.popover.page';
 declare let CustomStyle: any;
 declare var $: any;
 declare var window: any;
@@ -38,7 +39,7 @@ declare let getQueryParam: any;
   templateUrl: 'block-pdf.html',
   //changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BlockPdfComponent {
+export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
 
   //@ViewChild(AbsoluteDragDirective) vc: AbsoluteDragDirective;
   svgDrawer;
@@ -80,6 +81,7 @@ export class BlockPdfComponent {
     private viewContainerRef: ViewContainerRef,
     public loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
+    public popoverCtrl: PopoverController,
   ) {
     console.log('====> constructor');
 
@@ -100,9 +102,57 @@ export class BlockPdfComponent {
 
   }
 
+  ngAfterViewInit(){
+    
+  }
+
+  registerEmojiEvent(){
+
+    $(document).ready( () =>{
+      
+      $(document).on("click", ".emoji-picker2", function (e) {
+        e.stopPropagation();
+        $('.intercom-composer-emoji-popover2').toggleClass("active");
+      });
+  
+      $(document).click(function (e) {
+        if ($(e.target).attr('class') != '.intercom-composer-emoji-popover2' && $(e.target).parents(".intercom-composer-emoji-popover2").length == 0) {
+          $(".intercom-composer-emoji-popover2").removeClass("active");
+        }
+      });
+  
+      $(document).on("click", ".intercom-emoji-picker-emoji", function (e) {
+        if (e.target.className == "intercom-emoji-picker-emoji p2"){
+          let existing = $(".emojiDiv2").html();
+          let emo = $(this).html();
+          $(".emojiDiv2").html( existing + emo );
+        }
+      });
+  
+      $('.intercom-composer-popover-input2').on('input', function () {
+        var query = this.value;
+        if (query != "") {
+          $(".intercom-emoji-picker-emoji:not([title*='" + query + "'])").hide();
+        }
+        else {
+          $(".intercom-emoji-picker-emoji").show();
+        }
+      });
+
+    });
+   
+  }
+
+  destroyEmojiEvents(){
+    $(document).off("click", ".emoji-picker2");
+    $(document).off("click");
+    $('.intercom-composer-popover-input2').off('input');
+  }
+
+
   ngOnDestroy() {
     console.log("====> ngOnDestroy");
-
+   
   }
 
   init() {
@@ -316,11 +366,10 @@ export class BlockPdfComponent {
 
   public editSignature(){
     
-
     let sig;
-
     let alert = this.alertCtrl.create({
       title: 'Please enter a new Signature',
+      message: '',
       enableBackdropDismiss: false,
       inputs: [
         {
@@ -352,6 +401,13 @@ export class BlockPdfComponent {
     });
     alert.present();
   
-}
+  }
+
+  presentPopover(myEvent) {
+    // let popover = this.popoverCtrl.create(EmojiPopoverPage, {  });
+    // popover.present({
+    //   ev: myEvent
+    // });
+  }
 
 }

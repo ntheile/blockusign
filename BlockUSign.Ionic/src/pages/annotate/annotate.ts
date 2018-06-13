@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, IonicPage, Segment, Events } from 'ionic-angular';
 import { DocumentService } from '../../services/document.service';
 import { BlockChatComponent } from './../../components/block-chat/block-chat';
+import { BlockPdfComponent } from './../../components/block-pdf/block-pdf';
 import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/timeout';
 import 'rxjs/add/operator/delay';
@@ -25,6 +26,7 @@ declare var blockstack: any;
 export class AnnotatePage {
 
   @ViewChild("blockChat") blockChat: BlockChatComponent;
+  @ViewChild("blockPdf") blockPdf: BlockPdfComponent;
 
   constructor(
     public navCtrl: NavController, 
@@ -35,8 +37,17 @@ export class AnnotatePage {
     
   }
 
-  ionViewWillLeave(){
+  
+  ionViewDidEnter(){
+    this.blockPdf.registerEmojiEvent();
+    this.blockChat.registerEmojiEvent();
+  }
+
+  ionViewWillLeave() {
+    this.blockChat.destroyEmojiEvents();
+    this.blockChat.firstLoad = true;
     this.blockChat.ngOnDestroy();
+    this.blockPdf.destroyEmojiEvents();
   }
 
 }

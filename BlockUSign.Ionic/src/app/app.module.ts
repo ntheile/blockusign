@@ -37,7 +37,7 @@ import { Block } from 'bitcoinjs-lib';
 @NgModule({
   declarations: [
     MyApp,
-    OptionsPopoverPage
+    OptionsPopoverPage,
   ],
   imports: [
     BrowserModule,

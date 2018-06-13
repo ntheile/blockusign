@@ -127,6 +127,20 @@
    
 }
 
+.emojiSig{
+ 
+    background-color: whitesmoke;
+    top: 40px;
+    position: absolute;
+    right: 0px; 
+    border-radius: 7px;
+    z-index:999999; 
+    padding: 3px 3px 3px 3px;
+    width: 22px;
+    box-shadow: 2px 2px 10px -5px #000;
+    cursor: pointer
+}
+
 .editSig:hover{
     opacity: 0.8;
     cursor: pointer;

@@ -1,7 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnDestroy, AfterViewInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DocumentService } from './../../services/document.service';
 import { BlockPdfComponent } from '../../components/block-pdf/block-pdf';
+import { BlockChatComponent } from '../../components/block-chat/block-chat';
 declare let blockstack: any;
 declare let getQueryParam: any;
 declare let jslinq: any;
@@ -25,7 +26,8 @@ declare let jslinq: any;
 export class SignPage {
 
   name: string;
-  @ViewChild(BlockPdfComponent) blockPdf: BlockPdfComponent;
+  @ViewChild("blockChat") blockChat: BlockChatComponent;
+  @ViewChild("blockPdf") blockPdf: BlockPdfComponent;
 
   constructor(
     public navCtrl: NavController,
@@ -95,6 +97,18 @@ export class SignPage {
    
    
 
+  }
+
+  ionViewDidEnter(){
+    this.blockPdf.registerEmojiEvent();
+    this.blockChat.registerEmojiEvent();
+  }
+
+  ionViewWillLeave() {
+    this.blockChat.destroyEmojiEvents();
+    this.blockChat.firstLoad = true;
+    this.blockChat.ngOnDestroy();
+    this.blockPdf.destroyEmojiEvents();
   }
 
   next() {

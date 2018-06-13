@@ -54,29 +54,30 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
 
     });
 
-
   }
 
   ngAfterViewInit() {
+   
+  }
 
-    $(document).on("click", "#emoji-picker", function (e) {
+
+  registerEmojiEvent(){
+    $(document).on("click", ".emoji-picker", function (e) {
       e.stopPropagation();
-      
       $('.intercom-composer-emoji-popover').toggleClass("active");
     });
-
     $(document).click(function (e) {
       if ($(e.target).attr('class') != '.intercom-composer-emoji-popover' && $(e.target).parents(".intercom-composer-emoji-popover").length == 0) {
         $(".intercom-composer-emoji-popover").removeClass("active");
       }
     });
-
     $(document).on("click", ".intercom-emoji-picker-emoji", function (e) {
-      let existing = $(".emojiDiv").val();
-      let emo = $(this).html();
-      $(".emojiDiv").val( existing + emo );
+      if (e.target.className == "intercom-emoji-picker-emoji"){
+        let existing = $(".emojiDiv").val();
+        let emo = $(this).html();
+        $(".emojiDiv").val( existing + emo );
+      }
     });
-
     $('.intercom-composer-popover-input').on('input', function () {
       var query = this.value;
       if (query != "") {
@@ -88,6 +89,14 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
     });
   }
 
+  destroyEmojiEvents() {
+    
+    this.firstLoad = true;
+    $(document).off("click", ".emoji-picker");
+    $(document).off("click");
+    $('.intercom-composer-popover-input').off('input');
+
+  }
 
   initChatPolling() {
     this.chatPolling = setInterval(() => {
@@ -95,12 +104,10 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
         this.getLogData(true);
       }, 1000);
     }, 3000);
-
   }
 
 
   ngOnDestroy() {
-
     clearInterval(this.chatPolling);
 
     if (this.subscription) {
@@ -109,15 +116,11 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
     if (this.chatSubscription) {
       this.chatSubscription.unsubscribe();
     }
-
   }
 
   async getLogData(isPoll) {
 
-
     $(document).ready(async () => {
-
-
 
       let logData: Log = await this.documentService.getLog(this.doc.guid);
 
@@ -133,8 +136,6 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
       this.msgCountNew = logData.messages.length;
       if (this.msgCountNew > this.msgCount){
         this.msgCount = this.msgCountNew;
-
-
         let orderedMessages = jslinq(logData.messages).orderBy((el) => el.updatedAt).toList();
 
         for (let item of orderedMessages) {
@@ -167,22 +168,17 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
           <hr style='margin-top:5px' />
           `;
         }
-  
-  
-        //setTimeout( () =>{ // hack?
-        $('.log-history').html(template);
-        //$('.chat-history').scrollTop($('.log-history').height());
-        // }, 300 );
-  
-        
 
+        $('.log-history').html(template);
+        $('.chat-history').scrollTop($('.log-history').height());
+  
       }
 
-      if (this.firstLoad) {
+      
         $('.chat-history').scrollTop($('.log-history').height());
         this.firstLoad = false;
         $(".loadSpin").hide();
-      }
+      
 
     });
 
@@ -207,6 +203,15 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
     $(".intercom-composer-emoji-popover").removeClass("active");
     // @todo optimize this with lazy load adding of new message
     //await this.getLogData();
+  }
+
+  hasNoEvents(selector){
+    if($._data($(selector)[0]).events == null){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 
 }

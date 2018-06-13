@@ -5,6 +5,7 @@ import { BlockPdfComponent } from './block-pdf/block-pdf';
 import { DirectivesModule } from '../directives/directives.module';
 import { BlockChatComponent } from './block-chat/block-chat';
 
+
 @NgModule({
     declarations: [BlockStepsComponent,
         BlockPdfComponent,
@@ -21,7 +22,8 @@ export class BlockStepsComponentModule {
     static forRoot(): ModuleWithProviders {
         return {
             ngModule: BlockStepsComponentModule,
-            providers: []
+            providers: [
+            ]
         };
     }
 }
