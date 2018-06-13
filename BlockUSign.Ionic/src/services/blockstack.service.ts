@@ -22,13 +22,17 @@ export class BlockStackService {
   public profile;
   //url = "https://blockusign.co/api/email";
   url = "http://localhost:5000/api/profile";
-
+  public userName;
+  public userId;
+  public profileName;
  
   constructor(
     public events: Events,
     public http: Http
   ) {
-
+    this.userId = blockstack.loadUserData().username || '';
+    this.userName = blockstack.loadUserData().username || '';
+    this.profileName = blockstack.loadUserData().profile.name || '';
   }
 
   async searchUser(user) {

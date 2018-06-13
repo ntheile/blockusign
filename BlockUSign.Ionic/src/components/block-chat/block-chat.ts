@@ -92,6 +92,11 @@ export class BlockChatComponent implements OnDestroy, OnInit{
      
       let template = "";
 
+      if (!logData){
+        $(".loadSpin").hide();
+        return;
+      }
+
       let orderedMessages = jslinq(logData.messages).orderBy( (el) => el.updatedAt ).toList();
 
       for (let item of orderedMessages ) {

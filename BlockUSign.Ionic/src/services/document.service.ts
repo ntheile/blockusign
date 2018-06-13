@@ -130,7 +130,7 @@ export class DocumentService {
     // add blank annotations file
     await this.createAnnotations(guid);
     // add blank log file
-    await this.getLog(guid);
+    await this.getLog(guid,true);
     return blockstack.putFile(guid + ".pdf", encryptedDoc, { encrypt: false }).then((data) => { });
   }
 
@@ -333,11 +333,15 @@ export class DocumentService {
 
 
   //#region Log (Chat)
-  async getLog(guid: string) {
+  async getLog(guid: string, create?: boolean) {
     let logFileName = guid + '.log.json';
-    let resp;
+    let resp = null;
     try {
-      resp = await blockstack.getFile(logFileName, { decrypt: false }); 
+
+      if (!create){
+        resp = await blockstack.getFile(logFileName, { decrypt: false }); 
+      }
+     
       // existing doc
       if (resp) {
           this.logDoc = this.decryptString(resp, this.currentDoc.documentKey);
@@ -364,8 +368,8 @@ export class DocumentService {
         let newLog = new Log();
         newLog.messages = [];
         let msg = new Message();
-        msg.createdBy = blockstack.loadUserData().username;
-        msg.createdByName = blockstack.loadUserData().profile.name;
+        msg.createdBy = this.blockStackService.userName;
+        msg.createdByName = this.blockStackService.profileName;
         msg.email = this.blockStackService.profile.email;
         msg.message = "Created Doc";
         newLog.messages.push(msg);
@@ -415,8 +419,8 @@ export class DocumentService {
     if (log) {
       let msg = new Message();
       msg.message = message;
-      msg.createdBy = blockstack.loadUserData().username;
-      msg.createdByName = blockstack.loadUserData().profile.name;
+      msg.createdBy = this.blockStackService.userName;
+      msg.createdByName = this.blockStackService.profileName
       msg.email = this.blockStackService.profile.email;
       this.logDoc = Automerge.change(this.logDoc, msg.createdByName + " added message at " + this.getDate() ,  (doc) => {
         doc.log.messages.push(msg);
