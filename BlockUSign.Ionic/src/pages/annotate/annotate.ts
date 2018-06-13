@@ -45,7 +45,6 @@ export class AnnotatePage {
 
   ionViewWillLeave() {
     this.blockChat.destroyEmojiEvents();
-    this.blockChat.firstLoad = true;
     this.blockChat.ngOnDestroy();
     this.blockPdf.destroyEmojiEvents();
   }

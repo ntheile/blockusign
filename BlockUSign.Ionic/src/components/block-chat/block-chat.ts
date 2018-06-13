@@ -108,6 +108,7 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
 
 
   ngOnDestroy() {
+
     clearInterval(this.chatPolling);
 
     if (this.subscription) {
@@ -116,6 +117,7 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
     if (this.chatSubscription) {
       this.chatSubscription.unsubscribe();
     }
+
   }
 
   async getLogData(isPoll) {
@@ -134,7 +136,8 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
       }
 
       this.msgCountNew = logData.messages.length;
-      if (this.msgCountNew > this.msgCount){
+
+      if (this.msgCountNew > this.msgCount) {
         this.msgCount = this.msgCountNew;
         let orderedMessages = jslinq(logData.messages).orderBy((el) => el.updatedAt).toList();
 
@@ -171,15 +174,11 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
 
         $('.log-history').html(template);
         $('.chat-history').scrollTop($('.log-history').height());
-  
+     
+     
       }
-
-      
-        $('.chat-history').scrollTop($('.log-history').height());
-        this.firstLoad = false;
-        $(".loadSpin").hide();
-      
-
+      this.firstLoad = false;
+      $(".loadSpin").hide();
     });
 
 
@@ -212,6 +211,10 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
     else{
       return false;
     }
+  }
+
+  scrollBottom (){
+
   }
 
 }
