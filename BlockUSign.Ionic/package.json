@@ -54,6 +54,7 @@
     "linqts": "^1.11.0",
     "moment": "^2.22.1",
     "moment-timezone": "^0.5.14",
+    "ng-emoji-picker-material": "^1.0.8",
     "ng2-charts": "^1.6.0",
     "openpgp": "^3.0.10",
     "opn": "^5.3.0",

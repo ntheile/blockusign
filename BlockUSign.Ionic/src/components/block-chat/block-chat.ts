@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, AfterViewInit } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { DocumentService } from './../../services/document.service';
 import { Document, Log, Message } from './../../models/models';
@@ -15,7 +15,7 @@ declare let jslinq: any;
   selector: 'block-chat',
   templateUrl: 'block-chat.html',
 })
-export class BlockChatComponent implements OnDestroy, OnInit{
+export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
 
   public doc: Document;
   public message;
@@ -23,25 +23,25 @@ export class BlockChatComponent implements OnDestroy, OnInit{
   public chatSubscription;
   public chatPolling;
   firstLoad = true;
-  
+
   constructor(
-    public documentService: DocumentService, 
+    public documentService: DocumentService,
     public events: Events,
     public blockstackService: BlockStackService
   ) {
-  
+
   }
 
-  ngOnInit(){
-    
+  ngOnInit() {
+
     this.firstLoad = true;
     this.doc = new Document();
-    
-    if (this.documentService.currentDoc){
+
+    if (this.documentService.currentDoc) {
       this.doc = this.documentService.currentDoc;
       this.initChatPolling();
     }
-    else{
+    else {
       this.subscription = this.events.subscribe('documentService:setCurrentDoc', async (currentDoc) => {
         this.doc = currentDoc;
         this.initChatPolling();
@@ -49,75 +49,103 @@ export class BlockChatComponent implements OnDestroy, OnInit{
     }
 
     this.chatSubscription = this.events.subscribe('documentService:addedChat', async (msg) => {
-      
+
     });
-    
+
 
   }
 
+  ngAfterViewInit() {
+    $(document).on("click", "#emoji-picker", function (e) {
+      e.stopPropagation();
+      
+      $('.intercom-composer-emoji-popover').toggleClass("active");
+    });
 
-  initChatPolling(){
-    this.chatPolling = setInterval( () =>{ 
-      setTimeout( () =>{ // hack?
+    $(document).click(function (e) {
+      if ($(e.target).attr('class') != '.intercom-composer-emoji-popover' && $(e.target).parents(".intercom-composer-emoji-popover").length == 0) {
+        $(".intercom-composer-emoji-popover").removeClass("active");
+      }
+    });
+
+    $(document).on("click", ".intercom-emoji-picker-emoji", function (e) {
+      $(".emojiDiv").val($(".emojiDiv").val() + ($(this).html()));
+    });
+
+    $('.intercom-composer-popover-input').on('input', function () {
+      var query = this.value;
+      if (query != "") {
+        $(".intercom-emoji-picker-emoji:not([title*='" + query + "'])").hide();
+      }
+      else {
+        $(".intercom-emoji-picker-emoji").show();
+      }
+    });
+  }
+
+
+  initChatPolling() {
+    this.chatPolling = setInterval(() => {
+      setTimeout(() => { // hack?
         this.getLogData(true);
-      }, 1000 );
+      }, 1000);
     }, 3000);
 
   }
 
 
-  ngOnDestroy(){
-    
+  ngOnDestroy() {
+
     clearInterval(this.chatPolling);
-    
-    if (this.subscription){
+
+    if (this.subscription) {
       this.subscription.unsubscribe();
     }
-    if (this.chatSubscription){
+    if (this.chatSubscription) {
       this.chatSubscription.unsubscribe();
     }
-    
+
   }
 
-  async getLogData(isPoll){
-
-    
-    $(document).ready(async ()=>{
+  async getLogData(isPoll) {
 
 
-   
+    $(document).ready(async () => {
+
+
+
       let logData: Log = await this.documentService.getLog(this.doc.guid);
 
       $('.chat-head').html(this.doc.fileName);
-     
+
       let template = "";
 
-      if (!logData){
+      if (!logData) {
         $(".loadSpin").hide();
         return;
       }
 
-      let orderedMessages = jslinq(logData.messages).orderBy( (el) => el.updatedAt ).toList();
+      let orderedMessages = jslinq(logData.messages).orderBy((el) => el.updatedAt).toList();
 
-      for (let item of orderedMessages ) {
-  
+      for (let item of orderedMessages) {
+
         let d = item.updatedAt;
         let formatDate = moment(d).calendar(d);
-  
+
         let uid = item.createdBy;
-        try{
-          uid = item.createdBy.replace('.id','');
+        try {
+          uid = item.createdBy.replace('.id', '');
         }
-        catch(e){ console.log('user does not have .id') };
-        
+        catch (e) { console.log('user does not have .id') };
+
         let uName = item.createdByName;
         let uidClass = 'block-pic-' + uid;
-  
-        this.blockstackService.getPicUrl(uName).then( (picUrl) =>{
+
+        this.blockstackService.getPicUrl(uName).then((picUrl) => {
           $('.' + uidClass).attr('src', picUrl);
         });
-  
-        template =  template + `  
+
+        template = template + `  
         <div class="chat-message clearfix">
         <img class="${uidClass}" src="http://www.gravatar.com/avatar/?d=identicon" alt="" width="32" height="32">
         <div class="chat-message-content clearfix">
@@ -132,34 +160,37 @@ export class BlockChatComponent implements OnDestroy, OnInit{
 
 
       //setTimeout( () =>{ // hack?
-        $('.log-history').html(template);
-        //$('.chat-history').scrollTop($('.log-history').height());
-     // }, 300 );
+      $('.log-history').html(template);
+      //$('.chat-history').scrollTop($('.log-history').height());
+      // }, 300 );
 
-     if (this.firstLoad) {
-      $('.chat-history').scrollTop($('.log-history').height()); 
-      this.firstLoad = false;
-      $(".loadSpin").hide();
-     }
+      if (this.firstLoad) {
+        $('.chat-history').scrollTop($('.log-history').height());
+        this.firstLoad = false;
+        $(".loadSpin").hide();
+      }
 
 
     });
-  
-    
+
+
   }
 
-  minimize(){
+  minimize() {
     $('.chat').slideToggle(300, 'swing');
     $('.chat-message-counter').fadeToggle(300, 'swing');
   }
 
-  async addMessage(){
+  async addMessage() {
+   
     $(".loadSpin").show();
     await this.documentService.addMessage(this.doc.guid, this.message);
     this.events.publish('documentService:addedChat', this.message);
     this.message = null;
     this.firstLoad = true;
     $(".loadSpin").hide();
+    
+    $(".intercom-composer-emoji-popover").removeClass("active");
     // @todo optimize this with lazy load adding of new message
     //await this.getLogData();
   }
