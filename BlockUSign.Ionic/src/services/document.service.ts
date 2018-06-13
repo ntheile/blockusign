@@ -418,7 +418,7 @@ export class DocumentService {
     let log = await this.getLog(guid);
     if (log) {
       let msg = new Message();
-      msg.message = message;
+      msg.message =  message; //encodeURIComponent(message);
       msg.createdBy = this.blockStackService.userName;
       msg.createdByName = this.blockStackService.profileName
       msg.email = this.blockStackService.profile.email;

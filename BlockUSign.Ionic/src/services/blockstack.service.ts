@@ -30,9 +30,7 @@ export class BlockStackService {
     public events: Events,
     public http: Http
   ) {
-    this.userId = blockstack.loadUserData().username || '';
-    this.userName = blockstack.loadUserData().username || '';
-    this.profileName = blockstack.loadUserData().profile.name || '';
+   
   }
 
   async searchUser(user) {
@@ -86,6 +84,9 @@ export class BlockStackService {
     let myProfile = JSON.parse(profileData);
     if (myProfile) {
       this.profile = myProfile
+      this.userId = blockstack.loadUserData().username || '';
+      this.userName = blockstack.loadUserData().username || '';
+      this.profileName = blockstack.loadUserData().profile.name || '';
     }
 
     return profileData;

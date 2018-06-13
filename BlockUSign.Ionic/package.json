@@ -19,7 +19,7 @@
     "chrome-mac-private": "./scripts/chrome-private.sh",
     "serve": "ionic build && node ./scripts/server.js",
     "private": "npm run chrome-mac-private && ionic serve",
-    "start": "npm run chrome-mac && ionic serve"
+    "start": "npm run chrome && ionic serve"
   },
   "dependencies": {
     "@angular/common": "5.0.3",

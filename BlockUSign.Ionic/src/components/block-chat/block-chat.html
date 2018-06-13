@@ -1,6 +1,6 @@
 <div class="block-chat">
   <ion-fab bottom right>
-    <div id="live-chat" class="shadow6">
+    <div id="live-chat" class="shadow6 live-chat">
 
       <header class="clearfix" (click)="minimize()">
         <!-- <a class="chat-close"  >x</a>-->
@@ -26,6 +26,8 @@
             autofocus [(ngModel)]="message" 
             (keydown.enter)="addMessage($event)"/>
            
+            <ion-spinner class="loadSpin" ></ion-spinner> 
+
             <div class="emoji" >
                 <div class="test-emoji"></div>
                 <div class="emoji-panel">
@@ -37,7 +39,7 @@
             </div>
           
 
-            <ion-spinner class="loadSpin" ></ion-spinner> 
+           
           </fieldset>
         </form>
 

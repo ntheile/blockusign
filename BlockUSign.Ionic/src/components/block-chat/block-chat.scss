@@ -202,3 +202,19 @@ p { margin: 0; }
 }
 
 }
+
+@media screen and (max-width: 600px) {
+	.chat {
+		display: none;
+	}
+}
+
+@media screen and (max-height: 640px) {
+	.live-chat {
+		zoom: 0.8;
+	}
+	.grid {
+		zoom: 0.8;
+	}
+}		
+	

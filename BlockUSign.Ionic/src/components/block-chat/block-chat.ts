@@ -22,6 +22,8 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
   public subscription;
   public chatSubscription;
   public chatPolling;
+  public msgCount = 0;
+  public msgCountNew = 0;
   firstLoad = true;
 
   constructor(
@@ -56,6 +58,7 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+
     $(document).on("click", "#emoji-picker", function (e) {
       e.stopPropagation();
       
@@ -69,7 +72,9 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
     });
 
     $(document).on("click", ".intercom-emoji-picker-emoji", function (e) {
-      $(".emojiDiv").val($(".emojiDiv").val() + ($(this).html()));
+      let existing = $(".emojiDiv").val();
+      let emo = $(this).html();
+      $(".emojiDiv").val( existing + emo );
     });
 
     $('.intercom-composer-popover-input').on('input', function () {
@@ -125,51 +130,59 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
         return;
       }
 
-      let orderedMessages = jslinq(logData.messages).orderBy((el) => el.updatedAt).toList();
+      this.msgCountNew = logData.messages.length;
+      if (this.msgCountNew > this.msgCount){
+        this.msgCount = this.msgCountNew;
 
-      for (let item of orderedMessages) {
 
-        let d = item.updatedAt;
-        let formatDate = moment(d).calendar(d);
+        let orderedMessages = jslinq(logData.messages).orderBy((el) => el.updatedAt).toList();
 
-        let uid = item.createdBy;
-        try {
-          uid = item.createdBy.replace('.id', '');
+        for (let item of orderedMessages) {
+  
+          let d = item.updatedAt;
+          let formatDate = moment(d).calendar(d);
+  
+          let uid = item.createdBy;
+          try {
+            uid = item.createdBy.replace('.id', '');
+          }
+          catch (e) { console.log('user does not have .id') };
+  
+          let uName = item.createdByName;
+          let uidClass = 'block-pic-' + uid;
+  
+          this.blockstackService.getPicUrl(uName).then((picUrl) => {
+            $('.' + uidClass).attr('src', picUrl);
+          });
+  
+          template = template + `  
+          <div class="chat-message clearfix">
+          <img class="${uidClass}" src="http://www.gravatar.com/avatar/?d=identicon" alt="" width="32" height="32">
+          <div class="chat-message-content clearfix">
+            <span class="chat-time">${formatDate}</span>
+            <h5>${item.email}</h5>
+            <p>${item.message}</p>
+          </div> 
+          </div>
+          <hr style='margin-top:5px' />
+          `;
         }
-        catch (e) { console.log('user does not have .id') };
+  
+  
+        //setTimeout( () =>{ // hack?
+        $('.log-history').html(template);
+        //$('.chat-history').scrollTop($('.log-history').height());
+        // }, 300 );
+  
+        
 
-        let uName = item.createdByName;
-        let uidClass = 'block-pic-' + uid;
-
-        this.blockstackService.getPicUrl(uName).then((picUrl) => {
-          $('.' + uidClass).attr('src', picUrl);
-        });
-
-        template = template + `  
-        <div class="chat-message clearfix">
-        <img class="${uidClass}" src="http://www.gravatar.com/avatar/?d=identicon" alt="" width="32" height="32">
-        <div class="chat-message-content clearfix">
-          <span class="chat-time">${formatDate}</span>
-          <h5>${item.email}</h5>
-          <p>${item.message}</p>
-        </div> 
-        </div>
-        <hr style='margin-top:5px' />
-        `;
       }
-
-
-      //setTimeout( () =>{ // hack?
-      $('.log-history').html(template);
-      //$('.chat-history').scrollTop($('.log-history').height());
-      // }, 300 );
 
       if (this.firstLoad) {
         $('.chat-history').scrollTop($('.log-history').height());
         this.firstLoad = false;
         $(".loadSpin").hide();
       }
-
 
     });
 
@@ -184,6 +197,7 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
   async addMessage() {
    
     $(".loadSpin").show();
+    this.message = $('.emojiDiv').val();
     await this.documentService.addMessage(this.doc.guid, this.message);
     this.events.publish('documentService:addedChat', this.message);
     this.message = null;
