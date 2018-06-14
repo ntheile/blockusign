@@ -55,7 +55,7 @@ namespace BlockUSign.Backend
 
         // POST api/values
         [HttpPost]
-        public async Task<IEnumerable<string>> Post([FromBody]EmailJson value)
+        public  IEnumerable<string> Post([FromBody]EmailJson value)
         {
             //var token = Config["GaiaToken"];
             //var client = new RestClient("https://hub.blockstack.org/store/1PoZGGAuQ4yPj72TrXbG4pKbgB9tvCUqQ1/blockusign/global.index.json");

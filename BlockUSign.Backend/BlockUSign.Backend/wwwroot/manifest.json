@@ -1,0 +1,13 @@
+{
+  "name": "Blockusign",
+  "short_name": "Blockusign",
+  "start_url": "index.html",
+  "display": "standalone",
+  "icons": [{
+    "src": "assets/imgs/logo.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }],
+  "background_color": "#2E3136",
+  "theme_color": "#4e8ef7"
+}

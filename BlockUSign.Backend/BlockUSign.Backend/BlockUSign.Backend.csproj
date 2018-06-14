@@ -18,5 +18,6 @@
 
   <ItemGroup>
     <Content Remove="appsettings.json" />
+    <Content Remove="wwwroot\build\1.js" />
   </ItemGroup>
 </Project>
