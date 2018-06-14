@@ -1063,3 +1063,13 @@
 		right: calc(50%) !important;
 	}
 }
+
+@media screen and (max-width: 500px) {
+	.dragImg{
+        display: none !important;
+    }
+
+    .pdfToolBarBtn{
+        zoom: .75 !important;
+    }
+}

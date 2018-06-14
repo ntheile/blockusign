@@ -5,6 +5,7 @@ import { Document, Log, Message } from './../../models/models';
 import { Events } from 'ionic-angular';
 import { BlockStackService } from '../../services/blockstack.service';
 import * as moment from 'moment';
+import { last } from 'rxjs/operator/last';
 declare let $: any;
 declare let jslinq: any;
 
@@ -126,7 +127,7 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
 
       let logData: Log = await this.documentService.getLog(this.doc.guid);
 
-      $('.chat-head').html(this.doc.fileName);
+      $('.chat-head').last().html(this.doc.fileName);
 
       let template = "";
 
@@ -172,8 +173,8 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
           `;
         }
 
-        $('.log-history').html(template);
-        $('.chat-history').scrollTop($('.log-history').height());
+        $('.log-history').last().html(template);
+        $('.chat-history').last().scrollTop($('.log-history').last().height());
      
      
       }
@@ -192,7 +193,7 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
   async addMessage() {
    
     $(".loadSpin").show();
-    this.message = $('.emojiDiv').val();
+    this.message = $('.emojiDiv').last().val();
     await this.documentService.addMessage(this.doc.guid, this.message);
     this.events.publish('documentService:addedChat', this.message);
     this.message = null;

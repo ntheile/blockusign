@@ -68,7 +68,7 @@
 
           
         </ion-col>
-        <ion-col col-auto *ngIf="showButtons">
+        <ion-col class="dragImg" col-auto *ngIf="showButtons">
           <img src="./../../assets/imgs/arrows.svg" height="35px">
           <span style="color:whitesmoke; font-family: Cedarville Cursive; font-size: 18px; font-weight: bold">drag</span>
         </ion-col>
@@ -77,10 +77,10 @@
         <span style="padding-right: 4px;color:#757575;">Allow Resize</span>
       </ion-col> -->
         <ion-col col-auto style="padding-left: 20px;" *ngIf="showButtons">
-          <button ion-fab (click)="saveSvg()" style="position:relative">Save</button>
+          <button ion-fab (click)="saveSvg()" class="pdfToolBarBtn" style="position:relative">Save</button>
         </ion-col>
         <ion-col col-auto style="padding-left: 5px;" *ngIf="showButtons">
-          <button ion-fab (click)="clear()" style="position:relative">Clear</button>
+          <button ion-fab (click)="clear()" class="pdfToolBarBtn" style="position:relative">Clear</button>
         </ion-col>
       </ion-row>
       <ion-row style="margin-top: -15px; margin-bottom: -8px">
