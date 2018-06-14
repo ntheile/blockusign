@@ -1,4 +1,4 @@
-import { Component, ViewChild, Input, ChangeDetectionStrategy, ChangeDetectorRef, ViewContainerRef, AfterViewInit, OnDestroy, OnInit } from '@angular/core';
+import { Component, ViewChild, Input, ChangeDetectionStrategy, ChangeDetectorRef, ViewContainerRef, AfterViewInit, OnDestroy, OnInit, ElementRef, Renderer2 } from '@angular/core';
 import { NavController, NavParams, IonicPage, Segment, LoadingController, AlertController, PopoverController } from 'ionic-angular';
 import { CryptoCompareService } from '../../services/cryptocompare.service'
 import { AbsoluteDragDirective } from '../../directives/absolute-drag/absolute-drag';
@@ -50,6 +50,8 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() showSignHere: 0;
   @Input() showButtons: 0;
   @Input() marginTop = '130px';
+  @ViewChild('sigText') sigTextElement: ElementRef; 
+
 
   public data: any;
   public DOCUMENT_ID = "blockusign/pdf1.txt"; // @TODO not being used, delete in furture
@@ -82,9 +84,10 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
     public loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
     public popoverCtrl: PopoverController,
+    private renderer: Renderer2
   ) {
     console.log('====> constructor');
-
+    
   }
 
 
@@ -103,7 +106,11 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(){
-    
+  //   this.renderer.listen(this.sigTextElement.nativeElement, 'keyup', () => {
+  //     if(this.sigTextElement.nativeElement.innerHTML == ""){
+  //       this.sigTextElement.nativeElement.innerHTML = "[Enter name]"
+  //     }  
+  //  });
   }
 
   registerEmojiEvent(){
@@ -125,7 +132,9 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
         if (e.target.className == "intercom-emoji-picker-emoji p2"){
           let existing = $(".emojiDiv2").html();
           let emo = $(this).html();
-          $(".emojiDiv2").html( existing + emo );
+          this.yourName = existing + emo;
+          $(".emojiDiv2").html(this.yourName);
+         
         }
       });
   
@@ -392,8 +401,11 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
             this.yourName = data.sig;
 
             if (this.yourName == null || this.yourName == "" || this.yourName == undefined){
-              this.yourName = "[Edit Name]"
+              this.yourName = "[Edit Name]";
+              
             }
+
+            $(".emojiDiv2").html(this.yourName);
 
           }
         }
@@ -410,4 +422,11 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
     // });
   }
 
+
+  onKey(e){
+    if(this.sigTextElement.nativeElement.textContent == "" ){
+      this.sigTextElement.nativeElement.innerHTML = "[Enter name]";
+    }
+  }
+ 
 }

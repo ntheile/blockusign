@@ -162,12 +162,16 @@ export class MyApp {
           }
           else {
             this.name = myProfile.email;
+            this.loadCachedNewDocWhenLoggedIn();
           }
         }
 
       //}
 
     } else if (blockstack.isSignInPending()) {
+
+      this.cacheNewDocIfNotLoggedIn();
+
       blockstack.handlePendingSignIn().then(function (userData) {
         window.location = window.location.origin
         this.documentsGetList();
@@ -183,6 +187,14 @@ export class MyApp {
       }
 
     }
+  }
+
+  cacheNewDocIfNotLoggedIn() {
+    alert('caching doc');
+  }
+
+  loadCachedNewDocWhenLoggedIn() {
+    alert('load cached doc');
   }
 
   public setupDiscordMenu() {
@@ -276,14 +288,15 @@ export class MyApp {
         // },
         {
           text: 'Ok',
-          handler: data => {
-
-            // save here
-
-            this.blockStackService.setProfileData(data.email);
+          handler: data  => {
 
             if (data.email.indexOf("@") != -1) {
               // logged in!
+              // save here
+              this.blockStackService.setProfileData(data.email).then( () =>
+              {
+                location.reload();
+              });
             } else {
               // invalid login
               this.showErrorToast('Invalid Email');

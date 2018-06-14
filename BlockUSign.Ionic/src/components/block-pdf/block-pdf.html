@@ -41,7 +41,7 @@
         </ion-col>
         <ion-col col-auto *ngIf="showSignature" style="position: relative;">
           
-          <div contenteditable="true" style="caret-color: black">
+          <div contenteditable="true" (keyup)="onKey($event)" class="editSigContent" style="caret-color: black">
 
           
           <svg xmlns="http://www.w3.org/2000/svg"  id="signature" class="draggable draggable-droppable" width="200" height="50" viewBox="0 0 200 50"
@@ -49,7 +49,7 @@
 
            
 
-            <text class="emojiDiv2" contenteditable="true" x="50%" y="50%" 
+            <text class="emojiDiv2" #sigText  contenteditable="true" x="50%" y="50%" 
             width="200" height="50" viewBox="0 0 200 50" 
             alignment-baseline="middle" 
             text-anchor="middle" fill="green"
