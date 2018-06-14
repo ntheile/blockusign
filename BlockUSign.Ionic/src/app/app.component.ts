@@ -178,6 +178,9 @@ export class MyApp {
       });
     }
     else {
+
+      this.cacheNewDocIfNotLoggedIn();
+
       if (localStorage.getItem('signUp') !== 'true') {
         window.location.href = "signup.html";
       }
@@ -190,11 +193,18 @@ export class MyApp {
   }
 
   cacheNewDocIfNotLoggedIn() {
-    alert('caching doc');
+    // if contains sign and docData
+    if (location.hash.includes("sign") &&  location.hash.includes("docData") ){
+      localStorage.setItem('docCache', location.href);
+    }
   }
 
   loadCachedNewDocWhenLoggedIn() {
-    alert('load cached doc');
+    if (localStorage.getItem('docCache')){
+      let l = localStorage.getItem('docCache');
+      localStorage.removeItem('docCache');
+      location.replace(l);
+    }
   }
 
   public setupDiscordMenu() {
