@@ -50,6 +50,7 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() showSignHere: 0;
   @Input() showButtons: 0;
   @Input() marginTop = '130px';
+  @Input() marginBottom = '0px';
   @ViewChild('sigText') sigTextElement: ElementRef; 
 
 

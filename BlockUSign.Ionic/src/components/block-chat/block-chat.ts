@@ -26,6 +26,7 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
   public msgCount = 0;
   public msgCountNew = 0;
   firstLoad = true;
+  
 
   constructor(
     public documentService: DocumentService,
@@ -193,12 +194,11 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
   async addMessage() {
    
     $(".loadSpin").show();
-    this.message = $('.emojiDiv').last().val();
+    //$('.log-history').append(this.message);
     await this.documentService.addMessage(this.doc.guid, this.message);
     this.events.publish('documentService:addedChat', this.message);
     this.message = null;
     this.firstLoad = true;
-    $(".loadSpin").hide();
     
     $(".intercom-composer-emoji-popover").removeClass("active");
     // @todo optimize this with lazy load adding of new message

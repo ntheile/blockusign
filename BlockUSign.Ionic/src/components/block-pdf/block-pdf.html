@@ -1,4 +1,4 @@
-<ion-content class="block-pdf-page">
+<ion-content class="block-pdf-page" >
 
   <div class="page" id="pageContainer1" data-page-number="1" style="position:relative;width: 100%; height:100%;"
     [style.margin-top]="marginTop">
@@ -30,7 +30,9 @@
   <img *ngIf="!showToolBar" id="sigImg" height="50px" class="draggable draggable-droppable" src="./../../assets/imgs/sign.png"
   />
   
- 
+  <div [style.margin-bottom]="marginBottom">
+      <br/><br/>
+    </div>
 
   <ion-fab *ngIf="showToolBar" top left style="margin-top:1px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab>
     <ion-grid>
@@ -91,6 +93,7 @@
     </ion-grid>
   </ion-fab>
 
+  
 
 </ion-content>
 

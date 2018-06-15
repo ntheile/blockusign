@@ -1,34 +1,23 @@
-<ion-content class="email-page">
+<ion-content class="email-page" class="no-overflow-page">
 
-  <ion-grid>
-    <ion-row>
-      <ion-col width-100>
-        <block-steps activeStep="3">
-        </block-steps>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+
+  <block-steps activeStep="3">
+  </block-steps>
+
 
   <ion-grid style="position: relative">
     <ion-row align-items-left>
       <ion-col>
-        <ng-select style="width:460px; background-color:whitesmoke; border-radius:2px; padding-left:10px" 
-          [items]="people3"
-          [multiple]="false" 
-          bindLabel="username" 
-          [(ngModel)]="selectedUser"  
-          (change)="searchUser($event)" 
-          [typeahead]="people3Typeahead"
-          placeholder="Select signer..."
-          >
-          <ng-template ng-label-tmp let-item="item" let-clear="clear" >
+        <ng-select style="width:460px; background-color:whitesmoke; border-radius:2px; padding-left:10px" [items]="people3" [multiple]="false"
+          bindLabel="username" [(ngModel)]="selectedUser" (change)="searchUser($event)" [typeahead]="people3Typeahead" placeholder="Select signer...">
+          <ng-template ng-label-tmp let-item="item" let-clear="clear">
             <span class="ng-value-label">
               <img [src]="item.profile.image && item.profile.image[0].contentUrl" width="20px" height="20px"> {{item.username}}</span>
-              <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
+            <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
           </ng-template>
           <ng-template ng-option-tmp let-item="item">
             <span style="width:100%" (click)="clickedUser()">
-                <img [src]="item.profile.image && item.profile.image[0].contentUrl" width="20px" height="20px"> {{item.username}}
+              <img [src]="item.profile.image && item.profile.image[0].contentUrl" width="20px" height="20px"> {{item.username}}
             </span>
           </ng-template>
         </ng-select>
@@ -40,9 +29,9 @@
         <!-- <ion-item  style="width:460px; background-color:transparent; " >
           <ion-input style="width:460px;" placeholder="[Enter Email]" [(ngModel)]="email"></ion-input>
         </ion-item> -->
-        
+
         <input class="classic-input" type="email" placeholder="Email To..." [(ngModel)]="email" autofocus>
-   
+
       </ion-col>
       <ion-col>
         <button ion-button (click)="sendEmail($event)">Send Email</button>
@@ -50,9 +39,9 @@
     </ion-row>
   </ion-grid>
 
-  
-  <block-pdf marginTop="10px" locked="true" >
+
+  <block-pdf marginTop="10px" marginBottom="120px" locked="true">
   </block-pdf>
- 
+
 
 </ion-content>
