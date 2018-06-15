@@ -426,7 +426,7 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
 
   onKey(e){
     if(this.sigTextElement.nativeElement.textContent == "" ){
-      this.sigTextElement.nativeElement.innerHTML = "[Enter name]";
+      this.sigTextElement.nativeElement.innerHTML = "&nbsp;";
     }
   }
  
