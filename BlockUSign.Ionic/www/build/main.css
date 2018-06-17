@@ -29543,7 +29543,7 @@ img.draggable.drag-can-drop {
 .step-info::before {
   font-weight: bold;
   display: block;
-  content: "STEP " counter(step);
+  content: '';
 }
 
 /* States */

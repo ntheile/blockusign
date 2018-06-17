@@ -42,6 +42,7 @@ export class MyApp {
   avatar: string = "http://www.gravatar.com/avatar/?d=identicon";
   documentsList: any;
   email: string;
+  loading;
 
   constructor(
     public platform: Platform,
@@ -72,6 +73,12 @@ export class MyApp {
       window.apiUrl = "";
     }
 
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+
+
+
 
   }
 
@@ -80,6 +87,7 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
 
+      this.loading.present();
 
       this.statusBar.styleDefault();
       this.splashScreen.hide();
@@ -119,6 +127,8 @@ export class MyApp {
     this.nav.push("AnnotatePage", {
       guid: guid
     });
+
+    
 
   }
 
@@ -167,7 +177,7 @@ export class MyApp {
         }
 
       //}
-
+        this.loading.dismiss();
     } else if (blockstack.isSignInPending()) {
 
       this.cacheNewDocIfNotLoggedIn();
@@ -175,10 +185,12 @@ export class MyApp {
       blockstack.handlePendingSignIn().then(function (userData) {
         window.location = window.location.origin
         this.documentsGetList();
+        this.loading.dismiss();
       });
     }
     else {
 
+      this.loading.dismiss();
       this.cacheNewDocIfNotLoggedIn();
 
       if (localStorage.getItem('signUp') !== 'true') {
@@ -188,6 +200,8 @@ export class MyApp {
         localStorage.setItem('signUp', 'true');
         this.login();
       }
+
+      
 
     }
   }
@@ -249,11 +263,13 @@ export class MyApp {
   }
 
 
-
-
   documentsGetList() {
+
+    this.loading.present();
+
     this.documentService.getDocumentsIndex(true).then((data) => {
       this.documentsList = this.documentService.documentsListFiltered; //data;
+      this.loading.dismiss();
     });
   }
 

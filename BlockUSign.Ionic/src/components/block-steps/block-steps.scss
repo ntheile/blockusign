@@ -71,7 +71,7 @@
    .step-info::before {
     font-weight: bold;
     display: block;
-    content: "STEP " counter(step);
+    content: ''; //counter(step);
    }
    
    /* States */

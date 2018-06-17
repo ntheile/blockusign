@@ -6,18 +6,18 @@
 
   <ion-grid>
 
-    <ion-row class="uploader-row">
+    <ion-row class="uploader-row" >
       <ion-col>
 
         <div >
           <!-- Upload  -->
-          <form id="file-upload-form" class="uploader">
+          <form id="file-upload-form" class="uploader" onclick="$('.pdfSelectTxt').text('loading...')">
             <input id="file-upload" type="file" name="fileUpload" accept=".pdf" />
             <label for="file-upload" id="file-drag">
               <img id="file-image" src="#" alt="Preview" class="hidden">
               <div id="start">
                 <i class="fa fa-download" aria-hidden="true"></i>
-                <div>Select a PDF</div>
+                <div class="pdfSelectTxt">Select a PDF</div>
                 <div id="notimage" class="hidden">Please select an image</div>
                 <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
               </div>

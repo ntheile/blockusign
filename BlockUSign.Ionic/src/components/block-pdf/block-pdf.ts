@@ -1,5 +1,5 @@
 import { Component, ViewChild, Input, ChangeDetectionStrategy, ChangeDetectorRef, ViewContainerRef, AfterViewInit, OnDestroy, OnInit, ElementRef, Renderer2 } from '@angular/core';
-import { NavController, NavParams, IonicPage, Segment, LoadingController, AlertController, PopoverController } from 'ionic-angular';
+import { NavController, NavParams, IonicPage, Segment, LoadingController, AlertController, PopoverController, ToastController } from 'ionic-angular';
 import { CryptoCompareService } from '../../services/cryptocompare.service'
 import { AbsoluteDragDirective } from '../../directives/absolute-drag/absolute-drag';
 import { DocumentService } from '../../services/document.service';
@@ -85,7 +85,8 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
     public loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
     public popoverCtrl: PopoverController,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    public toastCntrl: ToastController
   ) {
     console.log('====> constructor');
     
@@ -232,7 +233,18 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
     this.svgDrawer.cleanHTML();
     this.svgDrawer.cleanDrawArea();
     this.svgDrawer.updateMetrics();
-    localStorage.removeItem('svg');
+    //localStorage.removeItem('svg');
+
+    let toast = this.toastCntrl.create({
+      message: 'Cleared!',
+      duration: 2000,
+      position: 'middle'
+    });
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+    toast.present();
+
   }
 
   loadPdf(pdfData) {
@@ -352,6 +364,16 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
 
     
     await this.documentService.saveAnnotations(this.documentService.currentDoc.guid, svg);
+
+    let toast = this.toastCntrl.create({
+      message: 'Saved!',
+      duration: 2000,
+      position: 'middle'
+    });
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+    toast.present();
 
     await this.documentService.addMessage(this.documentService.currentDoc.guid, 'Updated annotation');
 

@@ -51,7 +51,9 @@ export class HomePage {
         public documentService: DocumentService, 
         public alertCtrl: AlertController
     ) {
-
+        this.loading = this.loadingCtrl.create({
+            content: 'Please wait...'
+          });
     }
 
     async ionViewDidLoad() {
@@ -90,10 +92,8 @@ export class HomePage {
 
     loadFile() {
 
-        this.loading = this.loadingCtrl.create({
-            content: 'Please wait...'
-          });
-        //this.loading.present();
+       
+        this.loading.present();
 
         let fileInput: any = document.getElementById('file-upload');
         let firstFile = fileInput.files[0];
@@ -348,6 +348,7 @@ export class HomePage {
 
                         // save here
 
+                        $('.pdfSelectTxt').text('Select a PDF');
                         this.saveFile(data.fileName);
 
                         if (true == true) {
@@ -501,6 +502,10 @@ export class HomePage {
         return blockstack.getFile(fullReadUrl, decryptOptions).then(readContent => {
             console.log("testPublicKeyFile ===> " + readContent);
         });
+    }
+
+    loadBar(){
+        this.loading.present();
     }
 
 

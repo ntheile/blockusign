@@ -24,7 +24,7 @@ export class BlockStepsComponent {
     private documentService: DocumentService,
    
   ) {
-    console.log('Hello BlockStepsComponent Component');
+    
     this.text = 'Hello World';
   }
 
