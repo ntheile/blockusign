@@ -489,6 +489,13 @@ export class DocumentService {
   generateKey() {
     return (<any>window).guid();
   }
+  genHashFromString(str){
+    // @todo get a hash of the document buffer, also get a hash of the string annotations svg
+    // then hash those two parts together, just like a merkle tree in ethereum!
+    let hashBits = sjcl.hash.sha256.hash(str);
+    let hashStr = sjcl.codec.base64.fromBits(hashBits);
+    return hashStr;
+  }
   //#endregion
 
   // watchout

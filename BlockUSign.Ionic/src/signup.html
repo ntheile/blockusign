@@ -49,7 +49,7 @@
             background: #2E3136
         }
 
-        h1{
+        h1 {
             color: whitesmoke
         }
 
@@ -112,7 +112,7 @@
 
         .bighero {
             max-width: 560px;
-            margin: 50px auto;
+            margin: 25px auto;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -217,13 +217,20 @@
                 align-items: center;
             }
 
-            .login-btn{
-                margin-top: 250px;
+            .login-btn {
+                display: block;
+                margin-top: 5px;
             }
+
+            .contact-btn{
+                display: block;
+                margin-top: 50px;
+            }
+
         }
 
         @media (max-width: 881px) {
-           
+
             section.sponsors .list {
                 flex-direction: row;
                 min-width: 444px;
@@ -251,6 +258,24 @@
             margin-right: auto;
             text-align: center;
         }
+
+
+        .flex-grid {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .flex-grid-col {
+            width: 48%;
+            margin: 20px 10px 10px 10px
+        }
+
+        @media (max-width: 1100px) {
+            .flex-grid {
+                display: block;
+            }
+            
+        }
     </style>
 </head>
 
@@ -258,100 +283,88 @@
 
     <section class="one">
         <header>
-            <logomenu>
-                Donate: BTC
-                <br/> 1Jw3xsPzmYus3ke4XYXAHHyzpxD1sjQVta
-                <!-- <div class="logo">
-                        <img src="./assets//imgs/blockusignLogoHiRes.png" width="50px" />
-                        <img src="./assets//imgs/blockusignTextLoRes.png" width="200px" style="padding-left: 10px" />
-                    </div> -->
-                <!-- <li>Get Started</li>
-                    <li>Docs</li>
-                    <li>Pricing</li> -->
-
+            <logomenu style="color: #2E3136;">
+                <p>
+                    Donate: BTC
+                    <br/> 1Jw3xsPzmYus3ke4XYXAHHyzpxD1sjQVta
+                </p>
             </logomenu>
             <infosmenu>
+                <a class="btn contact-btn" href="mailto:blockusign@outlook.com?Subject=Hello" target="_top" style="color:#2E3136;text-decoration: none;">Contact</a>
 
-                <a class="btn" href="mailto:blockusign@outlook.com?Subject=Hello" target="_top" style="color:white;text-decoration: none;">Contact</a>
-                
-                <a class="btn" onclick="localStorage.setItem('signUp', 'true');" href="index.html" style="color:white;text-decoration: none;"
-                target="_blank">Login</a>
-               
+                <a class="btn login-btn" onclick="localStorage.setItem('signUp', 'true');" href="index.html" style="color:#2E3136;text-decoration: none;"
+                    target="_blank">Login</a>
+
             </infosmenu>
-          
-
         </header>
-        <div class="bighero">
+
+        <div class="bighero" style="clear: both">
             <!-- <h1>Blockusign</h1> -->
             <!-- <div class="logo" style="background: rgba(0, 0, 0, 0.56);padding: 10px 10px 10px 10px; border-radius: 25px;padding: 30 16 30 30"> -->
-                <div>
+            <div>
                 <center>
-
-                 
-
                     <img src="./assets//imgs/blockusignLogoHiRes.png" width="75px" />
                     <img src="./assets//imgs/blockusignTextLoRes.png" width="225px" style="padding-left: 10px" />
-                    <br/>
-                    <br/>
-                    <br/>
-                    <h1 style="color:#8C56D0">Simple. Social. Secure.</h1>
-                    <p style="color: #2E3136;"> A decentralized social document signing tool where you own and control your own documents, contracts
+                    
+                    <h1 style="color: #454cad">Simple. Social. Secure Document Signing</h1>
+                   
+                    <p style="color: #2E3136;"> A decentralized (dApp) social document signing tool where you own and control your own documents, contracts
                         and data.
                     </p>
-                    <p style="color: #2E3136;"> 
+                    <p style="color: #2E3136;">
                         Finalize the document as a legally binding agreement by saving it's hash as a smart contract to the blockchain.
                     </p>
                     <br/>
-
-
-                    <a class="btn" onclick="localStorage.setItem('signUp', 'true');" href="index.html" style="color: white;text-decoration: none;font-size: 1.5rem;"
+                    <a class="btn" onclick="localStorage.setItem('signUp', 'true');" href="index.html" 
+                       style="color:whitesmoke; background-color: #454cad; border: none; text-decoration: none;font-size: 1.5rem; padding: 20px 75px 20px 75px"
                         target="_blank">Sign Up</a>
+                    <br/><br/>
                 </center>
 
             </div>
-            <p>
-                <br/>
-                <br/>
-                <br/>
+
+            <div class="flex-grid">
+                <div class="flex-grid-col">
+                    <p>Blockusign Demo</p>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/sYAktmG1NuA?start=1305" frameborder="0" allow="autoplay; encrypted-media"
+                        allowfullscreen></iframe>
+                </div>
+                <div class="flex-grid-col">
+                    <p>If Docusign was built on the Blockchain</p>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/sYAktmG1NuA?start=1305" frameborder="0" allow="autoplay; encrypted-media"
+                        allowfullscreen></iframe>
+                </div>
+            </div>
 
 
-                <br/>
-                <br/>
-                <br/>
-            
 
-            </p>
-            <p>
+
+
+
+
+
+
+        </div>
+
+        <center>
+            <p style="color:white;">
                 It's built on
                 <a href="https://blockstack.org/" target="_blank" style="color:white;">BlockStack</a>
-                and <a href="https://eos.io/" target="_blank" style="color:white;">EOS</a>
+                and
+                <a href="https://eos.io/" target="_blank" style="color:white;">EOS</a>
             </p>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <!-- <p>
-                All signatures are digitally and cryptographically signed and stored on an immutable distributed ledger. You can prove 'when'
-                and 'who' signed something!
-            </p> -->
-            <p>
-
-                    <span >Docusign on the Blockchain
-    
-                    </span>
-                </p>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/sYAktmG1NuA?start=1305" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <p>
+            <p style="color:white;">
 
                 <span style="font-style: italic">&nbsp;&nbsp; Beta Release
 
                 </span>
             </p>
 
-        
-
-        </div>
+        </center>
     </section>
+
+
+
     <section class="infos">
         <div class="content">
 
@@ -393,7 +406,7 @@
                 </div>
                 <div class="float-md-50 winfo">
                     <h1 class="title">(3) Annotate</h1>
-                    <p class="description">Drag and drop the "sign here" annotation so the recipient knows where to sign. Don't forget to add some 
+                    <p class="description">Drag and drop the "sign here" annotation so the recipient knows where to sign. Don't forget to add some
                         emojis for custom flaire! </p>
                 </div>
             </div>
@@ -405,8 +418,8 @@
                 </div>
                 <div class="float-md-50 winfo">
                     <h1 class="title">(4) Collaborate socially</h1>
-                    <p class="description">Email the document to your signer, and communicate with the built-in chat. A document log history
-                        is viewable from the chat, too! </p>
+                    <p class="description">Email the document to your signer, and communicate with the built-in chat. A document log history is
+                        viewable from the chat, too! </p>
                 </div>
             </div>
             <div class="grid allcenter">
@@ -417,9 +430,8 @@
                 </div>
                 <div class="float-md-50 winfo">
                     <h1 class="title">(5) Sign</h1>
-                    <p class="description">The recipient signs the document. The transaction will be digitally signed
-                        and stored on the immutable ledger. This signature is unique to them and proves the date and time
-                        they signed it.
+                    <p class="description">The recipient signs the document. The transaction will be digitally signed and stored on the immutable
+                        ledger. This signature is unique to them and proves the date and time they signed it.
                     </p>
                     <p class="description">
                         Current document signing systems can be forged since they are architected using a central server owned by a central company.
@@ -441,14 +453,14 @@
                         <a style="color: whitesmoke" href="https://en.wikipedia.org/wiki/Proof_of_Existence" target="_blank">Proof of Existance protocol.</a>
                         The hash of the document is sent to a smart contract where both parties digtally and cryptographically sign it.
                     </p>
-                    <p class="description">                        
-                        The hash is stored on an immutable ledger. Security is maintained because the actual document is never stored
-                        on the blockchain. Even if one tiny space is added to the document after it's signed, 
-                        it will not match, thus proving the document was changed or tampered with.
-                    </p>    
                     <p class="description">
-                        In the event of a legal dispute, the authenticity of the document is proved by comparing your local document's
-                        hash to that stored on the blockchain. If the hashes match, the document is valid.
+                        The hash is stored on an immutable ledger. Security is maintained because the actual document is never stored on the blockchain.
+                        Even if one tiny space is added to the document after it's signed, it will not match, thus proving
+                        the document was changed or tampered with.
+                    </p>
+                    <p class="description">
+                        In the event of a legal dispute, the authenticity of the document is proved by comparing your local document's hash to that
+                        stored on the blockchain. If the hashes match, the document is valid.
                     </p>
 
                 </div>
@@ -462,25 +474,34 @@
 
 
     <section class="center" style="background-color: #EEE;">
-        <br/><br/>
+        <br/>
+        <br/>
         <h1 style="color:black">How does it work?</h1>
-        <br/><br/>
+        <br/>
+        <br/>
         <img class="center" src="./assets/imgs/blockstack-architecture-diagram.svg" />
-        <br/><br/>
+        <br/>
+        <br/>
         <a class="btn" href="https://blockstack.org" style="color: bloack;text-decoration: none;font-size: 1.5rem;" target="_blank">Learn more about Blockstack</a>
-        <br/><br/>
+        <br/>
+        <br/>
     </section>
 
-    
+
 
     <section class="center" style="background-color: #EEE;">
-        <br/><br/>
+        <br/>
+        <br/>
         <h1 style="color:black">How does data storage work?</h1>
-        <br/><br/>
+        <br/>
+        <br/>
         <img class="center" src="./assets/imgs/automerge.png" />
-        <br/><br/>
-        <a class="btn" href="https://github.com/automerge/automerge" style="color: bloack;text-decoration: none;font-size: 1.5rem;" target="_blank">Learn more about automerge.js</a>
-        <br/><br/>
+        <br/>
+        <br/>
+        <a class="btn" href="https://github.com/automerge/automerge" style="color: bloack;text-decoration: none;font-size: 1.5rem;"
+            target="_blank">Learn more about automerge.js</a>
+        <br/>
+        <br/>
     </section>
 
 
@@ -493,5 +514,3 @@
 </body>
 
 </html>
-
-

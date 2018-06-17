@@ -73,13 +73,8 @@ export class SignPage {
         //get the file buffer
         let path = doc.pathAnnotatedDoc + this.navParams.get("guid") + ".pdf";
         console.log(path);
-
         let fileBuffer = await this.documentService.getDocumentByPath(path, doc.documentKey);
-
-
-        
-        let copied = await this.documentService.copyDocument(doc, guid, fileBuffer);
-        
+        let copied = await this.documentService.copyDocument(doc, guid, fileBuffer);     
         this.blockPdf.ngOnInit();
       }
     }
@@ -89,14 +84,6 @@ export class SignPage {
 
     console.log('ionViewDidLoad SignPage');
     this.name = blockstack.loadUserData().profile.name;
-
-
-    // setTimeout( () =>{
-    //   this.documentService.mergeAnnotations(this.navParams.get("guid") );
-    // }, 3000 )
-   
-   
-
   }
 
   ionViewDidEnter(){
