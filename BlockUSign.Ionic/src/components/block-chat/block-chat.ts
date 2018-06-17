@@ -76,8 +76,9 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
     $(document).on("click", ".intercom-emoji-picker-emoji", function (e) {
       if (e.target.className == "intercom-emoji-picker-emoji"){
         let existing = $(".emojiDiv").val();
-        let emo = $(this).html();
+        let emo =  $(this).html();
         $(".emojiDiv").val( existing + emo );
+        
       }
     });
     $('.intercom-composer-popover-input').on('input', function () {
@@ -194,6 +195,7 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
   async addMessage() {
    
     $(".loadSpin").show();
+    this.message = $(".emojiDiv").val();
     //$('.log-history').append(this.message);
     await this.documentService.addMessage(this.doc.guid, this.message);
     this.events.publish('documentService:addedChat', this.message);

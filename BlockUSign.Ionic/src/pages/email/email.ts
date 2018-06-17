@@ -121,8 +121,8 @@ export class EmailPage {
   }
 
   async sendEmail(e){
-    if (!this.email){
-      alert('Please enter an email address');
+    if (!this.email || !this.email.includes('@')){
+      alert('Please enter a valid email address');
       return;
     }
 

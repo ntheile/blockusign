@@ -4,10 +4,10 @@
   <block-steps activeStep="3">
   </block-steps>
 
-
+  <form></form>
   <ion-grid style="position: relative">
     <ion-row align-items-left>
-      <ion-col>
+      <ion-col style="display: none;">
         <ng-select style="width:460px; background-color:whitesmoke; border-radius:2px; padding-left:10px" [items]="people3" [multiple]="false"
           bindLabel="username" [(ngModel)]="selectedUser" (change)="searchUser($event)" [typeahead]="people3Typeahead" placeholder="Select signer...">
           <ng-template ng-label-tmp let-item="item" let-clear="clear">
@@ -22,19 +22,23 @@
           </ng-template>
         </ng-select>
       </ion-col>
-      <ion-col>
+      <ion-col style="display: none;">
         <h3>or</h3>
       </ion-col>
       <ion-col style="width:460px; background-color:transparent; ">
         <!-- <ion-item  style="width:460px; background-color:transparent; " >
           <ion-input style="width:460px;" placeholder="[Enter Email]" [(ngModel)]="email"></ion-input>
         </ion-item> -->
-
-        <input class="classic-input" type="email" placeholder="Email To..." [(ngModel)]="email" autofocus>
+        
+        <input class="classic-input" type="email" 
+        size="64" maxLength="64" required
+        placeholder="Email To..." [(ngModel)]="email" autofocus>
 
       </ion-col>
       <ion-col>
         <button ion-button (click)="sendEmail($event)">Send Email</button>
+
+      
       </ion-col>
     </ion-row>
   </ion-grid>
