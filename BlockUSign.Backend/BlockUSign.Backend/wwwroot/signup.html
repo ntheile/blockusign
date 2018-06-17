@@ -1,0 +1,514 @@
+<html>
+
+<head>
+    <title>Blockusign</title>
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <style>
+        @import "https://fonts.googleapis.com/css?family=Open+Sans:300,400";
+        header,
+        section.sponsors,
+        section.sponsors .list,
+        section.sponsors .list .imgsponsor,
+        .winfo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        .content {
+            max-width: 1024px;
+            position: relative;
+            margin: 0px auto;
+        }
+
+        .content .grid:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .content .grid {
+            padding: 30px 0px;
+            min-height: 400px;
+        }
+
+        .content .grid.allcenter {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            width: 100%;
+            min-height: 100%;
+            /* background: #EFEFEF; */
+            background: #2E3136
+        }
+
+        h1 {
+            color: whitesmoke
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: border-box;
+        }
+
+        section {
+            padding: 10px 20px;
+        }
+
+        section.one {
+            background-color: #8C56D0;
+            /* background: url("https://images.unsplash.com/photo-1444424050109-31f057e1e858?dpr=1&auto=format&crop=entropy&fit=crop&w=1500&h=997&q=80&cs=tinysrgb") no-repeat center; */
+            background: url("./assets/imgs/monica-beach.jpg") no-repeat center;
+            background-size: cover;
+            min-height: 400px;
+        }
+
+        header {
+            color: white;
+            max-width: 1100px;
+            height: 40px;
+            justify-content: space-between;
+            margin: 0px auto;
+        }
+
+        header ul {
+            margin-top: 0;
+            margin-bottom: 0px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        header li {
+            margin: 0px 6px;
+        }
+
+        header li.logo {
+            font-weight: 600;
+            font-size: 1.2em;
+            margin-right: 14px;
+        }
+
+        .btn {
+            border: 2px solid;
+            border-radius: 20px;
+            opacity: 0.8;
+            cursor: pointer;
+            padding: 5px 17px 5px;
+            transition: opacity 300ms;
+        }
+
+        .btn:hover {
+            opacity: 1;
+        }
+
+        .bighero {
+            max-width: 560px;
+            margin: 25px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .bighero h1 {
+            color: #FFC107;
+            font-size: 2em;
+            font-weight: 600;
+            margin-bottom: 14px;
+            letter-spacing: 1px;
+            animation: bounceIn 1s cubic-bezier(0.155, 1.105, 0.295, 1.12) 1s;
+        }
+
+        .bighero p {
+            color: white;
+            text-align: center;
+            line-height: 1.4;
+            width: 90%;
+        }
+
+        section.sponsors {
+            background-color: #E6E6E6;
+        }
+
+        section.sponsors .list {
+            flex-direction: row;
+            min-width: 844px;
+            justify-content: space-around;
+        }
+
+        section.sponsors .list .imgsponsor {
+            width: auto;
+            height: 50px;
+            overflow: hidden;
+        }
+
+        section.sponsors .list img {
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        section.sponsors .list img.skype {
+            height: 220% !important;
+        }
+
+        section.infos {
+            padding: 50px 20px;
+        }
+
+        .float-md-50 {
+            width: 48%;
+            float: left;
+        }
+
+        .winfo {
+            flex-direction: column;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1.title {
+            font-size: 2.4em;
+        }
+
+        p.description {
+            margin: 20px 0px;
+            line-height: 1.5;
+            font-size: 1em;
+            color: whitesmoke;
+        }
+
+        @keyframes bounceIn {
+            0%,
+            100% {
+                transform: translate3d(0, 0px, 0) scale3d(1, 1, 1);
+            }
+            50%,
+            52% {
+                transform: translate3d(0, 0px, 0) scale3d(1.2, 1.2, 1);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .content .grid:nth-child(even) {
+                flex-direction: column-reverse;
+                /* background-color: #ddd; */
+            }
+            .content .grid {
+                padding: 20px;
+                flex-direction: column-reverse;
+            }
+
+            .float-md-50 {
+                width: 99%;
+                float: left;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .login-btn {
+                display: block;
+                margin-top: 5px;
+            }
+
+            .contact-btn{
+                display: block;
+                margin-top: 50px;
+            }
+
+        }
+
+        @media (max-width: 881px) {
+
+            section.sponsors .list {
+                flex-direction: row;
+                min-width: 444px;
+                justify-content: space-around;
+            }
+            section.sponsors .list .imgsponsor {
+                width: auto;
+                height: 30px;
+                overflow: hidden;
+            }
+            section.sponsors .list img {
+                height: 100%;
+                opacity: 0.3;
+            }
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+
+        .flex-grid {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .flex-grid-col {
+            width: 48%;
+            margin: 20px 10px 10px 10px
+        }
+
+        @media (max-width: 1100px) {
+            .flex-grid {
+                display: block;
+            }
+            
+        }
+    </style>
+</head>
+
+<body style="padding: 0 0 0 0; margin: 0 0 0 0">
+
+    <section class="one">
+        <header>
+            <logomenu style="color: #2E3136;">
+                <p>
+                    Donate: BTC
+                    <br/> 1Jw3xsPzmYus3ke4XYXAHHyzpxD1sjQVta
+                </p>
+            </logomenu>
+            <infosmenu>
+                <a class="btn contact-btn" href="mailto:blockusign@outlook.com?Subject=Hello" target="_top" style="color:#2E3136;text-decoration: none;">Contact</a>
+
+                <a class="btn login-btn" onclick="localStorage.setItem('signUp', 'true');" href="index.html" style="color:#2E3136;text-decoration: none;"
+                    target="_blank">Login</a>
+
+            </infosmenu>
+        </header>
+
+        <div class="bighero" style="clear: both">
+            <!-- <h1>Blockusign</h1> -->
+            <!-- <div class="logo" style="background: rgba(0, 0, 0, 0.56);padding: 10px 10px 10px 10px; border-radius: 25px;padding: 30 16 30 30"> -->
+            <div>
+                <center>
+                    <img src="./assets//imgs/blockusignLogoHiRes.png" width="75px" />
+                    <img src="./assets//imgs/blockusignTextLoRes.png" width="225px" style="padding-left: 10px" />
+                    
+                    <h1 style="color: #454cad">Simple. Social. Secure.</h1>
+                    <p style="color: #2E3136;"> A decentralized (dApp) social document signing tool where you own and control your own documents, contracts
+                        and data.
+                    </p>
+                    <p style="color: #2E3136;">
+                        Finalize the document as a legally binding agreement by saving it's hash as a smart contract to the blockchain.
+                    </p>
+                    <br/>
+                    <a class="btn" onclick="localStorage.setItem('signUp', 'true');" href="index.html" 
+                       style="color:whitesmoke; background-color: #454cad; border: none; text-decoration: none;font-size: 1.5rem; padding: 20px 75px 20px 75px"
+                        target="_blank">Sign Up</a>
+                </center>
+
+            </div>
+
+            <div class="flex-grid">
+                <div class="flex-grid-col">
+                    <p>Blockusign Demo</p>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/sYAktmG1NuA?start=1305" frameborder="0" allow="autoplay; encrypted-media"
+                        allowfullscreen></iframe>
+                </div>
+                <div class="flex-grid-col">
+                    <p>If Docusign was built on the Blockchain</p>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/sYAktmG1NuA?start=1305" frameborder="0" allow="autoplay; encrypted-media"
+                        allowfullscreen></iframe>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+        </div>
+
+        <center>
+            <p style="color:white;">
+                It's built on
+                <a href="https://blockstack.org/" target="_blank" style="color:white;">BlockStack</a>
+                and
+                <a href="https://eos.io/" target="_blank" style="color:white;">EOS</a>
+            </p>
+            <p style="color:white;">
+
+                <span style="font-style: italic">&nbsp;&nbsp; Beta Release
+
+                </span>
+            </p>
+
+        </center>
+    </section>
+
+
+
+    <section class="infos">
+        <div class="content">
+
+            <div class="grid allcenter">
+                <div class="float-md-50 wimg">
+                    <a href="./assets/imgs/su_login.png">
+                        <img src="./assets/imgs/su_login.png" />
+                    </a>
+
+                </div>
+                <div class="float-md-50 winfo">
+                    <h1 class="title">(1) Login with your own Self Sovereign Identity</h1>
+                    <p class="description">Login with Blockstack. It's a Self Sovereign identity that you own. No more worrying about your data
+                        being leaked with Facebook login.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid allcenter">
+                <div class="float-md-50 wimg">
+                    <a href=./assets/imgs/1upload.png>
+                        <img src="./assets/imgs/1upload.png" />
+                    </a>
+                </div>
+                <div class="float-md-50 winfo">
+                    <h1 class="title">(2) Upload a PDF securely with data privacy</h1>
+                    <p class="description">Upload a document from your local file system to your own personal secure storage bucket in the cloud.
+                        Only you and the person you share the file with have the keys to access this data. The upload never
+                        touches our servers NOT Blockusign. NOT any government. JUST YOU! This is the data privacy you have
+                        always dreamed of. GDPR and HIPAA complient.
+                    </p>
+                </div>
+            </div>
+            <div class="grid allcenter">
+                <div class="float-md-50 wimg">
+                    <a href="./assets/imgs/2annotate.png">
+                        <img src="./assets/imgs/2annotate.png" />
+                    </a>
+                </div>
+                <div class="float-md-50 winfo">
+                    <h1 class="title">(3) Annotate</h1>
+                    <p class="description">Drag and drop the "sign here" annotation so the recipient knows where to sign. Don't forget to add some
+                        emojis for custom flaire! </p>
+                </div>
+            </div>
+            <div class="grid allcenter">
+                <div class="float-md-50 wimg">
+                    <a href="./assets/imgs/2annotate.png">
+                        <img src="./assets/imgs/2annotate.png" />
+                    </a>
+                </div>
+                <div class="float-md-50 winfo">
+                    <h1 class="title">(4) Collaborate socially</h1>
+                    <p class="description">Email the document to your signer, and communicate with the built-in chat. A document log history is
+                        viewable from the chat, too! </p>
+                </div>
+            </div>
+            <div class="grid allcenter">
+                <div class="float-md-50 wimg">
+                    <a href="./assets/imgs/3sign.png">
+                        <img src="./assets/imgs/3sign.png" />
+                    </a>
+                </div>
+                <div class="float-md-50 winfo">
+                    <h1 class="title">(5) Sign</h1>
+                    <p class="description">The recipient signs the document. The transaction will be digitally signed and stored on the immutable
+                        ledger. This signature is unique to them and proves the date and time they signed it.
+                    </p>
+                    <p class="description">
+                        Current document signing systems can be forged since they are architected using a central server owned by a central company.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid allcenter">
+                <div class="float-md-50 wimg">
+                    <a href="./assets/imgs/3sign.png">
+                        <img src="./assets/imgs/3sign.png" />
+                    </a>
+                </div>
+                <div class="float-md-50 winfo">
+                    <h1 class="title">(6) Finalize - Save the document as a Smart Contract to the Blockchain</h1>
+                    <p class="description">
+                        Finalize the document as a legally binding agreement by saving it's hash as a smart contract to the blockchain. It's like
+                        a digital notary and is signed and timestamped using the
+                        <a style="color: whitesmoke" href="https://en.wikipedia.org/wiki/Proof_of_Existence" target="_blank">Proof of Existance protocol.</a>
+                        The hash of the document is sent to a smart contract where both parties digtally and cryptographically sign it.
+                    </p>
+                    <p class="description">
+                        The hash is stored on an immutable ledger. Security is maintained because the actual document is never stored on the blockchain.
+                        Even if one tiny space is added to the document after it's signed, it will not match, thus proving
+                        the document was changed or tampered with.
+                    </p>
+                    <p class="description">
+                        In the event of a legal dispute, the authenticity of the document is proved by comparing your local document's hash to that
+                        stored on the blockchain. If the hashes match, the document is valid.
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </section>
+
+
+    <section class="center" style="background-color: #EEE;">
+        <br/>
+        <br/>
+        <h1 style="color:black">How does it work?</h1>
+        <br/>
+        <br/>
+        <img class="center" src="./assets/imgs/blockstack-architecture-diagram.svg" />
+        <br/>
+        <br/>
+        <a class="btn" href="https://blockstack.org" style="color: bloack;text-decoration: none;font-size: 1.5rem;" target="_blank">Learn more about Blockstack</a>
+        <br/>
+        <br/>
+    </section>
+
+
+
+    <section class="center" style="background-color: #EEE;">
+        <br/>
+        <br/>
+        <h1 style="color:black">How does data storage work?</h1>
+        <br/>
+        <br/>
+        <img class="center" src="./assets/imgs/automerge.png" />
+        <br/>
+        <br/>
+        <a class="btn" href="https://github.com/automerge/automerge" style="color: bloack;text-decoration: none;font-size: 1.5rem;"
+            target="_blank">Learn more about automerge.js</a>
+        <br/>
+        <br/>
+    </section>
+
+
+    <section class="sponsors">
+        <p>
+            Donate: BTC - 1Jw3xsPzmYus3ke4XYXAHHyzpxD1sjQVta |
+            <a href="https://github.com/ntheile/blockusign" target="_blank">Github</a>
+        </p>
+    </section>
+</body>
+
+</html>
