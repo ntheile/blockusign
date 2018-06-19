@@ -63,10 +63,15 @@
             padding: 10px 20px;
         }
 
-        section.one {
-            background-color: #8C56D0;
-            /* background: url("https://images.unsplash.com/photo-1444424050109-31f057e1e858?dpr=1&auto=format&crop=entropy&fit=crop&w=1500&h=997&q=80&cs=tinysrgb") no-repeat center; */
+        .bg {
             background: url("./assets/imgs/monica-beach.jpg") no-repeat center;
+            background-size: cover;
+            min-height: 400px;
+        }
+
+        section.one {
+            background-color: transparent;
+            /* background: url("https://images.unsplash.com/photo-1444424050109-31f057e1e858?dpr=1&auto=format&crop=entropy&fit=crop&w=1500&h=997&q=80&cs=tinysrgb") no-repeat center; */
             background-size: cover;
             min-height: 400px;
         }
@@ -198,6 +203,37 @@
             }
         }
 
+
+        .flex-grid {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .flex-grid-col {
+            width: 48%;
+            margin: 20px 10px 10px 10px
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .mobile-video {
+            display: none;
+        }
+
+        .desktop-video {
+            display: flex;
+        }
+
         @media (max-width: 600px) {
             .content .grid:nth-child(even) {
                 flex-direction: column-reverse;
@@ -217,14 +253,26 @@
                 align-items: center;
             }
 
-            .login-btn {
+            /* .login-btn {
                 display: block;
                 margin-top: 5px;
-            }
-
-            .contact-btn{
+            } */
+            /* .contact-btn{
                 display: block;
                 margin-top: 50px;
+            } */
+            .btc-donate {
+                display: none;
+            }
+
+            .mobile-video {
+                display: inline !important;
+                margin: 0px 0px 0px 0px !important;
+                padding: 0px 0px 0px 0px !important;
+            }
+
+            .desktop-video {
+                display: none !important;
             }
 
         }
@@ -247,122 +295,162 @@
             }
         }
 
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .center {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: center;
-        }
-
-
-        .flex-grid {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .flex-grid-col {
-            width: 48%;
-            margin: 20px 10px 10px 10px
-        }
-
         @media (max-width: 1100px) {
             .flex-grid {
                 display: block;
             }
-            
+
         }
     </style>
 </head>
 
 <body style="padding: 0 0 0 0; margin: 0 0 0 0">
 
-    <section class="one">
-        <header>
-            <logomenu style="color: #2E3136;">
-                <p>
-                    Donate: BTC
-                    <br/> 1Jw3xsPzmYus3ke4XYXAHHyzpxD1sjQVta
+    <section class="bg">
+
+        <section class="one">
+
+
+
+            <header>
+                <logomenu class="btc-donate" style="color: #2E3136;">
+                    <p>
+                        Donate: BTC
+                        <br/> 1Jw3xsPzmYus3ke4XYXAHHyzpxD1sjQVta
+                    </p>
+                </logomenu>
+                <infosmenu>
+                    <a class="btn contact-btn" href="mailto:blockusign@outlook.com?Subject=Hello" target="_top" style="color:#2E3136;text-decoration: none;">Contact</a>
+
+                    <a class="btn login-btn" onclick="localStorage.setItem('signUp', 'true');" href="index.html" style="color:#2E3136;text-decoration: none;"
+                        target="_blank">Login</a>
+
+                </infosmenu>
+            </header>
+
+            <div class="bighero" style="clear: both">
+                <!-- <h1>Blockusign</h1> -->
+                <!-- <div class="logo" style="background: rgba(0, 0, 0, 0.56);padding: 10px 10px 10px 10px; border-radius: 25px;padding: 30 16 30 30"> -->
+                <div>
+                    <center>
+                        <img src="./assets//imgs/blockusignLogoHiRes.png" width="75px" />
+                        <img src="./assets//imgs/blockusignTextLoRes.png" width="225px" style="padding-left: 10px" />
+
+                        <h1 style="color: #454cad">Simple. Social. Secure Document Signing</h1>
+
+                        <p style="color: #2E3136;"> A decentralized (dApp) social document signing tool where you own and control your own documents,
+                            contracts and data.
+                        </p>
+                        <p style="color: #2E3136;">
+                            Finalize the document as a legally binding agreement by saving it's hash as a smart contract to the blockchain.
+                        </p>
+                        <br/>
+                        <a class="btn" onclick="localStorage.setItem('signUp', 'true');" href="index.html" style="color:whitesmoke; background-color: #454cad; border: none; text-decoration: none;font-size: 1.5rem; padding: 20px 75px 20px 75px"
+                            target="_blank">Sign Up</a>
+                        <br/>
+                        <br/>
+
+
+
+
+                    </center>
+
+                </div>
+
+                <div class="flex-grid desktop-video">
+                    <div class="flex-grid-col">
+                        <p>Blockusign Demo</p>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed//ccokAmUCafI" frameborder="0" allow="autoplay; encrypted-media"
+                            allowfullscreen></iframe>
+
+                    </div>
+
+                    <div class="flex-grid-col videoWrapper">
+                        <p>If Docusign was built on the Blockchain</p>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/sYAktmG1NuA?start=1305" frameborder="0" allow="autoplay; encrypted-media"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mobile-video">
+                <div>
+                    <p style="color: whitesmoke;">Blockusign Demo</p>
+                    <style>
+                        .embed-container {
+                            position: relative;
+                            padding-bottom: 56.25%;
+                            height: 0;
+                            overflow: hidden;
+                            max-width: 100%;
+                        }
+
+                        .embed-container iframe,
+                        .embed-container object,
+                        .embed-container embed {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                        }
+                    </style>
+                    <div class='embed-container'>
+                        <iframe src='https://www.youtube.com/embed//ccokAmUCafI' frameborder='0' allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <div>
+                    <p style="color: whitesmoke;">If Docusign was built on the Blockchain</p>
+                    <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/sYAktmG1NuA?start=1305" frameborder="0" allow="autoplay; encrypted-media"
+                            allowfullscreen></iframe> -->
+                    <style>
+                        .embed-container {
+                            position: relative;
+                            padding-bottom: 56.25%;
+                            height: 0;
+                            overflow: hidden;
+                            max-width: 100%;
+                        }
+
+                        .embed-container iframe,
+                        .embed-container object,
+                        .embed-container embed {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                        }
+                    </style>
+                    <div class='embed-container'>
+                        <iframe src='https://www.youtube.com/embed/sYAktmG1NuA?start=1305' frameborder='0' allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <center>
+                <p style="color:white;">
+                    It's built on
+                    <a href="https://blockstack.org/" target="_blank" style="color:white;">BlockStack</a>
+                    and
+                    <a href="https://eos.io/" target="_blank" style="color:white;">EOS</a>
                 </p>
-            </logomenu>
-            <infosmenu>
-                <a class="btn contact-btn" href="mailto:blockusign@outlook.com?Subject=Hello" target="_top" style="color:#2E3136;text-decoration: none;">Contact</a>
+                <p style="color:white;">
 
-                <a class="btn login-btn" onclick="localStorage.setItem('signUp', 'true');" href="index.html" style="color:#2E3136;text-decoration: none;"
-                    target="_blank">Login</a>
+                    <span style="font-style: italic">&nbsp;&nbsp; Beta Release
 
-            </infosmenu>
-        </header>
+                    </span>
+                </p>
 
-        <div class="bighero" style="clear: both">
-            <!-- <h1>Blockusign</h1> -->
-            <!-- <div class="logo" style="background: rgba(0, 0, 0, 0.56);padding: 10px 10px 10px 10px; border-radius: 25px;padding: 30 16 30 30"> -->
-            <div>
-                <center>
-                    <img src="./assets//imgs/blockusignLogoHiRes.png" width="75px" />
-                    <img src="./assets//imgs/blockusignTextLoRes.png" width="225px" style="padding-left: 10px" />
-                    
-                    <h1 style="color: #454cad">Simple. Social. Secure Document Signing</h1>
-                   
-                    <p style="color: #2E3136;"> A decentralized (dApp) social document signing tool where you own and control your own documents, contracts
-                        and data.
-                    </p>
-                    <p style="color: #2E3136;">
-                        Finalize the document as a legally binding agreement by saving it's hash as a smart contract to the blockchain.
-                    </p>
-                    <br/>
-                    <a class="btn" onclick="localStorage.setItem('signUp', 'true');" href="index.html" 
-                       style="color:whitesmoke; background-color: #454cad; border: none; text-decoration: none;font-size: 1.5rem; padding: 20px 75px 20px 75px"
-                        target="_blank">Sign Up</a>
-                    <br/><br/>
-                </center>
-
-            </div>
-
-            <div class="flex-grid">
-                <div class="flex-grid-col">
-                    <p>Blockusign Demo</p>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/sYAktmG1NuA?start=1305" frameborder="0" allow="autoplay; encrypted-media"
-                        allowfullscreen></iframe>
-                </div>
-                <div class="flex-grid-col">
-                    <p>If Docusign was built on the Blockchain</p>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/sYAktmG1NuA?start=1305" frameborder="0" allow="autoplay; encrypted-media"
-                        allowfullscreen></iframe>
-                </div>
-            </div>
+            </center>
+        </section>
 
 
-
-
-
-
-
-
-
-        </div>
-
-        <center>
-            <p style="color:white;">
-                It's built on
-                <a href="https://blockstack.org/" target="_blank" style="color:white;">BlockStack</a>
-                and
-                <a href="https://eos.io/" target="_blank" style="color:white;">EOS</a>
-            </p>
-            <p style="color:white;">
-
-                <span style="font-style: italic">&nbsp;&nbsp; Beta Release
-
-                </span>
-            </p>
-
-        </center>
     </section>
-
 
 
     <section class="infos">
@@ -511,6 +599,53 @@
             <a href="https://github.com/ntheile/blockusign" target="_blank">Github</a>
         </p>
     </section>
+
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+
+
+
+    <script>
+//         $(document).ready(function(){
+//             // Find all YouTube videos
+// var $allVideos = $("iframe[src^='//www.youtube.com']"),
+
+// // The element that is fluid width
+// $fluidEl = $("body");
+
+// // Figure out and save aspect ratio for each video
+// $allVideos.each(function() {
+
+// $(this)
+// .data('aspectRatio', this.height / this.width)
+
+// // and remove the hard coded width/height
+// .removeAttr('height')
+// .removeAttr('width');
+
+// });
+
+// // When the window is resized
+// $(window).resize(function() {
+
+// var newWidth = $fluidEl.width();
+
+// // Resize all videos according to their own aspect ratio
+// $allVideos.each(function() {
+
+// var $el = $(this);
+// $el
+//   .width(newWidth)
+//   .height(newWidth * $el.data('aspectRatio'));
+
+// });
+
+// // Kick off one resize to fix all videos on page load
+// }).resize();
+//         });
+
+    </script>
 </body>
 
 </html>
