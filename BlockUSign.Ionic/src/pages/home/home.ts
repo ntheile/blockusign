@@ -349,7 +349,7 @@ export class HomePage {
                         // save here
 
                         $('.pdfSelectTxt').text('Select a PDF');
-                        this.saveFile(data.fileName);
+                        this.saveFile(data.fileName.replace("'",""));
 
                         if (true == true) {
                             // logged in!

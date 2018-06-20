@@ -126,8 +126,8 @@
         }
 
         .bighero h1 {
-            color: #FFC107;
-            font-size: 2em;
+            color: #454cad;
+            font-size: 1.55em;
             font-weight: 600;
             margin-bottom: 14px;
             letter-spacing: 1px;
@@ -234,6 +234,13 @@
             display: flex;
         }
 
+        .desc-text {
+            color: whitesmoke; 
+            background-color: rgba(0,0,0,.2); 
+            padding: 10px 10px 10px 10px; 
+            border-radius:5px
+        }
+
         @media (max-width: 600px) {
             .content .grid:nth-child(even) {
                 flex-direction: column-reverse;
@@ -301,6 +308,11 @@
             }
 
         }
+
+         @media (max-width: 430px) {
+            
+
+         }
     </style>
 </head>
 
@@ -336,12 +348,12 @@
                         <img src="./assets//imgs/blockusignLogoHiRes.png" width="75px" />
                         <img src="./assets//imgs/blockusignTextLoRes.png" width="225px" style="padding-left: 10px" />
 
-                        <h1 style="color: #454cad">Simple. Social. Secure Document Signing</h1>
+                        <h1>Simple. Social. Secure Document Signing</h1>
 
-                        <p style="color: #2E3136;"> A decentralized (dApp) social document signing tool where you own and control your own documents,
+                        <p class="desc-text"> A decentralized (dApp) social document signing tool where you own and control your own documents,
                             contracts and data.
                         </p>
-                        <p style="color: #2E3136;">
+                        <p class="desc-text">
                             Finalize the document as a legally binding agreement by saving it's hash as a smart contract to the blockchain.
                         </p>
                         <br/>
@@ -359,14 +371,14 @@
 
                 <div class="flex-grid desktop-video">
                     <div class="flex-grid-col">
-                        <p>Blockusign Demo</p>
+                        <p class="desc-text">Blockusign Demo</p>
                         <iframe width="560" height="315" src="https://www.youtube.com/embed//ccokAmUCafI" frameborder="0" allow="autoplay; encrypted-media"
                             allowfullscreen></iframe>
 
                     </div>
 
                     <div class="flex-grid-col videoWrapper">
-                        <p>If Docusign was built on the Blockchain</p>
+                        <p class="desc-text">If Docusign built on the Blockchain</p>
                         <iframe width="560" height="315" src="https://www.youtube.com/embed/sYAktmG1NuA?start=1305" frameborder="0" allow="autoplay; encrypted-media"
                             allowfullscreen></iframe>
                     </div>
@@ -376,7 +388,7 @@
 
             <div class="mobile-video">
                 <div>
-                    <p style="color: whitesmoke;">Blockusign Demo</p>
+                    <p class="desc-text">Blockusign Demo</p>
                     <style>
                         .embed-container {
                             position: relative;
@@ -402,7 +414,7 @@
                 </div>
 
                 <div>
-                    <p style="color: whitesmoke;">If Docusign was built on the Blockchain</p>
+                    <p class="desc-text">If Docusign was built on the Blockchain</p>
                     <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/sYAktmG1NuA?start=1305" frameborder="0" allow="autoplay; encrypted-media"
                             allowfullscreen></iframe> -->
                     <style>
@@ -500,8 +512,8 @@
             </div>
             <div class="grid allcenter">
                 <div class="float-md-50 wimg">
-                    <a href="./assets/imgs/2annotate.png">
-                        <img src="./assets/imgs/2annotate.png" />
+                    <a href="./assets/imgs/4chat.png">
+                        <img src="./assets/imgs/4chat.png" />
                     </a>
                 </div>
                 <div class="float-md-50 winfo">
@@ -529,8 +541,8 @@
 
             <div class="grid allcenter">
                 <div class="float-md-50 wimg">
-                    <a href="./assets/imgs/3sign.png">
-                        <img src="./assets/imgs/3sign.png" />
+                    <a href="./assets/imgs/5contract.png">
+                        <img src="./assets/imgs/5contract.png" />
                     </a>
                 </div>
                 <div class="float-md-50 winfo">
