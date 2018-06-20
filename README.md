@@ -35,7 +35,7 @@ You will most likely get this error:
 
 `Cannot GET /signup.html`
 
-This only happens the first you you open. I have not had time to improve this part yet :( . To fix this,  you will need to open the developer tools and set a localStorage setting in the console
+This only happens the first time you open the app. Sorry, I have not had time to improve this part yet :( . To fix this,  you will need to open the developer tools and set a localStorage setting in the console
 or else you will be redirected to a non-existent signup.html page.
 
 `localStorage.setItem('signUp', 'true')`
@@ -43,4 +43,11 @@ or else you will be redirected to a non-existent signup.html page.
 Refresh the app back to the root and you should be prompted for blockstack login!
 
 `http://localhost:8100/`
+
+
+
+# Architecture Diagram
+
+TODO :) 
+
 
