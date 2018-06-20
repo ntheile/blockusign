@@ -43,7 +43,7 @@
         </ion-col>
         <ion-col col-auto *ngIf="showSignature" style="position: relative;">
           
-          <div contenteditable="true" (keyup)="onKey($event)" class="editSigContent" style="caret-color: black">
+          <div contenteditable="true" (keyup)="onKey($event)" class="editSigContent" style="caret-color: black; max-width:190px;">
 
           
           <svg xmlns="http://www.w3.org/2000/svg"  id="signature" class="draggable draggable-droppable" width="200" height="50" viewBox="0 0 200 50"

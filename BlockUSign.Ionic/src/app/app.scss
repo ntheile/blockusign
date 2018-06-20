@@ -1027,6 +1027,21 @@
         transition-delay: 60ms;
         font-family: Apple Color Emoji,Segoe UI Emoji,NotoColorEmoji,Segoe UI Symbol,Android Emoji,EmojiSymbols;
     }
+    .intercom-emoji-picker-emoji.p2 {
+        padding: 5px;
+        width: 30px;
+        line-height: 30px;
+        display: inline-table;
+        text-align: center;
+        cursor: pointer;
+        vertical-align: middle;
+        font-size: 28px;
+        transition: -webkit-transform 60ms ease-out;
+        transition: transform 60ms ease-out;
+        transition: transform 60ms ease-out,-webkit-transform 60ms ease-out;
+        transition-delay: 60ms;
+        font-family: Apple Color Emoji,Segoe UI Emoji,NotoColorEmoji,Segoe UI Symbol,Android Emoji,EmojiSymbols;
+    }
     .intercom-emoji-picker-emoji:hover {
         transition-delay: 0ms;
         -webkit-transform: scale(1.4);

@@ -21,7 +21,7 @@
     "chrome-mac-private": "./scripts/chrome-private.sh",
     "serve": "ionic build && node ./scripts/server.js",
     "private": "npm run chrome-mac-private && ionic serve",
-    "start": "npm run chrome-mac && ionic serve"
+    "start": "npm run chrome && ionic serve"
   },
   "dependencies": {
     "@angular/common": "5.0.3",
@@ -56,7 +56,6 @@
     "linqts": "^1.11.0",
     "moment": "^2.22.1",
     "moment-timezone": "^0.5.14",
-    "ng-emoji-picker-material": "^1.0.8",
     "ng2-charts": "^1.6.0",
     "openpgp": "^3.0.10",
     "opn": "^5.3.0",

@@ -193,7 +193,7 @@ export class MyApp {
       this.loading.dismiss();
       this.cacheNewDocIfNotLoggedIn();
 
-      if (localStorage.getItem('signUp') !== 'true') {
+      if (localStorage.getItem('signUp') !== 'true' && location.hostname !== "localhost" ) {
         window.location.href = "signup.html";
       }
       else {
