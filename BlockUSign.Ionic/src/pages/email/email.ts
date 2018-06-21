@@ -10,6 +10,7 @@ import { Subject } from 'rxjs';
 import { FormGroup, FormControl } from '@angular/forms';
 import { LoadingController } from 'ionic-angular';
 declare let blockstack: any;
+declare let $: any;
 
 /**
  * Generated class for the SignPage page.
@@ -39,6 +40,7 @@ export class EmailPage {
   selectedUser = [];
   people3Typeahead = new Subject<string>();
   loading;
+  public documentLink = "";;
 
   constructor(
     public navCtrl: NavController,
@@ -57,10 +59,12 @@ export class EmailPage {
         this.documentService.setCurrentDoc(guid);
         //this.getFile();
         // @todo in side menu highlight selected doc
+        this.genLink();
       });
     }
     else {
       //this.getFile();
+      this.genLink();
     }
 
   }
@@ -131,9 +135,9 @@ export class EmailPage {
     });
     this.loading.present();
 
-    let documentLink = window.location.origin + "/#/sign/" + this.documentService.currentDoc.guid + "/?docData=" + btoa(JSON.stringify(this.documentService.currentDoc));
+    this.documentLink = this.genLink();
     let subject = blockstack.loadUserData().profile.name + " has sent you a document to sign - " + this.documentService.currentDoc.fileName;
-    let content = "Please click this link and sign the document. Thanks! <br/><br/><a href='" + documentLink + "' >document link</a>";
+    let content = "Please click this link and sign the document. Thanks! <br/><br/><a href='" + this.documentLink + "' >document link</a>";
     await this.emailService.sendEmail(this.email, subject, content);
 
     // add as signer
@@ -143,6 +147,11 @@ export class EmailPage {
     this.loading.dismiss();
 
     alert('Email sent!');
+  }
+
+  genLink(){
+    this.documentLink = window.location.origin + "/#/sign/" + this.documentService.currentDoc.guid + "/?docData=" + btoa(JSON.stringify(this.documentService.currentDoc));
+    return this.documentLink;
   }
 
   clickedUser(){

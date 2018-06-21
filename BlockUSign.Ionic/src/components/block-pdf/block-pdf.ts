@@ -7,8 +7,9 @@ import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/timeout';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/map';
-import PDFJS from 'pdfjs-dist/build/pdf';
+// import PDFJS from 'pdfjs-dist/build/pdf';
 import pdfjsLib from 'pdfjs-dist/build/pdf';
+import worker from 'pdfjs-dist/build/pdf.worker.entry';
 import PDFAnnotate from 'pdf-annotate';
 import annotations from './annotations';
 import mockViewport from './mockViewport'
@@ -96,6 +97,10 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     console.log('====> ngOnInit');
     $(document).ready(() => {
+
+
+      pdfjsLib.GlobalWorkerOptions.workerSrc = location.origin + "/assets/pdf.worker.js"
+
 
       this.loading = this.loadingCtrl.create({
         content: 'Please wait...'
