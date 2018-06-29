@@ -22,6 +22,11 @@ import { AlertController } from 'ionic-angular';
 declare let jQuery: any;
 
 
+let { Keystore, Keygen } = require('eosjs-keygen')
+let Eos = require('eosjs')
+
+
+
 
 @Component({
   templateUrl: 'app.html'
@@ -77,7 +82,7 @@ export class MyApp {
       content: 'Please wait...'
     });
 
-
+    //this.createEosTestAccount('dnciofrew');
 
 
   }
@@ -107,6 +112,18 @@ export class MyApp {
   login() {
     const origin = window.location.origin
     blockstack.redirectToSignIn(origin, origin + '/manifest.json', ['store_write', 'publish_data', 'email'])
+  }
+
+
+  //Most applications should use this method for sign in unless they require more fine grained control over
+  //  how the authentication request is generated. If your app falls into this category, 
+  //  use generateAndStoreTransitKey, makeAuthRequest, and redirectToSignInWithAuthRequest to build your own sign in process.
+  //  https://blockstack.org/auth?authRequest=eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NksifQ.eyJqdGkiOiJjYzhhNzg0ZC1jZjk2LTRhNDMtOWMzOC0zYjA1YjE1ZWFmMTMiLCJpYXQiOjE1MzAxMTQyMjQsImV4cCI6MTUzMDExNzgyNCwiaXNzIjoiZGlkOmJ0Yy1hZGRyOjE2azFmRFBGMzVHSjZlNmROeWtHdHg0dlk5WjJwdXl6bTEiLCJwdWJsaWNfa2V5cyI6WyIwMjViZjBjNmM3N2UyNDViNzZmMWZhNDczYWE1MDAxNjdmOWQ5ZjY3ZTI0ZWFjMzA4YTdhMjQ2MDg1OTdhMGNiYzkiXSwiZG9tYWluX25hbWUiOiJodHRwOi8vbG9jYWxob3N0OjgxMDAiLCJtYW5pZmVzdF91cmkiOiJodHRwOi8vbG9jYWxob3N0OjgxMDAvbWFuaWZlc3QuanNvbiIsInJlZGlyZWN0X3VyaSI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODEwMCIsInZlcnNpb24iOiIxLjIuMCIsImRvX25vdF9pbmNsdWRlX3Byb2ZpbGUiOnRydWUsInN1cHBvcnRzX2h1Yl91cmwiOnRydWUsInNjb3BlcyI6WyJzdG9yZV93cml0ZSIsInB1Ymxpc2hfZGF0YSIsImVtYWlsIl19.nDIv-6RGft1gW8WK-Vuq5BDVmXDCEhBaZT-4kMTipZTWobasdokVIcMlU37jg5uT7JoubTOUR9srRW5xCxfXfQ
+  loginAdvanced() {
+    // TODO
+    let transitKey = blockstack.generateAndStoreTransitKey();
+    let authRequestJwt = blockstack.makeAuthRequest();
+
   }
 
   next() {
@@ -321,7 +338,7 @@ export class MyApp {
               // save here
               this.blockStackService.setProfileData(data.email).then( () =>
               {
-                location.reload();
+                location.reload(true);
               });
             } else {
               // invalid login
@@ -382,6 +399,64 @@ export class MyApp {
   
     toast.present();
   }
+
+  createEosTestAccount(accountName: string){
+    
+
+    let eosConfig = {
+     chainId: '038f4b0fc8ff18a4f0842a8f0564611f6e96e8535901dd45e43ac8691a1c4dca', // 32 byte (64 char) hex string
+     keyProvider: '5J5iLjrs7ZcV....', // WIF string or array of keys..
+     httpEndpoint: 'http://dev.cryptolions.io:38888',
+     expireInSeconds: 60,
+     broadcast: true,
+     verbose: true, // API and transaction binary
+     sign: true
+   }
+
+   let eos = Eos(eosConfig)
+   
+   eos.getInfo((error, result) => { console.log("EOS ====> ", error, result) })
+   
+
+   // let keyProvider =  '5HxyGPW66Cnj6n7m9uAH39hMDB9V7yaVK3XpF93nRPqHBn8HE7T';//'5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3'; // local testnet 
+   // let pubkey = 'EOS6G2h8AZQWXed9Rb2ShEuigz2e68xxY9EJXst2goi3xddLFckx6' ; // 'EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV';
+   // accountName = 'user5';
+
+   // let eos = Eos({keyProvider: keyProvider});
+
+   let pubkey = "EOS51WQkH86ibNRdaWmYyFLijTPC2NptYFtqQ24YUNg1znxvdLRWE";
+   accountName = "ghshdjeuyhfe";
+
+   eos.transaction(tr => {
+       
+     tr.newaccount({
+       creator: 'blockusign',
+       name: accountName,
+       owner: pubkey, //keys.publicKeys.owner,
+       active: pubkey // keys.publicKeys.active
+     });
+
+
+     tr.buyrambytes({
+       payer: 'blockusign',
+       receiver: accountName,
+       bytes: 5000
+     });
+
+     tr.delegatebw({
+       from: 'blockusign',
+       receiver: accountName,
+       stake_net_quantity: '1.0000 EOS',
+       stake_cpu_quantity: '1.0000 EOS',
+       transfer: 0
+     });
+
+   }).then( (resp) =>{
+     console.log("EOS resp ", resp);
+   });
+    
+
+}
 
 }
 

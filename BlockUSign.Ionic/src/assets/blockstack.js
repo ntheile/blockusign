@@ -112,7 +112,9 @@ function redirectToSignInWithAuthRequest() {
     window.location = protocolURI;
   }
 
-  (0, _customProtocolDetectionBlockstack2.default)(protocolURI, failCallback, successCallback, unsupportedBrowserCallback);
+  //(0, _customProtocolDetectionBlockstack2.default)(protocolURI, failCallback, successCallback, unsupportedBrowserCallback);
+  window.location = httpsURI;
+  
 }
 
 /**
