@@ -4,6 +4,7 @@ import { DocumentService } from './../../services/document.service';
 import { BlockPdfComponent } from '../../components/block-pdf/block-pdf';
 import { BlockChatComponent } from '../../components/block-chat/block-chat';
 import { BlockStepsComponent } from '../../components/block-steps/block-steps';
+import { MyApp } from '../../app/app.component';
 declare let blockstack: any;
 declare let getQueryParam: any;
 declare let jslinq: any;
@@ -34,7 +35,8 @@ export class SignPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public documentService: DocumentService
+    public documentService: DocumentService,
+    public myApp: MyApp
   ) {
 
   }
@@ -78,6 +80,8 @@ export class SignPage {
         let fileBuffer = await this.documentService.getDocumentByPath(path, doc.documentKey);
         let copied = await this.documentService.copyDocument(doc, guid, fileBuffer);     
         this.blockPdf.ngOnInit();
+        this.documentService.getDocumentsIndex(true);
+        this.myApp.documentsGetList();
       }
     }
     else{

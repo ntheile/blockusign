@@ -282,6 +282,7 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
 
       // PDF loading error
       console.error(reason);
+      this.loading.dismiss();
 
     });
 
