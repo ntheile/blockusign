@@ -42,7 +42,7 @@ export class BlockStackService {
   async getPicUrl(userId) {
 
     // placeholder
-    let picUrl = "http://www.gravatar.com/avatar/?d=identicon";
+    let picUrl = "https://www.gravatar.com/avatar/?d=identicon";
     try {
       if (!userId) {
         return picUrl;

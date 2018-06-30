@@ -44,7 +44,7 @@ export class MyApp {
   fileName = "blockusign/pdf1.pdf";
   profile: any;
   pdfBuffer: any;
-  avatar: string = "http://www.gravatar.com/avatar/?d=identicon";
+  avatar: string = "https://www.gravatar.com/avatar/?d=identicon";
   documentsList: any;
   email: string;
   loading;
