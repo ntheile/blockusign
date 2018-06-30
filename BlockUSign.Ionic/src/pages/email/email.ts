@@ -136,7 +136,8 @@ export class EmailPage {
     }
 
     this.loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      content: 'Please wait...',
+      duration: 12000
     });
     this.loading.present();
 

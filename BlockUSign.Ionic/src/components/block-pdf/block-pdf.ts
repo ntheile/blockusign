@@ -107,7 +107,8 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
       this.loading = this.loadingCtrl.create({
-        content: 'Please wait...'
+        content: 'Please wait...',
+        duration: 12000
       });
       this.loading.present();
 

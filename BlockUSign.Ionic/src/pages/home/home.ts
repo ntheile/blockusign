@@ -65,7 +65,8 @@ export class HomePage {
         public alertCtrl: AlertController
     ) {
         this.loading = this.loadingCtrl.create({
-            content: 'Please wait...'
+            content: 'Please wait...',
+            duration: 12000
           });
     }
 
