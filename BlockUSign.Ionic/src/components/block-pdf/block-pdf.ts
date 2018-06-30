@@ -53,6 +53,10 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() marginTop = '130px';
   @Input() marginBottom = '0px';
   @ViewChild('sigText') sigTextElement: ElementRef; 
+  @ViewChild("fileUploadForm") fileUploadForm: ElementRef;
+  @ViewChild("canvasWrapper") canvasWrapper: ElementRef;
+  @ViewChild("svgDropZone") svgDropZone: ElementRef;
+  
 
 
   public data: any;
@@ -261,7 +265,8 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
       this.numPages = pdf.numPages;
       this.thePDF = pdf;
       
-      let viewer = document.getElementById('canvasWrapper');
+      // let viewer = document.getElementById('canvasWrapper');
+      let viewer = this.canvasWrapper.nativeElement;
       let page;
       for (page = 1; page <= pdf.numPages; page++) {
         let canvas = document.createElement("canvas");
@@ -284,7 +289,7 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   renderPage(pageNumber, canvas) {
-    this.thePDF.getPage(pageNumber).then(function (page) {
+    this.thePDF.getPage(pageNumber).then( (page) => {
       let viewport = page.getViewport(1);
       canvas.height = viewport.height;
       canvas.width = viewport.width;
@@ -307,11 +312,10 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
           textLayerDiv.setAttribute("class", "textLayer");
 
           // Append newly created div in `div#page-#{pdf_page_number}`
-          //let div = document.getElementById(`${this.containerId}`);
-          let div = document.getElementById(`canvasWrapper`);
+          // let div = document.getElementById(`${this.containerId}`);
+          // let div = document.getElementById(`canvasWrapper`);
+          let div = this.canvasWrapper.nativeElement;
           div.appendChild(textLayerDiv);
-
-
 
           //Create new instance of TextLayerBuilder class
           let textLayer = new TextLayerBuilder({
@@ -349,12 +353,11 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
   overLay(page: any) {
 
     let h = this.numPages * 792;
-
-    $("#svg-dropzone").css("width", "612");
-    $("#svg-dropzone").css("height", h);
-    $("#svg-dropzone").attr("width", "612");
-    $("#svg-dropzone").attr("height", h);
-    $("#svg-dropzone").attr("viewBox", "0 0 612 " + h);
+    $(this.svgDropZone.nativeElement).css("width", "612");
+    $(this.svgDropZone.nativeElement).css("height", h);
+    $(this.svgDropZone.nativeElement).attr("width", "612");
+    $(this.svgDropZone.nativeElement).attr("height", h);
+    $(this.svgDropZone.nativeElement).attr("viewBox", "0 0 612 " + h);
   }
 
   async saveSvg() {
@@ -381,7 +384,8 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
     toast.present();
 
     await this.documentService.addMessage(this.documentService.currentDoc.guid, 'Updated annotation');
-
+    
+    return true;
   }
 
   async loadSvg(page: any) {

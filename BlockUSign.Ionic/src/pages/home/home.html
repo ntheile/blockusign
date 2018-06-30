@@ -11,45 +11,24 @@
 
         <div >
           <!-- Upload  -->
-          <form id="file-upload-form" class="uploader" onclick="$('.pdfSelectTxt').text('loading...')">
-            <input id="file-upload" type="file" name="fileUpload" accept=".pdf" />
-            <label for="file-upload" id="file-drag">
-              <img id="file-image" src="#" alt="Preview" class="hidden">
-              <div id="start">
+          <form id="file-upload-form" #fileUploadForm class="uploader" onclick="$('.pdfSelectTxt').text('loading...')">
+            <input id="file-upload" #fileUpload type="file" name="fileUpload" accept=".pdf" />
+            <label for="file-upload" id="file-drag" #fileDrag>
+              <img id="file-image" #fileImage src="#" alt="Preview" class="hidden">
+              <div id="start" #start>
                 <i class="fa fa-download" aria-hidden="true"></i>
                 <div class="pdfSelectTxt">Select a PDF</div>
                 <div id="notimage" class="hidden">Please select an image</div>
-                <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
+                <span id="file-upload-btn" #fileUploadBtn class="btn btn-primary">Select a file</span>
               </div>
-              <div id="response" class="hidden">
-                <div id="messages"></div>
-                <progress class="progress" id="file-progress" value="0">
+              <div id="response" #response class="hidden">
+                <div id="messages" #messages ></div>
+                <progress class="progress" id="file-progress" #fileProgress value="0">
                   <span>0</span>%
                 </progress>
               </div>
             </label>
           </form>
-
-          <!-- <label class="item item-input"> -->
-          <!-- <input type="file" id="files" name="file" (submit)="loadFile()" /> -->
-          <!-- </label> -->
-          <!-- <div class="preview-img">
-                          <img id="myImage" width="150" height="150" size="30" /> </div> -->
-          <!-- <span class="readBytesButtons">
-                                  <button data-startbyte="0" data-endbyte="4">1-5</button>
-                                  <button data-startbyte="5" data-endbyte="14">6-15</button>
-                                  <button data-startbyte="6" data-endbyte="7">7-8</button>
-                                  <button>entire file</button>
-                                </span> -->
-          <!-- <div id="byte_range"></div>
-                                <div id="byte_content"></div> -->
-
-          <!-- <button ion-button (click)="next()" style="margin-left: 50px; padding: 10px 10px 10px 10px; background: green; height: 45px;">
-            Next &nbsp;
-            <ion-icon name="arrow-forward"></ion-icon>
-          </button>  -->
-          <!-- <button ion-button (click)="saveFile()">Save File</button>
-                      <button ion-button (click)="getFile()">Get File</button> -->
 
 
 
@@ -70,7 +49,7 @@
       <ion-col>
         <div>
           <br/>
-          <canvas id="the-canvas"></canvas>
+          <canvas id="the-canvas" #theCanvas></canvas>
         </div>
       </ion-col>
     </ion-row>

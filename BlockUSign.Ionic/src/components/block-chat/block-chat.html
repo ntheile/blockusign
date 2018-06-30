@@ -1,11 +1,11 @@
 <div class="block-chat">
   <ion-fab bottom right>
-    <div id="live-chat" class="shadow6 live-chat">
+    <div #liveChat class="shadow6 live-chat">
 
       <header class="clearfix" (click)="minimize()">
         <!-- <a class="chat-close"  >x</a>-->
         <h4>
-          <span class="chat-head"></span> - Log
+          <span class="chat-head">{{ doc.fileName }} - Log</span>
          
         </h4>
         <!-- <span style="opacity:.6; padding-left:30px;">YOURNAME/THEIRNAME</span> -->
@@ -13,9 +13,20 @@
       </header>
       <div class="chat">
         <div class="chat-history">
-          <div class="log-history">
-            
-          </div>
+            <div class="log-history" >
+              
+            </div>
+          <!-- <div class="log-history" *ngFor="let item of messages">
+            <div class="chat-message clearfix">
+              <img class="block-pic-{{ uidClass }}" src="http://www.gravatar.com/avatar/?d=identicon" alt="" width="32" height="32">
+              <div class="chat-message-content clearfix">
+                <span class="chat-time"> {{ formatDate }} </span>
+                <h5> {{ item.email }} </h5>
+                <p> {{ item.message }} </p>
+              </div> 
+              </div>
+              <hr style='margin-top:5px' />
+          </div> -->
         </div>
         <!-- <p class="chat-feedback">Your partner is typing…</p> -->
         <form>

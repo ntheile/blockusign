@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit, AfterViewInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { DocumentService } from './../../services/document.service';
 import { Document, Log, Message } from './../../models/models';
@@ -25,9 +25,10 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
   public chatPolling;
   public msgCount = 0;
   public msgCountNew = 0;
+  public messages; 
   firstLoad = true;
+  @ViewChild("liveChat")liveChat: ElementRef;
   
-
   constructor(
     public documentService: DocumentService,
     public events: Events,
@@ -78,7 +79,6 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
         let existing = $(".emojiDiv").val();
         let emo =  $(this).html();
         $(".emojiDiv").val( existing + emo );
-        
       }
     });
     $('.intercom-composer-popover-input').on('input', function () {
@@ -129,7 +129,7 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
 
       let logData: Log = await this.documentService.getLog(this.doc.guid);
 
-      $('.chat-head').last().html(this.doc.fileName);
+      //$('.chat-head').last().html(this.doc.fileName);
 
       let template = "";
 
@@ -143,7 +143,10 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
       if (this.msgCountNew > this.msgCount) {
         this.msgCount = this.msgCountNew;
         let orderedMessages = jslinq(logData.messages).orderBy((el) => el.updatedAt).toList();
-
+        this.messages = orderedMessages;
+        
+        
+        
         for (let item of orderedMessages) {
   
           let d = item.updatedAt;

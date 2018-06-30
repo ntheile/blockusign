@@ -3,9 +3,9 @@
   <div class="page" id="pageContainer1" data-page-number="1" style="position:relative;width: 100%; height:100%;"
     [style.margin-top]="marginTop">
     
-    <div id="canvasWrapper" style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
+    <div id="canvasWrapper" #canvasWrapper style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
       <div>
-        <svg id="svg-dropzone" class="svg-dropzone dropzone resizable" xmlns="http://www.w3.org/2000/svg" style="position: absolute; 
+        <svg #svgDropZone id="svg-dropzone" class="svg-dropzone dropzone resizable" xmlns="http://www.w3.org/2000/svg" style="position: absolute; 
         left: 0px; 
         top:0px;
         z-index: 200000;

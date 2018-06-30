@@ -1,10 +1,14 @@
-<ion-content >
+<ion-content class="no-overflow-page" >
 
 
-  <block-steps activeStep="5">
+  <block-steps activeStep="5" #blockSteps>
   </block-steps>
 
-  <div style="padding: 20px 20px 20px 20px">
+  <section style="position: relative;" class="nextBackButtons">
+      <button class="nextBackButtonBack" ion-fab mini (click)="back()" style="background-color:green; position: absolute;"><ion-icon name="md-arrow-back"></ion-icon></button>
+  </section>  
+
+  <div style="padding: 20px 20px 20px 20px; padding-left: 60px">
     <button ion-button style="border-radius: 30px">
       Save to Blockchain <br/>as Smart Contract
     </button>

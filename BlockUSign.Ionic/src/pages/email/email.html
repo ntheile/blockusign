@@ -1,10 +1,15 @@
 <ion-content class="email-page" class="no-overflow-page">
 
 
-  <block-steps activeStep="3">
+  <block-steps activeStep="3" #blockSteps>
   </block-steps>
 
-  <p>Email a document link to your signer. Or if you prefer to share another way, copy and give them this link:</p>
+  <section style="position: relative;" class="nextBackButtons">
+      <button class="nextBackButtonBack" ion-fab mini (click)="back()" style="background-color:green; position: absolute;"><ion-icon name="md-arrow-back"></ion-icon></button>
+      <button class="nextBackButtonNext" ion-fab mini (click)="next()"><ion-icon name="md-arrow-forward" ></ion-icon></button>
+  </section>   
+
+  <p style="padding-left: 65px; padding-right: 65px; padding-top: 10px; padding-bottom: 20px">Email a document link to your signer. Or if you prefer to share another way, copy and give them this link:</p>
   <textarea style="width:90%; color: black" [(ngModel)]="documentLink" class="emailLink"></textarea>
 
   <form></form>
@@ -39,7 +44,8 @@
 
       </ion-col>
       <ion-col>
-        <button ion-button (click)="sendEmail($event)">Send Email</button>
+        <button ion-button icon-end (click)="sendEmail($event)" style="border-radius: 30px">
+            Send Email<ion-icon name="md-send"></ion-icon></button>
 
       
       </ion-col>

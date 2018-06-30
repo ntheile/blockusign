@@ -1072,11 +1072,22 @@
     }
 }
 
+.nextBackButtonNext{
+    background-color:green; float: right; 
+    left: -170px
+}
+
+@media screen and (max-width: 1350px) {
+    .nextBackButtonNext{
+        background-color:green; float: right; 
+        left: 0px !important;
+    }
+}
 
 @media screen and (min-width: 1050px) {
 	.intercom-composer-emoji-popover2 {
 		right: calc(50%) !important;
-	}
+    }
 }
 
 @media screen and (max-width: 500px) {
@@ -1086,5 +1097,9 @@
 
     .pdfToolBarBtn{
         zoom: .75 !important;
+    }
+
+    .nextBackButtons{
+        display: none !important;
     }
 }

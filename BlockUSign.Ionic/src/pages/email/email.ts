@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DocumentService } from './../../services/document.service';
 import { EmailService } from './../../services/email.service';
@@ -9,6 +9,7 @@ import { of } from 'rxjs/observable/of';
 import { Subject } from 'rxjs';
 import { FormGroup, FormControl } from '@angular/forms';
 import { LoadingController } from 'ionic-angular';
+import { BlockStepsComponent } from '../../components/block-steps/block-steps';
 declare let blockstack: any;
 declare let $: any;
 
@@ -41,6 +42,8 @@ export class EmailPage {
   people3Typeahead = new Subject<string>();
   loading;
   public documentLink = "";;
+
+  @ViewChild("blockSteps") blockSteps: BlockStepsComponent;
 
   constructor(
     public navCtrl: NavController,
@@ -76,15 +79,17 @@ export class EmailPage {
   }
 
   next() {
-    this.navCtrl.push("SignPage", {
-      guid: this.documentService.currentDoc.guid
-    });
+    // this.navCtrl.push("SignPage", {
+    //   guid: this.documentService.currentDoc.guid
+    // });
+    this.blockSteps.route('SignPage');
   }
 
   back() {
-    this.navCtrl.push("AnnotatePage", {
-      guid: this.documentService.currentDoc.guid
-    });
+    // this.navCtrl.push("AnnotatePage", {
+    //   guid: this.documentService.currentDoc.guid
+    // });
+    this.blockSteps.route('AnnotatePage');
   }
 
   getUrl() {
@@ -160,7 +165,6 @@ export class EmailPage {
       alert('Email not found. Please enter below');
     }, 1000 );
   }
-
 
 
 

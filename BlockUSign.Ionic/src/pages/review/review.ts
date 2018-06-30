@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DocumentService } from './../../services/document.service';
+import { BlockStepsComponent } from '../../components/block-steps/block-steps';
 
 /**
  * Generated class for the SignPage page.
@@ -21,6 +22,7 @@ import { DocumentService } from './../../services/document.service';
 export class ReviewPage {
 
   hash = "";
+  @ViewChild("blockSteps") blockSteps: BlockStepsComponent;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public documentService: DocumentService) {
 
@@ -73,9 +75,10 @@ export class ReviewPage {
  
 
   back(){
-    this.navCtrl.push("SignPage", {
-      guid: this.documentService.currentDoc.guid
-    });
+    // this.navCtrl.push("SignPage", {
+    //   guid: this.documentService.currentDoc.guid
+    // });
+    this.blockSteps.route("SignPage");
   }
 
   getHash(){

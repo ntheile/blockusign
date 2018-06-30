@@ -55,7 +55,7 @@ p { margin: 0; }
 
 /* ---------- LIVE-CHAT ---------- */
 
-#live-chat {
+.live-chat {
 	bottom: 0;
 	font-size: 12px;
 	right: 24px;
@@ -99,7 +99,7 @@ p { margin: 0; }
 			 transform:skew(8deg) rotate(3deg);
  }
 
-#live-chat header {
+.live-chat header {
 	background: #293239;
 	border-radius: 5px 5px 0 0;
 	color: #fff;
@@ -107,7 +107,7 @@ p { margin: 0; }
 	padding: 16px 24px;
 }
 
-#live-chat h4:before {
+.live-chat h4:before {
 	background: #1a8a34;
 	border-radius: 50%;
 	content: "";
@@ -117,19 +117,19 @@ p { margin: 0; }
 	width: 8px;
 }
 
-#live-chat h4 {
+.live-chat h4 {
 	font-size: 12px;
 }
 
-#live-chat h5 {
+.live-chat h5 {
 	font-size: 10px;
 }
 
-#live-chat form {
+.live-chat form {
 	padding: 24px;
 }
 
-#live-chat input[type="text"] {
+.live-chat input[type="text"] {
 	border: 1px solid #ccc;
 	border-radius: 3px;
 	padding: 8px;

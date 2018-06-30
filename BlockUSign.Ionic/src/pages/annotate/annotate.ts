@@ -7,6 +7,7 @@ import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/timeout';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/map';
+import { BlockStepsComponent } from '../../components/block-steps/block-steps';
 
 declare var $: any;
 declare var window: any;
@@ -27,6 +28,7 @@ export class AnnotatePage {
 
   @ViewChild("blockChat") blockChat: BlockChatComponent;
   @ViewChild("blockPdf") blockPdf: BlockPdfComponent;
+  @ViewChild("blockSteps") blockSteps: BlockStepsComponent;
 
   constructor(
     public navCtrl: NavController, 
@@ -47,6 +49,16 @@ export class AnnotatePage {
     this.blockChat.destroyEmojiEvents();
     this.blockChat.ngOnDestroy();
     this.blockPdf.destroyEmojiEvents();
+  }
+
+  async next (){
+    await this.blockPdf.saveSvg();
+    this.blockSteps.route('EmailPage');
+  }
+
+  async back (){
+    await this.blockPdf.saveSvg();
+    this.blockSteps.route('HomePage');
   }
 
 }

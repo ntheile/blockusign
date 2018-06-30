@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ViewChildren, ElementRef } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 import { Chart } from 'chart.js';
 import { AnnotatePage } from '../annotate/annotate';
@@ -44,6 +44,17 @@ export class HomePage {
     cameraContext: any;
     loading;
 
+    @ViewChild("fileUploadForm") fileUploadForm: ElementRef;
+    @ViewChild("fileUpload") fileUpload: ElementRef;
+    @ViewChild("fileDrag") fileDrag: ElementRef;
+    @ViewChild("fileImage") fileImage: ElementRef;
+    @ViewChild("start") start: ElementRef;
+    @ViewChild("fileUploadBtn") fileUploadBtn: ElementRef;
+    @ViewChild("fileProgress") fileProgress: ElementRef;
+    @ViewChild("theCanvas") theCanvas: ElementRef;
+    @ViewChild("messages") messages: ElementRef;
+    
+    
     constructor(
         public navCtrl: NavController, 
         public loadingCtrl: LoadingController,
@@ -59,7 +70,10 @@ export class HomePage {
     async ionViewDidLoad() {
 
         //this.initCamera();
+       
         this.ekUpload();
+        
+        
 
         //let docs = await this.documentService.getDocumentsIndex(true)
         //this.testPublicKeyFile();
@@ -95,14 +109,15 @@ export class HomePage {
        
         this.loading.present();
 
-        let fileInput: any = document.getElementById('file-upload');
+        //let fileInput: any = document.getElementById('file-upload');
+        let fileInput = this.fileUpload.nativeElement;
         let firstFile = fileInput.files[0];
 
         let startByte = 0;
         let endByte = firstFile.size;
         let opt_startByte = startByte.toString();
         let opt_stopByte = endByte.toString();
-        let files = (<any>document).getElementById('file-upload').files;
+        let files = fileInput.files;
         if (!files.length) {
             alert('Please select a file!');
             return;
@@ -156,7 +171,8 @@ export class HomePage {
                 let viewport = page.getViewport(scale);
 
                 // Prepare canvas using PDF page dimensions
-                let canvas: any = document.getElementById('the-canvas');
+                // let canvas: any = document.getElementById('the-canvas');
+                let canvas: any = this.theCanvas.nativeElement;
                 let context = canvas.getContext('2d');
                 canvas.height = viewport.height;
                 canvas.width = viewport.width;
@@ -207,28 +223,11 @@ export class HomePage {
     // File Upload https://codepen.io/mattsince87/pen/yadZXv?editors=0010#0
     ekUpload() {
         let self = this;
-        function Init() {
-
-            console.log("Upload Initialised");
-
-            var fileSelect = document.getElementById('file-upload'),
-                fileDrag = document.getElementById('file-drag'),
-                submitButton = document.getElementById('submit-button');
-
-            fileSelect.addEventListener('change', fileSelectHandler, false);
-
-            // Is XHR2 available?
-            var xhr = new XMLHttpRequest();
-            if (xhr.upload) {
-                // File Drop
-                fileDrag.addEventListener('dragover', fileDragHover, false);
-                fileDrag.addEventListener('dragleave', fileDragHover, false);
-                fileDrag.addEventListener('drop', fileSelectHandler, false);
-            }
-        }
+        
 
         function fileDragHover(e) {
-            var fileDrag = document.getElementById('file-drag');
+            // var fileDrag = document.getElementById('file-drag');
+            let fileDrag = self.fileDrag.nativeElement;
 
             e.stopPropagation();
             e.preventDefault();
@@ -256,13 +255,15 @@ export class HomePage {
         // Output
         function output(msg) {
             // Response
-            var m = document.getElementById('messages');
+            // var m = document.getElementById('messages');
+            let m = this.message.nativeElement;
             m.innerHTML = msg;
         }
 
 
         function setProgressMaxValue(e) {
-            var pBar = document.getElementById('file-progress');
+            // var pBar = document.getElementById('file-progress');
+            let pBar = this.fileProgress.nativeElement;
 
             if (e.lengthComputable) {
                 pBar.max = e.total;
@@ -270,8 +271,8 @@ export class HomePage {
         }
 
         function updateFileProgress(e) {
-            var pBar = document.getElementById('file-progress');
-
+            //var pBar = document.getElementById('file-progress');
+            let pBar = this.fileProgress.nativeElement;
             if (e.lengthComputable) {
                 pBar.value = e.loaded;
             }
@@ -279,9 +280,27 @@ export class HomePage {
 
         // Check for the various File API support.
         if (window.File && window.FileList && window.FileReader) {
-            Init();
+            console.log("Upload Initialised");
+
+            // var fileSelect = document.getElementById('file-upload'),
+            //    fileDrag = document.getElementById('file-drag'),
+            //    submitButton = document.getElementById('submit-button');
+            let fileSelect = this.fileUpload.nativeElement,
+                fileDrag = this.fileDrag.nativeElement;
+                //submitButton = this.
+
+            fileSelect.addEventListener('change', fileSelectHandler, false);
+
+            // Is XHR2 available?
+            var xhr = new XMLHttpRequest();
+            if (xhr.upload) {
+                // File Drop
+                fileDrag.addEventListener('dragover', fileDragHover, false);
+                fileDrag.addEventListener('dragleave', fileDragHover, false);
+                fileDrag.addEventListener('drop', fileSelectHandler, false);
+            }
         } else {
-            document.getElementById('file-drag').style.display = 'none';
+           this.fileDrag.nativeElement.style.display = 'none';
         }
     }
 

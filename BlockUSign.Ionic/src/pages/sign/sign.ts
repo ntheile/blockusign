@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DocumentService } from './../../services/document.service';
 import { BlockPdfComponent } from '../../components/block-pdf/block-pdf';
 import { BlockChatComponent } from '../../components/block-chat/block-chat';
+import { BlockStepsComponent } from '../../components/block-steps/block-steps';
 declare let blockstack: any;
 declare let getQueryParam: any;
 declare let jslinq: any;
@@ -28,6 +29,7 @@ export class SignPage {
   name: string;
   @ViewChild("blockChat") blockChat: BlockChatComponent;
   @ViewChild("blockPdf") blockPdf: BlockPdfComponent;
+  @ViewChild("blockSteps") blockSteps: BlockStepsComponent;
 
   constructor(
     public navCtrl: NavController,
@@ -97,16 +99,20 @@ export class SignPage {
     this.blockPdf.destroyEmojiEvents();
   }
 
-  next() {
-    this.navCtrl.push("ReviewPage", {
-      guid: this.documentService.currentDoc.guid
-    });
+  async next() {
+    // this.navCtrl.push("ReviewPage", {
+    //   guid: this.documentService.currentDoc.guid
+    // });
+    await this.blockPdf.saveSvg();
+    this.blockSteps.route("ReviewPage");
   }
 
-  back() {
-    this.navCtrl.push("EmailPage", {
-      guid: this.documentService.currentDoc.guid
-    });
+  async back() {
+    // this.navCtrl.push("EmailPage", {
+    //   guid: this.documentService.currentDoc.guid
+    // });
+    await this.blockPdf.saveSvg();
+    this.blockSteps.route("EmailPage");
   }
 
 }
