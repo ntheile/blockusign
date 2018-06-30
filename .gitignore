@@ -406,3 +406,19 @@ BlockUSign.Backend/BlockUSign.Backend/appsettings.config
 BlockUSign.Ionic/package-lock.json
 
 
+BlockUSign.Ionic/www/build/main.css
+BlockUSign.Backend/BlockUSign.Backend/wwwroot/index.html
+BlockUSign.Backend/BlockUSign.Backend/wwwroot/signup.html
+BlockUSign.Backend/BlockUSign.Backend/wwwroot/assets/blockstack.js
+BlockUSign.Backend/BlockUSign.Backend/wwwroot/build/main.css
+BlockUSign.Backend/BlockUSign.Backend/wwwroot/build/main.js
+BlockUSign.Backend/BlockUSign.Backend/wwwroot/build/main.js.map
+BlockUSign.Backend/BlockUSign.Backend/wwwroot/build/vendor.js
+BlockUSign.Backend/BlockUSign.Backend/wwwroot/build/vendor.js.map
+BlockUSign.Ionic/www/assets/blockstack.js
+BlockUSign.Ionic/www/build/0.js
+BlockUSign.Ionic/www/build/0.js.map
+BlockUSign.Ionic/www/build/main.js
+BlockUSign.Ionic/www/build/main.js.map
+BlockUSign.Ionic/www/build/vendor.js
+BlockUSign.Ionic/www/build/vendor.js.map
