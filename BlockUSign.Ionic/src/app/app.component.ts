@@ -93,12 +93,10 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
 
       this.loading.present();
-
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.showProfile();
       this.setupDiscordMenu();
-
 
     });
   }
@@ -338,7 +336,9 @@ export class MyApp {
               // save here
               this.blockStackService.setProfileData(data.email).then( () =>
               {
-                location.reload(true);
+                //location.reload(true);
+                this.showProfile();
+                this.setupDiscordMenu();
               });
             } else {
               // invalid login

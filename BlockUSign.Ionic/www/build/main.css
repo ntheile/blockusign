@@ -28548,7 +28548,7 @@ html, body, * {
 }
 
 .discord .server.server-friends::after {
-  content: "2 ONLINE";
+  content: "ONLINE";
   color: rgba(255, 255, 255, 0.3);
   pointer-events: none;
   font-weight: 300;
@@ -29096,6 +29096,20 @@ html, body, * {
   outline: none;
 }
 
+.nextBackButtonNext {
+  background-color: green;
+  float: right;
+  left: -170px;
+}
+
+@media screen and (max-width: 1350px) {
+  .nextBackButtonNext {
+    background-color: green;
+    float: right;
+    left: 0px !important;
+  }
+}
+
 @media screen and (min-width: 1050px) {
   .intercom-composer-emoji-popover2 {
     right: calc(50%) !important;
@@ -29108,6 +29122,9 @@ html, body, * {
   }
   .pdfToolBarBtn {
     zoom: .75 !important;
+  }
+  .nextBackButtons {
+    display: none !important;
   }
 }
 
@@ -29180,7 +29197,7 @@ block-chat .clearfix:after {
   clear: both;
 }
 
-block-chat #live-chat {
+block-chat .live-chat {
   bottom: 0;
   font-size: 12px;
   right: 24px;
@@ -29214,7 +29231,7 @@ block-chat .shadow6:after {
   transform: skew(8deg) rotate(3deg);
 }
 
-block-chat #live-chat header {
+block-chat .live-chat header {
   background: #293239;
   border-radius: 5px 5px 0 0;
   color: #fff;
@@ -29222,7 +29239,7 @@ block-chat #live-chat header {
   padding: 16px 24px;
 }
 
-block-chat #live-chat h4:before {
+block-chat .live-chat h4:before {
   background: #1a8a34;
   border-radius: 50%;
   content: "";
@@ -29232,19 +29249,19 @@ block-chat #live-chat h4:before {
   width: 8px;
 }
 
-block-chat #live-chat h4 {
+block-chat .live-chat h4 {
   font-size: 12px;
 }
 
-block-chat #live-chat h5 {
+block-chat .live-chat h5 {
   font-size: 10px;
 }
 
-block-chat #live-chat form {
+block-chat .live-chat form {
   padding: 24px;
 }
 
-block-chat #live-chat input[type="text"] {
+block-chat .live-chat input[type="text"] {
   border: 1px solid #ccc;
   border-radius: 3px;
   padding: 8px;

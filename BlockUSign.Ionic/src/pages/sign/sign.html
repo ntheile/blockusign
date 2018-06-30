@@ -2,10 +2,12 @@
 
   <block-steps activeStep="4" #blockSteps></block-steps>
 
+  <div style="clear:both"></div>
   <section style="position: relative;" class="nextBackButtons">
       <button class="nextBackButtonBack" ion-fab mini (click)="back()" style="background-color:green; position: absolute;"><ion-icon name="md-arrow-back"></ion-icon></button>
       <button class="nextBackButtonNext" ion-fab mini (click)="next()"><ion-icon name="md-arrow-forward" ></ion-icon></button>
   </section>  
+  <div style="clear:both"></div>
 
   <block-pdf #blockPdf showToolBar="true" showSignature="true" showButtons="true">
 

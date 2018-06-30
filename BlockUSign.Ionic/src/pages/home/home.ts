@@ -43,6 +43,7 @@ export class HomePage {
     canvasCamera: any;
     cameraContext: any;
     loading;
+    isSpinning = false;
 
     @ViewChild("fileUploadForm") fileUploadForm: ElementRef;
     @ViewChild("fileUpload") fileUpload: ElementRef;
@@ -53,6 +54,7 @@ export class HomePage {
     @ViewChild("fileProgress") fileProgress: ElementRef;
     @ViewChild("theCanvas") theCanvas: ElementRef;
     @ViewChild("messages") messages: ElementRef;
+    @ViewChild("spinner") spinner: ElementRef;
     
     
     constructor(
@@ -69,6 +71,7 @@ export class HomePage {
 
     async ionViewDidLoad() {
 
+        this.spinHide();
         //this.initCamera();
        
         this.ekUpload();
@@ -89,14 +92,10 @@ export class HomePage {
     }
 
     async saveFile(fileName) {
-
-
+        this.spinShow();
         let documentList = await this.documentService.addDocument(fileName, this.pdfBuffer);
+        this.spinHide();
         this.next();
-
-        // blockstack.putFile(fileName, this.pdfBuffer, { encrypt: true }).then((data) => {
-        //     this.next();
-        // });
     }
 
     async getFile() {
@@ -120,8 +119,17 @@ export class HomePage {
         let files = fileInput.files;
         if (!files.length) {
             alert('Please select a file!');
+            this.loading.dismiss();
             return;
         }
+
+        let fileSize = firstFile.size / 1024 / 1024; // in MB
+        if (fileSize > 2) {
+            alert('Sorry, we are working on supporting larger file sizes :) Please select a smaller document under 2MB');
+            this.loading.dismiss();
+           return;
+        } 
+
         let file = files[0];
         let start = parseInt(opt_startByte) || 0;
         let stop = parseInt(opt_stopByte) || file.size - 1;
@@ -330,7 +338,6 @@ export class HomePage {
                     handler: data => {
 
                         // save here
-
                         $('.pdfSelectTxt').text('Select a PDF');
                         this.saveFile(data.fileName.replace("'",""));
 
@@ -491,6 +498,16 @@ export class HomePage {
         this.loading.present();
     }
 
+    spinHide(){
+        this.isSpinning = false;
+    }
+
+    spinShow(){
+        this.isSpinning = true;
+    }
+
+
+   
 
 }
 
