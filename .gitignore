@@ -401,8 +401,8 @@ ASALocalRun/
 appsettings.config
 BlockUSign.Backend/BlockUSign.Backend/appsettings.json
 BlockUSign.Backend/BlockUSign.Backend/appsettings.config
-BlockUSign.Ionic/www/
-BlockUSign.Backend/BlockUSign.Backend/wwwroot/
+*/www/*
+*/wwwroot/*
 BlockUSign.Ionic/package-lock.json
 
 
