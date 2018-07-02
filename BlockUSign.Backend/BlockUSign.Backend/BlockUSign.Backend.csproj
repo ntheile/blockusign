@@ -18,5 +18,6 @@
 
   <ItemGroup>
     <Content Remove="appsettings.json" />
+    <Content Remove="wwwroot\web.config" />
   </ItemGroup>
 </Project>
