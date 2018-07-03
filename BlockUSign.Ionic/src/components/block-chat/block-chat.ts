@@ -178,7 +178,7 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
           `;
         }
 
-        $('.log-history').last().html(template);
+        //$('.log-history').last().html(template);
         $('.chat-history').last().scrollTop($('.log-history').last().height());
      
      
