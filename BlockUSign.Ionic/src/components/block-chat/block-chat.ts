@@ -44,12 +44,12 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
 
     if (this.documentService.currentDoc) {
       this.doc = this.documentService.currentDoc;
-      this.initChatPolling();
+      //this.initChatPolling();
     }
     else {
       this.subscription = this.events.subscribe('documentService:setCurrentDoc', async (currentDoc) => {
         this.doc = currentDoc;
-        this.initChatPolling();
+        //this.initChatPolling();
       });
     }
 
@@ -179,7 +179,7 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
         }
 
         //$('.log-history').last().html(template);
-        $('.chat-history').last().scrollTop($('.log-history').last().height());
+        //$('.chat-history').last().scrollTop($('.log-history').last().height());
      
      
       }
