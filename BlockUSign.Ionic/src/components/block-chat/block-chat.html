@@ -1,24 +1,28 @@
 <div class="block-chat">
   <ion-fab bottom right>
+
     <div #liveChat class="shadow6 live-chat">
 
       <header class="clearfix" (click)="minimize()">
         <!-- <a class="chat-close"  >x</a>-->
         <h4>
           <span class="chat-head">{{ doc.fileName }} - Log</span>
-         
+
         </h4>
         <!-- <span style="opacity:.6; padding-left:30px;">YOURNAME/THEIRNAME</span> -->
         <span class="chat-message-counter">*</span>
       </header>
-      <div class="chat"  style="height: 500px; width: 500px">
-        <div class="chat-history" style="height: 500px; width: 500px">
-           
-              <div class="innerStealthy"><iframe style="height: 480px; width: 480px" title="Stealthy" src="https://www.stealthy.im/?app=gd04012018&amp;length=1&amp;id0=blockusign1.id" id="stealthyFrame"></iframe></div>
-           
-          
-        </div>
 
+      <div class="chat">
+        <div class="chat-history">
+          
+            <div class="innerStealthy">
+              <iframe style="width: 330px; height: 380px" frameBorder="0" title="Stealthy" src="https://www.stealthy.im/?app=gd04012018&amp;length=1&amp;id0=blockusign1.id"
+                id="stealthyFrame">
+              </iframe>
+            </div>
+          </div>
+        
       </div>
       <!-- end chat -->
 
@@ -27,6 +31,6 @@
   </ion-fab>
 
 
-  
+
 
 </div>
