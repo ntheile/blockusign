@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { NavController, IonicPage, AlertController } from 'ionic-angular';
 import { DocumentService } from '../../services/document.service';
+import { BlockPdfComponent } from '../block-pdf/block-pdf';
 declare let $: any;
 
 /**
@@ -16,7 +17,7 @@ declare let $: any;
 export class BlockStepsComponent {
 
   @Input() activeStep;
-  
+  @Input() parent;
   text: string;
 
   constructor(
@@ -29,13 +30,9 @@ export class BlockStepsComponent {
   }
 
   route(page){
-    // try{
-    //   this.nav.pop();
-    // }
-    // catch(e) {
-    //   // nothing to pop
-    // };
+
     $('.block-pdf-page').empty();
+
     this.nav.push(page, {
       guid: this.documentService.currentDoc.guid
     });

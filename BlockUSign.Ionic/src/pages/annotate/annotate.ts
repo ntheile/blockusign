@@ -29,6 +29,7 @@ export class AnnotatePage {
   @ViewChild("blockChat") blockChat: BlockChatComponent;
   @ViewChild("blockPdf") blockPdf: BlockPdfComponent;
   @ViewChild("blockSteps") blockSteps: BlockStepsComponent;
+  public instance: AnnotatePage;
 
   constructor(
     public navCtrl: NavController, 
@@ -36,7 +37,7 @@ export class AnnotatePage {
     public documentService: DocumentService,
     public events: Events
   ) {
-    
+    this.instance = this;
   }
 
   

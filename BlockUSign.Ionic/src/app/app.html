@@ -44,14 +44,16 @@
             <h3 role="header" class="channels-header-name" style="padding-right: 10px;"></h3>
           </header>
           <section class="channels-list">
-            <section (click)="home()">
-              <button ion-button icon-end 
-              style="float:right;width:100%;background-color:green; color:white; border-radius: 30px; margin-bottom: 20px; margin-top: 20px">
-              New Doc
-                <ion-icon name="md-add"></ion-icon>
-              </button>
-            </section>
-            
+           
+              <section (click)="home()" >
+                <button  ion-button icon-end 
+                style="float:right;width:100%;background-color:green; color:white; border-radius: 30px; margin-bottom: 20px; margin-top: 20px">
+                New Doc
+                  <ion-icon name="md-add"></ion-icon>
+                </button>
+              </section>
+              
+       
             
             <header class="channels-list-header" (click)="home()">
               <span>Documents</span>

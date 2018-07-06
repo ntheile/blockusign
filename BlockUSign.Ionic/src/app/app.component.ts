@@ -151,7 +151,9 @@ export class MyApp {
     this.menuCtrl.close();
     this.nav.setRoot("HomePage");
     this.clearActive();
+    document.getElementById('file-upload').click();
   }
+
 
   logout() {
     blockstack.signUserOut(window.location.origin);
