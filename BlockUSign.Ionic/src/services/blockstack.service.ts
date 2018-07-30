@@ -126,4 +126,9 @@ export class BlockStackService {
     return await this.http.post("url", JSON.stringify(this.profile), httpOptions)
   }
 
+  async saveAppPublicKey() {
+    let resp = await blockstack.putFile('key.json', blockstack.getPublicKeyFromPrivate(blockstack.loadUserData().appPrivateKey) , {encrypt: false});
+    return resp;
+  }
+
 }

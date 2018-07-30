@@ -217,10 +217,11 @@ export class MyApp {
         localStorage.setItem('signUp', 'true');
         this.login();
       }
-
-      
-
     }
+
+    // @todo Optimize this;
+    this.blockStackService.saveAppPublicKey();
+
   }
 
   cacheNewDocIfNotLoggedIn() {
