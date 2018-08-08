@@ -1,5 +1,5 @@
 <ion-split-pane>
-  <ion-menu [content]="content">
+  <ion-menu [content]="content" class="no-print">
     <div class="discord" style="height: 100%; width: 300px; color:whitesmoke">
       
       <!-- https://codepen.io/thesbros/pen/vxpMPp -->
@@ -129,7 +129,7 @@
   <ion-nav [root]="rootPage" main #content swipeBackEnabled="false" class="centerMe">
     <!-- content injected here -->
   </ion-nav>
-  <ion-fab left top menuToggle>
+  <ion-fab left top menuToggle class="no-print">
     <button ion-fab color="light" color="primary">
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -137,7 +137,7 @@
 </ion-split-pane>
 
 <!-- ICONS -->
-<div style="visibility: hidden">
+<div style="visibility: hidden" class="no-print"> 
   <svg id="icon-friends" viewBox="-289 382 32 27.1">
     <style id="style3">
       .st0 {
