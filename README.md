@@ -44,6 +44,10 @@ Refresh the app back to the root and you should be prompted for blockstack login
 
 `http://localhost:8100/`
 
+If you are having login issues due to CORS, you can run the app the first time with a node proxy. This will boot up the app as a node app. * note you cannot live reload while debugging, so I recommend only using this when logging in for the first time.s
+
+`npm run serve`
+
 
 
 # Architecture Diagram

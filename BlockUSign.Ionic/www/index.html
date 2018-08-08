@@ -2,9 +2,6 @@
 <html lang="en" dir="ltr">
 
 <head>
-  <script data-ionic="inject">
-    (function(w){var i=w.Ionic=w.Ionic||{};i.version='3.9.2';i.angular='5.0.3';i.staticDir='build/';})(window);
-  </script>
   <meta charset="UTF-8">
   <title>Blockusign</title>
   <!-- <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"> -->
@@ -36,7 +33,7 @@
   <!-- cordova.js required for cordova apps (remove if not needed) -->
   <!-- <script src="cordova.js"></script> -->
 
-  
+
   <!-- un-comment this code to enable service worker 
   <script>
       if ('serviceWorker' in navigator) {
@@ -67,7 +64,7 @@
     //pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://mozilla.github.io/pdf.js/build/pdf.worker.js';
     PDFJS = pdfjsLib;
     PDFJS.DefaultTextLayerFactory = DefaultTextLayerFactory;
-    
+
     function guid() {
       function s4() {
         return Math.floor((1 + Math.random()) * 0x10000)
@@ -78,26 +75,76 @@
     }
 
 
-    Array.prototype.remove = function() {
+    Array.prototype.remove = function () {
       var what, a = arguments, L = a.length, ax;
       while (L && this.length) {
-          what = a[--L];
-          while ((ax = this.indexOf(what)) !== -1) {
-              this.splice(ax, 1);
-          }
+        what = a[--L];
+        while ((ax = this.indexOf(what)) !== -1) {
+          this.splice(ax, 1);
+        }
       }
       return this;
     };
-    
-    function getQueryParam (name, url) {
+
+    function getQueryParam(name, url) {
       if (!url) url = window.location.href;
       name = name.replace(/[\[\]]/g, "\\$&");
       var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-          results = regex.exec(url);
+        results = regex.exec(url);
       if (!results) return null;
       if (!results[2]) return '';
       return decodeURIComponent(results[2].replace(/\+/g, " "));
     }
+
+
+    var beforePrint = function () {
+      console.log('b4 print');
+      $(".block-pdf-page > .scroll-content:first").scrollTop(0, 0)
+      $("body").height($("#svg-dropzone").height());
+      $("ion-app").height($("#svg-dropzone").height());
+      $("ion-content").height($("#svg-dropzone").height());
+      $("ng-component").height($("#svg-dropzone").height());
+      $("ion-split-pane").height($("#svg-dropzone").height());
+      $("ion-nav").height($("#svg-dropzone").height());
+      $("page-annotate").height($("#svg-dropzone").height());
+      $("page-email").height($("#svg-dropzone").height());
+      $("page-home").height($("#svg-dropzone").height());
+      $("page-review").height($("#svg-dropzone").height());
+      $("page-sign").height($("#svg-dropzone").height());
+      $(".scroll-content").height($("#svg-dropzone").height());
+    };
+
+    var afterPrint = function () {
+      console.log('after print');
+      $("body").removeAttr("style");
+      $("ion-app").removeAttr("style");
+      $("ion-content").removeAttr("style");
+      $("ng-component").removeAttr("style");
+      $("ion-split-pane").removeAttr("style");
+      $("ion-nav").removeAttr("style");
+      $("page-annotate").removeAttr("style");
+      $("page-email").removeAttr("style");
+      $("page-home").removeAttr("style");
+      $("page-review").removeAttr("style");
+      $("page-sign").removeAttr("style");
+      $(".scroll-content").removeAttr("style");
+    };
+
+    if (window.matchMedia) {
+      var mediaQueryList = window.matchMedia('print');
+
+      mediaQueryList.addListener(function (mql) {
+        //alert($(mediaQueryList).html());
+        if (mql.matches) {
+          beforePrint();
+        } else {
+          afterPrint();
+        }
+      });
+    }
+
+    window.onbeforeprint = beforePrint;
+    window.onafterprint = afterPrint;
 
   </script>
 
@@ -106,7 +153,7 @@
 
   <link href='https://fonts.googleapis.com/css?family=Glegoo' rel='stylesheet' type='text/css'>
 
-  <link href='./assets/ng-select.material.theme.css' rel='stylesheet' type='text/css' >
+  <link href='./assets/ng-select.material.theme.css' rel='stylesheet' type='text/css'>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/interact.js/1.2.9/interact.min.js"></script>
   <script src="./assets/dragOn.js"></script>
@@ -114,7 +161,7 @@
   <script src="./assets/ccmArrayBuffer.js"></script>
   <script src="./assets/codecArrayBuffer.js"></script>
   <script src="./assets/jslinq.min.js"></script>
- 
+
 </head>
 
 <body>

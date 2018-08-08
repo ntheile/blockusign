@@ -1,23 +1,26 @@
 <ion-content class="no-overflow-page" >
 
 
-  <block-steps activeStep="5" #blockSteps>
+  <block-steps activeStep="5" #blockSteps class="no-print">
   </block-steps>
 
   <div style="clear:both"></div>
-  <section style="position: relative;" class="nextBackButtons">
+  <section style="position: relative;" class="nextBackButtons no-print">
       <button class="nextBackButtonBack" ion-fab mini (click)="back()" style="background-color:green; position: absolute;"><ion-icon name="md-arrow-back"></ion-icon></button>
   </section>  
   <div style="clear:both"></div>
 
-  <div style="padding: 20px 20px 20px 20px; padding-left: 60px">
+  <div style="padding: 20px 20px 20px 20px; padding-left: 60px" class="no-print">
     <button ion-button style="border-radius: 30px">
-      Save to Blockchain <br/>as Smart Contract
+      Save to Blockchain <br/>as Smart Contract<br/>*Coming Soon!
     </button>
-    <span>Coming Soon!</span>
+    <span></span>
+    <button ion-button style="border-radius: 30px; background-color:green;"  onclick="window.print()">
+        Download
+    </button>
   </div>
 
-  <p>
+  <p class="no-print">
     Document Hash = {{ hash }}
   </p>
   <block-pdf marginTop="10px" locked="true" >

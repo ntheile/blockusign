@@ -610,8 +610,8 @@
             ondragleave: function (event) {
                 // remove the drop feedback style
                 event.target.classList.remove("drop-target");
-                event.relatedTarget.classList.remove("drag-can-drop");
-                event.relatedTarget.textContent = "Dragged out";
+                // event.relatedTarget.classList.remove("drag-can-drop");
+                // event.relatedTarget.textContent = "Dragged out";
             },
             ondropdeactivate: function (event) {
                 // remove active dropzone feedback

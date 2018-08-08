@@ -1,21 +1,23 @@
-<ion-content class="email-page" class="no-overflow-page">
+<ion-content class="email-page no-overflow-page">
 
 
-  <block-steps activeStep="3" #blockSteps>
+  <block-steps activeStep="3" #blockSteps class="no-print">
   </block-steps>
 
   <div style="clear:both"></div>
-  <section style="position: relative;" class="nextBackButtons">
+  <section style="position: relative;" class="nextBackButtons no-print">
       <button class="nextBackButtonBack" ion-fab mini (click)="back()" style="background-color:green; position: absolute;"><ion-icon name="md-arrow-back"></ion-icon></button>
       <button class="nextBackButtonNext" ion-fab mini (click)="next()"><ion-icon name="md-arrow-forward" ></ion-icon></button>
   </section> 
   <div style="clear:both"></div>  
 
-  <p style="padding-left: 65px; padding-right: 65px; padding-top: 10px; padding-bottom: 20px">Email a document link to your signer. Or if you prefer to share another way, give them a copy this link:</p>
-  <textarea style="width:90%; color: black" [(ngModel)]="documentLink" class="emailLink"></textarea>
+  <p style="padding-left: 65px; padding-right: 65px; padding-top: 10px; padding-bottom: 20px" class="no-print">
+    Email a document link to your signer. Or if you prefer to share another way, give them a copy this link:
+  </p>
+  <textarea style="width:90%; color: black" [(ngModel)]="documentLink" class="emailLink no-print"></textarea>
 
   <form></form>
-  <ion-grid style="position: relative">
+  <ion-grid style="position: relative" class="no-print">
     <ion-row align-items-left>
       <ion-col style="display: none;">
         <ng-select style="width:460px; background-color:whitesmoke; border-radius:2px; padding-left:10px" [items]="people3" [multiple]="false"

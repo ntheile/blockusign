@@ -29145,14 +29145,9 @@ html, body, * {
   body {
     position: relative !important;
     overflow: scroll !important;
-    height: 10000px !important;
-  }
-  ion-content {
-    height: 10000px !important;
   }
   ion-app, ng-component, ion-split-pane, ion-nav, page-annotate, .scroll-content {
     position: relative !important;
-    height: 10000px !important;
   }
 }
 

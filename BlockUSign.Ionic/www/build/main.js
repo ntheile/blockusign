@@ -349,267 +349,7 @@ var SlackService = (function () {
 
 /***/ }),
 
-/***/ 173:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BlockChatComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_document_service__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_models__ = __webpack_require__(304);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_moment__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_moment__);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-
-/**
- * https://codepen.io/mehmetmert/pen/zbKpv
- */
-var BlockChatComponent = (function () {
-    function BlockChatComponent(documentService, events, blockstackService) {
-        this.documentService = documentService;
-        this.events = events;
-        this.blockstackService = blockstackService;
-        this.msgCount = 0;
-        this.msgCountNew = 0;
-        this.firstLoad = true;
-    }
-    BlockChatComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.firstLoad = true;
-        this.doc = new __WEBPACK_IMPORTED_MODULE_2__models_models__["a" /* Document */]();
-        if (this.documentService.currentDoc) {
-            this.doc = this.documentService.currentDoc;
-            this.initChatPolling();
-        }
-        else {
-            this.subscription = this.events.subscribe('documentService:setCurrentDoc', function (currentDoc) { return __awaiter(_this, void 0, void 0, function () {
-                return __generator(this, function (_a) {
-                    this.doc = currentDoc;
-                    this.initChatPolling();
-                    return [2 /*return*/];
-                });
-            }); });
-        }
-        this.chatSubscription = this.events.subscribe('documentService:addedChat', function (msg) { return __awaiter(_this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        }); });
-    };
-    BlockChatComponent.prototype.ngAfterViewInit = function () {
-    };
-    BlockChatComponent.prototype.registerEmojiEvent = function () {
-        $(document).on("click", ".emoji-picker", function (e) {
-            e.stopPropagation();
-            $('.intercom-composer-emoji-popover').toggleClass("active");
-        });
-        $(document).click(function (e) {
-            if ($(e.target).attr('class') != '.intercom-composer-emoji-popover' && $(e.target).parents(".intercom-composer-emoji-popover").length == 0) {
-                $(".intercom-composer-emoji-popover").removeClass("active");
-            }
-        });
-        $(document).on("click", ".intercom-emoji-picker-emoji", function (e) {
-            if (e.target.className == "intercom-emoji-picker-emoji") {
-                var existing = $(".emojiDiv").val();
-                var emo = $(this).html();
-                $(".emojiDiv").val(existing + emo);
-            }
-        });
-        $('.intercom-composer-popover-input').on('input', function () {
-            var query = this.value;
-            if (query != "") {
-                $(".intercom-emoji-picker-emoji:not([title*='" + query + "'])").hide();
-            }
-            else {
-                $(".intercom-emoji-picker-emoji").show();
-            }
-        });
-    };
-    BlockChatComponent.prototype.destroyEmojiEvents = function () {
-        this.firstLoad = true;
-        $(document).off("click", ".emoji-picker");
-        $(document).off("click");
-        $('.intercom-composer-popover-input').off('input');
-    };
-    BlockChatComponent.prototype.initChatPolling = function () {
-        var _this = this;
-        this.chatPolling = setInterval(function () {
-            setTimeout(function () {
-                _this.getLogData(true);
-            }, 1000);
-        }, 3000);
-    };
-    BlockChatComponent.prototype.ngOnDestroy = function () {
-        clearInterval(this.chatPolling);
-        if (this.subscription) {
-            this.subscription.unsubscribe();
-        }
-        if (this.chatSubscription) {
-            this.chatSubscription.unsubscribe();
-        }
-    };
-    BlockChatComponent.prototype.getLogData = function (isPoll) {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            return __generator(this, function (_a) {
-                $(document).ready(function () { return __awaiter(_this, void 0, void 0, function () {
-                    var logData, template, orderedMessages, _loop_1, this_1, _i, orderedMessages_1, item;
-                    return __generator(this, function (_a) {
-                        switch (_a.label) {
-                            case 0: return [4 /*yield*/, this.documentService.getLog(this.doc.guid)];
-                            case 1:
-                                logData = _a.sent();
-                                template = "";
-                                if (!logData) {
-                                    $(".loadSpin").hide();
-                                    return [2 /*return*/];
-                                }
-                                this.msgCountNew = logData.messages.length;
-                                if (this.msgCountNew > this.msgCount) {
-                                    this.msgCount = this.msgCountNew;
-                                    orderedMessages = jslinq(logData.messages).orderBy(function (el) { return el.updatedAt; }).toList();
-                                    this.messages = orderedMessages;
-                                    _loop_1 = function (item) {
-                                        var d = item.updatedAt;
-                                        var formatDate = __WEBPACK_IMPORTED_MODULE_5_moment__(d).calendar(d);
-                                        var uid = item.createdBy;
-                                        try {
-                                            uid = item.createdBy.replace('.id', '');
-                                        }
-                                        catch (e) {
-                                            console.log('user does not have .id');
-                                        }
-                                        ;
-                                        var uName = item.createdByName;
-                                        var uidClass = 'block-pic-' + uid;
-                                        this_1.blockstackService.getPicUrl(uName).then(function (picUrl) {
-                                            $('.' + uidClass).attr('src', picUrl);
-                                        });
-                                        template = template + ("  \n          <div class=\"chat-message clearfix\">\n          <img class=\"" + uidClass + "\" src=\"https://www.gravatar.com/avatar/?d=identicon\" alt=\"\" width=\"32\" height=\"32\">\n          <div class=\"chat-message-content clearfix\">\n            <span class=\"chat-time\">" + formatDate + "</span>\n            <h5>" + item.email + "</h5>\n            <p>" + item.message + "</p>\n          </div> \n          </div>\n          <hr style='margin-top:5px' />\n          ");
-                                    };
-                                    this_1 = this;
-                                    for (_i = 0, orderedMessages_1 = orderedMessages; _i < orderedMessages_1.length; _i++) {
-                                        item = orderedMessages_1[_i];
-                                        _loop_1(item);
-                                    }
-                                    $('.log-history').last().html(template);
-                                    $('.chat-history').last().scrollTop($('.log-history').last().height());
-                                }
-                                this.firstLoad = false;
-                                $(".loadSpin").hide();
-                                return [2 /*return*/];
-                        }
-                    });
-                }); });
-                return [2 /*return*/];
-            });
-        });
-    };
-    BlockChatComponent.prototype.minimize = function () {
-        $('.chat').slideToggle(300, 'swing');
-        $('.chat-message-counter').fadeToggle(300, 'swing');
-    };
-    BlockChatComponent.prototype.addMessage = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        $(".loadSpin").show();
-                        this.message = $(".emojiDiv").val();
-                        //$('.log-history').append(this.message);
-                        return [4 /*yield*/, this.documentService.addMessage(this.doc.guid, this.message)];
-                    case 1:
-                        //$('.log-history').append(this.message);
-                        _a.sent();
-                        this.events.publish('documentService:addedChat', this.message);
-                        this.message = null;
-                        this.firstLoad = true;
-                        $(".intercom-composer-emoji-popover").removeClass("active");
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    BlockChatComponent.prototype.hasNoEvents = function (selector) {
-        if ($._data($(selector)[0]).events == null) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    };
-    BlockChatComponent.prototype.scrollBottom = function () {
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("liveChat"),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"])
-    ], BlockChatComponent.prototype, "liveChat", void 0);
-    BlockChatComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'block-chat',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-chat/block-chat.html"*/'<div class="block-chat" class="no-print">\n  <ion-fab bottom right>\n    <div #liveChat class="shadow6 live-chat">\n\n      <header class="clearfix" (click)="minimize()">\n        <!-- <a class="chat-close"  >x</a>-->\n        <h4>\n          <span class="chat-head">{{ doc.fileName }} - Log</span>\n         \n        </h4>\n        <!-- <span style="opacity:.6; padding-left:30px;">YOURNAME/THEIRNAME</span> -->\n        <span class="chat-message-counter">*</span>\n      </header>\n      <div class="chat">\n        <div class="chat-history">\n            <div class="log-history" >\n              \n            </div>\n          <!-- <div class="log-history" *ngFor="let item of messages">\n            <div class="chat-message clearfix">\n              <img class="block-pic-{{ uidClass }}" src="http://www.gravatar.com/avatar/?d=identicon" alt="" width="32" height="32">\n              <div class="chat-message-content clearfix">\n                <span class="chat-time"> {{ formatDate }} </span>\n                <h5> {{ item.email }} </h5>\n                <p> {{ item.message }} </p>\n              </div> \n              </div>\n              <hr style=\'margin-top:5px\' />\n          </div> -->\n        </div>\n        <!-- <p class="chat-feedback">Your partner is typing…</p> -->\n        <form>\n          <fieldset>\n            <input class="emojiDiv" type="text" name="addMsg" \n            placeholder="Type your message…" \n            autofocus [(ngModel)]="message" \n            (keydown.enter)="addMessage($event)"/>\n           \n            <ion-spinner class="loadSpin" ></ion-spinner> \n\n            <div class="emoji" >\n                <div class="test-emoji"></div>\n                <div class="emoji-panel">\n                  <button style="margin-left: 100px" class="chat-input-tool emoji-picker">\n                        <svg preserveAspectRatio="xMidYMid" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path d="M12 24C5.38 24 0 18.62 0 12S5.38 0 12 0s12 5.38 12 12-5.38 12-12 12zm0-22C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-2.9 0-5.56-1.75-6.9-4.57-.24-.5-.03-1.1.47-1.33.5-.24 1.1-.03 1.33.47C7.9 16.67 9.86 18 12 18c2.15 0 4.1-1.3 5.1-3.43.23-.5.83-.7 1.33-.47.5.23.7.83.47 1.33C17.58 18.25 14.93 20 12 20zm4-8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm-8 0c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" fill="#fff"></path></svg>\n                  </button>\n                </div>\n                <div class="intercom-composer-popover intercom-composer-emoji-popover"><div class="intercom-emoji-picker"><div class="intercom-composer-popover-header"><input class="intercom-composer-popover-input" placeholder="Search" value=""></div><div class="intercom-composer-popover-body-container"><div class="intercom-composer-popover-body"><div class="intercom-emoji-picker-groups"><div class="intercom-emoji-picker-group"><div class="intercom-emoji-picker-group-title">Frequently used</div><span class="intercom-emoji-picker-emoji" title="thumbs_up">👍</span><span class="intercom-emoji-picker-emoji" title="-1">👎</span><span class="intercom-emoji-picker-emoji" title="sob">😭</span><span class="intercom-emoji-picker-emoji" title="confused">😕</span><span class="intercom-emoji-picker-emoji" title="neutral_face">😐</span><span class="intercom-emoji-picker-emoji" title="blush">😊</span><span class="intercom-emoji-picker-emoji" title="heart_eyes">😍</span></div><div class="intercom-emoji-picker-group"><div class="intercom-emoji-picker-group-title">People</div><span class="intercom-emoji-picker-emoji" title="smile">😄</span><span class="intercom-emoji-picker-emoji" title="smiley">😃</span><span class="intercom-emoji-picker-emoji" title="grinning">😀</span><span class="intercom-emoji-picker-emoji" title="blush">😊</span><span class="intercom-emoji-picker-emoji" title="wink">😉</span><span class="intercom-emoji-picker-emoji" title="heart_eyes">😍</span><span class="intercom-emoji-picker-emoji" title="kissing_heart">😘</span><span class="intercom-emoji-picker-emoji" title="kissing_closed_eyes">😚</span><span class="intercom-emoji-picker-emoji" title="kissing">😗</span><span class="intercom-emoji-picker-emoji" title="kissing_smiling_eyes">😙</span><span class="intercom-emoji-picker-emoji" title="stuck_out_tongue_winking_eye">😜</span><span class="intercom-emoji-picker-emoji" title="stuck_out_tongue_closed_eyes">😝</span><span class="intercom-emoji-picker-emoji" title="stuck_out_tongue">😛</span><span class="intercom-emoji-picker-emoji" title="flushed">😳</span><span class="intercom-emoji-picker-emoji" title="grin">😁</span><span class="intercom-emoji-picker-emoji" title="pensive">😔</span><span class="intercom-emoji-picker-emoji" title="relieved">😌</span><span class="intercom-emoji-picker-emoji" title="unamused">😒</span><span class="intercom-emoji-picker-emoji" title="disappointed">😞</span><span class="intercom-emoji-picker-emoji" title="persevere">😣</span><span class="intercom-emoji-picker-emoji" title="cry">😢</span><span class="intercom-emoji-picker-emoji" title="joy">😂</span><span class="intercom-emoji-picker-emoji" title="sob">😭</span><span class="intercom-emoji-picker-emoji" title="sleepy">😪</span><span class="intercom-emoji-picker-emoji" title="disappointed_relieved">😥</span><span class="intercom-emoji-picker-emoji" title="cold_sweat">😰</span><span class="intercom-emoji-picker-emoji" title="sweat_smile">😅</span><span class="intercom-emoji-picker-emoji" title="sweat">😓</span><span class="intercom-emoji-picker-emoji" title="weary">😩</span><span class="intercom-emoji-picker-emoji" title="tired_face">😫</span><span class="intercom-emoji-picker-emoji" title="fearful">😨</span><span class="intercom-emoji-picker-emoji" title="scream">😱</span><span class="intercom-emoji-picker-emoji" title="angry">😠</span><span class="intercom-emoji-picker-emoji" title="rage">😡</span><span class="intercom-emoji-picker-emoji" title="triumph">😤</span><span class="intercom-emoji-picker-emoji" title="confounded">😖</span><span class="intercom-emoji-picker-emoji" title="laughing">😆</span><span class="intercom-emoji-picker-emoji" title="yum">😋</span><span class="intercom-emoji-picker-emoji" title="mask">😷</span><span class="intercom-emoji-picker-emoji" title="sunglasses">😎</span><span class="intercom-emoji-picker-emoji" title="sleeping">😴</span><span class="intercom-emoji-picker-emoji" title="dizzy_face">😵</span><span class="intercom-emoji-picker-emoji" title="astonished">😲</span><span class="intercom-emoji-picker-emoji" title="worried">😟</span><span class="intercom-emoji-picker-emoji" title="frowning">😦</span><span class="intercom-emoji-picker-emoji" title="anguished">😧</span><span class="intercom-emoji-picker-emoji" title="imp">👿</span><span class="intercom-emoji-picker-emoji" title="open_mouth">😮</span><span class="intercom-emoji-picker-emoji" title="grimacing">😬</span><span class="intercom-emoji-picker-emoji" title="neutral_face">😐</span><span class="intercom-emoji-picker-emoji" title="confused">😕</span><span class="intercom-emoji-picker-emoji" title="hushed">😯</span><span class="intercom-emoji-picker-emoji" title="smirk">😏</span><span class="intercom-emoji-picker-emoji" title="expressionless">😑</span><span class="intercom-emoji-picker-emoji" title="man_with_gua_pi_mao">👲</span><span class="intercom-emoji-picker-emoji" title="man_with_turban">👳</span><span class="intercom-emoji-picker-emoji" title="cop">👮</span><span class="intercom-emoji-picker-emoji" title="construction_worker">👷</span><span class="intercom-emoji-picker-emoji" title="guardsman">💂</span><span class="intercom-emoji-picker-emoji" title="baby">👶</span><span class="intercom-emoji-picker-emoji" title="boy">👦</span><span class="intercom-emoji-picker-emoji" title="girl">👧</span><span class="intercom-emoji-picker-emoji" title="man">👨</span><span class="intercom-emoji-picker-emoji" title="woman">👩</span><span class="intercom-emoji-picker-emoji" title="older_man">👴</span><span class="intercom-emoji-picker-emoji" title="older_woman">👵</span><span class="intercom-emoji-picker-emoji" title="person_with_blond_hair">👱</span><span class="intercom-emoji-picker-emoji" title="angel">👼</span><span class="intercom-emoji-picker-emoji" title="princess">👸</span><span class="intercom-emoji-picker-emoji" title="smiley_cat">😺</span><span class="intercom-emoji-picker-emoji" title="smile_cat">😸</span><span class="intercom-emoji-picker-emoji" title="heart_eyes_cat">😻</span><span class="intercom-emoji-picker-emoji" title="kissing_cat">😽</span><span class="intercom-emoji-picker-emoji" title="smirk_cat">😼</span><span class="intercom-emoji-picker-emoji" title="scream_cat">🙀</span><span class="intercom-emoji-picker-emoji" title="crying_cat_face">😿</span><span class="intercom-emoji-picker-emoji" title="joy_cat">😹</span><span class="intercom-emoji-picker-emoji" title="pouting_cat">😾</span><span class="intercom-emoji-picker-emoji" title="japanese_ogre">👹</span><span class="intercom-emoji-picker-emoji" title="japanese_goblin">👺</span><span class="intercom-emoji-picker-emoji" title="see_no_evil">🙈</span><span class="intercom-emoji-picker-emoji" title="hear_no_evil">🙉</span><span class="intercom-emoji-picker-emoji" title="speak_no_evil">🙊</span><span class="intercom-emoji-picker-emoji" title="skull">💀</span><span class="intercom-emoji-picker-emoji" title="alien">👽</span><span class="intercom-emoji-picker-emoji" title="hankey">💩</span><span class="intercom-emoji-picker-emoji" title="fire">🔥</span><span class="intercom-emoji-picker-emoji" title="sparkles">✨</span><span class="intercom-emoji-picker-emoji" title="star2">🌟</span><span class="intercom-emoji-picker-emoji" title="dizzy">💫</span><span class="intercom-emoji-picker-emoji" title="boom">💥</span><span class="intercom-emoji-picker-emoji" title="anger">💢</span><span class="intercom-emoji-picker-emoji" title="sweat_drops">💦</span><span class="intercom-emoji-picker-emoji" title="droplet">💧</span><span class="intercom-emoji-picker-emoji" title="zzz">💤</span><span class="intercom-emoji-picker-emoji" title="dash">💨</span><span class="intercom-emoji-picker-emoji" title="ear">👂</span><span class="intercom-emoji-picker-emoji" title="eyes">👀</span><span class="intercom-emoji-picker-emoji" title="nose">👃</span><span class="intercom-emoji-picker-emoji" title="tongue">👅</span><span class="intercom-emoji-picker-emoji" title="lips">👄</span><span class="intercom-emoji-picker-emoji" title="thumbs_up">👍</span><span class="intercom-emoji-picker-emoji" title="-1">👎</span><span class="intercom-emoji-picker-emoji" title="ok_hand">👌</span><span class="intercom-emoji-picker-emoji" title="facepunch">👊</span><span class="intercom-emoji-picker-emoji" title="fist">✊</span><span class="intercom-emoji-picker-emoji" title="wave">👋</span><span class="intercom-emoji-picker-emoji" title="hand">✋</span><span class="intercom-emoji-picker-emoji" title="open_hands">👐</span><span class="intercom-emoji-picker-emoji" title="point_up_2">👆</span><span class="intercom-emoji-picker-emoji" title="point_down">👇</span><span class="intercom-emoji-picker-emoji" title="point_right">👉</span><span class="intercom-emoji-picker-emoji" title="point_left">👈</span><span class="intercom-emoji-picker-emoji" title="raised_hands">🙌</span><span class="intercom-emoji-picker-emoji" title="pray">🙏</span><span class="intercom-emoji-picker-emoji" title="clap">👏</span><span class="intercom-emoji-picker-emoji" title="muscle">💪</span><span class="intercom-emoji-picker-emoji" title="walking">🚶</span><span class="intercom-emoji-picker-emoji" title="runner">🏃</span><span class="intercom-emoji-picker-emoji" title="dancer">💃</span><span class="intercom-emoji-picker-emoji" title="couple">👫</span><span class="intercom-emoji-picker-emoji" title="family">👪</span><span class="intercom-emoji-picker-emoji" title="couplekiss">💏</span><span class="intercom-emoji-picker-emoji" title="couple_with_heart">💑</span><span class="intercom-emoji-picker-emoji" title="dancers">👯</span><span class="intercom-emoji-picker-emoji" title="ok_woman">🙆</span><span class="intercom-emoji-picker-emoji" title="no_good">🙅</span><span class="intercom-emoji-picker-emoji" title="information_desk_person">💁</span><span class="intercom-emoji-picker-emoji" title="raising_hand">🙋</span><span class="intercom-emoji-picker-emoji" title="massage">💆</span><span class="intercom-emoji-picker-emoji" title="haircut">💇</span><span class="intercom-emoji-picker-emoji" title="nail_care">💅</span><span class="intercom-emoji-picker-emoji" title="bride_with_veil">👰</span><span class="intercom-emoji-picker-emoji" title="person_with_pouting_face">🙎</span><span class="intercom-emoji-picker-emoji" title="person_frowning">🙍</span><span class="intercom-emoji-picker-emoji" title="bow">🙇</span><span class="intercom-emoji-picker-emoji" title="tophat">🎩</span><span class="intercom-emoji-picker-emoji" title="crown">👑</span><span class="intercom-emoji-picker-emoji" title="womans_hat">👒</span><span class="intercom-emoji-picker-emoji" title="athletic_shoe">👟</span><span class="intercom-emoji-picker-emoji" title="mans_shoe">👞</span><span class="intercom-emoji-picker-emoji" title="sandal">👡</span><span class="intercom-emoji-picker-emoji" title="high_heel">👠</span><span class="intercom-emoji-picker-emoji" title="boot">👢</span><span class="intercom-emoji-picker-emoji" title="shirt">👕</span><span class="intercom-emoji-picker-emoji" title="necktie">👔</span><span class="intercom-emoji-picker-emoji" title="womans_clothes">👚</span><span class="intercom-emoji-picker-emoji" title="dress">👗</span><span class="intercom-emoji-picker-emoji" title="running_shirt_with_sash">🎽</span><span class="intercom-emoji-picker-emoji" title="jeans">👖</span><span class="intercom-emoji-picker-emoji" title="kimono">👘</span><span class="intercom-emoji-picker-emoji" title="bikini">👙</span><span class="intercom-emoji-picker-emoji" title="briefcase">💼</span><span class="intercom-emoji-picker-emoji" title="handbag">👜</span><span class="intercom-emoji-picker-emoji" title="pouch">👝</span><span class="intercom-emoji-picker-emoji" title="purse">👛</span><span class="intercom-emoji-picker-emoji" title="eyeglasses">👓</span><span class="intercom-emoji-picker-emoji" title="ribbon">🎀</span><span class="intercom-emoji-picker-emoji" title="closed_umbrella">🌂</span><span class="intercom-emoji-picker-emoji" title="lipstick">💄</span><span class="intercom-emoji-picker-emoji" title="yellow_heart">💛</span><span class="intercom-emoji-picker-emoji" title="blue_heart">💙</span><span class="intercom-emoji-picker-emoji" title="purple_heart">💜</span><span class="intercom-emoji-picker-emoji" title="green_heart">💚</span><span class="intercom-emoji-picker-emoji" title="broken_heart">💔</span><span class="intercom-emoji-picker-emoji" title="heartpulse">💗</span><span class="intercom-emoji-picker-emoji" title="heartbeat">💓</span><span class="intercom-emoji-picker-emoji" title="two_hearts">💕</span><span class="intercom-emoji-picker-emoji" title="sparkling_heart">💖</span><span class="intercom-emoji-picker-emoji" title="revolving_hearts">💞</span><span class="intercom-emoji-picker-emoji" title="cupid">💘</span><span class="intercom-emoji-picker-emoji" title="love_letter">💌</span><span class="intercom-emoji-picker-emoji" title="kiss">💋</span><span class="intercom-emoji-picker-emoji" title="ring">💍</span><span class="intercom-emoji-picker-emoji" title="gem">💎</span><span class="intercom-emoji-picker-emoji" title="bust_in_silhouette">👤</span><span class="intercom-emoji-picker-emoji" title="speech_balloon">💬</span><span class="intercom-emoji-picker-emoji" title="footprints">👣</span></div><div class="intercom-emoji-picker-group"><div class="intercom-emoji-picker-group-title">Nature</div><span class="intercom-emoji-picker-emoji" title="dog">🐶</span><span class="intercom-emoji-picker-emoji" title="wolf">🐺</span><span class="intercom-emoji-picker-emoji" title="cat">🐱</span><span class="intercom-emoji-picker-emoji" title="mouse">🐭</span><span class="intercom-emoji-picker-emoji" title="hamster">🐹</span><span class="intercom-emoji-picker-emoji" title="rabbit">🐰</span><span class="intercom-emoji-picker-emoji" title="frog">🐸</span><span class="intercom-emoji-picker-emoji" title="tiger">🐯</span><span class="intercom-emoji-picker-emoji" title="koala">🐨</span><span class="intercom-emoji-picker-emoji" title="bear">🐻</span><span class="intercom-emoji-picker-emoji" title="pig">🐷</span><span class="intercom-emoji-picker-emoji" title="pig_nose">🐽</span><span class="intercom-emoji-picker-emoji" title="cow">🐮</span><span class="intercom-emoji-picker-emoji" title="boar">🐗</span><span class="intercom-emoji-picker-emoji" title="monkey_face">🐵</span><span class="intercom-emoji-picker-emoji" title="monkey">🐒</span><span class="intercom-emoji-picker-emoji" title="horse">🐴</span><span class="intercom-emoji-picker-emoji" title="sheep">🐑</span><span class="intercom-emoji-picker-emoji" title="elephant">🐘</span><span class="intercom-emoji-picker-emoji" title="panda_face">🐼</span><span class="intercom-emoji-picker-emoji" title="penguin">🐧</span><span class="intercom-emoji-picker-emoji" title="bird">🐦</span><span class="intercom-emoji-picker-emoji" title="baby_chick">🐤</span><span class="intercom-emoji-picker-emoji" title="hatched_chick">🐥</span><span class="intercom-emoji-picker-emoji" title="hatching_chick">🐣</span><span class="intercom-emoji-picker-emoji" title="chicken">🐔</span><span class="intercom-emoji-picker-emoji" title="snake">🐍</span><span class="intercom-emoji-picker-emoji" title="turtle">🐢</span><span class="intercom-emoji-picker-emoji" title="bug">🐛</span><span class="intercom-emoji-picker-emoji" title="bee">🐝</span><span class="intercom-emoji-picker-emoji" title="ant">🐜</span><span class="intercom-emoji-picker-emoji" title="beetle">🐞</span><span class="intercom-emoji-picker-emoji" title="snail">🐌</span><span class="intercom-emoji-picker-emoji" title="octopus">🐙</span><span class="intercom-emoji-picker-emoji" title="shell">🐚</span><span class="intercom-emoji-picker-emoji" title="tropical_fish">🐠</span><span class="intercom-emoji-picker-emoji" title="fish">🐟</span><span class="intercom-emoji-picker-emoji" title="dolphin">🐬</span><span class="intercom-emoji-picker-emoji" title="whale">🐳</span><span class="intercom-emoji-picker-emoji" title="racehorse">🐎</span><span class="intercom-emoji-picker-emoji" title="dragon_face">🐲</span><span class="intercom-emoji-picker-emoji" title="blowfish">🐡</span><span class="intercom-emoji-picker-emoji" title="camel">🐫</span><span class="intercom-emoji-picker-emoji" title="poodle">🐩</span><span class="intercom-emoji-picker-emoji" title="feet">🐾</span><span class="intercom-emoji-picker-emoji" title="bouquet">💐</span><span class="intercom-emoji-picker-emoji" title="cherry_blossom">🌸</span><span class="intercom-emoji-picker-emoji" title="tulip">🌷</span><span class="intercom-emoji-picker-emoji" title="four_leaf_clover">🍀</span><span class="intercom-emoji-picker-emoji" title="rose">🌹</span><span class="intercom-emoji-picker-emoji" title="sunflower">🌻</span><span class="intercom-emoji-picker-emoji" title="hibiscus">🌺</span><span class="intercom-emoji-picker-emoji" title="maple_leaf">🍁</span><span class="intercom-emoji-picker-emoji" title="leaves">🍃</span><span class="intercom-emoji-picker-emoji" title="fallen_leaf">🍂</span><span class="intercom-emoji-picker-emoji" title="herb">🌿</span><span class="intercom-emoji-picker-emoji" title="ear_of_rice">🌾</span><span class="intercom-emoji-picker-emoji" title="mushroom">🍄</span><span class="intercom-emoji-picker-emoji" title="cactus">🌵</span><span class="intercom-emoji-picker-emoji" title="palm_tree">🌴</span><span class="intercom-emoji-picker-emoji" title="chestnut">🌰</span><span class="intercom-emoji-picker-emoji" title="seedling">🌱</span><span class="intercom-emoji-picker-emoji" title="blossom">🌼</span><span class="intercom-emoji-picker-emoji" title="new_moon">🌑</span><span class="intercom-emoji-picker-emoji" title="first_quarter_moon">🌓</span><span class="intercom-emoji-picker-emoji" title="moon">🌔</span><span class="intercom-emoji-picker-emoji" title="full_moon">🌕</span><span class="intercom-emoji-picker-emoji" title="first_quarter_moon_with_face">🌛</span><span class="intercom-emoji-picker-emoji" title="crescent_moon">🌙</span><span class="intercom-emoji-picker-emoji" title="earth_asia">🌏</span><span class="intercom-emoji-picker-emoji" title="volcano">🌋</span><span class="intercom-emoji-picker-emoji" title="milky_way">🌌</span><span class="intercom-emoji-picker-emoji" title="stars">🌠</span><span class="intercom-emoji-picker-emoji" title="partly_sunny">⛅</span><span class="intercom-emoji-picker-emoji" title="snowman">⛄</span><span class="intercom-emoji-picker-emoji" title="cyclone">🌀</span><span class="intercom-emoji-picker-emoji" title="foggy">🌁</span><span class="intercom-emoji-picker-emoji" title="rainbow">🌈</span><span class="intercom-emoji-picker-emoji" title="ocean">🌊</span></div><div class="intercom-emoji-picker-group"><div class="intercom-emoji-picker-group-title">Objects</div><span class="intercom-emoji-picker-emoji" title="bamboo">🎍</span><span class="intercom-emoji-picker-emoji" title="gift_heart">💝</span><span class="intercom-emoji-picker-emoji" title="dolls">🎎</span><span class="intercom-emoji-picker-emoji" title="school_satchel">🎒</span><span class="intercom-emoji-picker-emoji" title="mortar_board">🎓</span><span class="intercom-emoji-picker-emoji" title="flags">🎏</span><span class="intercom-emoji-picker-emoji" title="fireworks">🎆</span><span class="intercom-emoji-picker-emoji" title="sparkler">🎇</span><span class="intercom-emoji-picker-emoji" title="wind_chime">🎐</span><span class="intercom-emoji-picker-emoji" title="rice_scene">🎑</span><span class="intercom-emoji-picker-emoji" title="jack_o_lantern">🎃</span><span class="intercom-emoji-picker-emoji" title="ghost">👻</span><span class="intercom-emoji-picker-emoji" title="santa">🎅</span><span class="intercom-emoji-picker-emoji" title="christmas_tree">🎄</span><span class="intercom-emoji-picker-emoji" title="gift">🎁</span><span class="intercom-emoji-picker-emoji" title="tanabata_tree">🎋</span><span class="intercom-emoji-picker-emoji" title="tada">🎉</span><span class="intercom-emoji-picker-emoji" title="confetti_ball">🎊</span><span class="intercom-emoji-picker-emoji" title="balloon">🎈</span><span class="intercom-emoji-picker-emoji" title="crossed_flags">🎌</span><span class="intercom-emoji-picker-emoji" title="crystal_ball">🔮</span><span class="intercom-emoji-picker-emoji" title="movie_camera">🎥</span><span class="intercom-emoji-picker-emoji" title="camera">📷</span><span class="intercom-emoji-picker-emoji" title="video_camera">📹</span><span class="intercom-emoji-picker-emoji" title="vhs">📼</span><span class="intercom-emoji-picker-emoji" title="cd">💿</span><span class="intercom-emoji-picker-emoji" title="dvd">📀</span><span class="intercom-emoji-picker-emoji" title="minidisc">💽</span><span class="intercom-emoji-picker-emoji" title="floppy_disk">💾</span><span class="intercom-emoji-picker-emoji" title="computer">💻</span><span class="intercom-emoji-picker-emoji" title="iphone">📱</span><span class="intercom-emoji-picker-emoji" title="telephone_receiver">📞</span><span class="intercom-emoji-picker-emoji" title="pager">📟</span><span class="intercom-emoji-picker-emoji" title="fax">📠</span><span class="intercom-emoji-picker-emoji" title="satellite">📡</span><span class="intercom-emoji-picker-emoji" title="tv">📺</span><span class="intercom-emoji-picker-emoji" title="radio">📻</span><span class="intercom-emoji-picker-emoji" title="loud_sound">🔊</span><span class="intercom-emoji-picker-emoji" title="bell">🔔</span><span class="intercom-emoji-picker-emoji" title="loudspeaker">📢</span><span class="intercom-emoji-picker-emoji" title="mega">📣</span><span class="intercom-emoji-picker-emoji" title="hourglass_flowing_sand">⏳</span><span class="intercom-emoji-picker-emoji" title="hourglass">⌛</span><span class="intercom-emoji-picker-emoji" title="alarm_clock">⏰</span><span class="intercom-emoji-picker-emoji" title="watch">⌚</span><span class="intercom-emoji-picker-emoji" title="unlock">🔓</span><span class="intercom-emoji-picker-emoji" title="lock">🔒</span><span class="intercom-emoji-picker-emoji" title="lock_with_ink_pen">🔏</span><span class="intercom-emoji-picker-emoji" title="closed_lock_with_key">🔐</span><span class="intercom-emoji-picker-emoji" title="key">🔑</span><span class="intercom-emoji-picker-emoji" title="mag_right">🔎</span><span class="intercom-emoji-picker-emoji" title="bulb">💡</span><span class="intercom-emoji-picker-emoji" title="flashlight">🔦</span><span class="intercom-emoji-picker-emoji" title="electric_plug">🔌</span><span class="intercom-emoji-picker-emoji" title="battery">🔋</span><span class="intercom-emoji-picker-emoji" title="mag">🔍</span><span class="intercom-emoji-picker-emoji" title="bath">🛀</span><span class="intercom-emoji-picker-emoji" title="toilet">🚽</span><span class="intercom-emoji-picker-emoji" title="wrench">🔧</span><span class="intercom-emoji-picker-emoji" title="nut_and_bolt">🔩</span><span class="intercom-emoji-picker-emoji" title="hammer">🔨</span><span class="intercom-emoji-picker-emoji" title="door">🚪</span><span class="intercom-emoji-picker-emoji" title="smoking">🚬</span><span class="intercom-emoji-picker-emoji" title="bomb">💣</span><span class="intercom-emoji-picker-emoji" title="gun">🔫</span><span class="intercom-emoji-picker-emoji" title="hocho">🔪</span><span class="intercom-emoji-picker-emoji" title="pill">💊</span><span class="intercom-emoji-picker-emoji" title="syringe">💉</span><span class="intercom-emoji-picker-emoji" title="moneybag">💰</span><span class="intercom-emoji-picker-emoji" title="yen">💴</span><span class="intercom-emoji-picker-emoji" title="dollar">💵</span><span class="intercom-emoji-picker-emoji" title="credit_card">💳</span><span class="intercom-emoji-picker-emoji" title="money_with_wings">💸</span><span class="intercom-emoji-picker-emoji" title="calling">📲</span><span class="intercom-emoji-picker-emoji" title="e-mail">📧</span><span class="intercom-emoji-picker-emoji" title="inbox_tray">📥</span><span class="intercom-emoji-picker-emoji" title="outbox_tray">📤</span><span class="intercom-emoji-picker-emoji" title="envelope_with_arrow">📩</span><span class="intercom-emoji-picker-emoji" title="incoming_envelope">📨</span><span class="intercom-emoji-picker-emoji" title="mailbox">📫</span><span class="intercom-emoji-picker-emoji" title="mailbox_closed">📪</span><span class="intercom-emoji-picker-emoji" title="postbox">📮</span><span class="intercom-emoji-picker-emoji" title="package">📦</span><span class="intercom-emoji-picker-emoji" title="memo">📝</span><span class="intercom-emoji-picker-emoji" title="page_facing_up">📄</span><span class="intercom-emoji-picker-emoji" title="page_with_curl">📃</span><span class="intercom-emoji-picker-emoji" title="bookmark_tabs">📑</span><span class="intercom-emoji-picker-emoji" title="bar_chart">📊</span><span class="intercom-emoji-picker-emoji" title="chart_with_upwards_trend">📈</span><span class="intercom-emoji-picker-emoji" title="chart_with_downwards_trend">📉</span><span class="intercom-emoji-picker-emoji" title="scroll">📜</span><span class="intercom-emoji-picker-emoji" title="clipboard">📋</span><span class="intercom-emoji-picker-emoji" title="date">📅</span><span class="intercom-emoji-picker-emoji" title="calendar">📆</span><span class="intercom-emoji-picker-emoji" title="card_index">📇</span><span class="intercom-emoji-picker-emoji" title="file_folder">📁</span><span class="intercom-emoji-picker-emoji" title="open_file_folder">📂</span><span class="intercom-emoji-picker-emoji" title="pushpin">📌</span><span class="intercom-emoji-picker-emoji" title="paperclip">📎</span><span class="intercom-emoji-picker-emoji" title="straight_ruler">📏</span><span class="intercom-emoji-picker-emoji" title="triangular_ruler">📐</span><span class="intercom-emoji-picker-emoji" title="closed_book">📕</span><span class="intercom-emoji-picker-emoji" title="green_book">📗</span><span class="intercom-emoji-picker-emoji" title="blue_book">📘</span><span class="intercom-emoji-picker-emoji" title="orange_book">📙</span><span class="intercom-emoji-picker-emoji" title="notebook">📓</span><span class="intercom-emoji-picker-emoji" title="notebook_with_decorative_cover">📔</span><span class="intercom-emoji-picker-emoji" title="ledger">📒</span><span class="intercom-emoji-picker-emoji" title="books">📚</span><span class="intercom-emoji-picker-emoji" title="book">📖</span><span class="intercom-emoji-picker-emoji" title="bookmark">🔖</span><span class="intercom-emoji-picker-emoji" title="name_badge">📛</span><span class="intercom-emoji-picker-emoji" title="newspaper">📰</span><span class="intercom-emoji-picker-emoji" title="art">🎨</span><span class="intercom-emoji-picker-emoji" title="clapper">🎬</span><span class="intercom-emoji-picker-emoji" title="microphone">🎤</span><span class="intercom-emoji-picker-emoji" title="headphones">🎧</span><span class="intercom-emoji-picker-emoji" title="musical_score">🎼</span><span class="intercom-emoji-picker-emoji" title="musical_note">🎵</span><span class="intercom-emoji-picker-emoji" title="notes">🎶</span><span class="intercom-emoji-picker-emoji" title="musical_keyboard">🎹</span><span class="intercom-emoji-picker-emoji" title="violin">🎻</span><span class="intercom-emoji-picker-emoji" title="trumpet">🎺</span><span class="intercom-emoji-picker-emoji" title="saxophone">🎷</span><span class="intercom-emoji-picker-emoji" title="guitar">🎸</span><span class="intercom-emoji-picker-emoji" title="space_invader">👾</span><span class="intercom-emoji-picker-emoji" title="video_game">🎮</span><span class="intercom-emoji-picker-emoji" title="black_joker">🃏</span><span class="intercom-emoji-picker-emoji" title="flower_playing_cards">🎴</span><span class="intercom-emoji-picker-emoji" title="mahjong">🀄</span><span class="intercom-emoji-picker-emoji" title="game_die">🎲</span><span class="intercom-emoji-picker-emoji" title="dart">🎯</span><span class="intercom-emoji-picker-emoji" title="football">🏈</span><span class="intercom-emoji-picker-emoji" title="basketball">🏀</span><span class="intercom-emoji-picker-emoji" title="soccer">⚽</span><span class="intercom-emoji-picker-emoji" title="baseball">⚾</span><span class="intercom-emoji-picker-emoji" title="tennis">🎾</span><span class="intercom-emoji-picker-emoji" title="8ball">🎱</span><span class="intercom-emoji-picker-emoji" title="bowling">🎳</span><span class="intercom-emoji-picker-emoji" title="golf">⛳</span><span class="intercom-emoji-picker-emoji" title="checkered_flag">🏁</span><span class="intercom-emoji-picker-emoji" title="trophy">🏆</span><span class="intercom-emoji-picker-emoji" title="ski">🎿</span><span class="intercom-emoji-picker-emoji" title="snowboarder">🏂</span><span class="intercom-emoji-picker-emoji" title="swimmer">🏊</span><span class="intercom-emoji-picker-emoji" title="surfer">🏄</span><span class="intercom-emoji-picker-emoji" title="fishing_pole_and_fish">🎣</span><span class="intercom-emoji-picker-emoji" title="tea">🍵</span><span class="intercom-emoji-picker-emoji" title="sake">🍶</span><span class="intercom-emoji-picker-emoji" title="beer">🍺</span><span class="intercom-emoji-picker-emoji" title="beers">🍻</span><span class="intercom-emoji-picker-emoji" title="cocktail">🍸</span><span class="intercom-emoji-picker-emoji" title="tropical_drink">🍹</span><span class="intercom-emoji-picker-emoji" title="wine_glass">🍷</span><span class="intercom-emoji-picker-emoji" title="fork_and_knife">🍴</span><span class="intercom-emoji-picker-emoji" title="pizza">🍕</span><span class="intercom-emoji-picker-emoji" title="hamburger">🍔</span><span class="intercom-emoji-picker-emoji" title="fries">🍟</span><span class="intercom-emoji-picker-emoji" title="poultry_leg">🍗</span><span class="intercom-emoji-picker-emoji" title="meat_on_bone">🍖</span><span class="intercom-emoji-picker-emoji" title="spaghetti">🍝</span><span class="intercom-emoji-picker-emoji" title="curry">🍛</span><span class="intercom-emoji-picker-emoji" title="fried_shrimp">🍤</span><span class="intercom-emoji-picker-emoji" title="bento">🍱</span><span class="intercom-emoji-picker-emoji" title="sushi">🍣</span><span class="intercom-emoji-picker-emoji" title="fish_cake">🍥</span><span class="intercom-emoji-picker-emoji" title="rice_ball">🍙</span><span class="intercom-emoji-picker-emoji" title="rice_cracker">🍘</span><span class="intercom-emoji-picker-emoji" title="rice">🍚</span><span class="intercom-emoji-picker-emoji" title="ramen">🍜</span><span class="intercom-emoji-picker-emoji" title="stew">🍲</span><span class="intercom-emoji-picker-emoji" title="oden">🍢</span><span class="intercom-emoji-picker-emoji" title="dango">🍡</span><span class="intercom-emoji-picker-emoji" title="egg">🍳</span><span class="intercom-emoji-picker-emoji" title="bread">🍞</span><span class="intercom-emoji-picker-emoji" title="doughnut">🍩</span><span class="intercom-emoji-picker-emoji" title="custard">🍮</span><span class="intercom-emoji-picker-emoji" title="icecream">🍦</span><span class="intercom-emoji-picker-emoji" title="ice_cream">🍨</span><span class="intercom-emoji-picker-emoji" title="shaved_ice">🍧</span><span class="intercom-emoji-picker-emoji" title="birthday">🎂</span><span class="intercom-emoji-picker-emoji" title="cake">🍰</span><span class="intercom-emoji-picker-emoji" title="cookie">🍪</span><span class="intercom-emoji-picker-emoji" title="chocolate_bar">🍫</span><span class="intercom-emoji-picker-emoji" title="candy">🍬</span><span class="intercom-emoji-picker-emoji" title="lollipop">🍭</span><span class="intercom-emoji-picker-emoji" title="honey_pot">🍯</span><span class="intercom-emoji-picker-emoji" title="apple">🍎</span><span class="intercom-emoji-picker-emoji" title="green_apple">🍏</span><span class="intercom-emoji-picker-emoji" title="tangerine">🍊</span><span class="intercom-emoji-picker-emoji" title="cherries">🍒</span><span class="intercom-emoji-picker-emoji" title="grapes">🍇</span><span class="intercom-emoji-picker-emoji" title="watermelon">🍉</span><span class="intercom-emoji-picker-emoji" title="strawberry">🍓</span><span class="intercom-emoji-picker-emoji" title="peach">🍑</span><span class="intercom-emoji-picker-emoji" title="melon">🍈</span><span class="intercom-emoji-picker-emoji" title="banana">🍌</span><span class="intercom-emoji-picker-emoji" title="pineapple">🍍</span><span class="intercom-emoji-picker-emoji" title="sweet_potato">🍠</span><span class="intercom-emoji-picker-emoji" title="eggplant">🍆</span><span class="intercom-emoji-picker-emoji" title="tomato">🍅</span><span class="intercom-emoji-picker-emoji" title="corn">🌽</span></div><div class="intercom-emoji-picker-group"><div class="intercom-emoji-picker-group-title">Places</div><span class="intercom-emoji-picker-emoji" title="house">🏠</span><span class="intercom-emoji-picker-emoji" title="house_with_garden">🏡</span><span class="intercom-emoji-picker-emoji" title="school">🏫</span><span class="intercom-emoji-picker-emoji" title="office">🏢</span><span class="intercom-emoji-picker-emoji" title="post_office">🏣</span><span class="intercom-emoji-picker-emoji" title="hospital">🏥</span><span class="intercom-emoji-picker-emoji" title="bank">🏦</span><span class="intercom-emoji-picker-emoji" title="convenience_store">🏪</span><span class="intercom-emoji-picker-emoji" title="love_hotel">🏩</span><span class="intercom-emoji-picker-emoji" title="hotel">🏨</span><span class="intercom-emoji-picker-emoji" title="wedding">💒</span><span class="intercom-emoji-picker-emoji" title="church">⛪</span><span class="intercom-emoji-picker-emoji" title="department_store">🏬</span><span class="intercom-emoji-picker-emoji" title="city_sunrise">🌇</span><span class="intercom-emoji-picker-emoji" title="city_sunset">🌆</span><span class="intercom-emoji-picker-emoji" title="japanese_castle">🏯</span><span class="intercom-emoji-picker-emoji" title="european_castle">🏰</span><span class="intercom-emoji-picker-emoji" title="tent">⛺</span><span class="intercom-emoji-picker-emoji" title="factory">🏭</span><span class="intercom-emoji-picker-emoji" title="tokyo_tower">🗼</span><span class="intercom-emoji-picker-emoji" title="japan">🗾</span><span class="intercom-emoji-picker-emoji" title="mount_fuji">🗻</span><span class="intercom-emoji-picker-emoji" title="sunrise_over_mountains">🌄</span><span class="intercom-emoji-picker-emoji" title="sunrise">🌅</span><span class="intercom-emoji-picker-emoji" title="night_with_stars">🌃</span><span class="intercom-emoji-picker-emoji" title="statue_of_liberty">🗽</span><span class="intercom-emoji-picker-emoji" title="bridge_at_night">🌉</span><span class="intercom-emoji-picker-emoji" title="carousel_horse">🎠</span><span class="intercom-emoji-picker-emoji" title="ferris_wheel">🎡</span><span class="intercom-emoji-picker-emoji" title="fountain">⛲</span><span class="intercom-emoji-picker-emoji" title="roller_coaster">🎢</span><span class="intercom-emoji-picker-emoji" title="ship">🚢</span><span class="intercom-emoji-picker-emoji" title="boat">⛵</span><span class="intercom-emoji-picker-emoji" title="speedboat">🚤</span><span class="intercom-emoji-picker-emoji" title="rocket">🚀</span><span class="intercom-emoji-picker-emoji" title="seat">💺</span><span class="intercom-emoji-picker-emoji" title="station">🚉</span><span class="intercom-emoji-picker-emoji" title="bullettrain_side">🚄</span><span class="intercom-emoji-picker-emoji" title="bullettrain_front">🚅</span><span class="intercom-emoji-picker-emoji" title="metro">🚇</span><span class="intercom-emoji-picker-emoji" title="railway_car">🚃</span><span class="intercom-emoji-picker-emoji" title="bus">🚌</span><span class="intercom-emoji-picker-emoji" title="blue_car">🚙</span><span class="intercom-emoji-picker-emoji" title="car">🚗</span><span class="intercom-emoji-picker-emoji" title="taxi">🚕</span><span class="intercom-emoji-picker-emoji" title="truck">🚚</span><span class="intercom-emoji-picker-emoji" title="rotating_light">🚨</span><span class="intercom-emoji-picker-emoji" title="police_car">🚓</span><span class="intercom-emoji-picker-emoji" title="fire_engine">🚒</span><span class="intercom-emoji-picker-emoji" title="ambulance">🚑</span><span class="intercom-emoji-picker-emoji" title="bike">🚲</span><span class="intercom-emoji-picker-emoji" title="barber">💈</span><span class="intercom-emoji-picker-emoji" title="busstop">🚏</span><span class="intercom-emoji-picker-emoji" title="ticket">🎫</span><span class="intercom-emoji-picker-emoji" title="traffic_light">🚥</span><span class="intercom-emoji-picker-emoji" title="construction">🚧</span><span class="intercom-emoji-picker-emoji" title="beginner">🔰</span><span class="intercom-emoji-picker-emoji" title="fuelpump">⛽</span><span class="intercom-emoji-picker-emoji" title="izakaya_lantern">🏮</span><span class="intercom-emoji-picker-emoji" title="slot_machine">🎰</span><span class="intercom-emoji-picker-emoji" title="moyai">🗿</span><span class="intercom-emoji-picker-emoji" title="circus_tent">🎪</span><span class="intercom-emoji-picker-emoji" title="performing_arts">🎭</span><span class="intercom-emoji-picker-emoji" title="round_pushpin">📍</span><span class="intercom-emoji-picker-emoji" title="triangular_flag_on_post">🚩</span></div><div class="intercom-emoji-picker-group"><div class="intercom-emoji-picker-group-title">Symbols</div><span class="intercom-emoji-picker-emoji" title="keycap_ten">🔟</span><span class="intercom-emoji-picker-emoji" title="1234">🔢</span><span class="intercom-emoji-picker-emoji" title="symbols">🔣</span><span class="intercom-emoji-picker-emoji" title="capital_abcd">🔠</span><span class="intercom-emoji-picker-emoji" title="abcd">🔡</span><span class="intercom-emoji-picker-emoji" title="abc">🔤</span><span class="intercom-emoji-picker-emoji" title="arrow_up_small">🔼</span><span class="intercom-emoji-picker-emoji" title="arrow_down_small">🔽</span><span class="intercom-emoji-picker-emoji" title="rewind">⏪</span><span class="intercom-emoji-picker-emoji" title="fast_forward">⏩</span><span class="intercom-emoji-picker-emoji" title="arrow_double_up">⏫</span><span class="intercom-emoji-picker-emoji" title="arrow_double_down">⏬</span><span class="intercom-emoji-picker-emoji" title="ok">🆗</span><span class="intercom-emoji-picker-emoji" title="new">🆕</span><span class="intercom-emoji-picker-emoji" title="up">🆙</span><span class="intercom-emoji-picker-emoji" title="cool">🆒</span><span class="intercom-emoji-picker-emoji" title="free">🆓</span><span class="intercom-emoji-picker-emoji" title="ng">🆖</span><span class="intercom-emoji-picker-emoji" title="signal_strength">📶</span><span class="intercom-emoji-picker-emoji" title="cinema">🎦</span><span class="intercom-emoji-picker-emoji" title="koko">🈁</span><span class="intercom-emoji-picker-emoji" title="u6307">🈯</span><span class="intercom-emoji-picker-emoji" title="u7a7a">🈳</span><span class="intercom-emoji-picker-emoji" title="u6e80">🈵</span><span class="intercom-emoji-picker-emoji" title="u5408">🈴</span><span class="intercom-emoji-picker-emoji" title="u7981">🈲</span><span class="intercom-emoji-picker-emoji" title="ideograph_advantage">🉐</span><span class="intercom-emoji-picker-emoji" title="u5272">🈹</span><span class="intercom-emoji-picker-emoji" title="u55b6">🈺</span><span class="intercom-emoji-picker-emoji" title="u6709">🈶</span><span class="intercom-emoji-picker-emoji" title="u7121">🈚</span><span class="intercom-emoji-picker-emoji" title="restroom">🚻</span><span class="intercom-emoji-picker-emoji" title="mens">🚹</span><span class="intercom-emoji-picker-emoji" title="womens">🚺</span><span class="intercom-emoji-picker-emoji" title="baby_symbol">🚼</span><span class="intercom-emoji-picker-emoji" title="wc">🚾</span><span class="intercom-emoji-picker-emoji" title="no_smoking">🚭</span><span class="intercom-emoji-picker-emoji" title="u7533">🈸</span><span class="intercom-emoji-picker-emoji" title="accept">🉑</span><span class="intercom-emoji-picker-emoji" title="cl">🆑</span><span class="intercom-emoji-picker-emoji" title="sos">🆘</span><span class="intercom-emoji-picker-emoji" title="id">🆔</span><span class="intercom-emoji-picker-emoji" title="no_entry_sign">🚫</span><span class="intercom-emoji-picker-emoji" title="underage">🔞</span><span class="intercom-emoji-picker-emoji" title="no_entry">⛔</span><span class="intercom-emoji-picker-emoji" title="negative_squared_cross_mark">❎</span><span class="intercom-emoji-picker-emoji" title="white_check_mark">✅</span><span class="intercom-emoji-picker-emoji" title="heart_decoration">💟</span><span class="intercom-emoji-picker-emoji" title="vs">🆚</span><span class="intercom-emoji-picker-emoji" title="vibration_mode">📳</span><span class="intercom-emoji-picker-emoji" title="mobile_phone_off">📴</span><span class="intercom-emoji-picker-emoji" title="ab">🆎</span><span class="intercom-emoji-picker-emoji" title="diamond_shape_with_a_dot_inside">💠</span><span class="intercom-emoji-picker-emoji" title="ophiuchus">⛎</span><span class="intercom-emoji-picker-emoji" title="six_pointed_star">🔯</span><span class="intercom-emoji-picker-emoji" title="atm">🏧</span><span class="intercom-emoji-picker-emoji" title="chart">💹</span><span class="intercom-emoji-picker-emoji" title="heavy_dollar_sign">💲</span><span class="intercom-emoji-picker-emoji" title="currency_exchange">💱</span><span class="intercom-emoji-picker-emoji" title="x">❌</span><span class="intercom-emoji-picker-emoji" title="exclamation">❗</span><span class="intercom-emoji-picker-emoji" title="question">❓</span><span class="intercom-emoji-picker-emoji" title="grey_exclamation">❕</span><span class="intercom-emoji-picker-emoji" title="grey_question">❔</span><span class="intercom-emoji-picker-emoji" title="o">⭕</span><span class="intercom-emoji-picker-emoji" title="top">🔝</span><span class="intercom-emoji-picker-emoji" title="end">🔚</span><span class="intercom-emoji-picker-emoji" title="back">🔙</span><span class="intercom-emoji-picker-emoji" title="on">🔛</span><span class="intercom-emoji-picker-emoji" title="soon">🔜</span><span class="intercom-emoji-picker-emoji" title="arrows_clockwise">🔃</span><span class="intercom-emoji-picker-emoji" title="clock12">🕛</span><span class="intercom-emoji-picker-emoji" title="clock1">🕐</span><span class="intercom-emoji-picker-emoji" title="clock2">🕑</span><span class="intercom-emoji-picker-emoji" title="clock3">🕒</span><span class="intercom-emoji-picker-emoji" title="clock4">🕓</span><span class="intercom-emoji-picker-emoji" title="clock5">🕔</span><span class="intercom-emoji-picker-emoji" title="clock6">🕕</span><span class="intercom-emoji-picker-emoji" title="clock7">🕖</span><span class="intercom-emoji-picker-emoji" title="clock8">🕗</span><span class="intercom-emoji-picker-emoji" title="clock9">🕘</span><span class="intercom-emoji-picker-emoji" title="clock10">🕙</span><span class="intercom-emoji-picker-emoji" title="clock11">🕚</span><span class="intercom-emoji-picker-emoji" title="heavy_plus_sign">➕</span><span class="intercom-emoji-picker-emoji" title="heavy_minus_sign">➖</span><span class="intercom-emoji-picker-emoji" title="heavy_division_sign">➗</span><span class="intercom-emoji-picker-emoji" title="white_flower">💮</span><span class="intercom-emoji-picker-emoji" title="100">💯</span><span class="intercom-emoji-picker-emoji" title="radio_button">🔘</span><span class="intercom-emoji-picker-emoji" title="link">🔗</span><span class="intercom-emoji-picker-emoji" title="curly_loop">➰</span><span class="intercom-emoji-picker-emoji" title="trident">🔱</span><span class="intercom-emoji-picker-emoji" title="small_red_triangle">🔺</span><span class="intercom-emoji-picker-emoji" title="black_square_button">🔲</span><span class="intercom-emoji-picker-emoji" title="white_square_button">🔳</span><span class="intercom-emoji-picker-emoji" title="red_circle">🔴</span><span class="intercom-emoji-picker-emoji" title="large_blue_circle">🔵</span><span class="intercom-emoji-picker-emoji" title="small_red_triangle_down">🔻</span><span class="intercom-emoji-picker-emoji" title="white_large_square">⬜</span><span class="intercom-emoji-picker-emoji" title="black_large_square">⬛</span><span class="intercom-emoji-picker-emoji" title="large_orange_diamond">🔶</span><span class="intercom-emoji-picker-emoji" title="large_blue_diamond">🔷</span><span class="intercom-emoji-picker-emoji" title="small_orange_diamond">🔸</span><span class="intercom-emoji-picker-emoji" title="small_blue_diamond">🔹</span></div></div></div></div></div><div class="intercom-composer-popover-caret"></div></div>\n            </div>\n          \n\n           \n          </fieldset>\n        </form>\n\n\n      </div>\n      <!-- end chat -->\n\n    </div>\n    <!-- end live-chat -->\n  </ion-fab>\n\n\n  \n\n</div>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-chat/block-chat.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_document_service__["a" /* DocumentService */],
-            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* Events */],
-            __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__["a" /* BlockStackService */]])
-    ], BlockChatComponent);
-    return BlockChatComponent;
-}());
-
-//# sourceMappingURL=block-chat.js.map
-
-/***/ }),
-
-/***/ 175:
+/***/ 192:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -617,15 +357,15 @@ var BlockChatComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_document_service__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_retry__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_retry__ = __webpack_require__(189);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_retry___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_retry__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_timeout__ = __webpack_require__(177);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_timeout__ = __webpack_require__(191);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_timeout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_timeout__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_delay__ = __webpack_require__(178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_delay__ = __webpack_require__(188);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_delay___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_delay__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_pdfjs_dist_build_pdf__ = __webpack_require__(664);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_pdfjs_dist_build_pdf__ = __webpack_require__(933);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_pdfjs_dist_build_pdf___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_pdfjs_dist_build_pdf__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_pdf_annotate__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_pdf_annotate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_pdf_annotate__);
@@ -1077,7 +817,7 @@ var BlockPdfComponent = (function () {
     ], BlockPdfComponent.prototype, "svgDropZone", void 0);
     BlockPdfComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'block-pdf',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-pdf/block-pdf.html"*/'<ion-content class="block-pdf-page" >\n\n  <div class="page" id="pageContainer1" data-page-number="1" style="position:relative;width: 100%; height:100%;"\n    [style.margin-top]="marginTop">\n    \n    <div id="canvasWrapper" #canvasWrapper style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">\n      <div>\n        <svg #svgDropZone id="svg-dropzone" class="svg-dropzone dropzone resizable" xmlns="http://www.w3.org/2000/svg" style="position: absolute; \n        left: 0px; \n        top:0px;\n        z-index: 200000;\n        padding: 0px 0px 0px 0px; \n        margin: 0px 0px 0px 0px; " width="612" height="792" viewBox="0 0 612 792"\n        >\n      </svg> \n      <div class="textLayer"></div>\n      </div>\n      \n    </div>\n\n  </div>\n\n  <br/><br/><br/><br/>\n\n\n\n  <svg class="annotationLayer" xmlns="http://www.w3.org/2000/svg">\n  </svg>\n\n  <!-- <img *ngIf="!showToolBar" id="sigImg" height="50px" class="draggable draggable-droppable" src="./../../assets/imgs/sign.png"\n  /> -->\n  \n  <div [style.margin-bottom]="marginBottom">\n      <br/><br/>\n    </div>\n\n  <ion-fab *ngIf="showToolBar" top left style="margin-top:1px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab class="no-print">\n    <ion-grid>\n      <ion-row justify-content-start align-items-center>\n        <ion-col col-auto *ngIf="showSignHere">\n          <img id="sigImg" height="50px" class="draggable draggable-droppable" src="./../../assets/imgs/sign.png" />\n          \n        </ion-col>\n        <ion-col col-auto *ngIf="showSignature" style="position: relative;">\n          \n          <div contenteditable="true" (keyup)="onKey($event)" class="editSigContent" style="caret-color: black; max-width:190px;">\n\n          \n          <svg xmlns="http://www.w3.org/2000/svg"  id="signature" class="draggable draggable-droppable" width="200" height="50" viewBox="0 0 200 50"\n            style="clear:both; background:#ffeb8e; border: 1px solid red " opacity="1">\n\n           \n\n            <text class="emojiDiv2" #sigText  contenteditable="true" x="50%" y="50%" \n            width="200" height="50" viewBox="0 0 200 50" \n            alignment-baseline="middle" \n            text-anchor="middle" fill="green"\n              font-family="Cedarville Cursive" font-weight="bold" style="font-size: 25px">\n              {{ yourName }}\n            </text>\n\n          </svg>\n         </div>\n          <span class="editSig" >\n              <ion-icon name="md-create" (click)="editSignature()" style="color: black"></ion-icon>\n          </span>\n          <span class="emojiSig chat-input-tool2 emoji-picker2" >\n            <ion-icon name="md-happy" style="color: black"></ion-icon>\n          </span>\n\n          \n        </ion-col>\n        <ion-col class="dragImg" col-auto *ngIf="showButtons">\n          <img src="./../../assets/imgs/arrows.svg" height="35px">\n          <span style="color:whitesmoke; font-family: Cedarville Cursive; font-size: 18px; font-weight: bold">drag</span>\n        </ion-col>\n        <!-- <ion-col col-auto style="padding-left: 50px;">\n        <input id="checkBox" type="checkbox">\n        <span style="padding-right: 4px;color:#757575;">Allow Resize</span>\n      </ion-col> -->\n        <ion-col col-auto style="padding-left: 20px;" *ngIf="showButtons">\n          <button ion-fab (click)="saveSvg()" class="pdfToolBarBtn" style="position:relative">Save</button>\n        </ion-col>\n        <ion-col col-auto style="padding-left: 5px;" *ngIf="showButtons">\n          <button ion-fab (click)="clear()" class="pdfToolBarBtn" style="position:relative">Clear</button>\n        </ion-col>\n      </ion-row>\n      <ion-row style="margin-top: -15px; margin-bottom: -8px">\n        <ion-col>\n           <span style="font-size: .75rem; color:#757575;">*drag item off screen to delete</span>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-fab>\n\n  \n\n</ion-content>\n\n\n\n<div class="emoji no-print"  >\n  <div class="test-emoji" ></div>\n  <div class="intercom-composer-popover intercom-composer-emoji-popover2" style="top: calc(25%) !important; max-height: calc(50%) !important;" ><div class="intercom-emoji-picker"><div class="intercom-composer-popover-header"><input class="intercom-composer-popover-input" placeholder="Search" value=""></div><div class="intercom-composer-popover-body-container"><div class="intercom-composer-popover-body"><div class="intercom-emoji-picker-groups"><div class="intercom-emoji-picker-group"><div class="intercom-emoji-picker-group-title">Frequently used</div><span class="intercom-emoji-picker-emoji p2" title="thumbs_up">👍</span><span class="intercom-emoji-picker-emoji p2" title="-1">👎</span><span class="intercom-emoji-picker-emoji p2" title="sob">😭</span><span class="intercom-emoji-picker-emoji p2" title="confused">😕</span><span class="intercom-emoji-picker-emoji p2" title="neutral_face">😐</span><span class="intercom-emoji-picker-emoji p2" title="blush">😊</span><span class="intercom-emoji-picker-emoji p2" title="heart_eyes">😍</span></div><div class="intercom-emoji-picker-group"><div class="intercom-emoji-picker-group-title">People</div><span class="intercom-emoji-picker-emoji p2" title="smile">😄</span><span class="intercom-emoji-picker-emoji p2" title="smiley">😃</span><span class="intercom-emoji-picker-emoji p2" title="grinning">😀</span><span class="intercom-emoji-picker-emoji p2" title="blush">😊</span><span class="intercom-emoji-picker-emoji p2" title="wink">😉</span><span class="intercom-emoji-picker-emoji p2" title="heart_eyes">😍</span><span class="intercom-emoji-picker-emoji p2" title="kissing_heart">😘</span><span class="intercom-emoji-picker-emoji p2" title="kissing_closed_eyes">😚</span><span class="intercom-emoji-picker-emoji p2" title="kissing">😗</span><span class="intercom-emoji-picker-emoji p2" title="kissing_smiling_eyes">😙</span><span class="intercom-emoji-picker-emoji p2" title="stuck_out_tongue_winking_eye">😜</span><span class="intercom-emoji-picker-emoji p2" title="stuck_out_tongue_closed_eyes">😝</span><span class="intercom-emoji-picker-emoji p2" title="stuck_out_tongue">😛</span><span class="intercom-emoji-picker-emoji p2" title="flushed">😳</span><span class="intercom-emoji-picker-emoji p2" title="grin">😁</span><span class="intercom-emoji-picker-emoji p2" title="pensive">😔</span><span class="intercom-emoji-picker-emoji p2" title="relieved">😌</span><span class="intercom-emoji-picker-emoji p2" title="unamused">😒</span><span class="intercom-emoji-picker-emoji p2" title="disappointed">😞</span><span class="intercom-emoji-picker-emoji p2" title="persevere">😣</span><span class="intercom-emoji-picker-emoji p2" title="cry">😢</span><span class="intercom-emoji-picker-emoji p2" title="joy">😂</span><span class="intercom-emoji-picker-emoji p2" title="sob">😭</span><span class="intercom-emoji-picker-emoji p2" title="sleepy">😪</span><span class="intercom-emoji-picker-emoji p2" title="disappointed_relieved">😥</span><span class="intercom-emoji-picker-emoji p2" title="cold_sweat">😰</span><span class="intercom-emoji-picker-emoji p2" title="sweat_smile">😅</span><span class="intercom-emoji-picker-emoji p2" title="sweat">😓</span><span class="intercom-emoji-picker-emoji p2" title="weary">😩</span><span class="intercom-emoji-picker-emoji p2" title="tired_face">😫</span><span class="intercom-emoji-picker-emoji p2" title="fearful">😨</span><span class="intercom-emoji-picker-emoji p2" title="scream">😱</span><span class="intercom-emoji-picker-emoji p2" title="angry">😠</span><span class="intercom-emoji-picker-emoji p2" title="rage">😡</span><span class="intercom-emoji-picker-emoji p2" title="triumph">😤</span><span class="intercom-emoji-picker-emoji p2" title="confounded">😖</span><span class="intercom-emoji-picker-emoji p2" title="laughing">😆</span><span class="intercom-emoji-picker-emoji p2" title="yum">😋</span><span class="intercom-emoji-picker-emoji p2" title="mask">😷</span><span class="intercom-emoji-picker-emoji p2" title="sunglasses">😎</span><span class="intercom-emoji-picker-emoji p2" title="sleeping">😴</span><span class="intercom-emoji-picker-emoji p2" title="dizzy_face">😵</span><span class="intercom-emoji-picker-emoji p2" title="astonished">😲</span><span class="intercom-emoji-picker-emoji p2" title="worried">😟</span><span class="intercom-emoji-picker-emoji p2" title="frowning">😦</span><span class="intercom-emoji-picker-emoji p2" title="anguished">😧</span><span class="intercom-emoji-picker-emoji p2" title="imp">👿</span><span class="intercom-emoji-picker-emoji p2" title="open_mouth">😮</span><span class="intercom-emoji-picker-emoji p2" title="grimacing">😬</span><span class="intercom-emoji-picker-emoji p2" title="neutral_face">😐</span><span class="intercom-emoji-picker-emoji p2" title="confused">😕</span><span class="intercom-emoji-picker-emoji p2" title="hushed">😯</span><span class="intercom-emoji-picker-emoji p2" title="smirk">😏</span><span class="intercom-emoji-picker-emoji p2" title="expressionless">😑</span><span class="intercom-emoji-picker-emoji p2" title="man_with_gua_pi_mao">👲</span><span class="intercom-emoji-picker-emoji p2" title="man_with_turban">👳</span><span class="intercom-emoji-picker-emoji p2" title="cop">👮</span><span class="intercom-emoji-picker-emoji p2" title="construction_worker">👷</span><span class="intercom-emoji-picker-emoji p2" title="guardsman">💂</span><span class="intercom-emoji-picker-emoji p2" title="baby">👶</span><span class="intercom-emoji-picker-emoji p2" title="boy">👦</span><span class="intercom-emoji-picker-emoji p2" title="girl">👧</span><span class="intercom-emoji-picker-emoji p2" title="man">👨</span><span class="intercom-emoji-picker-emoji p2" title="woman">👩</span><span class="intercom-emoji-picker-emoji p2" title="older_man">👴</span><span class="intercom-emoji-picker-emoji p2" title="older_woman">👵</span><span class="intercom-emoji-picker-emoji p2" title="person_with_blond_hair">👱</span><span class="intercom-emoji-picker-emoji p2" title="angel">👼</span><span class="intercom-emoji-picker-emoji p2" title="princess">👸</span><span class="intercom-emoji-picker-emoji p2" title="smiley_cat">😺</span><span class="intercom-emoji-picker-emoji p2" title="smile_cat">😸</span><span class="intercom-emoji-picker-emoji p2" title="heart_eyes_cat">😻</span><span class="intercom-emoji-picker-emoji p2" title="kissing_cat">😽</span><span class="intercom-emoji-picker-emoji p2" title="smirk_cat">😼</span><span class="intercom-emoji-picker-emoji p2" title="scream_cat">🙀</span><span class="intercom-emoji-picker-emoji p2" title="crying_cat_face">😿</span><span class="intercom-emoji-picker-emoji p2" title="joy_cat">😹</span><span class="intercom-emoji-picker-emoji p2" title="pouting_cat">😾</span><span class="intercom-emoji-picker-emoji p2" title="japanese_ogre">👹</span><span class="intercom-emoji-picker-emoji p2" title="japanese_goblin">👺</span><span class="intercom-emoji-picker-emoji p2" title="see_no_evil">🙈</span><span class="intercom-emoji-picker-emoji p2" title="hear_no_evil">🙉</span><span class="intercom-emoji-picker-emoji p2" title="speak_no_evil">🙊</span><span class="intercom-emoji-picker-emoji p2" title="skull">💀</span><span class="intercom-emoji-picker-emoji p2" title="alien">👽</span><span class="intercom-emoji-picker-emoji p2" title="hankey">💩</span><span class="intercom-emoji-picker-emoji p2" title="fire">🔥</span><span class="intercom-emoji-picker-emoji p2" title="sparkles">✨</span><span class="intercom-emoji-picker-emoji p2" title="star2">🌟</span><span class="intercom-emoji-picker-emoji p2" title="dizzy">💫</span><span class="intercom-emoji-picker-emoji p2" title="boom">💥</span><span class="intercom-emoji-picker-emoji p2" title="anger">💢</span><span class="intercom-emoji-picker-emoji p2" title="sweat_drops">💦</span><span class="intercom-emoji-picker-emoji p2" title="droplet">💧</span><span class="intercom-emoji-picker-emoji p2" title="zzz">💤</span><span class="intercom-emoji-picker-emoji p2" title="dash">💨</span><span class="intercom-emoji-picker-emoji p2" title="ear">👂</span><span class="intercom-emoji-picker-emoji p2" title="eyes">👀</span><span class="intercom-emoji-picker-emoji p2" title="nose">👃</span><span class="intercom-emoji-picker-emoji p2" title="tongue">👅</span><span class="intercom-emoji-picker-emoji p2" title="lips">👄</span><span class="intercom-emoji-picker-emoji p2" title="thumbs_up">👍</span><span class="intercom-emoji-picker-emoji p2" title="-1">👎</span><span class="intercom-emoji-picker-emoji p2" title="ok_hand">👌</span><span class="intercom-emoji-picker-emoji p2" title="facepunch">👊</span><span class="intercom-emoji-picker-emoji p2" title="fist">✊</span><span class="intercom-emoji-picker-emoji p2" title="wave">👋</span><span class="intercom-emoji-picker-emoji p2" title="hand">✋</span><span class="intercom-emoji-picker-emoji p2" title="open_hands">👐</span><span class="intercom-emoji-picker-emoji p2" title="point_up_2">👆</span><span class="intercom-emoji-picker-emoji p2" title="point_down">👇</span><span class="intercom-emoji-picker-emoji p2" title="point_right">👉</span><span class="intercom-emoji-picker-emoji p2" title="point_left">👈</span><span class="intercom-emoji-picker-emoji p2" title="raised_hands">🙌</span><span class="intercom-emoji-picker-emoji p2" title="pray">🙏</span><span class="intercom-emoji-picker-emoji p2" title="clap">👏</span><span class="intercom-emoji-picker-emoji p2" title="muscle">💪</span><span class="intercom-emoji-picker-emoji p2" title="walking">🚶</span><span class="intercom-emoji-picker-emoji p2" title="runner">🏃</span><span class="intercom-emoji-picker-emoji p2" title="dancer">💃</span><span class="intercom-emoji-picker-emoji p2" title="couple">👫</span><span class="intercom-emoji-picker-emoji p2" title="family">👪</span><span class="intercom-emoji-picker-emoji p2" title="couplekiss">💏</span><span class="intercom-emoji-picker-emoji p2" title="couple_with_heart">💑</span><span class="intercom-emoji-picker-emoji p2" title="dancers">👯</span><span class="intercom-emoji-picker-emoji p2" title="ok_woman">🙆</span><span class="intercom-emoji-picker-emoji p2" title="no_good">🙅</span><span class="intercom-emoji-picker-emoji p2" title="information_desk_person">💁</span><span class="intercom-emoji-picker-emoji p2" title="raising_hand">🙋</span><span class="intercom-emoji-picker-emoji p2" title="massage">💆</span><span class="intercom-emoji-picker-emoji p2" title="haircut">💇</span><span class="intercom-emoji-picker-emoji p2" title="nail_care">💅</span><span class="intercom-emoji-picker-emoji p2" title="bride_with_veil">👰</span><span class="intercom-emoji-picker-emoji p2" title="person_with_pouting_face">🙎</span><span class="intercom-emoji-picker-emoji p2" title="person_frowning">🙍</span><span class="intercom-emoji-picker-emoji p2" title="bow">🙇</span><span class="intercom-emoji-picker-emoji p2" title="tophat">🎩</span><span class="intercom-emoji-picker-emoji p2" title="crown">👑</span><span class="intercom-emoji-picker-emoji p2" title="womans_hat">👒</span><span class="intercom-emoji-picker-emoji p2" title="athletic_shoe">👟</span><span class="intercom-emoji-picker-emoji p2" title="mans_shoe">👞</span><span class="intercom-emoji-picker-emoji p2" title="sandal">👡</span><span class="intercom-emoji-picker-emoji p2" title="high_heel">👠</span><span class="intercom-emoji-picker-emoji p2" title="boot">👢</span><span class="intercom-emoji-picker-emoji p2" title="shirt">👕</span><span class="intercom-emoji-picker-emoji p2" title="necktie">👔</span><span class="intercom-emoji-picker-emoji p2" title="womans_clothes">👚</span><span class="intercom-emoji-picker-emoji p2" title="dress">👗</span><span class="intercom-emoji-picker-emoji p2" title="running_shirt_with_sash">🎽</span><span class="intercom-emoji-picker-emoji p2" title="jeans">👖</span><span class="intercom-emoji-picker-emoji p2" title="kimono">👘</span><span class="intercom-emoji-picker-emoji p2" title="bikini">👙</span><span class="intercom-emoji-picker-emoji p2" title="briefcase">💼</span><span class="intercom-emoji-picker-emoji p2" title="handbag">👜</span><span class="intercom-emoji-picker-emoji p2" title="pouch">👝</span><span class="intercom-emoji-picker-emoji p2" title="purse">👛</span><span class="intercom-emoji-picker-emoji p2" title="eyeglasses">👓</span><span class="intercom-emoji-picker-emoji p2" title="ribbon">🎀</span><span class="intercom-emoji-picker-emoji p2" title="closed_umbrella">🌂</span><span class="intercom-emoji-picker-emoji p2" title="lipstick">💄</span><span class="intercom-emoji-picker-emoji p2" title="yellow_heart">💛</span><span class="intercom-emoji-picker-emoji p2" title="blue_heart">💙</span><span class="intercom-emoji-picker-emoji p2" title="purple_heart">💜</span><span class="intercom-emoji-picker-emoji p2" title="green_heart">💚</span><span class="intercom-emoji-picker-emoji p2" title="broken_heart">💔</span><span class="intercom-emoji-picker-emoji p2" title="heartpulse">💗</span><span class="intercom-emoji-picker-emoji p2" title="heartbeat">💓</span><span class="intercom-emoji-picker-emoji p2" title="two_hearts">💕</span><span class="intercom-emoji-picker-emoji p2" title="sparkling_heart">💖</span><span class="intercom-emoji-picker-emoji p2" title="revolving_hearts">💞</span><span class="intercom-emoji-picker-emoji p2" title="cupid">💘</span><span class="intercom-emoji-picker-emoji p2" title="love_letter">💌</span><span class="intercom-emoji-picker-emoji p2" title="kiss">💋</span><span class="intercom-emoji-picker-emoji p2" title="ring">💍</span><span class="intercom-emoji-picker-emoji p2" title="gem">💎</span><span class="intercom-emoji-picker-emoji p2" title="bust_in_silhouette">👤</span><span class="intercom-emoji-picker-emoji p2" title="speech_balloon">💬</span><span class="intercom-emoji-picker-emoji p2" title="footprints">👣</span></div><div class="intercom-emoji-picker-group"><div class="intercom-emoji-picker-group-title">Nature</div><span class="intercom-emoji-picker-emoji p2" title="dog">🐶</span><span class="intercom-emoji-picker-emoji p2" title="wolf">🐺</span><span class="intercom-emoji-picker-emoji p2" title="cat">🐱</span><span class="intercom-emoji-picker-emoji p2" title="mouse">🐭</span><span class="intercom-emoji-picker-emoji p2" title="hamster">🐹</span><span class="intercom-emoji-picker-emoji p2" title="rabbit">🐰</span><span class="intercom-emoji-picker-emoji p2" title="frog">🐸</span><span class="intercom-emoji-picker-emoji p2" title="tiger">🐯</span><span class="intercom-emoji-picker-emoji p2" title="koala">🐨</span><span class="intercom-emoji-picker-emoji p2" title="bear">🐻</span><span class="intercom-emoji-picker-emoji p2" title="pig">🐷</span><span class="intercom-emoji-picker-emoji p2" title="pig_nose">🐽</span><span class="intercom-emoji-picker-emoji p2" title="cow">🐮</span><span class="intercom-emoji-picker-emoji p2" title="boar">🐗</span><span class="intercom-emoji-picker-emoji p2" title="monkey_face">🐵</span><span class="intercom-emoji-picker-emoji p2" title="monkey">🐒</span><span class="intercom-emoji-picker-emoji p2" title="horse">🐴</span><span class="intercom-emoji-picker-emoji p2" title="sheep">🐑</span><span class="intercom-emoji-picker-emoji p2" title="elephant">🐘</span><span class="intercom-emoji-picker-emoji p2" title="panda_face">🐼</span><span class="intercom-emoji-picker-emoji p2" title="penguin">🐧</span><span class="intercom-emoji-picker-emoji p2" title="bird">🐦</span><span class="intercom-emoji-picker-emoji p2" title="baby_chick">🐤</span><span class="intercom-emoji-picker-emoji p2" title="hatched_chick">🐥</span><span class="intercom-emoji-picker-emoji p2" title="hatching_chick">🐣</span><span class="intercom-emoji-picker-emoji p2" title="chicken">🐔</span><span class="intercom-emoji-picker-emoji p2" title="snake">🐍</span><span class="intercom-emoji-picker-emoji p2" title="turtle">🐢</span><span class="intercom-emoji-picker-emoji p2" title="bug">🐛</span><span class="intercom-emoji-picker-emoji p2" title="bee">🐝</span><span class="intercom-emoji-picker-emoji p2" title="ant">🐜</span><span class="intercom-emoji-picker-emoji p2" title="beetle">🐞</span><span class="intercom-emoji-picker-emoji p2" title="snail">🐌</span><span class="intercom-emoji-picker-emoji p2" title="octopus">🐙</span><span class="intercom-emoji-picker-emoji p2" title="shell">🐚</span><span class="intercom-emoji-picker-emoji p2" title="tropical_fish">🐠</span><span class="intercom-emoji-picker-emoji p2" title="fish">🐟</span><span class="intercom-emoji-picker-emoji p2" title="dolphin">🐬</span><span class="intercom-emoji-picker-emoji p2" title="whale">🐳</span><span class="intercom-emoji-picker-emoji p2" title="racehorse">🐎</span><span class="intercom-emoji-picker-emoji p2" title="dragon_face">🐲</span><span class="intercom-emoji-picker-emoji p2" title="blowfish">🐡</span><span class="intercom-emoji-picker-emoji p2" title="camel">🐫</span><span class="intercom-emoji-picker-emoji p2" title="poodle">🐩</span><span class="intercom-emoji-picker-emoji p2" title="feet">🐾</span><span class="intercom-emoji-picker-emoji p2" title="bouquet">💐</span><span class="intercom-emoji-picker-emoji p2" title="cherry_blossom">🌸</span><span class="intercom-emoji-picker-emoji p2" title="tulip">🌷</span><span class="intercom-emoji-picker-emoji p2" title="four_leaf_clover">🍀</span><span class="intercom-emoji-picker-emoji p2" title="rose">🌹</span><span class="intercom-emoji-picker-emoji p2" title="sunflower">🌻</span><span class="intercom-emoji-picker-emoji p2" title="hibiscus">🌺</span><span class="intercom-emoji-picker-emoji p2" title="maple_leaf">🍁</span><span class="intercom-emoji-picker-emoji p2" title="leaves">🍃</span><span class="intercom-emoji-picker-emoji p2" title="fallen_leaf">🍂</span><span class="intercom-emoji-picker-emoji p2" title="herb">🌿</span><span class="intercom-emoji-picker-emoji p2" title="ear_of_rice">🌾</span><span class="intercom-emoji-picker-emoji p2" title="mushroom">🍄</span><span class="intercom-emoji-picker-emoji p2" title="cactus">🌵</span><span class="intercom-emoji-picker-emoji p2" title="palm_tree">🌴</span><span class="intercom-emoji-picker-emoji p2" title="chestnut">🌰</span><span class="intercom-emoji-picker-emoji p2" title="seedling">🌱</span><span class="intercom-emoji-picker-emoji p2" title="blossom">🌼</span><span class="intercom-emoji-picker-emoji p2" title="new_moon">🌑</span><span class="intercom-emoji-picker-emoji p2" title="first_quarter_moon">🌓</span><span class="intercom-emoji-picker-emoji p2" title="moon">🌔</span><span class="intercom-emoji-picker-emoji p2" title="full_moon">🌕</span><span class="intercom-emoji-picker-emoji p2" title="first_quarter_moon_with_face">🌛</span><span class="intercom-emoji-picker-emoji p2" title="crescent_moon">🌙</span><span class="intercom-emoji-picker-emoji p2" title="earth_asia">🌏</span><span class="intercom-emoji-picker-emoji p2" title="volcano">🌋</span><span class="intercom-emoji-picker-emoji p2" title="milky_way">🌌</span><span class="intercom-emoji-picker-emoji p2" title="stars">🌠</span><span class="intercom-emoji-picker-emoji p2" title="partly_sunny">⛅</span><span class="intercom-emoji-picker-emoji p2" title="snowman">⛄</span><span class="intercom-emoji-picker-emoji p2" title="cyclone">🌀</span><span class="intercom-emoji-picker-emoji p2" title="foggy">🌁</span><span class="intercom-emoji-picker-emoji p2" title="rainbow">🌈</span><span class="intercom-emoji-picker-emoji p2" title="ocean">🌊</span></div><div class="intercom-emoji-picker-group"><div class="intercom-emoji-picker-group-title">Objects</div><span class="intercom-emoji-picker-emoji p2" title="bamboo">🎍</span><span class="intercom-emoji-picker-emoji p2" title="gift_heart">💝</span><span class="intercom-emoji-picker-emoji p2" title="dolls">🎎</span><span class="intercom-emoji-picker-emoji p2" title="school_satchel">🎒</span><span class="intercom-emoji-picker-emoji p2" title="mortar_board">🎓</span><span class="intercom-emoji-picker-emoji p2" title="flags">🎏</span><span class="intercom-emoji-picker-emoji p2" title="fireworks">🎆</span><span class="intercom-emoji-picker-emoji p2" title="sparkler">🎇</span><span class="intercom-emoji-picker-emoji p2" title="wind_chime">🎐</span><span class="intercom-emoji-picker-emoji p2" title="rice_scene">🎑</span><span class="intercom-emoji-picker-emoji p2" title="jack_o_lantern">🎃</span><span class="intercom-emoji-picker-emoji p2" title="ghost">👻</span><span class="intercom-emoji-picker-emoji p2" title="santa">🎅</span><span class="intercom-emoji-picker-emoji p2" title="christmas_tree">🎄</span><span class="intercom-emoji-picker-emoji p2" title="gift">🎁</span><span class="intercom-emoji-picker-emoji p2" title="tanabata_tree">🎋</span><span class="intercom-emoji-picker-emoji p2" title="tada">🎉</span><span class="intercom-emoji-picker-emoji p2" title="confetti_ball">🎊</span><span class="intercom-emoji-picker-emoji p2" title="balloon">🎈</span><span class="intercom-emoji-picker-emoji p2" title="crossed_flags">🎌</span><span class="intercom-emoji-picker-emoji p2" title="crystal_ball">🔮</span><span class="intercom-emoji-picker-emoji p2" title="movie_camera">🎥</span><span class="intercom-emoji-picker-emoji p2" title="camera">📷</span><span class="intercom-emoji-picker-emoji p2" title="video_camera">📹</span><span class="intercom-emoji-picker-emoji p2" title="vhs">📼</span><span class="intercom-emoji-picker-emoji p2" title="cd">💿</span><span class="intercom-emoji-picker-emoji p2" title="dvd">📀</span><span class="intercom-emoji-picker-emoji p2" title="minidisc">💽</span><span class="intercom-emoji-picker-emoji p2" title="floppy_disk">💾</span><span class="intercom-emoji-picker-emoji p2" title="computer">💻</span><span class="intercom-emoji-picker-emoji p2" title="iphone">📱</span><span class="intercom-emoji-picker-emoji p2" title="telephone_receiver">📞</span><span class="intercom-emoji-picker-emoji p2" title="pager">📟</span><span class="intercom-emoji-picker-emoji p2" title="fax">📠</span><span class="intercom-emoji-picker-emoji p2" title="satellite">📡</span><span class="intercom-emoji-picker-emoji p2" title="tv">📺</span><span class="intercom-emoji-picker-emoji p2" title="radio">📻</span><span class="intercom-emoji-picker-emoji p2" title="loud_sound">🔊</span><span class="intercom-emoji-picker-emoji p2" title="bell">🔔</span><span class="intercom-emoji-picker-emoji p2" title="loudspeaker">📢</span><span class="intercom-emoji-picker-emoji p2" title="mega">📣</span><span class="intercom-emoji-picker-emoji p2" title="hourglass_flowing_sand">⏳</span><span class="intercom-emoji-picker-emoji p2" title="hourglass">⌛</span><span class="intercom-emoji-picker-emoji p2" title="alarm_clock">⏰</span><span class="intercom-emoji-picker-emoji p2" title="watch">⌚</span><span class="intercom-emoji-picker-emoji p2" title="unlock">🔓</span><span class="intercom-emoji-picker-emoji p2" title="lock">🔒</span><span class="intercom-emoji-picker-emoji p2" title="lock_with_ink_pen">🔏</span><span class="intercom-emoji-picker-emoji p2" title="closed_lock_with_key">🔐</span><span class="intercom-emoji-picker-emoji p2" title="key">🔑</span><span class="intercom-emoji-picker-emoji p2" title="mag_right">🔎</span><span class="intercom-emoji-picker-emoji p2" title="bulb">💡</span><span class="intercom-emoji-picker-emoji p2" title="flashlight">🔦</span><span class="intercom-emoji-picker-emoji p2" title="electric_plug">🔌</span><span class="intercom-emoji-picker-emoji p2" title="battery">🔋</span><span class="intercom-emoji-picker-emoji p2" title="mag">🔍</span><span class="intercom-emoji-picker-emoji p2" title="bath">🛀</span><span class="intercom-emoji-picker-emoji p2" title="toilet">🚽</span><span class="intercom-emoji-picker-emoji p2" title="wrench">🔧</span><span class="intercom-emoji-picker-emoji p2" title="nut_and_bolt">🔩</span><span class="intercom-emoji-picker-emoji p2" title="hammer">🔨</span><span class="intercom-emoji-picker-emoji p2" title="door">🚪</span><span class="intercom-emoji-picker-emoji p2" title="smoking">🚬</span><span class="intercom-emoji-picker-emoji p2" title="bomb">💣</span><span class="intercom-emoji-picker-emoji p2" title="gun">🔫</span><span class="intercom-emoji-picker-emoji p2" title="hocho">🔪</span><span class="intercom-emoji-picker-emoji p2" title="pill">💊</span><span class="intercom-emoji-picker-emoji p2" title="syringe">💉</span><span class="intercom-emoji-picker-emoji p2" title="moneybag">💰</span><span class="intercom-emoji-picker-emoji p2" title="yen">💴</span><span class="intercom-emoji-picker-emoji p2" title="dollar">💵</span><span class="intercom-emoji-picker-emoji p2" title="credit_card">💳</span><span class="intercom-emoji-picker-emoji p2" title="money_with_wings">💸</span><span class="intercom-emoji-picker-emoji p2" title="calling">📲</span><span class="intercom-emoji-picker-emoji p2" title="e-mail">📧</span><span class="intercom-emoji-picker-emoji p2" title="inbox_tray">📥</span><span class="intercom-emoji-picker-emoji p2" title="outbox_tray">📤</span><span class="intercom-emoji-picker-emoji p2" title="envelope_with_arrow">📩</span><span class="intercom-emoji-picker-emoji p2" title="incoming_envelope">📨</span><span class="intercom-emoji-picker-emoji p2" title="mailbox">📫</span><span class="intercom-emoji-picker-emoji p2" title="mailbox_closed">📪</span><span class="intercom-emoji-picker-emoji p2" title="postbox">📮</span><span class="intercom-emoji-picker-emoji p2" title="package">📦</span><span class="intercom-emoji-picker-emoji p2" title="memo">📝</span><span class="intercom-emoji-picker-emoji p2" title="page_facing_up">📄</span><span class="intercom-emoji-picker-emoji p2" title="page_with_curl">📃</span><span class="intercom-emoji-picker-emoji p2" title="bookmark_tabs">📑</span><span class="intercom-emoji-picker-emoji p2" title="bar_chart">📊</span><span class="intercom-emoji-picker-emoji p2" title="chart_with_upwards_trend">📈</span><span class="intercom-emoji-picker-emoji p2" title="chart_with_downwards_trend">📉</span><span class="intercom-emoji-picker-emoji p2" title="scroll">📜</span><span class="intercom-emoji-picker-emoji p2" title="clipboard">📋</span><span class="intercom-emoji-picker-emoji p2" title="date">📅</span><span class="intercom-emoji-picker-emoji p2" title="calendar">📆</span><span class="intercom-emoji-picker-emoji p2" title="card_index">📇</span><span class="intercom-emoji-picker-emoji p2" title="file_folder">📁</span><span class="intercom-emoji-picker-emoji p2" title="open_file_folder">📂</span><span class="intercom-emoji-picker-emoji p2" title="pushpin">📌</span><span class="intercom-emoji-picker-emoji p2" title="paperclip">📎</span><span class="intercom-emoji-picker-emoji p2" title="straight_ruler">📏</span><span class="intercom-emoji-picker-emoji p2" title="triangular_ruler">📐</span><span class="intercom-emoji-picker-emoji p2" title="closed_book">📕</span><span class="intercom-emoji-picker-emoji p2" title="green_book">📗</span><span class="intercom-emoji-picker-emoji p2" title="blue_book">📘</span><span class="intercom-emoji-picker-emoji p2" title="orange_book">📙</span><span class="intercom-emoji-picker-emoji p2" title="notebook">📓</span><span class="intercom-emoji-picker-emoji p2" title="notebook_with_decorative_cover">📔</span><span class="intercom-emoji-picker-emoji p2" title="ledger">📒</span><span class="intercom-emoji-picker-emoji p2" title="books">📚</span><span class="intercom-emoji-picker-emoji p2" title="book">📖</span><span class="intercom-emoji-picker-emoji p2" title="bookmark">🔖</span><span class="intercom-emoji-picker-emoji p2" title="name_badge">📛</span><span class="intercom-emoji-picker-emoji p2" title="newspaper">📰</span><span class="intercom-emoji-picker-emoji p2" title="art">🎨</span><span class="intercom-emoji-picker-emoji p2" title="clapper">🎬</span><span class="intercom-emoji-picker-emoji p2" title="microphone">🎤</span><span class="intercom-emoji-picker-emoji p2" title="headphones">🎧</span><span class="intercom-emoji-picker-emoji p2" title="musical_score">🎼</span><span class="intercom-emoji-picker-emoji p2" title="musical_note">🎵</span><span class="intercom-emoji-picker-emoji p2" title="notes">🎶</span><span class="intercom-emoji-picker-emoji p2" title="musical_keyboard">🎹</span><span class="intercom-emoji-picker-emoji p2" title="violin">🎻</span><span class="intercom-emoji-picker-emoji p2" title="trumpet">🎺</span><span class="intercom-emoji-picker-emoji p2" title="saxophone">🎷</span><span class="intercom-emoji-picker-emoji p2" title="guitar">🎸</span><span class="intercom-emoji-picker-emoji p2" title="space_invader">👾</span><span class="intercom-emoji-picker-emoji p2" title="video_game">🎮</span><span class="intercom-emoji-picker-emoji p2" title="black_joker">🃏</span><span class="intercom-emoji-picker-emoji p2" title="flower_playing_cards">🎴</span><span class="intercom-emoji-picker-emoji p2" title="mahjong">🀄</span><span class="intercom-emoji-picker-emoji p2" title="game_die">🎲</span><span class="intercom-emoji-picker-emoji p2" title="dart">🎯</span><span class="intercom-emoji-picker-emoji p2" title="football">🏈</span><span class="intercom-emoji-picker-emoji p2" title="basketball">🏀</span><span class="intercom-emoji-picker-emoji p2" title="soccer">⚽</span><span class="intercom-emoji-picker-emoji p2" title="baseball">⚾</span><span class="intercom-emoji-picker-emoji p2" title="tennis">🎾</span><span class="intercom-emoji-picker-emoji p2" title="8ball">🎱</span><span class="intercom-emoji-picker-emoji p2" title="bowling">🎳</span><span class="intercom-emoji-picker-emoji p2" title="golf">⛳</span><span class="intercom-emoji-picker-emoji p2" title="checkered_flag">🏁</span><span class="intercom-emoji-picker-emoji p2" title="trophy">🏆</span><span class="intercom-emoji-picker-emoji p2" title="ski">🎿</span><span class="intercom-emoji-picker-emoji p2" title="snowboarder">🏂</span><span class="intercom-emoji-picker-emoji p2" title="swimmer">🏊</span><span class="intercom-emoji-picker-emoji p2" title="surfer">🏄</span><span class="intercom-emoji-picker-emoji p2" title="fishing_pole_and_fish">🎣</span><span class="intercom-emoji-picker-emoji p2" title="tea">🍵</span><span class="intercom-emoji-picker-emoji p2" title="sake">🍶</span><span class="intercom-emoji-picker-emoji p2" title="beer">🍺</span><span class="intercom-emoji-picker-emoji p2" title="beers">🍻</span><span class="intercom-emoji-picker-emoji p2" title="cocktail">🍸</span><span class="intercom-emoji-picker-emoji p2" title="tropical_drink">🍹</span><span class="intercom-emoji-picker-emoji p2" title="wine_glass">🍷</span><span class="intercom-emoji-picker-emoji p2" title="fork_and_knife">🍴</span><span class="intercom-emoji-picker-emoji p2" title="pizza">🍕</span><span class="intercom-emoji-picker-emoji p2" title="hamburger">🍔</span><span class="intercom-emoji-picker-emoji p2" title="fries">🍟</span><span class="intercom-emoji-picker-emoji p2" title="poultry_leg">🍗</span><span class="intercom-emoji-picker-emoji p2" title="meat_on_bone">🍖</span><span class="intercom-emoji-picker-emoji p2" title="spaghetti">🍝</span><span class="intercom-emoji-picker-emoji p2" title="curry">🍛</span><span class="intercom-emoji-picker-emoji p2" title="fried_shrimp">🍤</span><span class="intercom-emoji-picker-emoji p2" title="bento">🍱</span><span class="intercom-emoji-picker-emoji p2" title="sushi">🍣</span><span class="intercom-emoji-picker-emoji p2" title="fish_cake">🍥</span><span class="intercom-emoji-picker-emoji p2" title="rice_ball">🍙</span><span class="intercom-emoji-picker-emoji p2" title="rice_cracker">🍘</span><span class="intercom-emoji-picker-emoji p2" title="rice">🍚</span><span class="intercom-emoji-picker-emoji p2" title="ramen">🍜</span><span class="intercom-emoji-picker-emoji p2" title="stew">🍲</span><span class="intercom-emoji-picker-emoji p2" title="oden">🍢</span><span class="intercom-emoji-picker-emoji p2" title="dango">🍡</span><span class="intercom-emoji-picker-emoji p2" title="egg">🍳</span><span class="intercom-emoji-picker-emoji p2" title="bread">🍞</span><span class="intercom-emoji-picker-emoji p2" title="doughnut">🍩</span><span class="intercom-emoji-picker-emoji p2" title="custard">🍮</span><span class="intercom-emoji-picker-emoji p2" title="icecream">🍦</span><span class="intercom-emoji-picker-emoji p2" title="ice_cream">🍨</span><span class="intercom-emoji-picker-emoji p2" title="shaved_ice">🍧</span><span class="intercom-emoji-picker-emoji p2" title="birthday">🎂</span><span class="intercom-emoji-picker-emoji p2" title="cake">🍰</span><span class="intercom-emoji-picker-emoji p2" title="cookie">🍪</span><span class="intercom-emoji-picker-emoji p2" title="chocolate_bar">🍫</span><span class="intercom-emoji-picker-emoji p2" title="candy">🍬</span><span class="intercom-emoji-picker-emoji p2" title="lollipop">🍭</span><span class="intercom-emoji-picker-emoji p2" title="honey_pot">🍯</span><span class="intercom-emoji-picker-emoji p2" title="apple">🍎</span><span class="intercom-emoji-picker-emoji p2" title="green_apple">🍏</span><span class="intercom-emoji-picker-emoji p2" title="tangerine">🍊</span><span class="intercom-emoji-picker-emoji p2" title="cherries">🍒</span><span class="intercom-emoji-picker-emoji p2" title="grapes">🍇</span><span class="intercom-emoji-picker-emoji p2" title="watermelon">🍉</span><span class="intercom-emoji-picker-emoji p2" title="strawberry">🍓</span><span class="intercom-emoji-picker-emoji p2" title="peach">🍑</span><span class="intercom-emoji-picker-emoji p2" title="melon">🍈</span><span class="intercom-emoji-picker-emoji p2" title="banana">🍌</span><span class="intercom-emoji-picker-emoji p2" title="pineapple">🍍</span><span class="intercom-emoji-picker-emoji p2" title="sweet_potato">🍠</span><span class="intercom-emoji-picker-emoji p2" title="eggplant">🍆</span><span class="intercom-emoji-picker-emoji p2" title="tomato">🍅</span><span class="intercom-emoji-picker-emoji p2" title="corn">🌽</span></div><div class="intercom-emoji-picker-group"><div class="intercom-emoji-picker-group-title">Places</div><span class="intercom-emoji-picker-emoji p2" title="house">🏠</span><span class="intercom-emoji-picker-emoji p2" title="house_with_garden">🏡</span><span class="intercom-emoji-picker-emoji p2" title="school">🏫</span><span class="intercom-emoji-picker-emoji p2" title="office">🏢</span><span class="intercom-emoji-picker-emoji p2" title="post_office">🏣</span><span class="intercom-emoji-picker-emoji p2" title="hospital">🏥</span><span class="intercom-emoji-picker-emoji p2" title="bank">🏦</span><span class="intercom-emoji-picker-emoji p2" title="convenience_store">🏪</span><span class="intercom-emoji-picker-emoji p2" title="love_hotel">🏩</span><span class="intercom-emoji-picker-emoji p2" title="hotel">🏨</span><span class="intercom-emoji-picker-emoji p2" title="wedding">💒</span><span class="intercom-emoji-picker-emoji p2" title="church">⛪</span><span class="intercom-emoji-picker-emoji p2" title="department_store">🏬</span><span class="intercom-emoji-picker-emoji p2" title="city_sunrise">🌇</span><span class="intercom-emoji-picker-emoji p2" title="city_sunset">🌆</span><span class="intercom-emoji-picker-emoji p2" title="japanese_castle">🏯</span><span class="intercom-emoji-picker-emoji p2" title="european_castle">🏰</span><span class="intercom-emoji-picker-emoji p2" title="tent">⛺</span><span class="intercom-emoji-picker-emoji p2" title="factory">🏭</span><span class="intercom-emoji-picker-emoji p2" title="tokyo_tower">🗼</span><span class="intercom-emoji-picker-emoji p2" title="japan">🗾</span><span class="intercom-emoji-picker-emoji p2" title="mount_fuji">🗻</span><span class="intercom-emoji-picker-emoji p2" title="sunrise_over_mountains">🌄</span><span class="intercom-emoji-picker-emoji p2" title="sunrise">🌅</span><span class="intercom-emoji-picker-emoji p2" title="night_with_stars">🌃</span><span class="intercom-emoji-picker-emoji p2" title="statue_of_liberty">🗽</span><span class="intercom-emoji-picker-emoji p2" title="bridge_at_night">🌉</span><span class="intercom-emoji-picker-emoji p2" title="carousel_horse">🎠</span><span class="intercom-emoji-picker-emoji p2" title="ferris_wheel">🎡</span><span class="intercom-emoji-picker-emoji p2" title="fountain">⛲</span><span class="intercom-emoji-picker-emoji p2" title="roller_coaster">🎢</span><span class="intercom-emoji-picker-emoji p2" title="ship">🚢</span><span class="intercom-emoji-picker-emoji p2" title="boat">⛵</span><span class="intercom-emoji-picker-emoji p2" title="speedboat">🚤</span><span class="intercom-emoji-picker-emoji p2" title="rocket">🚀</span><span class="intercom-emoji-picker-emoji p2" title="seat">💺</span><span class="intercom-emoji-picker-emoji p2" title="station">🚉</span><span class="intercom-emoji-picker-emoji p2" title="bullettrain_side">🚄</span><span class="intercom-emoji-picker-emoji p2" title="bullettrain_front">🚅</span><span class="intercom-emoji-picker-emoji p2" title="metro">🚇</span><span class="intercom-emoji-picker-emoji p2" title="railway_car">🚃</span><span class="intercom-emoji-picker-emoji p2" title="bus">🚌</span><span class="intercom-emoji-picker-emoji p2" title="blue_car">🚙</span><span class="intercom-emoji-picker-emoji p2" title="car">🚗</span><span class="intercom-emoji-picker-emoji p2" title="taxi">🚕</span><span class="intercom-emoji-picker-emoji p2" title="truck">🚚</span><span class="intercom-emoji-picker-emoji p2" title="rotating_light">🚨</span><span class="intercom-emoji-picker-emoji p2" title="police_car">🚓</span><span class="intercom-emoji-picker-emoji p2" title="fire_engine">🚒</span><span class="intercom-emoji-picker-emoji p2" title="ambulance">🚑</span><span class="intercom-emoji-picker-emoji p2" title="bike">🚲</span><span class="intercom-emoji-picker-emoji p2" title="barber">💈</span><span class="intercom-emoji-picker-emoji p2" title="busstop">🚏</span><span class="intercom-emoji-picker-emoji p2" title="ticket">🎫</span><span class="intercom-emoji-picker-emoji p2" title="traffic_light">🚥</span><span class="intercom-emoji-picker-emoji p2" title="construction">🚧</span><span class="intercom-emoji-picker-emoji p2" title="beginner">🔰</span><span class="intercom-emoji-picker-emoji p2" title="fuelpump">⛽</span><span class="intercom-emoji-picker-emoji p2" title="izakaya_lantern">🏮</span><span class="intercom-emoji-picker-emoji p2" title="slot_machine">🎰</span><span class="intercom-emoji-picker-emoji p2" title="moyai">🗿</span><span class="intercom-emoji-picker-emoji p2" title="circus_tent">🎪</span><span class="intercom-emoji-picker-emoji p2" title="performing_arts">🎭</span><span class="intercom-emoji-picker-emoji p2" title="round_pushpin">📍</span><span class="intercom-emoji-picker-emoji p2" title="triangular_flag_on_post">🚩</span></div><div class="intercom-emoji-picker-group"><div class="intercom-emoji-picker-group-title">Symbols</div><span class="intercom-emoji-picker-emoji p2" title="keycap_ten">🔟</span><span class="intercom-emoji-picker-emoji p2" title="1234">🔢</span><span class="intercom-emoji-picker-emoji p2" title="symbols">🔣</span><span class="intercom-emoji-picker-emoji p2" title="capital_abcd">🔠</span><span class="intercom-emoji-picker-emoji p2" title="abcd">🔡</span><span class="intercom-emoji-picker-emoji p2" title="abc">🔤</span><span class="intercom-emoji-picker-emoji p2" title="arrow_up_small">🔼</span><span class="intercom-emoji-picker-emoji p2" title="arrow_down_small">🔽</span><span class="intercom-emoji-picker-emoji p2" title="rewind">⏪</span><span class="intercom-emoji-picker-emoji p2" title="fast_forward">⏩</span><span class="intercom-emoji-picker-emoji p2" title="arrow_double_up">⏫</span><span class="intercom-emoji-picker-emoji p2" title="arrow_double_down">⏬</span><span class="intercom-emoji-picker-emoji p2" title="ok">🆗</span><span class="intercom-emoji-picker-emoji p2" title="new">🆕</span><span class="intercom-emoji-picker-emoji p2" title="up">🆙</span><span class="intercom-emoji-picker-emoji p2" title="cool">🆒</span><span class="intercom-emoji-picker-emoji p2" title="free">🆓</span><span class="intercom-emoji-picker-emoji p2" title="ng">🆖</span><span class="intercom-emoji-picker-emoji p2" title="signal_strength">📶</span><span class="intercom-emoji-picker-emoji p2" title="cinema">🎦</span><span class="intercom-emoji-picker-emoji p2" title="koko">🈁</span><span class="intercom-emoji-picker-emoji p2" title="u6307">🈯</span><span class="intercom-emoji-picker-emoji p2" title="u7a7a">🈳</span><span class="intercom-emoji-picker-emoji p2" title="u6e80">🈵</span><span class="intercom-emoji-picker-emoji p2" title="u5408">🈴</span><span class="intercom-emoji-picker-emoji p2" title="u7981">🈲</span><span class="intercom-emoji-picker-emoji p2" title="ideograph_advantage">🉐</span><span class="intercom-emoji-picker-emoji p2" title="u5272">🈹</span><span class="intercom-emoji-picker-emoji p2" title="u55b6">🈺</span><span class="intercom-emoji-picker-emoji p2" title="u6709">🈶</span><span class="intercom-emoji-picker-emoji p2" title="u7121">🈚</span><span class="intercom-emoji-picker-emoji p2" title="restroom">🚻</span><span class="intercom-emoji-picker-emoji p2" title="mens">🚹</span><span class="intercom-emoji-picker-emoji p2" title="womens">🚺</span><span class="intercom-emoji-picker-emoji p2" title="baby_symbol">🚼</span><span class="intercom-emoji-picker-emoji p2" title="wc">🚾</span><span class="intercom-emoji-picker-emoji p2" title="no_smoking">🚭</span><span class="intercom-emoji-picker-emoji p2" title="u7533">🈸</span><span class="intercom-emoji-picker-emoji p2" title="accept">🉑</span><span class="intercom-emoji-picker-emoji p2" title="cl">🆑</span><span class="intercom-emoji-picker-emoji p2" title="sos">🆘</span><span class="intercom-emoji-picker-emoji p2" title="id">🆔</span><span class="intercom-emoji-picker-emoji p2" title="no_entry_sign">🚫</span><span class="intercom-emoji-picker-emoji p2" title="underage">🔞</span><span class="intercom-emoji-picker-emoji p2" title="no_entry">⛔</span><span class="intercom-emoji-picker-emoji p2" title="negative_squared_cross_mark">❎</span><span class="intercom-emoji-picker-emoji p2" title="white_check_mark">✅</span><span class="intercom-emoji-picker-emoji p2" title="heart_decoration">💟</span><span class="intercom-emoji-picker-emoji p2" title="vs">🆚</span><span class="intercom-emoji-picker-emoji p2" title="vibration_mode">📳</span><span class="intercom-emoji-picker-emoji p2" title="mobile_phone_off">📴</span><span class="intercom-emoji-picker-emoji p2" title="ab">🆎</span><span class="intercom-emoji-picker-emoji p2" title="diamond_shape_with_a_dot_inside">💠</span><span class="intercom-emoji-picker-emoji p2" title="ophiuchus">⛎</span><span class="intercom-emoji-picker-emoji p2" title="six_pointed_star">🔯</span><span class="intercom-emoji-picker-emoji p2" title="atm">🏧</span><span class="intercom-emoji-picker-emoji p2" title="chart">💹</span><span class="intercom-emoji-picker-emoji p2" title="heavy_dollar_sign">💲</span><span class="intercom-emoji-picker-emoji p2" title="currency_exchange">💱</span><span class="intercom-emoji-picker-emoji p2" title="x">❌</span><span class="intercom-emoji-picker-emoji p2" title="exclamation">❗</span><span class="intercom-emoji-picker-emoji p2" title="question">❓</span><span class="intercom-emoji-picker-emoji p2" title="grey_exclamation">❕</span><span class="intercom-emoji-picker-emoji p2" title="grey_question">❔</span><span class="intercom-emoji-picker-emoji p2" title="o">⭕</span><span class="intercom-emoji-picker-emoji p2" title="top">🔝</span><span class="intercom-emoji-picker-emoji p2" title="end">🔚</span><span class="intercom-emoji-picker-emoji p2" title="back">🔙</span><span class="intercom-emoji-picker-emoji p2" title="on">🔛</span><span class="intercom-emoji-picker-emoji p2" title="soon">🔜</span><span class="intercom-emoji-picker-emoji p2" title="arrows_clockwise">🔃</span><span class="intercom-emoji-picker-emoji p2" title="clock12">🕛</span><span class="intercom-emoji-picker-emoji p2" title="clock1">🕐</span><span class="intercom-emoji-picker-emoji p2" title="clock2">🕑</span><span class="intercom-emoji-picker-emoji p2" title="clock3">🕒</span><span class="intercom-emoji-picker-emoji p2" title="clock4">🕓</span><span class="intercom-emoji-picker-emoji p2" title="clock5">🕔</span><span class="intercom-emoji-picker-emoji p2" title="clock6">🕕</span><span class="intercom-emoji-picker-emoji p2" title="clock7">🕖</span><span class="intercom-emoji-picker-emoji p2" title="clock8">🕗</span><span class="intercom-emoji-picker-emoji p2" title="clock9">🕘</span><span class="intercom-emoji-picker-emoji p2" title="clock10">🕙</span><span class="intercom-emoji-picker-emoji p2" title="clock11">🕚</span><span class="intercom-emoji-picker-emoji p2" title="heavy_plus_sign">➕</span><span class="intercom-emoji-picker-emoji p2" title="heavy_minus_sign">➖</span><span class="intercom-emoji-picker-emoji p2" title="heavy_division_sign">➗</span><span class="intercom-emoji-picker-emoji p2" title="white_flower">💮</span><span class="intercom-emoji-picker-emoji p2" title="100">💯</span><span class="intercom-emoji-picker-emoji p2" title="radio_button">🔘</span><span class="intercom-emoji-picker-emoji p2" title="link">🔗</span><span class="intercom-emoji-picker-emoji p2" title="curly_loop">➰</span><span class="intercom-emoji-picker-emoji p2" title="trident">🔱</span><span class="intercom-emoji-picker-emoji p2" title="small_red_triangle">🔺</span><span class="intercom-emoji-picker-emoji p2" title="black_square_button">🔲</span><span class="intercom-emoji-picker-emoji p2" title="white_square_button">🔳</span><span class="intercom-emoji-picker-emoji p2" title="red_circle">🔴</span><span class="intercom-emoji-picker-emoji p2" title="large_blue_circle">🔵</span><span class="intercom-emoji-picker-emoji p2" title="small_red_triangle_down">🔻</span><span class="intercom-emoji-picker-emoji p2" title="white_large_square">⬜</span><span class="intercom-emoji-picker-emoji p2" title="black_large_square">⬛</span><span class="intercom-emoji-picker-emoji p2" title="large_orange_diamond">🔶</span><span class="intercom-emoji-picker-emoji p2" title="large_blue_diamond">🔷</span><span class="intercom-emoji-picker-emoji p2" title="small_orange_diamond">🔸</span><span class="intercom-emoji-picker-emoji p2" title="small_blue_diamond">🔹</span></div></div></div></div></div><div class="intercom-composer-popover-caret"></div></div>\n</div>\n'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-pdf/block-pdf.html"*/,
+            selector: 'block-pdf',template:/*ion-inline-start:"N:\code\git\blockusign\BlockUSign.Ionic\src\components\block-pdf\block-pdf.html"*/'<ion-content class="block-pdf-page" >\n\n\n\n  <div class="page" id="pageContainer1" data-page-number="1" style="position:relative;width: 100%; height:100%;"\n\n    [style.margin-top]="marginTop">\n\n    \n\n    <div id="canvasWrapper" #canvasWrapper style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">\n\n      <div>\n\n        <svg #svgDropZone id="svg-dropzone" class="svg-dropzone dropzone resizable" xmlns="http://www.w3.org/2000/svg" style="position: absolute; \n\n        left: 0px; \n\n        top:0px;\n\n        z-index: 200000;\n\n        padding: 0px 0px 0px 0px; \n\n        margin: 0px 0px 0px 0px; " width="612" height="792" viewBox="0 0 612 792"\n\n        >\n\n      </svg> \n\n      <div class="textLayer"></div>\n\n      </div>\n\n      \n\n    </div>\n\n\n\n  </div>\n\n\n\n  <br/><br/><br/><br/>\n\n\n\n\n\n\n\n  <svg class="annotationLayer" xmlns="http://www.w3.org/2000/svg">\n\n  </svg>\n\n\n\n  <!-- <img *ngIf="!showToolBar" id="sigImg" height="50px" class="draggable draggable-droppable" src="./../../assets/imgs/sign.png"\n\n  /> -->\n\n  \n\n  <div [style.margin-bottom]="marginBottom">\n\n      <br/><br/>\n\n    </div>\n\n\n\n  <ion-fab *ngIf="showToolBar" top left style="margin-top:1px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab class="no-print">\n\n    <ion-grid>\n\n      <ion-row justify-content-start align-items-center>\n\n        <ion-col col-auto *ngIf="showSignHere">\n\n          <img id="sigImg" height="50px" class="draggable draggable-droppable" src="./../../assets/imgs/sign.png" />\n\n          \n\n        </ion-col>\n\n        <ion-col col-auto *ngIf="showSignature" style="position: relative;">\n\n          \n\n          <div contenteditable="true" (keyup)="onKey($event)" class="editSigContent" style="caret-color: black; max-width:190px;">\n\n\n\n          \n\n          <svg xmlns="http://www.w3.org/2000/svg"  id="signature" class="draggable draggable-droppable" width="200" height="50" viewBox="0 0 200 50"\n\n            style="clear:both; background:#ffeb8e; border: 1px solid red " opacity="1">\n\n\n\n           \n\n\n\n            <text class="emojiDiv2" #sigText  contenteditable="true" x="50%" y="50%" \n\n            width="200" height="50" viewBox="0 0 200 50" \n\n            alignment-baseline="middle" \n\n            text-anchor="middle" fill="green"\n\n              font-family="Cedarville Cursive" font-weight="bold" style="font-size: 25px">\n\n              {{ yourName }}\n\n            </text>\n\n\n\n          </svg>\n\n         </div>\n\n          <span class="editSig" >\n\n              <ion-icon name="md-create" (click)="editSignature()" style="color: black"></ion-icon>\n\n          </span>\n\n          <span class="emojiSig chat-input-tool2 emoji-picker2" >\n\n            <ion-icon name="md-happy" style="color: black"></ion-icon>\n\n          </span>\n\n\n\n          \n\n        </ion-col>\n\n        <ion-col class="dragImg" col-auto *ngIf="showButtons">\n\n          <img src="./../../assets/imgs/arrows.svg" height="35px">\n\n          <span style="color:whitesmoke; font-family: Cedarville Cursive; font-size: 18px; font-weight: bold">drag</span>\n\n        </ion-col>\n\n        <!-- <ion-col col-auto style="padding-left: 50px;">\n\n        <input id="checkBox" type="checkbox">\n\n        <span style="padding-right: 4px;color:#757575;">Allow Resize</span>\n\n      </ion-col> -->\n\n        <ion-col col-auto style="padding-left: 20px;" *ngIf="showButtons">\n\n          <button ion-fab (click)="saveSvg()" class="pdfToolBarBtn" style="position:relative">Save</button>\n\n        </ion-col>\n\n        <ion-col col-auto style="padding-left: 5px;" *ngIf="showButtons">\n\n          <button ion-fab (click)="clear()" class="pdfToolBarBtn" style="position:relative">Clear</button>\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-row style="margin-top: -15px; margin-bottom: -8px">\n\n        <ion-col>\n\n           <span style="font-size: .75rem; color:#757575;">*drag item off screen to delete</span>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </ion-fab>\n\n\n\n  \n\n\n\n</ion-content>\n\n\n\n\n\n\n\n<div class="emoji no-print"  >\n\n  <div class="test-emoji" ></div>\n\n  <div class="intercom-composer-popover intercom-composer-emoji-popover2" style="top: calc(25%) !important; max-height: calc(50%) !important;" ><div class="intercom-emoji-picker"><div class="intercom-composer-popover-header"><input class="intercom-composer-popover-input" placeholder="Search" value=""></div><div class="intercom-composer-popover-body-container"><div class="intercom-composer-popover-body"><div class="intercom-emoji-picker-groups"><div class="intercom-emoji-picker-group"><div class="intercom-emoji-picker-group-title">Frequently used</div><span class="intercom-emoji-picker-emoji p2" title="thumbs_up">👍</span><span class="intercom-emoji-picker-emoji p2" title="-1">👎</span><span class="intercom-emoji-picker-emoji p2" title="sob">😭</span><span class="intercom-emoji-picker-emoji p2" title="confused">😕</span><span class="intercom-emoji-picker-emoji p2" title="neutral_face">😐</span><span class="intercom-emoji-picker-emoji p2" title="blush">😊</span><span class="intercom-emoji-picker-emoji p2" title="heart_eyes">😍</span></div><div class="intercom-emoji-picker-group"><div class="intercom-emoji-picker-group-title">People</div><span class="intercom-emoji-picker-emoji p2" title="smile">😄</span><span class="intercom-emoji-picker-emoji p2" title="smiley">😃</span><span class="intercom-emoji-picker-emoji p2" title="grinning">😀</span><span class="intercom-emoji-picker-emoji p2" title="blush">😊</span><span class="intercom-emoji-picker-emoji p2" title="wink">😉</span><span class="intercom-emoji-picker-emoji p2" title="heart_eyes">😍</span><span class="intercom-emoji-picker-emoji p2" title="kissing_heart">😘</span><span class="intercom-emoji-picker-emoji p2" title="kissing_closed_eyes">😚</span><span class="intercom-emoji-picker-emoji p2" title="kissing">😗</span><span class="intercom-emoji-picker-emoji p2" title="kissing_smiling_eyes">😙</span><span class="intercom-emoji-picker-emoji p2" title="stuck_out_tongue_winking_eye">😜</span><span class="intercom-emoji-picker-emoji p2" title="stuck_out_tongue_closed_eyes">😝</span><span class="intercom-emoji-picker-emoji p2" title="stuck_out_tongue">😛</span><span class="intercom-emoji-picker-emoji p2" title="flushed">😳</span><span class="intercom-emoji-picker-emoji p2" title="grin">😁</span><span class="intercom-emoji-picker-emoji p2" title="pensive">😔</span><span class="intercom-emoji-picker-emoji p2" title="relieved">😌</span><span class="intercom-emoji-picker-emoji p2" title="unamused">😒</span><span class="intercom-emoji-picker-emoji p2" title="disappointed">😞</span><span class="intercom-emoji-picker-emoji p2" title="persevere">😣</span><span class="intercom-emoji-picker-emoji p2" title="cry">😢</span><span class="intercom-emoji-picker-emoji p2" title="joy">😂</span><span class="intercom-emoji-picker-emoji p2" title="sob">😭</span><span class="intercom-emoji-picker-emoji p2" title="sleepy">😪</span><span class="intercom-emoji-picker-emoji p2" title="disappointed_relieved">😥</span><span class="intercom-emoji-picker-emoji p2" title="cold_sweat">😰</span><span class="intercom-emoji-picker-emoji p2" title="sweat_smile">😅</span><span class="intercom-emoji-picker-emoji p2" title="sweat">😓</span><span class="intercom-emoji-picker-emoji p2" title="weary">😩</span><span class="intercom-emoji-picker-emoji p2" title="tired_face">😫</span><span class="intercom-emoji-picker-emoji p2" title="fearful">😨</span><span class="intercom-emoji-picker-emoji p2" title="scream">😱</span><span class="intercom-emoji-picker-emoji p2" title="angry">😠</span><span class="intercom-emoji-picker-emoji p2" title="rage">😡</span><span class="intercom-emoji-picker-emoji p2" title="triumph">😤</span><span class="intercom-emoji-picker-emoji p2" title="confounded">😖</span><span class="intercom-emoji-picker-emoji p2" title="laughing">😆</span><span class="intercom-emoji-picker-emoji p2" title="yum">😋</span><span class="intercom-emoji-picker-emoji p2" title="mask">😷</span><span class="intercom-emoji-picker-emoji p2" title="sunglasses">😎</span><span class="intercom-emoji-picker-emoji p2" title="sleeping">😴</span><span class="intercom-emoji-picker-emoji p2" title="dizzy_face">😵</span><span class="intercom-emoji-picker-emoji p2" title="astonished">😲</span><span class="intercom-emoji-picker-emoji p2" title="worried">😟</span><span class="intercom-emoji-picker-emoji p2" title="frowning">😦</span><span class="intercom-emoji-picker-emoji p2" title="anguished">😧</span><span class="intercom-emoji-picker-emoji p2" title="imp">👿</span><span class="intercom-emoji-picker-emoji p2" title="open_mouth">😮</span><span class="intercom-emoji-picker-emoji p2" title="grimacing">😬</span><span class="intercom-emoji-picker-emoji p2" title="neutral_face">😐</span><span class="intercom-emoji-picker-emoji p2" title="confused">😕</span><span class="intercom-emoji-picker-emoji p2" title="hushed">😯</span><span class="intercom-emoji-picker-emoji p2" title="smirk">😏</span><span class="intercom-emoji-picker-emoji p2" title="expressionless">😑</span><span class="intercom-emoji-picker-emoji p2" title="man_with_gua_pi_mao">👲</span><span class="intercom-emoji-picker-emoji p2" title="man_with_turban">👳</span><span class="intercom-emoji-picker-emoji p2" title="cop">👮</span><span class="intercom-emoji-picker-emoji p2" title="construction_worker">👷</span><span class="intercom-emoji-picker-emoji p2" title="guardsman">💂</span><span class="intercom-emoji-picker-emoji p2" title="baby">👶</span><span class="intercom-emoji-picker-emoji p2" title="boy">👦</span><span class="intercom-emoji-picker-emoji p2" title="girl">👧</span><span class="intercom-emoji-picker-emoji p2" title="man">👨</span><span class="intercom-emoji-picker-emoji p2" title="woman">👩</span><span class="intercom-emoji-picker-emoji p2" title="older_man">👴</span><span class="intercom-emoji-picker-emoji p2" title="older_woman">👵</span><span class="intercom-emoji-picker-emoji p2" title="person_with_blond_hair">👱</span><span class="intercom-emoji-picker-emoji p2" title="angel">👼</span><span class="intercom-emoji-picker-emoji p2" title="princess">👸</span><span class="intercom-emoji-picker-emoji p2" title="smiley_cat">😺</span><span class="intercom-emoji-picker-emoji p2" title="smile_cat">😸</span><span class="intercom-emoji-picker-emoji p2" title="heart_eyes_cat">😻</span><span class="intercom-emoji-picker-emoji p2" title="kissing_cat">😽</span><span class="intercom-emoji-picker-emoji p2" title="smirk_cat">😼</span><span class="intercom-emoji-picker-emoji p2" title="scream_cat">🙀</span><span class="intercom-emoji-picker-emoji p2" title="crying_cat_face">😿</span><span class="intercom-emoji-picker-emoji p2" title="joy_cat">😹</span><span class="intercom-emoji-picker-emoji p2" title="pouting_cat">😾</span><span class="intercom-emoji-picker-emoji p2" title="japanese_ogre">👹</span><span class="intercom-emoji-picker-emoji p2" title="japanese_goblin">👺</span><span class="intercom-emoji-picker-emoji p2" title="see_no_evil">🙈</span><span class="intercom-emoji-picker-emoji p2" title="hear_no_evil">🙉</span><span class="intercom-emoji-picker-emoji p2" title="speak_no_evil">🙊</span><span class="intercom-emoji-picker-emoji p2" title="skull">💀</span><span class="intercom-emoji-picker-emoji p2" title="alien">👽</span><span class="intercom-emoji-picker-emoji p2" title="hankey">💩</span><span class="intercom-emoji-picker-emoji p2" title="fire">🔥</span><span class="intercom-emoji-picker-emoji p2" title="sparkles">✨</span><span class="intercom-emoji-picker-emoji p2" title="star2">🌟</span><span class="intercom-emoji-picker-emoji p2" title="dizzy">💫</span><span class="intercom-emoji-picker-emoji p2" title="boom">💥</span><span class="intercom-emoji-picker-emoji p2" title="anger">💢</span><span class="intercom-emoji-picker-emoji p2" title="sweat_drops">💦</span><span class="intercom-emoji-picker-emoji p2" title="droplet">💧</span><span class="intercom-emoji-picker-emoji p2" title="zzz">💤</span><span class="intercom-emoji-picker-emoji p2" title="dash">💨</span><span class="intercom-emoji-picker-emoji p2" title="ear">👂</span><span class="intercom-emoji-picker-emoji p2" title="eyes">👀</span><span class="intercom-emoji-picker-emoji p2" title="nose">👃</span><span class="intercom-emoji-picker-emoji p2" title="tongue">👅</span><span class="intercom-emoji-picker-emoji p2" title="lips">👄</span><span class="intercom-emoji-picker-emoji p2" title="thumbs_up">👍</span><span class="intercom-emoji-picker-emoji p2" title="-1">👎</span><span class="intercom-emoji-picker-emoji p2" title="ok_hand">👌</span><span class="intercom-emoji-picker-emoji p2" title="facepunch">👊</span><span class="intercom-emoji-picker-emoji p2" title="fist">✊</span><span class="intercom-emoji-picker-emoji p2" title="wave">👋</span><span class="intercom-emoji-picker-emoji p2" title="hand">✋</span><span class="intercom-emoji-picker-emoji p2" title="open_hands">👐</span><span class="intercom-emoji-picker-emoji p2" title="point_up_2">👆</span><span class="intercom-emoji-picker-emoji p2" title="point_down">👇</span><span class="intercom-emoji-picker-emoji p2" title="point_right">👉</span><span class="intercom-emoji-picker-emoji p2" title="point_left">👈</span><span class="intercom-emoji-picker-emoji p2" title="raised_hands">🙌</span><span class="intercom-emoji-picker-emoji p2" title="pray">🙏</span><span class="intercom-emoji-picker-emoji p2" title="clap">👏</span><span class="intercom-emoji-picker-emoji p2" title="muscle">💪</span><span class="intercom-emoji-picker-emoji p2" title="walking">🚶</span><span class="intercom-emoji-picker-emoji p2" title="runner">🏃</span><span class="intercom-emoji-picker-emoji p2" title="dancer">💃</span><span class="intercom-emoji-picker-emoji p2" title="couple">👫</span><span class="intercom-emoji-picker-emoji p2" title="family">👪</span><span class="intercom-emoji-picker-emoji p2" title="couplekiss">💏</span><span class="intercom-emoji-picker-emoji p2" title="couple_with_heart">💑</span><span class="intercom-emoji-picker-emoji p2" title="dancers">👯</span><span class="intercom-emoji-picker-emoji p2" title="ok_woman">🙆</span><span class="intercom-emoji-picker-emoji p2" title="no_good">🙅</span><span class="intercom-emoji-picker-emoji p2" title="information_desk_person">💁</span><span class="intercom-emoji-picker-emoji p2" title="raising_hand">🙋</span><span class="intercom-emoji-picker-emoji p2" title="massage">💆</span><span class="intercom-emoji-picker-emoji p2" title="haircut">💇</span><span class="intercom-emoji-picker-emoji p2" title="nail_care">💅</span><span class="intercom-emoji-picker-emoji p2" title="bride_with_veil">👰</span><span class="intercom-emoji-picker-emoji p2" title="person_with_pouting_face">🙎</span><span class="intercom-emoji-picker-emoji p2" title="person_frowning">🙍</span><span class="intercom-emoji-picker-emoji p2" title="bow">🙇</span><span class="intercom-emoji-picker-emoji p2" title="tophat">🎩</span><span class="intercom-emoji-picker-emoji p2" title="crown">👑</span><span class="intercom-emoji-picker-emoji p2" title="womans_hat">👒</span><span class="intercom-emoji-picker-emoji p2" title="athletic_shoe">👟</span><span class="intercom-emoji-picker-emoji p2" title="mans_shoe">👞</span><span class="intercom-emoji-picker-emoji p2" title="sandal">👡</span><span class="intercom-emoji-picker-emoji p2" title="high_heel">👠</span><span class="intercom-emoji-picker-emoji p2" title="boot">👢</span><span class="intercom-emoji-picker-emoji p2" title="shirt">👕</span><span class="intercom-emoji-picker-emoji p2" title="necktie">👔</span><span class="intercom-emoji-picker-emoji p2" title="womans_clothes">👚</span><span class="intercom-emoji-picker-emoji p2" title="dress">👗</span><span class="intercom-emoji-picker-emoji p2" title="running_shirt_with_sash">🎽</span><span class="intercom-emoji-picker-emoji p2" title="jeans">👖</span><span class="intercom-emoji-picker-emoji p2" title="kimono">👘</span><span class="intercom-emoji-picker-emoji p2" title="bikini">👙</span><span class="intercom-emoji-picker-emoji p2" title="briefcase">💼</span><span class="intercom-emoji-picker-emoji p2" title="handbag">👜</span><span class="intercom-emoji-picker-emoji p2" title="pouch">👝</span><span class="intercom-emoji-picker-emoji p2" title="purse">👛</span><span class="intercom-emoji-picker-emoji p2" title="eyeglasses">👓</span><span class="intercom-emoji-picker-emoji p2" title="ribbon">🎀</span><span class="intercom-emoji-picker-emoji p2" title="closed_umbrella">🌂</span><span class="intercom-emoji-picker-emoji p2" title="lipstick">💄</span><span class="intercom-emoji-picker-emoji p2" title="yellow_heart">💛</span><span class="intercom-emoji-picker-emoji p2" title="blue_heart">💙</span><span class="intercom-emoji-picker-emoji p2" title="purple_heart">💜</span><span class="intercom-emoji-picker-emoji p2" title="green_heart">💚</span><span class="intercom-emoji-picker-emoji p2" title="broken_heart">💔</span><span class="intercom-emoji-picker-emoji p2" title="heartpulse">💗</span><span class="intercom-emoji-picker-emoji p2" title="heartbeat">💓</span><span class="intercom-emoji-picker-emoji p2" title="two_hearts">💕</span><span class="intercom-emoji-picker-emoji p2" title="sparkling_heart">💖</span><span class="intercom-emoji-picker-emoji p2" title="revolving_hearts">💞</span><span class="intercom-emoji-picker-emoji p2" title="cupid">💘</span><span class="intercom-emoji-picker-emoji p2" title="love_letter">💌</span><span class="intercom-emoji-picker-emoji p2" title="kiss">💋</span><span class="intercom-emoji-picker-emoji p2" title="ring">💍</span><span class="intercom-emoji-picker-emoji p2" title="gem">💎</span><span class="intercom-emoji-picker-emoji p2" title="bust_in_silhouette">👤</span><span class="intercom-emoji-picker-emoji p2" title="speech_balloon">💬</span><span class="intercom-emoji-picker-emoji p2" title="footprints">👣</span></div><div class="intercom-emoji-picker-group"><div class="intercom-emoji-picker-group-title">Nature</div><span class="intercom-emoji-picker-emoji p2" title="dog">🐶</span><span class="intercom-emoji-picker-emoji p2" title="wolf">🐺</span><span class="intercom-emoji-picker-emoji p2" title="cat">🐱</span><span class="intercom-emoji-picker-emoji p2" title="mouse">🐭</span><span class="intercom-emoji-picker-emoji p2" title="hamster">🐹</span><span class="intercom-emoji-picker-emoji p2" title="rabbit">🐰</span><span class="intercom-emoji-picker-emoji p2" title="frog">🐸</span><span class="intercom-emoji-picker-emoji p2" title="tiger">🐯</span><span class="intercom-emoji-picker-emoji p2" title="koala">🐨</span><span class="intercom-emoji-picker-emoji p2" title="bear">🐻</span><span class="intercom-emoji-picker-emoji p2" title="pig">🐷</span><span class="intercom-emoji-picker-emoji p2" title="pig_nose">🐽</span><span class="intercom-emoji-picker-emoji p2" title="cow">🐮</span><span class="intercom-emoji-picker-emoji p2" title="boar">🐗</span><span class="intercom-emoji-picker-emoji p2" title="monkey_face">🐵</span><span class="intercom-emoji-picker-emoji p2" title="monkey">🐒</span><span class="intercom-emoji-picker-emoji p2" title="horse">🐴</span><span class="intercom-emoji-picker-emoji p2" title="sheep">🐑</span><span class="intercom-emoji-picker-emoji p2" title="elephant">🐘</span><span class="intercom-emoji-picker-emoji p2" title="panda_face">🐼</span><span class="intercom-emoji-picker-emoji p2" title="penguin">🐧</span><span class="intercom-emoji-picker-emoji p2" title="bird">🐦</span><span class="intercom-emoji-picker-emoji p2" title="baby_chick">🐤</span><span class="intercom-emoji-picker-emoji p2" title="hatched_chick">🐥</span><span class="intercom-emoji-picker-emoji p2" title="hatching_chick">🐣</span><span class="intercom-emoji-picker-emoji p2" title="chicken">🐔</span><span class="intercom-emoji-picker-emoji p2" title="snake">🐍</span><span class="intercom-emoji-picker-emoji p2" title="turtle">🐢</span><span class="intercom-emoji-picker-emoji p2" title="bug">🐛</span><span class="intercom-emoji-picker-emoji p2" title="bee">🐝</span><span class="intercom-emoji-picker-emoji p2" title="ant">🐜</span><span class="intercom-emoji-picker-emoji p2" title="beetle">🐞</span><span class="intercom-emoji-picker-emoji p2" title="snail">🐌</span><span class="intercom-emoji-picker-emoji p2" title="octopus">🐙</span><span class="intercom-emoji-picker-emoji p2" title="shell">🐚</span><span class="intercom-emoji-picker-emoji p2" title="tropical_fish">🐠</span><span class="intercom-emoji-picker-emoji p2" title="fish">🐟</span><span class="intercom-emoji-picker-emoji p2" title="dolphin">🐬</span><span class="intercom-emoji-picker-emoji p2" title="whale">🐳</span><span class="intercom-emoji-picker-emoji p2" title="racehorse">🐎</span><span class="intercom-emoji-picker-emoji p2" title="dragon_face">🐲</span><span class="intercom-emoji-picker-emoji p2" title="blowfish">🐡</span><span class="intercom-emoji-picker-emoji p2" title="camel">🐫</span><span class="intercom-emoji-picker-emoji p2" title="poodle">🐩</span><span class="intercom-emoji-picker-emoji p2" title="feet">🐾</span><span class="intercom-emoji-picker-emoji p2" title="bouquet">💐</span><span class="intercom-emoji-picker-emoji p2" title="cherry_blossom">🌸</span><span class="intercom-emoji-picker-emoji p2" title="tulip">🌷</span><span class="intercom-emoji-picker-emoji p2" title="four_leaf_clover">🍀</span><span class="intercom-emoji-picker-emoji p2" title="rose">🌹</span><span class="intercom-emoji-picker-emoji p2" title="sunflower">🌻</span><span class="intercom-emoji-picker-emoji p2" title="hibiscus">🌺</span><span class="intercom-emoji-picker-emoji p2" title="maple_leaf">🍁</span><span class="intercom-emoji-picker-emoji p2" title="leaves">🍃</span><span class="intercom-emoji-picker-emoji p2" title="fallen_leaf">🍂</span><span class="intercom-emoji-picker-emoji p2" title="herb">🌿</span><span class="intercom-emoji-picker-emoji p2" title="ear_of_rice">🌾</span><span class="intercom-emoji-picker-emoji p2" title="mushroom">🍄</span><span class="intercom-emoji-picker-emoji p2" title="cactus">🌵</span><span class="intercom-emoji-picker-emoji p2" title="palm_tree">🌴</span><span class="intercom-emoji-picker-emoji p2" title="chestnut">🌰</span><span class="intercom-emoji-picker-emoji p2" title="seedling">🌱</span><span class="intercom-emoji-picker-emoji p2" title="blossom">🌼</span><span class="intercom-emoji-picker-emoji p2" title="new_moon">🌑</span><span class="intercom-emoji-picker-emoji p2" title="first_quarter_moon">🌓</span><span class="intercom-emoji-picker-emoji p2" title="moon">🌔</span><span class="intercom-emoji-picker-emoji p2" title="full_moon">🌕</span><span class="intercom-emoji-picker-emoji p2" title="first_quarter_moon_with_face">🌛</span><span class="intercom-emoji-picker-emoji p2" title="crescent_moon">🌙</span><span class="intercom-emoji-picker-emoji p2" title="earth_asia">🌏</span><span class="intercom-emoji-picker-emoji p2" title="volcano">🌋</span><span class="intercom-emoji-picker-emoji p2" title="milky_way">🌌</span><span class="intercom-emoji-picker-emoji p2" title="stars">🌠</span><span class="intercom-emoji-picker-emoji p2" title="partly_sunny">⛅</span><span class="intercom-emoji-picker-emoji p2" title="snowman">⛄</span><span class="intercom-emoji-picker-emoji p2" title="cyclone">🌀</span><span class="intercom-emoji-picker-emoji p2" title="foggy">🌁</span><span class="intercom-emoji-picker-emoji p2" title="rainbow">🌈</span><span class="intercom-emoji-picker-emoji p2" title="ocean">🌊</span></div><div class="intercom-emoji-picker-group"><div class="intercom-emoji-picker-group-title">Objects</div><span class="intercom-emoji-picker-emoji p2" title="bamboo">🎍</span><span class="intercom-emoji-picker-emoji p2" title="gift_heart">💝</span><span class="intercom-emoji-picker-emoji p2" title="dolls">🎎</span><span class="intercom-emoji-picker-emoji p2" title="school_satchel">🎒</span><span class="intercom-emoji-picker-emoji p2" title="mortar_board">🎓</span><span class="intercom-emoji-picker-emoji p2" title="flags">🎏</span><span class="intercom-emoji-picker-emoji p2" title="fireworks">🎆</span><span class="intercom-emoji-picker-emoji p2" title="sparkler">🎇</span><span class="intercom-emoji-picker-emoji p2" title="wind_chime">🎐</span><span class="intercom-emoji-picker-emoji p2" title="rice_scene">🎑</span><span class="intercom-emoji-picker-emoji p2" title="jack_o_lantern">🎃</span><span class="intercom-emoji-picker-emoji p2" title="ghost">👻</span><span class="intercom-emoji-picker-emoji p2" title="santa">🎅</span><span class="intercom-emoji-picker-emoji p2" title="christmas_tree">🎄</span><span class="intercom-emoji-picker-emoji p2" title="gift">🎁</span><span class="intercom-emoji-picker-emoji p2" title="tanabata_tree">🎋</span><span class="intercom-emoji-picker-emoji p2" title="tada">🎉</span><span class="intercom-emoji-picker-emoji p2" title="confetti_ball">🎊</span><span class="intercom-emoji-picker-emoji p2" title="balloon">🎈</span><span class="intercom-emoji-picker-emoji p2" title="crossed_flags">🎌</span><span class="intercom-emoji-picker-emoji p2" title="crystal_ball">🔮</span><span class="intercom-emoji-picker-emoji p2" title="movie_camera">🎥</span><span class="intercom-emoji-picker-emoji p2" title="camera">📷</span><span class="intercom-emoji-picker-emoji p2" title="video_camera">📹</span><span class="intercom-emoji-picker-emoji p2" title="vhs">📼</span><span class="intercom-emoji-picker-emoji p2" title="cd">💿</span><span class="intercom-emoji-picker-emoji p2" title="dvd">📀</span><span class="intercom-emoji-picker-emoji p2" title="minidisc">💽</span><span class="intercom-emoji-picker-emoji p2" title="floppy_disk">💾</span><span class="intercom-emoji-picker-emoji p2" title="computer">💻</span><span class="intercom-emoji-picker-emoji p2" title="iphone">📱</span><span class="intercom-emoji-picker-emoji p2" title="telephone_receiver">📞</span><span class="intercom-emoji-picker-emoji p2" title="pager">📟</span><span class="intercom-emoji-picker-emoji p2" title="fax">📠</span><span class="intercom-emoji-picker-emoji p2" title="satellite">📡</span><span class="intercom-emoji-picker-emoji p2" title="tv">📺</span><span class="intercom-emoji-picker-emoji p2" title="radio">📻</span><span class="intercom-emoji-picker-emoji p2" title="loud_sound">🔊</span><span class="intercom-emoji-picker-emoji p2" title="bell">🔔</span><span class="intercom-emoji-picker-emoji p2" title="loudspeaker">📢</span><span class="intercom-emoji-picker-emoji p2" title="mega">📣</span><span class="intercom-emoji-picker-emoji p2" title="hourglass_flowing_sand">⏳</span><span class="intercom-emoji-picker-emoji p2" title="hourglass">⌛</span><span class="intercom-emoji-picker-emoji p2" title="alarm_clock">⏰</span><span class="intercom-emoji-picker-emoji p2" title="watch">⌚</span><span class="intercom-emoji-picker-emoji p2" title="unlock">🔓</span><span class="intercom-emoji-picker-emoji p2" title="lock">🔒</span><span class="intercom-emoji-picker-emoji p2" title="lock_with_ink_pen">🔏</span><span class="intercom-emoji-picker-emoji p2" title="closed_lock_with_key">🔐</span><span class="intercom-emoji-picker-emoji p2" title="key">🔑</span><span class="intercom-emoji-picker-emoji p2" title="mag_right">🔎</span><span class="intercom-emoji-picker-emoji p2" title="bulb">💡</span><span class="intercom-emoji-picker-emoji p2" title="flashlight">🔦</span><span class="intercom-emoji-picker-emoji p2" title="electric_plug">🔌</span><span class="intercom-emoji-picker-emoji p2" title="battery">🔋</span><span class="intercom-emoji-picker-emoji p2" title="mag">🔍</span><span class="intercom-emoji-picker-emoji p2" title="bath">🛀</span><span class="intercom-emoji-picker-emoji p2" title="toilet">🚽</span><span class="intercom-emoji-picker-emoji p2" title="wrench">🔧</span><span class="intercom-emoji-picker-emoji p2" title="nut_and_bolt">🔩</span><span class="intercom-emoji-picker-emoji p2" title="hammer">🔨</span><span class="intercom-emoji-picker-emoji p2" title="door">🚪</span><span class="intercom-emoji-picker-emoji p2" title="smoking">🚬</span><span class="intercom-emoji-picker-emoji p2" title="bomb">💣</span><span class="intercom-emoji-picker-emoji p2" title="gun">🔫</span><span class="intercom-emoji-picker-emoji p2" title="hocho">🔪</span><span class="intercom-emoji-picker-emoji p2" title="pill">💊</span><span class="intercom-emoji-picker-emoji p2" title="syringe">💉</span><span class="intercom-emoji-picker-emoji p2" title="moneybag">💰</span><span class="intercom-emoji-picker-emoji p2" title="yen">💴</span><span class="intercom-emoji-picker-emoji p2" title="dollar">💵</span><span class="intercom-emoji-picker-emoji p2" title="credit_card">💳</span><span class="intercom-emoji-picker-emoji p2" title="money_with_wings">💸</span><span class="intercom-emoji-picker-emoji p2" title="calling">📲</span><span class="intercom-emoji-picker-emoji p2" title="e-mail">📧</span><span class="intercom-emoji-picker-emoji p2" title="inbox_tray">📥</span><span class="intercom-emoji-picker-emoji p2" title="outbox_tray">📤</span><span class="intercom-emoji-picker-emoji p2" title="envelope_with_arrow">📩</span><span class="intercom-emoji-picker-emoji p2" title="incoming_envelope">📨</span><span class="intercom-emoji-picker-emoji p2" title="mailbox">📫</span><span class="intercom-emoji-picker-emoji p2" title="mailbox_closed">📪</span><span class="intercom-emoji-picker-emoji p2" title="postbox">📮</span><span class="intercom-emoji-picker-emoji p2" title="package">📦</span><span class="intercom-emoji-picker-emoji p2" title="memo">📝</span><span class="intercom-emoji-picker-emoji p2" title="page_facing_up">📄</span><span class="intercom-emoji-picker-emoji p2" title="page_with_curl">📃</span><span class="intercom-emoji-picker-emoji p2" title="bookmark_tabs">📑</span><span class="intercom-emoji-picker-emoji p2" title="bar_chart">📊</span><span class="intercom-emoji-picker-emoji p2" title="chart_with_upwards_trend">📈</span><span class="intercom-emoji-picker-emoji p2" title="chart_with_downwards_trend">📉</span><span class="intercom-emoji-picker-emoji p2" title="scroll">📜</span><span class="intercom-emoji-picker-emoji p2" title="clipboard">📋</span><span class="intercom-emoji-picker-emoji p2" title="date">📅</span><span class="intercom-emoji-picker-emoji p2" title="calendar">📆</span><span class="intercom-emoji-picker-emoji p2" title="card_index">📇</span><span class="intercom-emoji-picker-emoji p2" title="file_folder">📁</span><span class="intercom-emoji-picker-emoji p2" title="open_file_folder">📂</span><span class="intercom-emoji-picker-emoji p2" title="pushpin">📌</span><span class="intercom-emoji-picker-emoji p2" title="paperclip">📎</span><span class="intercom-emoji-picker-emoji p2" title="straight_ruler">📏</span><span class="intercom-emoji-picker-emoji p2" title="triangular_ruler">📐</span><span class="intercom-emoji-picker-emoji p2" title="closed_book">📕</span><span class="intercom-emoji-picker-emoji p2" title="green_book">📗</span><span class="intercom-emoji-picker-emoji p2" title="blue_book">📘</span><span class="intercom-emoji-picker-emoji p2" title="orange_book">📙</span><span class="intercom-emoji-picker-emoji p2" title="notebook">📓</span><span class="intercom-emoji-picker-emoji p2" title="notebook_with_decorative_cover">📔</span><span class="intercom-emoji-picker-emoji p2" title="ledger">📒</span><span class="intercom-emoji-picker-emoji p2" title="books">📚</span><span class="intercom-emoji-picker-emoji p2" title="book">📖</span><span class="intercom-emoji-picker-emoji p2" title="bookmark">🔖</span><span class="intercom-emoji-picker-emoji p2" title="name_badge">📛</span><span class="intercom-emoji-picker-emoji p2" title="newspaper">📰</span><span class="intercom-emoji-picker-emoji p2" title="art">🎨</span><span class="intercom-emoji-picker-emoji p2" title="clapper">🎬</span><span class="intercom-emoji-picker-emoji p2" title="microphone">🎤</span><span class="intercom-emoji-picker-emoji p2" title="headphones">🎧</span><span class="intercom-emoji-picker-emoji p2" title="musical_score">🎼</span><span class="intercom-emoji-picker-emoji p2" title="musical_note">🎵</span><span class="intercom-emoji-picker-emoji p2" title="notes">🎶</span><span class="intercom-emoji-picker-emoji p2" title="musical_keyboard">🎹</span><span class="intercom-emoji-picker-emoji p2" title="violin">🎻</span><span class="intercom-emoji-picker-emoji p2" title="trumpet">🎺</span><span class="intercom-emoji-picker-emoji p2" title="saxophone">🎷</span><span class="intercom-emoji-picker-emoji p2" title="guitar">🎸</span><span class="intercom-emoji-picker-emoji p2" title="space_invader">👾</span><span class="intercom-emoji-picker-emoji p2" title="video_game">🎮</span><span class="intercom-emoji-picker-emoji p2" title="black_joker">🃏</span><span class="intercom-emoji-picker-emoji p2" title="flower_playing_cards">🎴</span><span class="intercom-emoji-picker-emoji p2" title="mahjong">🀄</span><span class="intercom-emoji-picker-emoji p2" title="game_die">🎲</span><span class="intercom-emoji-picker-emoji p2" title="dart">🎯</span><span class="intercom-emoji-picker-emoji p2" title="football">🏈</span><span class="intercom-emoji-picker-emoji p2" title="basketball">🏀</span><span class="intercom-emoji-picker-emoji p2" title="soccer">⚽</span><span class="intercom-emoji-picker-emoji p2" title="baseball">⚾</span><span class="intercom-emoji-picker-emoji p2" title="tennis">🎾</span><span class="intercom-emoji-picker-emoji p2" title="8ball">🎱</span><span class="intercom-emoji-picker-emoji p2" title="bowling">🎳</span><span class="intercom-emoji-picker-emoji p2" title="golf">⛳</span><span class="intercom-emoji-picker-emoji p2" title="checkered_flag">🏁</span><span class="intercom-emoji-picker-emoji p2" title="trophy">🏆</span><span class="intercom-emoji-picker-emoji p2" title="ski">🎿</span><span class="intercom-emoji-picker-emoji p2" title="snowboarder">🏂</span><span class="intercom-emoji-picker-emoji p2" title="swimmer">🏊</span><span class="intercom-emoji-picker-emoji p2" title="surfer">🏄</span><span class="intercom-emoji-picker-emoji p2" title="fishing_pole_and_fish">🎣</span><span class="intercom-emoji-picker-emoji p2" title="tea">🍵</span><span class="intercom-emoji-picker-emoji p2" title="sake">🍶</span><span class="intercom-emoji-picker-emoji p2" title="beer">🍺</span><span class="intercom-emoji-picker-emoji p2" title="beers">🍻</span><span class="intercom-emoji-picker-emoji p2" title="cocktail">🍸</span><span class="intercom-emoji-picker-emoji p2" title="tropical_drink">🍹</span><span class="intercom-emoji-picker-emoji p2" title="wine_glass">🍷</span><span class="intercom-emoji-picker-emoji p2" title="fork_and_knife">🍴</span><span class="intercom-emoji-picker-emoji p2" title="pizza">🍕</span><span class="intercom-emoji-picker-emoji p2" title="hamburger">🍔</span><span class="intercom-emoji-picker-emoji p2" title="fries">🍟</span><span class="intercom-emoji-picker-emoji p2" title="poultry_leg">🍗</span><span class="intercom-emoji-picker-emoji p2" title="meat_on_bone">🍖</span><span class="intercom-emoji-picker-emoji p2" title="spaghetti">🍝</span><span class="intercom-emoji-picker-emoji p2" title="curry">🍛</span><span class="intercom-emoji-picker-emoji p2" title="fried_shrimp">🍤</span><span class="intercom-emoji-picker-emoji p2" title="bento">🍱</span><span class="intercom-emoji-picker-emoji p2" title="sushi">🍣</span><span class="intercom-emoji-picker-emoji p2" title="fish_cake">🍥</span><span class="intercom-emoji-picker-emoji p2" title="rice_ball">🍙</span><span class="intercom-emoji-picker-emoji p2" title="rice_cracker">🍘</span><span class="intercom-emoji-picker-emoji p2" title="rice">🍚</span><span class="intercom-emoji-picker-emoji p2" title="ramen">🍜</span><span class="intercom-emoji-picker-emoji p2" title="stew">🍲</span><span class="intercom-emoji-picker-emoji p2" title="oden">🍢</span><span class="intercom-emoji-picker-emoji p2" title="dango">🍡</span><span class="intercom-emoji-picker-emoji p2" title="egg">🍳</span><span class="intercom-emoji-picker-emoji p2" title="bread">🍞</span><span class="intercom-emoji-picker-emoji p2" title="doughnut">🍩</span><span class="intercom-emoji-picker-emoji p2" title="custard">🍮</span><span class="intercom-emoji-picker-emoji p2" title="icecream">🍦</span><span class="intercom-emoji-picker-emoji p2" title="ice_cream">🍨</span><span class="intercom-emoji-picker-emoji p2" title="shaved_ice">🍧</span><span class="intercom-emoji-picker-emoji p2" title="birthday">🎂</span><span class="intercom-emoji-picker-emoji p2" title="cake">🍰</span><span class="intercom-emoji-picker-emoji p2" title="cookie">🍪</span><span class="intercom-emoji-picker-emoji p2" title="chocolate_bar">🍫</span><span class="intercom-emoji-picker-emoji p2" title="candy">🍬</span><span class="intercom-emoji-picker-emoji p2" title="lollipop">🍭</span><span class="intercom-emoji-picker-emoji p2" title="honey_pot">🍯</span><span class="intercom-emoji-picker-emoji p2" title="apple">🍎</span><span class="intercom-emoji-picker-emoji p2" title="green_apple">🍏</span><span class="intercom-emoji-picker-emoji p2" title="tangerine">🍊</span><span class="intercom-emoji-picker-emoji p2" title="cherries">🍒</span><span class="intercom-emoji-picker-emoji p2" title="grapes">🍇</span><span class="intercom-emoji-picker-emoji p2" title="watermelon">🍉</span><span class="intercom-emoji-picker-emoji p2" title="strawberry">🍓</span><span class="intercom-emoji-picker-emoji p2" title="peach">🍑</span><span class="intercom-emoji-picker-emoji p2" title="melon">🍈</span><span class="intercom-emoji-picker-emoji p2" title="banana">🍌</span><span class="intercom-emoji-picker-emoji p2" title="pineapple">🍍</span><span class="intercom-emoji-picker-emoji p2" title="sweet_potato">🍠</span><span class="intercom-emoji-picker-emoji p2" title="eggplant">🍆</span><span class="intercom-emoji-picker-emoji p2" title="tomato">🍅</span><span class="intercom-emoji-picker-emoji p2" title="corn">🌽</span></div><div class="intercom-emoji-picker-group"><div class="intercom-emoji-picker-group-title">Places</div><span class="intercom-emoji-picker-emoji p2" title="house">🏠</span><span class="intercom-emoji-picker-emoji p2" title="house_with_garden">🏡</span><span class="intercom-emoji-picker-emoji p2" title="school">🏫</span><span class="intercom-emoji-picker-emoji p2" title="office">🏢</span><span class="intercom-emoji-picker-emoji p2" title="post_office">🏣</span><span class="intercom-emoji-picker-emoji p2" title="hospital">🏥</span><span class="intercom-emoji-picker-emoji p2" title="bank">🏦</span><span class="intercom-emoji-picker-emoji p2" title="convenience_store">🏪</span><span class="intercom-emoji-picker-emoji p2" title="love_hotel">🏩</span><span class="intercom-emoji-picker-emoji p2" title="hotel">🏨</span><span class="intercom-emoji-picker-emoji p2" title="wedding">💒</span><span class="intercom-emoji-picker-emoji p2" title="church">⛪</span><span class="intercom-emoji-picker-emoji p2" title="department_store">🏬</span><span class="intercom-emoji-picker-emoji p2" title="city_sunrise">🌇</span><span class="intercom-emoji-picker-emoji p2" title="city_sunset">🌆</span><span class="intercom-emoji-picker-emoji p2" title="japanese_castle">🏯</span><span class="intercom-emoji-picker-emoji p2" title="european_castle">🏰</span><span class="intercom-emoji-picker-emoji p2" title="tent">⛺</span><span class="intercom-emoji-picker-emoji p2" title="factory">🏭</span><span class="intercom-emoji-picker-emoji p2" title="tokyo_tower">🗼</span><span class="intercom-emoji-picker-emoji p2" title="japan">🗾</span><span class="intercom-emoji-picker-emoji p2" title="mount_fuji">🗻</span><span class="intercom-emoji-picker-emoji p2" title="sunrise_over_mountains">🌄</span><span class="intercom-emoji-picker-emoji p2" title="sunrise">🌅</span><span class="intercom-emoji-picker-emoji p2" title="night_with_stars">🌃</span><span class="intercom-emoji-picker-emoji p2" title="statue_of_liberty">🗽</span><span class="intercom-emoji-picker-emoji p2" title="bridge_at_night">🌉</span><span class="intercom-emoji-picker-emoji p2" title="carousel_horse">🎠</span><span class="intercom-emoji-picker-emoji p2" title="ferris_wheel">🎡</span><span class="intercom-emoji-picker-emoji p2" title="fountain">⛲</span><span class="intercom-emoji-picker-emoji p2" title="roller_coaster">🎢</span><span class="intercom-emoji-picker-emoji p2" title="ship">🚢</span><span class="intercom-emoji-picker-emoji p2" title="boat">⛵</span><span class="intercom-emoji-picker-emoji p2" title="speedboat">🚤</span><span class="intercom-emoji-picker-emoji p2" title="rocket">🚀</span><span class="intercom-emoji-picker-emoji p2" title="seat">💺</span><span class="intercom-emoji-picker-emoji p2" title="station">🚉</span><span class="intercom-emoji-picker-emoji p2" title="bullettrain_side">🚄</span><span class="intercom-emoji-picker-emoji p2" title="bullettrain_front">🚅</span><span class="intercom-emoji-picker-emoji p2" title="metro">🚇</span><span class="intercom-emoji-picker-emoji p2" title="railway_car">🚃</span><span class="intercom-emoji-picker-emoji p2" title="bus">🚌</span><span class="intercom-emoji-picker-emoji p2" title="blue_car">🚙</span><span class="intercom-emoji-picker-emoji p2" title="car">🚗</span><span class="intercom-emoji-picker-emoji p2" title="taxi">🚕</span><span class="intercom-emoji-picker-emoji p2" title="truck">🚚</span><span class="intercom-emoji-picker-emoji p2" title="rotating_light">🚨</span><span class="intercom-emoji-picker-emoji p2" title="police_car">🚓</span><span class="intercom-emoji-picker-emoji p2" title="fire_engine">🚒</span><span class="intercom-emoji-picker-emoji p2" title="ambulance">🚑</span><span class="intercom-emoji-picker-emoji p2" title="bike">🚲</span><span class="intercom-emoji-picker-emoji p2" title="barber">💈</span><span class="intercom-emoji-picker-emoji p2" title="busstop">🚏</span><span class="intercom-emoji-picker-emoji p2" title="ticket">🎫</span><span class="intercom-emoji-picker-emoji p2" title="traffic_light">🚥</span><span class="intercom-emoji-picker-emoji p2" title="construction">🚧</span><span class="intercom-emoji-picker-emoji p2" title="beginner">🔰</span><span class="intercom-emoji-picker-emoji p2" title="fuelpump">⛽</span><span class="intercom-emoji-picker-emoji p2" title="izakaya_lantern">🏮</span><span class="intercom-emoji-picker-emoji p2" title="slot_machine">🎰</span><span class="intercom-emoji-picker-emoji p2" title="moyai">🗿</span><span class="intercom-emoji-picker-emoji p2" title="circus_tent">🎪</span><span class="intercom-emoji-picker-emoji p2" title="performing_arts">🎭</span><span class="intercom-emoji-picker-emoji p2" title="round_pushpin">📍</span><span class="intercom-emoji-picker-emoji p2" title="triangular_flag_on_post">🚩</span></div><div class="intercom-emoji-picker-group"><div class="intercom-emoji-picker-group-title">Symbols</div><span class="intercom-emoji-picker-emoji p2" title="keycap_ten">🔟</span><span class="intercom-emoji-picker-emoji p2" title="1234">🔢</span><span class="intercom-emoji-picker-emoji p2" title="symbols">🔣</span><span class="intercom-emoji-picker-emoji p2" title="capital_abcd">🔠</span><span class="intercom-emoji-picker-emoji p2" title="abcd">🔡</span><span class="intercom-emoji-picker-emoji p2" title="abc">🔤</span><span class="intercom-emoji-picker-emoji p2" title="arrow_up_small">🔼</span><span class="intercom-emoji-picker-emoji p2" title="arrow_down_small">🔽</span><span class="intercom-emoji-picker-emoji p2" title="rewind">⏪</span><span class="intercom-emoji-picker-emoji p2" title="fast_forward">⏩</span><span class="intercom-emoji-picker-emoji p2" title="arrow_double_up">⏫</span><span class="intercom-emoji-picker-emoji p2" title="arrow_double_down">⏬</span><span class="intercom-emoji-picker-emoji p2" title="ok">🆗</span><span class="intercom-emoji-picker-emoji p2" title="new">🆕</span><span class="intercom-emoji-picker-emoji p2" title="up">🆙</span><span class="intercom-emoji-picker-emoji p2" title="cool">🆒</span><span class="intercom-emoji-picker-emoji p2" title="free">🆓</span><span class="intercom-emoji-picker-emoji p2" title="ng">🆖</span><span class="intercom-emoji-picker-emoji p2" title="signal_strength">📶</span><span class="intercom-emoji-picker-emoji p2" title="cinema">🎦</span><span class="intercom-emoji-picker-emoji p2" title="koko">🈁</span><span class="intercom-emoji-picker-emoji p2" title="u6307">🈯</span><span class="intercom-emoji-picker-emoji p2" title="u7a7a">🈳</span><span class="intercom-emoji-picker-emoji p2" title="u6e80">🈵</span><span class="intercom-emoji-picker-emoji p2" title="u5408">🈴</span><span class="intercom-emoji-picker-emoji p2" title="u7981">🈲</span><span class="intercom-emoji-picker-emoji p2" title="ideograph_advantage">🉐</span><span class="intercom-emoji-picker-emoji p2" title="u5272">🈹</span><span class="intercom-emoji-picker-emoji p2" title="u55b6">🈺</span><span class="intercom-emoji-picker-emoji p2" title="u6709">🈶</span><span class="intercom-emoji-picker-emoji p2" title="u7121">🈚</span><span class="intercom-emoji-picker-emoji p2" title="restroom">🚻</span><span class="intercom-emoji-picker-emoji p2" title="mens">🚹</span><span class="intercom-emoji-picker-emoji p2" title="womens">🚺</span><span class="intercom-emoji-picker-emoji p2" title="baby_symbol">🚼</span><span class="intercom-emoji-picker-emoji p2" title="wc">🚾</span><span class="intercom-emoji-picker-emoji p2" title="no_smoking">🚭</span><span class="intercom-emoji-picker-emoji p2" title="u7533">🈸</span><span class="intercom-emoji-picker-emoji p2" title="accept">🉑</span><span class="intercom-emoji-picker-emoji p2" title="cl">🆑</span><span class="intercom-emoji-picker-emoji p2" title="sos">🆘</span><span class="intercom-emoji-picker-emoji p2" title="id">🆔</span><span class="intercom-emoji-picker-emoji p2" title="no_entry_sign">🚫</span><span class="intercom-emoji-picker-emoji p2" title="underage">🔞</span><span class="intercom-emoji-picker-emoji p2" title="no_entry">⛔</span><span class="intercom-emoji-picker-emoji p2" title="negative_squared_cross_mark">❎</span><span class="intercom-emoji-picker-emoji p2" title="white_check_mark">✅</span><span class="intercom-emoji-picker-emoji p2" title="heart_decoration">💟</span><span class="intercom-emoji-picker-emoji p2" title="vs">🆚</span><span class="intercom-emoji-picker-emoji p2" title="vibration_mode">📳</span><span class="intercom-emoji-picker-emoji p2" title="mobile_phone_off">📴</span><span class="intercom-emoji-picker-emoji p2" title="ab">🆎</span><span class="intercom-emoji-picker-emoji p2" title="diamond_shape_with_a_dot_inside">💠</span><span class="intercom-emoji-picker-emoji p2" title="ophiuchus">⛎</span><span class="intercom-emoji-picker-emoji p2" title="six_pointed_star">🔯</span><span class="intercom-emoji-picker-emoji p2" title="atm">🏧</span><span class="intercom-emoji-picker-emoji p2" title="chart">💹</span><span class="intercom-emoji-picker-emoji p2" title="heavy_dollar_sign">💲</span><span class="intercom-emoji-picker-emoji p2" title="currency_exchange">💱</span><span class="intercom-emoji-picker-emoji p2" title="x">❌</span><span class="intercom-emoji-picker-emoji p2" title="exclamation">❗</span><span class="intercom-emoji-picker-emoji p2" title="question">❓</span><span class="intercom-emoji-picker-emoji p2" title="grey_exclamation">❕</span><span class="intercom-emoji-picker-emoji p2" title="grey_question">❔</span><span class="intercom-emoji-picker-emoji p2" title="o">⭕</span><span class="intercom-emoji-picker-emoji p2" title="top">🔝</span><span class="intercom-emoji-picker-emoji p2" title="end">🔚</span><span class="intercom-emoji-picker-emoji p2" title="back">🔙</span><span class="intercom-emoji-picker-emoji p2" title="on">🔛</span><span class="intercom-emoji-picker-emoji p2" title="soon">🔜</span><span class="intercom-emoji-picker-emoji p2" title="arrows_clockwise">🔃</span><span class="intercom-emoji-picker-emoji p2" title="clock12">🕛</span><span class="intercom-emoji-picker-emoji p2" title="clock1">🕐</span><span class="intercom-emoji-picker-emoji p2" title="clock2">🕑</span><span class="intercom-emoji-picker-emoji p2" title="clock3">🕒</span><span class="intercom-emoji-picker-emoji p2" title="clock4">🕓</span><span class="intercom-emoji-picker-emoji p2" title="clock5">🕔</span><span class="intercom-emoji-picker-emoji p2" title="clock6">🕕</span><span class="intercom-emoji-picker-emoji p2" title="clock7">🕖</span><span class="intercom-emoji-picker-emoji p2" title="clock8">🕗</span><span class="intercom-emoji-picker-emoji p2" title="clock9">🕘</span><span class="intercom-emoji-picker-emoji p2" title="clock10">🕙</span><span class="intercom-emoji-picker-emoji p2" title="clock11">🕚</span><span class="intercom-emoji-picker-emoji p2" title="heavy_plus_sign">➕</span><span class="intercom-emoji-picker-emoji p2" title="heavy_minus_sign">➖</span><span class="intercom-emoji-picker-emoji p2" title="heavy_division_sign">➗</span><span class="intercom-emoji-picker-emoji p2" title="white_flower">💮</span><span class="intercom-emoji-picker-emoji p2" title="100">💯</span><span class="intercom-emoji-picker-emoji p2" title="radio_button">🔘</span><span class="intercom-emoji-picker-emoji p2" title="link">🔗</span><span class="intercom-emoji-picker-emoji p2" title="curly_loop">➰</span><span class="intercom-emoji-picker-emoji p2" title="trident">🔱</span><span class="intercom-emoji-picker-emoji p2" title="small_red_triangle">🔺</span><span class="intercom-emoji-picker-emoji p2" title="black_square_button">🔲</span><span class="intercom-emoji-picker-emoji p2" title="white_square_button">🔳</span><span class="intercom-emoji-picker-emoji p2" title="red_circle">🔴</span><span class="intercom-emoji-picker-emoji p2" title="large_blue_circle">🔵</span><span class="intercom-emoji-picker-emoji p2" title="small_red_triangle_down">🔻</span><span class="intercom-emoji-picker-emoji p2" title="white_large_square">⬜</span><span class="intercom-emoji-picker-emoji p2" title="black_large_square">⬛</span><span class="intercom-emoji-picker-emoji p2" title="large_orange_diamond">🔶</span><span class="intercom-emoji-picker-emoji p2" title="large_blue_diamond">🔷</span><span class="intercom-emoji-picker-emoji p2" title="small_orange_diamond">🔸</span><span class="intercom-emoji-picker-emoji p2" title="small_blue_diamond">🔹</span></div></div></div></div></div><div class="intercom-composer-popover-caret"></div></div>\n\n</div>\n\n'/*ion-inline-end:"N:\code\git\blockusign\BlockUSign.Ionic\src\components\block-pdf\block-pdf.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],
@@ -1097,124 +837,18 @@ var BlockPdfComponent = (function () {
 
 /***/ }),
 
-/***/ 256:
-/***/ (function(module, exports) {
-
-function webpackEmptyAsyncContext(req) {
-	// Here Promise.resolve().then() is used instead of new Promise() to prevent
-	// uncatched exception popping up in devtools
-	return Promise.resolve().then(function() {
-		throw new Error("Cannot find module '" + req + "'.");
-	});
-}
-webpackEmptyAsyncContext.keys = function() { return []; };
-webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
-module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 256;
-
-/***/ }),
-
-/***/ 301:
-/***/ (function(module, exports, __webpack_require__) {
-
-var map = {
-	"../pages/annotate/annotate.module": [
-		302
-	],
-	"../pages/email/email.module": [
-		447
-	],
-	"../pages/home/home.module": [
-		536
-	],
-	"../pages/review/review.module": [
-		539
-	],
-	"../pages/sign/sign.module": [
-		540
-	]
-};
-function webpackAsyncContext(req) {
-	var ids = map[req];
-	if(!ids)
-		return Promise.reject(new Error("Cannot find module '" + req + "'."));
-	return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(function() {
-		return __webpack_require__(ids[0]);
-	});
-};
-webpackAsyncContext.keys = function webpackAsyncContextKeys() {
-	return Object.keys(map);
-};
-webpackAsyncContext.id = 301;
-module.exports = webpackAsyncContext;
-
-/***/ }),
-
-/***/ 302:
+/***/ 199:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnnotatePageModule", function() { return AnnotatePageModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__annotate__ = __webpack_require__(303);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(71);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-//import { AbsoluteDragDirective } from '../../directives/absolute-drag/absolute-drag';
-
-var AnnotatePageModule = (function () {
-    function AnnotatePageModule() {
-    }
-    AnnotatePageModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["NgModule"])({
-            declarations: [
-                __WEBPACK_IMPORTED_MODULE_1__annotate__["a" /* AnnotatePage */],
-            ],
-            imports: [
-                __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_1__annotate__["a" /* AnnotatePage */]),
-                __WEBPACK_IMPORTED_MODULE_3__components_components_module__["a" /* BlockStepsComponentModule */]
-            ],
-            entryComponents: [
-                __WEBPACK_IMPORTED_MODULE_1__annotate__["a" /* AnnotatePage */]
-            ],
-            schemas: [__WEBPACK_IMPORTED_MODULE_2__angular_core__["CUSTOM_ELEMENTS_SCHEMA"]]
-        })
-    ], AnnotatePageModule);
-    return AnnotatePageModule;
-}());
-
-//# sourceMappingURL=annotate.module.js.map
-
-/***/ }),
-
-/***/ 303:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AnnotatePage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BlockChatComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_document_service__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_block_chat_block_chat__ = __webpack_require__(173);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_block_pdf_block_pdf__ = __webpack_require__(175);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_retry__ = __webpack_require__(176);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_retry___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_retry__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_timeout__ = __webpack_require__(177);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_timeout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_timeout__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_delay__ = __webpack_require__(178);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_delay___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_delay__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_map__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_block_steps_block_steps__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_document_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_models__ = __webpack_require__(303);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_moment__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_moment__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1265,84 +899,308 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 
 
-
-
-
-
-/// https://www.sitepoint.com/custom-pdf-rendering/
-var AnnotatePage = (function () {
-    function AnnotatePage(navCtrl, navParams, documentService, events) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
+/**
+ * https://codepen.io/mehmetmert/pen/zbKpv
+ */
+var BlockChatComponent = (function () {
+    function BlockChatComponent(documentService, events, blockstackService) {
         this.documentService = documentService;
         this.events = events;
-        this.instance = this;
+        this.blockstackService = blockstackService;
+        this.msgCount = 0;
+        this.msgCountNew = 0;
+        this.firstLoad = true;
     }
-    AnnotatePage.prototype.ionViewDidEnter = function () {
-        this.blockPdf.registerEmojiEvent();
-        this.blockChat.registerEmojiEvent();
+    BlockChatComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.firstLoad = true;
+        this.doc = new __WEBPACK_IMPORTED_MODULE_2__models_models__["a" /* Document */]();
+        if (this.documentService.currentDoc) {
+            this.doc = this.documentService.currentDoc;
+            this.initChatPolling();
+        }
+        else {
+            this.subscription = this.events.subscribe('documentService:setCurrentDoc', function (currentDoc) { return __awaiter(_this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    this.doc = currentDoc;
+                    this.initChatPolling();
+                    return [2 /*return*/];
+                });
+            }); });
+        }
+        this.chatSubscription = this.events.subscribe('documentService:addedChat', function (msg) { return __awaiter(_this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        }); });
     };
-    AnnotatePage.prototype.ionViewWillLeave = function () {
-        this.blockChat.destroyEmojiEvents();
-        this.blockChat.ngOnDestroy();
-        this.blockPdf.destroyEmojiEvents();
+    BlockChatComponent.prototype.ngAfterViewInit = function () {
     };
-    AnnotatePage.prototype.next = function () {
+    BlockChatComponent.prototype.registerEmojiEvent = function () {
+        $(document).on("click", ".emoji-picker", function (e) {
+            e.stopPropagation();
+            $('.intercom-composer-emoji-popover').toggleClass("active");
+        });
+        $(document).click(function (e) {
+            if ($(e.target).attr('class') != '.intercom-composer-emoji-popover' && $(e.target).parents(".intercom-composer-emoji-popover").length == 0) {
+                $(".intercom-composer-emoji-popover").removeClass("active");
+            }
+        });
+        $(document).on("click", ".intercom-emoji-picker-emoji", function (e) {
+            if (e.target.className == "intercom-emoji-picker-emoji") {
+                var existing = $(".emojiDiv").val();
+                var emo = $(this).html();
+                $(".emojiDiv").val(existing + emo);
+            }
+        });
+        $('.intercom-composer-popover-input').on('input', function () {
+            var query = this.value;
+            if (query != "") {
+                $(".intercom-emoji-picker-emoji:not([title*='" + query + "'])").hide();
+            }
+            else {
+                $(".intercom-emoji-picker-emoji").show();
+            }
+        });
+    };
+    BlockChatComponent.prototype.destroyEmojiEvents = function () {
+        this.firstLoad = true;
+        $(document).off("click", ".emoji-picker");
+        $(document).off("click");
+        $('.intercom-composer-popover-input').off('input');
+    };
+    BlockChatComponent.prototype.initChatPolling = function () {
+        var _this = this;
+        this.chatPolling = setInterval(function () {
+            setTimeout(function () {
+                _this.getLogData(true);
+            }, 1000);
+        }, 3000);
+    };
+    BlockChatComponent.prototype.ngOnDestroy = function () {
+        clearInterval(this.chatPolling);
+        if (this.subscription) {
+            this.subscription.unsubscribe();
+        }
+        if (this.chatSubscription) {
+            this.chatSubscription.unsubscribe();
+        }
+    };
+    BlockChatComponent.prototype.getLogData = function (isPoll) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                $(document).ready(function () { return __awaiter(_this, void 0, void 0, function () {
+                    var logData, template, orderedMessages, _loop_1, this_1, _i, orderedMessages_1, item;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0: return [4 /*yield*/, this.documentService.getLog(this.doc.guid)];
+                            case 1:
+                                logData = _a.sent();
+                                template = "";
+                                if (!logData) {
+                                    $(".loadSpin").hide();
+                                    return [2 /*return*/];
+                                }
+                                this.msgCountNew = logData.messages.length;
+                                if (this.msgCountNew > this.msgCount) {
+                                    this.msgCount = this.msgCountNew;
+                                    orderedMessages = jslinq(logData.messages).orderBy(function (el) { return el.updatedAt; }).toList();
+                                    this.messages = orderedMessages;
+                                    _loop_1 = function (item) {
+                                        var d = item.updatedAt;
+                                        var formatDate = __WEBPACK_IMPORTED_MODULE_5_moment__(d).calendar(d);
+                                        var uid = item.createdBy;
+                                        try {
+                                            uid = item.createdBy.replace('.id', '');
+                                        }
+                                        catch (e) {
+                                            console.log('user does not have .id');
+                                        }
+                                        ;
+                                        var uName = item.createdByName;
+                                        var uidClass = 'block-pic-' + uid;
+                                        this_1.blockstackService.getPicUrl(uName).then(function (picUrl) {
+                                            $('.' + uidClass).attr('src', picUrl);
+                                        });
+                                        template = template + ("  \n          <div class=\"chat-message clearfix\">\n          <img class=\"" + uidClass + "\" src=\"https://www.gravatar.com/avatar/?d=identicon\" alt=\"\" width=\"32\" height=\"32\">\n          <div class=\"chat-message-content clearfix\">\n            <span class=\"chat-time\">" + formatDate + "</span>\n            <h5>" + item.email + "</h5>\n            <p>" + item.message + "</p>\n          </div> \n          </div>\n          <hr style='margin-top:5px' />\n          ");
+                                    };
+                                    this_1 = this;
+                                    for (_i = 0, orderedMessages_1 = orderedMessages; _i < orderedMessages_1.length; _i++) {
+                                        item = orderedMessages_1[_i];
+                                        _loop_1(item);
+                                    }
+                                    $('.log-history').last().html(template);
+                                    $('.chat-history').last().scrollTop($('.log-history').last().height());
+                                }
+                                this.firstLoad = false;
+                                $(".loadSpin").hide();
+                                return [2 /*return*/];
+                        }
+                    });
+                }); });
+                return [2 /*return*/];
+            });
+        });
+    };
+    BlockChatComponent.prototype.minimize = function () {
+        $('.chat').slideToggle(300, 'swing');
+        $('.chat-message-counter').fadeToggle(300, 'swing');
+    };
+    BlockChatComponent.prototype.addMessage = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.blockPdf.saveSvg()];
+                    case 0:
+                        $(".loadSpin").show();
+                        this.message = $(".emojiDiv").val();
+                        //$('.log-history').append(this.message);
+                        return [4 /*yield*/, this.documentService.addMessage(this.doc.guid, this.message)];
                     case 1:
+                        //$('.log-history').append(this.message);
                         _a.sent();
-                        this.blockSteps.route('EmailPage');
+                        this.events.publish('documentService:addedChat', this.message);
+                        this.message = null;
+                        this.firstLoad = true;
+                        $(".intercom-composer-emoji-popover").removeClass("active");
                         return [2 /*return*/];
                 }
             });
         });
     };
-    AnnotatePage.prototype.back = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.blockPdf.saveSvg()];
-                    case 1:
-                        _a.sent();
-                        this.blockSteps.route('HomePage');
-                        return [2 /*return*/];
-                }
-            });
-        });
+    BlockChatComponent.prototype.hasNoEvents = function (selector) {
+        if ($._data($(selector)[0]).events == null) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+    BlockChatComponent.prototype.scrollBottom = function () {
     };
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("blockChat"),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3__components_block_chat_block_chat__["a" /* BlockChatComponent */])
-    ], AnnotatePage.prototype, "blockChat", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("blockPdf"),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_4__components_block_pdf_block_pdf__["a" /* BlockPdfComponent */])
-    ], AnnotatePage.prototype, "blockPdf", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("blockSteps"),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_9__components_block_steps_block_steps__["a" /* BlockStepsComponent */])
-    ], AnnotatePage.prototype, "blockSteps", void 0);
-    AnnotatePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("liveChat"),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"])
+    ], BlockChatComponent.prototype, "liveChat", void 0);
+    BlockChatComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-annotate',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/annotate/annotate.html"*/'<ion-content class="no-overflow-page">\n\n\n  \n\n  <block-steps #blockSteps activeStep="2" [parent]="instance">\n  </block-steps> \n\n  <div style="clear:both"></div>\n  <section style="position: relative;" class="nextBackButtons no-print">\n      <button class="nextBackButtonBack" ion-fab mini (click)="back()" style="background-color:green; position: absolute;"><ion-icon name="md-arrow-back"></ion-icon></button>\n      <button class="nextBackButtonNext" ion-fab mini (click)="next()"><ion-icon name="md-arrow-forward" ></ion-icon></button>\n  </section>   \n  <div style="clear:both"></div>\n\n  <block-pdf #blockPdf showToolBar="true" showSignature="true" showSignHere="true" showButtons="true" >\n\n  </block-pdf>\n\n  <block-chat #blockChat>\n    \n  </block-chat>\n\n</ion-content>\n\n'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/annotate/annotate.html"*/,
-            styles: ['annotate.scss']
+            selector: 'block-chat',template:/*ion-inline-start:"N:\code\git\blockusign\BlockUSign.Ionic\src\components\block-chat\block-chat.html"*/'<div class="block-chat" class="no-print">\n\n  <ion-fab bottom right>\n\n    <div #liveChat class="shadow6 live-chat">\n\n\n\n      <header class="clearfix" (click)="minimize()">\n\n        <!-- <a class="chat-close"  >x</a>-->\n\n        <h4>\n\n          <span class="chat-head">{{ doc.fileName }} - Log</span>\n\n         \n\n        </h4>\n\n        <!-- <span style="opacity:.6; padding-left:30px;">YOURNAME/THEIRNAME</span> -->\n\n        <span class="chat-message-counter">*</span>\n\n      </header>\n\n      <div class="chat">\n\n        <div class="chat-history">\n\n            <div class="log-history" >\n\n              \n\n            </div>\n\n          <!-- <div class="log-history" *ngFor="let item of messages">\n\n            <div class="chat-message clearfix">\n\n              <img class="block-pic-{{ uidClass }}" src="http://www.gravatar.com/avatar/?d=identicon" alt="" width="32" height="32">\n\n              <div class="chat-message-content clearfix">\n\n                <span class="chat-time"> {{ formatDate }} </span>\n\n                <h5> {{ item.email }} </h5>\n\n                <p> {{ item.message }} </p>\n\n              </div> \n\n              </div>\n\n              <hr style=\'margin-top:5px\' />\n\n          </div> -->\n\n        </div>\n\n        <!-- <p class="chat-feedback">Your partner is typing…</p> -->\n\n        <form>\n\n          <fieldset>\n\n            <input class="emojiDiv" type="text" name="addMsg" \n\n            placeholder="Type your message…" \n\n            autofocus [(ngModel)]="message" \n\n            (keydown.enter)="addMessage($event)"/>\n\n           \n\n            <ion-spinner class="loadSpin" ></ion-spinner> \n\n\n\n            <div class="emoji" >\n\n                <div class="test-emoji"></div>\n\n                <div class="emoji-panel">\n\n                  <button style="margin-left: 100px" class="chat-input-tool emoji-picker">\n\n                        <svg preserveAspectRatio="xMidYMid" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path d="M12 24C5.38 24 0 18.62 0 12S5.38 0 12 0s12 5.38 12 12-5.38 12-12 12zm0-22C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-2.9 0-5.56-1.75-6.9-4.57-.24-.5-.03-1.1.47-1.33.5-.24 1.1-.03 1.33.47C7.9 16.67 9.86 18 12 18c2.15 0 4.1-1.3 5.1-3.43.23-.5.83-.7 1.33-.47.5.23.7.83.47 1.33C17.58 18.25 14.93 20 12 20zm4-8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm-8 0c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" fill="#fff"></path></svg>\n\n                  </button>\n\n                </div>\n\n                <div class="intercom-composer-popover intercom-composer-emoji-popover"><div class="intercom-emoji-picker"><div class="intercom-composer-popover-header"><input class="intercom-composer-popover-input" placeholder="Search" value=""></div><div class="intercom-composer-popover-body-container"><div class="intercom-composer-popover-body"><div class="intercom-emoji-picker-groups"><div class="intercom-emoji-picker-group"><div class="intercom-emoji-picker-group-title">Frequently used</div><span class="intercom-emoji-picker-emoji" title="thumbs_up">👍</span><span class="intercom-emoji-picker-emoji" title="-1">👎</span><span class="intercom-emoji-picker-emoji" title="sob">😭</span><span class="intercom-emoji-picker-emoji" title="confused">😕</span><span class="intercom-emoji-picker-emoji" title="neutral_face">😐</span><span class="intercom-emoji-picker-emoji" title="blush">😊</span><span class="intercom-emoji-picker-emoji" title="heart_eyes">😍</span></div><div class="intercom-emoji-picker-group"><div class="intercom-emoji-picker-group-title">People</div><span class="intercom-emoji-picker-emoji" title="smile">😄</span><span class="intercom-emoji-picker-emoji" title="smiley">😃</span><span class="intercom-emoji-picker-emoji" title="grinning">😀</span><span class="intercom-emoji-picker-emoji" title="blush">😊</span><span class="intercom-emoji-picker-emoji" title="wink">😉</span><span class="intercom-emoji-picker-emoji" title="heart_eyes">😍</span><span class="intercom-emoji-picker-emoji" title="kissing_heart">😘</span><span class="intercom-emoji-picker-emoji" title="kissing_closed_eyes">😚</span><span class="intercom-emoji-picker-emoji" title="kissing">😗</span><span class="intercom-emoji-picker-emoji" title="kissing_smiling_eyes">😙</span><span class="intercom-emoji-picker-emoji" title="stuck_out_tongue_winking_eye">😜</span><span class="intercom-emoji-picker-emoji" title="stuck_out_tongue_closed_eyes">😝</span><span class="intercom-emoji-picker-emoji" title="stuck_out_tongue">😛</span><span class="intercom-emoji-picker-emoji" title="flushed">😳</span><span class="intercom-emoji-picker-emoji" title="grin">😁</span><span class="intercom-emoji-picker-emoji" title="pensive">😔</span><span class="intercom-emoji-picker-emoji" title="relieved">😌</span><span class="intercom-emoji-picker-emoji" title="unamused">😒</span><span class="intercom-emoji-picker-emoji" title="disappointed">😞</span><span class="intercom-emoji-picker-emoji" title="persevere">😣</span><span class="intercom-emoji-picker-emoji" title="cry">😢</span><span class="intercom-emoji-picker-emoji" title="joy">😂</span><span class="intercom-emoji-picker-emoji" title="sob">😭</span><span class="intercom-emoji-picker-emoji" title="sleepy">😪</span><span class="intercom-emoji-picker-emoji" title="disappointed_relieved">😥</span><span class="intercom-emoji-picker-emoji" title="cold_sweat">😰</span><span class="intercom-emoji-picker-emoji" title="sweat_smile">😅</span><span class="intercom-emoji-picker-emoji" title="sweat">😓</span><span class="intercom-emoji-picker-emoji" title="weary">😩</span><span class="intercom-emoji-picker-emoji" title="tired_face">😫</span><span class="intercom-emoji-picker-emoji" title="fearful">😨</span><span class="intercom-emoji-picker-emoji" title="scream">😱</span><span class="intercom-emoji-picker-emoji" title="angry">😠</span><span class="intercom-emoji-picker-emoji" title="rage">😡</span><span class="intercom-emoji-picker-emoji" title="triumph">😤</span><span class="intercom-emoji-picker-emoji" title="confounded">😖</span><span class="intercom-emoji-picker-emoji" title="laughing">😆</span><span class="intercom-emoji-picker-emoji" title="yum">😋</span><span class="intercom-emoji-picker-emoji" title="mask">😷</span><span class="intercom-emoji-picker-emoji" title="sunglasses">😎</span><span class="intercom-emoji-picker-emoji" title="sleeping">😴</span><span class="intercom-emoji-picker-emoji" title="dizzy_face">😵</span><span class="intercom-emoji-picker-emoji" title="astonished">😲</span><span class="intercom-emoji-picker-emoji" title="worried">😟</span><span class="intercom-emoji-picker-emoji" title="frowning">😦</span><span class="intercom-emoji-picker-emoji" title="anguished">😧</span><span class="intercom-emoji-picker-emoji" title="imp">👿</span><span class="intercom-emoji-picker-emoji" title="open_mouth">😮</span><span class="intercom-emoji-picker-emoji" title="grimacing">😬</span><span class="intercom-emoji-picker-emoji" title="neutral_face">😐</span><span class="intercom-emoji-picker-emoji" title="confused">😕</span><span class="intercom-emoji-picker-emoji" title="hushed">😯</span><span class="intercom-emoji-picker-emoji" title="smirk">😏</span><span class="intercom-emoji-picker-emoji" title="expressionless">😑</span><span class="intercom-emoji-picker-emoji" title="man_with_gua_pi_mao">👲</span><span class="intercom-emoji-picker-emoji" title="man_with_turban">👳</span><span class="intercom-emoji-picker-emoji" title="cop">👮</span><span class="intercom-emoji-picker-emoji" title="construction_worker">👷</span><span class="intercom-emoji-picker-emoji" title="guardsman">💂</span><span class="intercom-emoji-picker-emoji" title="baby">👶</span><span class="intercom-emoji-picker-emoji" title="boy">👦</span><span class="intercom-emoji-picker-emoji" title="girl">👧</span><span class="intercom-emoji-picker-emoji" title="man">👨</span><span class="intercom-emoji-picker-emoji" title="woman">👩</span><span class="intercom-emoji-picker-emoji" title="older_man">👴</span><span class="intercom-emoji-picker-emoji" title="older_woman">👵</span><span class="intercom-emoji-picker-emoji" title="person_with_blond_hair">👱</span><span class="intercom-emoji-picker-emoji" title="angel">👼</span><span class="intercom-emoji-picker-emoji" title="princess">👸</span><span class="intercom-emoji-picker-emoji" title="smiley_cat">😺</span><span class="intercom-emoji-picker-emoji" title="smile_cat">😸</span><span class="intercom-emoji-picker-emoji" title="heart_eyes_cat">😻</span><span class="intercom-emoji-picker-emoji" title="kissing_cat">😽</span><span class="intercom-emoji-picker-emoji" title="smirk_cat">😼</span><span class="intercom-emoji-picker-emoji" title="scream_cat">🙀</span><span class="intercom-emoji-picker-emoji" title="crying_cat_face">😿</span><span class="intercom-emoji-picker-emoji" title="joy_cat">😹</span><span class="intercom-emoji-picker-emoji" title="pouting_cat">😾</span><span class="intercom-emoji-picker-emoji" title="japanese_ogre">👹</span><span class="intercom-emoji-picker-emoji" title="japanese_goblin">👺</span><span class="intercom-emoji-picker-emoji" title="see_no_evil">🙈</span><span class="intercom-emoji-picker-emoji" title="hear_no_evil">🙉</span><span class="intercom-emoji-picker-emoji" title="speak_no_evil">🙊</span><span class="intercom-emoji-picker-emoji" title="skull">💀</span><span class="intercom-emoji-picker-emoji" title="alien">👽</span><span class="intercom-emoji-picker-emoji" title="hankey">💩</span><span class="intercom-emoji-picker-emoji" title="fire">🔥</span><span class="intercom-emoji-picker-emoji" title="sparkles">✨</span><span class="intercom-emoji-picker-emoji" title="star2">🌟</span><span class="intercom-emoji-picker-emoji" title="dizzy">💫</span><span class="intercom-emoji-picker-emoji" title="boom">💥</span><span class="intercom-emoji-picker-emoji" title="anger">💢</span><span class="intercom-emoji-picker-emoji" title="sweat_drops">💦</span><span class="intercom-emoji-picker-emoji" title="droplet">💧</span><span class="intercom-emoji-picker-emoji" title="zzz">💤</span><span class="intercom-emoji-picker-emoji" title="dash">💨</span><span class="intercom-emoji-picker-emoji" title="ear">👂</span><span class="intercom-emoji-picker-emoji" title="eyes">👀</span><span class="intercom-emoji-picker-emoji" title="nose">👃</span><span class="intercom-emoji-picker-emoji" title="tongue">👅</span><span class="intercom-emoji-picker-emoji" title="lips">👄</span><span class="intercom-emoji-picker-emoji" title="thumbs_up">👍</span><span class="intercom-emoji-picker-emoji" title="-1">👎</span><span class="intercom-emoji-picker-emoji" title="ok_hand">👌</span><span class="intercom-emoji-picker-emoji" title="facepunch">👊</span><span class="intercom-emoji-picker-emoji" title="fist">✊</span><span class="intercom-emoji-picker-emoji" title="wave">👋</span><span class="intercom-emoji-picker-emoji" title="hand">✋</span><span class="intercom-emoji-picker-emoji" title="open_hands">👐</span><span class="intercom-emoji-picker-emoji" title="point_up_2">👆</span><span class="intercom-emoji-picker-emoji" title="point_down">👇</span><span class="intercom-emoji-picker-emoji" title="point_right">👉</span><span class="intercom-emoji-picker-emoji" title="point_left">👈</span><span class="intercom-emoji-picker-emoji" title="raised_hands">🙌</span><span class="intercom-emoji-picker-emoji" title="pray">🙏</span><span class="intercom-emoji-picker-emoji" title="clap">👏</span><span class="intercom-emoji-picker-emoji" title="muscle">💪</span><span class="intercom-emoji-picker-emoji" title="walking">🚶</span><span class="intercom-emoji-picker-emoji" title="runner">🏃</span><span class="intercom-emoji-picker-emoji" title="dancer">💃</span><span class="intercom-emoji-picker-emoji" title="couple">👫</span><span class="intercom-emoji-picker-emoji" title="family">👪</span><span class="intercom-emoji-picker-emoji" title="couplekiss">💏</span><span class="intercom-emoji-picker-emoji" title="couple_with_heart">💑</span><span class="intercom-emoji-picker-emoji" title="dancers">👯</span><span class="intercom-emoji-picker-emoji" title="ok_woman">🙆</span><span class="intercom-emoji-picker-emoji" title="no_good">🙅</span><span class="intercom-emoji-picker-emoji" title="information_desk_person">💁</span><span class="intercom-emoji-picker-emoji" title="raising_hand">🙋</span><span class="intercom-emoji-picker-emoji" title="massage">💆</span><span class="intercom-emoji-picker-emoji" title="haircut">💇</span><span class="intercom-emoji-picker-emoji" title="nail_care">💅</span><span class="intercom-emoji-picker-emoji" title="bride_with_veil">👰</span><span class="intercom-emoji-picker-emoji" title="person_with_pouting_face">🙎</span><span class="intercom-emoji-picker-emoji" title="person_frowning">🙍</span><span class="intercom-emoji-picker-emoji" title="bow">🙇</span><span class="intercom-emoji-picker-emoji" title="tophat">🎩</span><span class="intercom-emoji-picker-emoji" title="crown">👑</span><span class="intercom-emoji-picker-emoji" title="womans_hat">👒</span><span class="intercom-emoji-picker-emoji" title="athletic_shoe">👟</span><span class="intercom-emoji-picker-emoji" title="mans_shoe">👞</span><span class="intercom-emoji-picker-emoji" title="sandal">👡</span><span class="intercom-emoji-picker-emoji" title="high_heel">👠</span><span class="intercom-emoji-picker-emoji" title="boot">👢</span><span class="intercom-emoji-picker-emoji" title="shirt">👕</span><span class="intercom-emoji-picker-emoji" title="necktie">👔</span><span class="intercom-emoji-picker-emoji" title="womans_clothes">👚</span><span class="intercom-emoji-picker-emoji" title="dress">👗</span><span class="intercom-emoji-picker-emoji" title="running_shirt_with_sash">🎽</span><span class="intercom-emoji-picker-emoji" title="jeans">👖</span><span class="intercom-emoji-picker-emoji" title="kimono">👘</span><span class="intercom-emoji-picker-emoji" title="bikini">👙</span><span class="intercom-emoji-picker-emoji" title="briefcase">💼</span><span class="intercom-emoji-picker-emoji" title="handbag">👜</span><span class="intercom-emoji-picker-emoji" title="pouch">👝</span><span class="intercom-emoji-picker-emoji" title="purse">👛</span><span class="intercom-emoji-picker-emoji" title="eyeglasses">👓</span><span class="intercom-emoji-picker-emoji" title="ribbon">🎀</span><span class="intercom-emoji-picker-emoji" title="closed_umbrella">🌂</span><span class="intercom-emoji-picker-emoji" title="lipstick">💄</span><span class="intercom-emoji-picker-emoji" title="yellow_heart">💛</span><span class="intercom-emoji-picker-emoji" title="blue_heart">💙</span><span class="intercom-emoji-picker-emoji" title="purple_heart">💜</span><span class="intercom-emoji-picker-emoji" title="green_heart">💚</span><span class="intercom-emoji-picker-emoji" title="broken_heart">💔</span><span class="intercom-emoji-picker-emoji" title="heartpulse">💗</span><span class="intercom-emoji-picker-emoji" title="heartbeat">💓</span><span class="intercom-emoji-picker-emoji" title="two_hearts">💕</span><span class="intercom-emoji-picker-emoji" title="sparkling_heart">💖</span><span class="intercom-emoji-picker-emoji" title="revolving_hearts">💞</span><span class="intercom-emoji-picker-emoji" title="cupid">💘</span><span class="intercom-emoji-picker-emoji" title="love_letter">💌</span><span class="intercom-emoji-picker-emoji" title="kiss">💋</span><span class="intercom-emoji-picker-emoji" title="ring">💍</span><span class="intercom-emoji-picker-emoji" title="gem">💎</span><span class="intercom-emoji-picker-emoji" title="bust_in_silhouette">👤</span><span class="intercom-emoji-picker-emoji" title="speech_balloon">💬</span><span class="intercom-emoji-picker-emoji" title="footprints">👣</span></div><div class="intercom-emoji-picker-group"><div class="intercom-emoji-picker-group-title">Nature</div><span class="intercom-emoji-picker-emoji" title="dog">🐶</span><span class="intercom-emoji-picker-emoji" title="wolf">🐺</span><span class="intercom-emoji-picker-emoji" title="cat">🐱</span><span class="intercom-emoji-picker-emoji" title="mouse">🐭</span><span class="intercom-emoji-picker-emoji" title="hamster">🐹</span><span class="intercom-emoji-picker-emoji" title="rabbit">🐰</span><span class="intercom-emoji-picker-emoji" title="frog">🐸</span><span class="intercom-emoji-picker-emoji" title="tiger">🐯</span><span class="intercom-emoji-picker-emoji" title="koala">🐨</span><span class="intercom-emoji-picker-emoji" title="bear">🐻</span><span class="intercom-emoji-picker-emoji" title="pig">🐷</span><span class="intercom-emoji-picker-emoji" title="pig_nose">🐽</span><span class="intercom-emoji-picker-emoji" title="cow">🐮</span><span class="intercom-emoji-picker-emoji" title="boar">🐗</span><span class="intercom-emoji-picker-emoji" title="monkey_face">🐵</span><span class="intercom-emoji-picker-emoji" title="monkey">🐒</span><span class="intercom-emoji-picker-emoji" title="horse">🐴</span><span class="intercom-emoji-picker-emoji" title="sheep">🐑</span><span class="intercom-emoji-picker-emoji" title="elephant">🐘</span><span class="intercom-emoji-picker-emoji" title="panda_face">🐼</span><span class="intercom-emoji-picker-emoji" title="penguin">🐧</span><span class="intercom-emoji-picker-emoji" title="bird">🐦</span><span class="intercom-emoji-picker-emoji" title="baby_chick">🐤</span><span class="intercom-emoji-picker-emoji" title="hatched_chick">🐥</span><span class="intercom-emoji-picker-emoji" title="hatching_chick">🐣</span><span class="intercom-emoji-picker-emoji" title="chicken">🐔</span><span class="intercom-emoji-picker-emoji" title="snake">🐍</span><span class="intercom-emoji-picker-emoji" title="turtle">🐢</span><span class="intercom-emoji-picker-emoji" title="bug">🐛</span><span class="intercom-emoji-picker-emoji" title="bee">🐝</span><span class="intercom-emoji-picker-emoji" title="ant">🐜</span><span class="intercom-emoji-picker-emoji" title="beetle">🐞</span><span class="intercom-emoji-picker-emoji" title="snail">🐌</span><span class="intercom-emoji-picker-emoji" title="octopus">🐙</span><span class="intercom-emoji-picker-emoji" title="shell">🐚</span><span class="intercom-emoji-picker-emoji" title="tropical_fish">🐠</span><span class="intercom-emoji-picker-emoji" title="fish">🐟</span><span class="intercom-emoji-picker-emoji" title="dolphin">🐬</span><span class="intercom-emoji-picker-emoji" title="whale">🐳</span><span class="intercom-emoji-picker-emoji" title="racehorse">🐎</span><span class="intercom-emoji-picker-emoji" title="dragon_face">🐲</span><span class="intercom-emoji-picker-emoji" title="blowfish">🐡</span><span class="intercom-emoji-picker-emoji" title="camel">🐫</span><span class="intercom-emoji-picker-emoji" title="poodle">🐩</span><span class="intercom-emoji-picker-emoji" title="feet">🐾</span><span class="intercom-emoji-picker-emoji" title="bouquet">💐</span><span class="intercom-emoji-picker-emoji" title="cherry_blossom">🌸</span><span class="intercom-emoji-picker-emoji" title="tulip">🌷</span><span class="intercom-emoji-picker-emoji" title="four_leaf_clover">🍀</span><span class="intercom-emoji-picker-emoji" title="rose">🌹</span><span class="intercom-emoji-picker-emoji" title="sunflower">🌻</span><span class="intercom-emoji-picker-emoji" title="hibiscus">🌺</span><span class="intercom-emoji-picker-emoji" title="maple_leaf">🍁</span><span class="intercom-emoji-picker-emoji" title="leaves">🍃</span><span class="intercom-emoji-picker-emoji" title="fallen_leaf">🍂</span><span class="intercom-emoji-picker-emoji" title="herb">🌿</span><span class="intercom-emoji-picker-emoji" title="ear_of_rice">🌾</span><span class="intercom-emoji-picker-emoji" title="mushroom">🍄</span><span class="intercom-emoji-picker-emoji" title="cactus">🌵</span><span class="intercom-emoji-picker-emoji" title="palm_tree">🌴</span><span class="intercom-emoji-picker-emoji" title="chestnut">🌰</span><span class="intercom-emoji-picker-emoji" title="seedling">🌱</span><span class="intercom-emoji-picker-emoji" title="blossom">🌼</span><span class="intercom-emoji-picker-emoji" title="new_moon">🌑</span><span class="intercom-emoji-picker-emoji" title="first_quarter_moon">🌓</span><span class="intercom-emoji-picker-emoji" title="moon">🌔</span><span class="intercom-emoji-picker-emoji" title="full_moon">🌕</span><span class="intercom-emoji-picker-emoji" title="first_quarter_moon_with_face">🌛</span><span class="intercom-emoji-picker-emoji" title="crescent_moon">🌙</span><span class="intercom-emoji-picker-emoji" title="earth_asia">🌏</span><span class="intercom-emoji-picker-emoji" title="volcano">🌋</span><span class="intercom-emoji-picker-emoji" title="milky_way">🌌</span><span class="intercom-emoji-picker-emoji" title="stars">🌠</span><span class="intercom-emoji-picker-emoji" title="partly_sunny">⛅</span><span class="intercom-emoji-picker-emoji" title="snowman">⛄</span><span class="intercom-emoji-picker-emoji" title="cyclone">🌀</span><span class="intercom-emoji-picker-emoji" title="foggy">🌁</span><span class="intercom-emoji-picker-emoji" title="rainbow">🌈</span><span class="intercom-emoji-picker-emoji" title="ocean">🌊</span></div><div class="intercom-emoji-picker-group"><div class="intercom-emoji-picker-group-title">Objects</div><span class="intercom-emoji-picker-emoji" title="bamboo">🎍</span><span class="intercom-emoji-picker-emoji" title="gift_heart">💝</span><span class="intercom-emoji-picker-emoji" title="dolls">🎎</span><span class="intercom-emoji-picker-emoji" title="school_satchel">🎒</span><span class="intercom-emoji-picker-emoji" title="mortar_board">🎓</span><span class="intercom-emoji-picker-emoji" title="flags">🎏</span><span class="intercom-emoji-picker-emoji" title="fireworks">🎆</span><span class="intercom-emoji-picker-emoji" title="sparkler">🎇</span><span class="intercom-emoji-picker-emoji" title="wind_chime">🎐</span><span class="intercom-emoji-picker-emoji" title="rice_scene">🎑</span><span class="intercom-emoji-picker-emoji" title="jack_o_lantern">🎃</span><span class="intercom-emoji-picker-emoji" title="ghost">👻</span><span class="intercom-emoji-picker-emoji" title="santa">🎅</span><span class="intercom-emoji-picker-emoji" title="christmas_tree">🎄</span><span class="intercom-emoji-picker-emoji" title="gift">🎁</span><span class="intercom-emoji-picker-emoji" title="tanabata_tree">🎋</span><span class="intercom-emoji-picker-emoji" title="tada">🎉</span><span class="intercom-emoji-picker-emoji" title="confetti_ball">🎊</span><span class="intercom-emoji-picker-emoji" title="balloon">🎈</span><span class="intercom-emoji-picker-emoji" title="crossed_flags">🎌</span><span class="intercom-emoji-picker-emoji" title="crystal_ball">🔮</span><span class="intercom-emoji-picker-emoji" title="movie_camera">🎥</span><span class="intercom-emoji-picker-emoji" title="camera">📷</span><span class="intercom-emoji-picker-emoji" title="video_camera">📹</span><span class="intercom-emoji-picker-emoji" title="vhs">📼</span><span class="intercom-emoji-picker-emoji" title="cd">💿</span><span class="intercom-emoji-picker-emoji" title="dvd">📀</span><span class="intercom-emoji-picker-emoji" title="minidisc">💽</span><span class="intercom-emoji-picker-emoji" title="floppy_disk">💾</span><span class="intercom-emoji-picker-emoji" title="computer">💻</span><span class="intercom-emoji-picker-emoji" title="iphone">📱</span><span class="intercom-emoji-picker-emoji" title="telephone_receiver">📞</span><span class="intercom-emoji-picker-emoji" title="pager">📟</span><span class="intercom-emoji-picker-emoji" title="fax">📠</span><span class="intercom-emoji-picker-emoji" title="satellite">📡</span><span class="intercom-emoji-picker-emoji" title="tv">📺</span><span class="intercom-emoji-picker-emoji" title="radio">📻</span><span class="intercom-emoji-picker-emoji" title="loud_sound">🔊</span><span class="intercom-emoji-picker-emoji" title="bell">🔔</span><span class="intercom-emoji-picker-emoji" title="loudspeaker">📢</span><span class="intercom-emoji-picker-emoji" title="mega">📣</span><span class="intercom-emoji-picker-emoji" title="hourglass_flowing_sand">⏳</span><span class="intercom-emoji-picker-emoji" title="hourglass">⌛</span><span class="intercom-emoji-picker-emoji" title="alarm_clock">⏰</span><span class="intercom-emoji-picker-emoji" title="watch">⌚</span><span class="intercom-emoji-picker-emoji" title="unlock">🔓</span><span class="intercom-emoji-picker-emoji" title="lock">🔒</span><span class="intercom-emoji-picker-emoji" title="lock_with_ink_pen">🔏</span><span class="intercom-emoji-picker-emoji" title="closed_lock_with_key">🔐</span><span class="intercom-emoji-picker-emoji" title="key">🔑</span><span class="intercom-emoji-picker-emoji" title="mag_right">🔎</span><span class="intercom-emoji-picker-emoji" title="bulb">💡</span><span class="intercom-emoji-picker-emoji" title="flashlight">🔦</span><span class="intercom-emoji-picker-emoji" title="electric_plug">🔌</span><span class="intercom-emoji-picker-emoji" title="battery">🔋</span><span class="intercom-emoji-picker-emoji" title="mag">🔍</span><span class="intercom-emoji-picker-emoji" title="bath">🛀</span><span class="intercom-emoji-picker-emoji" title="toilet">🚽</span><span class="intercom-emoji-picker-emoji" title="wrench">🔧</span><span class="intercom-emoji-picker-emoji" title="nut_and_bolt">🔩</span><span class="intercom-emoji-picker-emoji" title="hammer">🔨</span><span class="intercom-emoji-picker-emoji" title="door">🚪</span><span class="intercom-emoji-picker-emoji" title="smoking">🚬</span><span class="intercom-emoji-picker-emoji" title="bomb">💣</span><span class="intercom-emoji-picker-emoji" title="gun">🔫</span><span class="intercom-emoji-picker-emoji" title="hocho">🔪</span><span class="intercom-emoji-picker-emoji" title="pill">💊</span><span class="intercom-emoji-picker-emoji" title="syringe">💉</span><span class="intercom-emoji-picker-emoji" title="moneybag">💰</span><span class="intercom-emoji-picker-emoji" title="yen">💴</span><span class="intercom-emoji-picker-emoji" title="dollar">💵</span><span class="intercom-emoji-picker-emoji" title="credit_card">💳</span><span class="intercom-emoji-picker-emoji" title="money_with_wings">💸</span><span class="intercom-emoji-picker-emoji" title="calling">📲</span><span class="intercom-emoji-picker-emoji" title="e-mail">📧</span><span class="intercom-emoji-picker-emoji" title="inbox_tray">📥</span><span class="intercom-emoji-picker-emoji" title="outbox_tray">📤</span><span class="intercom-emoji-picker-emoji" title="envelope_with_arrow">📩</span><span class="intercom-emoji-picker-emoji" title="incoming_envelope">📨</span><span class="intercom-emoji-picker-emoji" title="mailbox">📫</span><span class="intercom-emoji-picker-emoji" title="mailbox_closed">📪</span><span class="intercom-emoji-picker-emoji" title="postbox">📮</span><span class="intercom-emoji-picker-emoji" title="package">📦</span><span class="intercom-emoji-picker-emoji" title="memo">📝</span><span class="intercom-emoji-picker-emoji" title="page_facing_up">📄</span><span class="intercom-emoji-picker-emoji" title="page_with_curl">📃</span><span class="intercom-emoji-picker-emoji" title="bookmark_tabs">📑</span><span class="intercom-emoji-picker-emoji" title="bar_chart">📊</span><span class="intercom-emoji-picker-emoji" title="chart_with_upwards_trend">📈</span><span class="intercom-emoji-picker-emoji" title="chart_with_downwards_trend">📉</span><span class="intercom-emoji-picker-emoji" title="scroll">📜</span><span class="intercom-emoji-picker-emoji" title="clipboard">📋</span><span class="intercom-emoji-picker-emoji" title="date">📅</span><span class="intercom-emoji-picker-emoji" title="calendar">📆</span><span class="intercom-emoji-picker-emoji" title="card_index">📇</span><span class="intercom-emoji-picker-emoji" title="file_folder">📁</span><span class="intercom-emoji-picker-emoji" title="open_file_folder">📂</span><span class="intercom-emoji-picker-emoji" title="pushpin">📌</span><span class="intercom-emoji-picker-emoji" title="paperclip">📎</span><span class="intercom-emoji-picker-emoji" title="straight_ruler">📏</span><span class="intercom-emoji-picker-emoji" title="triangular_ruler">📐</span><span class="intercom-emoji-picker-emoji" title="closed_book">📕</span><span class="intercom-emoji-picker-emoji" title="green_book">📗</span><span class="intercom-emoji-picker-emoji" title="blue_book">📘</span><span class="intercom-emoji-picker-emoji" title="orange_book">📙</span><span class="intercom-emoji-picker-emoji" title="notebook">📓</span><span class="intercom-emoji-picker-emoji" title="notebook_with_decorative_cover">📔</span><span class="intercom-emoji-picker-emoji" title="ledger">📒</span><span class="intercom-emoji-picker-emoji" title="books">📚</span><span class="intercom-emoji-picker-emoji" title="book">📖</span><span class="intercom-emoji-picker-emoji" title="bookmark">🔖</span><span class="intercom-emoji-picker-emoji" title="name_badge">📛</span><span class="intercom-emoji-picker-emoji" title="newspaper">📰</span><span class="intercom-emoji-picker-emoji" title="art">🎨</span><span class="intercom-emoji-picker-emoji" title="clapper">🎬</span><span class="intercom-emoji-picker-emoji" title="microphone">🎤</span><span class="intercom-emoji-picker-emoji" title="headphones">🎧</span><span class="intercom-emoji-picker-emoji" title="musical_score">🎼</span><span class="intercom-emoji-picker-emoji" title="musical_note">🎵</span><span class="intercom-emoji-picker-emoji" title="notes">🎶</span><span class="intercom-emoji-picker-emoji" title="musical_keyboard">🎹</span><span class="intercom-emoji-picker-emoji" title="violin">🎻</span><span class="intercom-emoji-picker-emoji" title="trumpet">🎺</span><span class="intercom-emoji-picker-emoji" title="saxophone">🎷</span><span class="intercom-emoji-picker-emoji" title="guitar">🎸</span><span class="intercom-emoji-picker-emoji" title="space_invader">👾</span><span class="intercom-emoji-picker-emoji" title="video_game">🎮</span><span class="intercom-emoji-picker-emoji" title="black_joker">🃏</span><span class="intercom-emoji-picker-emoji" title="flower_playing_cards">🎴</span><span class="intercom-emoji-picker-emoji" title="mahjong">🀄</span><span class="intercom-emoji-picker-emoji" title="game_die">🎲</span><span class="intercom-emoji-picker-emoji" title="dart">🎯</span><span class="intercom-emoji-picker-emoji" title="football">🏈</span><span class="intercom-emoji-picker-emoji" title="basketball">🏀</span><span class="intercom-emoji-picker-emoji" title="soccer">⚽</span><span class="intercom-emoji-picker-emoji" title="baseball">⚾</span><span class="intercom-emoji-picker-emoji" title="tennis">🎾</span><span class="intercom-emoji-picker-emoji" title="8ball">🎱</span><span class="intercom-emoji-picker-emoji" title="bowling">🎳</span><span class="intercom-emoji-picker-emoji" title="golf">⛳</span><span class="intercom-emoji-picker-emoji" title="checkered_flag">🏁</span><span class="intercom-emoji-picker-emoji" title="trophy">🏆</span><span class="intercom-emoji-picker-emoji" title="ski">🎿</span><span class="intercom-emoji-picker-emoji" title="snowboarder">🏂</span><span class="intercom-emoji-picker-emoji" title="swimmer">🏊</span><span class="intercom-emoji-picker-emoji" title="surfer">🏄</span><span class="intercom-emoji-picker-emoji" title="fishing_pole_and_fish">🎣</span><span class="intercom-emoji-picker-emoji" title="tea">🍵</span><span class="intercom-emoji-picker-emoji" title="sake">🍶</span><span class="intercom-emoji-picker-emoji" title="beer">🍺</span><span class="intercom-emoji-picker-emoji" title="beers">🍻</span><span class="intercom-emoji-picker-emoji" title="cocktail">🍸</span><span class="intercom-emoji-picker-emoji" title="tropical_drink">🍹</span><span class="intercom-emoji-picker-emoji" title="wine_glass">🍷</span><span class="intercom-emoji-picker-emoji" title="fork_and_knife">🍴</span><span class="intercom-emoji-picker-emoji" title="pizza">🍕</span><span class="intercom-emoji-picker-emoji" title="hamburger">🍔</span><span class="intercom-emoji-picker-emoji" title="fries">🍟</span><span class="intercom-emoji-picker-emoji" title="poultry_leg">🍗</span><span class="intercom-emoji-picker-emoji" title="meat_on_bone">🍖</span><span class="intercom-emoji-picker-emoji" title="spaghetti">🍝</span><span class="intercom-emoji-picker-emoji" title="curry">🍛</span><span class="intercom-emoji-picker-emoji" title="fried_shrimp">🍤</span><span class="intercom-emoji-picker-emoji" title="bento">🍱</span><span class="intercom-emoji-picker-emoji" title="sushi">🍣</span><span class="intercom-emoji-picker-emoji" title="fish_cake">🍥</span><span class="intercom-emoji-picker-emoji" title="rice_ball">🍙</span><span class="intercom-emoji-picker-emoji" title="rice_cracker">🍘</span><span class="intercom-emoji-picker-emoji" title="rice">🍚</span><span class="intercom-emoji-picker-emoji" title="ramen">🍜</span><span class="intercom-emoji-picker-emoji" title="stew">🍲</span><span class="intercom-emoji-picker-emoji" title="oden">🍢</span><span class="intercom-emoji-picker-emoji" title="dango">🍡</span><span class="intercom-emoji-picker-emoji" title="egg">🍳</span><span class="intercom-emoji-picker-emoji" title="bread">🍞</span><span class="intercom-emoji-picker-emoji" title="doughnut">🍩</span><span class="intercom-emoji-picker-emoji" title="custard">🍮</span><span class="intercom-emoji-picker-emoji" title="icecream">🍦</span><span class="intercom-emoji-picker-emoji" title="ice_cream">🍨</span><span class="intercom-emoji-picker-emoji" title="shaved_ice">🍧</span><span class="intercom-emoji-picker-emoji" title="birthday">🎂</span><span class="intercom-emoji-picker-emoji" title="cake">🍰</span><span class="intercom-emoji-picker-emoji" title="cookie">🍪</span><span class="intercom-emoji-picker-emoji" title="chocolate_bar">🍫</span><span class="intercom-emoji-picker-emoji" title="candy">🍬</span><span class="intercom-emoji-picker-emoji" title="lollipop">🍭</span><span class="intercom-emoji-picker-emoji" title="honey_pot">🍯</span><span class="intercom-emoji-picker-emoji" title="apple">🍎</span><span class="intercom-emoji-picker-emoji" title="green_apple">🍏</span><span class="intercom-emoji-picker-emoji" title="tangerine">🍊</span><span class="intercom-emoji-picker-emoji" title="cherries">🍒</span><span class="intercom-emoji-picker-emoji" title="grapes">🍇</span><span class="intercom-emoji-picker-emoji" title="watermelon">🍉</span><span class="intercom-emoji-picker-emoji" title="strawberry">🍓</span><span class="intercom-emoji-picker-emoji" title="peach">🍑</span><span class="intercom-emoji-picker-emoji" title="melon">🍈</span><span class="intercom-emoji-picker-emoji" title="banana">🍌</span><span class="intercom-emoji-picker-emoji" title="pineapple">🍍</span><span class="intercom-emoji-picker-emoji" title="sweet_potato">🍠</span><span class="intercom-emoji-picker-emoji" title="eggplant">🍆</span><span class="intercom-emoji-picker-emoji" title="tomato">🍅</span><span class="intercom-emoji-picker-emoji" title="corn">🌽</span></div><div class="intercom-emoji-picker-group"><div class="intercom-emoji-picker-group-title">Places</div><span class="intercom-emoji-picker-emoji" title="house">🏠</span><span class="intercom-emoji-picker-emoji" title="house_with_garden">🏡</span><span class="intercom-emoji-picker-emoji" title="school">🏫</span><span class="intercom-emoji-picker-emoji" title="office">🏢</span><span class="intercom-emoji-picker-emoji" title="post_office">🏣</span><span class="intercom-emoji-picker-emoji" title="hospital">🏥</span><span class="intercom-emoji-picker-emoji" title="bank">🏦</span><span class="intercom-emoji-picker-emoji" title="convenience_store">🏪</span><span class="intercom-emoji-picker-emoji" title="love_hotel">🏩</span><span class="intercom-emoji-picker-emoji" title="hotel">🏨</span><span class="intercom-emoji-picker-emoji" title="wedding">💒</span><span class="intercom-emoji-picker-emoji" title="church">⛪</span><span class="intercom-emoji-picker-emoji" title="department_store">🏬</span><span class="intercom-emoji-picker-emoji" title="city_sunrise">🌇</span><span class="intercom-emoji-picker-emoji" title="city_sunset">🌆</span><span class="intercom-emoji-picker-emoji" title="japanese_castle">🏯</span><span class="intercom-emoji-picker-emoji" title="european_castle">🏰</span><span class="intercom-emoji-picker-emoji" title="tent">⛺</span><span class="intercom-emoji-picker-emoji" title="factory">🏭</span><span class="intercom-emoji-picker-emoji" title="tokyo_tower">🗼</span><span class="intercom-emoji-picker-emoji" title="japan">🗾</span><span class="intercom-emoji-picker-emoji" title="mount_fuji">🗻</span><span class="intercom-emoji-picker-emoji" title="sunrise_over_mountains">🌄</span><span class="intercom-emoji-picker-emoji" title="sunrise">🌅</span><span class="intercom-emoji-picker-emoji" title="night_with_stars">🌃</span><span class="intercom-emoji-picker-emoji" title="statue_of_liberty">🗽</span><span class="intercom-emoji-picker-emoji" title="bridge_at_night">🌉</span><span class="intercom-emoji-picker-emoji" title="carousel_horse">🎠</span><span class="intercom-emoji-picker-emoji" title="ferris_wheel">🎡</span><span class="intercom-emoji-picker-emoji" title="fountain">⛲</span><span class="intercom-emoji-picker-emoji" title="roller_coaster">🎢</span><span class="intercom-emoji-picker-emoji" title="ship">🚢</span><span class="intercom-emoji-picker-emoji" title="boat">⛵</span><span class="intercom-emoji-picker-emoji" title="speedboat">🚤</span><span class="intercom-emoji-picker-emoji" title="rocket">🚀</span><span class="intercom-emoji-picker-emoji" title="seat">💺</span><span class="intercom-emoji-picker-emoji" title="station">🚉</span><span class="intercom-emoji-picker-emoji" title="bullettrain_side">🚄</span><span class="intercom-emoji-picker-emoji" title="bullettrain_front">🚅</span><span class="intercom-emoji-picker-emoji" title="metro">🚇</span><span class="intercom-emoji-picker-emoji" title="railway_car">🚃</span><span class="intercom-emoji-picker-emoji" title="bus">🚌</span><span class="intercom-emoji-picker-emoji" title="blue_car">🚙</span><span class="intercom-emoji-picker-emoji" title="car">🚗</span><span class="intercom-emoji-picker-emoji" title="taxi">🚕</span><span class="intercom-emoji-picker-emoji" title="truck">🚚</span><span class="intercom-emoji-picker-emoji" title="rotating_light">🚨</span><span class="intercom-emoji-picker-emoji" title="police_car">🚓</span><span class="intercom-emoji-picker-emoji" title="fire_engine">🚒</span><span class="intercom-emoji-picker-emoji" title="ambulance">🚑</span><span class="intercom-emoji-picker-emoji" title="bike">🚲</span><span class="intercom-emoji-picker-emoji" title="barber">💈</span><span class="intercom-emoji-picker-emoji" title="busstop">🚏</span><span class="intercom-emoji-picker-emoji" title="ticket">🎫</span><span class="intercom-emoji-picker-emoji" title="traffic_light">🚥</span><span class="intercom-emoji-picker-emoji" title="construction">🚧</span><span class="intercom-emoji-picker-emoji" title="beginner">🔰</span><span class="intercom-emoji-picker-emoji" title="fuelpump">⛽</span><span class="intercom-emoji-picker-emoji" title="izakaya_lantern">🏮</span><span class="intercom-emoji-picker-emoji" title="slot_machine">🎰</span><span class="intercom-emoji-picker-emoji" title="moyai">🗿</span><span class="intercom-emoji-picker-emoji" title="circus_tent">🎪</span><span class="intercom-emoji-picker-emoji" title="performing_arts">🎭</span><span class="intercom-emoji-picker-emoji" title="round_pushpin">📍</span><span class="intercom-emoji-picker-emoji" title="triangular_flag_on_post">🚩</span></div><div class="intercom-emoji-picker-group"><div class="intercom-emoji-picker-group-title">Symbols</div><span class="intercom-emoji-picker-emoji" title="keycap_ten">🔟</span><span class="intercom-emoji-picker-emoji" title="1234">🔢</span><span class="intercom-emoji-picker-emoji" title="symbols">🔣</span><span class="intercom-emoji-picker-emoji" title="capital_abcd">🔠</span><span class="intercom-emoji-picker-emoji" title="abcd">🔡</span><span class="intercom-emoji-picker-emoji" title="abc">🔤</span><span class="intercom-emoji-picker-emoji" title="arrow_up_small">🔼</span><span class="intercom-emoji-picker-emoji" title="arrow_down_small">🔽</span><span class="intercom-emoji-picker-emoji" title="rewind">⏪</span><span class="intercom-emoji-picker-emoji" title="fast_forward">⏩</span><span class="intercom-emoji-picker-emoji" title="arrow_double_up">⏫</span><span class="intercom-emoji-picker-emoji" title="arrow_double_down">⏬</span><span class="intercom-emoji-picker-emoji" title="ok">🆗</span><span class="intercom-emoji-picker-emoji" title="new">🆕</span><span class="intercom-emoji-picker-emoji" title="up">🆙</span><span class="intercom-emoji-picker-emoji" title="cool">🆒</span><span class="intercom-emoji-picker-emoji" title="free">🆓</span><span class="intercom-emoji-picker-emoji" title="ng">🆖</span><span class="intercom-emoji-picker-emoji" title="signal_strength">📶</span><span class="intercom-emoji-picker-emoji" title="cinema">🎦</span><span class="intercom-emoji-picker-emoji" title="koko">🈁</span><span class="intercom-emoji-picker-emoji" title="u6307">🈯</span><span class="intercom-emoji-picker-emoji" title="u7a7a">🈳</span><span class="intercom-emoji-picker-emoji" title="u6e80">🈵</span><span class="intercom-emoji-picker-emoji" title="u5408">🈴</span><span class="intercom-emoji-picker-emoji" title="u7981">🈲</span><span class="intercom-emoji-picker-emoji" title="ideograph_advantage">🉐</span><span class="intercom-emoji-picker-emoji" title="u5272">🈹</span><span class="intercom-emoji-picker-emoji" title="u55b6">🈺</span><span class="intercom-emoji-picker-emoji" title="u6709">🈶</span><span class="intercom-emoji-picker-emoji" title="u7121">🈚</span><span class="intercom-emoji-picker-emoji" title="restroom">🚻</span><span class="intercom-emoji-picker-emoji" title="mens">🚹</span><span class="intercom-emoji-picker-emoji" title="womens">🚺</span><span class="intercom-emoji-picker-emoji" title="baby_symbol">🚼</span><span class="intercom-emoji-picker-emoji" title="wc">🚾</span><span class="intercom-emoji-picker-emoji" title="no_smoking">🚭</span><span class="intercom-emoji-picker-emoji" title="u7533">🈸</span><span class="intercom-emoji-picker-emoji" title="accept">🉑</span><span class="intercom-emoji-picker-emoji" title="cl">🆑</span><span class="intercom-emoji-picker-emoji" title="sos">🆘</span><span class="intercom-emoji-picker-emoji" title="id">🆔</span><span class="intercom-emoji-picker-emoji" title="no_entry_sign">🚫</span><span class="intercom-emoji-picker-emoji" title="underage">🔞</span><span class="intercom-emoji-picker-emoji" title="no_entry">⛔</span><span class="intercom-emoji-picker-emoji" title="negative_squared_cross_mark">❎</span><span class="intercom-emoji-picker-emoji" title="white_check_mark">✅</span><span class="intercom-emoji-picker-emoji" title="heart_decoration">💟</span><span class="intercom-emoji-picker-emoji" title="vs">🆚</span><span class="intercom-emoji-picker-emoji" title="vibration_mode">📳</span><span class="intercom-emoji-picker-emoji" title="mobile_phone_off">📴</span><span class="intercom-emoji-picker-emoji" title="ab">🆎</span><span class="intercom-emoji-picker-emoji" title="diamond_shape_with_a_dot_inside">💠</span><span class="intercom-emoji-picker-emoji" title="ophiuchus">⛎</span><span class="intercom-emoji-picker-emoji" title="six_pointed_star">🔯</span><span class="intercom-emoji-picker-emoji" title="atm">🏧</span><span class="intercom-emoji-picker-emoji" title="chart">💹</span><span class="intercom-emoji-picker-emoji" title="heavy_dollar_sign">💲</span><span class="intercom-emoji-picker-emoji" title="currency_exchange">💱</span><span class="intercom-emoji-picker-emoji" title="x">❌</span><span class="intercom-emoji-picker-emoji" title="exclamation">❗</span><span class="intercom-emoji-picker-emoji" title="question">❓</span><span class="intercom-emoji-picker-emoji" title="grey_exclamation">❕</span><span class="intercom-emoji-picker-emoji" title="grey_question">❔</span><span class="intercom-emoji-picker-emoji" title="o">⭕</span><span class="intercom-emoji-picker-emoji" title="top">🔝</span><span class="intercom-emoji-picker-emoji" title="end">🔚</span><span class="intercom-emoji-picker-emoji" title="back">🔙</span><span class="intercom-emoji-picker-emoji" title="on">🔛</span><span class="intercom-emoji-picker-emoji" title="soon">🔜</span><span class="intercom-emoji-picker-emoji" title="arrows_clockwise">🔃</span><span class="intercom-emoji-picker-emoji" title="clock12">🕛</span><span class="intercom-emoji-picker-emoji" title="clock1">🕐</span><span class="intercom-emoji-picker-emoji" title="clock2">🕑</span><span class="intercom-emoji-picker-emoji" title="clock3">🕒</span><span class="intercom-emoji-picker-emoji" title="clock4">🕓</span><span class="intercom-emoji-picker-emoji" title="clock5">🕔</span><span class="intercom-emoji-picker-emoji" title="clock6">🕕</span><span class="intercom-emoji-picker-emoji" title="clock7">🕖</span><span class="intercom-emoji-picker-emoji" title="clock8">🕗</span><span class="intercom-emoji-picker-emoji" title="clock9">🕘</span><span class="intercom-emoji-picker-emoji" title="clock10">🕙</span><span class="intercom-emoji-picker-emoji" title="clock11">🕚</span><span class="intercom-emoji-picker-emoji" title="heavy_plus_sign">➕</span><span class="intercom-emoji-picker-emoji" title="heavy_minus_sign">➖</span><span class="intercom-emoji-picker-emoji" title="heavy_division_sign">➗</span><span class="intercom-emoji-picker-emoji" title="white_flower">💮</span><span class="intercom-emoji-picker-emoji" title="100">💯</span><span class="intercom-emoji-picker-emoji" title="radio_button">🔘</span><span class="intercom-emoji-picker-emoji" title="link">🔗</span><span class="intercom-emoji-picker-emoji" title="curly_loop">➰</span><span class="intercom-emoji-picker-emoji" title="trident">🔱</span><span class="intercom-emoji-picker-emoji" title="small_red_triangle">🔺</span><span class="intercom-emoji-picker-emoji" title="black_square_button">🔲</span><span class="intercom-emoji-picker-emoji" title="white_square_button">🔳</span><span class="intercom-emoji-picker-emoji" title="red_circle">🔴</span><span class="intercom-emoji-picker-emoji" title="large_blue_circle">🔵</span><span class="intercom-emoji-picker-emoji" title="small_red_triangle_down">🔻</span><span class="intercom-emoji-picker-emoji" title="white_large_square">⬜</span><span class="intercom-emoji-picker-emoji" title="black_large_square">⬛</span><span class="intercom-emoji-picker-emoji" title="large_orange_diamond">🔶</span><span class="intercom-emoji-picker-emoji" title="large_blue_diamond">🔷</span><span class="intercom-emoji-picker-emoji" title="small_orange_diamond">🔸</span><span class="intercom-emoji-picker-emoji" title="small_blue_diamond">🔹</span></div></div></div></div></div><div class="intercom-composer-popover-caret"></div></div>\n\n            </div>\n\n          \n\n\n\n           \n\n          </fieldset>\n\n        </form>\n\n\n\n\n\n      </div>\n\n      <!-- end chat -->\n\n\n\n    </div>\n\n    <!-- end live-chat -->\n\n  </ion-fab>\n\n\n\n\n\n  \n\n\n\n</div>'/*ion-inline-end:"N:\code\git\blockusign\BlockUSign.Ionic\src\components\block-chat\block-chat.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__services_document_service__["a" /* DocumentService */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */]])
-    ], AnnotatePage);
-    return AnnotatePage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_document_service__["a" /* DocumentService */],
+            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* Events */],
+            __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__["a" /* BlockStackService */]])
+    ], BlockChatComponent);
+    return BlockChatComponent;
 }());
 
-//# sourceMappingURL=annotate.js.map
+//# sourceMappingURL=block-chat.js.map
 
 /***/ }),
 
-/***/ 304:
+/***/ 256:
+/***/ (function(module, exports) {
+
+function webpackEmptyAsyncContext(req) {
+	// Here Promise.resolve().then() is used instead of new Promise() to prevent
+	// uncatched exception popping up in devtools
+	return Promise.resolve().then(function() {
+		throw new Error("Cannot find module '" + req + "'.");
+	});
+}
+webpackEmptyAsyncContext.keys = function() { return []; };
+webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
+module.exports = webpackEmptyAsyncContext;
+webpackEmptyAsyncContext.id = 256;
+
+/***/ }),
+
+/***/ 301:
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"../pages/annotate/annotate.module": [
+		534
+	],
+	"../pages/email/email.module": [
+		302
+	],
+	"../pages/home/home.module": [
+		586
+	],
+	"../pages/review/review.module": [
+		536
+	],
+	"../pages/sign/sign.module": [
+		537
+	]
+};
+function webpackAsyncContext(req) {
+	var ids = map[req];
+	if(!ids)
+		return Promise.reject(new Error("Cannot find module '" + req + "'."));
+	return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(function() {
+		return __webpack_require__(ids[0]);
+	});
+};
+webpackAsyncContext.keys = function webpackAsyncContextKeys() {
+	return Object.keys(map);
+};
+webpackAsyncContext.id = 301;
+module.exports = webpackAsyncContext;
+
+/***/ }),
+
+/***/ 302:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EmailPageModule", function() { return EmailPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__email__ = __webpack_require__(656);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ng_select_ng_select__ = __webpack_require__(533);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(30);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+
+
+var EmailPageModule = (function () {
+    function EmailPageModule() {
+    }
+    EmailPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__email__["a" /* EmailPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__email__["a" /* EmailPage */]),
+                __WEBPACK_IMPORTED_MODULE_3__components_components_module__["a" /* BlockStepsComponentModule */],
+                __WEBPACK_IMPORTED_MODULE_4__ng_select_ng_select__["a" /* NgSelectModule */],
+                __WEBPACK_IMPORTED_MODULE_5__angular_forms__["a" /* FormsModule */],
+                __WEBPACK_IMPORTED_MODULE_5__angular_forms__["d" /* ReactiveFormsModule */]
+            ],
+            providers: []
+        })
+    ], EmailPageModule);
+    return EmailPageModule;
+}());
+
+//# sourceMappingURL=email.module.js.map
+
+/***/ }),
+
+/***/ 303:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1447,13 +1305,145 @@ var NameStorageMapping = (function () {
 
 /***/ }),
 
+/***/ 305:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EmailService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular__ = __webpack_require__(12);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+/*
+  Generated class for the StorageServiceProvider provider.
+
+  See https://angular.io/guide/dependency-injection for more info on providers
+  and Angular DI.
+*/
+var EmailService = (function () {
+    //url = "http://localhost:5000/api/email";
+    function EmailService(events, http) {
+        this.events = events;
+        this.http = http;
+        //url = "https://api.sendgrid.com/v3/mail/send";
+        //apiK = "";
+        this.url = "https://blockusign.co/api/email";
+    }
+    EmailService.prototype.sendEmail = function (to, subject, content) {
+        return __awaiter(this, void 0, void 0, function () {
+            var data, httpOptions, resp;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!to || !subject || !content) {
+                            alert('Must add an email address');
+                            return [2 /*return*/];
+                        }
+                        data = {
+                            "to": to,
+                            "subject": subject,
+                            "content": content
+                        };
+                        httpOptions = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["f" /* RequestOptions */]();
+                        httpOptions.headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Headers */]({
+                            'Content-Type': 'application/json'
+                        });
+                        return [4 /*yield*/, this.http.post(this.url, JSON.stringify(data), httpOptions).toPromise()];
+                    case 1:
+                        resp = _a.sent();
+                        return [2 /*return*/, resp];
+                }
+            });
+        });
+    };
+    EmailService.prototype.updateCachedEmails = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    // @todo when you send a document to an email address save it, so weh can query it in the lookup next time
+    EmailService.prototype.getCachedEmails = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    EmailService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5_ionic_angular__["c" /* Events */], __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]])
+    ], EmailService);
+    return EmailService;
+}());
+
+//# sourceMappingURL=email.service.js.map
+
+/***/ }),
+
 /***/ 36:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DocumentService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_models__ = __webpack_require__(304);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_models__ = __webpack_require__(303);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(53);
@@ -1462,7 +1452,7 @@ var NameStorageMapping = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_catch__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_catch__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__ = __webpack_require__(657);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__ = __webpack_require__(658);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_automerge_dist_automerge_js__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__blockstack_service__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_observable_of__ = __webpack_require__(172);
@@ -2214,13 +2204,13 @@ var DocumentService = (function () {
 
 /***/ }),
 
-/***/ 446:
+/***/ 409:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DirectivesModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__absolute_drag_absolute_drag__ = __webpack_require__(717);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__absolute_drag_absolute_drag__ = __webpack_require__(985);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2246,18 +2236,16 @@ var DirectivesModule = (function () {
 
 /***/ }),
 
-/***/ 447:
+/***/ 534:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EmailPageModule", function() { return EmailPageModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__email__ = __webpack_require__(718);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ng_select_ng_select__ = __webpack_require__(535);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(30);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnnotatePageModule", function() { return AnnotatePageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__annotate__ = __webpack_require__(535);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(70);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2267,49 +2255,52 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+//import { AbsoluteDragDirective } from '../../directives/absolute-drag/absolute-drag';
 
-
-
-
-var EmailPageModule = (function () {
-    function EmailPageModule() {
+var AnnotatePageModule = (function () {
+    function AnnotatePageModule() {
     }
-    EmailPageModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+    AnnotatePageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__email__["a" /* EmailPage */],
+                __WEBPACK_IMPORTED_MODULE_1__annotate__["a" /* AnnotatePage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__email__["a" /* EmailPage */]),
-                __WEBPACK_IMPORTED_MODULE_3__components_components_module__["a" /* BlockStepsComponentModule */],
-                __WEBPACK_IMPORTED_MODULE_4__ng_select_ng_select__["a" /* NgSelectModule */],
-                __WEBPACK_IMPORTED_MODULE_5__angular_forms__["a" /* FormsModule */],
-                __WEBPACK_IMPORTED_MODULE_5__angular_forms__["d" /* ReactiveFormsModule */]
+                __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_1__annotate__["a" /* AnnotatePage */]),
+                __WEBPACK_IMPORTED_MODULE_3__components_components_module__["a" /* BlockStepsComponentModule */]
             ],
-            providers: []
+            entryComponents: [
+                __WEBPACK_IMPORTED_MODULE_1__annotate__["a" /* AnnotatePage */]
+            ],
+            schemas: [__WEBPACK_IMPORTED_MODULE_2__angular_core__["CUSTOM_ELEMENTS_SCHEMA"]]
         })
-    ], EmailPageModule);
-    return EmailPageModule;
+    ], AnnotatePageModule);
+    return AnnotatePageModule;
 }());
 
-//# sourceMappingURL=email.module.js.map
+//# sourceMappingURL=annotate.module.js.map
 
 /***/ }),
 
-/***/ 448:
+/***/ 535:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EmailService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AnnotatePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_document_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_block_chat_block_chat__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_block_pdf_block_pdf__ = __webpack_require__(192);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_retry__ = __webpack_require__(189);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_retry___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_retry__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_timeout__ = __webpack_require__(191);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_timeout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_timeout__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_delay__ = __webpack_require__(188);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_delay___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_delay__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_map__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_block_steps_block_steps__ = __webpack_require__(96);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2360,71 +2351,80 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 
 
-/*
-  Generated class for the StorageServiceProvider provider.
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
-var EmailService = (function () {
-    //url = "http://localhost:5000/api/email";
-    function EmailService(events, http) {
+
+
+
+/// https://www.sitepoint.com/custom-pdf-rendering/
+var AnnotatePage = (function () {
+    function AnnotatePage(navCtrl, navParams, documentService, events) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.documentService = documentService;
         this.events = events;
-        this.http = http;
-        //url = "https://api.sendgrid.com/v3/mail/send";
-        //apiK = "";
-        this.url = "https://blockusign.co/api/email";
+        this.instance = this;
     }
-    EmailService.prototype.sendEmail = function (to, subject, content) {
+    AnnotatePage.prototype.ionViewDidEnter = function () {
+        this.blockPdf.registerEmojiEvent();
+        this.blockChat.registerEmojiEvent();
+    };
+    AnnotatePage.prototype.ionViewWillLeave = function () {
+        this.blockChat.destroyEmojiEvents();
+        this.blockChat.ngOnDestroy();
+        this.blockPdf.destroyEmojiEvents();
+    };
+    AnnotatePage.prototype.next = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var data, httpOptions, resp;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        if (!to || !subject || !content) {
-                            alert('Must add an email address');
-                            return [2 /*return*/];
-                        }
-                        data = {
-                            "to": to,
-                            "subject": subject,
-                            "content": content
-                        };
-                        httpOptions = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["f" /* RequestOptions */]();
-                        httpOptions.headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Headers */]({
-                            'Content-Type': 'application/json'
-                        });
-                        return [4 /*yield*/, this.http.post(this.url, JSON.stringify(data), httpOptions).toPromise()];
+                    case 0: return [4 /*yield*/, this.blockPdf.saveSvg()];
                     case 1:
-                        resp = _a.sent();
-                        return [2 /*return*/, resp];
+                        _a.sent();
+                        this.blockSteps.route('EmailPage');
+                        return [2 /*return*/];
                 }
             });
         });
     };
-    EmailService.prototype.updateCachedEmails = function () {
+    AnnotatePage.prototype.back = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.blockPdf.saveSvg()];
+                    case 1:
+                        _a.sent();
+                        this.blockSteps.route('HomePage');
+                        return [2 /*return*/];
+                }
             });
         });
     };
-    // @todo when you send a document to an email address save it, so weh can query it in the lookup next time
-    EmailService.prototype.getCachedEmails = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    EmailService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5_ionic_angular__["c" /* Events */], __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]])
-    ], EmailService);
-    return EmailService;
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("blockChat"),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3__components_block_chat_block_chat__["a" /* BlockChatComponent */])
+    ], AnnotatePage.prototype, "blockChat", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("blockPdf"),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_4__components_block_pdf_block_pdf__["a" /* BlockPdfComponent */])
+    ], AnnotatePage.prototype, "blockPdf", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("blockSteps"),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_9__components_block_steps_block_steps__["a" /* BlockStepsComponent */])
+    ], AnnotatePage.prototype, "blockSteps", void 0);
+    AnnotatePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-annotate',template:/*ion-inline-start:"N:\code\git\blockusign\BlockUSign.Ionic\src\pages\annotate\annotate.html"*/'<ion-content class="no-overflow-page">\n\n\n\n\n\n  \n\n\n\n  <block-steps #blockSteps activeStep="2" [parent]="instance">\n\n  </block-steps> \n\n\n\n  <div style="clear:both"></div>\n\n  <section style="position: relative;" class="nextBackButtons no-print">\n\n      <button class="nextBackButtonBack" ion-fab mini (click)="back()" style="background-color:green; position: absolute;"><ion-icon name="md-arrow-back"></ion-icon></button>\n\n      <button class="nextBackButtonNext" ion-fab mini (click)="next()"><ion-icon name="md-arrow-forward" ></ion-icon></button>\n\n  </section>   \n\n  <div style="clear:both"></div>\n\n\n\n  <block-pdf #blockPdf showToolBar="true" showSignature="true" showSignHere="true" showButtons="true" >\n\n\n\n  </block-pdf>\n\n\n\n  <block-chat #blockChat>\n\n    \n\n  </block-chat>\n\n\n\n</ion-content>\n\n\n\n'/*ion-inline-end:"N:\code\git\blockusign\BlockUSign.Ionic\src\pages\annotate\annotate.html"*/,
+            styles: ['annotate.scss']
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__services_document_service__["a" /* DocumentService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */]])
+    ], AnnotatePage);
+    return AnnotatePage;
 }());
 
-//# sourceMappingURL=email.service.js.map
+//# sourceMappingURL=annotate.js.map
 
 /***/ }),
 
@@ -2433,11 +2433,11 @@ var EmailService = (function () {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeModule", function() { return HomeModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__home__ = __webpack_require__(537);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(71);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReviewPageModule", function() { return ReviewPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__review__ = __webpack_require__(987);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(70);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2448,33 +2448,514 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-//import { BlockStepsComponent } from '../../components/block-steps/block-steps';
-var HomeModule = (function () {
-    function HomeModule() {
+var ReviewPageModule = (function () {
+    function ReviewPageModule() {
     }
-    HomeModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["NgModule"])({
+    ReviewPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_1__home__["a" /* HomePage */],
+                __WEBPACK_IMPORTED_MODULE_2__review__["a" /* ReviewPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_1__home__["a" /* HomePage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__review__["a" /* ReviewPage */]),
                 __WEBPACK_IMPORTED_MODULE_3__components_components_module__["a" /* BlockStepsComponentModule */]
             ],
-            entryComponents: [
-                __WEBPACK_IMPORTED_MODULE_1__home__["a" /* HomePage */]
-            ],
-            schemas: [__WEBPACK_IMPORTED_MODULE_2__angular_core__["CUSTOM_ELEMENTS_SCHEMA"]]
         })
-    ], HomeModule);
-    return HomeModule;
+    ], ReviewPageModule);
+    return ReviewPageModule;
 }());
 
-//# sourceMappingURL=home.module.js.map
+//# sourceMappingURL=review.module.js.map
 
 /***/ }),
 
 /***/ 537:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignPageModule", function() { return SignPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sign__ = __webpack_require__(988);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(70);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+var SignPageModule = (function () {
+    function SignPageModule() {
+    }
+    SignPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__sign__["a" /* SignPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__sign__["a" /* SignPage */]),
+                __WEBPACK_IMPORTED_MODULE_3__components_components_module__["a" /* BlockStepsComponentModule */]
+            ],
+        })
+    ], SignPageModule);
+    return SignPageModule;
+}());
+
+//# sourceMappingURL=sign.module.js.map
+
+/***/ }),
+
+/***/ 538:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(539);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(542);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(543);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_annotate_annotate__ = __webpack_require__(535);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_document_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__options_popover_page__ = __webpack_require__(545);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_blockstack_service__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_toPromise__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_toPromise__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+var $ = document.querySelectorAll.bind(document);
+
+var _a = __webpack_require__(992), Keystore = _a.Keystore, Keygen = _a.Keygen;
+var Eos = __webpack_require__(1036);
+var MyApp = (function () {
+    function MyApp(platform, statusBar, splashScreen, loadingCtrl, alertCtrl, documentService, popoverCtrl, menuCtrl, blockStackService, toastCntrl) {
+        this.platform = platform;
+        this.statusBar = statusBar;
+        this.splashScreen = splashScreen;
+        this.loadingCtrl = loadingCtrl;
+        this.alertCtrl = alertCtrl;
+        this.documentService = documentService;
+        this.popoverCtrl = popoverCtrl;
+        this.menuCtrl = menuCtrl;
+        this.blockStackService = blockStackService;
+        this.toastCntrl = toastCntrl;
+        this.rootPage = __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */];
+        this.isLoggedIn = false;
+        this.loginState = "Login";
+        this.fileName = "blockusign/pdf1.pdf";
+        this.avatar = "https://www.gravatar.com/avatar/?d=identicon";
+        this.initializeApp();
+        // used for an example of ngFor and navigation
+        this.pages = [
+            { title: '1). Upload PDF', component: __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */] },
+            { title: '2). Annotate PDF', component: __WEBPACK_IMPORTED_MODULE_5__pages_annotate_annotate__["a" /* AnnotatePage */] }
+        ];
+        // global vars
+        if (window.location.host.includes("localhost")) {
+            window.apiUrl = "http://localhost:5000";
+        }
+        else {
+            window.apiUrl = "";
+        }
+        this.loading = this.loadingCtrl.create({
+            content: 'Please wait...'
+        });
+        //this.createEosTestAccount('dnciofrew');
+    }
+    MyApp.prototype.initializeApp = function () {
+        var _this = this;
+        this.platform.ready().then(function () {
+            // Okay, so the platform is ready and our plugins are available.
+            // Here you can do any higher level native things you might need.
+            _this.loading.present();
+            _this.statusBar.styleDefault();
+            _this.splashScreen.hide();
+            _this.showProfile();
+            _this.setupDiscordMenu();
+        });
+    };
+    // openPage(page) {
+    //   // Reset the content nav to have just this page
+    //   // we wouldn't want the back button to show in this scenario
+    //   this.nav.setRoot(page.component);
+    // }
+    MyApp.prototype.login = function () {
+        var origin = window.location.origin;
+        blockstack.redirectToSignIn(origin, origin + '/manifest.json', ['store_write', 'publish_data', 'email']);
+    };
+    //Most applications should use this method for sign in unless they require more fine grained control over
+    //  how the authentication request is generated. If your app falls into this category, 
+    //  use generateAndStoreTransitKey, makeAuthRequest, and redirectToSignInWithAuthRequest to build your own sign in process.
+    //  https://blockstack.org/auth?authRequest=eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NksifQ.eyJqdGkiOiJjYzhhNzg0ZC1jZjk2LTRhNDMtOWMzOC0zYjA1YjE1ZWFmMTMiLCJpYXQiOjE1MzAxMTQyMjQsImV4cCI6MTUzMDExNzgyNCwiaXNzIjoiZGlkOmJ0Yy1hZGRyOjE2azFmRFBGMzVHSjZlNmROeWtHdHg0dlk5WjJwdXl6bTEiLCJwdWJsaWNfa2V5cyI6WyIwMjViZjBjNmM3N2UyNDViNzZmMWZhNDczYWE1MDAxNjdmOWQ5ZjY3ZTI0ZWFjMzA4YTdhMjQ2MDg1OTdhMGNiYzkiXSwiZG9tYWluX25hbWUiOiJodHRwOi8vbG9jYWxob3N0OjgxMDAiLCJtYW5pZmVzdF91cmkiOiJodHRwOi8vbG9jYWxob3N0OjgxMDAvbWFuaWZlc3QuanNvbiIsInJlZGlyZWN0X3VyaSI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODEwMCIsInZlcnNpb24iOiIxLjIuMCIsImRvX25vdF9pbmNsdWRlX3Byb2ZpbGUiOnRydWUsInN1cHBvcnRzX2h1Yl91cmwiOnRydWUsInNjb3BlcyI6WyJzdG9yZV93cml0ZSIsInB1Ymxpc2hfZGF0YSIsImVtYWlsIl19.nDIv-6RGft1gW8WK-Vuq5BDVmXDCEhBaZT-4kMTipZTWobasdokVIcMlU37jg5uT7JoubTOUR9srRW5xCxfXfQ
+    MyApp.prototype.loginAdvanced = function () {
+        // TODO
+        var transitKey = blockstack.generateAndStoreTransitKey();
+        var authRequestJwt = blockstack.makeAuthRequest();
+    };
+    MyApp.prototype.next = function () {
+        this.menuCtrl.close();
+        // if (this.nav.getActive().name == "AnnotatePage") {
+        //  this.nav.pop();
+        // }
+        // else{
+        //   jQuery('.block-pdf-page').empty();
+        // }
+        this.nav.setRoot("HomePage");
+        var guid = this.documentService.currentDoc.guid;
+        this.nav.push("AnnotatePage", {
+            guid: guid
+        });
+    };
+    MyApp.prototype.home = function () {
+        this.menuCtrl.close();
+        this.nav.setRoot("HomePage");
+        this.clearActive();
+        document.getElementById('file-upload').click();
+    };
+    MyApp.prototype.logout = function () {
+        blockstack.signUserOut(window.location.origin);
+    };
+    MyApp.prototype.showProfile = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            var profile, profileData, myProfile;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!blockstack.isUserSignedIn()) return [3 /*break*/, 2];
+                        profile = blockstack.loadUserData();
+                        this.name = profile.username;
+                        this.isLoggedIn = true;
+                        try {
+                            this.avatar = profile.profile.image[0].contentUrl;
+                        }
+                        catch (e) {
+                            console.log('no profile pic');
+                        }
+                        this.loginState = "[Logout]";
+                        this.documentService.getDocumentsIndex(true).then(function (data) {
+                            _this.documentsList = _this.documentService.documentsListFiltered; //data;
+                        });
+                        return [4 /*yield*/, this.blockStackService.getProfileData()];
+                    case 1:
+                        profileData = _a.sent();
+                        if (!profileData) {
+                            this.profileModal(this.email);
+                        }
+                        else {
+                            myProfile = JSON.parse(profileData);
+                            if (!myProfile.email) {
+                                this.profileModal(this.email);
+                            }
+                            else {
+                                this.name = myProfile.email;
+                                this.loadCachedNewDocWhenLoggedIn();
+                            }
+                        }
+                        //}
+                        this.loading.dismiss();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        if (blockstack.isSignInPending()) {
+                            this.cacheNewDocIfNotLoggedIn();
+                            blockstack.handlePendingSignIn().then(function (userData) {
+                                window.location = window.location.origin;
+                                this.documentsGetList();
+                                this.loading.dismiss();
+                            });
+                        }
+                        else {
+                            this.loading.dismiss();
+                            this.cacheNewDocIfNotLoggedIn();
+                            if (localStorage.getItem('signUp') !== 'true' && location.hostname !== "localhost") {
+                                window.location.href = "signup.html";
+                            }
+                            else {
+                                localStorage.setItem('signUp', 'true');
+                                this.login();
+                            }
+                        }
+                        _a.label = 3;
+                    case 3:
+                        // @todo Optimize this;
+                        this.blockStackService.saveAppPublicKey();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    MyApp.prototype.cacheNewDocIfNotLoggedIn = function () {
+        // if contains sign and docData
+        if (location.hash.includes("sign") && location.hash.includes("docData")) {
+            localStorage.setItem('docCache', location.href);
+        }
+    };
+    MyApp.prototype.loadCachedNewDocWhenLoggedIn = function () {
+        if (localStorage.getItem('docCache')) {
+            var l = localStorage.getItem('docCache');
+            localStorage.removeItem('docCache');
+            location.replace(l);
+        }
+    };
+    MyApp.prototype.setupDiscordMenu = function () {
+        $(".focusable, .button").forEach(function (el) {
+            // blur only on mouse click
+            // for accessibility, keep focus when keyboard focused
+            el.addEventListener("mousedown", function (e) { return e.preventDefault(); });
+            el.setAttribute("tabindex", "0");
+        });
+        $(".server").forEach(function (el) {
+            el.addEventListener("click", function () {
+                var activeServer = $(".server.active")[0];
+                activeServer.classList.remove("active");
+                activeServer.removeAttribute("aria-selected");
+                el.classList.add("active");
+                el.setAttribute("aria-selected", true);
+            });
+        });
+        $(".channel-text").forEach(function (el) {
+            el.addEventListener("click", function () {
+                $(".channel-text.active")[0].classList.remove("active");
+                el.classList.add("active");
+            });
+        });
+        // focus/blur on channel header click
+        $(".channels-header")[0].addEventListener("click", function (e) {
+            e.preventDefault();
+            var focused = document.activeElement === e.target;
+            focused ? e.target.blur() : e.target.focus();
+        });
+    };
+    MyApp.prototype.documentSelected = function (e, selectedDocument) {
+        this.documentService.currentDoc = selectedDocument;
+        this.next();
+    };
+    MyApp.prototype.documentsGetList = function () {
+        var _this = this;
+        this.loading.present();
+        this.documentService.getDocumentsIndex(true).then(function (data) {
+            _this.documentsList = _this.documentService.documentsListFiltered; //data;
+            _this.loading.dismiss();
+        });
+    };
+    MyApp.prototype.presentPopover = function (myEvent, item) {
+        var popover = this.popoverCtrl.create(__WEBPACK_IMPORTED_MODULE_7__options_popover_page__["a" /* OptionsPopoverPage */], { selectedDoc: item });
+        popover.present({
+            ev: myEvent,
+        });
+    };
+    MyApp.prototype.clearActive = function () {
+        $(".channel-text").forEach(function (el) {
+            try {
+                $(".channel-text.active")[0].classList.remove("active");
+            }
+            catch (e) { }
+        });
+    };
+    MyApp.prototype.profileModal = function (email) {
+        var _this = this;
+        var alert = this.alertCtrl.create({
+            title: 'Please enter your email',
+            enableBackdropDismiss: false,
+            inputs: [
+                {
+                    name: 'email',
+                    placeholder: 'email',
+                    value: email
+                }
+            ],
+            buttons: [
+                // {
+                //   text: 'Cancel',
+                //   role: 'cancel',
+                //   handler: data => {
+                //     console.log('Cancel clicked');
+                //   }
+                // },
+                {
+                    text: 'Ok',
+                    handler: function (data) {
+                        if (data.email.indexOf("@") != -1) {
+                            // logged in!
+                            // save here
+                            _this.blockStackService.setProfileData(data.email).then(function () {
+                                //location.reload(true);
+                                _this.showProfile();
+                                _this.setupDiscordMenu();
+                            });
+                        }
+                        else {
+                            // invalid login
+                            _this.showErrorToast('Invalid Email');
+                            return false;
+                        }
+                    }
+                }
+            ]
+        });
+        alert.present();
+    };
+    MyApp.prototype.showErrorToast = function (data) {
+        var toast = this.toastCntrl.create({
+            message: data,
+            duration: 3000,
+            position: 'top'
+        });
+        toast.onDidDismiss(function () {
+            console.log('Dismissed toast');
+        });
+        toast.present();
+    };
+    MyApp.prototype.filterDocumentList = function (signer, e) {
+        this.documentService.filterDocuments(signer);
+        this.documentsList = this.documentService.documentsListFiltered;
+        var activeServer = $(".server.active")[0];
+        activeServer.classList.remove("active");
+        activeServer.removeAttribute("aria-selected");
+        e.currentTarget.classList.add("active");
+        e.currentTarget.setAttribute("aria-selected", true);
+    };
+    MyApp.prototype.copyBtc = function () {
+        var el = document.getElementById('btc');
+        el.select();
+        document.execCommand("copy");
+        var toast = this.toastCntrl.create({
+            message: 'BTC Address copied ' + el.value,
+            duration: 2000,
+            position: 'middle'
+        });
+        toast.onDidDismiss(function () {
+            console.log('Dismissed toast');
+        });
+        toast.present();
+    };
+    MyApp.prototype.createEosTestAccount = function (accountName) {
+        var eosConfig = {
+            chainId: '038f4b0fc8ff18a4f0842a8f0564611f6e96e8535901dd45e43ac8691a1c4dca',
+            keyProvider: '5J5iLjrs7ZcV....',
+            httpEndpoint: 'http://dev.cryptolions.io:38888',
+            expireInSeconds: 60,
+            broadcast: true,
+            verbose: true,
+            sign: true
+        };
+        var eos = Eos(eosConfig);
+        eos.getInfo(function (error, result) { console.log("EOS ====> ", error, result); });
+        // let keyProvider =  '5HxyGPW66Cnj6n7m9uAH39hMDB9V7yaVK3XpF93nRPqHBn8HE7T';//'5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3'; // local testnet 
+        // let pubkey = 'EOS6G2h8AZQWXed9Rb2ShEuigz2e68xxY9EJXst2goi3xddLFckx6' ; // 'EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV';
+        // accountName = 'user5';
+        // let eos = Eos({keyProvider: keyProvider});
+        var pubkey = "EOS51WQkH86ibNRdaWmYyFLijTPC2NptYFtqQ24YUNg1znxvdLRWE";
+        accountName = "ghshdjeuyhfe";
+        eos.transaction(function (tr) {
+            tr.newaccount({
+                creator: 'blockusign',
+                name: accountName,
+                owner: pubkey,
+                active: pubkey // keys.publicKeys.active
+            });
+            tr.buyrambytes({
+                payer: 'blockusign',
+                receiver: accountName,
+                bytes: 5000
+            });
+            tr.delegatebw({
+                from: 'blockusign',
+                receiver: accountName,
+                stake_net_quantity: '1.0000 EOS',
+                stake_cpu_quantity: '1.0000 EOS',
+                transfer: 0
+            });
+        }).then(function (resp) {
+            console.log("EOS resp ", resp);
+        });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */])
+    ], MyApp.prototype, "nav", void 0);
+    MyApp = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"N:\code\git\blockusign\BlockUSign.Ionic\src\app\app.html"*/'<ion-split-pane>\n\n  <ion-menu [content]="content" class="no-print">\n\n    <div class="discord" style="height: 100%; width: 300px; color:whitesmoke">\n\n      \n\n      <!-- https://codepen.io/thesbros/pen/vxpMPp -->\n\n      <main class="container">\n\n        \n\n        <aside class="servers">\n\n          \n\n          <div class="servers-collection">\n\n            <div class="server focusable server-friends" role="button" aria-label="Friends unread">\n\n              <div class="server-icon">\n\n                <svg>\n\n                  <use xlink:href="#icon-friends" />\n\n                </svg>\n\n              </div>\n\n            </div>\n\n          </div>\n\n          \n\n          <div class="servers-collection">\n\n            <div class="server focusable active" role="button" aria-label="My Server" (click)="filterDocumentList(\'all\', $event)">\n\n              <div class="server-icon" style="font-weight:bold">\n\n                <!-- <img src="https://discordapp.com/assets/0e291f67c9274a1abdddeb3fd919cbaa.png" /> -->\n\n                ALL\n\n              </div>\n\n            </div>\n\n            <div *ngFor="let collaborator of documentService.documentsList">\n\n              <div class="server focusable " role="button" aria-label="My Server" \n\n              *ngIf="collaborator.signer.length > 0" (click)="filterDocumentList(collaborator.signer[0], $event)">\n\n                <div class="server-icon">\n\n                  {{ collaborator.signer[0].charAt(0).toUpperCase() }}\n\n                </div>\n\n                <span>{{ collaborator.signer[0] }}</span>\n\n              </div>\n\n            </div>\n\n          </div>\n\n        </aside>\n\n\n\n\n\n        <aside class="channels">\n\n          <header class="channels-header focusable" (click)="home()">\n\n            <img src="./assets/imgs/blockusignLogoSvg.svg" height="45px" width="45px" class="blockusign-logo" />\n\n            <img src="./assets/imgs/blockusignTextLoRes.png" width="120px" style="padding-left: 12px; padding-top: 10px" />\n\n            <h3 role="header" class="channels-header-name" style="padding-right: 10px;"></h3>\n\n          </header>\n\n          <section class="channels-list">\n\n           \n\n              <section (click)="home()" >\n\n                <button  ion-button icon-end \n\n                style="float:right;width:100%;background-color:green; color:white; border-radius: 30px; margin-bottom: 20px; margin-top: 20px">\n\n                New Doc\n\n                  <ion-icon name="md-add"></ion-icon>\n\n                </button>\n\n              </section>\n\n              \n\n       \n\n            \n\n            <header class="channels-list-header" (click)="home()">\n\n              <span>Documents</span>\n\n            </header>\n\n            \n\n            <ul class="channels-list-text">\n\n              <div *ngFor="let item of documentsList">\n\n                <li [ngClass]="(item == documentService.currentDoc) ? \'channel focusable channel-text active \' : \'channel focusable channel-text \' ">\n\n                  <span (click)="documentSelected($event, item)" style="width:90%">\n\n                    {{ item.fileName }}\n\n                  </span>\n\n                  <button ion-button icon-only style="padding-left: 10px; background: transparent" (click)="presentPopover($event, item)">\n\n                    <ion-icon name="more"></ion-icon>\n\n                  </button>\n\n                </li>\n\n              </div>\n\n            </ul>\n\n\n\n            \n\n            <header class="channels-list-header focusable" style="margin-top:50px" (click)="copyBtc()">\n\n              <span>Donate</span>\n\n            </header>\n\n            <ul class="channels-list-text">\n\n              <li class="channel focusable channel-text ">\n\n                <a href="https://github.com/ntheile/blockusign/issues" target="_blank" style="text-decoration:none; color: white">\n\n                  <span>\n\n                    <ion-icon name="ios-bug"></ion-icon> Report A Bug</span>\n\n                </a>\n\n              </li>\n\n              <li class="channel focusable channel-text " (click)="copyBtc()">\n\n                <span>\n\n                  <ion-icon name="logo-bitcoin"></ion-icon> BTC\n\n                  <br/>\n\n                  <input id="btc" type="text" readonly style="font-size: 10px; background:rgba(0,0,0,0);border:none; width:200px" value="1Jw3xsPzmYus3ke4XYXAHHyzpxD1sjQVta"\n\n                  />\n\n                </span>\n\n              </li>\n\n            </ul>\n\n            <header class="channels-list-header focusable" style="margin-top:50px">\n\n              <span>Features in progress</span>\n\n            </header>\n\n            <ul class="channels-list-text">\n\n              <li class="channel focusable channel-text ">\n\n                <span>\n\n                  <ion-icon name="md-copy"></ion-icon> Templates</span>\n\n              </li>\n\n              <li class="channel focusable channel-text ">\n\n                <span>\n\n                  <ion-icon name="md-calculator"></ion-icon> Analytics</span>\n\n              </li>\n\n              <li class="channel focusable channel-text ">\n\n                <span>\n\n                  <ion-icon name="md-document"></ion-icon> Smart Contracts</span>\n\n              </li>\n\n            </ul>\n\n          </section>\n\n\n\n          <footer class="channels-footer">\n\n            <!-- <img class="avatar" alt="Avatar" src="https://discordapp.com/assets/0e291f67c9274a1abdddeb3fd919cbaa.png" /> -->\n\n            <img class="avatar" alt="Avatar" [src]="avatar" />\n\n            <div class="channels-footer-details">\n\n              <span class="username">\n\n                <a (click)="logout()" style="float:right">{{name}} {{ loginState }} </a>\n\n              </span>\n\n            </div>\n\n          </footer>\n\n        </aside>\n\n\n\n      </main>\n\n    </div>\n\n  </ion-menu>\n\n\n\n  <ion-nav [root]="rootPage" main #content swipeBackEnabled="false" class="centerMe">\n\n    <!-- content injected here -->\n\n  </ion-nav>\n\n  <ion-fab left top menuToggle class="no-print">\n\n    <button ion-fab color="light" color="primary">\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n  </ion-fab>\n\n</ion-split-pane>\n\n\n\n<!-- ICONS -->\n\n<div style="visibility: hidden" class="no-print"> \n\n  <svg id="icon-friends" viewBox="-289 382 32 27.1">\n\n    <style id="style3">\n\n      .st0 {\n\n        fill: #FFFFFF;\n\n      }\n\n\n\n      .st1 {\n\n        opacity: 0.6;\n\n      }\n\n    </style>\n\n    <g id="g4145" fill="#fff">\n\n      <path id="path5" d="M-273 409.1c-4.1 0-6.8-.6-7.9-1.7-.5-.6-.6-1.1-.6-1.3 0-.7.1-2.9.6-3.8.1-.3.5-1 4.5-2.4-1.6-1.4-2.6-4-2.6-7.1 0-4.2 2.3-7 5.9-7.1h.1c3.6.1 5.9 2.8 5.9 7.1 0 3.1-1 5.7-2.6 7.1 4 1.4 4.4 2.1 4.5 2.4.4.9.5 3.1.6 3.8 0 .2 0 .7-.6 1.3-1.1 1.1-3.7 1.7-7.8 1.7zm0-2c5.1 0 6.2-.9 6.4-1.1-.1-1.1-.2-2.3-.3-2.7-.6-.4-2.9-1.3-4.8-1.9l-.7-.2-.1-2 .7-.3c1.7-.6 2.8-3.1 2.8-6.1 0-3.1-1.5-5-3.9-5.1-2.5 0-4 2-4 5.1 0 3 1.1 5.5 2.8 6.1l.7.3-.1 2-.7.2c-1.9.6-4.2 1.5-4.8 1.9-.1.4-.3 1.6-.3 2.7.1.2 1.3 1.1 6.3 1.1z"\n\n        class="st0" />\n\n      <g id="g7" class="st1" opacity=".6">\n\n        <path id="path9" d="M-257 402.4c0-.7-.1-2.9-.6-3.8-.1-.3-.5-1-4.5-2.4 1.6-1.4 2.6-4 2.6-7.1 0-4.2-2.3-7-5.9-7.1h-.1c-1.9 0-3.5.8-4.5 2.2.6.3 1.2.6 1.8 1 .7-.8 1.6-1.3 2.8-1.3 2.4 0 3.9 2 3.9 5.1 0 3-1.1 5.5-2.8 6.1l-.7.3.1 2 .7.2c1.9.6 4.3 1.5 4.8 1.9.1.4.3 1.6.3 2.7-.2.2-1 .8-3.8 1 .1.6.2 1.2.2 2 2.5-.2 4.2-.8 5-1.6.7-.5.7-1 .7-1.2z"\n\n          class="st0" />\n\n        <path id="path11" d="M-287 402.3c.1-1.1.2-2.3.3-2.7.6-.4 2.9-1.3 4.8-1.9l.7-.2.1-2-.7-.3c-1.6-.6-2.8-3.1-2.8-6.1 0-3.1 1.5-5 4-5.1 1.2 0 2.1.5 2.8 1.3.5-.4 1.1-.8 1.8-1-1-1.4-2.6-2.2-4.5-2.2h-.1c-3.6 0-5.9 2.8-5.9 7.1 0 3.1 1 5.7 2.6 7.1-4 1.4-4.4 2.1-4.5 2.4-.4.9-.5 3.1-.6 3.8 0 .2 0 .7.6 1.3.8.9 2.5 1.4 5.1 1.6 0-.7.1-1.4.2-2-2.9-.3-3.7-.9-3.9-1.1z"\n\n          class="st0" />\n\n      </g>\n\n    </g>\n\n  </svg>\n\n\n\n  <svg id="icon-mute" viewBox="0 0 16 16">\n\n    <path fill="#5D6063" d="M12.5,8v1c0,2.2-1.8,4-4,4h-1c-2.2,0-4-1.8-4-4V8h-1v1 c0,2.8,2.2,5,5,5v1H7c-0.3,0-0.5,0.2-0.5,0.5C6.5,15.8,6.7,16,7,16h2c0.3,0,0.5-0.2,0.5-0.5C9.5,15.2,9.3,15,9,15H8.5v-1 c2.8,0,5-2.2,5-5V8H12.5z M8,12c1.9,0,3.5-1.6,3.5-3.5v-5C11.5,1.6,9.9,0,8,0C6.1,0,4.5,1.6,4.5,3.5v5C4.5,10.4,6.1,12,8,12z M5.5,3.5C5.5,2.1,6.6,1,8,1c1.4,0,2.5,1.1,2.5,2.5v5C10.5,9.9,9.4,11,8,11c-1.4,0-2.5-1.1-2.5-2.5V3.5z"\n\n    />\n\n  </svg>\n\n\n\n  <svg id="icon-deafen" viewBox="0 0 16 16">\n\n    <path fill="#5D6063" d="M15.9,9C16,8.7,16,8.3,16,8c0-4.4-3.6-8-8-8C3.6,0,0,3.6,0,8 c0,0.3,0,0.7,0.1,1h0C0,9.2,0,9.3,0,9.5v4C0,14.3,0.7,15,1.5,15h2C4.3,15,5,14.3,5,13.5v-4C5,8.7,4.3,8,3.5,8h-2 C1.3,8,1.2,8,1,8.1C1,8.1,1,8,1,8c0-3.9,3.1-7,7-7c3.9,0,7,3.1,7,7c0,0,0,0.1,0,0.1C14.8,8,14.7,8,14.5,8h-2C11.7,8,11,8.7,11,9.5 v4c0,0.8,0.7,1.5,1.5,1.5h2c0.8,0,1.5-0.7,1.5-1.5v-4C16,9.3,16,9.2,15.9,9L15.9,9z M1.5,9h2C3.8,9,4,9.2,4,9.5v4 C4,13.8,3.8,14,3.5,14h-2C1.2,14,1,13.8,1,13.5v-4C1,9.2,1.2,9,1.5,9z M15,13.5c0,0.3-0.2,0.5-0.5,0.5h-2c-0.3,0-0.5-0.2-0.5-0.5 v-4C12,9.2,12.2,9,12.5,9h2C14.8,9,15,9.2,15,9.5V13.5z"\n\n    />\n\n  </svg>\n\n\n\n  <svg id="icon-settings" viewBox="0 0 16 16">\n\n    <path fill="#5D6063" d="M8,5C6.3,5,5,6.3,5,8c0,1.7,1.3,3,3,3c1.7,0,3-1.3,3-3 C11,6.3,9.7,5,8,5z M8,10c-1.1,0-2-0.9-2-2c0-1.1,0.9-2,2-2s2,0.9,2,2C10,9.1,9.1,10,8,10z M16,8c0-1-0.8-1.9-1.8-2 c-0.1-0.3-0.3-0.7-0.4-1c0.7-0.8,0.6-1.9-0.1-2.7c-0.7-0.7-1.9-0.8-2.7-0.1c-0.3-0.2-0.6-0.3-1-0.4C9.9,0.8,9,0,8,0 C7,0,6.1,0.8,6,1.8C5.7,1.9,5.3,2.1,5,2.2C4.2,1.6,3.1,1.6,2.3,2.3C1.6,3.1,1.6,4.2,2.2,5C2.1,5.3,1.9,5.7,1.8,6C0.8,6.1,0,7,0,8 c0,1,0.8,1.9,1.8,2c0.1,0.3,0.3,0.7,0.4,1c-0.7,0.8-0.6,1.9,0.1,2.7c0.7,0.7,1.9,0.8,2.7,0.1c0.3,0.2,0.6,0.3,1,0.4 C6.1,15.2,7,16,8,16c1,0,1.9-0.8,2-1.8c0.3-0.1,0.7-0.3,1-0.4c0.8,0.7,1.9,0.6,2.7-0.1c0.7-0.7,0.8-1.9,0.1-2.7 c0.2-0.3,0.3-0.6,0.4-1C15.2,9.9,16,9,16,8z M13.4,9c-0.1,0.8-0.5,1.5-0.9,2.1l0.4,0.4c0.4,0.4,0.4,1,0,1.4c-0.4,0.4-1,0.4-1.4,0 l-0.4-0.4C10.5,13,9.8,13.3,9,13.4V14c0,0.6-0.4,1-1,1c-0.6,0-1-0.4-1-1v-0.6c-0.8-0.1-1.5-0.5-2.1-0.9l-0.4,0.4 c-0.4,0.4-1,0.4-1.4,0c-0.4-0.4-0.4-1,0-1.4l0.4-0.4C3,10.5,2.7,9.8,2.6,9H2C1.4,9,1,8.6,1,8c0-0.6,0.4-1,1-1h0.6 C2.7,6.2,3,5.5,3.5,4.9L3.1,4.5c-0.4-0.4-0.4-1,0-1.4c0.4-0.4,1-0.4,1.4,0l0.4,0.4C5.5,3,6.2,2.7,7,2.6V2c0-0.6,0.4-1,1-1 c0.6,0,1,0.4,1,1v0.6c0.8,0.1,1.5,0.5,2.1,0.9l0.4-0.4c0.4-0.4,1-0.4,1.4,0c0.4,0.4,0.4,1,0,1.4l-0.4,0.4C13,5.5,13.3,6.2,13.4,7 H14c0.6,0,1,0.4,1,1c0,0.6-0.4,1-1,1H13.4z"\n\n    />\n\n  </svg>\n\n\n\n  <svg id="icon-dropdown" viewBox="0 0 18 18">\n\n    <style>\n\n      .dd {\n\n        stroke: #ABADAF;\n\n        stroke-width: 2px;\n\n        stroke-dashoffset: 1;\n\n        stroke-dasharray: inherit\n\n      }\n\n    </style>\n\n    <path class="dd" stroke="#FFF" d="M4.5 4.5l9 9" stroke-linecap="round"></path>\n\n    <path class="dd" stroke="#FFF" d="M13.5 4.5l-9 9" stroke-linecap="round"></path>\n\n  </svg>\n\n\n\n  <svg id="icon-invite" viewBox="0 0 16 16">\n\n    <path fill="#fff" d="M6.3,3.4L8,1.7v9.8C8,11.8,8.2,12,8.5,12C8.8,12,9,11.8,9,11.5V1.7l1.7,1.7c0.2,0.2,0.5,0.2,0.7,0c0.2-0.2,0.2-0.5,0-0.7L8.9,0.2c0,0,0,0,0-0.1C8.8,0,8.6,0,8.5,0c0,0,0,0,0,0c0,0,0,0,0,0C8.4,0,8.2,0,8.1,0.1c0,0,0,0,0,0.1L5.6,2.7c-0.2,0.2-0.2,0.5,0,0.7C5.8,3.5,6.1,3.5,6.3,3.4z M14,4h-1.5v1h1C13.8,5,14,5.2,14,5.5v9c0,0.3-0.2,0.5-0.5,0.5h-10C3.2,15,3,14.8,3,14.5v-9C3,5.2,3.2,5,3.5,5h1V4H3C2.4,4,2,4.4,2,5v10c0,0.6,0.4,1,1,1h11c0.6,0,1-0.4,1-1V5C15,4.4,14.6,4,14,4z"\n\n    />\n\n  </svg>\n\n\n\n  <svg id="icon-channel-settings" viewBox="0 0 16 16">\n\n    <path fill="#fff" d="M8,5C6.3,5,5,6.3,5,8c0,1.7,1.3,3,3,3c1.7,0,3-1.3,3-3 C11,6.3,9.7,5,8,5z M8,10c-1.1,0-2-0.9-2-2c0-1.1,0.9-2,2-2s2,0.9,2,2C10,9.1,9.1,10,8,10z M16,8c0-1-0.8-1.9-1.8-2 c-0.1-0.3-0.3-0.7-0.4-1c0.7-0.8,0.6-1.9-0.1-2.7c-0.7-0.7-1.9-0.8-2.7-0.1c-0.3-0.2-0.6-0.3-1-0.4C9.9,0.8,9,0,8,0 C7,0,6.1,0.8,6,1.8C5.7,1.9,5.3,2.1,5,2.2C4.2,1.6,3.1,1.6,2.3,2.3C1.6,3.1,1.6,4.2,2.2,5C2.1,5.3,1.9,5.7,1.8,6C0.8,6.1,0,7,0,8 c0,1,0.8,1.9,1.8,2c0.1,0.3,0.3,0.7,0.4,1c-0.7,0.8-0.6,1.9,0.1,2.7c0.7,0.7,1.9,0.8,2.7,0.1c0.3,0.2,0.6,0.3,1,0.4 C6.1,15.2,7,16,8,16c1,0,1.9-0.8,2-1.8c0.3-0.1,0.7-0.3,1-0.4c0.8,0.7,1.9,0.6,2.7-0.1c0.7-0.7,0.8-1.9,0.1-2.7 c0.2-0.3,0.3-0.6,0.4-1C15.2,9.9,16,9,16,8z M13.4,9c-0.1,0.8-0.5,1.5-0.9,2.1l0.4,0.4c0.4,0.4,0.4,1,0,1.4c-0.4,0.4-1,0.4-1.4,0 l-0.4-0.4C10.5,13,9.8,13.3,9,13.4V14c0,0.6-0.4,1-1,1c-0.6,0-1-0.4-1-1v-0.6c-0.8-0.1-1.5-0.5-2.1-0.9l-0.4,0.4 c-0.4,0.4-1,0.4-1.4,0c-0.4-0.4-0.4-1,0-1.4l0.4-0.4C3,10.5,2.7,9.8,2.6,9H2C1.4,9,1,8.6,1,8c0-0.6,0.4-1,1-1h0.6 C2.7,6.2,3,5.5,3.5,4.9L3.1,4.5c-0.4-0.4-0.4-1,0-1.4c0.4-0.4,1-0.4,1.4,0l0.4,0.4C5.5,3,6.2,2.7,7,2.6V2c0-0.6,0.4-1,1-1 c0.6,0,1,0.4,1,1v0.6c0.8,0.1,1.5,0.5,2.1,0.9l0.4-0.4c0.4-0.4,1-0.4,1.4,0c0.4,0.4,0.4,1,0,1.4l-0.4,0.4C13,5.5,13.3,6.2,13.4,7 H14c0.6,0,1,0.4,1,1c0,0.6-0.4,1-1,1H13.4z"\n\n    />\n\n  </svg>\n\n</div>'/*ion-inline-end:"N:\code\git\blockusign\BlockUSign.Ionic\src\app\app.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */],
+            __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],
+            __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_6__services_document_service__["a" /* DocumentService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* PopoverController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* MenuController */],
+            __WEBPACK_IMPORTED_MODULE_8__services_blockstack_service__["a" /* BlockStackService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* ToastController */]])
+    ], MyApp);
+    return MyApp;
+}());
+
+//# sourceMappingURL=app.component.js.map
+
+/***/ }),
+
+/***/ 543:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2485,7 +2966,7 @@ var HomeModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_pdf_annotate__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_pdf_annotate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_pdf_annotate__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_global_service__ = __webpack_require__(538);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_global_service__ = __webpack_require__(544);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_document_service__ = __webpack_require__(36);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2969,7 +3450,7 @@ var HomePage = (function () {
     ], HomePage.prototype, "spinner", void 0);
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/home/home.html"*/'<ion-content>\n\n<block-steps activeStep="1">\n</block-steps>\n<br/><br/>\n\n  <ion-grid>\n\n    <ion-row class="uploader-row" >\n      <ion-col>\n\n        <div >\n          <!-- Upload  -->\n          <form id="file-upload-form" #fileUploadForm class="uploader" onclick="$(\'.pdfSelectTxt\').text(\'loading...\')">\n            <input id="file-upload" #fileUpload type="file" name="fileUpload" accept=".pdf" />\n            <label for="file-upload" id="file-drag" #fileDrag>\n              <img id="file-image" #fileImage src="#" alt="Preview" class="hidden">\n              <div id="start" #start>\n                <i class="fa fa-download" aria-hidden="true"></i>\n                <div class="pdfSelectTxt">Select a PDF</div>\n                <div id="notimage" class="hidden">Please select an image</div>\n                <span id="file-upload-btn" #fileUploadBtn class="btn btn-primary">Select a file</span>\n                <ion-spinner *ngIf="isSpinning" class="spinner" #spinner></ion-spinner>\n              </div>\n              <div id="response" #response class="hidden">\n                <div id="messages" #messages ></div>\n                <progress class="progress" id="file-progress" #fileProgress value="0">\n                  <span>0</span>%\n                </progress>\n              </div>\n            </label>\n          </form>\n\n\n\n        </div>\n      </ion-col>\n    </ion-row>\n\n\n    <!-- <ion-row>\n      <ion-col>\n        <video id="video" width="612" height="792"></video>\n        <canvas id="canvasCamera" width="612" height="792"></canvas>\n      </ion-col>\n    </ion-row>\n -->\n\n    <ion-row>\n      <ion-col>\n        <div>\n          <br/>\n          <canvas id="the-canvas" #theCanvas></canvas>\n        </div>\n      </ion-col>\n    </ion-row>\n\n  </ion-grid>\n\n\n  <!-- <steps>\n    \n  </steps> -->\n\n  <!-- <ion-fab top left style="margin-top:130px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab>\n    <button id="snap">Snap Photo</button>\n    <button id="downloadpdf">Download as pdf</button>\n  </ion-fab> -->\n</ion-content>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"N:\code\git\blockusign\BlockUSign.Ionic\src\pages\home\home.html"*/'<ion-content>\n\n\n\n<block-steps activeStep="1">\n\n</block-steps>\n\n<br/><br/>\n\n\n\n  <ion-grid>\n\n\n\n    <ion-row class="uploader-row" >\n\n      <ion-col>\n\n\n\n        <div >\n\n          <!-- Upload  -->\n\n          <form id="file-upload-form" #fileUploadForm class="uploader" onclick="$(\'.pdfSelectTxt\').text(\'loading...\')">\n\n            <input id="file-upload" #fileUpload type="file" name="fileUpload" accept=".pdf" />\n\n            <label for="file-upload" id="file-drag" #fileDrag>\n\n              <img id="file-image" #fileImage src="#" alt="Preview" class="hidden">\n\n              <div id="start" #start>\n\n                <i class="fa fa-download" aria-hidden="true"></i>\n\n                <div class="pdfSelectTxt">Select a PDF</div>\n\n                <div id="notimage" class="hidden">Please select an image</div>\n\n                <span id="file-upload-btn" #fileUploadBtn class="btn btn-primary">Select a file</span>\n\n                <ion-spinner *ngIf="isSpinning" class="spinner" #spinner></ion-spinner>\n\n              </div>\n\n              <div id="response" #response class="hidden">\n\n                <div id="messages" #messages ></div>\n\n                <progress class="progress" id="file-progress" #fileProgress value="0">\n\n                  <span>0</span>%\n\n                </progress>\n\n              </div>\n\n            </label>\n\n          </form>\n\n\n\n\n\n\n\n        </div>\n\n      </ion-col>\n\n    </ion-row>\n\n\n\n\n\n    <!-- <ion-row>\n\n      <ion-col>\n\n        <video id="video" width="612" height="792"></video>\n\n        <canvas id="canvasCamera" width="612" height="792"></canvas>\n\n      </ion-col>\n\n    </ion-row>\n\n -->\n\n\n\n    <ion-row>\n\n      <ion-col>\n\n        <div>\n\n          <br/>\n\n          <canvas id="the-canvas" #theCanvas></canvas>\n\n        </div>\n\n      </ion-col>\n\n    </ion-row>\n\n\n\n  </ion-grid>\n\n\n\n\n\n  <!-- <steps>\n\n    \n\n  </steps> -->\n\n\n\n  <!-- <ion-fab top left style="margin-top:130px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab>\n\n    <button id="snap">Snap Photo</button>\n\n    <button id="downloadpdf">Download as pdf</button>\n\n  </ion-fab> -->\n\n</ion-content>'/*ion-inline-end:"N:\code\git\blockusign\BlockUSign.Ionic\src\pages\home\home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
@@ -2984,7 +3465,7 @@ var HomePage = (function () {
 
 /***/ }),
 
-/***/ 538:
+/***/ 544:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3015,534 +3496,7 @@ var GlobalService = (function () {
 
 /***/ }),
 
-/***/ 539:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReviewPageModule", function() { return ReviewPageModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__review__ = __webpack_require__(987);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(71);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-
-var ReviewPageModule = (function () {
-    function ReviewPageModule() {
-    }
-    ReviewPageModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
-            declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__review__["a" /* ReviewPage */],
-            ],
-            imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__review__["a" /* ReviewPage */]),
-                __WEBPACK_IMPORTED_MODULE_3__components_components_module__["a" /* BlockStepsComponentModule */]
-            ],
-        })
-    ], ReviewPageModule);
-    return ReviewPageModule;
-}());
-
-//# sourceMappingURL=review.module.js.map
-
-/***/ }),
-
-/***/ 540:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignPageModule", function() { return SignPageModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sign__ = __webpack_require__(988);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(71);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-
-var SignPageModule = (function () {
-    function SignPageModule() {
-    }
-    SignPageModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
-            declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__sign__["a" /* SignPage */],
-            ],
-            imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__sign__["a" /* SignPage */]),
-                __WEBPACK_IMPORTED_MODULE_3__components_components_module__["a" /* BlockStepsComponentModule */]
-            ],
-        })
-    ], SignPageModule);
-    return SignPageModule;
-}());
-
-//# sourceMappingURL=sign.module.js.map
-
-/***/ }),
-
-/***/ 541:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(542);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(545);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(537);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_annotate_annotate__ = __webpack_require__(303);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_document_service__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__options_popover_page__ = __webpack_require__(546);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_blockstack_service__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_toPromise__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_toPromise__);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-var $ = document.querySelectorAll.bind(document);
-
-var _a = __webpack_require__(992), Keystore = _a.Keystore, Keygen = _a.Keygen;
-var Eos = __webpack_require__(1036);
-var MyApp = (function () {
-    function MyApp(platform, statusBar, splashScreen, loadingCtrl, alertCtrl, documentService, popoverCtrl, menuCtrl, blockStackService, toastCntrl) {
-        this.platform = platform;
-        this.statusBar = statusBar;
-        this.splashScreen = splashScreen;
-        this.loadingCtrl = loadingCtrl;
-        this.alertCtrl = alertCtrl;
-        this.documentService = documentService;
-        this.popoverCtrl = popoverCtrl;
-        this.menuCtrl = menuCtrl;
-        this.blockStackService = blockStackService;
-        this.toastCntrl = toastCntrl;
-        this.rootPage = __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */];
-        this.isLoggedIn = false;
-        this.loginState = "Login";
-        this.fileName = "blockusign/pdf1.pdf";
-        this.avatar = "https://www.gravatar.com/avatar/?d=identicon";
-        this.initializeApp();
-        // used for an example of ngFor and navigation
-        this.pages = [
-            { title: '1). Upload PDF', component: __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */] },
-            { title: '2). Annotate PDF', component: __WEBPACK_IMPORTED_MODULE_5__pages_annotate_annotate__["a" /* AnnotatePage */] }
-        ];
-        // global vars
-        if (window.location.host.includes("localhost")) {
-            window.apiUrl = "http://localhost:5000";
-        }
-        else {
-            window.apiUrl = "";
-        }
-        this.loading = this.loadingCtrl.create({
-            content: 'Please wait...'
-        });
-        //this.createEosTestAccount('dnciofrew');
-    }
-    MyApp.prototype.initializeApp = function () {
-        var _this = this;
-        this.platform.ready().then(function () {
-            // Okay, so the platform is ready and our plugins are available.
-            // Here you can do any higher level native things you might need.
-            _this.loading.present();
-            _this.statusBar.styleDefault();
-            _this.splashScreen.hide();
-            _this.showProfile();
-            _this.setupDiscordMenu();
-        });
-    };
-    // openPage(page) {
-    //   // Reset the content nav to have just this page
-    //   // we wouldn't want the back button to show in this scenario
-    //   this.nav.setRoot(page.component);
-    // }
-    MyApp.prototype.login = function () {
-        var origin = window.location.origin;
-        blockstack.redirectToSignIn(origin, origin + '/manifest.json', ['store_write', 'publish_data', 'email']);
-    };
-    //Most applications should use this method for sign in unless they require more fine grained control over
-    //  how the authentication request is generated. If your app falls into this category, 
-    //  use generateAndStoreTransitKey, makeAuthRequest, and redirectToSignInWithAuthRequest to build your own sign in process.
-    //  https://blockstack.org/auth?authRequest=eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NksifQ.eyJqdGkiOiJjYzhhNzg0ZC1jZjk2LTRhNDMtOWMzOC0zYjA1YjE1ZWFmMTMiLCJpYXQiOjE1MzAxMTQyMjQsImV4cCI6MTUzMDExNzgyNCwiaXNzIjoiZGlkOmJ0Yy1hZGRyOjE2azFmRFBGMzVHSjZlNmROeWtHdHg0dlk5WjJwdXl6bTEiLCJwdWJsaWNfa2V5cyI6WyIwMjViZjBjNmM3N2UyNDViNzZmMWZhNDczYWE1MDAxNjdmOWQ5ZjY3ZTI0ZWFjMzA4YTdhMjQ2MDg1OTdhMGNiYzkiXSwiZG9tYWluX25hbWUiOiJodHRwOi8vbG9jYWxob3N0OjgxMDAiLCJtYW5pZmVzdF91cmkiOiJodHRwOi8vbG9jYWxob3N0OjgxMDAvbWFuaWZlc3QuanNvbiIsInJlZGlyZWN0X3VyaSI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODEwMCIsInZlcnNpb24iOiIxLjIuMCIsImRvX25vdF9pbmNsdWRlX3Byb2ZpbGUiOnRydWUsInN1cHBvcnRzX2h1Yl91cmwiOnRydWUsInNjb3BlcyI6WyJzdG9yZV93cml0ZSIsInB1Ymxpc2hfZGF0YSIsImVtYWlsIl19.nDIv-6RGft1gW8WK-Vuq5BDVmXDCEhBaZT-4kMTipZTWobasdokVIcMlU37jg5uT7JoubTOUR9srRW5xCxfXfQ
-    MyApp.prototype.loginAdvanced = function () {
-        // TODO
-        var transitKey = blockstack.generateAndStoreTransitKey();
-        var authRequestJwt = blockstack.makeAuthRequest();
-    };
-    MyApp.prototype.next = function () {
-        this.menuCtrl.close();
-        // if (this.nav.getActive().name == "AnnotatePage") {
-        //  this.nav.pop();
-        // }
-        // else{
-        //   jQuery('.block-pdf-page').empty();
-        // }
-        this.nav.setRoot("HomePage");
-        var guid = this.documentService.currentDoc.guid;
-        this.nav.push("AnnotatePage", {
-            guid: guid
-        });
-    };
-    MyApp.prototype.home = function () {
-        this.menuCtrl.close();
-        this.nav.setRoot("HomePage");
-        this.clearActive();
-        document.getElementById('file-upload').click();
-    };
-    MyApp.prototype.logout = function () {
-        blockstack.signUserOut(window.location.origin);
-    };
-    MyApp.prototype.showProfile = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            var profile, profileData, myProfile;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (!blockstack.isUserSignedIn()) return [3 /*break*/, 2];
-                        profile = blockstack.loadUserData();
-                        this.name = profile.username;
-                        this.isLoggedIn = true;
-                        try {
-                            this.avatar = profile.profile.image[0].contentUrl;
-                        }
-                        catch (e) {
-                            console.log('no profile pic');
-                        }
-                        this.loginState = "[Logout]";
-                        this.documentService.getDocumentsIndex(true).then(function (data) {
-                            _this.documentsList = _this.documentService.documentsListFiltered; //data;
-                        });
-                        return [4 /*yield*/, this.blockStackService.getProfileData()];
-                    case 1:
-                        profileData = _a.sent();
-                        if (!profileData) {
-                            this.profileModal(this.email);
-                        }
-                        else {
-                            myProfile = JSON.parse(profileData);
-                            if (!myProfile.email) {
-                                this.profileModal(this.email);
-                            }
-                            else {
-                                this.name = myProfile.email;
-                                this.loadCachedNewDocWhenLoggedIn();
-                            }
-                        }
-                        //}
-                        this.loading.dismiss();
-                        return [3 /*break*/, 3];
-                    case 2:
-                        if (blockstack.isSignInPending()) {
-                            this.cacheNewDocIfNotLoggedIn();
-                            blockstack.handlePendingSignIn().then(function (userData) {
-                                window.location = window.location.origin;
-                                this.documentsGetList();
-                                this.loading.dismiss();
-                            });
-                        }
-                        else {
-                            this.loading.dismiss();
-                            this.cacheNewDocIfNotLoggedIn();
-                            if (localStorage.getItem('signUp') !== 'true' && location.hostname !== "localhost") {
-                                window.location.href = "signup.html";
-                            }
-                            else {
-                                localStorage.setItem('signUp', 'true');
-                                this.login();
-                            }
-                        }
-                        _a.label = 3;
-                    case 3:
-                        // @todo Optimize this;
-                        this.blockStackService.saveAppPublicKey();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    MyApp.prototype.cacheNewDocIfNotLoggedIn = function () {
-        // if contains sign and docData
-        if (location.hash.includes("sign") && location.hash.includes("docData")) {
-            localStorage.setItem('docCache', location.href);
-        }
-    };
-    MyApp.prototype.loadCachedNewDocWhenLoggedIn = function () {
-        if (localStorage.getItem('docCache')) {
-            var l = localStorage.getItem('docCache');
-            localStorage.removeItem('docCache');
-            location.replace(l);
-        }
-    };
-    MyApp.prototype.setupDiscordMenu = function () {
-        $(".focusable, .button").forEach(function (el) {
-            // blur only on mouse click
-            // for accessibility, keep focus when keyboard focused
-            el.addEventListener("mousedown", function (e) { return e.preventDefault(); });
-            el.setAttribute("tabindex", "0");
-        });
-        $(".server").forEach(function (el) {
-            el.addEventListener("click", function () {
-                var activeServer = $(".server.active")[0];
-                activeServer.classList.remove("active");
-                activeServer.removeAttribute("aria-selected");
-                el.classList.add("active");
-                el.setAttribute("aria-selected", true);
-            });
-        });
-        $(".channel-text").forEach(function (el) {
-            el.addEventListener("click", function () {
-                $(".channel-text.active")[0].classList.remove("active");
-                el.classList.add("active");
-            });
-        });
-        // focus/blur on channel header click
-        $(".channels-header")[0].addEventListener("click", function (e) {
-            e.preventDefault();
-            var focused = document.activeElement === e.target;
-            focused ? e.target.blur() : e.target.focus();
-        });
-    };
-    MyApp.prototype.documentSelected = function (e, selectedDocument) {
-        this.documentService.currentDoc = selectedDocument;
-        this.next();
-    };
-    MyApp.prototype.documentsGetList = function () {
-        var _this = this;
-        this.loading.present();
-        this.documentService.getDocumentsIndex(true).then(function (data) {
-            _this.documentsList = _this.documentService.documentsListFiltered; //data;
-            _this.loading.dismiss();
-        });
-    };
-    MyApp.prototype.presentPopover = function (myEvent, item) {
-        var popover = this.popoverCtrl.create(__WEBPACK_IMPORTED_MODULE_7__options_popover_page__["a" /* OptionsPopoverPage */], { selectedDoc: item });
-        popover.present({
-            ev: myEvent,
-        });
-    };
-    MyApp.prototype.clearActive = function () {
-        $(".channel-text").forEach(function (el) {
-            try {
-                $(".channel-text.active")[0].classList.remove("active");
-            }
-            catch (e) { }
-        });
-    };
-    MyApp.prototype.profileModal = function (email) {
-        var _this = this;
-        var alert = this.alertCtrl.create({
-            title: 'Please enter your email',
-            enableBackdropDismiss: false,
-            inputs: [
-                {
-                    name: 'email',
-                    placeholder: 'email',
-                    value: email
-                }
-            ],
-            buttons: [
-                // {
-                //   text: 'Cancel',
-                //   role: 'cancel',
-                //   handler: data => {
-                //     console.log('Cancel clicked');
-                //   }
-                // },
-                {
-                    text: 'Ok',
-                    handler: function (data) {
-                        if (data.email.indexOf("@") != -1) {
-                            // logged in!
-                            // save here
-                            _this.blockStackService.setProfileData(data.email).then(function () {
-                                //location.reload(true);
-                                _this.showProfile();
-                                _this.setupDiscordMenu();
-                            });
-                        }
-                        else {
-                            // invalid login
-                            _this.showErrorToast('Invalid Email');
-                            return false;
-                        }
-                    }
-                }
-            ]
-        });
-        alert.present();
-    };
-    MyApp.prototype.showErrorToast = function (data) {
-        var toast = this.toastCntrl.create({
-            message: data,
-            duration: 3000,
-            position: 'top'
-        });
-        toast.onDidDismiss(function () {
-            console.log('Dismissed toast');
-        });
-        toast.present();
-    };
-    MyApp.prototype.filterDocumentList = function (signer, e) {
-        this.documentService.filterDocuments(signer);
-        this.documentsList = this.documentService.documentsListFiltered;
-        var activeServer = $(".server.active")[0];
-        activeServer.classList.remove("active");
-        activeServer.removeAttribute("aria-selected");
-        e.currentTarget.classList.add("active");
-        e.currentTarget.setAttribute("aria-selected", true);
-    };
-    MyApp.prototype.copyBtc = function () {
-        var el = document.getElementById('btc');
-        el.select();
-        document.execCommand("copy");
-        var toast = this.toastCntrl.create({
-            message: 'BTC Address copied ' + el.value,
-            duration: 2000,
-            position: 'middle'
-        });
-        toast.onDidDismiss(function () {
-            console.log('Dismissed toast');
-        });
-        toast.present();
-    };
-    MyApp.prototype.createEosTestAccount = function (accountName) {
-        var eosConfig = {
-            chainId: '038f4b0fc8ff18a4f0842a8f0564611f6e96e8535901dd45e43ac8691a1c4dca',
-            keyProvider: '5J5iLjrs7ZcV....',
-            httpEndpoint: 'http://dev.cryptolions.io:38888',
-            expireInSeconds: 60,
-            broadcast: true,
-            verbose: true,
-            sign: true
-        };
-        var eos = Eos(eosConfig);
-        eos.getInfo(function (error, result) { console.log("EOS ====> ", error, result); });
-        // let keyProvider =  '5HxyGPW66Cnj6n7m9uAH39hMDB9V7yaVK3XpF93nRPqHBn8HE7T';//'5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3'; // local testnet 
-        // let pubkey = 'EOS6G2h8AZQWXed9Rb2ShEuigz2e68xxY9EJXst2goi3xddLFckx6' ; // 'EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV';
-        // accountName = 'user5';
-        // let eos = Eos({keyProvider: keyProvider});
-        var pubkey = "EOS51WQkH86ibNRdaWmYyFLijTPC2NptYFtqQ24YUNg1znxvdLRWE";
-        accountName = "ghshdjeuyhfe";
-        eos.transaction(function (tr) {
-            tr.newaccount({
-                creator: 'blockusign',
-                name: accountName,
-                owner: pubkey,
-                active: pubkey // keys.publicKeys.active
-            });
-            tr.buyrambytes({
-                payer: 'blockusign',
-                receiver: accountName,
-                bytes: 5000
-            });
-            tr.delegatebw({
-                from: 'blockusign',
-                receiver: accountName,
-                stake_net_quantity: '1.0000 EOS',
-                stake_cpu_quantity: '1.0000 EOS',
-                transfer: 0
-            });
-        }).then(function (resp) {
-            console.log("EOS resp ", resp);
-        });
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */])
-    ], MyApp.prototype, "nav", void 0);
-    MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/app/app.html"*/'<ion-split-pane>\n  <ion-menu [content]="content" class="no-print">\n    <div class="discord" style="height: 100%; width: 300px; color:whitesmoke">\n      \n      <!-- https://codepen.io/thesbros/pen/vxpMPp -->\n      <main class="container">\n        \n        <aside class="servers">\n          \n          <div class="servers-collection">\n            <div class="server focusable server-friends" role="button" aria-label="Friends unread">\n              <div class="server-icon">\n                <svg>\n                  <use xlink:href="#icon-friends" />\n                </svg>\n              </div>\n            </div>\n          </div>\n          \n          <div class="servers-collection">\n            <div class="server focusable active" role="button" aria-label="My Server" (click)="filterDocumentList(\'all\', $event)">\n              <div class="server-icon" style="font-weight:bold">\n                <!-- <img src="https://discordapp.com/assets/0e291f67c9274a1abdddeb3fd919cbaa.png" /> -->\n                ALL\n              </div>\n            </div>\n            <div *ngFor="let collaborator of documentService.documentsList">\n              <div class="server focusable " role="button" aria-label="My Server" \n              *ngIf="collaborator.signer.length > 0" (click)="filterDocumentList(collaborator.signer[0], $event)">\n                <div class="server-icon">\n                  {{ collaborator.signer[0].charAt(0).toUpperCase() }}\n                </div>\n                <span>{{ collaborator.signer[0] }}</span>\n              </div>\n            </div>\n          </div>\n        </aside>\n\n\n        <aside class="channels">\n          <header class="channels-header focusable" (click)="home()">\n            <img src="./assets/imgs/blockusignLogoSvg.svg" height="45px" width="45px" class="blockusign-logo" />\n            <img src="./assets/imgs/blockusignTextLoRes.png" width="120px" style="padding-left: 12px; padding-top: 10px" />\n            <h3 role="header" class="channels-header-name" style="padding-right: 10px;"></h3>\n          </header>\n          <section class="channels-list">\n           \n              <section (click)="home()" >\n                <button  ion-button icon-end \n                style="float:right;width:100%;background-color:green; color:white; border-radius: 30px; margin-bottom: 20px; margin-top: 20px">\n                New Doc\n                  <ion-icon name="md-add"></ion-icon>\n                </button>\n              </section>\n              \n       \n            \n            <header class="channels-list-header" (click)="home()">\n              <span>Documents</span>\n            </header>\n            \n            <ul class="channels-list-text">\n              <div *ngFor="let item of documentsList">\n                <li [ngClass]="(item == documentService.currentDoc) ? \'channel focusable channel-text active \' : \'channel focusable channel-text \' ">\n                  <span (click)="documentSelected($event, item)" style="width:90%">\n                    {{ item.fileName }}\n                  </span>\n                  <button ion-button icon-only style="padding-left: 10px; background: transparent" (click)="presentPopover($event, item)">\n                    <ion-icon name="more"></ion-icon>\n                  </button>\n                </li>\n              </div>\n            </ul>\n\n            \n            <header class="channels-list-header focusable" style="margin-top:50px" (click)="copyBtc()">\n              <span>Donate</span>\n            </header>\n            <ul class="channels-list-text">\n              <li class="channel focusable channel-text ">\n                <a href="https://github.com/ntheile/blockusign/issues" target="_blank" style="text-decoration:none; color: white">\n                  <span>\n                    <ion-icon name="ios-bug"></ion-icon> Report A Bug</span>\n                </a>\n              </li>\n              <li class="channel focusable channel-text " (click)="copyBtc()">\n                <span>\n                  <ion-icon name="logo-bitcoin"></ion-icon> BTC\n                  <br/>\n                  <input id="btc" type="text" readonly style="font-size: 10px; background:rgba(0,0,0,0);border:none; width:200px" value="1Jw3xsPzmYus3ke4XYXAHHyzpxD1sjQVta"\n                  />\n                </span>\n              </li>\n            </ul>\n            <header class="channels-list-header focusable" style="margin-top:50px">\n              <span>Features in progress</span>\n            </header>\n            <ul class="channels-list-text">\n              <li class="channel focusable channel-text ">\n                <span>\n                  <ion-icon name="md-copy"></ion-icon> Templates</span>\n              </li>\n              <li class="channel focusable channel-text ">\n                <span>\n                  <ion-icon name="md-calculator"></ion-icon> Analytics</span>\n              </li>\n              <li class="channel focusable channel-text ">\n                <span>\n                  <ion-icon name="md-document"></ion-icon> Smart Contracts</span>\n              </li>\n            </ul>\n          </section>\n\n          <footer class="channels-footer">\n            <!-- <img class="avatar" alt="Avatar" src="https://discordapp.com/assets/0e291f67c9274a1abdddeb3fd919cbaa.png" /> -->\n            <img class="avatar" alt="Avatar" [src]="avatar" />\n            <div class="channels-footer-details">\n              <span class="username">\n                <a (click)="logout()" style="float:right">{{name}} {{ loginState }} </a>\n              </span>\n            </div>\n          </footer>\n        </aside>\n\n      </main>\n    </div>\n  </ion-menu>\n\n  <ion-nav [root]="rootPage" main #content swipeBackEnabled="false" class="centerMe">\n    <!-- content injected here -->\n  </ion-nav>\n  <ion-fab left top menuToggle class="no-print">\n    <button ion-fab color="light" color="primary">\n      <ion-icon name="menu"></ion-icon>\n    </button>\n  </ion-fab>\n</ion-split-pane>\n\n<!-- ICONS -->\n<div style="visibility: hidden" class="no-print"> \n  <svg id="icon-friends" viewBox="-289 382 32 27.1">\n    <style id="style3">\n      .st0 {\n        fill: #FFFFFF;\n      }\n\n      .st1 {\n        opacity: 0.6;\n      }\n    </style>\n    <g id="g4145" fill="#fff">\n      <path id="path5" d="M-273 409.1c-4.1 0-6.8-.6-7.9-1.7-.5-.6-.6-1.1-.6-1.3 0-.7.1-2.9.6-3.8.1-.3.5-1 4.5-2.4-1.6-1.4-2.6-4-2.6-7.1 0-4.2 2.3-7 5.9-7.1h.1c3.6.1 5.9 2.8 5.9 7.1 0 3.1-1 5.7-2.6 7.1 4 1.4 4.4 2.1 4.5 2.4.4.9.5 3.1.6 3.8 0 .2 0 .7-.6 1.3-1.1 1.1-3.7 1.7-7.8 1.7zm0-2c5.1 0 6.2-.9 6.4-1.1-.1-1.1-.2-2.3-.3-2.7-.6-.4-2.9-1.3-4.8-1.9l-.7-.2-.1-2 .7-.3c1.7-.6 2.8-3.1 2.8-6.1 0-3.1-1.5-5-3.9-5.1-2.5 0-4 2-4 5.1 0 3 1.1 5.5 2.8 6.1l.7.3-.1 2-.7.2c-1.9.6-4.2 1.5-4.8 1.9-.1.4-.3 1.6-.3 2.7.1.2 1.3 1.1 6.3 1.1z"\n        class="st0" />\n      <g id="g7" class="st1" opacity=".6">\n        <path id="path9" d="M-257 402.4c0-.7-.1-2.9-.6-3.8-.1-.3-.5-1-4.5-2.4 1.6-1.4 2.6-4 2.6-7.1 0-4.2-2.3-7-5.9-7.1h-.1c-1.9 0-3.5.8-4.5 2.2.6.3 1.2.6 1.8 1 .7-.8 1.6-1.3 2.8-1.3 2.4 0 3.9 2 3.9 5.1 0 3-1.1 5.5-2.8 6.1l-.7.3.1 2 .7.2c1.9.6 4.3 1.5 4.8 1.9.1.4.3 1.6.3 2.7-.2.2-1 .8-3.8 1 .1.6.2 1.2.2 2 2.5-.2 4.2-.8 5-1.6.7-.5.7-1 .7-1.2z"\n          class="st0" />\n        <path id="path11" d="M-287 402.3c.1-1.1.2-2.3.3-2.7.6-.4 2.9-1.3 4.8-1.9l.7-.2.1-2-.7-.3c-1.6-.6-2.8-3.1-2.8-6.1 0-3.1 1.5-5 4-5.1 1.2 0 2.1.5 2.8 1.3.5-.4 1.1-.8 1.8-1-1-1.4-2.6-2.2-4.5-2.2h-.1c-3.6 0-5.9 2.8-5.9 7.1 0 3.1 1 5.7 2.6 7.1-4 1.4-4.4 2.1-4.5 2.4-.4.9-.5 3.1-.6 3.8 0 .2 0 .7.6 1.3.8.9 2.5 1.4 5.1 1.6 0-.7.1-1.4.2-2-2.9-.3-3.7-.9-3.9-1.1z"\n          class="st0" />\n      </g>\n    </g>\n  </svg>\n\n  <svg id="icon-mute" viewBox="0 0 16 16">\n    <path fill="#5D6063" d="M12.5,8v1c0,2.2-1.8,4-4,4h-1c-2.2,0-4-1.8-4-4V8h-1v1 c0,2.8,2.2,5,5,5v1H7c-0.3,0-0.5,0.2-0.5,0.5C6.5,15.8,6.7,16,7,16h2c0.3,0,0.5-0.2,0.5-0.5C9.5,15.2,9.3,15,9,15H8.5v-1 c2.8,0,5-2.2,5-5V8H12.5z M8,12c1.9,0,3.5-1.6,3.5-3.5v-5C11.5,1.6,9.9,0,8,0C6.1,0,4.5,1.6,4.5,3.5v5C4.5,10.4,6.1,12,8,12z M5.5,3.5C5.5,2.1,6.6,1,8,1c1.4,0,2.5,1.1,2.5,2.5v5C10.5,9.9,9.4,11,8,11c-1.4,0-2.5-1.1-2.5-2.5V3.5z"\n    />\n  </svg>\n\n  <svg id="icon-deafen" viewBox="0 0 16 16">\n    <path fill="#5D6063" d="M15.9,9C16,8.7,16,8.3,16,8c0-4.4-3.6-8-8-8C3.6,0,0,3.6,0,8 c0,0.3,0,0.7,0.1,1h0C0,9.2,0,9.3,0,9.5v4C0,14.3,0.7,15,1.5,15h2C4.3,15,5,14.3,5,13.5v-4C5,8.7,4.3,8,3.5,8h-2 C1.3,8,1.2,8,1,8.1C1,8.1,1,8,1,8c0-3.9,3.1-7,7-7c3.9,0,7,3.1,7,7c0,0,0,0.1,0,0.1C14.8,8,14.7,8,14.5,8h-2C11.7,8,11,8.7,11,9.5 v4c0,0.8,0.7,1.5,1.5,1.5h2c0.8,0,1.5-0.7,1.5-1.5v-4C16,9.3,16,9.2,15.9,9L15.9,9z M1.5,9h2C3.8,9,4,9.2,4,9.5v4 C4,13.8,3.8,14,3.5,14h-2C1.2,14,1,13.8,1,13.5v-4C1,9.2,1.2,9,1.5,9z M15,13.5c0,0.3-0.2,0.5-0.5,0.5h-2c-0.3,0-0.5-0.2-0.5-0.5 v-4C12,9.2,12.2,9,12.5,9h2C14.8,9,15,9.2,15,9.5V13.5z"\n    />\n  </svg>\n\n  <svg id="icon-settings" viewBox="0 0 16 16">\n    <path fill="#5D6063" d="M8,5C6.3,5,5,6.3,5,8c0,1.7,1.3,3,3,3c1.7,0,3-1.3,3-3 C11,6.3,9.7,5,8,5z M8,10c-1.1,0-2-0.9-2-2c0-1.1,0.9-2,2-2s2,0.9,2,2C10,9.1,9.1,10,8,10z M16,8c0-1-0.8-1.9-1.8-2 c-0.1-0.3-0.3-0.7-0.4-1c0.7-0.8,0.6-1.9-0.1-2.7c-0.7-0.7-1.9-0.8-2.7-0.1c-0.3-0.2-0.6-0.3-1-0.4C9.9,0.8,9,0,8,0 C7,0,6.1,0.8,6,1.8C5.7,1.9,5.3,2.1,5,2.2C4.2,1.6,3.1,1.6,2.3,2.3C1.6,3.1,1.6,4.2,2.2,5C2.1,5.3,1.9,5.7,1.8,6C0.8,6.1,0,7,0,8 c0,1,0.8,1.9,1.8,2c0.1,0.3,0.3,0.7,0.4,1c-0.7,0.8-0.6,1.9,0.1,2.7c0.7,0.7,1.9,0.8,2.7,0.1c0.3,0.2,0.6,0.3,1,0.4 C6.1,15.2,7,16,8,16c1,0,1.9-0.8,2-1.8c0.3-0.1,0.7-0.3,1-0.4c0.8,0.7,1.9,0.6,2.7-0.1c0.7-0.7,0.8-1.9,0.1-2.7 c0.2-0.3,0.3-0.6,0.4-1C15.2,9.9,16,9,16,8z M13.4,9c-0.1,0.8-0.5,1.5-0.9,2.1l0.4,0.4c0.4,0.4,0.4,1,0,1.4c-0.4,0.4-1,0.4-1.4,0 l-0.4-0.4C10.5,13,9.8,13.3,9,13.4V14c0,0.6-0.4,1-1,1c-0.6,0-1-0.4-1-1v-0.6c-0.8-0.1-1.5-0.5-2.1-0.9l-0.4,0.4 c-0.4,0.4-1,0.4-1.4,0c-0.4-0.4-0.4-1,0-1.4l0.4-0.4C3,10.5,2.7,9.8,2.6,9H2C1.4,9,1,8.6,1,8c0-0.6,0.4-1,1-1h0.6 C2.7,6.2,3,5.5,3.5,4.9L3.1,4.5c-0.4-0.4-0.4-1,0-1.4c0.4-0.4,1-0.4,1.4,0l0.4,0.4C5.5,3,6.2,2.7,7,2.6V2c0-0.6,0.4-1,1-1 c0.6,0,1,0.4,1,1v0.6c0.8,0.1,1.5,0.5,2.1,0.9l0.4-0.4c0.4-0.4,1-0.4,1.4,0c0.4,0.4,0.4,1,0,1.4l-0.4,0.4C13,5.5,13.3,6.2,13.4,7 H14c0.6,0,1,0.4,1,1c0,0.6-0.4,1-1,1H13.4z"\n    />\n  </svg>\n\n  <svg id="icon-dropdown" viewBox="0 0 18 18">\n    <style>\n      .dd {\n        stroke: #ABADAF;\n        stroke-width: 2px;\n        stroke-dashoffset: 1;\n        stroke-dasharray: inherit\n      }\n    </style>\n    <path class="dd" stroke="#FFF" d="M4.5 4.5l9 9" stroke-linecap="round"></path>\n    <path class="dd" stroke="#FFF" d="M13.5 4.5l-9 9" stroke-linecap="round"></path>\n  </svg>\n\n  <svg id="icon-invite" viewBox="0 0 16 16">\n    <path fill="#fff" d="M6.3,3.4L8,1.7v9.8C8,11.8,8.2,12,8.5,12C8.8,12,9,11.8,9,11.5V1.7l1.7,1.7c0.2,0.2,0.5,0.2,0.7,0c0.2-0.2,0.2-0.5,0-0.7L8.9,0.2c0,0,0,0,0-0.1C8.8,0,8.6,0,8.5,0c0,0,0,0,0,0c0,0,0,0,0,0C8.4,0,8.2,0,8.1,0.1c0,0,0,0,0,0.1L5.6,2.7c-0.2,0.2-0.2,0.5,0,0.7C5.8,3.5,6.1,3.5,6.3,3.4z M14,4h-1.5v1h1C13.8,5,14,5.2,14,5.5v9c0,0.3-0.2,0.5-0.5,0.5h-10C3.2,15,3,14.8,3,14.5v-9C3,5.2,3.2,5,3.5,5h1V4H3C2.4,4,2,4.4,2,5v10c0,0.6,0.4,1,1,1h11c0.6,0,1-0.4,1-1V5C15,4.4,14.6,4,14,4z"\n    />\n  </svg>\n\n  <svg id="icon-channel-settings" viewBox="0 0 16 16">\n    <path fill="#fff" d="M8,5C6.3,5,5,6.3,5,8c0,1.7,1.3,3,3,3c1.7,0,3-1.3,3-3 C11,6.3,9.7,5,8,5z M8,10c-1.1,0-2-0.9-2-2c0-1.1,0.9-2,2-2s2,0.9,2,2C10,9.1,9.1,10,8,10z M16,8c0-1-0.8-1.9-1.8-2 c-0.1-0.3-0.3-0.7-0.4-1c0.7-0.8,0.6-1.9-0.1-2.7c-0.7-0.7-1.9-0.8-2.7-0.1c-0.3-0.2-0.6-0.3-1-0.4C9.9,0.8,9,0,8,0 C7,0,6.1,0.8,6,1.8C5.7,1.9,5.3,2.1,5,2.2C4.2,1.6,3.1,1.6,2.3,2.3C1.6,3.1,1.6,4.2,2.2,5C2.1,5.3,1.9,5.7,1.8,6C0.8,6.1,0,7,0,8 c0,1,0.8,1.9,1.8,2c0.1,0.3,0.3,0.7,0.4,1c-0.7,0.8-0.6,1.9,0.1,2.7c0.7,0.7,1.9,0.8,2.7,0.1c0.3,0.2,0.6,0.3,1,0.4 C6.1,15.2,7,16,8,16c1,0,1.9-0.8,2-1.8c0.3-0.1,0.7-0.3,1-0.4c0.8,0.7,1.9,0.6,2.7-0.1c0.7-0.7,0.8-1.9,0.1-2.7 c0.2-0.3,0.3-0.6,0.4-1C15.2,9.9,16,9,16,8z M13.4,9c-0.1,0.8-0.5,1.5-0.9,2.1l0.4,0.4c0.4,0.4,0.4,1,0,1.4c-0.4,0.4-1,0.4-1.4,0 l-0.4-0.4C10.5,13,9.8,13.3,9,13.4V14c0,0.6-0.4,1-1,1c-0.6,0-1-0.4-1-1v-0.6c-0.8-0.1-1.5-0.5-2.1-0.9l-0.4,0.4 c-0.4,0.4-1,0.4-1.4,0c-0.4-0.4-0.4-1,0-1.4l0.4-0.4C3,10.5,2.7,9.8,2.6,9H2C1.4,9,1,8.6,1,8c0-0.6,0.4-1,1-1h0.6 C2.7,6.2,3,5.5,3.5,4.9L3.1,4.5c-0.4-0.4-0.4-1,0-1.4c0.4-0.4,1-0.4,1.4,0l0.4,0.4C5.5,3,6.2,2.7,7,2.6V2c0-0.6,0.4-1,1-1 c0.6,0,1,0.4,1,1v0.6c0.8,0.1,1.5,0.5,2.1,0.9l0.4-0.4c0.4-0.4,1-0.4,1.4,0c0.4,0.4,0.4,1,0,1.4l-0.4,0.4C13,5.5,13.3,6.2,13.4,7 H14c0.6,0,1,0.4,1,1c0,0.6-0.4,1-1,1H13.4z"\n    />\n  </svg>\n</div>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/app/app.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */],
-            __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],
-            __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_6__services_document_service__["a" /* DocumentService */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* PopoverController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* MenuController */],
-            __WEBPACK_IMPORTED_MODULE_8__services_blockstack_service__["a" /* BlockStackService */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* ToastController */]])
-    ], MyApp);
-    return MyApp;
-}());
-
-//# sourceMappingURL=app.component.js.map
-
-/***/ }),
-
-/***/ 546:
+/***/ 545:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3648,6 +3602,52 @@ var OptionsPopoverPage = (function () {
 
 /***/ }),
 
+/***/ 586:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeModule", function() { return HomeModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__home__ = __webpack_require__(543);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(70);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+//import { BlockStepsComponent } from '../../components/block-steps/block-steps';
+var HomeModule = (function () {
+    function HomeModule() {
+    }
+    HomeModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["NgModule"])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_1__home__["a" /* HomePage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_1__home__["a" /* HomePage */]),
+                __WEBPACK_IMPORTED_MODULE_3__components_components_module__["a" /* BlockStepsComponentModule */]
+            ],
+            entryComponents: [
+                __WEBPACK_IMPORTED_MODULE_1__home__["a" /* HomePage */]
+            ],
+            schemas: [__WEBPACK_IMPORTED_MODULE_2__angular_core__["CUSTOM_ELEMENTS_SCHEMA"]]
+        })
+    ], HomeModule);
+    return HomeModule;
+}());
+
+//# sourceMappingURL=home.module.js.map
+
+/***/ }),
+
 /***/ 631:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3671,27 +3671,27 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(542);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_splash_screen__ = __webpack_require__(545);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(539);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_splash_screen__ = __webpack_require__(542);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_charts__ = __webpack_require__(1117);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_charts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_ng2_charts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ng_select_ng_select__ = __webpack_require__(535);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ng_select_ng_select__ = __webpack_require__(533);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_component__ = __webpack_require__(541);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__options_popover_page__ = __webpack_require__(546);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__directives_directives_module__ = __webpack_require__(446);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_home_home_module__ = __webpack_require__(536);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_annotate_annotate_module__ = __webpack_require__(302);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_sign_sign_module__ = __webpack_require__(540);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_email_email_module__ = __webpack_require__(447);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_review_review_module__ = __webpack_require__(539);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_components_module__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_component__ = __webpack_require__(538);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__options_popover_page__ = __webpack_require__(545);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__directives_directives_module__ = __webpack_require__(409);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_home_home_module__ = __webpack_require__(586);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_annotate_annotate_module__ = __webpack_require__(534);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_sign_sign_module__ = __webpack_require__(537);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_email_email_module__ = __webpack_require__(302);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_review_review_module__ = __webpack_require__(536);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_components_module__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__services_coin_service__ = __webpack_require__(1165);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_global_service__ = __webpack_require__(538);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_global_service__ = __webpack_require__(544);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__services_cryptocompare_service__ = __webpack_require__(1166);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__services_slack_service__ = __webpack_require__(1167);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__services_document_service__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__services_email_service__ = __webpack_require__(448);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__services_email_service__ = __webpack_require__(305);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__services_blockstack_service__ = __webpack_require__(89);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3741,11 +3741,11 @@ var AppModule = (function () {
                     preloadModules: true
                 }, {
                     links: [
-                        { loadChildren: '../pages/annotate/annotate.module#AnnotatePageModule', name: 'AnnotatePage', segment: 'annotate/:guid', priority: 'low', defaultHistory: ['HomePage'] },
                         { loadChildren: '../pages/email/email.module#EmailPageModule', name: 'EmailPage', segment: 'email/:guid', priority: 'low', defaultHistory: ['AnnotatePage', 'HomePage'] },
-                        { loadChildren: '../pages/home/home.module#HomeModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/annotate/annotate.module#AnnotatePageModule', name: 'AnnotatePage', segment: 'annotate/:guid', priority: 'low', defaultHistory: ['HomePage'] },
                         { loadChildren: '../pages/review/review.module#ReviewPageModule', name: 'ReviewPage', segment: 'review/:guid', priority: 'low', defaultHistory: ['SignPage', 'EmailPage', 'AnnotatePage', 'HomePage'] },
-                        { loadChildren: '../pages/sign/sign.module#SignPageModule', name: 'SignPage', segment: 'sign/:guid', priority: 'low', defaultHistory: ['EmailPage', 'AnnotatePage', 'HomePage'] }
+                        { loadChildren: '../pages/sign/sign.module#SignPageModule', name: 'SignPage', segment: 'sign/:guid', priority: 'low', defaultHistory: ['EmailPage', 'AnnotatePage', 'HomePage'] },
+                        { loadChildren: '../pages/home/home.module#HomeModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_11__directives_directives_module__["a" /* DirectivesModule */],
@@ -3787,471 +3787,7 @@ var AppModule = (function () {
 
 /***/ }),
 
-/***/ 658:
-/***/ (function(module, exports, __webpack_require__) {
-
-var map = {
-	"./af": 306,
-	"./af.js": 306,
-	"./ar": 307,
-	"./ar-dz": 308,
-	"./ar-dz.js": 308,
-	"./ar-kw": 309,
-	"./ar-kw.js": 309,
-	"./ar-ly": 310,
-	"./ar-ly.js": 310,
-	"./ar-ma": 311,
-	"./ar-ma.js": 311,
-	"./ar-sa": 312,
-	"./ar-sa.js": 312,
-	"./ar-tn": 313,
-	"./ar-tn.js": 313,
-	"./ar.js": 307,
-	"./az": 314,
-	"./az.js": 314,
-	"./be": 315,
-	"./be.js": 315,
-	"./bg": 316,
-	"./bg.js": 316,
-	"./bm": 317,
-	"./bm.js": 317,
-	"./bn": 318,
-	"./bn.js": 318,
-	"./bo": 319,
-	"./bo.js": 319,
-	"./br": 320,
-	"./br.js": 320,
-	"./bs": 321,
-	"./bs.js": 321,
-	"./ca": 322,
-	"./ca.js": 322,
-	"./cs": 323,
-	"./cs.js": 323,
-	"./cv": 324,
-	"./cv.js": 324,
-	"./cy": 325,
-	"./cy.js": 325,
-	"./da": 326,
-	"./da.js": 326,
-	"./de": 327,
-	"./de-at": 328,
-	"./de-at.js": 328,
-	"./de-ch": 329,
-	"./de-ch.js": 329,
-	"./de.js": 327,
-	"./dv": 330,
-	"./dv.js": 330,
-	"./el": 331,
-	"./el.js": 331,
-	"./en-au": 332,
-	"./en-au.js": 332,
-	"./en-ca": 333,
-	"./en-ca.js": 333,
-	"./en-gb": 334,
-	"./en-gb.js": 334,
-	"./en-ie": 335,
-	"./en-ie.js": 335,
-	"./en-il": 336,
-	"./en-il.js": 336,
-	"./en-nz": 337,
-	"./en-nz.js": 337,
-	"./eo": 338,
-	"./eo.js": 338,
-	"./es": 339,
-	"./es-do": 340,
-	"./es-do.js": 340,
-	"./es-us": 341,
-	"./es-us.js": 341,
-	"./es.js": 339,
-	"./et": 342,
-	"./et.js": 342,
-	"./eu": 343,
-	"./eu.js": 343,
-	"./fa": 344,
-	"./fa.js": 344,
-	"./fi": 345,
-	"./fi.js": 345,
-	"./fo": 346,
-	"./fo.js": 346,
-	"./fr": 347,
-	"./fr-ca": 348,
-	"./fr-ca.js": 348,
-	"./fr-ch": 349,
-	"./fr-ch.js": 349,
-	"./fr.js": 347,
-	"./fy": 350,
-	"./fy.js": 350,
-	"./gd": 351,
-	"./gd.js": 351,
-	"./gl": 352,
-	"./gl.js": 352,
-	"./gom-latn": 353,
-	"./gom-latn.js": 353,
-	"./gu": 354,
-	"./gu.js": 354,
-	"./he": 355,
-	"./he.js": 355,
-	"./hi": 356,
-	"./hi.js": 356,
-	"./hr": 357,
-	"./hr.js": 357,
-	"./hu": 358,
-	"./hu.js": 358,
-	"./hy-am": 359,
-	"./hy-am.js": 359,
-	"./id": 360,
-	"./id.js": 360,
-	"./is": 361,
-	"./is.js": 361,
-	"./it": 362,
-	"./it.js": 362,
-	"./ja": 363,
-	"./ja.js": 363,
-	"./jv": 364,
-	"./jv.js": 364,
-	"./ka": 365,
-	"./ka.js": 365,
-	"./kk": 366,
-	"./kk.js": 366,
-	"./km": 367,
-	"./km.js": 367,
-	"./kn": 368,
-	"./kn.js": 368,
-	"./ko": 369,
-	"./ko.js": 369,
-	"./ky": 370,
-	"./ky.js": 370,
-	"./lb": 371,
-	"./lb.js": 371,
-	"./lo": 372,
-	"./lo.js": 372,
-	"./lt": 373,
-	"./lt.js": 373,
-	"./lv": 374,
-	"./lv.js": 374,
-	"./me": 375,
-	"./me.js": 375,
-	"./mi": 376,
-	"./mi.js": 376,
-	"./mk": 377,
-	"./mk.js": 377,
-	"./ml": 378,
-	"./ml.js": 378,
-	"./mn": 379,
-	"./mn.js": 379,
-	"./mr": 380,
-	"./mr.js": 380,
-	"./ms": 381,
-	"./ms-my": 382,
-	"./ms-my.js": 382,
-	"./ms.js": 381,
-	"./mt": 383,
-	"./mt.js": 383,
-	"./my": 384,
-	"./my.js": 384,
-	"./nb": 385,
-	"./nb.js": 385,
-	"./ne": 386,
-	"./ne.js": 386,
-	"./nl": 387,
-	"./nl-be": 388,
-	"./nl-be.js": 388,
-	"./nl.js": 387,
-	"./nn": 389,
-	"./nn.js": 389,
-	"./pa-in": 390,
-	"./pa-in.js": 390,
-	"./pl": 391,
-	"./pl.js": 391,
-	"./pt": 392,
-	"./pt-br": 393,
-	"./pt-br.js": 393,
-	"./pt.js": 392,
-	"./ro": 394,
-	"./ro.js": 394,
-	"./ru": 395,
-	"./ru.js": 395,
-	"./sd": 396,
-	"./sd.js": 396,
-	"./se": 397,
-	"./se.js": 397,
-	"./si": 398,
-	"./si.js": 398,
-	"./sk": 399,
-	"./sk.js": 399,
-	"./sl": 400,
-	"./sl.js": 400,
-	"./sq": 401,
-	"./sq.js": 401,
-	"./sr": 402,
-	"./sr-cyrl": 403,
-	"./sr-cyrl.js": 403,
-	"./sr.js": 402,
-	"./ss": 404,
-	"./ss.js": 404,
-	"./sv": 405,
-	"./sv.js": 405,
-	"./sw": 406,
-	"./sw.js": 406,
-	"./ta": 407,
-	"./ta.js": 407,
-	"./te": 408,
-	"./te.js": 408,
-	"./tet": 409,
-	"./tet.js": 409,
-	"./tg": 410,
-	"./tg.js": 410,
-	"./th": 411,
-	"./th.js": 411,
-	"./tl-ph": 412,
-	"./tl-ph.js": 412,
-	"./tlh": 413,
-	"./tlh.js": 413,
-	"./tr": 414,
-	"./tr.js": 414,
-	"./tzl": 415,
-	"./tzl.js": 415,
-	"./tzm": 416,
-	"./tzm-latn": 417,
-	"./tzm-latn.js": 417,
-	"./tzm.js": 416,
-	"./ug-cn": 418,
-	"./ug-cn.js": 418,
-	"./uk": 419,
-	"./uk.js": 419,
-	"./ur": 420,
-	"./ur.js": 420,
-	"./uz": 421,
-	"./uz-latn": 422,
-	"./uz-latn.js": 422,
-	"./uz.js": 421,
-	"./vi": 423,
-	"./vi.js": 423,
-	"./x-pseudo": 424,
-	"./x-pseudo.js": 424,
-	"./yo": 425,
-	"./yo.js": 425,
-	"./zh-cn": 426,
-	"./zh-cn.js": 426,
-	"./zh-hk": 427,
-	"./zh-hk.js": 427,
-	"./zh-tw": 428,
-	"./zh-tw.js": 428
-};
-function webpackContext(req) {
-	return __webpack_require__(webpackContextResolve(req));
-};
-function webpackContextResolve(req) {
-	var id = map[req];
-	if(!(id + 1)) // check for number or string
-		throw new Error("Cannot find module '" + req + "'.");
-	return id;
-};
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = 658;
-
-/***/ }),
-
-/***/ 668:
-/***/ (function(module, exports) {
-
-/* (ignored) */
-
-/***/ }),
-
-/***/ 687:
-/***/ (function(module, exports) {
-
-/* (ignored) */
-
-/***/ }),
-
-/***/ 688:
-/***/ (function(module, exports) {
-
-/* (ignored) */
-
-/***/ }),
-
-/***/ 689:
-/***/ (function(module, exports) {
-
-/* (ignored) */
-
-/***/ }),
-
-/***/ 71:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BlockStepsComponentModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__block_steps_block_steps__ = __webpack_require__(95);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__block_pdf_block_pdf__ = __webpack_require__(175);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_directives_module__ = __webpack_require__(446);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__block_chat_block_chat__ = __webpack_require__(173);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-
-
-
-var BlockStepsComponentModule = (function () {
-    function BlockStepsComponentModule() {
-    }
-    BlockStepsComponentModule_1 = BlockStepsComponentModule;
-    BlockStepsComponentModule.forRoot = function () {
-        return {
-            ngModule: BlockStepsComponentModule_1,
-            providers: []
-        };
-    };
-    BlockStepsComponentModule = BlockStepsComponentModule_1 = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
-            declarations: [__WEBPACK_IMPORTED_MODULE_1__block_steps_block_steps__["a" /* BlockStepsComponent */],
-                __WEBPACK_IMPORTED_MODULE_3__block_pdf_block_pdf__["a" /* BlockPdfComponent */],
-                __WEBPACK_IMPORTED_MODULE_5__block_chat_block_chat__["a" /* BlockChatComponent */]],
-            imports: [
-                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* IonicModule */],
-                __WEBPACK_IMPORTED_MODULE_4__directives_directives_module__["a" /* DirectivesModule */]
-            ],
-            exports: [__WEBPACK_IMPORTED_MODULE_1__block_steps_block_steps__["a" /* BlockStepsComponent */],
-                __WEBPACK_IMPORTED_MODULE_3__block_pdf_block_pdf__["a" /* BlockPdfComponent */],
-                __WEBPACK_IMPORTED_MODULE_5__block_chat_block_chat__["a" /* BlockChatComponent */]]
-        })
-    ], BlockStepsComponentModule);
-    return BlockStepsComponentModule;
-    var BlockStepsComponentModule_1;
-}());
-
-//# sourceMappingURL=components.module.js.map
-
-/***/ }),
-
-/***/ 717:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AbsoluteDragDirective; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-/**
- * Generated class for the AbsoluteDragDirective directive.
- *
- * See https://angular.io/api/core/Directive for more info on Angular
- * Directives.
- */
-var AbsoluteDragDirective = (function () {
-    function AbsoluteDragDirective(element, renderer, domCtrl) {
-        this.element = element;
-        this.renderer = renderer;
-        this.domCtrl = domCtrl;
-    }
-    AbsoluteDragDirective.prototype.ngAfterViewInit = function () {
-        this.initDragOn();
-        // this.renderer.setElementStyle(this.element.nativeElement, 'position', 'absolute');
-        // this.renderer.setElementStyle(this.element.nativeElement, 'left', this.startLeft + 'px');
-        // this.renderer.setElementStyle(this.element.nativeElement, 'top', this.startTop + 'px');
-        //let hammer = new window['Hammer'](this.element.nativeElement);
-        // hammer.get('pan').set({ direction: window['Hammer'].DIRECTION_ALL });
-        // hammer.on('pan', (ev) => {
-        //   this.handlePan(ev);
-        // });
-    };
-    AbsoluteDragDirective.prototype.ngOnDestroy = function () {
-        //this.svgDrawer.off();
-        //this.svgDrawer.remove();
-        //$(this.svgDrawer.elem).remove();
-        this.startLeft = null;
-        this.startTop = null;
-    };
-    // handlePan(ev){
-    //     let newLeft = ev.center.x;
-    //     let newTop = ev.center.y;
-    //     this.domCtrl.write(() => {
-    //         this.renderer.setElementStyle(this.element.nativeElement, 'left', newLeft + 'px');
-    //         this.renderer.setElementStyle(this.element.nativeElement, 'top', newTop + 'px');
-    //     });
-    // }
-    AbsoluteDragDirective.prototype.initDragOn = function () {
-        try {
-            this.svgDrawer = dragOn(document.querySelector(".dropzone"), {
-                listenTo: '.draggable'
-            });
-        }
-        catch (e) { }
-        // target elements with the "resizable" class
-        // interact('.resizable')
-        //   .resizable({
-        //     // preserveAspectRatio: true,
-        //     edges: {
-        //       left: true,
-        //       right: true,
-        //       bottom: true,
-        //       top: true
-        //     }
-        //   })
-        //   .on('resizemove', (event) => {
-        //     svgDrawer.updateMetrics();
-        //     var target = event.target,
-        //       x = (parseFloat(target.getAttribute('data-x')) || 0),
-        //       y = (parseFloat(target.getAttribute('data-y')) || 0);
-        //     // update the element's style
-        //     target.style.width = event.rect.width + 'px';
-        //     target.style.height = event.rect.height + 'px';
-        //     // translate when resizing from top or left edges
-        //     x += event.deltaRect.left;
-        //     y += event.deltaRect.top;
-        //     target.style.webkitTransform = target.style.transform =
-        //       'translate(' + x + 'px,' + y + 'px)';
-        //     target.setAttribute('data-x', x);
-        //     target.setAttribute('data-y', y);
-        //   });
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('startLeft'),
-        __metadata("design:type", Object)
-    ], AbsoluteDragDirective.prototype, "startLeft", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('startTop'),
-        __metadata("design:type", Object)
-    ], AbsoluteDragDirective.prototype, "startTop", void 0);
-    AbsoluteDragDirective = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"])({
-            selector: '[absolute-drag]' // Attribute selector
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* DomController */]])
-    ], AbsoluteDragDirective);
-    return AbsoluteDragDirective;
-}());
-
-//# sourceMappingURL=absolute-drag.js.map
-
-/***/ }),
-
-/***/ 718:
+/***/ 656:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4259,13 +3795,13 @@ var AbsoluteDragDirective = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_document_service__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_email_service__ = __webpack_require__(448);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_email_service__ = __webpack_require__(305);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_blockstack_service__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators__ = __webpack_require__(185);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators__ = __webpack_require__(173);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs__ = __webpack_require__(729);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs__ = __webpack_require__(671);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_block_steps_block_steps__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_block_steps_block_steps__ = __webpack_require__(96);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4467,7 +4003,7 @@ var EmailPage = (function () {
     ], EmailPage.prototype, "blockSteps", void 0);
     EmailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-email',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/email/email.html"*/'<ion-content class="email-page" class="no-overflow-page">\n\n\n  <block-steps activeStep="3" #blockSteps>\n  </block-steps>\n\n  <div style="clear:both"></div>\n  <section style="position: relative;" class="nextBackButtons">\n      <button class="nextBackButtonBack" ion-fab mini (click)="back()" style="background-color:green; position: absolute;"><ion-icon name="md-arrow-back"></ion-icon></button>\n      <button class="nextBackButtonNext" ion-fab mini (click)="next()"><ion-icon name="md-arrow-forward" ></ion-icon></button>\n  </section> \n  <div style="clear:both"></div>  \n\n  <p style="padding-left: 65px; padding-right: 65px; padding-top: 10px; padding-bottom: 20px">Email a document link to your signer. Or if you prefer to share another way, give them a copy this link:</p>\n  <textarea style="width:90%; color: black" [(ngModel)]="documentLink" class="emailLink"></textarea>\n\n  <form></form>\n  <ion-grid style="position: relative">\n    <ion-row align-items-left>\n      <ion-col style="display: none;">\n        <ng-select style="width:460px; background-color:whitesmoke; border-radius:2px; padding-left:10px" [items]="people3" [multiple]="false"\n          bindLabel="username" [(ngModel)]="selectedUser" (change)="searchUser($event)" [typeahead]="people3Typeahead" placeholder="Select signer...">\n          <ng-template ng-label-tmp let-item="item" let-clear="clear">\n            <span class="ng-value-label">\n              <img [src]="item.profile.image && item.profile.image[0].contentUrl" width="20px" height="20px"> {{item.username}}</span>\n            <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>\n          </ng-template>\n          <ng-template ng-option-tmp let-item="item">\n            <span style="width:100%" (click)="clickedUser()">\n              <img [src]="item.profile.image && item.profile.image[0].contentUrl" width="20px" height="20px"> {{item.username}}\n            </span>\n          </ng-template>\n        </ng-select>\n      </ion-col>\n      <ion-col style="display: none;">\n        <h3>or</h3>\n      </ion-col>\n      <ion-col style="width:460px; background-color:transparent; ">\n        <!-- <ion-item  style="width:460px; background-color:transparent; " >\n          <ion-input style="width:460px;" placeholder="[Enter Email]" [(ngModel)]="email"></ion-input>\n        </ion-item> -->\n        \n        <input class="classic-input" type="email" \n        size="64" maxLength="64" required\n        placeholder="Email To..." [(ngModel)]="email" autofocus>\n\n      </ion-col>\n      <ion-col>\n        <button ion-button icon-end (click)="sendEmail($event)" style="border-radius: 30px">\n            Send Email<ion-icon name="md-send"></ion-icon></button>\n\n      \n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n\n  <block-pdf marginTop="10px" marginBottom="120px" locked="true">\n  </block-pdf>\n\n\n</ion-content>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/email/email.html"*/,
+            selector: 'page-email',template:/*ion-inline-start:"N:\code\git\blockusign\BlockUSign.Ionic\src\pages\email\email.html"*/'<ion-content class="email-page no-overflow-page">\n\n\n\n\n\n  <block-steps activeStep="3" #blockSteps class="no-print">\n\n  </block-steps>\n\n\n\n  <div style="clear:both"></div>\n\n  <section style="position: relative;" class="nextBackButtons no-print">\n\n      <button class="nextBackButtonBack" ion-fab mini (click)="back()" style="background-color:green; position: absolute;"><ion-icon name="md-arrow-back"></ion-icon></button>\n\n      <button class="nextBackButtonNext" ion-fab mini (click)="next()"><ion-icon name="md-arrow-forward" ></ion-icon></button>\n\n  </section> \n\n  <div style="clear:both"></div>  \n\n\n\n  <p style="padding-left: 65px; padding-right: 65px; padding-top: 10px; padding-bottom: 20px" class="no-print">\n\n    Email a document link to your signer. Or if you prefer to share another way, give them a copy this link:\n\n  </p>\n\n  <textarea style="width:90%; color: black" [(ngModel)]="documentLink" class="emailLink no-print"></textarea>\n\n\n\n  <form></form>\n\n  <ion-grid style="position: relative" class="no-print">\n\n    <ion-row align-items-left>\n\n      <ion-col style="display: none;">\n\n        <ng-select style="width:460px; background-color:whitesmoke; border-radius:2px; padding-left:10px" [items]="people3" [multiple]="false"\n\n          bindLabel="username" [(ngModel)]="selectedUser" (change)="searchUser($event)" [typeahead]="people3Typeahead" placeholder="Select signer...">\n\n          <ng-template ng-label-tmp let-item="item" let-clear="clear">\n\n            <span class="ng-value-label">\n\n              <img [src]="item.profile.image && item.profile.image[0].contentUrl" width="20px" height="20px"> {{item.username}}</span>\n\n            <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>\n\n          </ng-template>\n\n          <ng-template ng-option-tmp let-item="item">\n\n            <span style="width:100%" (click)="clickedUser()">\n\n              <img [src]="item.profile.image && item.profile.image[0].contentUrl" width="20px" height="20px"> {{item.username}}\n\n            </span>\n\n          </ng-template>\n\n        </ng-select>\n\n      </ion-col>\n\n      <ion-col style="display: none;">\n\n        <h3>or</h3>\n\n      </ion-col>\n\n      <ion-col style="width:460px; background-color:transparent; ">\n\n        <!-- <ion-item  style="width:460px; background-color:transparent; " >\n\n          <ion-input style="width:460px;" placeholder="[Enter Email]" [(ngModel)]="email"></ion-input>\n\n        </ion-item> -->\n\n        \n\n        <input class="classic-input" type="email" \n\n        size="64" maxLength="64" required\n\n        placeholder="Email To..." [(ngModel)]="email" autofocus>\n\n\n\n      </ion-col>\n\n      <ion-col>\n\n        <button ion-button icon-end (click)="sendEmail($event)" style="border-radius: 30px">\n\n            Send Email<ion-icon name="md-send"></ion-icon></button>\n\n\n\n      \n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n\n\n  <block-pdf marginTop="10px" marginBottom="120px" locked="true">\n\n  </block-pdf>\n\n\n\n\n\n</ion-content>'/*ion-inline-end:"N:\code\git\blockusign\BlockUSign.Ionic\src\pages\email\email.html"*/,
             changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectionStrategy"].Default,
             encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None,
         }),
@@ -4483,6 +4019,61 @@ var EmailPage = (function () {
 }());
 
 //# sourceMappingURL=email.js.map
+
+/***/ }),
+
+/***/ 70:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BlockStepsComponentModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__block_steps_block_steps__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__block_pdf_block_pdf__ = __webpack_require__(192);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_directives_module__ = __webpack_require__(409);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__block_chat_block_chat__ = __webpack_require__(199);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+
+var BlockStepsComponentModule = (function () {
+    function BlockStepsComponentModule() {
+    }
+    BlockStepsComponentModule_1 = BlockStepsComponentModule;
+    BlockStepsComponentModule.forRoot = function () {
+        return {
+            ngModule: BlockStepsComponentModule_1,
+            providers: []
+        };
+    };
+    BlockStepsComponentModule = BlockStepsComponentModule_1 = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+            declarations: [__WEBPACK_IMPORTED_MODULE_1__block_steps_block_steps__["a" /* BlockStepsComponent */],
+                __WEBPACK_IMPORTED_MODULE_3__block_pdf_block_pdf__["a" /* BlockPdfComponent */],
+                __WEBPACK_IMPORTED_MODULE_5__block_chat_block_chat__["a" /* BlockChatComponent */]],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* IonicModule */],
+                __WEBPACK_IMPORTED_MODULE_4__directives_directives_module__["a" /* DirectivesModule */]
+            ],
+            exports: [__WEBPACK_IMPORTED_MODULE_1__block_steps_block_steps__["a" /* BlockStepsComponent */],
+                __WEBPACK_IMPORTED_MODULE_3__block_pdf_block_pdf__["a" /* BlockPdfComponent */],
+                __WEBPACK_IMPORTED_MODULE_5__block_chat_block_chat__["a" /* BlockChatComponent */]]
+        })
+    ], BlockStepsComponentModule);
+    return BlockStepsComponentModule;
+    var BlockStepsComponentModule_1;
+}());
+
+//# sourceMappingURL=components.module.js.map
 
 /***/ }),
 
@@ -4719,7 +4310,35 @@ var BlockStackService = (function () {
 
 /***/ }),
 
-/***/ 95:
+/***/ 937:
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 955:
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 956:
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 957:
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 96:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4767,7 +4386,7 @@ var BlockStepsComponent = (function () {
     ], BlockStepsComponent.prototype, "parent", void 0);
     BlockStepsComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'block-steps',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-steps/block-steps.html"*/' <div class="steps-wrapper no-print">\n    <ul class="steps">\n      <li [ngClass]="activeStep == \'1\' ? \'step active\': \'step\'" (click)="route(\'HomePage\')">\n        <div class="step-info">\n          <span class="step-name">Upload</span>\n        </div>\n      </li>\n      <li [ngClass]="activeStep == \'2\' ? \'step active\': \'step\'" (click)="route(\'AnnotatePage\')">\n        <div class="step-info">\n          <span class="step-name">Annotate</span>\n        </div>\n      </li>\n      <li [ngClass]="activeStep == \'3\' ? \'step active\': \'step\'" (click)="route(\'EmailPage\')">\n        <div class="step-info">\n          <span class="step-name">Send</span>\n        </div>\n      </li>\n      <li [ngClass]="activeStep == \'4\' ? \'step active\': \'step\'" (click)="route(\'SignPage\')">\n        <div class="step-info">\n          <span class="step-name">Sign</span>\n        </div>\n      </li>\n      <li [ngClass]="activeStep == \'5\' ? \'step active\': \'step\'" (click)="route(\'ReviewPage\')">\n        <div class="step-info">\n          <span class="step-name">Review</span>\n        </div>\n      </li>\n    </ul>\n  </div>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/components/block-steps/block-steps.html"*/
+            selector: 'block-steps',template:/*ion-inline-start:"N:\code\git\blockusign\BlockUSign.Ionic\src\components\block-steps\block-steps.html"*/' <div class="steps-wrapper no-print">\n\n    <ul class="steps">\n\n      <li [ngClass]="activeStep == \'1\' ? \'step active\': \'step\'" (click)="route(\'HomePage\')">\n\n        <div class="step-info">\n\n          <span class="step-name">Upload</span>\n\n        </div>\n\n      </li>\n\n      <li [ngClass]="activeStep == \'2\' ? \'step active\': \'step\'" (click)="route(\'AnnotatePage\')">\n\n        <div class="step-info">\n\n          <span class="step-name">Annotate</span>\n\n        </div>\n\n      </li>\n\n      <li [ngClass]="activeStep == \'3\' ? \'step active\': \'step\'" (click)="route(\'EmailPage\')">\n\n        <div class="step-info">\n\n          <span class="step-name">Send</span>\n\n        </div>\n\n      </li>\n\n      <li [ngClass]="activeStep == \'4\' ? \'step active\': \'step\'" (click)="route(\'SignPage\')">\n\n        <div class="step-info">\n\n          <span class="step-name">Sign</span>\n\n        </div>\n\n      </li>\n\n      <li [ngClass]="activeStep == \'5\' ? \'step active\': \'step\'" (click)="route(\'ReviewPage\')">\n\n        <div class="step-info">\n\n          <span class="step-name">Review</span>\n\n        </div>\n\n      </li>\n\n    </ul>\n\n  </div>'/*ion-inline-end:"N:\code\git\blockusign\BlockUSign.Ionic\src\components\block-steps\block-steps.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_2__services_document_service__["a" /* DocumentService */]])
@@ -4779,6 +4398,387 @@ var BlockStepsComponent = (function () {
 
 /***/ }),
 
+/***/ 985:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AbsoluteDragDirective; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/**
+ * Generated class for the AbsoluteDragDirective directive.
+ *
+ * See https://angular.io/api/core/Directive for more info on Angular
+ * Directives.
+ */
+var AbsoluteDragDirective = (function () {
+    function AbsoluteDragDirective(element, renderer, domCtrl) {
+        this.element = element;
+        this.renderer = renderer;
+        this.domCtrl = domCtrl;
+    }
+    AbsoluteDragDirective.prototype.ngAfterViewInit = function () {
+        this.initDragOn();
+        // this.renderer.setElementStyle(this.element.nativeElement, 'position', 'absolute');
+        // this.renderer.setElementStyle(this.element.nativeElement, 'left', this.startLeft + 'px');
+        // this.renderer.setElementStyle(this.element.nativeElement, 'top', this.startTop + 'px');
+        //let hammer = new window['Hammer'](this.element.nativeElement);
+        // hammer.get('pan').set({ direction: window['Hammer'].DIRECTION_ALL });
+        // hammer.on('pan', (ev) => {
+        //   this.handlePan(ev);
+        // });
+    };
+    AbsoluteDragDirective.prototype.ngOnDestroy = function () {
+        //this.svgDrawer.off();
+        //this.svgDrawer.remove();
+        //$(this.svgDrawer.elem).remove();
+        this.startLeft = null;
+        this.startTop = null;
+    };
+    // handlePan(ev){
+    //     let newLeft = ev.center.x;
+    //     let newTop = ev.center.y;
+    //     this.domCtrl.write(() => {
+    //         this.renderer.setElementStyle(this.element.nativeElement, 'left', newLeft + 'px');
+    //         this.renderer.setElementStyle(this.element.nativeElement, 'top', newTop + 'px');
+    //     });
+    // }
+    AbsoluteDragDirective.prototype.initDragOn = function () {
+        try {
+            this.svgDrawer = dragOn(document.querySelector(".dropzone"), {
+                listenTo: '.draggable'
+            });
+        }
+        catch (e) { }
+        // target elements with the "resizable" class
+        // interact('.resizable')
+        //   .resizable({
+        //     // preserveAspectRatio: true,
+        //     edges: {
+        //       left: true,
+        //       right: true,
+        //       bottom: true,
+        //       top: true
+        //     }
+        //   })
+        //   .on('resizemove', (event) => {
+        //     svgDrawer.updateMetrics();
+        //     var target = event.target,
+        //       x = (parseFloat(target.getAttribute('data-x')) || 0),
+        //       y = (parseFloat(target.getAttribute('data-y')) || 0);
+        //     // update the element's style
+        //     target.style.width = event.rect.width + 'px';
+        //     target.style.height = event.rect.height + 'px';
+        //     // translate when resizing from top or left edges
+        //     x += event.deltaRect.left;
+        //     y += event.deltaRect.top;
+        //     target.style.webkitTransform = target.style.transform =
+        //       'translate(' + x + 'px,' + y + 'px)';
+        //     target.setAttribute('data-x', x);
+        //     target.setAttribute('data-y', y);
+        //   });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('startLeft'),
+        __metadata("design:type", Object)
+    ], AbsoluteDragDirective.prototype, "startLeft", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('startTop'),
+        __metadata("design:type", Object)
+    ], AbsoluteDragDirective.prototype, "startTop", void 0);
+    AbsoluteDragDirective = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"])({
+            selector: '[absolute-drag]' // Attribute selector
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* DomController */]])
+    ], AbsoluteDragDirective);
+    return AbsoluteDragDirective;
+}());
+
+//# sourceMappingURL=absolute-drag.js.map
+
+/***/ }),
+
+/***/ 986:
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./af": 410,
+	"./af.js": 410,
+	"./ar": 411,
+	"./ar-dz": 412,
+	"./ar-dz.js": 412,
+	"./ar-kw": 413,
+	"./ar-kw.js": 413,
+	"./ar-ly": 414,
+	"./ar-ly.js": 414,
+	"./ar-ma": 415,
+	"./ar-ma.js": 415,
+	"./ar-sa": 416,
+	"./ar-sa.js": 416,
+	"./ar-tn": 417,
+	"./ar-tn.js": 417,
+	"./ar.js": 411,
+	"./az": 418,
+	"./az.js": 418,
+	"./be": 419,
+	"./be.js": 419,
+	"./bg": 420,
+	"./bg.js": 420,
+	"./bm": 421,
+	"./bm.js": 421,
+	"./bn": 422,
+	"./bn.js": 422,
+	"./bo": 423,
+	"./bo.js": 423,
+	"./br": 424,
+	"./br.js": 424,
+	"./bs": 425,
+	"./bs.js": 425,
+	"./ca": 426,
+	"./ca.js": 426,
+	"./cs": 427,
+	"./cs.js": 427,
+	"./cv": 428,
+	"./cv.js": 428,
+	"./cy": 429,
+	"./cy.js": 429,
+	"./da": 430,
+	"./da.js": 430,
+	"./de": 431,
+	"./de-at": 432,
+	"./de-at.js": 432,
+	"./de-ch": 433,
+	"./de-ch.js": 433,
+	"./de.js": 431,
+	"./dv": 434,
+	"./dv.js": 434,
+	"./el": 435,
+	"./el.js": 435,
+	"./en-au": 436,
+	"./en-au.js": 436,
+	"./en-ca": 437,
+	"./en-ca.js": 437,
+	"./en-gb": 438,
+	"./en-gb.js": 438,
+	"./en-ie": 439,
+	"./en-ie.js": 439,
+	"./en-il": 440,
+	"./en-il.js": 440,
+	"./en-nz": 441,
+	"./en-nz.js": 441,
+	"./eo": 442,
+	"./eo.js": 442,
+	"./es": 443,
+	"./es-do": 444,
+	"./es-do.js": 444,
+	"./es-us": 445,
+	"./es-us.js": 445,
+	"./es.js": 443,
+	"./et": 446,
+	"./et.js": 446,
+	"./eu": 447,
+	"./eu.js": 447,
+	"./fa": 448,
+	"./fa.js": 448,
+	"./fi": 449,
+	"./fi.js": 449,
+	"./fo": 450,
+	"./fo.js": 450,
+	"./fr": 451,
+	"./fr-ca": 452,
+	"./fr-ca.js": 452,
+	"./fr-ch": 453,
+	"./fr-ch.js": 453,
+	"./fr.js": 451,
+	"./fy": 454,
+	"./fy.js": 454,
+	"./gd": 455,
+	"./gd.js": 455,
+	"./gl": 456,
+	"./gl.js": 456,
+	"./gom-latn": 457,
+	"./gom-latn.js": 457,
+	"./gu": 458,
+	"./gu.js": 458,
+	"./he": 459,
+	"./he.js": 459,
+	"./hi": 460,
+	"./hi.js": 460,
+	"./hr": 461,
+	"./hr.js": 461,
+	"./hu": 462,
+	"./hu.js": 462,
+	"./hy-am": 463,
+	"./hy-am.js": 463,
+	"./id": 464,
+	"./id.js": 464,
+	"./is": 465,
+	"./is.js": 465,
+	"./it": 466,
+	"./it.js": 466,
+	"./ja": 467,
+	"./ja.js": 467,
+	"./jv": 468,
+	"./jv.js": 468,
+	"./ka": 469,
+	"./ka.js": 469,
+	"./kk": 470,
+	"./kk.js": 470,
+	"./km": 471,
+	"./km.js": 471,
+	"./kn": 472,
+	"./kn.js": 472,
+	"./ko": 473,
+	"./ko.js": 473,
+	"./ky": 474,
+	"./ky.js": 474,
+	"./lb": 475,
+	"./lb.js": 475,
+	"./lo": 476,
+	"./lo.js": 476,
+	"./lt": 477,
+	"./lt.js": 477,
+	"./lv": 478,
+	"./lv.js": 478,
+	"./me": 479,
+	"./me.js": 479,
+	"./mi": 480,
+	"./mi.js": 480,
+	"./mk": 481,
+	"./mk.js": 481,
+	"./ml": 482,
+	"./ml.js": 482,
+	"./mn": 483,
+	"./mn.js": 483,
+	"./mr": 484,
+	"./mr.js": 484,
+	"./ms": 485,
+	"./ms-my": 486,
+	"./ms-my.js": 486,
+	"./ms.js": 485,
+	"./mt": 487,
+	"./mt.js": 487,
+	"./my": 488,
+	"./my.js": 488,
+	"./nb": 489,
+	"./nb.js": 489,
+	"./ne": 490,
+	"./ne.js": 490,
+	"./nl": 491,
+	"./nl-be": 492,
+	"./nl-be.js": 492,
+	"./nl.js": 491,
+	"./nn": 493,
+	"./nn.js": 493,
+	"./pa-in": 494,
+	"./pa-in.js": 494,
+	"./pl": 495,
+	"./pl.js": 495,
+	"./pt": 496,
+	"./pt-br": 497,
+	"./pt-br.js": 497,
+	"./pt.js": 496,
+	"./ro": 498,
+	"./ro.js": 498,
+	"./ru": 499,
+	"./ru.js": 499,
+	"./sd": 500,
+	"./sd.js": 500,
+	"./se": 501,
+	"./se.js": 501,
+	"./si": 502,
+	"./si.js": 502,
+	"./sk": 503,
+	"./sk.js": 503,
+	"./sl": 504,
+	"./sl.js": 504,
+	"./sq": 505,
+	"./sq.js": 505,
+	"./sr": 506,
+	"./sr-cyrl": 507,
+	"./sr-cyrl.js": 507,
+	"./sr.js": 506,
+	"./ss": 508,
+	"./ss.js": 508,
+	"./sv": 509,
+	"./sv.js": 509,
+	"./sw": 510,
+	"./sw.js": 510,
+	"./ta": 511,
+	"./ta.js": 511,
+	"./te": 512,
+	"./te.js": 512,
+	"./tet": 513,
+	"./tet.js": 513,
+	"./tg": 514,
+	"./tg.js": 514,
+	"./th": 515,
+	"./th.js": 515,
+	"./tl-ph": 516,
+	"./tl-ph.js": 516,
+	"./tlh": 517,
+	"./tlh.js": 517,
+	"./tr": 518,
+	"./tr.js": 518,
+	"./tzl": 519,
+	"./tzl.js": 519,
+	"./tzm": 520,
+	"./tzm-latn": 521,
+	"./tzm-latn.js": 521,
+	"./tzm.js": 520,
+	"./ug-cn": 522,
+	"./ug-cn.js": 522,
+	"./uk": 523,
+	"./uk.js": 523,
+	"./ur": 524,
+	"./ur.js": 524,
+	"./uz": 525,
+	"./uz-latn": 526,
+	"./uz-latn.js": 526,
+	"./uz.js": 525,
+	"./vi": 527,
+	"./vi.js": 527,
+	"./x-pseudo": 528,
+	"./x-pseudo.js": 528,
+	"./yo": 529,
+	"./yo.js": 529,
+	"./zh-cn": 530,
+	"./zh-cn.js": 530,
+	"./zh-hk": 531,
+	"./zh-hk.js": 531,
+	"./zh-tw": 532,
+	"./zh-tw.js": 532
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 986;
+
+/***/ }),
+
 /***/ 987:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4787,7 +4787,7 @@ var BlockStepsComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_document_service__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_block_steps_block_steps__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_block_steps_block_steps__ = __webpack_require__(96);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4917,7 +4917,7 @@ var ReviewPage = (function () {
     ], ReviewPage.prototype, "blockSteps", void 0);
     ReviewPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-review',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/review/review.html"*/'<ion-content class="no-overflow-page" >\n\n\n  <block-steps activeStep="5" #blockSteps>\n  </block-steps>\n\n  <div style="clear:both"></div>\n  <section style="position: relative;" class="nextBackButtons">\n      <button class="nextBackButtonBack" ion-fab mini (click)="back()" style="background-color:green; position: absolute;"><ion-icon name="md-arrow-back"></ion-icon></button>\n  </section>  \n  <div style="clear:both"></div>\n\n  <div style="padding: 20px 20px 20px 20px; padding-left: 60px">\n    <button ion-button style="border-radius: 30px">\n      Save to Blockchain <br/>as Smart Contract\n    </button>\n    <span>Coming Soon!</span>\n  </div>\n\n  <p>\n    Document Hash = {{ hash }}\n  </p>\n  <block-pdf marginTop="10px" locked="true" >\n\n  </block-pdf>\n\n\n</ion-content>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/review/review.html"*/,
+            selector: 'page-review',template:/*ion-inline-start:"N:\code\git\blockusign\BlockUSign.Ionic\src\pages\review\review.html"*/'<ion-content class="no-overflow-page" >\n\n\n\n\n\n  <block-steps activeStep="5" #blockSteps class="no-print">\n\n  </block-steps>\n\n\n\n  <div style="clear:both"></div>\n\n  <section style="position: relative;" class="nextBackButtons no-print">\n\n      <button class="nextBackButtonBack" ion-fab mini (click)="back()" style="background-color:green; position: absolute;"><ion-icon name="md-arrow-back"></ion-icon></button>\n\n  </section>  \n\n  <div style="clear:both"></div>\n\n\n\n  <div style="padding: 20px 20px 20px 20px; padding-left: 60px" class="no-print">\n\n    <button ion-button style="border-radius: 30px">\n\n      Save to Blockchain <br/>as Smart Contract<br/>*Coming Soon!\n\n    </button>\n\n    <span></span>\n\n    <button ion-button style="border-radius: 30px; background-color:green;"  onclick="window.print()">\n\n        Download\n\n    </button>\n\n  </div>\n\n\n\n  <p class="no-print">\n\n    Document Hash = {{ hash }}\n\n  </p>\n\n  <block-pdf marginTop="10px" locked="true" >\n\n\n\n  </block-pdf>\n\n\n\n\n\n</ion-content>'/*ion-inline-end:"N:\code\git\blockusign\BlockUSign.Ionic\src\pages\review\review.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__services_document_service__["a" /* DocumentService */]])
     ], ReviewPage);
@@ -4936,10 +4936,10 @@ var ReviewPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_document_service__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_block_pdf_block_pdf__ = __webpack_require__(175);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_block_chat_block_chat__ = __webpack_require__(173);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_block_steps_block_steps__ = __webpack_require__(95);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_app_component__ = __webpack_require__(541);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_block_pdf_block_pdf__ = __webpack_require__(192);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_block_chat_block_chat__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_block_steps_block_steps__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_app_component__ = __webpack_require__(538);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5122,7 +5122,7 @@ var SignPage = (function () {
     ], SignPage.prototype, "blockSteps", void 0);
     SignPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-sign',template:/*ion-inline-start:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/sign/sign.html"*/'<ion-content class="no-overflow-page">\n\n  <block-steps activeStep="4" #blockSteps></block-steps>\n\n  <div style="clear:both"></div>\n  <section style="position: relative;" class="nextBackButtons">\n      <button class="nextBackButtonBack" ion-fab mini (click)="back()" style="background-color:green; position: absolute;"><ion-icon name="md-arrow-back"></ion-icon></button>\n      <button class="nextBackButtonNext" ion-fab mini (click)="next()"><ion-icon name="md-arrow-forward" ></ion-icon></button>\n  </section>  \n  <div style="clear:both"></div>\n\n  <block-pdf #blockPdf showToolBar="true" showSignature="true" showButtons="true">\n\n  </block-pdf>\n\n  <block-chat #blockChat>\n\n  </block-chat>\n\n</ion-content>'/*ion-inline-end:"/Users/Nick/Desktop/code/blockusign/BlockUSign.Ionic/src/pages/sign/sign.html"*/,
+            selector: 'page-sign',template:/*ion-inline-start:"N:\code\git\blockusign\BlockUSign.Ionic\src\pages\sign\sign.html"*/'<ion-content class="no-overflow-page">\n\n\n\n  <block-steps activeStep="4" #blockSteps class="no-print"></block-steps>\n\n\n\n  <div style="clear:both"></div>\n\n  <section style="position: relative;" class="nextBackButtons no-print">\n\n      <button class="nextBackButtonBack" ion-fab mini (click)="back()" style="background-color:green; position: absolute;"><ion-icon name="md-arrow-back"></ion-icon></button>\n\n      <button class="nextBackButtonNext" ion-fab mini (click)="next()"><ion-icon name="md-arrow-forward" ></ion-icon></button>\n\n  </section>  \n\n  <div style="clear:both"></div>\n\n\n\n  <block-pdf #blockPdf showToolBar="true" showSignature="true" showButtons="true">\n\n\n\n  </block-pdf>\n\n\n\n  <block-chat #blockChat class="no-print">\n\n\n\n  </block-chat>\n\n\n\n</ion-content>'/*ion-inline-end:"N:\code\git\blockusign\BlockUSign.Ionic\src\pages\sign\sign.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],
