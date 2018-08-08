@@ -1103,3 +1103,39 @@
         display: none !important;
     }
 }
+
+
+
+@media all {
+	.page-break	{ display: none; }
+}
+
+@media print {
+    
+    .no-print, .no-print *
+     {
+         display: none !important;
+     }
+
+     canvas {
+        page-break-after: always;
+        page-break-inside: avoid;
+     }
+     
+    body {
+        position: relative !important;
+        overflow: scroll !important;
+        height: 10000px !important;
+    }
+
+      
+    ion-content {
+        height: 10000px !important;
+    }
+
+    ion-app, ng-component, ion-split-pane, ion-nav, page-annotate, .scroll-content {
+        position: relative !important;
+        height: 10000px !important;
+    }
+
+}
