@@ -43,33 +43,36 @@
   <ion-fab *ngIf="showToolBar" top left style="margin-top:1px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab class="no-print">
     <ion-grid>
       <ion-row justify-content-start align-items-center>
-        <ion-col col-auto *ngIf="showSignHere">
-          <img id="sigImg" height="50px" class="draggable draggable-droppable" src="./../../assets/imgs/sign.png" />
-          
-        </ion-col>
         <ion-col col-auto *ngIf="showSignature" style="position: relative;">
-          
-
-           
+            
           <div class="font-selector">
             <select></select>
-            <span class="divider"> | </span>
+            <span class="divider"></span>&nbsp;&nbsp;
             <input class="font-size font-selector" type="number" name="quantity" min="6" max="100" value="25"/>
-            <span class="divider"> | </span>
+            <span class="divider"></span>&nbsp;&nbsp;
             <span class="bold"> B </span>
-            <span class="divider"> | </span>
+            <span class="divider"></span>
             <input id="spectrum" />
-            <span class="divider"> | </span>
-            <ion-icon name="md-create" (click)="editSignature()" style="color: white; cursor: pointer;"></ion-icon>
-            <span class="divider"> | </span>
-            <ion-icon name="md-happy" class="chat-input-tool2 emoji-picker2" style="color: white; cursor: pointer;"></ion-icon>
+            <span class="divider"></span>
+            <span>
+              &nbsp;&nbsp;
+              <ion-icon name="md-create" (click)="editSignature()" style="color: white; cursor: pointer;"></ion-icon>
+              &nbsp;&nbsp;
+            </span>
+            <span class="divider"></span>
+            <span>
+                &nbsp;&nbsp;
+              <ion-icon name="md-happy" class="chat-input-tool2 emoji-picker2" style="color: white; cursor: pointer;"></ion-icon>
+              &nbsp;&nbsp;
+            </span>
           </div>
-
-          <div contenteditable="true" (keyup)="onKey($event)" class="editSigContent" style="caret-color: black; max-width:190px;">
-
+          <br/>
+          <img  *ngIf="showSignHere" id="sigImg" height="50px" class="draggable draggable-droppable" src="./../../assets/imgs/sign.png" style="float: left;" />
           
-          <svg xmlns="http://www.w3.org/2000/svg"  id="signature" class="draggable draggable-droppable" width="200" height="50" viewBox="0 0 200 50"
-            style="clear:both; background:#ffeb8e; border: 1px solid red " opacity="1">
+          <div contenteditable="true" (keyup)="onKey($event)" class="editSigContent" style="caret-color: black; max-width:190px;float: left; margin-left: 8px">
+
+          <svg xmlns="http://www.w3.org/2000/svg"    id="signature" class="draggable draggable-droppable" width="200" height="50" viewBox="0 0 200 50"
+            style="clear:both; background:#ffeb8e; border: 1px solid red ; float: left;" opacity="1">
             <text tabindex="0" class="emojiDiv2" #sigText  contenteditable="true" x="50%" y="50%" 
             width="200" height="50" viewBox="0 0 200 50" 
             alignment-baseline="middle" 
@@ -79,15 +82,17 @@
             </text>
 
           </svg>
-          <hr/>
+        
+         </div>
+         
+         <div class="dragImg" col-auto *ngIf="showButtons" style="float: left; margin-left: 16px">
+            <img src="./../../assets/imgs/arrows.svg" height="35px">
+            <span style="color:whitesmoke; font-size: 18px; font-weight: bold; opacity: .7;">drag</span>
          </div>
 
           
         </ion-col>
-        <ion-col class="dragImg" col-auto *ngIf="showButtons">
-          <img src="./../../assets/imgs/arrows.svg" height="35px">
-          <span style="color:whitesmoke; font-family: Cedarville Cursive; font-size: 18px; font-weight: bold">drag</span>
-        </ion-col>
+       
         <!-- <ion-col col-auto style="padding-left: 50px;">
         <input id="checkBox" type="checkbox">
         <span style="padding-right: 4px;color:#757575;">Allow Resize</span>

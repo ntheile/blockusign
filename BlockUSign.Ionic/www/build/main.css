@@ -29582,8 +29582,15 @@ img.draggable.drag-can-drop {
 }
 
 .font-selector .divider {
-  margin-right: 6px;
+  margin-right: 6px !important;
+  margin-left: 6px !important;
+  padding: 2px 2px 2px 2px !important;
   color: gray;
+  border-top-width: 0;
+  border-right-width: 2px;
+  border-right-style: solid;
+  height: 100%;
+  opacity: .2;
 }
 
 /* Steps https://codepen.io/praveenpuglia/pen/WpEvwO */
