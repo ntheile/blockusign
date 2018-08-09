@@ -1,8 +1,12 @@
 <ion-content class="block-pdf-page" >
 
+ 
+
   <div class="page" id="pageContainer1" data-page-number="1" style="position:relative;width: 100%; height:100%;"
     [style.margin-top]="marginTop">
     
+
+
     <div id="canvasWrapper" #canvasWrapper style="padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
       <div>
         <svg #svgDropZone id="svg-dropzone" class="svg-dropzone dropzone resizable" xmlns="http://www.w3.org/2000/svg" style="position: absolute; 
@@ -19,6 +23,8 @@
     </div>
 
   </div>
+
+  
 
   <br/><br/><br/><br/>
 
@@ -43,15 +49,28 @@
         </ion-col>
         <ion-col col-auto *ngIf="showSignature" style="position: relative;">
           
+
+           
+          <div class="font-selector">
+            <select></select>
+            <span class="divider"> | </span>
+            <input class="font-size font-selector" type="number" name="quantity" min="6" max="100" value="25"/>
+            <span class="divider"> | </span>
+            <span class="bold"> B </span>
+            <span class="divider"> | </span>
+            <input id="spectrum" />
+            <span class="divider"> | </span>
+            <ion-icon name="md-create" (click)="editSignature()" style="color: white; cursor: pointer;"></ion-icon>
+            <span class="divider"> | </span>
+            <ion-icon name="md-happy" class="chat-input-tool2 emoji-picker2" style="color: white; cursor: pointer;"></ion-icon>
+          </div>
+
           <div contenteditable="true" (keyup)="onKey($event)" class="editSigContent" style="caret-color: black; max-width:190px;">
 
           
           <svg xmlns="http://www.w3.org/2000/svg"  id="signature" class="draggable draggable-droppable" width="200" height="50" viewBox="0 0 200 50"
             style="clear:both; background:#ffeb8e; border: 1px solid red " opacity="1">
-
-           
-
-            <text class="emojiDiv2" #sigText  contenteditable="true" x="50%" y="50%" 
+            <text tabindex="0" class="emojiDiv2" #sigText  contenteditable="true" x="50%" y="50%" 
             width="200" height="50" viewBox="0 0 200 50" 
             alignment-baseline="middle" 
             text-anchor="middle" fill="green"
@@ -60,13 +79,8 @@
             </text>
 
           </svg>
+          <hr/>
          </div>
-          <span class="editSig" >
-              <ion-icon name="md-create" (click)="editSignature()" style="color: black"></ion-icon>
-          </span>
-          <span class="emojiSig chat-input-tool2 emoji-picker2" >
-            <ion-icon name="md-happy" style="color: black"></ion-icon>
-          </span>
 
           
         </ion-col>
@@ -93,6 +107,10 @@
     </ion-grid>
   </ion-fab>
 
+
+ 
+ 
+  <div class="preview">Test</div>
   
 
 </ion-content>

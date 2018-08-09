@@ -14,6 +14,7 @@ import PDFAnnotate from 'pdf-annotate';
 import annotations from './annotations';
 import mockViewport from './mockViewport'
 import { MyApp } from '../../app/app.component';
+import * as _ from 'underscore';
 //import { EmojiPopoverPage } from '../../app/emoji.popover.page';
 declare let CustomStyle: any;
 declare var $: any;
@@ -27,7 +28,7 @@ declare let Event: any;
 declare let dragOn: any;
 declare let interact: any;
 declare let getQueryParam: any;
-
+declare let WebFont: any;
 
 /**
  * Generated class for the BlockPdfComponent component.
@@ -164,6 +165,82 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
    
   }
 
+  registerFontSelector(){
+    var fontsArr = ['Cedarville Cursive', 'Roboto', 'Arial', 'Serif', 'Lobster', 'Lato', 'Patua One', 'Oswald', 'Yellowtail', 'Bangers', 'Abril Fatface', 'Alfa Slab One', 'Raleway', 'Montserrat', 'Lora', 'Titillium Web'];
+
+    var $fontSelector = $('.font-selector select');
+    var $fontSize = $('.font-size');
+    var $bold = $('.bold');
+    var $preview = $('.emojiDiv2');
+
+    $fontSelector.on('change', function() {
+      $(this).css({
+        fontFamily: $(this).val()
+      });
+      $preview.css({
+        fontFamily: $(this).val()
+      });
+    });
+
+    $fontSize.on('change', function() {
+      $preview.css('font-size', $(this).val() + 'px');
+    });
+
+    $bold.on('click', function() {
+      if ($preview.css('font-weight') == '400') {
+        $preview.css('font-weight', 'bold');
+        $bold.css('background-color', 'black');
+      }
+      else{
+        $preview.css('font-weight', 'normal');
+        $bold.css('background-color', 'transparent');
+      }
+      
+    });
+
+
+
+    _.forEach(fontsArr, function(fontName, index){
+      var $option = $('<option style="font-family:'+fontName+'">'+fontName+'</option>');
+      $fontSelector.append($option);
+    });
+
+    $fontSelector.trigger('change');
+
+    WebFont.load({
+      google: {
+        families: fontsArr
+      }
+    });
+  }
+
+  registerColorPicker(){
+    $('#spectrum').spectrum({
+      showPalette: true,
+      color: '#008000',
+      palette: [
+          ['#008000', '#000000', '#454cad'],
+          ['#D50000', '#FF4081', '#AA00FF'],
+          ['#6200EA', '#304FFE', '#2962FF'],
+          ['#0091EA', '#00B8D4', '#00BFA5'],
+          ['#00C853', '#64DD17', '#AEEA00'],
+          ['#FFD600', '#FFAB00', '#FF6D00'],
+          ['#DD2C00', '#3E2723', '#616161']
+      ]
+    });
+
+    $('#spectrum').on('change.spectrum', (e, tinycolor) => {
+      setTimeout( () => {
+        $('.emojiDiv2').attr("fill",$('#spectrum').spectrum('get').toHexString() );
+        return false;
+      }, 100);
+    });
+
+    const el = $('.sp-replacer:first');
+    el.css('background-color', 'transparent');
+    el.css('border', 'none');
+  }
+
   destroyEmojiEvents(){
     $(document).off("click", ".emoji-picker2");
     $(document).off("click");
@@ -178,6 +255,8 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
 
   init() {
     
+    this.registerFontSelector();
+    this.registerColorPicker();
 
     this.svgDrawer = dragOn(document.querySelector(".dropzone"), {
       listenTo: '.draggable'

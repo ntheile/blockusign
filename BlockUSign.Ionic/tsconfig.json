@@ -24,5 +24,8 @@
   "compileOnSave": false,
   "atom": {
     "rewriteTsconfig": false
+  },
+  "paths": {
+    "underscore": "./node_modules/underscore/underscore.js"
   }
 }
