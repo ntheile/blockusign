@@ -57,6 +57,7 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild("fileUploadForm") fileUploadForm: ElementRef;
   @ViewChild("canvasWrapper") canvasWrapper: ElementRef;
   @ViewChild("svgDropZone") svgDropZone: ElementRef;
+  // @ViewChild("editableEl") editableEl: ElementRef;
   
 
 
@@ -102,7 +103,8 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     console.log('====> ngOnInit');
     $(document).ready(() => {
-
+      
+      this.setCursorFocus(200);
 
       pdfjsLib.GlobalWorkerOptions.workerSrc = location.origin + "/assets/pdf.worker.js"
 
@@ -114,6 +116,7 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
       this.loading.present();
 
       this.init();
+      
     });
 
   }
@@ -123,7 +126,8 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
   //     if(this.sigTextElement.nativeElement.innerHTML == ""){
   //       this.sigTextElement.nativeElement.innerHTML = "[Enter name]"
   //     }  
-  //  });
+  //  }); 
+    
   }
 
   registerEmojiEvent(){
@@ -161,6 +165,7 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       });
 
+      
     });
    
   }
@@ -212,6 +217,16 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
         families: fontsArr
       }
     });
+
+
+  }
+
+  setCursorFocus(time) {
+    setTimeout(function(){
+      let el = $(".editSigContent").first()
+      el.focus();
+    }, time);
+    
   }
 
   registerColorPicker(){
@@ -265,6 +280,7 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
     let docData = getQueryParam('docData');
     if (docData) {
       this.loading.dismiss();
+      this.setCursorFocus(3000);
       return;
     }
 
@@ -357,13 +373,14 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
       this.loadSvg(1);
 
       this.loading.dismiss();
+      this.setCursorFocus(3000);
 
     }, (reason) => {
 
       // PDF loading error
       console.error(reason);
       this.loading.dismiss();
-
+      this.setCursorFocus(3000);
     });
 
   }
@@ -534,6 +551,8 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
     //   ev: myEvent
     // });
   }
+
+ 
 
 
   onKey(e){
