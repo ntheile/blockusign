@@ -178,10 +178,11 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
           `;
         }
 
-        $('.log-history').last().html(template);
-        $('.chat-history').last().scrollTop($('.log-history').last().height());
-     
-     
+        setTimeout( ()=> {
+          $('.log-history').last().html(template);
+          $('.chat-history').last().scrollTop($('.log-history').last().height());
+        }, 200);
+        
       }
       this.firstLoad = false;
       $(".loadSpin").hide();
@@ -197,17 +198,20 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
 
   async addMessage() {
    
-    $(".loadSpin").show();
-    this.message = $(".emojiDiv").val();
-    //$('.log-history').append(this.message);
-    await this.documentService.addMessage(this.doc.guid, this.message);
-    this.events.publish('documentService:addedChat', this.message);
-    this.message = null;
-    this.firstLoad = true;
     
-    $(".intercom-composer-emoji-popover").removeClass("active");
-    // @todo optimize this with lazy load adding of new message
-    //await this.getLogData();
+      $(".loadSpin").show();
+      this.message = $(".emojiDiv").last().val();
+      //$('.log-history').append(this.message);
+      await this.documentService.addMessage(this.doc.guid, this.message);
+      this.events.publish('documentService:addedChat', this.message);
+      this.message = null;
+      this.firstLoad = true;
+      
+      $(".intercom-composer-emoji-popover").removeClass("active");
+      // @todo optimize this with lazy load adding of new message
+      //await this.getLogData();
+ 
+
   }
 
   hasNoEvents(selector){
