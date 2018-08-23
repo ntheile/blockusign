@@ -553,7 +553,13 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
  
-
+  clearPlaceHolder(e){
+    if (this.yourName == "[Edit Name]"){
+      this.yourName = "";
+      $('.emojiDiv2').html("&nbsp;")
+      $(e.currentTarget).focus();
+    }
+  }
 
   onKey(e){
     if(this.sigTextElement.nativeElement.textContent == "" ){

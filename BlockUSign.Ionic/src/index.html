@@ -40,6 +40,16 @@
         navigator.serviceWorker.register('service-worker.js')
           .then(() => console.log('service worker installed'))
           .catch(err => console.error('Error', err));
+
+      // service worker refresh
+        var refreshing;
+          navigator.serviceWorker.addEventListener('controllerchange',
+            function() {
+              if (refreshing) return;
+              refreshing = true;
+              window.location.reload();
+            }
+        );
       }
     </script>
 
