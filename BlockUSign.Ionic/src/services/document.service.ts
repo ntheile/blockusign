@@ -207,16 +207,21 @@ export class DocumentService {
 
     // now copy chat log
     let theirPath = jslinq(this.currentDoc.paths).where( (el) => el.email != this.blockStackService.profile.email  ).toList();
-    let theirUrl = theirPath[0].pathToStorage + guid + '.log.json';
-    let theirLogDoc = await this.getLogByPath(theirUrl, this.currentDoc.documentKey);
-    if (theirLogDoc) {
-      let logStr = Automerge.save(theirLogDoc);
-      await this.saveLog(guid, logStr);
+    if (theirPath){
+      try{
+        let theirUrl = theirPath[0].pathToStorage + guid + '.log.json';
+        let theirLogDoc = await this.getLogByPath(theirUrl, this.currentDoc.documentKey);
+        if (theirLogDoc) {
+          let logStr = Automerge.save(theirLogDoc);
+          await this.saveLog(guid, logStr);
+        }
+        else{
+          // nothing
+        }
+      }
+      catch (e) { console.log(e); }
     }
-    else{
-      // nothing
-    }
-
+   
     return this.documentsList;
   }
 

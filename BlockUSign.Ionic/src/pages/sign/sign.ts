@@ -84,7 +84,7 @@ export class SignPage {
         this.documentService.getDocumentsIndex(true);
         this.myApp.documentsGetList();
       }
-      this.blockChat.ngOnInit();
+      window.location.reload(true);
     }
     else{
       console.log('Error, must pass in guid')

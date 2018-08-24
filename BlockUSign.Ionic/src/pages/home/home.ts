@@ -108,7 +108,10 @@ export class HomePage {
 
     loadFile() {
 
-       
+        setTimeout(()=>{
+            document.getElementById('globalLoading').style.display = "";
+        }, 300);
+
         this.loading.present();
 
         //let fileInput: any = document.getElementById('file-upload');
@@ -123,6 +126,9 @@ export class HomePage {
         if (!files.length) {
             alert('Please select a file!');
             this.loading.dismiss();
+            setTimeout(()=>{
+                document.getElementById('globalLoading').style.display = "none";
+            }, 300);
             return;
         }
 
@@ -131,6 +137,9 @@ export class HomePage {
             document.getElementById('globalLoading').style.display = "none";
             alert('Sorry, we are working on supporting larger file sizes :) Please select a smaller document under 2MB');
             this.loading.dismiss();
+            setTimeout(()=>{
+                document.getElementById('globalLoading').style.display = "none";
+            }, 300);
            return;
         } 
 

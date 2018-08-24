@@ -158,14 +158,13 @@ export class MyApp {
     this.nav.setRoot("HomePage");
     this.clearActive();
     setTimeout(()=>{
-      document.getElementById('globalLoading').style.display = "";
+      try {
+        document.getElementById('globalLoading').style.display = "";
+        document.getElementById('file-upload').click();
+      }
+      catch(e) {}
     }, 300);
-    
-    try{
-      document.getElementById('file-upload').click();
-    }
-    catch(e) {}
-    
+
   }
 
 
