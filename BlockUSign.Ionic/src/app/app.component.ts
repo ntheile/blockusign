@@ -161,7 +161,11 @@ export class MyApp {
       document.getElementById('globalLoading').style.display = "";
     }, 300);
     
-    document.getElementById('file-upload').click();
+    try{
+      document.getElementById('file-upload').click();
+    }
+    catch(e) {}
+    
   }
 
 

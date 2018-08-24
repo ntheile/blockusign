@@ -24,13 +24,16 @@
                 ALL
               </div>
             </div>
-            <div *ngFor="let collaborator of documentService.documentsList">
-              <div class="server focusable " role="button" aria-label="My Server" *ngIf="collaborator.signer.length > 0" (click)="filterDocumentList(collaborator.signer[0], $event)">
-                <div class="server-icon">
-                  {{ collaborator.signer[0].charAt(0).toUpperCase() }}
-                </div>
-                <span>{{ collaborator.signer[0] }}</span>
+            <div  *ngFor="let collaborator of documentService.documentsList">
+              <div *ngIf="collaborator.signer">
+                  <div class="server focusable " role="button" aria-label="My Server" *ngIf="collaborator.signer.length > 0" (click)="filterDocumentList(collaborator.signer[0], $event)">
+                      <div class="server-icon">
+                        {{ collaborator.signer[0].charAt(0).toUpperCase() }}
+                      </div>
+                      <span>{{ collaborator.signer[0] }}</span>
+                    </div> 
               </div>
+             
             </div>
           </div>
         </aside>
@@ -44,7 +47,7 @@
           </header>
           <section class="channels-list">
 
-            <section (click)="upload()" >
+            <section >
               <button 
                 ion-button icon-end 
                 style="float:right;width:100%;background-color:green; color:white; border-radius: 30px; margin-bottom: 20px; margin-top: 20px">
@@ -85,7 +88,7 @@
               </li>
               <li class="channel focusable channel-text " (click)="copyBtc()">
                 <span>
-                  <ion-icon name="logo-bitcoin"></ion-icon> BTC
+                  <ion-icon name="logo-bitcoin"></ion-icon> Donate BTC
                   <br/>
                   <input id="btc" type="text" readonly style="font-size: 10px; background:rgba(0,0,0,0);border:none; width:200px" value="1Jw3xsPzmYus3ke4XYXAHHyzpxD1sjQVta"
                   />

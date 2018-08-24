@@ -183,7 +183,7 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
         setTimeout( ()=> {
           $('.log-history').last().html(template);
           $('.chat-history').last().scrollTop($('.log-history').last().height());
-        }, 200);
+        }, 250);
         
       }
       this.firstLoad = false;
@@ -199,8 +199,7 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
   }
 
   async addMessage() {
-   
-    
+    setTimeout(async ()=>{
       $(".loadSpin").show();
       this.message = $(".emojiDiv").last().val();
       //$('.log-history').append(this.message);
@@ -212,8 +211,8 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
       $(".intercom-composer-emoji-popover").removeClass("active");
       // @todo optimize this with lazy load adding of new message
       //await this.getLogData();
- 
-
+    }, 250);;
+     
   }
 
   hasNoEvents(selector){
