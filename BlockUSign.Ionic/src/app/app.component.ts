@@ -151,8 +151,19 @@ export class MyApp {
     this.menuCtrl.close();
     this.nav.setRoot("HomePage");
     this.clearActive();
+  }
+
+  upload() {
+    this.menuCtrl.close();
+    this.nav.setRoot("HomePage");
+    this.clearActive();
+    setTimeout(()=>{
+      document.getElementById('globalLoading').style.display = "";
+    }, 300);
+    
     document.getElementById('file-upload').click();
   }
+
 
 
   logout() {

@@ -30,13 +30,16 @@
         </div>
         <!-- <p class="chat-feedback">Your partner is typing…</p> -->
         <form>
+          <ion-spinner class="loadSpin" ></ion-spinner> 
           <fieldset>
-            <input class="emojiDiv" type="text" name="addMsg" 
+            <input class="emojiDiv" type="text" name="addMsg" style="width: 185px"
             placeholder="Type your message…" 
             autofocus [(ngModel)]="message" 
             (keydown.enter)="addMessage($event)"/>
            
-            <ion-spinner class="loadSpin" ></ion-spinner> 
+            
+            
+            <button ion-button style="height: 30px; width:30px; font-size: 12; padding: 2px 2px 2px 2px;" (click)="addMessage($event)">GO</button>
 
             <div class="emoji" >
                 <div class="test-emoji"></div>

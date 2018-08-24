@@ -162,7 +162,9 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
           let uidClass = 'block-pic-' + uid;
   
           this.blockstackService.getPicUrl(uName).then((picUrl) => {
-            $('.' + uidClass).attr('src', picUrl);
+            setTimeout(()=>{
+              $('.' + uidClass).attr('src', picUrl);
+            }, 250);            
           });
   
           template = template + `  

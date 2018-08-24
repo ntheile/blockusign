@@ -11,13 +11,16 @@
 
         <div >
           <!-- Upload  -->
-          <form id="file-upload-form" #fileUploadForm class="uploader" onclick="$('.pdfSelectTxt').text('loading...')">
+          <form id="file-upload-form" #fileUploadForm class="uploader" onclick="document.getElementById('globalLoading').style.display = '';">
             <input id="file-upload" #fileUpload type="file" name="fileUpload" accept=".pdf" />
             <label for="file-upload" id="file-drag" #fileDrag>
               <img id="file-image" #fileImage src="#" alt="Preview" class="hidden">
               <div id="start" #start>
                 <i class="fa fa-download" aria-hidden="true"></i>
                 <div class="pdfSelectTxt">Select a PDF</div>
+                <div id="globalLoading" style="display: none;">
+                  <img height="125px" src="../../assets/imgs/three-bar-loader.gif" />
+                </div>
                 <div id="notimage" class="hidden">Please select an image</div>
                 <span id="file-upload-btn" #fileUploadBtn class="btn btn-primary">Select a file</span>
                 <ion-spinner *ngIf="isSpinning" class="spinner" #spinner></ion-spinner>

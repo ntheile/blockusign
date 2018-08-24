@@ -11,6 +11,7 @@ import PDFJSAnnotate from 'pdf-annotate';
 import { GlobalService } from '../../services/global.service';
 import { DocumentService } from '../../services/document.service';
 import { AlertController } from 'ionic-angular';
+import { unescapeIdentifier } from '@angular/compiler';
 declare let window: any;
 declare let PDFView: any;
 declare let canvas: any;
@@ -79,6 +80,7 @@ export class HomePage {
         
         
 
+
         //let docs = await this.documentService.getDocumentsIndex(true)
         //this.testPublicKeyFile();
     }
@@ -126,6 +128,7 @@ export class HomePage {
 
         let fileSize = firstFile.size / 1024 / 1024; // in MB
         if (fileSize > 2) {
+            document.getElementById('globalLoading').style.display = "none";
             alert('Sorry, we are working on supporting larger file sizes :) Please select a smaller document under 2MB');
             this.loading.dismiss();
            return;
@@ -195,6 +198,7 @@ export class HomePage {
                 renderTask.then(() => {
                     console.log('Page rendered');
                     this.loading.dismiss();
+                    document.getElementById('globalLoading').style.display = "none";
                 });
             });
 
@@ -202,6 +206,7 @@ export class HomePage {
             // PDF loading error
             console.error(reason);
             this.loading.dismiss();
+            document.getElementById('globalLoading').style.display = "none";
         });
     }
 
@@ -244,7 +249,11 @@ export class HomePage {
             fileDrag.className = (e.type === 'dragover' ? 'hover' : 'modal-body file-upload');
         }
 
+
         function fileSelectHandler(e) {
+
+           
+
             // Fetch FileList object
             var files = e.target.files || e.dataTransfer.files;
 
@@ -506,9 +515,6 @@ export class HomePage {
     spinShow(){
         this.isSpinning = true;
     }
-
-
-   
 
 }
 

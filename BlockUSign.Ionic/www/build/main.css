@@ -29553,6 +29553,9 @@ img.draggable.drag-can-drop {
   border: 0px;
   outline: 0px;
   border-radius: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .font-selector select option {
@@ -29591,6 +29594,31 @@ img.draggable.drag-can-drop {
   border-right-style: solid;
   height: 100%;
   opacity: .2;
+}
+
+/* Tooltip container */
+.btooltip {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.btooltip .btooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 9999999999;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.btooltip:hover .btooltiptext {
+  visibility: visible;
 }
 
 /* Steps https://codepen.io/praveenpuglia/pen/WpEvwO */

@@ -1,12 +1,12 @@
 <ion-split-pane>
   <ion-menu [content]="content" class="no-print">
     <div class="discord" style="height: 100%; width: 300px; color:whitesmoke">
-      
+
       <!-- https://codepen.io/thesbros/pen/vxpMPp -->
       <main class="container">
-        
+
         <aside class="servers">
-          
+
           <div class="servers-collection">
             <div class="server focusable server-friends" role="button" aria-label="Friends unread">
               <div class="server-icon">
@@ -16,7 +16,7 @@
               </div>
             </div>
           </div>
-          
+
           <div class="servers-collection">
             <div class="server focusable active" role="button" aria-label="My Server" (click)="filterDocumentList('all', $event)">
               <div class="server-icon" style="font-weight:bold">
@@ -25,8 +25,7 @@
               </div>
             </div>
             <div *ngFor="let collaborator of documentService.documentsList">
-              <div class="server focusable " role="button" aria-label="My Server" 
-              *ngIf="collaborator.signer.length > 0" (click)="filterDocumentList(collaborator.signer[0], $event)">
+              <div class="server focusable " role="button" aria-label="My Server" *ngIf="collaborator.signer.length > 0" (click)="filterDocumentList(collaborator.signer[0], $event)">
                 <div class="server-icon">
                   {{ collaborator.signer[0].charAt(0).toUpperCase() }}
                 </div>
@@ -38,27 +37,28 @@
 
 
         <aside class="channels">
-          <header class="channels-header focusable" (click)="home()">
-            <img src="./assets/imgs/blockusignLogoSvg.svg" height="45px" width="45px" class="blockusign-logo" />
-            <img src="./assets/imgs/blockusignTextLoRes.png" width="120px" style="padding-left: 12px; padding-top: 10px" />
+          <header class="channels-header focusable">
+            <img src="./assets/imgs/blockusignLogoSvg.svg" (click)="home()" height="45px" width="45px" class="blockusign-logo" />
+            <img src="./assets/imgs/blockusignTextLoRes.png" (click)="home()" width="120px" style="padding-left: 12px; padding-top: 10px" />
             <h3 role="header" class="channels-header-name" style="padding-right: 10px;"></h3>
           </header>
           <section class="channels-list">
-           
-              <section (click)="home()" >
-                <button  ion-button icon-end 
+
+            <section (click)="upload()" >
+              <button 
+                ion-button icon-end 
                 style="float:right;width:100%;background-color:green; color:white; border-radius: 30px; margin-bottom: 20px; margin-top: 20px">
                 New Doc
-                  <ion-icon name="md-add"></ion-icon>
-                </button>
-              </section>
-              
-       
-            
-            <header class="channels-list-header" (click)="home()">
+                <ion-icon name="md-add"></ion-icon>
+              </button>
+            </section>
+
+
+
+            <header class="channels-list-header" (click)="upload()">
               <span>Documents</span>
             </header>
-            
+
             <ul class="channels-list-text">
               <div *ngFor="let item of documentsList">
                 <li [ngClass]="(item == documentService.currentDoc) ? 'channel focusable channel-text active ' : 'channel focusable channel-text ' ">
@@ -72,7 +72,7 @@
               </div>
             </ul>
 
-            
+
             <header class="channels-list-header focusable" style="margin-top:50px" (click)="copyBtc()">
               <span>Donate</span>
             </header>
@@ -137,7 +137,7 @@
 </ion-split-pane>
 
 <!-- ICONS -->
-<div style="visibility: hidden" class="no-print"> 
+<div style="visibility: hidden" class="no-print">
   <svg id="icon-friends" viewBox="-289 382 32 27.1">
     <style id="style3">
       .st0 {
