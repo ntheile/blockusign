@@ -175,6 +175,9 @@ export class MyApp {
 
   async showProfile() {
 
+
+    // localStorage.setItem('signUp', 'true');
+
     if (blockstack.isUserSignedIn()) {
 
       let profile = blockstack.loadUserData();
