@@ -1,55 +1,54 @@
-const { app, BrowserWindow } = require('electron');
-const path = require("path");
-const url = require("url");
+const { app, BrowserWindow } = require('electron') 
+const path = require('path')
+const url = require('url')
+const cp =  require('child_process')
 
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
-let win;
+let serverStarted = false;
+let appReady = false;
+let browserWindow = null;
 
+// Start process to serve manifest file
+const server = cp.fork(__dirname + '/server.js');
+
+server.on('message', (m) => {
+    console.log('message: ' +  m);
+    if (m === 'started') {
+        serverStarted = true;
+        createWindow();
+    }
+});
+
+// Quit server process if main app quits
+app.on('will-quit', () => {
+    server.send('quit');
+});
 
 function createWindow() {
-    // Create the browser window.
-    win = new BrowserWindow({ 
-        width: 1200, 
-        height: 900,
-        webPreferences: {
-            webSecurity: false
-          }
-    });
+    if (serverStarted && appReady) {
+        browserWindow = new BrowserWindow(
+            {
+                width: 800, 
+                height: 600
+            })
+        browserWindow.loadURL(`file://${__dirname}/index.html`)
+        browserWindow.webContents.openDevTools()
 
-
-    // and load the index.html of the app.
-
-    win.loadURL(
-        url.format({
-          pathname: path.join(__dirname, `../www/index.html`),
-          protocol: "file:",
-          slashes: true
+        browserWindow.on('close', () => {
+            browserWindow = null
         })
-      );
-
-
-    // Open the DevTools.
-    //win.webContents.openDevTools()
-
-    // Emitted when the window is closed.
-    win.on('closed', () => {
-        // Dereference the window object, usually you would store windows
-        // in an array if your app supports multi windows, this is the time
-        // when you should delete the corresponding element.
-        win = null
-    })
+    }
 }
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
-app.on('ready', createWindow)
+// Set default protocol client for redirect
+app.setAsDefaultProtocolClient('blockstack-electron');
 
-// Quit when all windows are closed.
+
+app.on('ready', function () {
+    appReady = true;
+    createWindow();
+})
+
 app.on('window-all-closed', () => {
-    // On macOS it is common for applications and their menu bar
-    // to stay active until the user quits explicitly with Cmd + Q
     if (process.platform !== 'darwin') {
         app.quit()
     }
@@ -58,68 +57,15 @@ app.on('window-all-closed', () => {
 app.on('activate', () => {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
-    if (win === null) {
+    if (browserWindow === null) {
         createWindow()
     }
 })
 
-//   // In this file you can include the rest of your app's specific main process
-//   // code. You can also put them in separate files and require them here.
+app.on('open-url', function (ev, redirect) {
+    ev.preventDefault();
+    browserWindow.focus();
+    const token = redirect.replace('blockstack-electron://redirect?authResponse=', '')
+    browserWindow.webContents.send('signed-in', token)
+});
 
-// const electron = require('electron')
-// const app = electron.app
-// const BrowserWindow = electron.BrowserWindow
-// const path = require('path')
-// const url = require('url')
-
-// process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = true
-
-// let mainWindow
-
-// // Tip use the debugger keyword when debugging the main process
-// // electron --inspect-brk=5858 .
-// // or npm run debug-main
-
-// function createWindow () {
-//   // debugger
-//   mainWindow = new BrowserWindow({
-//     width: 1800,
-//     height: 1200,
-//     webPreferences: {
-//         webSecurity: false
-//     }
-//   });
-//   mainWindow.loadURL(url.format({
-//     pathname: path.join(__dirname, '../www/index.html'),
-//     protocol: 'file:',
-//     slashes: true,
-//     nodeIntegration: false
-//   }))
-
-//   mainWindow.webContents.openDevTools();
-
- 
-
-//   if (process.env.NODE_ENV === 'development') {
-//     const client = require('electron-connect').client
-//     client.create(mainWindow)
-//     mainWindow.toggleDevTools()
-//   }
-//   mainWindow.on('closed', function () {
-//     mainWindow = null
-//   })
-// }
-// app.on('ready', createWindow)
-
-// app.on('window-all-closed', function () {
-//   app.quit()
-// })
-
-// app.on('activate', function () {
-//   if (mainWindow === null) {
-//     createWindow();
-//   }
-// })
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.

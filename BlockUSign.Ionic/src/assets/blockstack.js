@@ -112,8 +112,15 @@ function redirectToSignInWithAuthRequest() {
     window.location = protocolURI;
   }
 
-  //(0, _customProtocolDetectionBlockstack2.default)(protocolURI, failCallback, successCallback, unsupportedBrowserCallback);
-  window.location = httpsURI;
+  if (navigator.userAgent.toLocaleLowerCase().includes('electron') === true){
+    (0, _customProtocolDetectionBlockstack2.default)(protocolURI, failCallback, successCallback, unsupportedBrowserCallback);
+  }
+  else{
+    window.location = httpsURI;
+  
+  }
+ 
+  
   
 }
 

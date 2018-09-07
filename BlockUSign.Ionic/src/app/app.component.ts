@@ -20,12 +20,9 @@ declare var window: any;
 const $ = document.querySelectorAll.bind(document);
 import { AlertController } from 'ionic-angular';
 declare let jQuery: any;
-
-
+   
 let { Keystore, Keygen } = require('eosjs-keygen')
 let Eos = require('eosjs')
-
-
 
 
 @Component({
@@ -108,8 +105,9 @@ export class MyApp {
   // }
 
   login() {
-    const origin = window.location.origin
-    blockstack.redirectToSignIn(origin, origin + '/manifest.json', ['store_write', 'publish_data', 'email'])
+    let origin = window.location.origin;
+    let manifest = origin;
+    blockstack.redirectToSignIn(origin, manifest + '/manifest.json', ['store_write', 'publish_data', 'email'])
   }
 
 
@@ -123,6 +121,40 @@ export class MyApp {
     let authRequestJwt = blockstack.makeAuthRequest();
 
   }
+
+  loginElectron(){
+    
+
+    let origin = "http://localhost:8080";
+      let manifest = "http://localhost:8080/manifest.json";
+      blockstack.redirectToSignIn(origin, manifest, ['store_write', 'publish_data', 'email']);
+        // if (!window.blockstack.isUserSignedIn()) {
+            // let authRequest = blockstack.makeAuthRequest(
+            //     blockstack.generateAndStoreTransitKey(),
+            //     origin,
+            //     manifest,
+            //     ['store_write', 'publish_data', 'email'],
+            //     'http://localhost:8080');
+            // blockstack.redirectToSignInWithAuthRequest(authRequest);
+        // }
+        // else {
+        //     console.log('user signed in');
+        // }
+
+        // const shell = require('electron').shell;
+
+        // shell.openExternal('http://localhost:8080');
+
+        // const ipcRenderer = require('electron').ipcRenderer;
+        // ipcRenderer.on('signed-in', function (event, token) {
+        //     console.log(token);
+        //     console.log('signed-in event');
+        //     var url = new URL(window.location.href);
+        //     url.searchParams.append('authResponse', token);
+        //     window.location.href = url.href;
+        // });
+  }
+
 
   next() {
 
@@ -175,9 +207,6 @@ export class MyApp {
 
   async showProfile() {
 
-
-    // localStorage.setItem('signUp', 'true');
-
     if (blockstack.isUserSignedIn()) {
 
       let profile = blockstack.loadUserData();
@@ -227,6 +256,13 @@ export class MyApp {
       this.loading.dismiss();
       this.cacheNewDocIfNotLoggedIn();
 
+
+      if (navigator.userAgent.toLocaleLowerCase().includes('electron') === true){
+        localStorage.setItem('signUp', 'true');
+        //this.loginElectron();      
+        //return;
+      }
+     
       if (localStorage.getItem('signUp') !== 'true' && location.hostname !== "localhost" ) {
         window.location.href = "signup.html";
       }
@@ -234,6 +270,8 @@ export class MyApp {
         localStorage.setItem('signUp', 'true');
         this.login();
       }
+      
+     
     }
 
     // @todo Optimize this;
@@ -241,6 +279,7 @@ export class MyApp {
 
   }
 
+ 
   cacheNewDocIfNotLoggedIn() {
     // if contains sign and docData
     if (location.hash.includes("sign") &&  location.hash.includes("docData") ){
