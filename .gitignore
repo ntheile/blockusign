@@ -433,3 +433,4 @@ BlockUSign.Ionic/www/build/vendor.js
 **.zip
 **/out/*
 **/bitcoin.js
+**/appsettings.js

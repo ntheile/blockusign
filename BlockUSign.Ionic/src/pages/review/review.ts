@@ -2,6 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DocumentService } from './../../services/document.service';
 import { BlockStepsComponent } from '../../components/block-steps/block-steps';
+import { BitcoinService } from '../../services/bitcoin.service';
+declare let window: any;
 
 /**
  * Generated class for the SignPage page.
@@ -24,7 +26,12 @@ export class ReviewPage {
   hash = "";
   @ViewChild("blockSteps") blockSteps: BlockStepsComponent;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public documentService: DocumentService) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public documentService: DocumentService,
+    private bitcoinService: BitcoinService
+  ) {
 
     // if ( this.navParams.get("guid") && !this.documentService.currentDoc ){
     //   let guid = this.navParams.get("guid");
@@ -87,6 +94,10 @@ export class ReviewPage {
       toHash = this.documentService.currentDocAnnotations.annotations;
     }
     this.hash = this.documentService.genHashFromString(toHash);
+  }
+
+  saveBlockchain(){
+    this.bitcoinService.sendTransaction(window.appsettings.to, window.appsettings.signer, window.appsettings.signerKey,  'sha256-' + this.hash);
   }
 
 }

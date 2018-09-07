@@ -19,7 +19,6 @@ import { ReviewPageModule } from '../pages/review/review.module';
 import { BlockStepsComponentModule } from './../components/components.module';
 
 
-
 //import { HomePage } from './../pages/home/home';
 //import { AnnotatePage } from './../pages/annotate/annotate';
 
@@ -31,6 +30,7 @@ import { DocumentService } from '../services/document.service';
 import { EmailService } from '../services/email.service';
 import { BlockStackService } from '../services/blockstack.service';
 import { Block } from 'bitcoinjs-lib';
+import { BitcoinService } from '../services/bitcoin.service';
 
 
 
@@ -72,7 +72,8 @@ import { Block } from 'bitcoinjs-lib';
     GlobalService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DocumentService,
-    EmailService
+    EmailService,
+    BitcoinService,
   ]
 })
 export class AppModule {}
