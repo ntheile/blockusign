@@ -1,3 +1,4 @@
+
 # blockusign
 
 A decentralized document signing tool where you own and control your own documents, contracts and data.
@@ -11,6 +12,8 @@ It is built on BlockStack.
 # To Run Locally
 
 The app uses Ionic (Angular + Cordova + Material Design UI) make sure you have it installed https://ionicframework.com/docs/intro/installation/ 
+
+`npm install -g ionic@latest`
 
 It also uses electron to wrap up as a desktop app
 
@@ -54,7 +57,11 @@ If you are having login issues due to CORS, you can run the app the first time w
 
 `npm run serve`
 
+# Production Build
 
+`npm run buildweb`
+
+This will copy the ionic project to the wwwroot directory to be served up from the .net core project 
 
 # Architecture Diagram
 
