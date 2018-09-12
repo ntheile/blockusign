@@ -1,7 +1,5 @@
 # blockusign
 
-[![Build Status](https://dev.azure.com/nicktee-pipeline/blockusign/_apis/build/status/ntheile.blockusign)](https://dev.azure.com/nicktee-pipeline/blockusign/_build/latest?definitionId=1)
-
 A decentralized document signing tool where you own and control your own documents, contracts and data.
 
 It is built on BlockStack.
