@@ -4,6 +4,8 @@ A decentralized document signing tool where you own and control your own documen
 
 It is built on BlockStack.
 
+[![Build Status](https://dev.azure.com/nicktee-pipeline/blockusign/_apis/build/status/blockusign-ASP.NET%20Core%20(.NET%20Framework)-CI)](https://dev.azure.com/nicktee-pipeline/blockusign/_build/latest?definitionId=4)
+
 ![alt text](https://github.com/ntheile/blockusign/blob/master/blockusign.png?raw=true "Block-U-Sign")
 
 # To Run Locally
