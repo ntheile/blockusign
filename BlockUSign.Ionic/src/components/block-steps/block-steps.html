@@ -1,29 +1,34 @@
- <div class="steps-wrapper no-print">
-    <ul class="steps">
-      <li [ngClass]="activeStep == '1' ? 'step active': 'step'" (click)="route('HomePage')">
-        <div class="step-info">
-          <span class="step-name">Upload</span>
-        </div>
-      </li>
-      <li [ngClass]="activeStep == '2' ? 'step active': 'step'" (click)="route('AnnotatePage')">
-        <div class="step-info">
-          <span class="step-name">Annotate</span>
-        </div>
-      </li>
-      <li [ngClass]="activeStep == '3' ? 'step active': 'step'" (click)="route('EmailPage')">
-        <div class="step-info">
-          <span class="step-name">Send</span>
-        </div>
-      </li>
-      <li [ngClass]="activeStep == '4' ? 'step active': 'step'" (click)="route('SignPage')">
-        <div class="step-info">
-          <span class="step-name">Sign</span>
-        </div>
-      </li>
-      <li [ngClass]="activeStep == '5' ? 'step active': 'step'" (click)="route('ReviewPage')">
-        <div class="step-info">
-          <span class="step-name">Review</span>
-        </div>
-      </li>
-    </ul>
-  </div>
+<div class="steps-wrapper no-print">
+  <ul class="steps">
+    <li [ngClass]="activeStep == '1' ? 'step active': 'step'" (click)="route('HomePage')">
+      <ion-icon name="md-cloud-upload"></ion-icon>
+      <div class="step-info">
+        <span class="step-name">Upload </span>
+      </div>
+    </li>
+    <li [ngClass]="activeStep == '2' ? 'step active': 'step'" (click)="route('AnnotatePage')">
+      <ion-icon name="md-brush"></ion-icon>
+      <div class="step-info">
+        <span class="step-name">Annotate</span>
+      </div>
+    </li>
+    <li [ngClass]="activeStep == '3' ? 'step active': 'step'" (click)="route('EmailPage')">
+      <ion-icon name="md-send"></ion-icon>
+      <div class="step-info">
+        <span class="step-name">Send</span>
+      </div>
+    </li>
+    <li [ngClass]="activeStep == '4' ? 'step active': 'step'" (click)="route('SignPage')">
+      <ion-icon name="md-create"></ion-icon>
+      <div class="step-info">
+        <span class="step-name">Sign</span>
+      </div>
+    </li>
+    <li [ngClass]="activeStep == '5' ? 'step active': 'step'" (click)="route('ReviewPage')">
+      <ion-icon name="md-eye"></ion-icon>
+      <div class="step-info">
+        <span class="step-name">Review</span>
+      </div>
+    </li>
+  </ul>
+</div>

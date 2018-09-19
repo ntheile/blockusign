@@ -224,11 +224,12 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   setCursorFocus(time) {
-    setTimeout(function(){
-      let el = $(".editSigContent").first()
-      el.focus();
-    }, time);
-    
+    if (window.innerWidth > 630){ // setting focus on mobile is annoying
+      setTimeout(function(){ 
+        let el = $(".editSigContent").first()
+        el.focus();
+      }, time);
+    }
   }
 
   registerColorPicker(){

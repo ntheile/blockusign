@@ -1,10 +1,11 @@
 {
   "name": "Blockusign",
   "short_name": "Blockusign",
-  "start_url": "index.html",
+  "start_url": "https://blockusign.co/index.html",
   "display": "standalone",
+  "description": "A decentralized, social document signing tool where you own and control your own documents, contracts and data",
   "icons": [{
-    "src": "assets/imgs/logo.png",
+    "src": "https://blockusign.co/assets/imgs/logo.png",
     "sizes": "512x512",
     "type": "image/png"
   }],

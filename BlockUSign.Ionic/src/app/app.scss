@@ -1085,7 +1085,7 @@
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 625px) {
 	.dragImg{
         display: none !important;
     }
@@ -1097,6 +1097,14 @@
     .nextBackButtons{
         display: none !important;
     }
+
+    .live-chat {
+		zoom: 0.8;
+	}
+	.grid {
+		zoom: 0.8;
+	}
+
 }
 
 
