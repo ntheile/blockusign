@@ -1,4 +1,4 @@
-import { Component, ViewChild, Input, ChangeDetectionStrategy, ChangeDetectorRef, ViewContainerRef, AfterViewInit, OnDestroy, OnInit, ElementRef, Renderer2 } from '@angular/core';
+import { Component, ViewChild, Input, ChangeDetectionStrategy, ChangeDetectorRef, ViewContainerRef, AfterViewInit, OnDestroy, OnInit, ElementRef, Renderer2, HostListener } from '@angular/core';
 import { NavController, NavParams, IonicPage, Segment, LoadingController, AlertController, PopoverController, ToastController } from 'ionic-angular';
 import { CryptoCompareService } from '../../services/cryptocompare.service'
 import { AbsoluteDragDirective } from '../../directives/absolute-drag/absolute-drag';
@@ -51,19 +51,21 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() showSignature: 0;
   @Input() showSignHere: 0;
   @Input() showButtons: 0;
-  @Input() marginTop = '130px';
+  @Input() marginTop = '0px';
   @Input() marginBottom = '0px';
   @ViewChild('sigText') sigTextElement: ElementRef; 
   @ViewChild("fileUploadForm") fileUploadForm: ElementRef;
   @ViewChild("canvasWrapper") canvasWrapper: ElementRef;
   @ViewChild("svgDropZone") svgDropZone: ElementRef;
   // @ViewChild("editableEl") editableEl: ElementRef;
+  scale = 2; // 150 DPI
+  canvasWidth = "750px";
+
   
 
 
   public data: any;
   public DOCUMENT_ID = "blockusign/pdf1.txt"; // @TODO not being used, delete in furture
-  public scale: any;
   public rotation: any;
   public UI = PDFAnnotate;
   public page1: any;
@@ -116,7 +118,7 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
       this.loading.present();
 
       this.init();
-      
+
     });
 
   }
@@ -370,7 +372,10 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
         this.renderPage(page, canvas);
       }
 
-      this.loadSvg(1);
+      setTimeout( ()=>{
+        this.loadSvg(1);
+      }, 500 );
+     
 
       this.loading.dismiss();
       this.setCursorFocus(3000);
@@ -388,9 +393,13 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
 
   renderPage(pageNumber, canvas) {
     this.thePDF.getPage(pageNumber).then( (page) => {
-      let viewport = page.getViewport(1);
+      let viewport = page.getViewport(this.scale);
       canvas.height = viewport.height;
       canvas.width = viewport.width;
+      canvas.style.width = "100%";
+      canvas.style.height = "100%";
+      //this.canvasWrapper.nativeElement.style.width = Math.floor(viewport.width/scale) + 'pt';
+      //this.canvasWrapper.nativeElement.style.height = Math.floor(viewport.height/scale) + 'pt';
      
       // Render PDF page into canvas context
       let renderContext = {
@@ -449,13 +458,20 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // set the overlay dimensionss
   overLay(page: any) {
+    
+    // one canvas per pdf page
+    let childrenCavases = this.canvasWrapper.nativeElement.getElementsByTagName("canvas");
+    let oneCanvas = childrenCavases[0];
+    let w = oneCanvas.offsetWidth;
+    let h = this.numPages * oneCanvas.offsetHeight;
+    // pdf page break pixels
+    h = h + (this.numPages * 4);
 
-    let h = this.numPages * 792;
-    $(this.svgDropZone.nativeElement).css("width", "612");
+    $(this.svgDropZone.nativeElement).css("width", w);
     $(this.svgDropZone.nativeElement).css("height", h);
-    $(this.svgDropZone.nativeElement).attr("width", "612");
+    $(this.svgDropZone.nativeElement).attr("width", w);
     $(this.svgDropZone.nativeElement).attr("height", h);
-    $(this.svgDropZone.nativeElement).attr("viewBox", "0 0 612 " + h);
+    $(this.svgDropZone.nativeElement).attr("viewBox", "0 0 " + w + " " + h);
   }
 
   async saveSvg() {
@@ -566,5 +582,24 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
       this.sigTextElement.nativeElement.innerHTML = "&nbsp;";
     }
   }
+
+  // @HostListener('window:resize', ['$event'])
+  // onResize(event) {
+  //   //console.log('resize ', event.target);
+  //   // event.target.innerWidth;
+  //   let childrenCavases = this.canvasWrapper.nativeElement.getElementsByTagName("canvas");
+  //   let oneCanvas = childrenCavases[0];
+  //   let w = oneCanvas.offsetWidth;
+  //   let h = this.numPages * oneCanvas.offsetHeight;
+  //   console.log('resize', w, h);
+  //   // $(this.svgDropZone.nativeElement).css("width", this.canvasWidth.toString());
+  //   // $(this.svgDropZone.nativeElement).css("height", h);
+  //   // $(this.svgDropZone.nativeElement).attr("width", this.canvasWidth.toString());
+  //   // $(this.svgDropZone.nativeElement).attr("height", h);
+  //   // $(this.svgDropZone.nativeElement).attr("viewBox", "0 0 " + this.canvasWidth.toString() + " " + h);
+
+  // }
+
+ 
  
 }

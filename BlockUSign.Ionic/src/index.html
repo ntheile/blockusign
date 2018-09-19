@@ -123,6 +123,7 @@
       $("page-review").height($("#svg-dropzone").height());
       $("page-sign").height($("#svg-dropzone").height());
       $(".scroll-content").height($("#svg-dropzone").height());
+      $(".page").css('margin-top', '0px');
     };
 
     var afterPrint = function () {
@@ -139,6 +140,7 @@
       $("page-review").removeAttr("style");
       $("page-sign").removeAttr("style");
       $(".scroll-content").removeAttr("style");
+      $(".page").css('margin-top', '130px');
     };
 
     if (window.matchMedia) {

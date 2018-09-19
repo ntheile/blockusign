@@ -729,11 +729,6 @@
 }
 
 
-@media print
-{    
-   
-}
-
 .emoji{
     .intercom-composer-popover-input{
         font-size-adjust: none;
@@ -1118,9 +1113,9 @@
      }
 
      canvas {
-        page-break-after: always;
-        page-break-inside: avoid;
+        page-break-after: always !important;
      }
+
      
     body {
         position: relative !important;
