@@ -58,8 +58,8 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild("canvasWrapper") canvasWrapper: ElementRef;
   @ViewChild("svgDropZone") svgDropZone: ElementRef;
   // @ViewChild("editableEl") editableEl: ElementRef;
-  scale = 2; // 150 DPI
-  canvasWidth = "750px";
+  scale = 2; // 150 DPI - legacy = 1
+  canvasWidth = "750px"; // legacy = 612 X 792
 
   
 
@@ -316,6 +316,12 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
 
   async getFile() {
 
+    if (this.isOldDoc()){
+      this.scale = 1;
+      this.canvasWidth = "612px";
+    }
+    $(this.canvasWrapper.nativeElement).css('width', this.canvasWidth);
+    
     let data = await this.documentService.getDocument(this.documentService.currentDoc.guid + ".pdf", this.documentService.currentDoc.documentKey);
     this.pdfBuffer = data;
 
@@ -581,6 +587,13 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
     if(this.sigTextElement.nativeElement.textContent == "" ){
       this.sigTextElement.nativeElement.innerHTML = "&nbsp;";
     }
+  }
+
+  isOldDoc(){
+    let now: any = 1537375974218; // Date.now();
+    
+    let docCreated:any = this.documentService.currentDoc.createdAt;
+    return (  docCreated < now );
   }
 
   // @HostListener('window:resize', ['$event'])
