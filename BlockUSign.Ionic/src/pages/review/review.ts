@@ -97,7 +97,7 @@ export class ReviewPage {
   }
 
   saveBlockchain(){
-    this.bitcoinService.sendTransaction(window.appsettings.to, window.appsettings.signer, window.appsettings.signerKey,  'sha256-' + this.hash);
+    // this.bitcoinService.sendTransaction(window.appsettings.to, window.appsettings.signer, window.appsettings.signerKey,  'sha256-' + this.hash);
   }
 
 }

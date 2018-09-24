@@ -52,7 +52,7 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() showSignHere: 0;
   @Input() showButtons: 0;
   @Input() marginTop = '0px';
-  @Input() marginBottom = '0px';
+  @Input() marginBottom = '130px';
   @ViewChild('sigText') sigTextElement: ElementRef; 
   @ViewChild("fileUploadForm") fileUploadForm: ElementRef;
   @ViewChild("canvasWrapper") canvasWrapper: ElementRef;
@@ -591,7 +591,7 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   isOldDoc(){
-    let now: any = 1537375974218; // Date.now();
+    let now: any = 1537401377458; // Date.now();
     
     let docCreated:any = this.documentService.currentDoc.createdAt;
     return (  docCreated < now );
