@@ -3,7 +3,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DocumentService } from './../../services/document.service';
 import { BlockStepsComponent } from '../../components/block-steps/block-steps';
 import { BitcoinService } from '../../services/bitcoin.service';
+import { BlockStackService } from '../../services/blockstack.service';
+import { Block } from 'bitcoinjs-lib';
 declare let window: any;
+declare let blockstack: any;
 
 /**
  * Generated class for the SignPage page.
@@ -30,7 +33,8 @@ export class ReviewPage {
     public navCtrl: NavController, 
     public navParams: NavParams, 
     public documentService: DocumentService,
-    private bitcoinService: BitcoinService
+    private bitcoinService: BitcoinService,
+    private blockstackService: BlockStackService,
   ) {
 
     // if ( this.navParams.get("guid") && !this.documentService.currentDoc ){
@@ -97,7 +101,11 @@ export class ReviewPage {
   }
 
   saveBlockchain(){
-    // this.bitcoinService.sendTransaction(window.appsettings.to, window.appsettings.signer, window.appsettings.signerKey,  'sha256-' + this.hash);
+     // this.bitcoinService.sendTransaction(window.appsettings.to, window.appsettings.signer, window.appsettings.signerKey,  'sha256-' + this.hash);
+     let blockstackId = blockstack.loadUserData().username;
+     let appBitcoinAddress = this.blockstackService.getAppBitcoinAddress();
+     let appUrl = window.location.origin;
+     let resp = this.bitcoinService.fetchProfileValidateAppAddress(blockstackId, appBitcoinAddress, appUrl);
   }
 
 }
