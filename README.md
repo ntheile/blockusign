@@ -30,7 +30,7 @@ If you goto the package.json file look at the scripts sections and look for `"st
 
 For mac, the script should read :
 
- `"start": "npm run chrome-mac && ionic serve"`
+ `"start:mac": "npm run chrome-mac && ionic serve",`
 
 For windows: change the script to this (take off the -mac):
 
