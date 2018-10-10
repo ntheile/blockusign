@@ -120,6 +120,10 @@ export class BlockStackService {
     return blockstack.publicKeyToAddress(blockstack.getPublicKeyFromPrivate(blockstack.loadUserData().appPrivateKey));
   }
 
+  getOwnerBitcoinAddress(){
+    return blockstack.publicKeyToAddress(blockstack.getPublicKeyFromPrivate(blockstack.loadUserData().appPrivateKey));
+  }
+
   async writeGlobalProfile(){
     let httpOptions = new RequestOptions();
     httpOptions.headers = new Headers(

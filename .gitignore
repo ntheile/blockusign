@@ -434,3 +434,7 @@ BlockUSign.Ionic/www/build/vendor.js
 **/out/*
 **/bitcoin.js
 **/appsettings.js
+
+
+**/subdomain.md
+**/bower_components/*

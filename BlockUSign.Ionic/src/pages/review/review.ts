@@ -104,8 +104,19 @@ export class ReviewPage {
      // this.bitcoinService.sendTransaction(window.appsettings.to, window.appsettings.signer, window.appsettings.signerKey,  'sha256-' + this.hash);
      let blockstackId = blockstack.loadUserData().username;
      let appBitcoinAddress = this.blockstackService.getAppBitcoinAddress();
-     let appUrl = window.location.origin;
-     let resp = this.bitcoinService.fetchProfileValidateAppAddress(blockstackId, appBitcoinAddress, appUrl);
+     //let appUrl = window.location.origin;
+     //let resp = this.bitcoinService.fetchProfileValidateAppAddress(blockstackId, appBitcoinAddress, appUrl);
+
+     let msg = '3Mf1USmQcsM6bPkHB11ssoA6t9531jq5wTe4pqJirBI';
+     let wif = this.bitcoinService.getWif();
+     let address = this.bitcoinService.getAppBitcoinAddress();
+     let digitalSignature = this.bitcoinService.signMessage(msg, wif);
+     console.log(digitalSignature);
+
+     let verifiedSig = this.bitcoinService.verifyMessage(msg, address, digitalSignature);
+     console.log(verifiedSig);
+
+
   }
 
 }

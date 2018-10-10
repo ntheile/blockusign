@@ -7,16 +7,19 @@ declare let window: any;
 declare let parseZoneFile: any;
 
 
+
 @Injectable()
 export class BitcoinService {
 
     insight;
     bitcore;
+    messageSigner;
 
     // blockstack op_return and keys https://forum.blockstack.org/t/prove-two-parties-signed-a-copy-of-a-document-multi-sig-hash-op-return/6107/4
     // 
     constructor() {
         const Insight = require('bitcore-explorers').Insight;
+        const Message = require('bitcore-message');
         try {
             this.bitcore = require('bitcore-lib');
         } catch (err) {
@@ -24,6 +27,8 @@ export class BitcoinService {
             this.bitcore = require('bitcore-lib');
         }
         this.insight = new Insight();
+        this.messageSigner = Message;
+        window.bitcoin = require('bitcoinjs-lib');
         window.bitcore = this.bitcore;
     }
 
@@ -124,7 +129,29 @@ export class BitcoinService {
     }
 
 
-    
+    signMessage(messageToSign, wif ){
+        let privateKey = this.bitcore.PrivateKey.fromWIF(wif);
+        let signature = this.messageSigner(messageToSign).sign(privateKey);
+        return signature;
+    }
+
+    verifyMessage(messageToVerify, address, signature){
+        let verified = this.messageSigner(messageToVerify).verify(address, signature);
+        return verified;
+    }
+
+    //  subdomain command
+    // $ curl -X POST -H 'Authorization: bearer API-KEY-IF-USED' 
+    // -H 'Content-Type: application/json' 
+    // --data '{"zonefile": "$ORIGIN spqr\n$TTL 3600\n_https._tcp URI 10 1 \"https://gaia.blockstack.org/hub/1HgW81v6MxGD76UwNbHXBi6Zre2fK8TwNi/profile.json\"\n", "name": "spqr", "owner_address": "1HgW81v6MxGD76UwNbHXBi6Zre2fK8TwNi"}' 
+    // http://localhost:3000/register/
+    makeBatch() { 
+        // let batchData = {
+        //     "zonefile": "$ORIGIN spqr\n$TTL 3600\n_https._tcp URI 10 1 \"https://gaia.blockstack.org/hub/1HgW81v6MxGD76UwNbHXBi6Zre2fK8TwNi/profile.json\"\n", 
+        //     "name": "spqr", 
+        //     "owner_address": "1HgW81v6MxGD76UwNbHXBi6Zre2fK8TwNi"
+        // }
+    }
 
 
 }

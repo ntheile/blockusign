@@ -31,8 +31,7 @@ import { EmailService } from '../services/email.service';
 import { BlockStackService } from '../services/blockstack.service';
 import { Block } from 'bitcoinjs-lib';
 import { BitcoinService } from '../services/bitcoin.service';
-
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -55,7 +54,8 @@ import { BitcoinService } from '../services/bitcoin.service';
     ReviewPageModule,
     NgSelectModule, 
     FormsModule,
-    BlockStepsComponentModule
+    BlockStepsComponentModule,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
