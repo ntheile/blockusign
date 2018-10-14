@@ -78,8 +78,15 @@ export class BlockStackService {
   async getProfileData() {
   
     // this.clearProfileData();
-  
-    let profileData = await blockstack.getFile(this.blockusignProfileUrl, { decrypt: false });
+    let profileData;
+    try {
+      profileData = await blockstack.getFile(this.blockusignProfileUrl, { decrypt: true });
+    }
+    catch(e){
+      profileData = await blockstack.getFile(this.blockusignProfileUrl, { decrypt: false });
+      this.setProfileData(JSON.parse(profileData).email);
+    }
+    
 
     let myProfile = JSON.parse(profileData);
     if (myProfile) {
@@ -100,7 +107,7 @@ export class BlockStackService {
       storagePath: storagePath,
       appPublicKey: await this.getAppPublicKey()
     }
-    return await blockstack.putFile(this.blockusignProfileUrl, JSON.stringify(json), { encrypt: false });
+    return await blockstack.putFile(this.blockusignProfileUrl, JSON.stringify(json), { encrypt: true });
   }
 
   async clearProfileData() {
@@ -122,6 +129,16 @@ export class BlockStackService {
 
   getOwnerBitcoinAddress(){
     return blockstack.publicKeyToAddress(blockstack.getPublicKeyFromPrivate(blockstack.loadUserData().appPrivateKey));
+  }
+
+
+  getStorageUrl(){
+    return JSON.parse(localStorage.getItem('blockstack-gaia-hub-config')).url_prefix;
+  }
+
+  getProfileJsonUrl(){
+    // https://gaia.blockstack.org/hub/17xxYBCvxwrwKtAna4bubsxGCMCcVNAgyw/profile.json
+    return this.getStorageUrl() + blockstack.loadUserData().identityAddress + '/profile.json';
   }
 
   async writeGlobalProfile(){

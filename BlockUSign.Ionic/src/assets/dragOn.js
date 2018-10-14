@@ -79,7 +79,7 @@
         init: function () {
             // set event listenners, put elem to do something usefull.
 
-            console.log(this.elem);
+            // console.log(this.elem);
 
             interact('.draggable').unset();
 
@@ -116,7 +116,7 @@
                         // create a clone of the currentTarget element
                         var clone = event.currentTarget.cloneNode(true);
 
-                        console.log(event.currentTarget);
+                        // console.log(event.currentTarget);
 
                         var targetBounding = target.getBoundingClientRect();
 
@@ -193,11 +193,11 @@
             // position of base elem relative to the client window
             var elemBounding = this.elem.getBoundingClientRect();
 
-            console.log(elemBounding);
+            // console.log(elemBounding);
 
             Object.assign(this.metrics, elemBounding);
 
-            console.log(this.metrics);
+            // console.log(this.metrics);
 
             this.metrics.width = elemBounding.width;
             this.metrics.height = elemBounding.height;
@@ -206,7 +206,7 @@
             this.metrics.bottom = elemBounding.bottom;
             this.metrics.left = elemBounding.left;
 
-            console.log(this.metrics);
+            // console.log(this.metrics);
 
             // position of base elem relative to the document
             this.metrics.distanceFrom.document = {
@@ -214,7 +214,7 @@
                 top: this.metrics.top + window.scrollY
             };
 
-            console.group("Finding rendered viewBox size");
+            // console.group("Finding rendered viewBox size");
 
             // gets viewBox attr as array
 
@@ -236,7 +236,7 @@
             // creates a clone of viewBox object
             this.metrics.viewBox.rendered = Object.assign({}, this.metrics.viewBox.attr);
 
-            console.group("Proporções");
+            // console.group("Proporções");
 
             // gets the SVG scale relative to the initial viewBox size
             this.metrics.viewBox.scale = Math.min(
@@ -246,43 +246,43 @@
 
             // gets the scale used to scale new elements and its coordinates
 
-            console.log("Proporção viewBox / SVG: " + this.metrics.viewBox.scale);
+            // console.log("Proporção viewBox / SVG: " + this.metrics.viewBox.scale);
 
-            console.groupEnd();
+            // console.groupEnd();
 
             // scales the element
             this.metrics.viewBox.rendered.width *= this.metrics.viewBox.scale;
             this.metrics.viewBox.rendered.height *= this.metrics.viewBox.scale;
 
-            console.group("ViewBox setted vs. rendered");
+            // console.group("ViewBox setted vs. rendered");
 
-            console.log(this.metrics.viewBox.attr);
-            console.log(this.metrics.viewBox.rendered);
+            // console.log(this.metrics.viewBox.attr);
+            // console.log(this.metrics.viewBox.rendered);
 
-            console.groupEnd();
+            // console.groupEnd();
 
-            console.groupEnd();
+            // console.groupEnd();
 
-            console.group("Dimensões dos elementos");
+            // console.group("Dimensões dos elementos");
 
-            console.info("The SVG rendered size is " + this.metrics.width + " x " + this.metrics.height + " px.");
+            // console.info("The SVG rendered size is " + this.metrics.width + " x " + this.metrics.height + " px.");
 
-            console.info("The viewBox attribute size is " + this.metrics.viewBox.attr.width + " x " + this.metrics.viewBox.attr.height + " px.");
-            console.info("The viewBox rendered size is " + this.metrics.viewBox.rendered.width + " x " + this.metrics.viewBox.rendered.height + " px.");
+            // console.info("The viewBox attribute size is " + this.metrics.viewBox.attr.width + " x " + this.metrics.viewBox.attr.height + " px.");
+            // console.info("The viewBox rendered size is " + this.metrics.viewBox.rendered.width + " x " + this.metrics.viewBox.rendered.height + " px.");
 
-            console.groupEnd();
+            // console.groupEnd();
 
-            console.group("Verificação de espaçamento entre SVG e viewBox");
+            // console.group("Verificação de espaçamento entre SVG e viewBox");
 
             this.metrics.whiteSpace.left = (this.metrics.width - this.metrics.viewBox.rendered.width) / 2;
             this.metrics.whiteSpace.top = (this.metrics.height - this.metrics.viewBox.rendered.height) / 2;
 
-            console.log("Há um espaço de " + this.metrics.whiteSpace.left + "px à esquerda da viewBox.");
-            console.log("Há um espaço de " + this.metrics.whiteSpace.top + "px acima da viewBox.");
+            // console.log("Há um espaço de " + this.metrics.whiteSpace.left + "px à esquerda da viewBox.");
+            // console.log("Há um espaço de " + this.metrics.whiteSpace.top + "px acima da viewBox.");
 
-            console.groupEnd();
+            // console.groupEnd();
 
-            console.log(this.metrics);
+            // console.log(this.metrics);
         },
         /** 
          *
@@ -301,19 +301,19 @@
 
 
 
-            console.group("interac.js onDrop");
+            // console.group("interac.js onDrop");
 
             var elemDropped = event.relatedTarget;
 
-            console.log(event.relatedTarget);
-            console.log(event.target);
-            console.log(this.elem);
+            // console.log(event.relatedTarget);
+            // console.log(event.target);
+            // console.log(this.elem);
 
             if (this.elem === event.target && (elemDropped.tagName === "IMG" || elemDropped.tagName === "svg")) {
 
                 this.updateMetrics();
 
-                console.group("Dropped elem");
+                // console.group("Dropped elem");
 
                 // dropped cordinates
                 var elemDroppedBounding = elemDropped.getBoundingClientRect();
@@ -332,13 +332,13 @@
                     top: elemDroppedDistanceFrom.document.top - this.metrics.distanceFrom.document.top
                 };
 
-                console.log(elemDroppedDistanceFrom);
+                // console.log(elemDroppedDistanceFrom);
 
-                console.info("O elemento foi solto à " + elemDroppedDistanceFrom.svg.left + "px da margem esquerda e " + elemDroppedDistanceFrom.svg.top + "px da margem superior do SVG.");
+                // console.info("O elemento foi solto à " + elemDroppedDistanceFrom.svg.left + "px da margem esquerda e " + elemDroppedDistanceFrom.svg.top + "px da margem superior do SVG.");
 
-                console.groupEnd();
+                // console.groupEnd();
 
-                console.group("Cáculos de escalonamento");
+                // console.group("Cáculos de escalonamento");
 
                 elemDroppedDistanceFrom.svg.left =
                     elemDroppedDistanceFrom.svg.left / this.metrics.viewBox.scale -
@@ -347,7 +347,7 @@
                     elemDroppedDistanceFrom.svg.top / this.metrics.viewBox.scale -
                     this.metrics.whiteSpace.top / this.metrics.viewBox.scale;
 
-                console.groupEnd();
+                // console.groupEnd();
 
                 var elementTypeToCreate = "image";
                 var elemImage;
@@ -388,13 +388,13 @@
 
                 }
                 else {
-                    console.log("Drag not supported for " + elemDropped.tagName)
+                   //  console.log("Drag not supported for " + elemDropped.tagName)
                 }
 
 
 
                 if (this.drawArea.appendChild(elemImage)) {
-                    console.info("New image successful added to SVG!");
+                    // console.info("New image successful added to SVG!");
 
                     var that = this;
 
@@ -444,7 +444,7 @@
                 }
             }
 
-            console.groupEnd();
+            // console.groupEnd();
         },
         /**
          *
@@ -472,7 +472,7 @@
 
                 this.updateMetrics();
 
-                console.group("Dropped elem");
+                // console.group("Dropped elem");
 
                 // dropped cordinates
                 var elemDroppedBounding = elemDropped.getBoundingClientRect();
@@ -491,13 +491,13 @@
                     top: elemDroppedDistanceFrom.document.top - this.metrics.distanceFrom.document.top
                 };
 
-                console.log(elemDroppedDistanceFrom);
+                // console.log(elemDroppedDistanceFrom);
 
-                console.info("O elemento foi solto à " + elemDroppedDistanceFrom.svg.left + "px da margem esquerda e " + elemDroppedDistanceFrom.svg.top + "px da margem superior do SVG.");
+                // console.info("O elemento foi solto à " + elemDroppedDistanceFrom.svg.left + "px da margem esquerda e " + elemDroppedDistanceFrom.svg.top + "px da margem superior do SVG.");
 
-                console.groupEnd();
+                // console.groupEnd();
 
-                console.group("Cáculos de escalonamento");
+                // console.group("Cáculos de escalonamento");
 
                 elemDroppedDistanceFrom.svg.left =
                     elemDroppedDistanceFrom.svg.left / this.metrics.viewBox.scale -
@@ -506,7 +506,7 @@
                     elemDroppedDistanceFrom.svg.top / this.metrics.viewBox.scale -
                     this.metrics.whiteSpace.top / this.metrics.viewBox.scale;
 
-                console.groupEnd();
+                // console.groupEnd();
 
 
 
@@ -643,10 +643,10 @@
                 event.target.classList.remove("drag-dragging");
                 event.target.classList.add("drag-dropped");
 
-                console.log(
-                    "moved a distance of " +
-                    (Math.sqrt(event.dx * event.dx + event.dy * event.dy) | 0) + "px"
-                );
+                // console.log(
+                //    "moved a distance of " +
+                //    (Math.sqrt(event.dx * event.dx + event.dy * event.dy) | 0) + "px"
+                // );
             }
         },
         resizable: {

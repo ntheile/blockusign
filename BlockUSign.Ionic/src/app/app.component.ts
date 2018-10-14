@@ -234,7 +234,8 @@ export class MyApp {
             this.profileModal(this.email);
           }
           else {
-            this.name = myProfile.email;
+            // this.name = myProfile.email;
+            this.name = blockstack.loadUserData().username;
             this.loadCachedNewDocWhenLoggedIn();
           }
         }

@@ -1,12 +1,22 @@
 import { Injectable } from '@angular/core';
+import 'rxjs/add/operator/toPromise';
+import { Http, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import { AnonymousSubject } from 'rxjs/Subject';
+import { map } from 'rxjs/operators';
+import { of } from 'rxjs/observable/of';
+import { delay } from 'rxjs/operator/delay';
+import { Headers, RequestOptionsArgs, RequestOptions } from '@angular/http';
+import { HttpHeaders } from '@angular/common/http';
+
 declare let global: any;
 declare let bitcore: any;
 declare let blockstack: any;
 declare let bitcoin: any;
 declare let window: any;
 declare let parseZoneFile: any;
-
-
 
 @Injectable()
 export class BitcoinService {
@@ -17,7 +27,9 @@ export class BitcoinService {
 
     // blockstack op_return and keys https://forum.blockstack.org/t/prove-two-parties-signed-a-copy-of-a-document-multi-sig-hash-op-return/6107/4
     // 
-    constructor() {
+    constructor(
+        private http: Http,
+    ) {
         const Insight = require('bitcore-explorers').Insight;
         const Message = require('bitcore-message');
         try {
@@ -140,17 +152,35 @@ export class BitcoinService {
         return verified;
     }
 
-    //  subdomain command
-    // $ curl -X POST -H 'Authorization: bearer API-KEY-IF-USED' 
-    // -H 'Content-Type: application/json' 
-    // --data '{"zonefile": "$ORIGIN spqr\n$TTL 3600\n_https._tcp URI 10 1 \"https://gaia.blockstack.org/hub/1HgW81v6MxGD76UwNbHXBi6Zre2fK8TwNi/profile.json\"\n", "name": "spqr", "owner_address": "1HgW81v6MxGD76UwNbHXBi6Zre2fK8TwNi"}' 
-    // http://localhost:3000/register/
-    makeBatch() { 
-        // let batchData = {
-        //     "zonefile": "$ORIGIN spqr\n$TTL 3600\n_https._tcp URI 10 1 \"https://gaia.blockstack.org/hub/1HgW81v6MxGD76UwNbHXBi6Zre2fK8TwNi/profile.json\"\n", 
-        //     "name": "spqr", 
-        //     "owner_address": "1HgW81v6MxGD76UwNbHXBi6Zre2fK8TwNi"
-        // }
+    async sendSudomainBatch(fileName, appAddress, hash, signature, profileUrl) { 
+        
+       
+        let subdomainUrl =  'https://blockusign-subdomains.azurewebsites.net/register/'; //'http://localhost:3000/register/'; 
+        let origin = '$ORIGIN ' + fileName + '\n$TTL 3600\n_https._tcp URI 10 1 \"' + profileUrl + '\"\n'; 
+        let hashTXT = 'hash TXT \"' + hash + '\"\n';
+        let signatureTXT = 'signature TXT \"' + signature + '\"\n';
+        let ownerTXT = 'owner TXT \"' + appAddress + '\"\n';
+        let zonefile = origin + hashTXT + signatureTXT + ownerTXT;
+        let privateKey = new bitcore.PrivateKey();
+        let burnAddress = privateKey.toAddress().toString();
+
+        let json = {
+            "zonefile": zonefile,
+             "name": fileName , 
+             // "owner_address": appAddress  // think about what to add here, the transation lasts forever and shold never be name_updated, so it could be a burn address
+            "owner_address": burnAddress,
+        }
+
+        let httpOptions = new RequestOptions();
+        httpOptions.headers = new Headers(
+            {
+                'Content-Type': 'application/json',
+                'Authorization': 'bearer 9922b2c7-8258-4ff9-8ff1-19f1f9f0148a'
+            }
+        );
+        
+        let resp = await this.http.post(subdomainUrl, json, httpOptions).toPromise();
+        return resp;
     }
 
 

@@ -172,7 +172,7 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
           <img class="${uidClass}" src="https://www.gravatar.com/avatar/?d=identicon" alt="" width="32" height="32">
           <div class="chat-message-content clearfix">
             <span class="chat-time">${formatDate}</span>
-            <h5>${item.email}</h5>
+            <h5>${item.createdBy}</h5>
             <p>${item.message}</p>
           </div> 
           </div>

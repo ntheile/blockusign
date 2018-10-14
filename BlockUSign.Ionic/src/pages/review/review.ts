@@ -100,23 +100,25 @@ export class ReviewPage {
     this.hash = this.documentService.genHashFromString(toHash);
   }
 
-  saveBlockchain(){
-     // this.bitcoinService.sendTransaction(window.appsettings.to, window.appsettings.signer, window.appsettings.signerKey,  'sha256-' + this.hash);
-     let blockstackId = blockstack.loadUserData().username;
-     let appBitcoinAddress = this.blockstackService.getAppBitcoinAddress();
-     //let appUrl = window.location.origin;
-     //let resp = this.bitcoinService.fetchProfileValidateAppAddress(blockstackId, appBitcoinAddress, appUrl);
-
-     let msg = '3Mf1USmQcsM6bPkHB11ssoA6t9531jq5wTe4pqJirBI';
+  postBlockchain(){
+     let hash = this.hash;
      let wif = this.bitcoinService.getWif();
-     let address = this.bitcoinService.getAppBitcoinAddress();
-     let digitalSignature = this.bitcoinService.signMessage(msg, wif);
-     console.log(digitalSignature);
+     let address = this.bitcoinService.getAppBitcoinAddress().toString();
+     let signature = this.bitcoinService.signMessage(hash, wif);
+     let profileUrl = this.blockstackService.getProfileJsonUrl();
+     let resp = this.bitcoinService.sendSudomainBatch(this.documentService.currentDoc.guid, address, hash, signature, profileUrl);
+     
+  }
 
-     let verifiedSig = this.bitcoinService.verifyMessage(msg, address, digitalSignature);
-     console.log(verifiedSig);
+  verifyHash(){
 
+    // OLD
+    // this.bitcoinService.sendTransaction(window.appsettings.to, window.appsettings.signer, window.appsettings.signerKey,  'sha256-' + this.hash);
+    // let appUrl = window.location.origin;
+    // let resp = this.bitcoinService.fetchProfileValidateAppAddress(blockstackId, appBitcoinAddress, appUrl);
 
+    // let verifiedSig = this.bitcoinService.verifyMessage(hash, address, signature);
+    // console.log(verifiedSig);
   }
 
 }
