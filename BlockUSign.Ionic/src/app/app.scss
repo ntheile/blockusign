@@ -1077,12 +1077,20 @@
         background-color:green; float: right; 
         left: 0px !important;
     }
+
+    .nyancat {
+        left: -30% !important;
+    }
 }
 
 @media screen and (min-width: 1050px) {
 	.intercom-composer-emoji-popover2 {
 		right: calc(50%) !important;
     }
+    .nyancat {
+        left: -40% !important;
+    }
+
 }
 
 @media screen and (max-width: 625px) {
@@ -1104,7 +1112,9 @@
 	}
 	.grid {
 		zoom: 0.8;
-	}
+    }
+    
+
 
 }
 

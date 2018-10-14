@@ -1,0 +1,1628 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Code+Pro:300,700);
+
+    $px: 4px;
+    $font: $px*3;
+
+    $poptart: #ff99ff;
+    $sprinkle: darken($poptart, 30%);
+    $crust: #ffcc99;
+    $cat: #999999;
+    $cheek: #ff9999;
+
+    $red: #ff1211;
+    $orange: #ffa70e;
+    $yellow: #ffff04;
+    $green: #43ff0d;
+    $blue: #13abff;
+    $purple: #7745ff;
+
+    $nyanspeed: 0.4s;
+
+
+.nyancat {
+    
+    position: absolute;
+    //left: -$px*30;
+    left: -1%;
+    // top: 50%;
+    margin-top: 80px;
+    transition: transform 6s cubic-bezier(.23,.65,.38,.99);
+    z-index: 1;
+    
+    &.fly {
+        
+        transform: translateX(70vw);
+        
+    }
+    
+    .body,
+    .poptart,
+    .head,
+    .eyes,
+    .foot,
+    .tail { 
+        
+        width: $px;
+        height: $px;
+        display: block; 
+        position: absolute;
+        
+    }
+    
+    .body {
+        
+        z-index: 1;
+        animation: poptart $nyanspeed steps(1) infinite;
+        
+    }
+    
+    .poptart {
+        
+        background: transparent;
+        z-index: 5;
+        
+        box-shadow:
+            $px*0  $px 0 transparent,
+            $px*1  $px 0 transparent,
+            $px*2  $px 0 black,
+            $px*3  $px 0 black,
+            $px*4  $px 0 black,
+            $px*5  $px 0 black,
+            $px*6  $px 0 black,
+            $px*7  $px 0 black,
+            $px*8  $px 0 black,
+            $px*9  $px 0 black,
+            $px*10 $px 0 black,
+            $px*11 $px 0 black,
+            $px*12 $px 0 black,
+            $px*13 $px 0 black,
+            $px*14 $px 0 black,
+            $px*15 $px 0 black,
+            $px*16 $px 0 black,
+            $px*17 $px 0 black,
+            $px*18 $px 0 black,
+            $px*19 $px 0 black,
+            $px*20 $px 0 black,
+            $px*21 $px 0 transparent,
+            $px*22 $px 0 transparent,
+            
+            $px*0  $px*2 0 transparent,
+            $px*1  $px*2 0 black,
+            $px*2  $px*2 0 $crust,
+            $px*3  $px*2 0 $crust,
+            $px*4  $px*2 0 $crust,
+            $px*5  $px*2 0 $crust,
+            $px*6  $px*2 0 $crust,
+            $px*7  $px*2 0 $crust,
+            $px*8  $px*2 0 $crust,
+            $px*9  $px*2 0 $crust,
+            $px*10 $px*2 0 $crust,
+            $px*11 $px*2 0 $crust,
+            $px*12 $px*2 0 $crust,
+            $px*13 $px*2 0 $crust,
+            $px*14 $px*2 0 $crust,
+            $px*15 $px*2 0 $crust,
+            $px*16 $px*2 0 $crust,
+            $px*17 $px*2 0 $crust,
+            $px*18 $px*2 0 $crust,
+            $px*19 $px*2 0 $crust,
+            $px*20 $px*2 0 $crust,
+            $px*21 $px*2 0 black,
+            $px*22 $px*2 0 transparent,
+            
+            $px*0  $px*3 0 black,
+            $px*1  $px*3 0 $crust,
+            $px*2  $px*3 0 $crust,
+            $px*3  $px*3 0 $crust,
+            $px*4  $px*3 0 $poptart,
+            $px*5  $px*3 0 $poptart,
+            $px*6  $px*3 0 $poptart,
+            $px*7  $px*3 0 $poptart,
+            $px*8  $px*3 0 $poptart,
+            $px*9  $px*3 0 $poptart,
+            $px*10 $px*3 0 $poptart,
+            $px*11 $px*3 0 $poptart,
+            $px*12 $px*3 0 $poptart,
+            $px*13 $px*3 0 $poptart,
+            $px*14 $px*3 0 $poptart,
+            $px*15 $px*3 0 $poptart,
+            $px*16 $px*3 0 $poptart,
+            $px*17 $px*3 0 $poptart,
+            $px*18 $px*3 0 $crust,
+            $px*19 $px*3 0 $crust,
+            $px*20 $px*3 0 $crust,
+            $px*21 $px*3 0 $crust,
+            $px*22 $px*3 0 black,
+            
+            $px*0  $px*4 0 black,
+            $px*1  $px*4 0 $crust,
+            $px*2  $px*4 0 $crust,
+            $px*3  $px*4 0 $poptart,
+            $px*4  $px*4 0 $poptart,
+            $px*5  $px*4 0 $poptart,
+            $px*6  $px*4 0 $poptart,
+            $px*7  $px*4 0 $sprinkle,
+            $px*8  $px*4 0 $poptart,
+            $px*9  $px*4 0 $poptart,
+            $px*10 $px*4 0 $poptart,
+            $px*11 $px*4 0 $poptart,
+            $px*12 $px*4 0 $poptart,
+            $px*13 $px*4 0 $poptart,
+            $px*14 $px*4 0 $sprinkle,
+            $px*15 $px*4 0 $poptart,
+            $px*16 $px*4 0 $poptart,
+            $px*17 $px*4 0 $poptart,
+            $px*18 $px*4 0 $poptart,
+            $px*19 $px*4 0 $poptart,
+            $px*20 $px*4 0 $crust,
+            $px*21 $px*4 0 $crust,
+            $px*22 $px*4 0 black,
+            
+            $px*0  $px*5 0 black,
+            $px*1  $px*5 0 $crust,
+            $px*2  $px*5 0 $crust,
+            $px*3  $px*5 0 $poptart,
+            $px*4  $px*5 0 $sprinkle,
+            $px*5  $px*5 0 $poptart,
+            $px*6  $px*5 0 $poptart,
+            $px*7  $px*5 0 $poptart,
+            $px*8  $px*5 0 $poptart,
+            $px*9  $px*5 0 $poptart,
+            $px*10 $px*5 0 $poptart,
+            $px*11 $px*5 0 $poptart,
+            $px*12 $px*5 0 $poptart,
+            $px*13 $px*5 0 $poptart,
+            $px*14 $px*5 0 $poptart,
+            $px*15 $px*5 0 $poptart,
+            $px*16 $px*5 0 $poptart,
+            $px*17 $px*5 0 $poptart,
+            $px*18 $px*5 0 $poptart,
+            $px*19 $px*5 0 $poptart,
+            $px*20 $px*5 0 $poptart,
+            $px*21 $px*5 0 $crust,
+            $px*22 $px*5 0 black,
+            
+            $px*0  $px*6 0 black,
+            $px*1  $px*6 0 $crust,
+            $px*2  $px*6 0 $poptart,
+            $px*3  $px*6 0 $poptart,
+            $px*4  $px*6 0 $poptart,
+            $px*5  $px*6 0 $poptart,
+            $px*6  $px*6 0 $poptart,
+            $px*7  $px*6 0 $poptart,
+            $px*8  $px*6 0 $poptart,
+            $px*9  $px*6 0 $poptart,
+            $px*10 $px*6 0 $poptart,
+            $px*11 $px*6 0 $poptart,
+            $px*12 $px*6 0 $poptart,
+            $px*13 $px*6 0 $poptart,
+            $px*14 $px*6 0 $poptart,
+            $px*15 $px*6 0 $poptart,
+            $px*16 $px*6 0 $poptart,
+            $px*17 $px*6 0 $poptart,
+            $px*18 $px*6 0 $sprinkle,
+            $px*19 $px*6 0 $poptart,
+            $px*20 $px*6 0 $poptart,
+            $px*21 $px*6 0 $crust,
+            $px*22 $px*6 0 black,
+            
+            $px*0  $px*7 0 black,
+            $px*1  $px*7 0 $crust,
+            $px*2  $px*7 0 $poptart,
+            $px*3  $px*7 0 $poptart,
+            $px*4  $px*7 0 $poptart,
+            $px*5  $px*7 0 $poptart,
+            $px*6  $px*7 0 $poptart,
+            $px*7  $px*7 0 $poptart,
+            $px*8  $px*7 0 $poptart,
+            $px*9  $px*7 0 $poptart,
+            $px*10 $px*7 0 $poptart,
+            $px*11 $px*7 0 $poptart,
+            $px*12 $px*7 0 $poptart,
+            $px*13 $px*7 0 $poptart,
+            $px*14 $px*7 0 $poptart,
+            $px*15 $px*7 0 $poptart,
+            $px*16 $px*7 0 $poptart,
+            $px*17 $px*7 0 $poptart,
+            $px*18 $px*7 0 $poptart,
+            $px*19 $px*7 0 $poptart,
+            $px*20 $px*7 0 $poptart,
+            $px*21 $px*7 0 $crust,
+            $px*22 $px*7 0 black,
+            
+            $px*0  $px*8 0 black,
+            $px*1  $px*8 0 $crust,
+            $px*2  $px*8 0 $poptart,
+            $px*3  $px*8 0 $poptart,
+            $px*4  $px*8 0 $poptart,
+            $px*5  $px*8 0 $poptart,
+            $px*6  $px*8 0 $poptart,
+            $px*7  $px*8 0 $poptart,
+            $px*8  $px*8 0 $sprinkle,
+            $px*9  $px*8 0 $poptart,
+            $px*10 $px*8 0 $poptart,
+            $px*11 $px*8 0 $poptart,
+            $px*12 $px*8 0 $poptart,
+            $px*13 $px*8 0 $poptart,
+            $px*14 $px*8 0 $poptart,
+            $px*15 $px*8 0 $poptart,
+            $px*16 $px*8 0 $poptart,
+            $px*17 $px*8 0 $sprinkle,
+            $px*18 $px*8 0 $poptart,
+            $px*19 $px*8 0 $poptart,
+            $px*20 $px*8 0 $poptart,
+            $px*21 $px*8 0 $crust,
+            $px*22 $px*8 0 black,
+            
+            $px*0  $px*9 0 black,
+            $px*1  $px*9 0 $crust,
+            $px*2  $px*9 0 $poptart,
+            $px*3  $px*9 0 $poptart,
+            $px*4  $px*9 0 $poptart,
+            $px*5  $px*9 0 $poptart,
+            $px*6  $px*9 0 $poptart,
+            $px*7  $px*9 0 $poptart,
+            $px*8  $px*9 0 $poptart,
+            $px*9  $px*9 0 $poptart,
+            $px*10 $px*9 0 $poptart,
+            $px*11 $px*9 0 $poptart,
+            $px*12 $px*9 0 $poptart,
+            $px*13 $px*9 0 $sprinkle,
+            $px*14 $px*9 0 $poptart,
+            $px*15 $px*9 0 $poptart,
+            $px*16 $px*9 0 $poptart,
+            $px*17 $px*9 0 $poptart,
+            $px*18 $px*9 0 $poptart,
+            $px*19 $px*9 0 $poptart,
+            $px*20 $px*9 0 $poptart,
+            $px*21 $px*9 0 $crust,
+            $px*22 $px*9 0 black,
+            
+            $px*0  $px*10 0 black,
+            $px*1  $px*10 0 $crust,
+            $px*2  $px*10 0 $poptart,
+            $px*3  $px*10 0 $sprinkle,
+            $px*4  $px*10 0 $poptart,
+            $px*5  $px*10 0 $poptart,
+            $px*6  $px*10 0 $poptart,
+            $px*7  $px*10 0 $poptart,
+            $px*8  $px*10 0 $poptart,
+            $px*9  $px*10 0 $poptart,
+            $px*10 $px*10 0 $poptart,
+            $px*11 $px*10 0 $poptart,
+            $px*12 $px*10 0 $poptart,
+            $px*13 $px*10 0 $poptart,
+            $px*14 $px*10 0 $poptart,
+            $px*15 $px*10 0 $poptart,
+            $px*16 $px*10 0 $poptart,
+            $px*17 $px*10 0 $poptart,
+            $px*18 $px*10 0 $poptart,
+            $px*19 $px*10 0 $poptart,
+            $px*20 $px*10 0 $poptart,
+            $px*21 $px*10 0 $crust,
+            $px*22 $px*10 0 black,
+            
+            $px*0  $px*11 0 black,
+            $px*1  $px*11 0 $crust,
+            $px*2  $px*11 0 $poptart,
+            $px*3  $px*11 0 $poptart,
+            $px*4  $px*11 0 $poptart,
+            $px*5  $px*11 0 $poptart,
+            $px*6  $px*11 0 $poptart,
+            $px*7  $px*11 0 $poptart,
+            $px*8  $px*11 0 $poptart,
+            $px*9  $px*11 0 $poptart,
+            $px*10 $px*11 0 $sprinkle,
+            $px*11 $px*11 0 $poptart,
+            $px*12 $px*11 0 $poptart,
+            $px*13 $px*11 0 $poptart,
+            $px*14 $px*11 0 $poptart,
+            $px*15 $px*11 0 $poptart,
+            $px*16 $px*11 0 $poptart,
+            $px*17 $px*11 0 $poptart,
+            $px*18 $px*11 0 $poptart,
+            $px*19 $px*11 0 $poptart,
+            $px*20 $px*11 0 $poptart,
+            $px*21 $px*11 0 $crust,
+            $px*22 $px*11 0 black,
+            
+            $px*0  $px*12 0 black,
+            $px*1  $px*12 0 $crust,
+            $px*2  $px*12 0 $poptart,
+            $px*3  $px*12 0 $poptart,
+            $px*4  $px*12 0 $poptart,
+            $px*5  $px*12 0 $sprinkle,
+            $px*6  $px*12 0 $poptart,
+            $px*7  $px*12 0 $poptart,
+            $px*8  $px*12 0 $poptart,
+            $px*9  $px*12 0 $poptart,
+            $px*10 $px*12 0 $poptart,
+            $px*11 $px*12 0 $poptart,
+            $px*12 $px*12 0 $poptart,
+            $px*13 $px*12 0 $poptart,
+            $px*14 $px*12 0 $poptart,
+            $px*15 $px*12 0 $poptart,
+            $px*16 $px*12 0 $poptart,
+            $px*17 $px*12 0 $sprinkle,
+            $px*18 $px*12 0 $poptart,
+            $px*19 $px*12 0 $poptart,
+            $px*20 $px*12 0 $poptart,
+            $px*21 $px*12 0 $crust,
+            $px*22 $px*12 0 black,
+            
+            $px*0  $px*13 0 black,
+            $px*1  $px*13 0 $crust,
+            $px*2  $px*13 0 $poptart,
+            $px*3  $px*13 0 $poptart,
+            $px*4  $px*13 0 $poptart,
+            $px*5  $px*13 0 $poptart,
+            $px*6  $px*13 0 $poptart,
+            $px*7  $px*13 0 $poptart,
+            $px*8  $px*13 0 $poptart,
+            $px*9  $px*13 0 $poptart,
+            $px*10 $px*13 0 $poptart,
+            $px*11 $px*13 0 $poptart,
+            $px*12 $px*13 0 $poptart,
+            $px*13 $px*13 0 $poptart,
+            $px*14 $px*13 0 $poptart,
+            $px*15 $px*13 0 $poptart,
+            $px*16 $px*13 0 $poptart,
+            $px*17 $px*13 0 $poptart,
+            $px*18 $px*13 0 $poptart,
+            $px*19 $px*13 0 $poptart,
+            $px*20 $px*13 0 $poptart,
+            $px*21 $px*13 0 $crust,
+            $px*22 $px*13 0 black,
+            
+            $px*0  $px*14 0 black,
+            $px*1  $px*14 0 $crust,
+            $px*2  $px*14 0 $poptart,
+            $px*3  $px*14 0 $poptart,
+            $px*4  $px*14 0 $poptart,
+            $px*5  $px*14 0 $poptart,
+            $px*6  $px*14 0 $poptart,
+            $px*7  $px*14 0 $poptart,
+            $px*8  $px*14 0 $sprinkle,
+            $px*9  $px*14 0 $poptart,
+            $px*10 $px*14 0 $poptart,
+            $px*11 $px*14 0 $poptart,
+            $px*12 $px*14 0 $poptart,
+            $px*13 $px*14 0 $poptart,
+            $px*14 $px*14 0 $poptart,
+            $px*15 $px*14 0 $poptart,
+            $px*16 $px*14 0 $poptart,
+            $px*17 $px*14 0 $poptart,
+            $px*18 $px*14 0 $poptart,
+            $px*19 $px*14 0 $poptart,
+            $px*20 $px*14 0 $crust,
+            $px*21 $px*14 0 $crust,
+            $px*22 $px*14 0 black,
+            
+            $px*0  $px*15 0 black,
+            $px*1  $px*15 0 $crust,
+            $px*2  $px*15 0 $crust,
+            $px*3  $px*15 0 $poptart,
+            $px*4  $px*15 0 $sprinkle,
+            $px*5  $px*15 0 $poptart,
+            $px*6  $px*15 0 $poptart,
+            $px*7  $px*15 0 $poptart,
+            $px*8  $px*15 0 $poptart,
+            $px*9  $px*15 0 $poptart,
+            $px*10 $px*15 0 $poptart,
+            $px*11 $px*15 0 $poptart,
+            $px*12 $px*15 0 $poptart,
+            $px*13 $px*15 0 $poptart,
+            $px*14 $px*15 0 $poptart,
+            $px*15 $px*15 0 $poptart,
+            $px*16 $px*15 0 $poptart,
+            $px*17 $px*15 0 $poptart,
+            $px*18 $px*15 0 $poptart,
+            $px*19 $px*15 0 $poptart,
+            $px*20 $px*15 0 $crust,
+            $px*21 $px*15 0 $crust,
+            $px*22 $px*15 0 black,
+            
+            $px*0  $px*16 0 black,
+            $px*1  $px*16 0 $crust,
+            $px*2  $px*16 0 $crust,
+            $px*3  $px*16 0 $crust,
+            $px*4  $px*16 0 $crust,
+            $px*5  $px*16 0 $poptart,
+            $px*6  $px*16 0 $poptart,
+            $px*7  $px*16 0 $poptart,
+            $px*8  $px*16 0 $poptart,
+            $px*9  $px*16 0 $poptart,
+            $px*10 $px*16 0 $poptart,
+            $px*11 $px*16 0 $poptart,
+            $px*12 $px*16 0 $poptart,
+            $px*13 $px*16 0 $poptart,
+            $px*14 $px*16 0 $poptart,
+            $px*15 $px*16 0 $poptart,
+            $px*16 $px*16 0 $poptart,
+            $px*17 $px*16 0 $poptart,
+            $px*18 $px*16 0 $poptart,
+            $px*19 $px*16 0 $crust,
+            $px*20 $px*16 0 $crust,
+            $px*21 $px*16 0 $crust,
+            $px*22 $px*16 0 black,
+            
+            $px*0  $px*17 0 transparent,
+            $px*1  $px*17 0 black,
+            $px*2  $px*17 0 $crust,
+            $px*3  $px*17 0 $crust,
+            $px*4  $px*17 0 $crust,
+            $px*5  $px*17 0 $crust,
+            $px*6  $px*17 0 $crust,
+            $px*7  $px*17 0 $crust,
+            $px*8  $px*17 0 $crust,
+            $px*9  $px*17 0 $crust,
+            $px*10 $px*17 0 $crust,
+            $px*11 $px*17 0 $crust,
+            $px*12 $px*17 0 $crust,
+            $px*13 $px*17 0 $crust,
+            $px*14 $px*17 0 $crust,
+            $px*15 $px*17 0 $crust,
+            $px*16 $px*17 0 $crust,
+            $px*17 $px*17 0 $crust,
+            $px*18 $px*17 0 $crust,
+            $px*19 $px*17 0 $crust,
+            $px*20 $px*17 0 $crust,
+            $px*21 $px*17 0 black,
+            $px*22 $px*17 0 transparent,
+            
+            $px*0  $px*18 0 transparent,
+            $px*1  $px*18 0 transparent,
+            $px*2  $px*18 0 black,
+            $px*3  $px*18 0 black,
+            $px*4  $px*18 0 black,
+            $px*5  $px*18 0 black,
+            $px*6  $px*18 0 black,
+            $px*7  $px*18 0 black,
+            $px*8  $px*18 0 black,
+            $px*9  $px*18 0 black,
+            $px*10 $px*18 0 black,
+            $px*11 $px*18 0 black,
+            $px*12 $px*18 0 black,
+            $px*13 $px*18 0 black,
+            $px*14 $px*18 0 black,
+            $px*15 $px*18 0 black,
+            $px*16 $px*18 0 black,
+            $px*17 $px*18 0 black,
+            $px*18 $px*18 0 black,
+            $px*19 $px*18 0 black,
+            $px*20 $px*18 0 black,
+            $px*21 $px*18 0 transparent,
+            $px*22 $px*18 0 transparent;
+        
+    }
+    
+    .head {
+        
+        z-index: 10;
+        left: $px*13;
+        top: $px*5;
+        
+        animation: head $nyanspeed steps(1) infinite;
+        
+        box-shadow:
+            
+            $px*0  $px 0 transparent,
+            $px*1  $px 0 transparent,
+            $px*2  $px 0 black,
+            $px*3  $px 0 black,
+            $px*4  $px 0 transparent,
+            $px*5  $px 0 transparent,
+            $px*6  $px 0 transparent,
+            $px*7  $px 0 transparent,
+            $px*8  $px 0 transparent,
+            $px*9  $px 0 transparent,
+            $px*10 $px 0 transparent,
+            $px*11 $px 0 transparent,
+            $px*12 $px 0 black,
+            $px*13 $px 0 black,
+            $px*14 $px 0 transparent,
+            $px*15 $px 0 transparent,
+            
+            $px*0  $px*2 0 transparent,
+            $px*1  $px*2 0 black,
+            $px*2  $px*2 0 $cat,
+            $px*3  $px*2 0 $cat,
+            $px*4  $px*2 0 black,
+            $px*5  $px*2 0 transparent,
+            $px*6  $px*2 0 transparent,
+            $px*7  $px*2 0 transparent,
+            $px*8  $px*2 0 transparent,
+            $px*9  $px*2 0 transparent,
+            $px*10 $px*2 0 transparent,
+            $px*11 $px*2 0 black,
+            $px*12 $px*2 0 $cat,
+            $px*13 $px*2 0 $cat,
+            $px*14 $px*2 0 black,
+            $px*15 $px*2 0 transparent,
+            
+            $px*0  $px*3 0 transparent,
+            $px*1  $px*3 0 black,
+            $px*2  $px*3 0 $cat,
+            $px*3  $px*3 0 $cat,
+            $px*4  $px*3 0 $cat,
+            $px*5  $px*3 0 black,
+            $px*6  $px*3 0 transparent,
+            $px*7  $px*3 0 transparent,
+            $px*8  $px*3 0 transparent,
+            $px*9  $px*3 0 transparent,
+            $px*10 $px*3 0 black,
+            $px*11 $px*3 0 $cat,
+            $px*12 $px*3 0 $cat,
+            $px*13 $px*3 0 $cat,
+            $px*14 $px*3 0 black,
+            $px*15 $px*3 0 transparent,
+            
+            $px*0  $px*4 0 transparent,
+            $px*1  $px*4 0 black,
+            $px*2  $px*4 0 $cat,
+            $px*3  $px*4 0 $cat,
+            $px*4  $px*4 0 $cat,
+            $px*5  $px*4 0 $cat,
+            $px*6  $px*4 0 black,
+            $px*7  $px*4 0 black,
+            $px*8  $px*4 0 black,
+            $px*9  $px*4 0 black,
+            $px*10 $px*4 0 $cat,
+            $px*11 $px*4 0 $cat,
+            $px*12 $px*4 0 $cat,
+            $px*13 $px*4 0 $cat,
+            $px*14 $px*4 0 black,
+            $px*15 $px*4 0 transparent,
+            
+            $px*0  $px*5 0 transparent,
+            $px*1  $px*5 0 black,
+            $px*2  $px*5 0 $cat,
+            $px*3  $px*5 0 $cat,
+            $px*4  $px*5 0 $cat,
+            $px*5  $px*5 0 $cat,
+            $px*6  $px*5 0 $cat,
+            $px*7  $px*5 0 $cat,
+            $px*8  $px*5 0 $cat,
+            $px*9  $px*5 0 $cat,
+            $px*10 $px*5 0 $cat,
+            $px*11 $px*5 0 $cat,
+            $px*12 $px*5 0 $cat,
+            $px*13 $px*5 0 $cat,
+            $px*14 $px*5 0 black,
+            $px*15 $px*5 0 transparent,
+            
+            $px*0  $px*6 0 black,
+            $px*1  $px*6 0 $cat,
+            $px*2  $px*6 0 $cat,
+            $px*3  $px*6 0 $cat,
+            $px*4  $px*6 0 $cat,
+            $px*5  $px*6 0 $cat,
+            $px*6  $px*6 0 $cat,
+            $px*7  $px*6 0 $cat,
+            $px*8  $px*6 0 $cat,
+            $px*9  $px*6 0 $cat,
+            $px*10 $px*6 0 $cat,
+            $px*11 $px*6 0 $cat,
+            $px*12 $px*6 0 $cat,
+            $px*13 $px*6 0 $cat,
+            $px*14 $px*6 0 $cat,
+            $px*15 $px*6 0 black,
+            
+            $px*0  $px*7 0 black,
+            $px*1  $px*7 0 $cat,
+            $px*2  $px*7 0 $cat,
+            $px*3  $px*7 0 $cat,
+            $px*4  $px*7 0 $cat,
+            $px*5  $px*7 0 $cat,
+            $px*6  $px*7 0 $cat,
+            $px*7  $px*7 0 $cat,
+            $px*8  $px*7 0 $cat,
+            $px*9  $px*7 0 $cat,
+            $px*10 $px*7 0 $cat,
+            $px*11 $px*7 0 $cat,
+            $px*12 $px*7 0 $cat,
+            $px*13 $px*7 0 $cat,
+            $px*14 $px*7 0 $cat,
+            $px*15 $px*7 0 black,
+            
+            $px*0  $px*8 0 black,
+            $px*1  $px*8 0 $cat,
+            $px*2  $px*8 0 $cat,
+            $px*3  $px*8 0 $cat,
+            $px*4  $px*8 0 $cat,
+            $px*5  $px*8 0 $cat,
+            $px*6  $px*8 0 $cat,
+            $px*7  $px*8 0 $cat,
+            $px*8  $px*8 0 $cat,
+            $px*9  $px*8 0 black,
+            $px*10 $px*8 0 $cat,
+            $px*11 $px*8 0 $cat,
+            $px*12 $px*8 0 $cat,
+            $px*13 $px*8 0 $cat,
+            $px*14 $px*8 0 $cat,
+            $px*15 $px*8 0 black,
+            
+            $px*0  $px*9 0 black,
+            $px*1  $px*9 0 $cat,
+            $px*2  $px*9 0 $cheek,
+            $px*3  $px*9 0 $cheek,
+            $px*4  $px*9 0 $cat,
+            $px*5  $px*9 0 $cat,
+            $px*6  $px*9 0 $cat,
+            $px*7  $px*9 0 $cat,
+            $px*8  $px*9 0 $cat,
+            $px*9  $px*9 0 $cat,
+            $px*10 $px*9 0 $cat,
+            $px*11 $px*9 0 $cat,
+            $px*12 $px*9 0 $cat,
+            $px*13 $px*9 0 $cheek,
+            $px*14 $px*9 0 $cheek,
+            $px*15 $px*9 0 black,
+            
+            $px*0  $px*10 0 black,
+            $px*1  $px*10 0 $cat,
+            $px*2  $px*10 0 $cheek,
+            $px*3  $px*10 0 $cheek,
+            $px*4  $px*10 0 $cat,
+            $px*5  $px*10 0 black,
+            $px*6  $px*10 0 $cat,
+            $px*7  $px*10 0 $cat,
+            $px*8  $px*10 0 black,
+            $px*9  $px*10 0 $cat,
+            $px*10 $px*10 0 $cat,
+            $px*11 $px*10 0 black,
+            $px*12 $px*10 0 $cat,
+            $px*13 $px*10 0 $cheek,
+            $px*14 $px*10 0 $cheek,
+            $px*15 $px*10 0 black,
+            
+            $px*0  $px*11 0 transparent,
+            $px*1  $px*11 0 black,
+            $px*2  $px*11 0 $cat,
+            $px*3  $px*11 0 $cat,
+            $px*4  $px*11 0 $cat,
+            $px*5  $px*11 0 black,
+            $px*6  $px*11 0 black,
+            $px*7  $px*11 0 black,
+            $px*8  $px*11 0 black,
+            $px*9  $px*11 0 black,
+            $px*10 $px*11 0 black,
+            $px*11 $px*11 0 black,
+            $px*12 $px*11 0 $cat,
+            $px*13 $px*11 0 $cat,
+            $px*14 $px*11 0 black,
+            $px*15 $px*11 0 transparent,
+            
+            $px*0  $px*12 0 transparent,
+            $px*1  $px*12 0 transparent,
+            $px*2  $px*12 0 black,
+            $px*3  $px*12 0 $cat,
+            $px*4  $px*12 0 $cat,
+            $px*5  $px*12 0 $cat,
+            $px*6  $px*12 0 $cat,
+            $px*7  $px*12 0 $cat,
+            $px*8  $px*12 0 $cat,
+            $px*9  $px*12 0 $cat,
+            $px*10 $px*12 0 $cat,
+            $px*11 $px*12 0 $cat,
+            $px*12 $px*12 0 $cat,
+            $px*13 $px*12 0 black,
+            $px*14 $px*12 0 transparent,
+            $px*15 $px*12 0 transparent,
+            
+            $px*0  $px*13 0 transparent,
+            $px*1  $px*13 0 transparent,
+            $px*2  $px*13 0 transparent,
+            $px*3  $px*13 0 black,
+            $px*4  $px*13 0 black,
+            $px*5  $px*13 0 black,
+            $px*6  $px*13 0 black,
+            $px*7  $px*13 0 black,
+            $px*8  $px*13 0 black,
+            $px*9  $px*13 0 black,
+            $px*10 $px*13 0 black,
+            $px*11 $px*13 0 black,
+            $px*12 $px*13 0 black,
+            $px*13 $px*13 0 transparent,
+            $px*14 $px*13 0 transparent,
+            $px*15 $px*13 0 transparent;
+        
+    }
+    
+    .eyes {
+        
+        left: $px*4;
+        top: $px*6;
+        animation: eyes 10s steps(1) infinite;
+        
+    }
+    
+    .feet {
+        
+        z-index: -1;
+        animation: feet $nyanspeed steps(1) infinite reverse 0.2s;
+        
+    }
+    
+    .foot.one {
+        
+        z-index: 3;
+        left: $px*20;
+        top: $px*15;
+        
+        animation: foot1 $nyanspeed steps(1) infinite;
+        
+    }
+    
+    .foot.two {
+        
+        z-index: 3;
+        left: $px*14;
+        top: $px*15;
+        
+        animation: foot2 $nyanspeed steps(1) infinite;
+        
+    }
+    
+    .foot.three {
+        
+        z-index: 3;
+        left: $px*7;
+        top: $px*15;
+        
+        animation: foot3 $nyanspeed steps(1) infinite;
+        
+    }
+    
+    .foot.four {
+        
+        z-index: 3;
+        left: $px*1;
+        top: $px*15;
+        
+        animation: foot4 $nyanspeed steps(1) infinite;
+        
+    }
+    
+}
+
+
+.rainbow {
+    
+    font-family: "source code pro";
+    font-weight: bold;
+    font-size: $font;
+    line-height: $font;
+    z-index: 0;
+    top: $px*2;
+    position: absolute;
+    left: $px*4;
+    
+    .blast {
+        animation: rainbow $nyanspeed steps(2) infinite;
+        margin-left: -$px*2;
+        padding: 0 $px;
+        width: $px*13;
+        display: inline-block;
+        text-align: center;
+        
+        @for $i from 0 through 15 {
+
+            &:nth-child(#{$i}n) {
+                animation-delay: -(($i)*0.1s);
+                opacity: $i*0.08;
+            }
+            
+        }
+        
+    }
+
+    > * {
+        
+        position: absolute;
+        text-align: right;
+        width: 9999px;
+        right: 0;
+        white-space: pre;
+        
+        height: $font;
+        
+    }
+    
+    .red {
+
+        top: 0;
+        .blast { 
+            background: $red;
+        }
+
+    }
+    
+    .orange {
+
+        top: $font;
+        .blast { 
+            background: $orange;
+        }
+
+    }
+    
+    .yellow {
+
+        top: $font*2;
+        .blast { 
+            background: $yellow;
+        }
+
+    }
+    
+    .green {
+
+        top: $font*3;
+        .blast { 
+        background: $green;
+        }
+
+    }
+    
+    .blue {
+
+        top: $font*4;
+        .blast { 
+            background: $blue;
+        }
+
+    }
+    
+    .purple {
+
+        top: $font*5;
+        .blast { 
+            background: $purple;
+        }
+
+    }
+    
+    
+    
+}
+
+
+
+
+body, html {
+    
+    min-height: 100%;
+    overflow: hidden;
+    
+}
+
+
+
+.text {
+    font-family: "source code pro";
+    font-weight: 300;
+    text-shadow: 0 0 5px white, 0 0 1px white;
+    font-size: $px*4;
+    animation: text 1.5s linear 1 forwards;
+}
+
+
+ 
+
+
+@keyframes poptart {
+    
+    0% {
+        transform: translateY(-$px);
+    }
+    28% {
+        transform: translateY(0);
+    }
+    
+}
+
+@keyframes head {
+    
+    0% {
+        transform: translate(-$px,-$px);
+    }
+    20% {
+        transform: translate(0,-$px);
+    }
+    40% {
+        transform: translate(0,0);
+    }
+    60% {
+        transform: translate(-$px,0);
+    }
+    
+}
+
+@keyframes eyes {
+    
+    0%, 90% {
+        
+        box-shadow:
+            $px*0 $px 0 white,
+            $px*1 $px 0 black,
+            $px*7 $px 0 white,
+            $px*8 $px 0 black,
+            
+            $px*0 $px*2 0 black,
+            $px*1 $px*2 0 black,
+            $px*7 $px*2 0 black,
+            $px*8 $px*2 0 black;
+        
+    }
+    
+    80% {
+        
+        box-shadow:
+            $px*0 $px 0 transparent,
+            $px*1 $px 0 transparent,
+            $px*7 $px 0 white,
+            $px*8 $px 0 black,
+            
+            $px*0 $px*2 0 black,
+            $px*1 $px*2 0 black,
+            $px*7 $px*2 0 black,
+            $px*8 $px*2 0 black;
+        
+    }
+    
+}
+
+@keyframes feet {
+        
+    16.7% {
+        
+        transform: translateX(-$px*2);
+
+    }
+    
+    33.3% {
+            
+        transform: translateX(-$px*3);
+            
+    }
+    
+    50% {
+        
+        transform: translateX(-$px*3);
+        
+    }
+    
+    66.6% {
+
+        transform: translateX(-$px*2);
+
+    }
+    
+    83.7% {
+        
+        transform: translateX(-$px*1);
+        
+    }
+}
+
+@keyframes foot1 {
+    
+    0%, 16.7% {
+        
+        box-shadow:
+            
+            $px*0 $px 0 black,
+            $px*1 $px 0 $cat,
+            $px*2 $px 0 $cat,
+            $px*3 $px 0 $cat,
+            $px*4 $px 0 black,
+            
+            $px*0  $px*2 0 black,
+            $px*1  $px*2 0 $cat,
+            $px*2  $px*2 0 $cat,
+            $px*3  $px*2 0 $cat,
+            $px*4  $px*2 0 black,
+            
+            $px*0  $px*3 0 black,
+            $px*1  $px*3 0 $cat,
+            $px*2  $px*3 0 $cat,
+            $px*3  $px*3 0 $cat,
+            $px*4  $px*3 0 black,
+            
+            $px*0  $px*4 0 black,
+            $px*1  $px*4 0 $cat,
+            $px*2  $px*4 0 $cat,
+            $px*3  $px*4 0 $cat,
+            $px*4  $px*4 0 black,
+            
+            $px*0  $px*5 0 transparent,
+            $px*1  $px*5 0 black,
+            $px*2  $px*5 0 black,
+            $px*3  $px*5 0 black,
+            $px*4  $px*5 0 black;
+        
+    }
+    
+    33.3% {
+            
+        box-shadow: 
+            
+            $px*0 $px 0 black,
+            $px*1 $px 0 $cat,
+            $px*2 $px 0 $cat,
+            $px*3 $px 0 black,
+            $px*4 $px 0 transparent,
+            
+            $px*0  $px*2 0 black,
+            $px*1  $px*2 0 $cat,
+            $px*2  $px*2 0 $cat,
+            $px*3  $px*2 0 black,
+            $px*4  $px*2 0 transparent,
+            
+            $px*0  $px*3 0 black,
+            $px*1  $px*3 0 $cat,
+            $px*2  $px*3 0 $cat,
+            $px*3  $px*3 0 black,
+            $px*4  $px*3 0 transparent,
+            
+            $px*0  $px*4 0 black,
+            $px*1  $px*4 0 $cat,
+            $px*2  $px*4 0 $cat,
+            $px*3  $px*4 0 black,
+            $px*4  $px*4 0 transparent,
+            
+            $px*0  $px*5 0 transparent,
+            $px*1  $px*5 0 black,
+            $px*2  $px*5 0 black,
+            $px*3  $px*5 0 black,
+            $px*4  $px*5 0 transparent;
+        
+    }
+    
+    66.6% {
+            
+        box-shadow: 
+            
+            $px*0 $px 0 black,
+            $px*1 $px 0 $cat,
+            $px*2 $px 0 $cat,
+            $px*3 $px 0 $cat,
+            $px*4 $px 0 black,
+            
+            $px*0  $px*2 0 black,
+            $px*1  $px*2 0 $cat,
+            $px*2  $px*2 0 $cat,
+            $px*3  $px*2 0 $cat,
+            $px*4  $px*2 0 black,
+            
+            $px*0  $px*3 0 black,
+            $px*1  $px*3 0 $cat,
+            $px*2  $px*3 0 $cat,
+            $px*3  $px*3 0 $cat,
+            $px*4  $px*3 0 black,
+            
+            $px*0  $px*4 0 black,
+            $px*1  $px*4 0 $cat,
+            $px*2  $px*4 0 $cat,
+            $px*3  $px*4 0 $cat,
+            $px*4  $px*4 0 black,
+            
+            $px*0  $px*5 0 transparent,
+            $px*1  $px*5 0 black,
+            $px*2  $px*5 0 black,
+            $px*3  $px*5 0 black,
+            $px*4  $px*5 0 black;
+        
+    }
+    
+    83.7% {
+            
+        box-shadow: 
+            
+            $px*0 $px 0 black,
+            $px*1 $px 0 $cat,
+            $px*2 $px 0 $cat,
+            $px*3 $px 0 $cat,
+            $px*4 $px 0 black,
+            
+            $px*0  $px*2 0 black,
+            $px*1  $px*2 0 $cat,
+            $px*2  $px*2 0 $cat,
+            $px*3  $px*2 0 $cat,
+            $px*4  $px*2 0 black,
+            
+            $px*0  $px*3 0 black,
+            $px*1  $px*3 0 $cat,
+            $px*2  $px*3 0 $cat,
+            $px*3  $px*3 0 $cat,
+            $px*4  $px*3 0 black,
+            
+            $px*0  $px*4 0 black,
+            $px*1  $px*4 0 $cat,
+            $px*2  $px*4 0 $cat,
+            $px*3  $px*4 0 $cat,
+            $px*4  $px*4 0 black,
+            
+            $px*0  $px*5 0 transparent,
+            $px*1  $px*5 0 black,
+            $px*2  $px*5 0 black,
+            $px*3  $px*5 0 black,
+            $px*4  $px*5 0 transparent;
+        
+    }   
+    
+    
+}
+
+@keyframes foot2 {
+
+    0% {
+
+        box-shadow:
+            
+            $px*0 $px 0 black,
+            $px*1 $px 0 $cat,
+            $px*2 $px 0 $cat,
+            $px*3 $px 0 $cat,
+            $px*4 $px 0 black,
+            
+            $px*0  $px*2 0 black,
+            $px*1  $px*2 0 $cat,
+            $px*2  $px*2 0 $cat,
+            $px*3  $px*2 0 black,
+            $px*4  $px*2 0 transparent,
+            
+            $px*0  $px*3 0 black,
+            $px*1  $px*3 0 $cat,
+            $px*2  $px*3 0 $cat,
+            $px*3  $px*3 0 black,
+            $px*4  $px*3 0 transparent,
+            
+            $px*0  $px*4 0 black,
+            $px*1  $px*4 0 $cat,
+            $px*2  $px*4 0 $cat,
+            $px*3  $px*4 0 black,
+            $px*4  $px*4 0 transparent,
+            
+            $px*0  $px*5 0 transparent,
+            $px*1  $px*5 0 black,
+            $px*2  $px*5 0 black,
+            $px*3  $px*5 0 black,
+            $px*4  $px*5 0 transparent;
+        
+    }
+    
+    16.7% {
+
+        box-shadow:
+            
+            $px*0 $px 0 black,
+            $px*1 $px 0 $cat,
+            $px*2 $px 0 $cat,
+            $px*3 $px 0 $cat,
+            $px*4 $px 0 black,
+            
+            $px*0  $px*2 0 black,
+            $px*1  $px*2 0 $cat,
+            $px*2  $px*2 0 $cat,
+            $px*3  $px*2 0 $cat,
+            $px*4  $px*2 0 black,
+            
+            $px*0  $px*3 0 black,
+            $px*1  $px*3 0 $cat,
+            $px*2  $px*3 0 $cat,
+            $px*3  $px*3 0 black,
+            $px*4  $px*3 0 black,
+            
+            $px*0  $px*4 0 black,
+            $px*1  $px*4 0 $cat,
+            $px*2  $px*4 0 $cat,
+            $px*3  $px*4 0 black,
+            $px*4  $px*4 0 transparent,
+            
+            $px*0  $px*5 0 transparent,
+            $px*1  $px*5 0 black,
+            $px*2  $px*5 0 black,
+            $px*3  $px*5 0 black,
+            $px*4  $px*5 0 transparent;
+        
+    }
+    
+    33.3% {
+            
+        box-shadow: 
+            
+            $px*0 $px 0 black,
+            $px*1 $px 0 $cat,
+            $px*2 $px 0 $cat,
+            $px*3 $px 0 $cat,
+            $px*4 $px 0 black,
+            
+            $px*0  $px*2 0 black,
+            $px*1  $px*2 0 $cat,
+            $px*2  $px*2 0 $cat,
+            $px*3  $px*2 0 $cat,
+            $px*4  $px*2 0 black,
+            
+            $px*0  $px*3 0 black,
+            $px*1  $px*3 0 $cat,
+            $px*2  $px*3 0 $cat,
+            $px*3  $px*3 0 $cat,
+            $px*4  $px*3 0 black,
+            
+            $px*0  $px*4 0 black,
+            $px*1  $px*4 0 $cat,
+            $px*2  $px*4 0 $cat,
+            $px*3  $px*4 0 $cat,
+            $px*4  $px*4 0 black,
+            
+            $px*0  $px*5 0 black,
+            $px*1  $px*5 0 black,
+            $px*2  $px*5 0 black,
+            $px*3  $px*5 0 black,
+            $px*4  $px*5 0 transparent;
+        
+    }
+    
+    50% {
+            
+        box-shadow: 
+            
+            $px*0 $px 0 black,
+            $px*1 $px 0 $cat,
+            $px*2 $px 0 $cat,
+            $px*3 $px 0 $cat,
+            $px*4 $px 0 black,
+            
+            $px*0  $px*2 0 black,
+            $px*1  $px*2 0 $cat,
+            $px*2  $px*2 0 $cat,
+            $px*3  $px*2 0 $cat,
+            $px*4  $px*2 0 black,
+            
+            $px*0  $px*3 0 black,
+            $px*1  $px*3 0 $cat,
+            $px*2  $px*3 0 $cat,
+            $px*3  $px*3 0 $cat,
+            $px*4  $px*3 0 black,
+            
+            $px*0  $px*4 0 black,
+            $px*1  $px*4 0 $cat,
+            $px*2  $px*4 0 $cat,
+            $px*3  $px*4 0 $cat,
+            $px*4  $px*4 0 black,
+            
+            $px*0  $px*5 0 black,
+            $px*1  $px*5 0 black,
+            $px*2  $px*5 0 black,
+            $px*3  $px*5 0 black,
+            $px*4  $px*5 0 transparent;
+        
+    } 
+    
+    66.6% {
+            
+        box-shadow: 
+            
+            $px*0 $px 0 black,
+            $px*1 $px 0 $cat,
+            $px*2 $px 0 $cat,
+            $px*3 $px 0 $cat,
+            $px*4 $px 0 black,
+            
+            $px*0  $px*2 0 black,
+            $px*1  $px*2 0 $cat,
+            $px*2  $px*2 0 $cat,
+            $px*3  $px*2 0 $cat,
+            $px*4  $px*2 0 black,
+            
+            $px*0  $px*3 0 black,
+            $px*1  $px*3 0 $cat,
+            $px*2  $px*3 0 $cat,
+            $px*3  $px*3 0 $cat,
+            $px*4  $px*3 0 black,
+            
+            $px*0  $px*4 0 black,
+            $px*1  $px*4 0 $cat,
+            $px*2  $px*4 0 $cat,
+            $px*3  $px*4 0 $cat,
+            $px*4  $px*4 0 black,
+            
+            $px*0  $px*5 0 black,
+            $px*1  $px*5 0 black,
+            $px*2  $px*5 0 black,
+            $px*3  $px*5 0 black,
+            $px*4  $px*5 0 transparent;
+        
+    }
+    
+    83.7% {
+            
+        box-shadow: 
+            
+            $px*0 $px 0 black,
+            $px*1 $px 0 $cat,
+            $px*2 $px 0 $cat,
+            $px*3 $px 0 $cat,
+            $px*4 $px 0 black,
+            
+            $px*0  $px*2 0 black,
+            $px*1  $px*2 0 $cat,
+            $px*2  $px*2 0 $cat,
+            $px*3  $px*2 0 $cat,
+            $px*4  $px*2 0 black,
+            
+            $px*0  $px*3 0 black,
+            $px*1  $px*3 0 $cat,
+            $px*2  $px*3 0 $cat,
+            $px*3  $px*3 0 $cat,
+            $px*4  $px*3 0 black,
+            
+            $px*0  $px*4 0 black,
+            $px*1  $px*4 0 $cat,
+            $px*2  $px*4 0 $cat,
+            $px*3  $px*4 0 $cat,
+            $px*4  $px*4 0 black,
+            
+            $px*0  $px*5 0 transparent,
+            $px*1  $px*5 0 black,
+            $px*2  $px*5 0 black,
+            $px*3  $px*5 0 black,
+            $px*4  $px*5 0 transparent;
+        
+    }
+    
+}
+
+@keyframes foot3 {
+
+    0% {
+
+        box-shadow:
+            
+            $px*0 $px 0 black,
+            $px*1 $px 0 $cat,
+            $px*2 $px 0 $cat,
+            $px*3 $px 0 $cat,
+            $px*4 $px 0 black,
+            
+            $px*0  $px*2 0 black,
+            $px*1  $px*2 0 $cat,
+            $px*2  $px*2 0 $cat,
+            $px*3  $px*2 0 $cat,
+            $px*4  $px*2 0 black,
+            
+            $px*0  $px*3 0 black,
+            $px*1  $px*3 0 $cat,
+            $px*2  $px*3 0 $cat,
+            $px*3  $px*3 0 $cat,
+            $px*4  $px*3 0 black,
+            
+            $px*0  $px*4 0 black,
+            $px*1  $px*4 0 $cat,
+            $px*2  $px*4 0 $cat,
+            $px*3  $px*4 0 $cat,
+            $px*4  $px*4 0 black,
+            
+            $px*0  $px*5 0 transparent,
+            $px*1  $px*5 0 black,
+            $px*2  $px*5 0 black,
+            $px*3  $px*5 0 black,
+            $px*4  $px*5 0 transparent;
+        
+    }
+    
+    16.7% {
+        
+        box-shadow:
+            
+            $px*0 $px 0 black,
+            $px*1 $px 0 $cat,
+            $px*2 $px 0 $cat,
+            $px*3 $px 0 $cat,
+            $px*4 $px 0 black,
+            
+            $px*0  $px*2 0 black,
+            $px*1  $px*2 0 $cat,
+            $px*2  $px*2 0 $cat,
+            $px*3  $px*2 0 $cat,
+            $px*4  $px*2 0 black,
+            
+            $px*0  $px*3 0 black,
+            $px*1  $px*3 0 $cat,
+            $px*2  $px*3 0 $cat,
+            $px*3  $px*3 0 $cat,
+            $px*4  $px*3 0 black,
+            
+            $px*0  $px*4 0 black,
+            $px*1  $px*4 0 $cat,
+            $px*2  $px*4 0 $cat,
+            $px*3  $px*4 0 $cat,
+            $px*4  $px*4 0 black,
+            
+            $px*0  $px*5 0 black,
+            $px*1  $px*5 0 black,
+            $px*2  $px*5 0 black,
+            $px*3  $px*5 0 black,
+            $px*4  $px*5 0 transparent;
+        
+    }
+    
+    50% {
+        
+        box-shadow: 
+            
+            $px*0 $px 0 black,
+            $px*1 $px 0 $cat,
+            $px*2 $px 0 $cat,
+            $px*3 $px 0 $cat,
+            $px*4 $px 0 black,
+            
+            $px*0  $px*2 0 black,
+            $px*1  $px*2 0 $cat,
+            $px*2  $px*2 0 $cat,
+            $px*3  $px*2 0 $cat,
+            $px*4  $px*2 0 black,
+            
+            $px*0  $px*3 0 black,
+            $px*1  $px*3 0 $cat,
+            $px*2  $px*3 0 $cat,
+            $px*3  $px*3 0 $cat,
+            $px*4  $px*3 0 black,
+            
+            $px*0  $px*4 0 black,
+            $px*1  $px*4 0 $cat,
+            $px*2  $px*4 0 $cat,
+            $px*3  $px*4 0 $cat,
+            $px*4  $px*4 0 black,
+            
+            $px*0  $px*5 0 transparent,
+            $px*1  $px*5 0 black,
+            $px*2  $px*5 0 black,
+            $px*3  $px*5 0 black,
+            $px*4  $px*5 0 black;
+        
+    }
+    
+    83.7% {
+            
+        box-shadow: 
+            
+            $px*0 $px 0 black,
+            $px*1 $px 0 $cat,
+            $px*2 $px 0 $cat,
+            $px*3 $px 0 $cat,
+            $px*4 $px 0 black,
+            
+            $px*0  $px*2 0 black,
+            $px*1  $px*2 0 $cat,
+            $px*2  $px*2 0 $cat,
+            $px*3  $px*2 0 $cat,
+            $px*4  $px*2 0 black,
+            
+            $px*0  $px*3 0 black,
+            $px*1  $px*3 0 $cat,
+            $px*2  $px*3 0 $cat,
+            $px*3  $px*3 0 $cat,
+            $px*4  $px*3 0 black,
+            
+            $px*0  $px*4 0 black,
+            $px*1  $px*4 0 $cat,
+            $px*2  $px*4 0 $cat,
+            $px*3  $px*4 0 $cat,
+            $px*4  $px*4 0 black,
+            
+            $px*0  $px*5 0 transparent,
+            $px*1  $px*5 0 black,
+            $px*2  $px*5 0 black,
+            $px*3  $px*5 0 black,
+            $px*4  $px*5 0 transparent;
+        
+    }
+    
+}
+
+@keyframes foot4 {
+
+    0% {
+
+        box-shadow: 
+            
+            $px*0 $px 0 transparent,
+            $px*1 $px 0 transparent,
+            $px*2 $px 0 black,
+            $px*3 $px 0 black,
+            $px*4 $px 0 black,
+            
+            $px*0  $px*2 0 transparent,
+            $px*1  $px*2 0 black,
+            $px*2  $px*2 0 black,
+            $px*3  $px*2 0 $cat,
+            $px*4  $px*2 0 black,
+            
+            $px*0  $px*3 0 black,
+            $px*1  $px*3 0 $cat,
+            $px*2  $px*3 0 $cat,
+            $px*3  $px*3 0 $cat,
+            $px*4  $px*3 0 black,
+            
+            $px*0  $px*4 0 black,
+            $px*1  $px*4 0 $cat,
+            $px*2  $px*4 0 $cat,
+            $px*3  $px*4 0 $cat,
+            $px*4  $px*4 0 black,
+            
+            $px*0  $px*5 0 transparent,
+            $px*1  $px*5 0 black,
+            $px*2  $px*5 0 black,
+            $px*3  $px*5 0 black,
+            $px*4  $px*5 0 transparent;
+        
+    }
+    
+    16.7% {
+        
+        box-shadow: 
+            
+            $px*0 $px 0 transparent,
+            $px*1 $px 0 transparent,
+            $px*2 $px 0 black,
+            $px*3 $px 0 black,
+            $px*4 $px 0 black,
+            
+            $px*0  $px*2 0 transparent,
+            $px*1  $px*2 0 black,
+            $px*2  $px*2 0 black,
+            $px*3  $px*2 0 $cat,
+            $px*4  $px*2 0 black,
+            
+            $px*0  $px*3 0 black,
+            $px*1  $px*3 0 $cat,
+            $px*2  $px*3 0 $cat,
+            $px*3  $px*3 0 $cat,
+            $px*4  $px*3 0 black,
+            
+            $px*0  $px*4 0 black,
+            $px*1  $px*4 0 $cat,
+            $px*2  $px*4 0 $cat,
+            $px*3  $px*4 0 $cat,
+            $px*4  $px*4 0 black,
+            
+            $px*0  $px*5 0 black,
+            $px*1  $px*5 0 black,
+            $px*2  $px*5 0 black,
+            $px*3  $px*5 0 black,
+            $px*4  $px*5 0 transparent;
+
+    }
+    
+}
+
+@keyframes rainbow {
+    
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-$px);
+    }
+    
+}
+
+@keyframes text {
+    0% {
+        transform: translateX(0px);
+        opacity: 0;
+    }
+    3% {
+        opacity: 1;
+    }
+    30% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-$px*30);
+        opacity: 0;
+    }
+}

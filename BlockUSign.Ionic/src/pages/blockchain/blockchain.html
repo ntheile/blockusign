@@ -1,0 +1,117 @@
+<ion-content>
+
+  <block-steps activeStep="6" #blockSteps class="no-print">
+  </block-steps>
+  <br /><br />
+
+
+  <div class="centerMe" style="max-width: 760px">
+
+
+
+  <span *ngIf="!isSaving">* Beta - Save Digital Signature to the Blockchain forever!
+    <a href="https://github.com/ntheile/blockusign/issues/58" target="_blank"><ion-icon name="information-circle"></ion-icon></a>
+  </span>
+  <br /><br />
+
+  <div style="display:flex; flex-direction: row; flex-wrap: wrap;  align-content: center; align-items: center; text-align: center">
+
+    <div class="nyancat" style="max-width:600px">
+      <span class="head">
+        <span class="eyes"></span>
+      </span>
+      <span class="body">
+        <span class="poptart"></span>
+        <span class="feet">
+          <span class="foot one"></span>
+          <span class="foot two"></span>
+          <span class="foot three"></span>
+          <span class="foot four"></span>
+        </span>
+      </span>
+      <span class="tail"></span>
+
+
+
+      <div class="rainbow">
+        <div class="red">Saving Saving Saving Saving Saving Saving Saving Saving Saving
+        </div>
+        <div class="orange">to to to to to to to to to</div>
+        <div class="yellow">the the the the the the the the the </div>
+        <div class="green">block block block block block block block block block</div>
+        <div class="blue">chain chain chain chain chain chain chain chain chain </div>
+        <div class="purple">... ... ... ... ... ... ... ... ... </div>
+      </div>
+    </div>
+
+    
+    <block-pdf marginTop="10px" locked="true" style="zoom: .55; width: 450px; height: 550px">
+    </block-pdf>
+    <button *ngIf="!isSaving" ion-button style="border-radius: 30px; left: -200px; z-index: 999999;" (click)="postBlockchain()">Sign
+       <ion-icon name="md-create" style="margin-left: 20px; "></ion-icon>
+    </button>
+    
+    
+    <div class="no-print" style="margin-left: 10px">
+      <div (click)="toggleSig()" style="margin-bottom: 30px; cursor: pointer;">
+        <ion-icon name="ios-finger-print" style="font-size:100px"></ion-icon><br/>
+        <a>
+          <span *ngIf="!showSig">Show </span>
+          <span *ngIf="showSig">Hide </span>
+          Signature Data</a>
+      </div>
+      
+    </div>
+  </div>
+
+
+  <p style="margin-top: 30px; user-select: text" *ngIf="showSig">
+    Hash (pdf)<br/>  {{hash}} <br/><br/>
+    Signature (your unique signature)<br/> {{signature}} <br/><br/>
+    Address: (your unique id for the Blockusign app)<br/> {{address}} <br/><br/>
+  </p>
+
+ 
+  <div style="clear:both"></div>
+
+  <div style="display:flex; flex-direction: row; align-content: center; align-items: center; text-align: center; cursor:pointer"
+    (click)="toggleAdvanced()">
+    <h2>Status</h2>
+    <ion-icon *ngIf="!showAdvancedInfo" name="ios-arrow-down" style="margin-left: 20px; "></ion-icon>
+    <ion-icon *ngIf="showAdvancedInfo" name="ios-arrow-up" style=" margin-left: 20px; "></ion-icon>
+  </div>
+
+  <p>1 of 5 steps complete</p>
+
+
+
+  <div *ngIf="showAdvancedInfo">
+    <h6>Step 1 - Complete (10ms)</h6>
+    <p>Propegate to Subdomains Registrar</p>
+    <a href="https://blockusign-subdomains.azurewebsites.net/status/{{guid}}" target="_blank">https://blockusign-subdomains.azurewebsites.net/status/{{guid}}</a>
+
+    <h6>Step 2 - In progress (typically takes 12 hours) </h6>
+    <p>Propegate hash to the Blockchain</p>
+    <a href="https://www.blockchain.com/btc/tx/b705474a72dbb874bb62ea1f9bf2fc6eea85ffdd1d6117cf05617e929e3befda" target="_blank">https://www.blockchain.com/btc/tx/b705474a72dbb874bb62ea1f9bf2fc6eea85ffdd1d6117cf05617e929e3befda</a>
+
+    <h6>Step 3</h6>
+    <p>Propegate zonefile hash to Blockstack Atlas P2P network</p>
+    <a href="https://core.blockstack.org/v1/names/{{guid}}}.blockusign1.id" target="_blank">https://core.blockstack.org/v1/names/{{guid}}.blockusign1.id</a>
+
+    <h6>Step 4</h6>
+    <p>Verify Signature with collaborator</p>
+
+    <br /><br /><br />
+
+    <p>How does this all work?</p>
+    <a href="https://github.com/ntheile/blockusign/issues/58" target="_blank">https://github.com/ntheile/blockusign/issues/58</a>
+
+  </div>
+
+
+
+  <br /><br />
+
+</div>
+
+</ion-content>

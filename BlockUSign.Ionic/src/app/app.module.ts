@@ -17,6 +17,7 @@ import { SignPageModule } from '../pages/sign/sign.module';
 import { EmailPageModule } from '../pages/email/email.module';
 import { ReviewPageModule } from '../pages/review/review.module';
 import { BlockStepsComponentModule } from './../components/components.module';
+import { BlockchainPageModule } from './../pages/blockchain/blockchain.module';
 
 
 //import { HomePage } from './../pages/home/home';
@@ -52,6 +53,7 @@ import { HttpClientModule } from '@angular/common/http';
     SignPageModule,
     EmailPageModule,
     ReviewPageModule,
+    BlockchainPageModule,
     NgSelectModule, 
     FormsModule,
     BlockStepsComponentModule,
