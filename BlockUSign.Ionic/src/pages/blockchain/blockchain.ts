@@ -36,6 +36,7 @@ export class BlockchainPage {
   showAdvancedInfo = false;
   showSig = false;
   isSaving = false;
+  subdomainsStatus;
   @ViewChild("blockSteps") blockSteps: BlockStepsComponent;
 
   constructor(
@@ -65,7 +66,6 @@ export class BlockchainPage {
 
   ionViewDidLoad() {
     this.init();
-    this.nyanCat();
   }
 
   toggleAdvanced(){
@@ -109,7 +109,7 @@ export class BlockchainPage {
     }
 
     this.getSig();
-
+    this.checkStatus();
 
   }
 
@@ -180,6 +180,15 @@ export class BlockchainPage {
       $(".nyancat")
         .addClass("fly");
     }, 2000);
+
+  }
+
+  async checkStatus(){
+
+    // subdomains
+    this.subdomainsStatus = await this.bitcoinService.getSubdomainsStatus(this.guid);
+
+    // Status = *Subdomain propagated* or *Subdomain is queued* or *txid*
 
   }
 

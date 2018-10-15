@@ -21,7 +21,7 @@
     <li [ngClass]="activeStep == '4' ? 'step active': 'step'" (click)="route('SignPage')">
       <ion-icon name="md-create"></ion-icon>
       <div class="step-info">
-        <span class="step-name">Sign</span>
+        <span class="step-name">e-Sign</span>
       </div>
     </li>
     <li [ngClass]="activeStep == '5' ? 'step active': 'step'" (click)="route('ReviewPage')">
@@ -33,7 +33,7 @@
     <li [ngClass]="activeStep == '6' ? 'step active': 'step'" *ngIf="activeStep == '6'">
         <ion-icon name="logo-bitcoin"></ion-icon>
         <div class="step-info">
-          <span class="step-name">Sign on Blockchain</span>
+          <span class="step-name">Digital Signature on Blockchain (Optional)</span>
         </div>
       </li>
   </ul>

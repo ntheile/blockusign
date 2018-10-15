@@ -44,12 +44,10 @@ export class DocumentService {
     this.documentsList = [];
 
     // @TODO - think about putting in checks here is documentsList is empty, 
-    // or there could be a async race issue if they take too long to come back
+    // or there could be a async race-condition issue if they take too long to come back
     this.getDocumentsIndex(true).then((data) => {
       this.documentsList = data;
     });
-
-
 
   }
 
@@ -445,6 +443,28 @@ export class DocumentService {
   }
   //#endregion
 
+
+  async mergeDocumentPaths(fileGuid){
+
+    let thisGuid = fileGuid || this.currentDoc.guid;
+
+    // 1. get the all the locations this document is stored from the global storage index
+    let allPathToThisDocument: any = await this.getDocStorageMaps(thisGuid);
+    console.log(allPathToThisDocument);
+
+    // 2. ignore my path and loop all the other paths
+    let myStoragePath = this.blockStackService.getStoragePath();
+    // console.log(myStoragePath);
+    allPathToThisDocument.storagePaths.remove(myStoragePath);
+
+    // 3. Update my currentDoc.paths[i] to contain their state data
+    for( let path of allPathToThisDocument.storagePaths ) { 
+      console.log(path) 
+      // updateDocument(doc)
+    }
+
+
+  }
 
   async updatePartnerPathData(){
     

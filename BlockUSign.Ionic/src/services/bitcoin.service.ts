@@ -24,12 +24,14 @@ export class BitcoinService {
     insight;
     bitcore;
     messageSigner;
+    subdomainUrl =  'https://blockusign-subdomains.azurewebsites.net/'; //'http://localhost:3000/register/'; 
 
     // blockstack op_return and keys https://forum.blockstack.org/t/prove-two-parties-signed-a-copy-of-a-document-multi-sig-hash-op-return/6107/4
     // 
     constructor(
         private http: Http,
     ) {
+
         const Insight = require('bitcore-explorers').Insight;
         const Message = require('bitcore-message');
         try {
@@ -44,6 +46,7 @@ export class BitcoinService {
         window.bitcore = this.bitcore;
     }
 
+  
     sendTransaction(to, signer, signerKey, data) {
         this.insight.getUnspentUtxos(signer, (err, utxos) => {
             if (err) {
@@ -155,7 +158,7 @@ export class BitcoinService {
     async sendSudomainBatch(fileName, appAddress, hash, signature, profileUrl) { 
         
        
-        let subdomainUrl =  'https://blockusign-subdomains.azurewebsites.net/register/'; //'http://localhost:3000/register/'; 
+        
         let origin = '$ORIGIN ' + fileName + '\n$TTL 3600\n_https._tcp URI 10 1 \"' + profileUrl + '\"\n'; 
         let hashTXT = 'hash TXT \"' + hash + '\"\n';
         let signatureTXT = 'signature TXT \"' + signature + '\"\n';
@@ -179,7 +182,12 @@ export class BitcoinService {
             }
         );
         
-        let resp = await this.http.post(subdomainUrl, json, httpOptions).toPromise();
+        let resp = await this.http.post(this.subdomainUrl + "register/", json, httpOptions).toPromise();
+        return resp;
+    }
+
+    async getSubdomainsStatus(fileGuid){
+        let resp = await this.http.get(this.subdomainUrl + 'status/' + fileGuid).toPromise();
         return resp;
     }
 

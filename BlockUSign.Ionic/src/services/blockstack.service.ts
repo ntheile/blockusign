@@ -13,6 +13,7 @@ import { delay } from 'rxjs/operator/delay';
 import { Headers, RequestOptionsArgs, RequestOptions } from '@angular/http';
 import { HttpHeaders } from '@angular/common/http';
 declare let blockstack: any;
+declare let sjcl: any;
 
 @Injectable()
 export class BlockStackService {
@@ -74,40 +75,65 @@ export class BlockStackService {
 
   }
 
-
+  // blockusign.profile.json
   async getProfileData() {
   
     // this.clearProfileData();
+
+    // do we have an email decryption key?
+    let emailKey = await this.getEmailKey();
+    if (emailKey == null){
+      await this.setEmailKey();
+      emailKey = await this.getEmailKey();
+    }
+
     let profileData;
     try {
-      profileData = await blockstack.getFile(this.blockusignProfileUrl, { decrypt: true });
+      profileData = await blockstack.getFile(this.blockusignProfileUrl, { decrypt: false });
     }
     catch(e){
-      profileData = await blockstack.getFile(this.blockusignProfileUrl, { decrypt: false });
+      profileData = await blockstack.getFile(this.blockusignProfileUrl, { decrypt: true });
       this.setProfileData(JSON.parse(profileData).email);
     }
     
 
     let myProfile = JSON.parse(profileData);
     if (myProfile) {
+
+      // try to decrypt email
+      if(typeof(myProfile.email) == "string" ){
+        let decryptedEmail = await this.decryptEmail(myProfile.email, emailKey);
+      }
+      else{
+        myProfile.email = undefined;
+      }
+    
+
       this.profile = myProfile
       this.userId = blockstack.loadUserData().username || '';
       this.userName = blockstack.loadUserData().username || '';
       this.profileName = blockstack.loadUserData().profile.name || '';
     }
 
-    return profileData;
+    return JSON.stringify(this.profile);
+    //return profileData;
   }
 
   async setProfileData(email) {
     
+    let encryptedEmail = await this.encryptEmail(email, await this.getEmailKey() );
+
     let storagePath = blockstack.loadUserData().profile.apps[window.location.origin];
     let json = {
-      email: email,
+      email: encryptedEmail,
       storagePath: storagePath,
       appPublicKey: await this.getAppPublicKey()
     }
-    return await blockstack.putFile(this.blockusignProfileUrl, JSON.stringify(json), { encrypt: true });
+    return await blockstack.putFile(this.blockusignProfileUrl, JSON.stringify(json), { encrypt: false });
+  }
+
+  getStoragePath(){
+    return blockstack.loadUserData().profile.apps[window.location.origin];
   }
 
   async clearProfileData() {
@@ -154,6 +180,41 @@ export class BlockStackService {
   async saveAppPublicKey() {
     let resp = await blockstack.putFile('key.json', blockstack.getPublicKeyFromPrivate(blockstack.loadUserData().appPrivateKey) , {encrypt: false});
     return resp;
+  }
+
+  async getEmailKey(){
+    let resp = await blockstack.getFile('email.key', {decrypt: true});
+    return resp;
+  }
+
+  async setEmailKey(){
+    let emailKey = this.guid(); 
+    let resp = await blockstack.putFile('email.key', emailKey , {encrypt: true});
+    return resp;
+  }
+
+  async encryptEmail(email, key){
+    return await sjcl.encrypt(key, email);
+  }
+
+  async decryptEmail(email, key){
+    let decryt = email;
+    try{
+      decryt = await sjcl.decrypt(key, email);
+    }
+    catch(e){
+      console.log('need to encrypt');
+    }
+    return decryt;
+  }
+
+  guid() {
+    function s4() {
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
   }
 
 }
