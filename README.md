@@ -68,3 +68,28 @@ This will copy the ionic project to the wwwroot directory to be served up from t
 TODO :) 
 
 Check out https://blockusign.co/signup.html for some basic architectural and design decisions. 
+
+# Blockusign Scheama
+
+<pre>
+Blockusign Document Schema Protocol
+-------------------------------------------------
+User
+    |_ List Documents Index
+        |_ document1
+        |_ document2
+
+User (nicktee.id)
+    |_ List Document Index (guid, fileName, key) - asymmetric
+        |_ document1 (guid, fileName, fileExt, key, paths([user, pathToStorage)]) - symmetric => asymmetric
+        |_ document2 (guid, fileName, key, paths(user, pathToStorage)) - symmetric => asymmetric
+
+Blockusign Global Index Protocol (Map document guids to user's storage bucket)
+------------------------------------------------
+guid.doc.storage.map.json
+    pathToStorageForUser1 - https://gaia.blockstack.org/hub/18kTskBpTh1mznsypu1fhJ27dxbC1SwXEK/
+    pathToStorageForUser2
+    pathToStorageForUser3
+
+</pre>
+
