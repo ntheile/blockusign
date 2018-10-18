@@ -93,3 +93,22 @@ guid.doc.storage.map.json
 
 </pre>
 
+
+## Integration Tests
+
+Install the global dependencies
+`npm install -g protractor`
+`npm install -g webpack`
+`npm install -g webpack-cli`
+
+Open a terminal and run
+`ionic serve`
+
+In another terminal run
+`npm run e2e`
+
+or 
+`run run test`
+
+** https://leifwells.github.io/2017/08/27/testing-in-ionic-configure-existing-projects-for-testing/  (* note I had to downgrade a jasmine package from the tutorial) `npm install --save-dev jasmine@^2.99.0`
+
