@@ -13,7 +13,7 @@ describe('App', () => {
 
   describe('default screen', () => {
     beforeEach(() => {
-      // page.navigateTo('/');
+       page.navigateTo('/');
     });
 
     it('should', () => {

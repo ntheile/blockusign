@@ -113,3 +113,19 @@ export class NavMock {
 export class DeepLinkerMock {
 
 }
+
+export class DocumnetServiceMock {
+  public ready(): Promise<string> {
+    return new Promise((resolve) => {
+      resolve('READY');
+    });
+  }
+}
+
+export class BlockStackServiceMock {
+  public ready(): Promise<string> {
+    return new Promise((resolve) => {
+      resolve('READY');
+    });
+  }
+}
