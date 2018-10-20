@@ -109,7 +109,7 @@ export class BlockchainPage {
     }
 
     this.getSig();
-    this.checkStatus();
+    // this.checkStatus();
 
   }
 

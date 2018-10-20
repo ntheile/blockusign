@@ -460,7 +460,9 @@ export class DocumentService {
     // 3. Update my currentDoc.paths[i] to contain their state data
     for( let path of allPathToThisDocument.storagePaths ) { 
       console.log(path) 
-      // updateDocument(doc)
+      // get the remote from their bucket with the symetric key
+
+      // updateMyDocument with Merge Diff
     }
 
 
