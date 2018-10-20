@@ -30,7 +30,7 @@ If you goto the package.json file look at the scripts sections and look for `"st
 
 For mac, the script should read :
 
- `"start": "npm run chrome-mac && ionic serve"`
+ `"start:mac": "npm run chrome-mac && ionic serve",`
 
 For windows: change the script to this (take off the -mac):
 
@@ -68,3 +68,47 @@ This will copy the ionic project to the wwwroot directory to be served up from t
 TODO :) 
 
 Check out https://blockusign.co/signup.html for some basic architectural and design decisions. 
+
+# Blockusign Scheama
+
+<pre>
+Blockusign Document Schema Protocol
+-------------------------------------------------
+User
+    |_ List Documents Index
+        |_ document1
+        |_ document2
+
+User (nicktee.id)
+    |_ List Document Index (guid, fileName, key) - asymmetric
+        |_ document1 (guid, fileName, fileExt, key, paths([user, pathToStorage)]) - symmetric => asymmetric
+        |_ document2 (guid, fileName, key, paths(user, pathToStorage)) - symmetric => asymmetric
+
+Blockusign Global Index Protocol (Map document guids to user's storage bucket)
+------------------------------------------------
+guid.doc.storage.map.json
+    pathToStorageForUser1 - https://gaia.blockstack.org/hub/18kTskBpTh1mznsypu1fhJ27dxbC1SwXEK/
+    pathToStorageForUser2
+    pathToStorageForUser3
+
+</pre>
+
+
+## Integration Tests
+
+Install the global dependencies
+`npm install -g protractor`
+`npm install -g webpack`
+`npm install -g webpack-cli`
+
+Open a terminal and run
+`ionic serve`
+
+In another terminal run
+`npm run e2e`
+
+or 
+`run run test`
+
+** https://leifwells.github.io/2017/08/27/testing-in-ionic-configure-existing-projects-for-testing/  (* note I had to downgrade a jasmine package from the tutorial) `npm install --save-dev jasmine@^2.99.0`
+
