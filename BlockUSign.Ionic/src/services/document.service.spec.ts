@@ -50,20 +50,20 @@ describe('DocumentService', () => {
 
   it('should be test json-ld parser', () => {
     
-    const example = {
-        'http://example.org/predicate': ['object1', 'object2']
-      }
-      // create JSON-LD parser instance
-      const parser = new rdf.JsonLdParser({factory: rdf})
-      // forward the JSON-LD example string to the parser
-      const quadStream = parser.import(rdf.stringToStream(JSON.stringify(example)))
-      // create a new dataset and import the quad stream into it (reverse pipe) with Promise API
-      rdf.dataset().import(quadStream).then((dataset) => {
-        // loop over all quads an write them to the console
-        dataset.forEach((quad) => {
-          console.log(quad.toString())
-        })
-      })
+    // const example = {
+    //     'http://example.org/predicate': ['object1', 'object2']
+    //   }
+    //   // create JSON-LD parser instance
+    //   const parser = new rdf.JsonLdParser({factory: rdf})
+    //   // forward the JSON-LD example string to the parser
+    //   const quadStream = parser.import(rdf.stringToStream(JSON.stringify(example)))
+    //   // create a new dataset and import the quad stream into it (reverse pipe) with Promise API
+    //   rdf.dataset().import(quadStream).then((dataset) => {
+    //     // loop over all quads an write them to the console
+    //     dataset.forEach((quad) => {
+    //       console.log(quad.toString())
+    //     })
+    //   })
     
 
     // const parserJsonld = new ParserJsonld();
