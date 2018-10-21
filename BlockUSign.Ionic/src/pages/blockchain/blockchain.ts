@@ -109,12 +109,8 @@ export class BlockchainPage {
     this.blockSteps.route("ReviewPage");
   }
 
-  getHash() {
-    let toHash = '';
-    if (this.documentService.currentDocAnnotations) {
-      toHash = this.documentService.currentDocAnnotations.annotations;
-    }
-    this.hash = this.documentService.genHashFromString(toHash);
+  async getHash() {
+    this.hash = await this.documentService.getMerkleHash();
   }
 
   getSig(){

@@ -516,13 +516,30 @@ export class DocumentService {
   generateKey() {
     return (<any>window).guid();
   }
-  genHashFromString(str){
+  genHash(data){
     // @todo get a hash of the document buffer, also get a hash of the string annotations svg
     // then hash those two parts together, just like a merkle tree in ethereum!
-    let hashBits = sjcl.hash.sha256.hash(str);
+    let hashBits = sjcl.hash.sha256.hash(data);
     let hashStr = sjcl.codec.base64.fromBits(hashBits);
     return hashStr;
   }
+
+  async getMerkleHash(){
+    let annotationsHash = this.genHash(this.currentDocAnnotations.annotations);
+    
+    let pdfBuffer = await this.getDocument(this.currentDoc.guid + ".pdf", this.currentDoc.documentKey);
+    let pdfData = new Uint8Array(pdfBuffer);
+    let docHash = this.genHash(pdfBuffer);
+
+    let chatData = JSON.stringify(await this.getLog(this.currentDoc.guid));
+    let chatHash = this.genHash(chatData);
+
+    let merkleHash = this.genHash(docHash + annotationsHash + chatData);
+
+    return merkleHash;
+     
+  }
+
   //#endregion
 
   // watchout
