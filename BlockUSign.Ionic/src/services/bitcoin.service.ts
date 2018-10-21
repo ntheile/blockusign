@@ -37,13 +37,18 @@ export class BitcoinService {
         try {
             this.bitcore = require('bitcore-lib');
         } catch (err) {
+            console.log('bitcore error: ', err)
             delete global._bitcore
             this.bitcore = require('bitcore-lib');
         }
         this.insight = new Insight();
         this.messageSigner = Message;
         window.bitcoin = require('bitcoinjs-lib');
-        window.bitcore = this.bitcore;
+        try{
+            window.bitcore = this.bitcore;
+        }
+        catch(e){console.log(e)}
+        
     }
 
   
@@ -191,6 +196,10 @@ export class BitcoinService {
         return resp;
     }
 
+    async getZoneFileStatus(fileGuid){
+        let resp = await this.http.get('https://core.blockstack.org/v1/names/' + fileGuid + '.blockusign1.id').toPromise();
+        return resp;
+    }
 
 }
 

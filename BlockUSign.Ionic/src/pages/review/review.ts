@@ -80,8 +80,8 @@ export class ReviewPage {
     else{
       this.getHash();
     }
-    
 
+    
   }
 
  
@@ -124,5 +124,6 @@ export class ReviewPage {
     // let verifiedSig = this.bitcoinService.verifyMessage(hash, address, signature);
     // console.log(verifiedSig);
   }
+
 
 }

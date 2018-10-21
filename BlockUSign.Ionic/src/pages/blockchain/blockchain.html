@@ -46,9 +46,15 @@
     
     <block-pdf marginTop="10px" locked="true" style="zoom: .55; width: 450px; height: 550px">
     </block-pdf>
-    <button *ngIf="!isSaving" ion-button style="border-radius: 30px; left: -200px; z-index: 999999;" (click)="postBlockchain()">Sign
+    <button *ngIf="isOnBlockchain"  ion-button style="border-radius: 30px; left: -200px; z-index: 999999;background-color: green">Saved <br/>On Chain
+      <ion-icon name="md-checkmark-circle" style="margin-left: 20px; "></ion-icon>
+   </button>
+    <button *ngIf="!isSaving && !isOnBlockchain" ion-button style="border-radius: 30px; left: -200px; z-index: 999999;" (click)="postBlockchain()">Sign
        <ion-icon name="md-create" style="margin-left: 20px; "></ion-icon>
     </button>
+    
+
+
     
     
     <div class="no-print" style="margin-left: 10px">

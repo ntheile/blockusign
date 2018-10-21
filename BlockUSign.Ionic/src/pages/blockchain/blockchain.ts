@@ -37,6 +37,7 @@ export class BlockchainPage {
   showSig = false;
   isSaving = false;
   subdomainsStatus;
+  isOnBlockchain = false;
   @ViewChild("blockSteps") blockSteps: BlockStepsComponent;
 
   constructor(
@@ -109,7 +110,7 @@ export class BlockchainPage {
     }
 
     this.getSig();
-    // this.checkStatus();
+    this.checkStatus();
 
   }
 
@@ -185,10 +186,13 @@ export class BlockchainPage {
 
   async checkStatus(){
 
-    // subdomains
+    let zoneFileStatusResp = await this.bitcoinService.getZoneFileStatus(this.guid);
+    if (zoneFileStatusResp){
+      if (zoneFileStatusResp.json().zonefile){
+        this.isOnBlockchain = true;
+      }
+    }
     this.subdomainsStatus = await this.bitcoinService.getSubdomainsStatus(this.guid);
-
-    // Status = *Subdomain propagated* or *Subdomain is queued* or *txid*
 
   }
 
