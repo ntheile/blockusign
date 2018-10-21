@@ -38,6 +38,7 @@ export class BlockchainPage {
   isSaving = false;
   subdomainsStatus;
   isOnBlockchain = false;
+  blockstack = blockstack;
   @ViewChild("blockSteps") blockSteps: BlockStepsComponent;
 
   constructor(
