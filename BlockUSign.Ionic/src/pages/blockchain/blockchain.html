@@ -15,32 +15,6 @@
 
     <div style="position: relative; height: 350px; max-width: 420px;">
 
-      <div *ngIf="isSaving" class="nyancat" style="max-width:600px">
-        <span class="head">
-          <span class="eyes"></span>
-        </span>
-        <span class="body">
-          <span class="poptart"></span>
-          <span class="feet">
-            <span class="foot one"></span>
-            <span class="foot two"></span>
-            <span class="foot three"></span>
-            <span class="foot four"></span>
-          </span>
-        </span>
-        <span class="tail"></span>
-
-
-
-        <div class="rainbow">
-          <div class="red">Saving Saving Saving Saving Saving Saving Saving Saving Saving</div>
-          <div class="orange">to to to to to to to to to</div>
-          <div class="yellow">the the the the the the the the the </div>
-          <div class="green">block block block block block block block block block</div>
-          <div class="blue">chain chain chain chain chain chain chain chain chain </div>
-          <div class="purple">right meow right meow right meow right meow right</div>
-        </div>
-      </div>
 
       <block-pdf marginTop="10px" locked="true" style="zoom: .55; width: 100%; " class="shadow">
       </block-pdf>   
@@ -55,7 +29,7 @@
       <button *ngIf="!isSaving && !isOnBlockchain" ion-button style="border-radius: 30px; 
       position: absolute; top: 36%; left:29%;
       z-index: 999999;"
-        (click)="postBlockchain()">Sign
+        (click)="postBlockchain()">Sign to<br/> Blockchain
         <ion-icon name="md-create" style="margin-left: 20px; "></ion-icon>
       </button>
       
@@ -74,10 +48,6 @@
           <ion-icon name="ios-finger-print" class="shadow"
             style="font-size:50px;background-color: black; opacity: .75; 
             border-radius: 50%; padding: 4px 10px 4px 10px"></ion-icon><br />
-          <!-- <a>
-          <span *ngIf="!showSig">Show </span>
-          <span *ngIf="showSig">Hide </span>
-          Digital<br/>Signature Data</a> -->
           <span class="btooltiptext">
             <span *ngIf="!showSig">Show </span>
             <span *ngIf="showSig">Hide </span>
@@ -88,6 +58,30 @@
       </div>
     </div>
 
+
+    <div *ngIf="isSaving" class="nyancat" style="position: absolute; max-width:600px; z-index: 999999; top:15%; left: 30%">
+        <span class="head">
+          <span class="eyes"></span>
+        </span>
+        <span class="body">
+          <span class="poptart"></span>
+          <span class="feet">
+            <span class="foot one"></span>
+            <span class="foot two"></span>
+            <span class="foot three"></span>
+            <span class="foot four"></span>
+          </span>
+        </span>
+        <span class="tail"></span>
+        <div class="rainbow">
+          <div class="red" style="background-color: red">Saving Saving Saving Saving Saving Saving Saving Saving Saving</div>
+          <div class="orange" style="background-color: orange">to to to to to to to to to to to to to to to to </div>
+          <div class="yellow" style="background-color: pink">the the the the the the the the the the the the the the  </div>
+          <div class="green" style="background-color: green">block block block block block block block block block</div>
+          <div class="blue" style="background-color: blue">chain chain chain chain chain chain chain chain chain </div>
+          <div class="purple" style="background-color: purple">right meow right meow right meow right meow right</div>
+        </div>
+    </div>
 
     <p style=" user-select: text; margin: 10px 10px 10px 10px" *ngIf="showSig">
       <b>Hash</b> - <i>the pdf's unique signature</i><br />&nbsp;&nbsp;&nbsp;&nbsp; {{hash}} <br /><br />
@@ -107,29 +101,28 @@
         <ion-icon *ngIf="showAdvancedInfo" name="ios-arrow-up" style=" margin-left: 20px; "></ion-icon>
       </div>
 
-      <p>X of 4 steps complete</p>
-
-
+     
 
       <div *ngIf="showAdvancedInfo">
-        <h6>Step 1 - Complete (10ms)</h6>
-        <p>Propegate to Subdomains Registrar</p>
-        <p>{{subdomainsStatus | json}}</p>
-        <a href="https://blockusign-subdomains.azurewebsites.net/status/{{guid}}" target="_blank">https://blockusign-subdomains.azurewebsites.net/status/{{guid}}</a>
 
-        <h6>Step 2 - In progress (typically takes 12 hours, it will be 10 minutes when out of beta) </h6>
-        <p>Propegate hash to the Blockchain</p>
-        Sample - This is not the correct txid for your entry
-        <a href="https://www.blockchain.com/btc/tx/b705474a72dbb874bb62ea1f9bf2fc6eea85ffdd1d6117cf05617e929e3befda"
-          target="_blank">https://www.blockchain.com/btc/tx/b705474a72dbb874bb62ea1f9bf2fc6eea85ffdd1d6117cf05617e929e3befda</a>
+        <p>{{onStep}} of 4 steps complete</p>
+        
+        <h6>Step 1 - <ion-icon *ngIf="onStep >= 1" name="md-checkmark-circle" style="margin-left: 2px; color: green "></ion-icon>
+           Propegate to Subdomains Registrar </h6>
+        <p><a href="https://blockusign-subdomains.azurewebsites.net/status/{{guid}}" target="_blank">
+          https://blockusign-subdomains.azurewebsites.net/status/{{guid}}</a></p>
+      
+        <h6>Step 2 - <ion-icon *ngIf="onStep >= 2" name="md-checkmark-circle" style="margin-left: 2px; color: green "></ion-icon>
+          Anchor to bitcoin </h6>
+        <p [innerHTML]="subdomainsStatus"></p>
 
-        <h6>Step 3</h6>
-        <p>Propegate zonefile hash to Blockstack Atlas P2P network</p>
+        <h6>Step 3 - <ion-icon *ngIf="onStep >= 3" name="md-checkmark-circle" style="margin-left: 2px; color: green "></ion-icon>
+          Propegate zonefile hash to Blockstack Atlas P2P network</h6>
         <a href="https://core.blockstack.org/v1/names/{{guid}}.blockusign1.id" target="_blank">https://core.blockstack.org/v1/names/{{guid}}.blockusign1.id</a>
 
-        <h6>Step 4</h6>
-        <p>Verify Signature with collaborator</p>
-
+        <h6>Step 4 - <ion-icon *ngIf="onStep >= 4" name="md-checkmark-circle" style="margin-left: 2px; color: green "></ion-icon>
+          Verify Signature with collaborator</h6>
+       <p>* Work in progress...</p>
         <br /><br /><br />
 
         <p>How does this all work?</p>

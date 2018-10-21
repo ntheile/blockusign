@@ -1079,7 +1079,7 @@
     }
 
     .nyancat {
-        left: -30% !important;
+        left: -70% !important;    
     }
 }
 
@@ -1088,7 +1088,7 @@
 		right: calc(50%) !important;
     }
     .nyancat {
-        left: -40% !important;
+        left: -60% !important;
     }
 
 }
@@ -1114,6 +1114,9 @@
 		zoom: 0.8;
     }
     
+    .nyancat {
+        left: 0% !important;
+    }
 
 
 }
@@ -1193,3 +1196,10 @@
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   }
  
+
+  .round-hover:hover{
+      background-color: black;
+      border-radius: 50%;
+      opacity: .85;
+      padding: 10px 10px 10px 10px;
+  }

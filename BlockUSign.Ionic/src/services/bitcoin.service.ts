@@ -201,5 +201,10 @@ export class BitcoinService {
         return resp;
     }
 
+    async getZoneFileLastTxIx(fileGuid){
+        let resp = await this.http.get('https://core.blockstack.org/v1/names/blockusign1.id').toPromise();
+        return resp.json().last_txid;
+    }
+
 }
 

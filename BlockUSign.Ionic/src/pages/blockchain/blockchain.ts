@@ -38,6 +38,8 @@ export class BlockchainPage {
   isSaving = false;
   subdomainsStatus;
   isOnBlockchain = false;
+  statusMessage = "";
+  onStep = "1";
   blockstack = blockstack;
   @ViewChild("blockSteps") blockSteps: BlockStepsComponent;
 
@@ -89,39 +91,22 @@ export class BlockchainPage {
   }
 
   async init() {
-
-    // if you are a signer and the document is not in your document.index then add it!
-    // @todo think about allowing a document to get signed by an anonymous person if they got it via email with the documentKey
-
-    // test - http://localhost:8100/#/sign/a48b11c6-349b-697b-90f9-8356c29ccbf8/?docData=eyJndWlkIjoiYTQ4YjExYzYtMzQ5Yi02OTdiLTkwZjktODM1NmMyOWNjYmY4IiwiY3JlYXRlZEF0IjoxNTI3MTI3NTgxNDgyLCJ1cGRhdGVkQXQiOjE1MjcxMjc1ODE0ODIsImhhc0Fubm90YXRpb25zIjpmYWxzZSwic3RlcCI6IkFubm90YXRlIiwiaXNDb21wbGV0ZWQiOmZhbHNlLCJmaWxlTmFtZSI6Im5pY2sgMS5wZGYiLCJkb2N1bWVudEtleSI6IjVjYmY0NjVjLTU5ODktOTNlMy02OGUxLTdkNTE5NzEyYTZmNCIsInBhdGhBbm5vdGF0ZWREb2MiOiJodHRwczovL2dhaWEuYmxvY2tzdGFjay5vcmcvaHViLzE4a1Rza0JwVGgxbXpuc3lwdTFmaEoyN2R4YkMxU3dYRUsvIiwicGF0aHMiOlt7Im5hbWUiOiJuaWNrIHRlZSIsInVzZXJJZCI6Im5pY2t0ZWUuaWQiLCJwYXRoVG9TdG9yYWdlIjoiaHR0cHM6Ly9nYWlhLmJsb2Nrc3RhY2sub3JnL2h1Yi8xOGtUc2tCcFRoMW16bnN5cHUxZmhKMjdkeGJDMVN3WEVLLyJ9XSwic2lnbmVyIjpbImJsb2NrdXNpZ24uaWQiXX0=
-
-
-    if (this.navParams.get("guid") && !this.documentService.currentDoc) {
-      this.guid = this.navParams.get("guid");
-      this.documentService.getDocumentsIndex(true).then(async (data) => {
-        this.documentService.documentsList = data;
-        await this.documentService.setCurrentDoc(this.guid);
-        await this.documentService.getAnnotations(this.guid);
-        this.getHash();
-      });
-
-    }
-    else {
+    this.guid = this.navParams.get("guid");
+    this.documentService.getDocumentsIndex(true).then(async (data) => {
+      this.documentService.documentsList = data;
+      await this.documentService.setCurrentDoc(this.guid);
+      await this.documentService.getAnnotations(this.guid);
       this.getHash();
-    }
-
+    });
     this.getSig();
     this.checkStatus();
-
   }
-
-
 
   back() {
     // this.navCtrl.push("SignPage", {
     //   guid: this.documentService.currentDoc.guid
     // });
-    this.blockSteps.route("SignPage");
+    this.blockSteps.route("ReviewPage");
   }
 
   getHash() {
@@ -157,21 +142,6 @@ export class BlockchainPage {
     // console.log(verifiedSig);
   }
 
-  // https://blockusign-subdomains.azurewebsites.net/status/077f517a-c5c5-8422-a76b-500f50d2c938
-  getStatus(docGuid) {
-
-    // returns txid
-
-    // goto bitcoin block explorer
-    // https://www.blockchain.com/btc/tx/b705474a72dbb874bb62ea1f9bf2fc6eea85ffdd1d6117cf05617e929e3befda
-
-    // how many confirmations ?
-
-
-    // eventually it will propegate to blockstack explorer as name_update
-    // https://explorer.blockstack.org/name/blockusign1.id
-
-  }
 
   nyanCat() {
 
@@ -187,13 +157,54 @@ export class BlockchainPage {
 
   async checkStatus(){
 
-    let zoneFileStatusResp = await this.bitcoinService.getZoneFileStatus(this.guid);
-    if (zoneFileStatusResp){
-      if (zoneFileStatusResp.json().zonefile){
-        this.isOnBlockchain = true;
+ 
+    //Step 2 Subdomains
+    try{
+      this.subdomainsStatus = await this.bitcoinService.getSubdomainsStatus(this.guid);
+      let status = this.subdomainsStatus.json().status;
+
+      
+      if (status == 'Subdomain propagated'){
+        let lastTxId = await this.bitcoinService.getZoneFileLastTxIx(this.guid);
+        this.subdomainsStatus = `Subdomain propagated <a href="https://www.blockchain.com/btc/tx/` + lastTxId + `" target="_blank">` + lastTxId + `</a>`
+        this.onStep = "2";
+      }
+      else if (status.includes('queued')){
+        this.onStep = "1";
+        this.subdomainsStatus = status;
+      }
+      else{
+        let words = status.split(' ');
+        let txIndex = words.indexOf("transaction") + 1;
+        let tx = words[txIndex];
+        words[txIndex] = `<a href="https://www.blockchain.com/btc/tx/` + tx + `" target="_blank">` + tx + `</a>`
+        this.subdomainsStatus = words.join(' ');
+        console.log(this.subdomainsStatus);
+        this.onStep = "2";
+      }
+
+    }
+    catch(e){
+      console.log('not in subdomains', e);
+      this.onStep = "0";
+    }
+
+
+    //Step 3
+    try{
+      let zoneFileStatusResp = await this.bitcoinService.getZoneFileStatus(this.guid);
+      if (zoneFileStatusResp){
+        if (zoneFileStatusResp.json().zonefile){
+          this.isOnBlockchain = true;
+          this.onStep = "3";
+        }
       }
     }
-    this.subdomainsStatus = await this.bitcoinService.getSubdomainsStatus(this.guid);
+    catch(e){
+      console.log('not replicated yet', e)
+
+    };
+    
 
   }
 
