@@ -121,9 +121,16 @@
         <a href="https://core.blockstack.org/v1/names/{{guid}}.blockusign1.id" target="_blank">https://core.blockstack.org/v1/names/{{guid}}.blockusign1.id</a>
 
         <h6>Step 4 - <ion-icon *ngIf="onStep >= 5" name="md-checkmark-circle" style="margin-left: 2px; color: green "></ion-icon>
-          Verify Signature</h6>
-          <p>My Signature <ion-icon *ngIf="onStep >= 4" name="md-checkmark-circle" style="margin-left: 2px; color: green "></ion-icon></p>
-          <p>Their Signature * Work in progress... <ion-icon *ngIf="onStep >= 5" name="md-checkmark-circle" style="margin-left: 2px; color: green "></ion-icon></p>
+          Signature Verification</h6>
+          <div *ngFor="let signer of verifiedSigners">
+            <p style="display: flex;align-items: center;">
+              <img class="avatar shadow" style="border-radius: 30px; margin-right:15px" src="{{blockstack.loadUserData().profile.image[0].contentUrl}}" />
+              {{ signer.name }}
+              <ion-icon *ngIf="signer.isVerified" name="md-checkmark-circle" style="margin-left: 2px; color: green "></ion-icon>
+            </p>
+          </div>
+          
+          <!-- <p>Their Signature * Work in progress... <ion-icon *ngIf="onStep >= 5" name="md-checkmark-circle" style="margin-left: 2px; color: green "></ion-icon></p> -->
         <br /><br /><br />
 
         <p>How does this all work?</p>

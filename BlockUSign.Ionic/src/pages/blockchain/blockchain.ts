@@ -45,6 +45,7 @@ export class BlockchainPage {
   zonefile;
   zonefileJson;
   isHashVerified = false;
+  verifiedSigners = [];
   @ViewChild("blockSteps") blockSteps: BlockStepsComponent;
 
   constructor(
@@ -133,18 +134,17 @@ export class BlockchainPage {
     let resp = this.bitcoinService.sendSudomainBatch(this.documentService.currentDoc.guid, this.address, this.hash, this.signature, this.profileUrl);
   }
 
-  verifyHash() {
+  async verifyHash() {
 
-    // OLD
+    // OLD - to manually save hash to bitcoin op_return using bitcore
     // this.bitcoinService.sendTransaction(window.appsettings.to, window.appsettings.signer, window.appsettings.signerKey,  'sha256-' + this.hash);
     // let appUrl = window.location.origin;
+
     let blockstackId = blockstack.loadUserData().username;
     let appBitcoinAddress = this.blockstackService.getAppBitcoinAddress();
     let appUrl = window.location.origin;
     let resp = this.bitcoinService.fetchProfileValidateAppAddress(blockstackId, appBitcoinAddress, appUrl);
     let verifiedSig = this.bitcoinService.verifyMessage(this.hash, this.address, this.signature);
-
-
 
     if (verifiedSig){
       console.log('local signature is verified');
@@ -155,6 +155,12 @@ export class BlockchainPage {
         let owner = this.zonefileJson.txt.find(n=>n.name === 'owner').txt;
         let verifiedZonefileSignature = this.bitcoinService.verifyMessage(hash, owner, signature);
         if (verifiedZonefileSignature){
+          let whoamiProof = await this.associateAppPubKeyToBlockstackId();
+          console.log(whoamiProof);
+          this.verifiedSigners.push({
+            name: whoamiProof.username,
+            isVerified: true
+          });
           this.isHashVerified = true;
           this.onStep = "4";
           return true;
@@ -166,6 +172,15 @@ export class BlockchainPage {
     }
 
     
+  }
+
+  async associateAppPubKeyToBlockstackId(){
+    let whoamiProof = await this.bitcoinService.fetchProfileValidateAppAddress(
+      blockstack.loadUserData().username,  
+      this.address, 
+      window.location.origin 
+    );
+    return whoamiProof;
   }
 
 
