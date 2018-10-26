@@ -9,6 +9,7 @@ declare let window: any;
 declare let blockstack: any;
 declare let $:any;
 declare let blast:any;
+declare let parseZoneFile: any;
 
 /**
  * Generated class for the SignPage page.
@@ -41,6 +42,9 @@ export class BlockchainPage {
   statusMessage = "";
   onStep = "1";
   blockstack = blockstack;
+  zonefile;
+  zonefileJson;
+  isHashVerified = false;
   @ViewChild("blockSteps") blockSteps: BlockStepsComponent;
 
   constructor(
@@ -96,10 +100,12 @@ export class BlockchainPage {
       this.documentService.documentsList = data;
       await this.documentService.setCurrentDoc(this.guid);
       await this.documentService.getAnnotations(this.guid);
-      this.getHash();
+      await this.getHash();
+      await this.getSig();
+      await this.checkStatus();
+      await this.verifyHash();
     });
-    this.getSig();
-    this.checkStatus();
+   
   }
 
   back() {
@@ -132,10 +138,34 @@ export class BlockchainPage {
     // OLD
     // this.bitcoinService.sendTransaction(window.appsettings.to, window.appsettings.signer, window.appsettings.signerKey,  'sha256-' + this.hash);
     // let appUrl = window.location.origin;
-    // let resp = this.bitcoinService.fetchProfileValidateAppAddress(blockstackId, appBitcoinAddress, appUrl);
+    let blockstackId = blockstack.loadUserData().username;
+    let appBitcoinAddress = this.blockstackService.getAppBitcoinAddress();
+    let appUrl = window.location.origin;
+    let resp = this.bitcoinService.fetchProfileValidateAppAddress(blockstackId, appBitcoinAddress, appUrl);
+    let verifiedSig = this.bitcoinService.verifyMessage(this.hash, this.address, this.signature);
 
-    // let verifiedSig = this.bitcoinService.verifyMessage(hash, address, signature);
-    // console.log(verifiedSig);
+
+
+    if (verifiedSig){
+      console.log('local signature is verified');
+      if (this.zonefile){
+        this.zonefileJson = parseZoneFile(this.zonefile);
+        let hash = this.zonefileJson.txt.find(n=>n.name === 'hash').txt;
+        let signature = this.zonefileJson.txt.find(n=>n.name === 'signature').txt;
+        let owner = this.zonefileJson.txt.find(n=>n.name === 'owner').txt;
+        let verifiedZonefileSignature = this.bitcoinService.verifyMessage(hash, owner, signature);
+        if (verifiedZonefileSignature){
+          this.isHashVerified = true;
+          this.onStep = "4";
+          return true;
+        }
+      }
+      else{
+        console.error('zonefile signature failed.')
+      }
+    }
+
+    
   }
 
 
@@ -191,6 +221,7 @@ export class BlockchainPage {
       let zoneFileStatusResp = await this.bitcoinService.getZoneFileStatus(this.guid);
       if (zoneFileStatusResp){
         if (zoneFileStatusResp.json().zonefile){
+          this.zonefile = zoneFileStatusResp.json().zonefile;
           this.isOnBlockchain = true;
           this.onStep = "3";
         }

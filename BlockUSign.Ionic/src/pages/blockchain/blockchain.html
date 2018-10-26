@@ -21,7 +21,7 @@
      
       <button *ngIf="isOnBlockchain" ion-button style="border-radius: 30px;  
       position: absolute; top: 36%; left:29%;
-      z-index: 999999;background-color: green">Saved
+      z-index: 999999;background-color: green" (click)="verifyHash()" >Saved
         <br />On Chain
         <ion-icon name="md-checkmark-circle" style="margin-left: 20px; "></ion-icon>
       </button>
@@ -84,7 +84,7 @@
     </div>
 
     <p style=" user-select: text; margin: 10px 10px 10px 10px" *ngIf="showSig">
-      <b>Hash</b> - <i>the pdf's unique signature</i><br />&nbsp;&nbsp;&nbsp;&nbsp; {{hash}} <br /><br />
+      <b>Hash</b> - <i>the pdf, e-Signature, and chat's unique signature</i><br />&nbsp;&nbsp;&nbsp;&nbsp; {{hash}} <br /><br />
       <b>Signature</b> - <i>your unique digital signature</i><br />&nbsp;&nbsp;&nbsp;&nbsp; {{signature}} <br /><br />
       <b>Address</b> - <i>your unique id for the Blockusign app that links to your name</i><br />&nbsp;&nbsp;&nbsp;&nbsp;
       {{address}} <br /><br />
@@ -120,9 +120,10 @@
           Propegate zonefile hash to Blockstack Atlas P2P network</h6>
         <a href="https://core.blockstack.org/v1/names/{{guid}}.blockusign1.id" target="_blank">https://core.blockstack.org/v1/names/{{guid}}.blockusign1.id</a>
 
-        <h6>Step 4 - <ion-icon *ngIf="onStep >= 4" name="md-checkmark-circle" style="margin-left: 2px; color: green "></ion-icon>
-          Verify Signature with collaborator</h6>
-       <p>* Work in progress...</p>
+        <h6>Step 4 - <ion-icon *ngIf="onStep >= 5" name="md-checkmark-circle" style="margin-left: 2px; color: green "></ion-icon>
+          Verify Signature</h6>
+          <p>My Signature <ion-icon *ngIf="onStep >= 4" name="md-checkmark-circle" style="margin-left: 2px; color: green "></ion-icon></p>
+          <p>Their Signature * Work in progress... <ion-icon *ngIf="onStep >= 5" name="md-checkmark-circle" style="margin-left: 2px; color: green "></ion-icon></p>
         <br /><br /><br />
 
         <p>How does this all work?</p>
