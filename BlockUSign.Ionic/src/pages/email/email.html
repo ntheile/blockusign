@@ -22,9 +22,9 @@
   <div style="max-width:600px">
     <div>
       <ion-segment [(ngModel)]="choice">
-        <ion-segment-button selected value="blockstack">
+        <!-- <ion-segment-button selected value="blockstack">
             &nbsp;<ion-icon name="ios-person" class="send-choice"></ion-icon>&nbsp;Name
-        </ion-segment-button>
+        </ion-segment-button> -->
         <ion-segment-button value="link">
             &nbsp;<ion-icon name="ios-link" class="send-choice"></ion-icon>&nbsp;Link
         </ion-segment-button>
@@ -46,7 +46,9 @@
             <p *ngIf="!item" padding>No results</p>
           </ion-list>
           
-          <div style="display:flex; flex-direction: row; flex-wrap: wrap;">
+          <div style="display:flex; flex-direction: row; flex-wrap: wrap;" padding>
+            <button *ngIf="selectedUsers.length > 0" ion-button icon-end (click)="sendEmail($event)" style="border-radius: 30px">
+              Send <ion-icon name="md-send"></ion-icon></button>
               <div  padding *ngFor="let user of selectedUsers" >
                   <ion-badge  style="cursor:pointer" (click)="removeUser(user)"> {{ user }} 
                       <ion-icon name="md-close-circle" role="img" style="color: white; margin-top:-10px" class="icon icon-md ion-md-close-circle" aria-label="close circle" ng-reflect-name="md-close-circle"></ion-icon>
@@ -104,11 +106,6 @@
       </ion-list>
     </div>
   </div>
-
-
-
-
-
 
 
   <block-pdf marginTop="10px" marginBottom="120px" locked="true">

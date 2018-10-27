@@ -42,7 +42,7 @@ export class EmailPage {
   selectedUser = [];
   people3Typeahead = new Subject<string>();
   loading;
-  choice = 'blockstack';
+  choice = 'link';
   userInput;
   userArray;
   selectedUsers = [];
