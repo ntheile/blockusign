@@ -5,7 +5,7 @@
   <br /><br />
 
 
-  <div class="centerMe" style="max-width: 760px">
+  <div class="centerMe" style="max-width: 760px" padding>
 
 
 
@@ -21,15 +21,21 @@
      
       <button *ngIf="isOnBlockchain" ion-button style="border-radius: 30px;  
       position: absolute; top: 36%; left:29%;
-      z-index: 999999;background-color: green" (click)="verifyHash()" >Saved
+      z-index: 999999;background-color: green" (click)="toggleAdvanced()" >Saved
         <br />On Chain
         <ion-icon name="md-checkmark-circle" style="margin-left: 20px; "></ion-icon>
       </button>
 
-      <button *ngIf="!isSaving && !isOnBlockchain" ion-button style="border-radius: 30px; 
+      <button *ngIf="!isSaving && !isOnBlockchain && (onStep == '0') " ion-button style="border-radius: 30px; 
       position: absolute; top: 36%; left:29%;
       z-index: 999999;"
-        (click)="postBlockchain()">Sign to<br/> Blockchain
+        (click)="postBlockchain()">Sign to the<br/> Blockchain
+        <ion-icon name="md-create" style="margin-left: 20px; "></ion-icon>
+      </button>
+
+      <button *ngIf="!isSaving && !isOnBlockchain && (onStep != '0')  " ion-button style="border-radius: 30px; 
+      position: absolute; top: 36%; left:29%;
+      z-index: 999999; background-color: #FF9800" (click)="toggleAdvanced()">Saving to the<br/> Blockchain...
         <ion-icon name="md-create" style="margin-left: 20px; "></ion-icon>
       </button>
       
@@ -94,9 +100,9 @@
     <div style="clear:both"></div>
 
     <div style="margin: 10px 10px 10px 10px">
-      <div style="display:flex; flex-direction: row; align-content: center; align-items: center; text-align: center; cursor:pointer"
+      <div style="display:flex; flex-direction: row; align-content: center; align-items: center; text-align: center; cursor:pointer; font-size: 32px !important; font-weight: bold"
         (click)="toggleAdvanced()">
-        <h2>Status</h2>
+        <span style="font-size: 32px !important; font-weight: bold">Status</span>
         <ion-icon *ngIf="!showAdvancedInfo" name="ios-arrow-down" style="margin-left: 20px; "></ion-icon>
         <ion-icon *ngIf="showAdvancedInfo" name="ios-arrow-up" style=" margin-left: 20px; "></ion-icon>
       </div>

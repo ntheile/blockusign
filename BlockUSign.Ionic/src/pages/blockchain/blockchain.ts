@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { DocumentService } from './../../services/document.service';
 import { BlockStepsComponent } from '../../components/block-steps/block-steps';
 import { BitcoinService } from '../../services/bitcoin.service';
@@ -54,6 +54,7 @@ export class BlockchainPage {
     public documentService: DocumentService,
     private bitcoinService: BitcoinService,
     private blockstackService: BlockStackService,
+    private toastCtrl: ToastController,
   ) {
 
     // if ( this.navParams.get("guid") && !this.documentService.currentDoc ){
@@ -132,6 +133,12 @@ export class BlockchainPage {
     this.nyanCat();
     let wif = this.bitcoinService.getWif();
     let resp = this.bitcoinService.sendSudomainBatch(this.documentService.currentDoc.guid, this.address, this.hash, this.signature, this.profileUrl);
+    // saving to the blockchain
+    this.onStep="1";
+    this.showToastWithCloseButton(
+      `Thank you! Your document has been queued. The digital signature will be saved to the 
+      blockchain within the next 12 hours. We are in beta right now, but in production this will take around 10 minutes. Please check
+      back in about 12 hours to see the status`);
   }
 
   async verifyHash() {
@@ -249,5 +256,15 @@ export class BlockchainPage {
     
 
   }
+
+  showToastWithCloseButton(message) {
+    const toast = this.toastCtrl.create({
+      message: message,
+      showCloseButton: true,
+      closeButtonText: 'Ok'
+    });
+    toast.present();
+  }
+
 
 }
