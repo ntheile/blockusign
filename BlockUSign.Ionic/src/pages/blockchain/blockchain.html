@@ -9,7 +9,8 @@
 
 
 
-    <span style="padding: 10px 10px 10px 10px" *ngIf="!isSaving">* Beta - Save your Digital Signature to the Blockchain forever!&nbsp;<a href="https://github.com/ntheile/blockusign/issues/58" target="_blank"><ion-icon name="information-circle"></ion-icon></a>
+    <span style="padding: 10px 10px 10px 10px" *ngIf="!isSaving">  <ion-badge style="border-radius: 30px" >beta</ion-badge>
+      Save your Digital Signature to the Blockchain forever!&nbsp;<a href="https://github.com/ntheile/blockusign/issues/58" target="_blank"><ion-icon name="information-circle"></ion-icon></a>
     </span>
     <br /><br />
 
@@ -40,8 +41,9 @@
       </button>
       
       <div style="z-index: 999999; cursor: pointer; position: absolute; top: 6%; left: 42%; " class="btooltip">
-        <a href="https://core.blockstack.org/v1/names/{{guid}}.blockusign1.id" target="_blank" style="opacity: .9 !important">
-          <img class="avatar shadow" style="border-radius: 30px;" src="{{blockstack.loadUserData().profile.image[0].contentUrl}}" />
+        <a *ngIf='guid != ""'href="https://core.blockstack.org/v1/names/{{guid}}.blockusign1.id" target="_blank" style="opacity: .9 !important">
+          <img *ngIf="blockstack.loadUserData().profile.image" class="avatar shadow" style="border-radius: 30px;" src="{{blockstack.loadUserData().profile.image[0].contentUrl}}" />
+          <img *ngIf="!blockstack.loadUserData().profile.image" class="avatar shadow" style="border-radius: 30px; margin-right:15px" src="https://www.gravatar.com/avatar/?d=identicon" />
           <span class="btooltiptext">View Digital Signature</span>
         </a>
 
@@ -115,7 +117,7 @@
         
         <h6>Step 1 - <ion-icon *ngIf="onStep >= 1" name="md-checkmark-circle" style="margin-left: 2px; color: green "></ion-icon>
            Propegate to Subdomains Registrar </h6>
-        <p><a href="https://blockusign-subdomains.azurewebsites.net/status/{{guid}}" target="_blank">
+        <p><a *ngIf="guid" href="https://blockusign-subdomains.azurewebsites.net/status/{{guid}}" target="_blank">
           https://blockusign-subdomains.azurewebsites.net/status/{{guid}}</a></p>
       
         <h6>Step 2 - <ion-icon *ngIf="onStep >= 2" name="md-checkmark-circle" style="margin-left: 2px; color: green "></ion-icon>
@@ -124,13 +126,14 @@
 
         <h6>Step 3 - <ion-icon *ngIf="onStep >= 3" name="md-checkmark-circle" style="margin-left: 2px; color: green "></ion-icon>
           Propegate zonefile hash to Blockstack Atlas P2P network</h6>
-        <a href="https://core.blockstack.org/v1/names/{{guid}}.blockusign1.id" target="_blank">https://core.blockstack.org/v1/names/{{guid}}.blockusign1.id</a>
+        <a *ngIf="guid" href="https://core.blockstack.org/v1/names/{{guid}}.blockusign1.id" target="_blank">https://core.blockstack.org/v1/names/{{guid}}.blockusign1.id</a>
 
         <h6>Step 4 - <ion-icon *ngIf="onStep >= 5" name="md-checkmark-circle" style="margin-left: 2px; color: green "></ion-icon>
           Signature Verification</h6>
           <div *ngFor="let signer of verifiedSigners">
             <p style="display: flex;align-items: center;">
-              <img class="avatar shadow" style="border-radius: 30px; margin-right:15px" src="{{blockstack.loadUserData().profile.image[0].contentUrl}}" />
+              <img *ngIf="blockstack.loadUserData().profile.image" class="avatar shadow" style="border-radius: 30px; margin-right:15px" src="{{blockstack.loadUserData().profile.image[0].contentUrl}}" />
+              <img *ngIf="!blockstack.loadUserData().profile.image" class="avatar shadow" style="border-radius: 30px; margin-right:15px" src="https://www.gravatar.com/avatar/?d=identicon" />
               {{ signer.name }}
               <ion-icon *ngIf="signer.isVerified" name="md-checkmark-circle" style="margin-left: 2px; color: green "></ion-icon>
             </p>
