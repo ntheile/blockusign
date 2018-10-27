@@ -1,5 +1,17 @@
 .email-page{
-   
+    
+    // .send-choice{
+    //     margin-right: 5px;
+    //     font-size: 25px;
+    // }
+    ion-segment-button{
+        display:flex !important;
+        align-items: center !important;
+        
+    } 
 
+    .segment .segment-button ion-icon{
+        font-size: 18px !important;
+    }
 }
 

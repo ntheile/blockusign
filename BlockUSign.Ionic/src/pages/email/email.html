@@ -6,55 +6,107 @@
 
   <div style="clear:both"></div>
   <section style="position: relative;" class="nextBackButtons no-print">
-      <button class="nextBackButtonBack" ion-fab mini (click)="back()" style="background-color:green; position: absolute;"><ion-icon name="md-arrow-back"></ion-icon></button>
-      <button class="nextBackButtonNext" ion-fab mini (click)="next()"><ion-icon name="md-arrow-forward" ></ion-icon></button>
-  </section> 
-  <div style="clear:both"></div>  
+    <button class="nextBackButtonBack" ion-fab mini (click)="back()" style="background-color:green; position: absolute;">
+      <ion-icon name="md-arrow-back"></ion-icon>
+    </button>
+    <button class="nextBackButtonNext" ion-fab mini (click)="next()">
+      <ion-icon name="md-arrow-forward"></ion-icon>
+    </button>
+  </section>
+  <div style="clear:both"></div>
 
-  <p  class="no-print">
-    Email a document link to your signer. Or if you prefer to share another way, give them a copy this link:
+  <p class="no-print">
+    How do you want to send the document to your signer(s)?
   </p>
-  <textarea style="width:90%; color: black" [(ngModel)]="documentLink" class="emailLink no-print"></textarea>
 
-  <form></form>
-  <ion-grid style="position: relative" class="no-print">
-    <ion-row align-items-left>
-      <ion-col style="display: none;">
-        <ng-select style="width:460px; background-color:whitesmoke; border-radius:2px; padding-left:10px" [items]="people3" [multiple]="false"
-          bindLabel="username" [(ngModel)]="selectedUser" (change)="searchUser($event)" [typeahead]="people3Typeahead" placeholder="Select signer...">
-          <ng-template ng-label-tmp let-item="item" let-clear="clear">
-            <span class="ng-value-label">
-              <img [src]="item.profile.image && item.profile.image[0].contentUrl" width="20px" height="20px"> {{item.username}}</span>
-            <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
-          </ng-template>
-          <ng-template ng-option-tmp let-item="item">
-            <span style="width:100%" (click)="clickedUser()">
-              <img [src]="item.profile.image && item.profile.image[0].contentUrl" width="20px" height="20px"> {{item.username}}
-            </span>
-          </ng-template>
-        </ng-select>
-      </ion-col>
-      <ion-col style="display: none;">
-        <h3>or</h3>
-      </ion-col>
-      <ion-col style="width:460px; background-color:transparent; ">
-        <!-- <ion-item  style="width:460px; background-color:transparent; " >
-          <ion-input style="width:460px;" placeholder="[Enter Email]" [(ngModel)]="email"></ion-input>
-        </ion-item> -->
-        
-        <input class="classic-input" type="email" 
-        size="64" maxLength="64" required
-        placeholder="Email To..." [(ngModel)]="email" autofocus>
+  <div style="max-width:600px">
+    <div>
+      <ion-segment [(ngModel)]="choice">
+        <ion-segment-button selected value="blockstack">
+            &nbsp;<ion-icon name="ios-person" class="send-choice"></ion-icon>&nbsp;Name
+        </ion-segment-button>
+        <ion-segment-button value="link">
+            &nbsp;<ion-icon name="ios-link" class="send-choice"></ion-icon>&nbsp;Link
+        </ion-segment-button>
+        <ion-segment-button value="email">
+            &nbsp;<ion-icon name="mail" class="send-choice"></ion-icon>&nbsp;Email
+        </ion-segment-button>
+      </ion-segment>
+    </div>
 
-      </ion-col>
-      <ion-col>
-        <button ion-button icon-end (click)="sendEmail($event)" style="border-radius: 30px">
-            Send Email<ion-icon name="md-send"></ion-icon></button>
+    <div [ngSwitch]="choice">
+      <ion-list *ngSwitchCase="'blockstack'"> 
+        <br/>
+        <ion-searchbar #searchbar animated="true" (ionInput)="lookup($event)" [(ngModel)]="userInput"></ion-searchbar>
+          <ion-list >
+            <button ion-item *ngFor="let item of userArray" (click)="addUser(item)">
+              {{ item.fullyQualifiedName }}
+            </button>
+          </ion-list>
+          
+          <div style="display:flex; flex-direction: row; flex-wrap: wrap;">
+              <div  padding *ngFor="let user of selectedUsers" >
+                  <ion-badge  style="cursor:pointer" (click)="removeUser(user)"> {{ user }} 
+                      <ion-icon name="md-close-circle" role="img" style="color: white; margin-top:-10px" class="icon icon-md ion-md-close-circle" aria-label="close circle" ng-reflect-name="md-close-circle"></ion-icon>
+                  </ion-badge>
+              </div>
+          </div>
+         
+          
+      </ion-list>
+      <ion-list *ngSwitchCase="'link'">
+        <br/>
+        <textarea style="width:90%; color: black" [(ngModel)]="documentLink" class="emailLink no-print"></textarea>
+      </ion-list>
+      <ion-list *ngSwitchCase="'email'">
+        <form></form>
+        <br/>
+        <ion-grid style="position: relative" class="no-print">
+          <ion-row align-items-left>
+            <ion-col style="display: none;">
+              <ng-select style="width:460px; background-color:whitesmoke; border-radius:2px; padding-left:10px" [items]="people3"
+                [multiple]="false" bindLabel="username" [(ngModel)]="selectedUser" (change)="searchUser($event)"
+                [typeahead]="people3Typeahead" placeholder="Select signer...">
+                <ng-template ng-label-tmp let-item="item" let-clear="clear">
+                  <span class="ng-value-label">
+                    <img [src]="item.profile.image && item.profile.image[0].contentUrl" width="20px" height="20px">
+                    {{item.username}}</span>
+                  <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
+                </ng-template>
+                <ng-template ng-option-tmp let-item="item">
+                  <span style="width:100%" (click)="clickedUser()">
+                    <img [src]="item.profile.image && item.profile.image[0].contentUrl" width="20px" height="20px">
+                    {{item.username}}
+                  </span>
+                </ng-template>
+              </ng-select>
+            </ion-col>
+            <ion-col style="display: none;">
+              <h3>or</h3>
+            </ion-col>
+            <ion-col style="width:460px; background-color:transparent; ">
+              <!-- <ion-item  style="width:460px; background-color:transparent; " >
+                  <ion-input style="width:460px;" placeholder="[Enter Email]" [(ngModel)]="email"></ion-input>
+                </ion-item> -->
 
-      
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+              <input class="classic-input" type="email" size="64" maxLength="64" required placeholder="Email To..."
+                [(ngModel)]="email" autofocus>
+
+            </ion-col>
+            <ion-col>
+              <button ion-button icon-end (click)="sendEmail($event)" style="border-radius: 30px">
+                Send Email<ion-icon name="md-send"></ion-icon></button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-list>
+    </div>
+  </div>
+
+
+
+
+
 
 
   <block-pdf marginTop="10px" marginBottom="120px" locked="true">

@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Searchbar } from 'ionic-angular';
 import { DocumentService } from './../../services/document.service';
 import { EmailService } from './../../services/email.service';
 import { BlockStackService } from './../../services/blockstack.service';
@@ -41,9 +42,16 @@ export class EmailPage {
   selectedUser = [];
   people3Typeahead = new Subject<string>();
   loading;
+  choice = 'blockstack';
+  userInput;
+  userArray;
+  selectedUsers = [];
   public documentLink = "";;
 
   @ViewChild("blockSteps") blockSteps: BlockStepsComponent;
+  @ViewChild('searchbar') searchbar: Searchbar;
+
+
 
   constructor(
     public navCtrl: NavController,
@@ -74,7 +82,7 @@ export class EmailPage {
 
   async ionViewDidLoad() {
     console.log('ionViewDidLoad SignPage');
-    this.lookup();
+    //this.lookup();
     this.loadPeople3();
   }
 
@@ -96,18 +104,22 @@ export class EmailPage {
     return window.location.href;
   }
 
-  lookup() {
-    blockstack.lookupProfile("blockusign1.id")
-      .then((profile) => {
-        let data = profile;
-      })
-      .catch((error) => {
-        console.log('could not resolve profile')
-      })
+  async lookup(user) {
+    console.log(user);
+    this.userArray = await this.blockStackService.searchUser(this.userInput);
+  }
+
+  async addUser(user){
+    this.searchbar.clearInput(null);
+    this.selectedUsers.push(user.fullyQualifiedName);
   }
 
   async searchUser(user) {
     let resp = await this.blockStackService.searchUser(user);
+  }
+
+  async removeUser(user){
+    this.selectedUsers.splice( this.selectedUsers.indexOf(user), 1 );
   }
 
   private loadPeople3() {
