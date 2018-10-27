@@ -10,17 +10,17 @@
   </section>  
   <div style="clear:both"></div>
 
-  <div style="padding: 20px 20px 20px 20px; padding-left: 60px" class="no-print">
-    <button ion-button style="border-radius: 30px" (click)="postBlockchain()">
-      Save Digital Signature to the Blockchain<br/>
+  <div padding class="no-print centerMe" >
+    <button ion-button  style="border-radius: 30px" (click)="postBlockchain()">
+      Save Digital Signature<br/> to the Blockchain<br/>
     </button>
     <span></span>
-    <button ion-button style="border-radius: 30px; background-color:green;"  onclick="window.print()">
+    <button ion-button   style="border-radius: 30px; background-color:green;"  onclick="window.print()">
         Download
     </button>
   </div>
 
-  <p class="no-print">
+  <p class="no-print" padding>
     Document Hash = {{ hash }}
   </p>
   <block-pdf marginTop="10px" locked="true" >

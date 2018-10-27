@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Searchbar } from 'ionic-angular';
 import { DocumentService } from './../../services/document.service';
@@ -50,9 +50,8 @@ export class EmailPage {
 
   @ViewChild("blockSteps") blockSteps: BlockStepsComponent;
   @ViewChild('searchbar') searchbar: Searchbar;
-
-
-
+  @ViewChild('searchitems') searchitems: ElementRef;
+  
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -106,12 +105,23 @@ export class EmailPage {
 
   async lookup(user) {
     console.log(user);
-    this.userArray = await this.blockStackService.searchUser(this.userInput);
+    this.userArray = await this.blockStackService.searchUser(this.userInput); 
+    $("#searchitems").css('height', '250px');
+    $("#searchitems").css('overflow', 'auto');
   }
 
   async addUser(user){
     this.searchbar.clearInput(null);
     this.selectedUsers.push(user.fullyQualifiedName);
+    this.onSearchClear(); 
+   
+  }
+
+  onSearchClear(){
+    setTimeout( ()=>{
+      $("#searchitems").css('height', '0px');
+    }, 200 );
+    return;
   }
 
   async searchUser(user) {

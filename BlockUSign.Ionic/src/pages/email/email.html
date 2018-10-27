@@ -15,7 +15,7 @@
   </section>
   <div style="clear:both"></div>
 
-  <p class="no-print">
+  <p class="no-print" padding>
     How do you want to send the document to your signer(s)?
   </p>
 
@@ -37,11 +37,13 @@
     <div [ngSwitch]="choice">
       <ion-list *ngSwitchCase="'blockstack'"> 
         <br/>
-        <ion-searchbar #searchbar animated="true" (ionInput)="lookup($event)" [(ngModel)]="userInput"></ion-searchbar>
-          <ion-list >
+        <ion-searchbar #searchbar animated="true" showCancelButton="true" 
+            (ionInput)="lookup($event)" (ionCancel)="onSearchClear()" (ionClear)="onSearchClear()"  [(ngModel)]="userInput"></ion-searchbar>
+          <ion-list #searchitems id="searchitems" >
             <button ion-item *ngFor="let item of userArray" (click)="addUser(item)">
               {{ item.fullyQualifiedName }}
             </button>
+            <p *ngIf="!item" padding>No results</p>
           </ion-list>
           
           <div style="display:flex; flex-direction: row; flex-wrap: wrap;">
@@ -54,7 +56,7 @@
          
           
       </ion-list>
-      <ion-list *ngSwitchCase="'link'">
+      <ion-list *ngSwitchCase="'link'" padding>
         <br/>
         <textarea style="width:90%; color: black" [(ngModel)]="documentLink" class="emailLink no-print"></textarea>
       </ion-list>
@@ -62,7 +64,7 @@
         <form></form>
         <br/>
         <ion-grid style="position: relative" class="no-print">
-          <ion-row align-items-left>
+          <ion-row align-items-left padding>
             <ion-col style="display: none;">
               <ng-select style="width:460px; background-color:whitesmoke; border-radius:2px; padding-left:10px" [items]="people3"
                 [multiple]="false" bindLabel="username" [(ngModel)]="selectedUser" (change)="searchUser($event)"

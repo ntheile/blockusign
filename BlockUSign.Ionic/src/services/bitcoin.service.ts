@@ -12,7 +12,7 @@ import { Headers, RequestOptionsArgs, RequestOptions } from '@angular/http';
 import { HttpHeaders } from '@angular/common/http';
 
 declare let global: any;
-declare let bitcore: any;
+//declare let bitcore: any;
 declare let blockstack: any;
 declare let bitcoin: any;
 declare let window: any;
@@ -21,8 +21,8 @@ declare let parseZoneFile: any;
 @Injectable()
 export class BitcoinService {
 
-    insight;
-    bitcore;
+    // insight;
+    // bitcore;
     messageSigner;
     subdomainUrl =  'https://blockusign-subdomains.azurewebsites.net/'; //'http://localhost:3000/register/'; 
 
@@ -32,55 +32,60 @@ export class BitcoinService {
         private http: Http,
     ) {
 
-        const Insight = require('bitcore-explorers').Insight;
-        const Message = require('bitcore-message');
-        try {
-            this.bitcore = require('bitcore-lib');
-        } catch (err) {
-            console.log('bitcore error: ', err)
-            delete global._bitcore
-            this.bitcore = require('bitcore-lib');
-        }
-        this.insight = new Insight();
-        this.messageSigner = Message;
-        window.bitcoin = require('bitcoinjs-lib');
-        try{
-            window.bitcore = this.bitcore;
-        }
-        catch(e){console.log(e)}
+       this.init();
         
     }
 
-  
-    sendTransaction(to, signer, signerKey, data) {
-        this.insight.getUnspentUtxos(signer, (err, utxos) => {
-            if (err) {
-                // handle errors
-            } else {
-                // unspent outputs = satoshis: 200000000 
-                // console.log(utxos);
-                var tx = this.bitcore.Transaction();
-                tx.from(utxos);
-                tx.to(to, 500000);
-                tx.change(signer);
-                tx.addData(data);
-                //tx.fee(50000);
-                tx.sign(signerKey);
-
-                //console.log(tx.toObject());
-
-                // send
-                this.insight.broadcast(tx.serialize(), (err, returnedTxId) => {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        console.log('success - ' + returnedTxId);
-                    }
-                });
-
-            }
-        });
+    init(){
+        let bitcore;
+        // const Insight = require('bitcore-explorers').Insight;
+        const Message = require('bitcore-message');
+        try {
+            bitcore = require('bitcore-lib');
+        } catch (err) {
+            console.log('bitcore error: ', err)
+            delete global._bitcore
+            bitcore = require('bitcore-lib');
+        }
+        // this.insight = new Insight();
+        this.messageSigner = Message;
+        window.bitcoin = require('bitcoinjs-lib');
+        window.bitcore = bitcore;
+            
     }
+
+      
+
+  
+    // sendTransaction(to, signer, signerKey, data) {
+    //     this.insight.getUnspentUtxos(signer, (err, utxos) => {
+    //         if (err) {
+    //             // handle errors
+    //         } else {
+    //             // unspent outputs = satoshis: 200000000 
+    //             // console.log(utxos);
+    //             var tx = this.bitcore.Transaction();
+    //             tx.from(utxos);
+    //             tx.to(to, 500000);
+    //             tx.change(signer);
+    //             tx.addData(data);
+    //             //tx.fee(50000);
+    //             tx.sign(signerKey);
+
+    //             //console.log(tx.toObject());
+
+    //             // send
+    //             this.insight.broadcast(tx.serialize(), (err, returnedTxId) => {
+    //                 if (err) {
+    //                     console.log(err);
+    //                 } else {
+    //                     console.log('success - ' + returnedTxId);
+    //                 }
+    //             });
+
+    //         }
+    //     });
+    // }
 
     getWif(){
         return blockstack.hexStringToECPair(blockstack.loadUserData().appPrivateKey + '01').toWIF();
@@ -91,7 +96,7 @@ export class BitcoinService {
     }
 
     getAppPrivateKeyCompressed(){
-        return bitcore.PrivateKey.fromWIF( this.getWif() ); // c8c2298ea50c2dc3b8e9d92377b8677f03c6eeed98dab299c630ab7e3e5c9b33
+        return window.bitcore.PrivateKey.fromWIF( this.getWif() ); // c8c2298ea50c2dc3b8e9d92377b8677f03c6eeed98dab299c630ab7e3e5c9b33
     }
 
     // This will validate that a given username's owner address is associated with
@@ -150,7 +155,7 @@ export class BitcoinService {
 
 
     signMessage(messageToSign, wif ){
-        let privateKey = this.bitcore.PrivateKey.fromWIF(wif);
+        let privateKey = window.bitcore.PrivateKey.fromWIF(wif);
         let signature = this.messageSigner(messageToSign).sign(privateKey);
         return signature;
     }
@@ -169,7 +174,7 @@ export class BitcoinService {
         let signatureTXT = 'signature TXT \"' + signature + '\"\n';
         let ownerTXT = 'owner TXT \"' + appAddress + '\"\n';
         let zonefile = origin + hashTXT + signatureTXT + ownerTXT;
-        let privateKey = new bitcore.PrivateKey();
+        let privateKey = new window.bitcore.PrivateKey();
         let burnAddress = privateKey.toAddress().toString();
 
         let json = {
