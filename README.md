@@ -69,7 +69,7 @@ TODO :)
 
 Check out https://blockusign.co/signup.html for some basic architectural and design decisions. 
 
-# Blockusign Scheama
+# Blockusign Schema
 
 <pre>
 Blockusign Document Schema Protocol
