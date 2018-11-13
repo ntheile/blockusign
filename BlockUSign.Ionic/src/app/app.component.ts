@@ -20,7 +20,7 @@ declare var window: any;
 const $ = document.querySelectorAll.bind(document);
 import { AlertController } from 'ionic-angular';
 declare let jQuery: any;
-   
+
 let { Keystore, Keygen } = require('eosjs-keygen')
 let Eos = require('eosjs')
 
@@ -88,6 +88,9 @@ export class MyApp {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+      if(window.location.origin.includes("loacalhost")) {
+        localStorage.setItem('signUp', 'true');
+      }
 
       this.loading.present();
       this.statusBar.styleDefault();
@@ -112,7 +115,7 @@ export class MyApp {
 
 
   //Most applications should use this method for sign in unless they require more fine grained control over
-  //  how the authentication request is generated. If your app falls into this category, 
+  //  how the authentication request is generated. If your app falls into this category,
   //  use generateAndStoreTransitKey, makeAuthRequest, and redirectToSignInWithAuthRequest to build your own sign in process.
   //  https://blockstack.org/auth?authRequest=eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NksifQ.eyJqdGkiOiJjYzhhNzg0ZC1jZjk2LTRhNDMtOWMzOC0zYjA1YjE1ZWFmMTMiLCJpYXQiOjE1MzAxMTQyMjQsImV4cCI6MTUzMDExNzgyNCwiaXNzIjoiZGlkOmJ0Yy1hZGRyOjE2azFmRFBGMzVHSjZlNmROeWtHdHg0dlk5WjJwdXl6bTEiLCJwdWJsaWNfa2V5cyI6WyIwMjViZjBjNmM3N2UyNDViNzZmMWZhNDczYWE1MDAxNjdmOWQ5ZjY3ZTI0ZWFjMzA4YTdhMjQ2MDg1OTdhMGNiYzkiXSwiZG9tYWluX25hbWUiOiJodHRwOi8vbG9jYWxob3N0OjgxMDAiLCJtYW5pZmVzdF91cmkiOiJodHRwOi8vbG9jYWxob3N0OjgxMDAvbWFuaWZlc3QuanNvbiIsInJlZGlyZWN0X3VyaSI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODEwMCIsInZlcnNpb24iOiIxLjIuMCIsImRvX25vdF9pbmNsdWRlX3Byb2ZpbGUiOnRydWUsInN1cHBvcnRzX2h1Yl91cmwiOnRydWUsInNjb3BlcyI6WyJzdG9yZV93cml0ZSIsInB1Ymxpc2hfZGF0YSIsImVtYWlsIl19.nDIv-6RGft1gW8WK-Vuq5BDVmXDCEhBaZT-4kMTipZTWobasdokVIcMlU37jg5uT7JoubTOUR9srRW5xCxfXfQ
   loginAdvanced() {
@@ -123,7 +126,7 @@ export class MyApp {
   }
 
   loginElectron(){
-    
+
 
     let origin = "http://localhost:8080";
       let manifest = "http://localhost:8080/manifest.json";
@@ -175,7 +178,7 @@ export class MyApp {
       guid: guid
     });
 
-    
+
 
   }
 
@@ -260,10 +263,10 @@ export class MyApp {
 
       if (navigator.userAgent.toLocaleLowerCase().includes('electron') === true){
         localStorage.setItem('signUp', 'true');
-        //this.loginElectron();      
+        //this.loginElectron();
         //return;
       }
-     
+
       if (localStorage.getItem('signUp') !== 'true' && location.hostname !== "localhost" ) {
         window.location.href = "signup.html";
       }
@@ -271,8 +274,8 @@ export class MyApp {
         localStorage.setItem('signUp', 'true');
         this.login();
       }
-      
-     
+
+
     }
 
     // @todo Optimize this;
@@ -280,7 +283,7 @@ export class MyApp {
 
   }
 
- 
+
   cacheNewDocIfNotLoggedIn() {
     // if contains sign and docData
     if (location.hash.includes("sign") &&  location.hash.includes("docData") ){
@@ -430,7 +433,7 @@ export class MyApp {
   filterDocumentList(signer, e){
     this.documentService.filterDocuments(signer);
     this.documentsList = this.documentService.documentsListFiltered;
-   
+
 
     const activeServer = $(".server.active")[0];
     activeServer.classList.remove("active");
@@ -438,7 +441,7 @@ export class MyApp {
 
     e.currentTarget.classList.add("active");
     e.currentTarget.setAttribute("aria-selected", true);
-    
+
   }
 
   copyBtc(){
@@ -452,16 +455,16 @@ export class MyApp {
       duration: 2000,
       position: 'middle'
     });
-  
+
     toast.onDidDismiss(() => {
       console.log('Dismissed toast');
     });
-  
+
     toast.present();
   }
 
   createEosTestAccount(accountName: string){
-    
+
 
     let eosConfig = {
      chainId: '038f4b0fc8ff18a4f0842a8f0564611f6e96e8535901dd45e43ac8691a1c4dca', // 32 byte (64 char) hex string
@@ -474,11 +477,11 @@ export class MyApp {
    }
 
    let eos = Eos(eosConfig)
-   
-   eos.getInfo((error, result) => { console.log("EOS ====> ", error, result) })
-   
 
-   // let keyProvider =  '5HxyGPW66Cnj6n7m9uAH39hMDB9V7yaVK3XpF93nRPqHBn8HE7T';//'5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3'; // local testnet 
+   eos.getInfo((error, result) => { console.log("EOS ====> ", error, result) })
+
+
+   // let keyProvider =  '5HxyGPW66Cnj6n7m9uAH39hMDB9V7yaVK3XpF93nRPqHBn8HE7T';//'5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3'; // local testnet
    // let pubkey = 'EOS6G2h8AZQWXed9Rb2ShEuigz2e68xxY9EJXst2goi3xddLFckx6' ; // 'EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV';
    // accountName = 'user5';
 
@@ -488,7 +491,7 @@ export class MyApp {
    accountName = "ghshdjeuyhfe";
 
    eos.transaction(tr => {
-       
+
      tr.newaccount({
        creator: 'blockusign',
        name: accountName,
@@ -514,11 +517,8 @@ export class MyApp {
    }).then( (resp) =>{
      console.log("EOS resp ", resp);
    });
-    
+
 
 }
 
 }
-
-
-
