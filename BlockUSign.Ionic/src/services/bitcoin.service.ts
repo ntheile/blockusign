@@ -278,12 +278,8 @@ export class BitcoinService {
   }
 
   // (3) Is propegated to Blockstack Atlas P2P
-
   async getBlockstackAtlasP2PStatusByZoneFile(zoneFilesList){
-
     for (let zonefile of zoneFilesList){
-
-
         try{
             let zoneFileStatusResp = await this.getZoneFileStatus(zonefile.subdomainName);
             if (zoneFileStatusResp){
@@ -308,46 +304,49 @@ export class BitcoinService {
         catch (e){
             zonefile.zonefile = null;
             zonefile.isOnBlockchain = false;
-        }   
-        
+        }    
     }
-
     return zoneFilesList;
-    
   }
 
   // (4)
   async verifyAllZonfilesSignatures(zoneFilesList, localGaiaHash) {
     
     for (let zonefile of zoneFilesList){ 
-        zonefile.verified = false;
-        let zonefileJson = parseZoneFile(zonefile.zonefile);
-        zonefile.zonefileJson = zonefileJson;
-        zonefile.owner = zonefileJson.txt.find(f=> f.name == "owner").txt;
-        let hash = zonefileJson.txt.find(n=>n.name === 'hash').txt;
-        zonefile.hash = hash;
-        let signature = zonefileJson.txt.find(n=>n.name === 'signature').txt;
-        let owner = zonefileJson.txt.find(n=>n.name === 'owner').txt;
-        let verifiedZonefileSignature = this.verifyMessage(hash, owner, signature);
-        if (verifiedZonefileSignature && (hash === localGaiaHash) ){
-            // whoami proof
-            // associate the users app public key to his blockstack id
-            // lookup users blockstack id based on app public key via the Blockstack Azure Search indexer
-            let  blockstackName = await this.getBlockstackNameByAppPubKey(owner);
-            if (blockstackName != ""){
-                let profile =  await this.fetchProfileValidateAppAddress(blockstackName,owner, window.location.origin);
-                if (profile){
-                    if (profile.username){
-                        console.log(profile.username + " VERIFIED!!!");
-                        zonefile.verified = profile.username;
+
+        try{
+            zonefile.verified = false;
+            let zonefileJson = parseZoneFile(zonefile.zonefile);
+            zonefile.zonefileJson = zonefileJson;
+            zonefile.owner = zonefileJson.txt.find(f=> f.name == "owner").txt;
+            let hash = zonefileJson.txt.find(n=>n.name === 'hash').txt;
+            zonefile.hash = hash;
+            let signature = zonefileJson.txt.find(n=>n.name === 'signature').txt;
+            let owner = zonefileJson.txt.find(n=>n.name === 'owner').txt;
+            let verifiedZonefileSignature = this.verifyMessage(hash, owner, signature);
+            if (verifiedZonefileSignature && (hash === localGaiaHash) ){
+                // whoami proof
+                // associate the users app public key to his blockstack id
+                // lookup users blockstack id based on app public key via the Blockstack Azure Search indexer
+                let  blockstackName = await this.getBlockstackNameByAppPubKey(owner);
+                if (blockstackName != "" && blockstackName != undefined){
+                    let profile =  await this.fetchProfileValidateAppAddress(blockstackName,owner, window.location.origin);
+                    if (profile){
+                        if (profile.username){
+                            console.log(profile.username + " VERIFIED!!!");
+                            zonefile.verified = profile.username;
+                        }
                     }
                 }
+                else{
+                    // not a person
+                }
+                
             }
-            else{
-                // not a person
-            }
-            
+        } catch(e){
+            console.error('error in zonefile loop ', e);
         }
+
     }
     return zoneFilesList;
   }
@@ -358,12 +357,12 @@ export class BitcoinService {
     try{
       let results = await this.http.get("https://blockusign-subdomains.azurewebsites.net/search/user/" + appPubKey).toPromise();
       if (results.json()) { 
-           blockstackName = results.json()[0].fqu;
+           blockstackName = results.json()[0].key;
       }
       return blockstackName;
     }
     catch(e){ 
-        console.error('failed to getBlockstackNameByAppPubKey ', e);
+        // console.error('failed to getBlockstackNameByAppPubKey ', e);
         return blockstackName;
     }
   }

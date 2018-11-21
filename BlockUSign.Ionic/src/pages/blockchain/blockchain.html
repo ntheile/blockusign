@@ -111,8 +111,34 @@
 
       <div *ngIf="showAdvancedInfo">
 
-        <p>{{onStep}} of 4 steps complete</p>
-        
+        <div style="display: flex; height: 50px;">
+          <p>{{onStep}} of 4 steps complete</p>
+          <div class="loader loader--style5" title="4" *ngIf="isLoading">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+               width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+              <rect x="0" y="0" width="4" height="10" fill="#333">
+                <animateTransform attributeType="xml"
+                  attributeName="transform" type="translate"
+                  values="0 0; 0 20; 0 0"
+                  begin="0" dur="0.6s" repeatCount="indefinite" />
+              </rect>
+              <rect x="10" y="0" width="4" height="10" fill="#333">
+                <animateTransform attributeType="xml"
+                  attributeName="transform" type="translate"
+                  values="0 0; 0 20; 0 0"
+                  begin="0.2s" dur="0.6s" repeatCount="indefinite" />
+              </rect>
+              <rect x="20" y="0" width="4" height="10" fill="#333">
+                <animateTransform attributeType="xml"
+                  attributeName="transform" type="translate"
+                  values="0 0; 0 20; 0 0"
+                  begin="0.4s" dur="0.6s" repeatCount="indefinite" />
+              </rect>
+            </svg>
+          </div>
+        </div>
+       
+
         <h6>Step 1 - <ion-icon *ngIf="onStep >= 1" name="md-checkmark-circle" style="margin-left: 2px; color: green "></ion-icon>
            Propegate to Subdomains Registrar </h6>
         <p><a *ngIf="mySubDomainName" href="https://blockusign-subdomains.azurewebsites.net/status/{{mySubDomainName}}" target="_blank">
@@ -128,6 +154,9 @@
 
 
         <h6>Step 4 - Verified Signatures</h6>
+        <p *ngIf="zoneFiles.length < 1">
+          None
+        </p>
         <div *ngFor="let zf of zoneFiles"> 
             <p style="display: flex;align-items: center;" *ngIf="zf.verified">
               <!-- <img *ngIf="blockstack.loadUserData().profile.image" class="avatar shadow" style="border-radius: 30px; margin-right:15px" src="{{blockstack.loadUserData().profile.image[0].contentUrl}}" />
@@ -139,6 +168,7 @@
               {{ zf.hash }}
             </p>
         </div>
+       
 
         <br /><br /><br />
         <p>How does this all work?</p>

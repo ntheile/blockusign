@@ -54,6 +54,7 @@ export class BlockchainPage {
   statusMessage = "";
   onStep = "1"; // for your user id / subdomain file
   maxCollaborators = 3;
+  isLoading = true;
   @ViewChild("blockSteps") blockSteps: BlockStepsComponent;
 
   constructor(
@@ -247,8 +248,9 @@ export class BlockchainPage {
   }
 
   async associateAppPubKeyToBlockstackId(){
+    let blockstackId = blockstack.loadUserData().username;
     let whoamiProof = await this.bitcoinService.fetchProfileValidateAppAddress(
-      blockstack.loadUserData().username,  
+      blockstackId,  
       this.address, 
       window.location.origin 
     );
@@ -300,6 +302,7 @@ export class BlockchainPage {
     };
     // Step 4
     this.didISign();
+    this.isLoading = false;
   }
 
   async getHash() {

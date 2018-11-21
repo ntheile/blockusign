@@ -10,6 +10,25 @@
         rgba(20,20,20, .5));
 }
 
+.loader{
+    margin: 0 0 2em;
+    height: 100px;
+    width: 20%;
+    text-align: center;
+    padding: 1em;
+    margin: 0 auto 1em;
+    display: inline-block;
+    vertical-align: top;
+  }
+  
+  /*
+    Set the color of the icon
+  */
+  svg path,
+  svg rect{
+    fill: #FF6700;
+  }
+
 @import url(https://fonts.googleapis.com/css?family=Source+Code+Pro:300,700);
 
     $px: 4px;
