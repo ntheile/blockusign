@@ -10,8 +10,8 @@
   </section>  
   <div style="clear:both"></div>
 
-  <div padding class="no-print centerMe" >
-    <button ion-button  style="border-radius: 30px" (click)="postBlockchain()">
+  <div padding class="no-print centerMe" style="padding-left:50px">
+    <button ion-button  style="border-radius: 30px;" (click)="postBlockchain()">
       Save Digital Signature<br/> to the Blockchain<br/>
     </button>
     <span></span>
@@ -20,7 +20,7 @@
     </button>
   </div>
 
-  <p class="no-print" padding>
+  <p class="no-print selectable" padding>
     Document Hash = {{ hash }}
   </p>
   <block-pdf marginTop="10px" locked="true" >

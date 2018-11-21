@@ -4,6 +4,12 @@
     border-radius: 50%;
 }
 
+.pdfWindow {
+    background: linear-gradient(
+        rgba(20,20,20, .5), 
+        rgba(20,20,20, .5));
+}
+
 @import url(https://fonts.googleapis.com/css?family=Source+Code+Pro:300,700);
 
     $px: 4px;

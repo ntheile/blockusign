@@ -29,6 +29,16 @@
     border-left: 0;
 }
 
+.selectable {
+    user-select: text !important;
+
+    
+}
+::selection{
+    background: #7289DA;
+}
+
+
 .centerMe {
     margin-left: auto;
     margin-right: auto;

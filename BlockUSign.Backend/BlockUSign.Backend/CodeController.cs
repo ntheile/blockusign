@@ -13,8 +13,6 @@ using SendGrid.Helpers.Mail;
 using RestSharp;
 using Newtonsoft.Json.Linq;
 using MebiusLib;
-using HttpLogger;
-
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860

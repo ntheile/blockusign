@@ -31,21 +31,29 @@ export class BlockchainPage {
 
   hash = "";
   guid = "";
-  address= "";
-  signature = "";
-  profileUrl = "";
+  guidPrefix = null;
+  address = "";
+  gaia = "";
+  mySubDomainName;
+  
+  zoneFiles = [];
+  signature = ""; // ary
+  profileUrl = ""; // ary
+  zonefile; // ary
+  zonefileJson; // ary
+  isHashVerified = false; //ary
+  
+  verifiedSigners = []; // show after you loop zonefiles
+  topDomain = '.blockusign1.id';
   showAdvancedInfo = false;
   showSig = false;
   isSaving = false;
-  subdomainsStatus;
-  isOnBlockchain = false;
-  statusMessage = "";
-  onStep = "1";
   blockstack = blockstack;
-  zonefile;
-  zonefileJson;
-  isHashVerified = false;
-  verifiedSigners = [];
+  subdomainsStatus;
+  isOnBlockchain = false; // for your user id / subdomain file
+  statusMessage = "";
+  onStep = "1"; // for your user id / subdomain file
+  maxCollaborators = 3;
   @ViewChild("blockSteps") blockSteps: BlockStepsComponent;
 
   constructor(
@@ -55,71 +63,128 @@ export class BlockchainPage {
     private bitcoinService: BitcoinService,
     private blockstackService: BlockStackService,
     private toastCtrl: ToastController,
-  ) {
-
-    // if ( this.navParams.get("guid") && !this.documentService.currentDoc ){
-    //   let guid = this.navParams.get("guid");
-    //   this.documentService.getDocumentsIndex(true).then((data) => {
-    //     this.documentService.documentsList = data;
-    //     this.documentService.setCurrentDoc(guid);
-    //     //this.getFile();
-    //     // @todo in side menu highlight selected doc
-
-    //   });
-    // }
-    // else{
-    //   //this.getFile();
-    // }
-
-  }
+  ) { }
 
 
   ionViewDidLoad() {
     this.init();
   }
 
-  toggleAdvanced(){
-    if (this.showAdvancedInfo == true){
-      this.showAdvancedInfo = false;
-    } 
-    else{
-      this.showAdvancedInfo = true;
-    }
-  }
-
-  toggleSig(){
-    if (this.showSig == true){
-      this.showSig = false;
-    } 
-    else{
-      this.showSig = true;
-    }
-  }
-
   async init() {
     this.guid = this.navParams.get("guid");
+    this.mySubDomainName = this.guid;
     this.documentService.getDocumentsIndex(true).then(async (data) => {
       this.documentService.documentsList = data;
       await this.documentService.setCurrentDoc(this.guid);
       await this.documentService.getAnnotations(this.guid);
       await this.getHash();
       await this.getSig();
-      await this.checkStatus();
-      await this.verifyHash();
+      await this.checkIfOthersSigned();
+      this.checkIfISigned();
     });
-   
   }
 
-  back() {
-    // this.navCtrl.push("SignPage", {
-    //   guid: this.documentService.currentDoc.guid
-    // });
-    this.blockSteps.route("ReviewPage");
+  async checkIfOthersSigned(){
+    // check if others signed
+    this.zoneFiles = await this.bitcoinService.getAllZoneFileSubdomainStatusByGuid(this.guid);
+    this.zoneFiles = await this.bitcoinService.getAnchoredToBitcoinStatusByZoneFiles(this.zoneFiles);
+    this.zoneFiles = await this.bitcoinService.getBlockstackAtlasP2PStatusByZoneFile(this.zoneFiles);
+    let localGaiaHash = await this.documentService.getMerkleHash();
+    this.zoneFiles = await this.bitcoinService.verifyAllZonfilesSignatures(this.zoneFiles, localGaiaHash);
+    let didISignAlready = this.didISign();
+    // this.guidPrefix = this.getguidPrefix();
+    // if (this.guidPrefix != null && !didISignAlready ){
+    //   this.mySubDomainName = this.guidPrefix.toString() + this.guid;
+    // }
+    // console.log("mySubDomainName", this.mySubDomainName);
+    this.displayStatus();
   }
 
-  async getHash() {
-    this.hash = await this.documentService.getMerkleHash();
+  async checkIfISigned(){
+    // check if i signed
+    await this.checkStatus();
   }
+
+  // This is prefixed on the guid to keep the subdomains name unique for each documents GUID.
+  // the guid prefix is appended to the guid in the case mutple people sign a document
+  // the first signed has mnmo prefix, the second signers guid is 0 , the third the 1...up to 9 
+  getguidPrefix(){
+    console.log('len ', this.zoneFiles.length);
+    if (this.zoneFiles.length == 0){
+      return null;
+    }
+    return this.zoneFiles.length - 1;;
+  }
+
+
+  async displayStatus(){
+    for (let zf of this.zoneFiles){
+      //Step 2 Subdomains
+      try{
+        let status = zf.subdomainStatus.json().status;
+        if (status == 'Subdomain propagated'){
+          let lastTxId = await this.bitcoinService.getZoneFileLastTxIx();
+          zf.subdomainsStatusText = `Subdomain propagated <a href="https://www.blockchain.com/btc/tx/` + lastTxId + `" target="_blank">` + lastTxId + `</a>`
+          zf.onStep = "2";
+        }
+        else if (status.includes('queued')){
+          zf.onStep = "1";
+          zf.subdomainsStatusText = status;
+        }
+        else{
+          let words = status.split(' ');
+          let txIndex = words.indexOf("transaction") + 1;
+          let tx = words[txIndex];
+          words[txIndex] = `<a href="https://www.blockchain.com/btc/tx/` + tx + `" target="_blank">` + tx + `</a>`
+          zf.subdomainsStatusText = words.join(' ');
+          console.log(zf.subdomainsStatusText);
+          zf.onStep = "2";
+        }
+      }
+      catch(e){
+        console.log('not in subdomains', e);
+        zf.onStep = "0";
+      }
+      //Step 3
+      try{        
+        if ( zf.isOnBlockchain){
+            zf.onStep = "3";
+        }
+      } catch(e){
+        console.log('not replicated yet', e)
+      }
+    }
+  }
+
+  didISign(){
+    let myzoneFile = this.zoneFiles.find(f=> f.owner == this.address);
+    console.log("myzoneFile", myzoneFile);
+    if (myzoneFile){
+      this.onStep = "4"
+      myzoneFile.onStep = "4"
+      this.mySubDomainName = myzoneFile.subdomainName;
+      console.log("mySubDomainName", this.mySubDomainName);
+      return true;
+    }
+    else{
+      // this.isOnBlockchain = false;
+      // this.onStep = "0";
+      // this.guidPrefix = this.getguidPrefix();
+      // if (this.guidPrefix != null ){
+      //   this.mySubDomainName = this.guidPrefix.toString() + this.guid;
+      // }
+      console.log("mySubDomainName", this.mySubDomainName);
+      return false;
+    } 
+  }
+
+ 
+
+  
+
+
+
+
 
   getSig(){
     this.address = this.bitcoinService.getAppBitcoinAddress().toString();
@@ -132,7 +197,9 @@ export class BlockchainPage {
     this.isSaving = true;
     this.nyanCat();
     let wif = this.bitcoinService.getWif();
-    let resp = this.bitcoinService.sendSudomainBatch(this.documentService.currentDoc.guid, this.address, this.hash, this.signature, this.profileUrl);
+
+    // @todo check for 409 error
+    let resp = this.bitcoinService.sendSudomainBatch(this.mySubDomainName, this.address, this.hash, this.signature, this.profileUrl);
     // saving to the blockchain
     this.onStep="1";
     this.showToastWithCloseButton(
@@ -177,8 +244,6 @@ export class BlockchainPage {
         console.error('zonefile signature failed.')
       }
     }
-
-    
   }
 
   async associateAppPubKeyToBlockstackId(){
@@ -190,30 +255,13 @@ export class BlockchainPage {
     return whoamiProof;
   }
 
-
-  nyanCat() {
-
-    $(".rainbow > *")
-      .blast({ delimited: "word" });
-
-    setTimeout(function () {
-      $(".nyancat")
-        .addClass("fly");
-    }, 2000);
-
-  }
-
   async checkStatus(){
-
- 
     //Step 2 Subdomains
     try{
-      this.subdomainsStatus = await this.bitcoinService.getSubdomainsStatus(this.guid);
+      this.subdomainsStatus = await this.bitcoinService.getSubdomainsStatus(this.mySubDomainName);
       let status = this.subdomainsStatus.json().status;
-
-      
       if (status == 'Subdomain propagated'){
-        let lastTxId = await this.bitcoinService.getZoneFileLastTxIx(this.guid);
+        let lastTxId = await this.bitcoinService.getZoneFileLastTxIx();
         this.subdomainsStatus = `Subdomain propagated <a href="https://www.blockchain.com/btc/tx/` + lastTxId + `" target="_blank">` + lastTxId + `</a>`
         this.onStep = "2";
       }
@@ -236,11 +284,9 @@ export class BlockchainPage {
       console.log('not in subdomains', e);
       this.onStep = "0";
     }
-
-
     //Step 3
     try{
-      let zoneFileStatusResp = await this.bitcoinService.getZoneFileStatus(this.guid);
+      let zoneFileStatusResp = await this.bitcoinService.getZoneFileStatus(this.mySubDomainName);
       if (zoneFileStatusResp){
         if (zoneFileStatusResp.json().zonefile){
           this.zonefile = zoneFileStatusResp.json().zonefile;
@@ -251,11 +297,19 @@ export class BlockchainPage {
     }
     catch(e){
       console.log('not replicated yet', e)
-
     };
-    
-
+    // Step 4
+    this.didISign();
   }
+
+  async getHash() {
+    this.hash = await this.documentService.getMerkleHash();
+    return this.hash;
+  }
+
+
+
+
 
   showToastWithCloseButton(message) {
     const toast = this.toastCtrl.create({
@@ -266,5 +320,41 @@ export class BlockchainPage {
     toast.present();
   }
 
+  nyanCat() {
+
+    $(".rainbow > *")
+      .blast({ delimited: "word" });
+
+    setTimeout(function () {
+      $(".nyancat")
+        .addClass("fly");
+    }, 2000);
+
+  }
+
+  back() {
+    // this.navCtrl.push("SignPage", {
+    //   guid: this.documentService.currentDoc.guid
+    // });
+    this.blockSteps.route("ReviewPage");
+  }
+
+  toggleAdvanced(){
+    if (this.showAdvancedInfo == true){
+      this.showAdvancedInfo = false;
+    } 
+    else{
+      this.showAdvancedInfo = true;
+    }
+  }
+
+  toggleSig(){
+    if (this.showSig == true){
+      this.showSig = false;
+    } 
+    else{
+      this.showSig = true;
+    }
+  }
 
 }

@@ -10,7 +10,6 @@ import { of } from 'rxjs/observable/of';
 import { delay } from 'rxjs/operator/delay';
 import { Headers, RequestOptionsArgs, RequestOptions } from '@angular/http';
 import { HttpHeaders } from '@angular/common/http';
-
 declare let global: any;
 //declare let bitcore: any;
 declare let blockstack: any;
@@ -174,8 +173,9 @@ export class BitcoinService {
         let signatureTXT = 'signature TXT \"' + signature + '\"\n';
         let ownerTXT = 'owner TXT \"' + appAddress + '\"\n';
         let zonefile = origin + hashTXT + signatureTXT + ownerTXT;
-        let privateKey = new window.bitcore.PrivateKey();
+        let privateKey = new window.bitcore.PrivateKey(); // this makes it immutable, nobody nows this key to be able to update the subdomain
         let burnAddress = privateKey.toAddress().toString();
+        
 
         let json = {
             "zonefile": zonefile,
@@ -201,15 +201,174 @@ export class BitcoinService {
         return resp;
     }
 
+    // returns {subdomainId: stringID, status: stringSTATUS}
+    // async getZoneFileBySubdomainGuid(subdomainName){
+    //     let subdomainsStatus = await this.http.get('https://core.blockstack.org/v1/names/' + fileGuid + '.blockusign1.id').toPromise();
+    //     console.log({subdomainId: subdomainName, status: subdomainsStatus.json().status})
+    //     return {subdomainId: subdomainName, status: status};
+    // }
+
     async getZoneFileStatus(fileGuid){
         let resp = await this.http.get('https://core.blockstack.org/v1/names/' + fileGuid + '.blockusign1.id').toPromise();
         return resp;
     }
 
-    async getZoneFileLastTxIx(fileGuid){
+    async getZoneFileLastTxIx(){
         let resp = await this.http.get('https://core.blockstack.org/v1/names/blockusign1.id').toPromise();
         return resp.json().last_txid;
     }
+
+
+
+
+  // (1) Is propegated to Subdomains , get all zone files
+  // Get all the zonefiles for the doc hash. Zonefiles represent one blockstack account who signed the hash. The second
+  // user who signed the hash is prepended with 2 the third is prepended with 3 and so on up to 9 signers.
+  // This is limited to only 9 signers because two digits would put it over the subdomains length limit for names when appended with
+  // the document GUID (which is a pretty long string...maybe we can strip out the dashes in the future, maybe we append the alphabet to give us 26 more signers)
+  async getAllZoneFileSubdomainStatusByGuid(guid) {
+    let zonefiles = []; // subdomainId , status 
+   
+    for(let i = -1; i <= 9; i++)
+    {
+      let subdomainName = guid;
+      if (i != -1) subdomainName = i + subdomainName;
+      console.log('getting ' + subdomainName);
+      try{
+        let status = await this.getSubdomainsStatus(subdomainName);
+        // if status is 404 then end of subdomains
+        console.log(subdomainName, status);
+        zonefiles.push({subdomainName: subdomainName, subdomainStatus: status});
+      }
+      catch(e){
+        return zonefiles;
+      }
+    }
+    return zonefiles;
+  }
+
+  // (2) Is Anchored to Bitcoin
+  async getAnchoredToBitcoinStatusByZoneFiles(zoneFilesList){
+
+    let lastTxId = await this.getZoneFileLastTxIx();
+
+    for (let zonefile of zoneFilesList){
+        let status = zonefile.subdomainStatus.json().status;
+        if (status == 'Subdomain propagated'){  
+            zonefile.btcTxStatus = `Subdomain propagated <a href="https://www.blockchain.com/btc/tx/` + lastTxId + `" target="_blank">` + lastTxId + `</a>`
+           // on step 2
+        }
+        else if (status.includes('queued')){
+          // this.onStep = "1";
+          zonefile.btcTxStatus = status;
+        }
+        else{
+          let words = status.split(' ');
+          let txIndex = words.indexOf("transaction") + 1;
+          let tx = words[txIndex];
+          words[txIndex] = `<a href="https://www.blockchain.com/btc/tx/` + tx + `" target="_blank">` + tx + `</a>`
+          zonefile.btcTxStatus = words.join(' ');
+          // console.log(this.subdomainsStatus);
+          // this.onStep = "2";
+  
+        }
+    }
+
+    return zoneFilesList;
+  }
+
+  // (3) Is propegated to Blockstack Atlas P2P
+
+  async getBlockstackAtlasP2PStatusByZoneFile(zoneFilesList){
+
+    for (let zonefile of zoneFilesList){
+
+
+        try{
+            let zoneFileStatusResp = await this.getZoneFileStatus(zonefile.subdomainName);
+            if (zoneFileStatusResp){
+              if (zoneFileStatusResp.json().zonefile){
+                // this.zonefile = zoneFileStatusResp.json().zonefile;
+                //this.isOnBlockchain = true;
+                //this.onStep = "3";
+                zonefile.zonefile = zoneFileStatusResp.json().zonefile;
+                zonefile.isOnBlockchain = true;
+              }
+              else{
+                zonefile.zonefile = null;
+                zonefile.isOnBlockchain = false;
+              }
+    
+            }
+            else{
+                zonefile.zonefile = null;
+                zonefile.isOnBlockchain = false;
+            }
+        }
+        catch (e){
+            zonefile.zonefile = null;
+            zonefile.isOnBlockchain = false;
+        }   
+        
+    }
+
+    return zoneFilesList;
+    
+  }
+
+  // (4)
+  async verifyAllZonfilesSignatures(zoneFilesList, localGaiaHash) {
+    
+    for (let zonefile of zoneFilesList){ 
+        zonefile.verified = false;
+        let zonefileJson = parseZoneFile(zonefile.zonefile);
+        zonefile.zonefileJson = zonefileJson;
+        zonefile.owner = zonefileJson.txt.find(f=> f.name == "owner").txt;
+        let hash = zonefileJson.txt.find(n=>n.name === 'hash').txt;
+        zonefile.hash = hash;
+        let signature = zonefileJson.txt.find(n=>n.name === 'signature').txt;
+        let owner = zonefileJson.txt.find(n=>n.name === 'owner').txt;
+        let verifiedZonefileSignature = this.verifyMessage(hash, owner, signature);
+        if (verifiedZonefileSignature && (hash === localGaiaHash) ){
+            // whoami proof
+            // associate the users app public key to his blockstack id
+            // lookup users blockstack id based on app public key via the Blockstack Azure Search indexer
+            let  blockstackName = await this.getBlockstackNameByAppPubKey(owner);
+            if (blockstackName != ""){
+                let profile =  await this.fetchProfileValidateAppAddress(blockstackName,owner, window.location.origin);
+                if (profile){
+                    if (profile.username){
+                        console.log(profile.username + " VERIFIED!!!");
+                        zonefile.verified = profile.username;
+                    }
+                }
+            }
+            else{
+                // not a person
+            }
+            
+        }
+    }
+    return zoneFilesList;
+  }
+
+
+  async getBlockstackNameByAppPubKey(appPubKey) {
+    let blockstackName = "";
+    try{
+      let results = await this.http.get("https://blockusign-subdomains.azurewebsites.net/search/user/" + appPubKey).toPromise();
+      if (results.json()) { 
+           blockstackName = results.json()[0].fqu;
+      }
+      return blockstackName;
+    }
+    catch(e){ 
+        console.error('failed to getBlockstackNameByAppPubKey ', e);
+        return blockstackName;
+    }
+  }
+
+
 
 }
 
