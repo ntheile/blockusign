@@ -95,7 +95,7 @@ export class BitcoinService {
     }
 
     getAppPrivateKeyCompressed(){
-        return window.bitcore.PrivateKey.fromWIF( this.getWif() ); // c8c2298ea50c2dc3b8e9d92377b8677f03c6eeed98dab299c630ab7e3e5c9b33
+        return window.bitcore.PrivateKey.fromWIF( this.getWif() ); 
     }
 
     // This will validate that a given username's owner address is associated with
