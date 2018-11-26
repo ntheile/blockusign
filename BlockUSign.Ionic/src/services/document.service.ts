@@ -298,7 +298,6 @@ export class DocumentService {
       this.currentDocAnnotations = "";
     }
 
-   
     return this.currentDocAnnotations;
   }
 
@@ -389,6 +388,20 @@ export class DocumentService {
         this.log = this.logDoc.log;
         //this.log = JSON.parse(await blockstack.putFile(logFileName, JSON.stringify(newLog), { encrypt: false }));
       }
+
+      // sort log
+      try{
+        let sorted = this.sortArray(this.log.messages);
+       
+        this.logDoc = Automerge.change(this.logDoc, " sorted at " + this.getDate() ,  doc => {
+          doc.log.messages = sorted;
+        });
+        this.log = this.logDoc.log;
+      }
+      catch(e){
+        console.error('failed to sort log', e);
+      }
+
       return this.log;
     }
     catch (e) {
@@ -420,7 +433,7 @@ export class DocumentService {
     let logFileName = guid + ".log.json"
     let log = await this.getLog(guid);
     if (log) {
-      let msg = new Message();
+      let msg: any = new Message();
       msg.message =  message; //encodeURIComponent(message);
       msg.createdBy = this.blockStackService.userName;
       msg.createdByName = this.blockStackService.profileName
@@ -531,10 +544,12 @@ export class DocumentService {
     let pdfData = new Uint8Array(pdfBuffer);
     let docHash = this.genHash(pdfBuffer);
 
-    let chatData = JSON.stringify(await this.getLog(this.currentDoc.guid));
+    let chatJson = await this.getLog(this.currentDoc.guid);
+    // let sorted = this.sortArray(chatJson.messages);
+    let chatData = JSON.stringify(chatJson);
     let chatHash = this.genHash(chatData);
 
-    let merkleHash = this.genHash(docHash + annotationsHash + chatData);
+    let merkleHash = this.genHash(docHash + annotationsHash + chatHash);
 
     return merkleHash;
      
@@ -562,6 +577,46 @@ export class DocumentService {
     return this.documentsListFiltered;
   }
 
-  
+
+  /**
+   * Sort JavaScript Object
+   * CF Webtools : Chris Tierney
+   * obj = object to sort
+   * order = 'asc' or 'desc'
+   */
+  sortArray(ary){
+    let sortedArray = [];
+    for (let obj of ary){
+      let sorted = this.sortAlpha(obj, 'asc');
+      sortedArray.push(sorted);
+    }
+    return sortedArray;
+  }
+  sortAlpha( obj, order ) {
+    var key,
+      tempArry = [],
+      i,
+      tempObj = {};
+    for ( key in obj ) {
+      tempArry.push(key);
+    }
+    tempArry.sort(
+      function(a, b) {
+        return a.toLowerCase().localeCompare( b.toLowerCase() );
+      }
+    );
+
+    if( order === 'desc' ) {
+      for ( i = tempArry.length - 1; i >= 0; i-- ) {
+        tempObj[ tempArry[i] ] = obj[ tempArry[i] ];
+      }
+    } else {
+      for ( i = 0; i < tempArry.length; i++ ) {
+        tempObj[ tempArry[i] ] = obj[ tempArry[i] ];
+      }
+    }
+    return tempObj;
+  }
+
 }
 
