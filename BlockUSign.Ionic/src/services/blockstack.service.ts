@@ -14,6 +14,7 @@ import { Headers, RequestOptionsArgs, RequestOptions } from '@angular/http';
 import { HttpHeaders } from '@angular/common/http';
 declare let blockstack: any;
 declare let sjcl: any;
+declare let parseZoneFile: any;
 
 @Injectable()
 export class BlockStackService {
@@ -42,6 +43,10 @@ export class BlockStackService {
 
   async getPicUrl(userId) {
 
+    if (userId == ""){
+      return "https://www.gravatar.com/avatar/?d=identicon";
+    }
+
     // placeholder
     let picUrl = "https://www.gravatar.com/avatar/?d=identicon";
     try {
@@ -56,11 +61,9 @@ export class BlockStackService {
       }
 
       // get from server
-      let resp = await this.http.get("https://core.blockstack.org/v1/search?query=" + userId).toPromise();
-      let respObj = JSON.parse(resp.text());
-      if (respObj.results.length > 0) {
-        picUrl = respObj.results[0].profile.image[0].contentUrl
-      }
+      picUrl =  await this.getAvatarByUserId(userId);
+      
+
       this.picCache.push({
         id: userId,
         pic: picUrl
@@ -74,6 +77,12 @@ export class BlockStackService {
     return picUrl;
 
   }
+
+  async getZoneFile(userId){
+    let resp = await this.http.get('https://core.blockstack.org/v1/names/' + userId).toPromise();
+    let zf = parseZoneFile(resp.json().zonefile);
+    return zf;
+ }
 
   // blockusign.profile.json
   async getProfileData() {
@@ -165,6 +174,26 @@ export class BlockStackService {
   getProfileJsonUrl(){
     // https://gaia.blockstack.org/hub/17xxYBCvxwrwKtAna4bubsxGCMCcVNAgyw/profile.json
     return this.getStorageUrl() + blockstack.loadUserData().identityAddress + '/profile.json';
+  }
+
+  async getProfileByUserId(userId){
+   // https://gaia.blockstack.org/hub/17xxYBCvxwrwKtAna4bubsxGCMCcVNAgyw/profile.json
+   let zf = await this.getZoneFile(userId);
+   let profileUrl = zf.uri[0].target;
+   let profileData = await this.http.get(profileUrl).toPromise();
+   if (profileData){
+    return profileData.json()[0];
+   }
+   else{
+     return null;
+   }
+   
+  }
+
+  async getAvatarByUserId(userId){
+    let profileData = await this.getProfileByUserId(userId);
+    let avatar = profileData.decodedToken.payload.claim.image[0].contentUrl;
+    return avatar;
   }
 
   async writeGlobalProfile(){

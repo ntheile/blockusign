@@ -154,14 +154,14 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
   
           let uid = item.createdBy;
           try {
-            uid = item.createdBy.replace('.id', '');
+            uid = item.createdBy.replace('.id', '').replace('.', '-');
           }
-          catch (e) { console.log('user does not have .id') };
+          catch (e) { console.log('user does not have .id or a special char in name') };
   
           let uName = item.createdByName;
           let uidClass = 'block-pic-' + uid;
   
-          this.blockstackService.getPicUrl(uName).then((picUrl) => {
+          this.blockstackService.getPicUrl(item.createdBy).then((picUrl) => {
             setTimeout(()=>{
               $('.' + uidClass).attr('src', picUrl);
             }, 250);            

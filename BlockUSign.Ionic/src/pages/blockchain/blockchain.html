@@ -28,7 +28,7 @@
       <button *ngIf="!isSaving && !isOnBlockchain && (onStep == '0') " ion-button style="border-radius: 30px; 
       position: absolute; top: 36%; left:29%;
       z-index: 999999;"
-        (click)="postBlockchain()">Sign to the<br/> Blockchain
+        (click)="presentConfirm()">Sign to the<br/> Blockchain
         <ion-icon name="md-create" style="margin-left: 20px; "></ion-icon>
       </button>
 
@@ -38,13 +38,22 @@
         <ion-icon name="md-create" style="margin-left: 20px; "></ion-icon>
       </button>
       
-      <div style="z-index: 999999; cursor: pointer; position: absolute; top: 6%; left: 42%; " class="btooltip">
-        <a *ngIf='mySubDomainName != ""' href="https://core.blockstack.org/v1/names/{{mySubDomainName}}.blockusign1.id" target="_blank" style="opacity: .9 !important">
-          <img *ngIf="blockstack.loadUserData().profile.image" class="avatar shadow" style="border-radius: 30px;" src="{{blockstack.loadUserData().profile.image[0].contentUrl}}" />
-          <img *ngIf="!blockstack.loadUserData().profile.image" class="avatar shadow" style="border-radius: 30px; margin-right:15px" src="https://www.gravatar.com/avatar/?d=identicon" />
-          <span class="btooltiptext">View Digital Signature</span>
+      <div style="z-index: 999999999; cursor: pointer; position: absolute; top: 4%; left: 29%;" padding >
+        <a *ngFor="let collaborator of collaborators" 
+          href="https://core.blockstack.org/v1/names/{{collaborator.subdomainName}}.blockusign1.id" 
+          target="_blank" 
+          style="opacity: .9 !important; display: inline-block; padding-right: 12px;"
+          class="btooltip">
+          <div>
+            <img  class="avatar shadow" src="{{collaborator.avatar}}" /> 
+            <ion-icon *ngIf="collaborator.isVerified"  
+              name="md-checkmark-circle" style="margin-left: -30px; color: green; background-color: white; border-radius: 50%">
+            
+            </ion-icon>
+          </div>
+          <span *ngIf="collaborator.isVerified" class="btooltiptext" style="padding: 8px 8px 8px 8px">{{collaborator.userId }} <br/><br/> View Digital Signature</span>
+          <span *ngIf="!collaborator.isVerified" class="btooltiptext" style="padding: 8px 8px 8px 8px">{{collaborator.userId }} <br/> Not signed</span>
         </a>
-
       </div>
 
 
@@ -62,6 +71,31 @@
         </div>
 
       </div>
+
+      <div class="loader loader--style5" title="4" *ngIf="isLoading" style="position: absolute; bottom: 0%; right: 0%; z-index: 999999; ">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+           width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+          <rect x="0" y="0" width="4" height="10" fill="#333">
+            <animateTransform attributeType="xml"
+              attributeName="transform" type="translate"
+              values="0 0; 0 20; 0 0"
+              begin="0" dur="0.6s" repeatCount="indefinite" />
+          </rect>
+          <rect x="10" y="0" width="4" height="10" fill="#333">
+            <animateTransform attributeType="xml"
+              attributeName="transform" type="translate"
+              values="0 0; 0 20; 0 0"
+              begin="0.2s" dur="0.6s" repeatCount="indefinite" />
+          </rect>
+          <rect x="20" y="0" width="4" height="10" fill="#333">
+            <animateTransform attributeType="xml"
+              attributeName="transform" type="translate"
+              values="0 0; 0 20; 0 0"
+              begin="0.4s" dur="0.6s" repeatCount="indefinite" />
+          </rect>
+        </svg>
+      </div>
+
     </div>
 
 
@@ -113,29 +147,7 @@
 
         <div style="display: flex; height: 50px;">
           <p>{{onStep}} of 4 steps complete</p>
-          <div class="loader loader--style5" title="4" *ngIf="isLoading">
-            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-               width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
-              <rect x="0" y="0" width="4" height="10" fill="#333">
-                <animateTransform attributeType="xml"
-                  attributeName="transform" type="translate"
-                  values="0 0; 0 20; 0 0"
-                  begin="0" dur="0.6s" repeatCount="indefinite" />
-              </rect>
-              <rect x="10" y="0" width="4" height="10" fill="#333">
-                <animateTransform attributeType="xml"
-                  attributeName="transform" type="translate"
-                  values="0 0; 0 20; 0 0"
-                  begin="0.2s" dur="0.6s" repeatCount="indefinite" />
-              </rect>
-              <rect x="20" y="0" width="4" height="10" fill="#333">
-                <animateTransform attributeType="xml"
-                  attributeName="transform" type="translate"
-                  values="0 0; 0 20; 0 0"
-                  begin="0.4s" dur="0.6s" repeatCount="indefinite" />
-              </rect>
-            </svg>
-          </div>
+          
         </div>
        
 

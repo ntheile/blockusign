@@ -4,7 +4,9 @@ import { DocumentService } from './../../services/document.service';
 import { BlockStepsComponent } from '../../components/block-steps/block-steps';
 import { BitcoinService } from '../../services/bitcoin.service';
 import { BlockStackService } from '../../services/blockstack.service';
+import { EmailService } from '../../services/email.service';
 import { Block } from 'bitcoinjs-lib';
+import { AlertController } from 'ionic-angular';
 declare let window: any;
 declare let blockstack: any;
 declare let $:any;
@@ -35,6 +37,7 @@ export class BlockchainPage {
   address = "";
   gaia = "";
   mySubDomainName;
+  collaborators = [];
   
   zoneFiles = [];
   signature = ""; // ary
@@ -64,6 +67,8 @@ export class BlockchainPage {
     private bitcoinService: BitcoinService,
     private blockstackService: BlockStackService,
     private toastCtrl: ToastController,
+    private alertCtrl: AlertController,
+    private emailService: EmailService,
   ) { }
 
 
@@ -73,15 +78,17 @@ export class BlockchainPage {
 
   async init() {
     this.guid = this.navParams.get("guid");
-    this.mySubDomainName = this.guid;
     this.documentService.getDocumentsIndex(true).then(async (data) => {
       this.documentService.documentsList = data;
       await this.documentService.setCurrentDoc(this.guid);
       await this.documentService.getAnnotations(this.guid);
+      this.mySubDomainName = this.getSubdomainName();
+      this.collaborators = await this.documentService.getCollaborators(this.guid);
       await this.getHash();
       await this.getSig();
       await this.checkIfOthersSigned();
       this.checkIfISigned();
+      this.verifiedDisplay();
     });
   }
 
@@ -93,11 +100,6 @@ export class BlockchainPage {
     let localGaiaHash = await this.documentService.getMerkleHash();
     this.zoneFiles = await this.bitcoinService.verifyAllZonfilesSignatures(this.zoneFiles, localGaiaHash);
     let didISignAlready = this.didISign();
-    // this.guidPrefix = this.getguidPrefix();
-    // if (this.guidPrefix != null && !didISignAlready ){
-    //   this.mySubDomainName = this.guidPrefix.toString() + this.guid;
-    // }
-    // console.log("mySubDomainName", this.mySubDomainName);
     this.displayStatus();
   }
 
@@ -110,14 +112,21 @@ export class BlockchainPage {
   // the guid prefix is appended to the guid in the case mutple people sign a document
   // the first signed has mnmo prefix, the second signers guid is 0 , the third the 1...up to 9 
   getguidPrefix(){
-    console.log('len ', this.zoneFiles.length);
-    if (this.zoneFiles.length == 0){
-      return null;
-    }
-    return this.zoneFiles.length - 1;;
+    let paths = this.documentService.currentDoc.paths;
+    let myPath = paths.find(f=>f.userId == blockstack.loadUserData().username);
+    let myIndex = paths.indexOf(myPath);
+    return myIndex;
   }
 
+  getSubdomainName(){
+    let myIndex = this.getguidPrefix();
+    if (myIndex == 0){
+      return this.guid;
+    }
+    return ( (myIndex - 1).toString() + this.guid );
+  }
 
+ 
   async displayStatus(){
     for (let zf of this.zoneFiles){
       //Step 2 Subdomains
@@ -236,6 +245,11 @@ export class BlockchainPage {
             name: whoamiProof.username,
             isVerified: true
           });
+          try{
+            let collab = this.collaborators.find(c=>c.userId == whoamiProof.username);
+            collab.isVerified = true;
+          }
+          catch(e){}
           this.isHashVerified = true;
           this.onStep = "4";
           return true;
@@ -310,6 +324,26 @@ export class BlockchainPage {
     return this.hash;
   }
 
+  genLink(){
+    let documentLink = window.location.origin + "/#/blockchain/" + this.documentService.currentDoc.guid;
+    return documentLink;
+  }
+
+  verifiedDisplay(){
+    for(let collab of this.collaborators){
+      try{
+        let didSign = this.zoneFiles.find(v=>v.verified == collab.userId);
+        if (didSign){
+          collab.isVerified = true;
+        }
+      } catch(e) {
+        console.error('error verifiedDisplay', e);
+      }
+      
+      
+    }
+  }
+
 
 
 
@@ -359,5 +393,92 @@ export class BlockchainPage {
       this.showSig = true;
     }
   }
+
+  presentConfirm() {
+    let alert = this.alertCtrl.create({
+      title: 'Please confirm you are signing the correct document version',
+      message: 'If you shared this document please confirm your collaborator is signing the same version of the document. They <b>MUST</b> have the same hash <br/><br/>' + this.hash 
+        + '<br/><br/> *you can send a confirmation email in the next step',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Next',
+          handler: () => {
+            this.presentEmail();
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  presentEmail() {
+    let alert = this.alertCtrl.create({
+      title: 'Email Signer?',
+      message: 'Do you want to send an email to your signer and remind them to: <ul><li> check their document version/hash</li> <li> ask them to sign this document to the blockchain</li></ul>',
+      buttons: [
+        {
+          text: 'No',
+          handler: () => {
+            this.presentSignToBlockChain();
+          }
+        },
+        {
+          text: 'Yes',
+          handler:   data => {
+          
+            if (data.email){
+              let link = this.genLink();
+              let me = blockstack.loadUserData().username;
+              let fileName = this.documentService.currentDoc.fileName;
+              let subject = me + " has sent you a document to verify, review and sign to the blockchain - " + fileName;
+              let content = "Please review/verify and sign this document to the blockchain. <br/><br/><a href='" + link + "' >"+fileName+"</a> ";
+              content = content + "<p>The document version/hash must match this to prove you are signing the same verions as " +me + ".</p> <br/>" + this.hash;
+              this.emailService.sendEmail(data.email, subject, content);
+              this.presentSignToBlockChain();
+            }
+           
+          }
+        }
+      ],
+      inputs: [
+        {
+          name: 'email',
+          placeholder: 'Email'
+        }
+      ],
+    });
+    alert.present();
+  }
+
+  presentSignToBlockChain() {
+    let alert = this.alertCtrl.create({
+      title: 'Sign to the Blockchain!',
+      message: 'Do you want to sign this version of the document and your digital signature to the blockchain?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            this.postBlockchain()
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
 
 }

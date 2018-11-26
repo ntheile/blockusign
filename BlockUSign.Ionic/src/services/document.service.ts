@@ -555,6 +555,30 @@ export class DocumentService {
      
   }
 
+  async getCollaborators(guid){
+    let i = 0;
+    let collaborators = [];
+    let log = await this.getLog(guid);
+
+    let myCollaborators = log.messages.map( c=> c.createdBy ).filter(this.onlyUnique);
+
+    for (let collaborator of myCollaborators){
+      let subdomainName = guid;
+      if (i != 0){
+        subdomainName = (i - 1).toString() + guid;
+      }
+      collaborators.push({
+        userId: collaborator,
+        avatar: await this.blockStackService.getPicUrl(collaborator),
+        subdomainName: subdomainName,
+        isVerified: false
+      });
+      i++;
+    }
+    return collaborators;
+  }
+
+
   //#endregion
 
   // watchout
@@ -616,6 +640,9 @@ export class DocumentService {
       }
     }
     return tempObj;
+  }
+  onlyUnique(value, index, self) { 
+    return self.indexOf(value) === index;
   }
 
 }
