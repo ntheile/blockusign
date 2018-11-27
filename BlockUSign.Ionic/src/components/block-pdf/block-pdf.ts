@@ -3,6 +3,7 @@ import { NavController, NavParams, IonicPage, Segment, LoadingController, AlertC
 import { CryptoCompareService } from '../../services/cryptocompare.service'
 import { AbsoluteDragDirective } from '../../directives/absolute-drag/absolute-drag';
 import { DocumentService } from '../../services/document.service';
+import { EmailService } from '../../services/email.service';
 import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/timeout';
 import 'rxjs/add/operator/delay';
@@ -95,7 +96,8 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
     private alertCtrl: AlertController,
     public popoverCtrl: PopoverController,
     private renderer: Renderer2,
-    public toastCntrl: ToastController
+    public toastCntrl: ToastController,
+    private emailService: EmailService,
   ) {
     console.log('====> constructor');
     
@@ -506,6 +508,11 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
 
     await this.documentService.addMessage(this.documentService.currentDoc.guid, 'Updated annotation');
     
+    // if on e-sign page give user option to send email to owner
+    if (!this.showSignHere){
+      this.presentEmail();
+    }
+   
     return true;
   }
 
@@ -575,7 +582,65 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
     // });
   }
 
- 
+  async presentEmail(){
+
+    let ownerEmail = "";
+    let me = blockstack.loadUserData().username;
+
+    try{
+      let collaborators  = await this.documentService.getCollaborators(this.documentService.currentDoc.guid);
+      if (collaborators){
+        let notMe = collaborators.filter(f=>f.createdBy != me);
+        ownerEmail = notMe[(notMe.length - 1)].email;
+      }
+    } catch(e){
+      console.error('error getting collaborators in block-pdf.ts', e);
+    }
+    
+
+    let alert = this.alertCtrl.create({
+      title: 'Email',
+      message: 'Do you want to email the owner saying that you signed the document?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+            
+          }
+        },
+        {
+          text: 'Yes',
+          handler:   data => {
+          
+            if (data.email){
+              let link = this.genLink();
+      
+              let fileName = this.documentService.currentDoc.fileName;
+              let subject = me + " has signed the document - " + fileName;
+              let content = "Please review here: <br/><br/><a href='" + link + "' >"+fileName+"</a> ";
+              content = content + "<br/><br/>Thanks, <br/>Blockusign";
+              this.emailService.sendEmail(data.email, subject, content);
+            }           
+          }
+        }
+      ],
+      inputs: [
+        {
+          name: 'email',
+          placeholder: 'Email',
+          value: ownerEmail
+        }
+      ],
+    });
+    alert.present();
+  }
+
+  genLink(){
+    let documentLink = window.location.origin + "/#/review/" + this.documentService.currentDoc.guid;
+    return documentLink;
+  }
+
   clearPlaceHolder(e){
     if (this.yourName == "[Edit Name]"){
       this.yourName = "";

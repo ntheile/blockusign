@@ -9,22 +9,39 @@
       <button class="nextBackButtonBack" ion-fab mini (click)="back()" style="background-color:green; position: absolute;"><ion-icon name="md-arrow-back"></ion-icon></button>
   </section>  
   <div style="clear:both"></div>
-
   <div padding class="no-print centerMe" style="padding-left:50px">
-    <button round outline ion-button  style="border-radius: 30px;" (click)="postBlockchain()">
-      <ion-icon name="logo-bitcoin"></ion-icon>
-      &nbsp; &nbsp;Save Digital Signature<br/> to the Blockchain<br/>
-    </button>
-    <span></span>
-    <button ion-button round outline  style="border-radius: 30px;"  onclick="window.print()">
-      <ion-icon name="md-download"></ion-icon>
-      &nbsp; &nbsp;Download
-    </button>
+      <button round outline ion-button  style="border-radius: 30px;" (click)="postBlockchain()">
+        <ion-icon name="logo-bitcoin"></ion-icon>
+        &nbsp; &nbsp;Save Digital Signature<br/> to the Blockchain<br/>
+      </button>
+      <span></span>
+      <button ion-button round outline  style="border-radius: 30px;"  onclick="window.print()">
+        <ion-icon name="md-download"></ion-icon>
+        &nbsp; &nbsp;Download
+      </button>
+      
+    </div>
+
+ 
+  <div>
+      <loading style="width: 30px" *ngIf="collaborators.length == 0"></loading>
+      <div class="no-print selectable" padding *ngIf="collaborators" style="display:flex; flex-direction: row">
+          <div *ngFor="let collaborator of collaborators" style="margin-right:5px">
+              <img  class="avatar shadow" src="{{collaborator.avatar}}" /> <br/><br/>
+              <span>  
+                  {{collaborator.userId}}
+              </span>
+          </div>
+        </div>
+
   </div>
 
-  <p class="no-print selectable" padding>
-    Document Hash = {{ hash }}
+  <p class="no-print selectable" padding *ngIf="hash">
+      Document Hash = {{ hash }}
   </p>
+     
+  
+  
   <block-pdf marginTop="10px" locked="true" >
 
   </block-pdf>

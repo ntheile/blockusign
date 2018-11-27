@@ -7,6 +7,7 @@ import { BlockStackService } from '../../services/blockstack.service';
 import { EmailService } from '../../services/email.service';
 import { Block } from 'bitcoinjs-lib';
 import { AlertController } from 'ionic-angular';
+import { LoadingComponent } from '../../components/loading/loading';
 declare let window: any;
 declare let blockstack: any;
 declare let $:any;

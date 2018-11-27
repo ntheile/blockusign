@@ -28,6 +28,7 @@ export class ReviewPage {
 
   hash = "";
   @ViewChild("blockSteps") blockSteps: BlockStepsComponent;
+  collaborators = [];
 
   constructor(
     public navCtrl: NavController, 
@@ -97,6 +98,8 @@ export class ReviewPage {
     catch(e){
       alert('Please make sure you signed and saved the document. Go back to the "e-sign" page');
     }
+
+    this.getCollaborators();
    
   }
 
@@ -104,24 +107,10 @@ export class ReviewPage {
     this.nav.push('BlockchainPage', {
       guid: this.documentService.currentDoc.guid
     });
-    //  let hash = this.hash;
-    //  let wif = this.bitcoinService.getWif();
-    //  let address = this.bitcoinService.getAppBitcoinAddress().toString();
-    //  let signature = this.bitcoinService.signMessage(hash, wif);
-    //  let profileUrl = this.blockstackService.getProfileJsonUrl();
-    //  let resp = this.bitcoinService.sendSudomainBatch(this.documentService.currentDoc.guid, address, hash, signature, profileUrl);
-     
   }
 
-  verifyHash(){
-
-    // OLD
-    // this.bitcoinService.sendTransaction(window.appsettings.to, window.appsettings.signer, window.appsettings.signerKey,  'sha256-' + this.hash);
-    // let appUrl = window.location.origin;
-    // let resp = this.bitcoinService.fetchProfileValidateAppAddress(blockstackId, appBitcoinAddress, appUrl);
-
-    // let verifiedSig = this.bitcoinService.verifyMessage(hash, address, signature);
-    // console.log(verifiedSig);
+  async getCollaborators(){
+    this.collaborators = await this.documentService.getCollaborators(this.documentService.currentDoc.guid);
   }
 
 
