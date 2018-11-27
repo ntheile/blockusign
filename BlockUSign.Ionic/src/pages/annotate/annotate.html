@@ -13,6 +13,12 @@
   </section>   
   <div style="clear:both"></div>
 
+  <div *ngIf="documentService.currentDoc && documentService.currentDoc.isCompleted">
+      <ion-icon name="md-lock" style="margin-left: 50px; color: grey; font-size: 25px"></ion-icon> 
+      <span style="margin-left: 5px; color: grey; font-size: 25px">Locked</span>
+  </div>
+  
+
   <block-pdf #blockPdf showToolBar="true" showSignature="true" showSignHere="true" showButtons="true" marginTop="150px" >
 
   </block-pdf>

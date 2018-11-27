@@ -8,6 +8,7 @@
           <span class="chat-head">{{ doc.fileName }} - Log</span>
          
         </h4>
+        <!-- <ion-icon name="lock" style="color: black" *ngIf="(doc.currentDoc && doc.currentDoc.isCompleted)"></ion-icon> -->
         <!-- <span style="opacity:.6; padding-left:30px;">YOURNAME/THEIRNAME</span> -->
         <span class="chat-message-counter">*</span>
       </header>
@@ -27,11 +28,14 @@
               </div>
               <hr style='margin-top:5px' />
           </div> -->
+        
         </div>
+       
         <!-- <p class="chat-feedback">Your partner is typing…</p> -->
         <form style="padding: 10px 10px 10px 20px">
           <ion-spinner class="loadSpin" ></ion-spinner> 
-          <fieldset>
+          
+          <fieldset *ngIf="documentService.currentDoc && !documentService.currentDoc.isCompleted">
             <input class="emojiDiv" type="text" name="addMsg" style="width: 195px"
             placeholder="Type your message…" 
             [(ngModel)]="message" />  

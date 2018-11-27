@@ -213,10 +213,14 @@ export class BlockchainPage {
     let resp = this.bitcoinService.sendSudomainBatch(this.mySubDomainName, this.address, this.hash, this.signature, this.profileUrl);
     // saving to the blockchain
     this.onStep="1";
+
+    // lockDocument
+    this.documentService.lockCurrentDocument();
+
     this.showToastWithCloseButton(
       `Thank you! Your document has been queued. The digital signature will be saved to the 
       blockchain within the next 12 hours. We are in beta right now, but in production this will take around 10 minutes. Please check
-      back in about 12 hours to see the status. You can periodoically check the status above by refreshing the page.`);
+      back in about 12 hours to see the status. You can periodically check the status above by refreshing the page.`);
   }
 
   async verifyHash() {

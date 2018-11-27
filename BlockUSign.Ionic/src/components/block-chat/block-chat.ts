@@ -102,6 +102,11 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
   }
 
   initChatPolling() {
+
+    if (this.documentService.currentDoc.isCompleted){
+      console.log('This document is locked ' + this.documentService.currentDoc.guid);
+    }
+
     this.chatPolling = setInterval(() => {
       setTimeout(() => { // hack?
         this.getLogData(true);

@@ -587,6 +587,13 @@ export class DocumentService {
     return collaborators;
   }
 
+  // called after you sign to the blockchain
+  async lockCurrentDocument(){
+    this.currentDoc.isCompleted = true;
+    let resp = await this.updateDocument(this.currentDoc.guid, this.currentDoc);
+    return resp;
+  }
+
 
   //#endregion
 

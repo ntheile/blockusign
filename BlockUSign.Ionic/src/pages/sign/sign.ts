@@ -109,6 +109,7 @@ export class SignPage {
     // this.navCtrl.push("ReviewPage", {
     //   guid: this.documentService.currentDoc.guid
     // });
+    
     await this.blockPdf.saveSvg();
     this.blockSteps.route("ReviewPage");
   }

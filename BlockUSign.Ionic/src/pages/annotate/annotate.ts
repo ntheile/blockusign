@@ -53,12 +53,16 @@ export class AnnotatePage {
   }
 
   async next (){
-    await this.blockPdf.saveSvg();
+    if (this.documentService.currentDoc.isCompleted == false){
+      await this.blockPdf.saveSvg();
+    }
     this.blockSteps.route('EmailPage');
   }
 
   async back (){
-    await this.blockPdf.saveSvg();
+    if (this.documentService.currentDoc.isCompleted == false){
+      await this.blockPdf.saveSvg();
+    }
     this.blockSteps.route('HomePage');
   }
 

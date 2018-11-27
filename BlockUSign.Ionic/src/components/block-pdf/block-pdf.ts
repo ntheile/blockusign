@@ -332,6 +332,15 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.loadPdf(pdfData); // loads the pdf to the screen with the text layers
 
+    if (this.documentService.currentDoc.isCompleted){
+      console.log('This document is locked ' + this.documentService.currentDoc.guid);
+      this.locked = true;
+      // @ts-ignore
+      this.showToolBar = false;
+      
+      
+    }
+
   }
 
   back() {
@@ -484,6 +493,12 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   async saveSvg() {
+
+    // if it's locked then do not save
+    if (this.documentService.currentDoc.isCompleted){
+      return;
+    }
+
    
     let svg = "";
     $(".dragOn-drawArea").each(function () {
@@ -590,7 +605,7 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
     try{
       let collaborators  = await this.documentService.getCollaborators(this.documentService.currentDoc.guid);
       if (collaborators){
-        let notMe = collaborators.filter(f=>f.createdBy != me);
+        let notMe = collaborators.filter(f=>f.userId != me);
         ownerEmail = notMe[(notMe.length - 1)].email;
       }
     } catch(e){

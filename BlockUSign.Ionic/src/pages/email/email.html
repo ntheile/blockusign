@@ -15,11 +15,17 @@
   </section>
   <div style="clear:both"></div>
 
-  <p class="no-print" padding>
+  <div *ngIf="documentService.currentDoc && documentService.currentDoc.isCompleted">
+      <ion-icon name="md-lock" style="margin-left: 50px; color: grey; font-size: 25px"></ion-icon> 
+      <span style="margin-left: 5px; color: grey; font-size: 25px">Locked</span>
+  </div>
+  
+
+  <p class="no-print" padding  *ngIf="documentService.currentDoc && !documentService.currentDoc.isCompleted">
     How do you want to send the document to your signer(s)?
   </p>
 
-  <div style="max-width:600px">
+  <div style="max-width:600px" *ngIf="documentService.currentDoc && !documentService.currentDoc.isCompleted">
     <div>
       <ion-segment [(ngModel)]="choice">
         <!-- <ion-segment-button selected value="blockstack">
