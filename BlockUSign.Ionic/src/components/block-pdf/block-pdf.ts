@@ -47,7 +47,7 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
   //@ViewChild(AbsoluteDragDirective) vc: AbsoluteDragDirective;
   svgDrawer;
 
-  @Input() showToolBar = 0;
+  @Input() showToolBar:any = 0;
   @Input() locked = false;
   @Input() showSignature: 0;
   @Input() showSignHere: 0;
@@ -335,10 +335,7 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.documentService.currentDoc.isCompleted){
       console.log('This document is locked ' + this.documentService.currentDoc.guid);
       this.locked = true;
-      // @ts-ignore
       this.showToolBar = false;
-      
-      
     }
 
   }
