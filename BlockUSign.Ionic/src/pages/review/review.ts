@@ -93,13 +93,13 @@ export class ReviewPage {
 
   async getHash(){
     try{
-      this.hash = await this.documentService.getMerkleHash();
+        this.hash = await this.documentService.getMerkleHash();
+        this.getCollaborators();
     }
     catch(e){
       alert('Please make sure you signed and saved the document. Go back to the "e-sign" page');
     }
 
-    this.getCollaborators();
    
   }
 
