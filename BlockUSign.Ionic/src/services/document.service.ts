@@ -564,6 +564,14 @@ export class DocumentService {
 
     for (let collaborator of myCollaborators){
       let subdomainName = guid;
+      let email = null;
+      try{
+        let emailList = log.messages.filter(e=>e.createdBy == collaborator);
+        email = emailList[(emailList.length - 1)].email;
+      } catch(e){
+        console.error('failed to get email in getCollaborators ', e );
+      }
+      
       if (i != 0){
         subdomainName = (i - 1).toString() + guid;
       }
@@ -571,7 +579,8 @@ export class DocumentService {
         userId: collaborator,
         avatar: await this.blockStackService.getPicUrl(collaborator),
         subdomainName: subdomainName,
-        isVerified: false
+        isVerified: false,
+        email: email
       });
       i++;
     }

@@ -112,6 +112,7 @@ export class BlockStackService {
       // try to decrypt email
       if(typeof(myProfile.email) == "string" ){
         let decryptedEmail = await this.decryptEmail(myProfile.email, emailKey);
+        myProfile.email = decryptedEmail;
       }
       else{
         myProfile.email = undefined;
@@ -122,6 +123,7 @@ export class BlockStackService {
       this.userId = blockstack.loadUserData().username || '';
       this.userName = blockstack.loadUserData().username || '';
       this.profileName = blockstack.loadUserData().profile.name || '';
+      
     }
 
     return JSON.stringify(this.profile);

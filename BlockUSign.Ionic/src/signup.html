@@ -5,6 +5,9 @@
     <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <style>
+        ::-moz-selection { background: #7289DA; }
+        ::selection { background: #7289DA; }
+
         @import "https://fonts.googleapis.com/css?family=Open+Sans:300,400";
         header,
         section.sponsors,
@@ -348,8 +351,9 @@
                         <img src="./assets//imgs/blockusignLogoHiRes.png" width="75px" />
                         <img src="./assets//imgs/blockusignTextLoRes.png" width="225px" style="padding-left: 10px" />
 
-                        <h1>Simple. Social. Secure Document Signing</h1>
-
+                        <h1>Secure Document Signing and Verification</h1>
+                        <h1>Powered by the Blockchain</h1>
+                       
                         <p class="desc-text"> A decentralized (dApp) social document signing tool where you own and control your own documents,
                             contracts and data.
                         </p>
@@ -447,7 +451,7 @@
             <center>
                 <p style="color:white;">
                     It's built on
-                    <a href="https://blockstack.org/" target="_blank" style="color:white;">BlockStack</a>
+                    <a href="https://blockstack.org/" target="_blank" style="color:white;">Blockstack</a>
                 </p>
                 <p style="color:white;">
 
@@ -547,12 +551,11 @@
                     <h1 class="title">(6) Finalize - Save the document as a Smart Contract to the Blockchain</h1>
                     <p class="description">
                         Finalize the document as a legally binding agreement by saving it's hash as a smart contract to the blockchain. It's like
-                        a digital notary and is signed and timestamped using the
-                        <a style="color: whitesmoke" href="https://en.wikipedia.org/wiki/Proof_of_Existence" target="_blank">Proof of Existance protocol.</a>
-                        The hash of the document is sent to a smart contract where both parties digtally and cryptographically sign it.
+                        a digital notary and is signed and timestamped.
+                        The hash of the document is sent to a smart contract where both parties digitally and cryptographically sign it.
                     </p>
                     <p class="description">
-                        The hash is stored on an immutable ledger. Security is maintained because the actual document is never stored on the blockchain.
+                        The hash is stored on an immutable ledger (currently bitcoin). Security is maintained because the actual document is never stored on the blockchain.
                         Even if one tiny space is added to the document after it's signed, it will not match, thus proving
                         the document was changed or tampered with.
                     </p>
@@ -598,6 +601,20 @@
         <br/>
         <a class="btn" href="https://github.com/automerge/automerge" style="color: bloack;text-decoration: none;font-size: 1.5rem;"
             target="_blank">Learn more about automerge.js</a>
+        <br/>
+        <br/>
+
+        <br/>
+        <br/>
+        <h1 style="color:black">How is it "powered by the blockchain"?</h1>
+        <p style="max-width:600px; color: black; margin-right: auto; margin-left: auto; text-align: left" class="description">
+            Blockusign anchors hashes to the blockchain. It uses blockstack subdomains as the layer 2 solution to batch hashes and 
+            deliver them to the bitcoin blockchain. We call this the "Blockusign Virtual Side Chain". 
+            It's used for document hash and digital signature verification. It's also used for immutable storage. See this for technical reference:
+            <a src="https://github.com/ntheile/blockusign/issues/58" target="_blank">https://github.com/ntheile/blockusign/issues/58</a>
+        </p>
+        
+        
         <br/>
         <br/>
     </section>

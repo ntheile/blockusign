@@ -439,10 +439,10 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
           });
 
           // Set text-fragments
-          textLayer.setTextContent(textContent);
+          // textLayer.setTextContent(textContent);
 
           // Render text-fragments
-          textLayer.render();
+          // textLayer.render();
 
         });
 

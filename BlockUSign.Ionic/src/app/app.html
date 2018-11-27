@@ -65,10 +65,10 @@
             <ul class="channels-list-text">
               <div *ngFor="let item of documentsList">
                 <li [ngClass]="(item == documentService.currentDoc) ? 'channel focusable channel-text active ' : 'channel focusable channel-text ' ">
-                  <span (click)="documentSelected($event, item)" style="width:90%">
+                  <span (click)="documentSelected($event, item)">
                     {{ item.fileName }}
                   </span>
-                  <button  ion-button icon-only style="padding: 1px 8px 1px 8px !important; margin-right: 0px !important; background: transparent; box-shadow: none; height: 100%;" (click)="presentPopover($event, item)">
+                  <button  ion-button icon-only (click)="presentPopover($event, item)">
                     <ion-icon name="more"></ion-icon>
                   </button>
                 </li>

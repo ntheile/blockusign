@@ -166,10 +166,10 @@ export class EmailPage {
     // add as signer
     this.documentService.currentDoc.signer.push(this.email);    
     await this.documentService.updateDocument(this.documentService.currentDoc.guid, this.documentService.currentDoc)
-
+    let me = blockstack.loadUserData().username;
     this.documentLink = this.genLink();
-    let subject = this.blockStackService.profile.email + " has sent you a document to sign - " + this.documentService.currentDoc.fileName;
-    let content = "Please click this link and sign the document. Thanks! <br/><br/><a href='" + this.documentLink + "' >document link</a>";
+    let subject = me + " has sent you a document to sign - " + this.documentService.currentDoc.fileName;
+    let content = me + " has requested you sign the following document. <br/><br/><a href='" + this.documentLink + "' >"+this.documentService.currentDoc.fileName;+"</a> <br/><br/>Thanks, <br/>Blockusign";
     await this.emailService.sendEmail(this.email, subject, content);
 
     this.loading.dismiss();

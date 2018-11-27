@@ -215,7 +215,7 @@ export class BlockchainPage {
     this.showToastWithCloseButton(
       `Thank you! Your document has been queued. The digital signature will be saved to the 
       blockchain within the next 12 hours. We are in beta right now, but in production this will take around 10 minutes. Please check
-      back in about 12 hours to see the status`);
+      back in about 12 hours to see the status. You can periodoically check the status above by refreshing the page.`);
   }
 
   async verifyHash() {
@@ -440,6 +440,7 @@ export class BlockchainPage {
               let subject = me + " has sent you a document to verify, review and sign to the blockchain - " + fileName;
               let content = "Please review/verify and sign this document to the blockchain. <br/><br/><a href='" + link + "' >"+fileName+"</a> ";
               content = content + "<p>The document version/hash must match this to prove you are signing the same verions as " +me + ".</p> <br/>" + this.hash;
+              content = content + "<br/><br/>Thanks, <br/>Blockusign";
               this.emailService.sendEmail(data.email, subject, content);
               this.presentSignToBlockChain();
             }

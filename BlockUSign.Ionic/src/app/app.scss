@@ -232,6 +232,7 @@
       display: flex;
       flex-direction: column;
       flex: 0 0 240px;
+
       
       .channels-header
       {
@@ -288,8 +289,17 @@
           align-items: center;
           padding: 8px 20px 10px 20px;
           opacity: 0.6;
-          width: 100%;
-                  
+          width: 240px;
+          
+         
+          span{
+            width: 90%;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+
+          }
+        
           .button
           {
               //display: none;
@@ -299,6 +309,15 @@
               {
                   opacity: 1;
               }
+
+              width: 10%;
+              height: 22px;
+
+              padding: 1px 8px 1px 8px !important; 
+              margin-right: 0px !important; 
+              background: transparent; 
+              box-shadow: none; 
+              justify-content: flex-end;
           }
           
           &.active, &:hover, &:focus
@@ -319,12 +338,7 @@
               margin-left: auto;
               margin-right: 8px;
           }
-          
-          .button
-          {
-              width: 16px;
-              height: 16px;
-          }
+
       }
       
       .channel-text
