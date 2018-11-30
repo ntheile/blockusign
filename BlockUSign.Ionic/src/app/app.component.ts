@@ -14,6 +14,7 @@ import moment from 'moment-timezone';
 import 'rxjs/add/operator/toPromise';
 import { LoadingController } from 'ionic-angular';
 import { prototype } from 'long';
+import { handleOAuthFlow, decryptPayload, getCollection, getFile as getGraphiteFile } from 'graphite-docs';
 declare let blockstack: any;
 declare let document: any;
 declare var window: any;
@@ -85,6 +86,7 @@ export class MyApp {
   }
 
   initializeApp() {
+
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -97,7 +99,24 @@ export class MyApp {
       this.splashScreen.hide();
       this.showProfile();
       this.setupDiscordMenu();
+      if(window.location.href.includes('response')) {
+        const payload = JSON.parse(decryptPayload(window.location.href.split('response=')[1]));
+        console.log(payload);
+        const hub = JSON.parse(payload.gaiaConfig)
+        console.log(hub);
+        const object = {};
+        object.docType = "documents";
+        object.privateKey = payload.private;
+        object.storagePath = hub.url_prefix + hub.address;
+        console.log(object);
 
+        getCollection(object).then(data => {
+          document.getElementById('graphite-modal').style.display = 'block';
+          window.graphiteDocs = data;
+          console.log(window.graphiteDocs);
+          window.checkDocs();
+        })
+      }
     });
   }
 
@@ -323,6 +342,16 @@ export class MyApp {
         $(".channel-text.active")[0].classList.remove("active");
         el.classList.add("active");
       });
+    })
+
+    $(".graphite")[0].addEventListener("click", e => {
+      e.preventDefault();
+      const object = {};
+      object.targetURI = 'http://localhost:3000/oauth/verify'
+      object.appName = "Blockusign";
+      object.redirectURI = "http://localhost:8100";
+
+      handleOAuthFlow(object)
     })
 
     // focus/blur on channel header click
