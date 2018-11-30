@@ -104,7 +104,7 @@ export class MyApp {
         console.log(payload);
         const hub = JSON.parse(payload.gaiaConfig)
         console.log(hub);
-        const object = {};
+        const object:any = {};
         object.docType = "documents";
         object.privateKey = payload.private;
         object.storagePath = hub.url_prefix + hub.address;
@@ -346,8 +346,8 @@ export class MyApp {
 
     $(".graphite")[0].addEventListener("click", e => {
       e.preventDefault();
-      const object = {};
-      object.targetURI = 'http://localhost:3000/oauth/verify'
+      const object: any = {};
+      object.targetURI = 'https://app.graphitedocs.com/oauth/verify'
       object.appName = "Blockusign";
       object.redirectURI = "http://localhost:8100";
 
