@@ -31,9 +31,9 @@
                         {{ collaborator.signer[0].charAt(0).toUpperCase() }}
                       </div>
                       <span>{{ collaborator.signer[0] }}</span>
-                    </div>
+                    </div> 
               </div>
-
+             
             </div>
           </div>
         </aside>
@@ -45,22 +45,18 @@
             <img src="./assets/imgs/blockusignTextLoRes.png" (click)="home()" width="120px" style="padding-left: 12px; padding-top: 10px" />
             <h3 role="header" class="channels-header-name" style="padding-right: 10px;"></h3>
           </header>
-          <button
-            class='graphite'
-            ion-button icon-end
-            style="float:right;width:100%;background-color:green; color:white; border-radius: 30px; margin-bottom: 20px; margin-top: 20px">
-            Import from Graphite
-          </button>
           <section class="channels-list">
+
             <section >
-              <button
-                ion-button icon-end
+              <button 
+                ion-button icon-end 
                 style="float:right;width:100%;background-color:green; color:white; border-radius: 30px; margin-bottom: 20px; margin-top: 20px">
                 New Doc
                 <ion-icon name="md-add"></ion-icon>
               </button>
-
             </section>
+
+
 
             <header class="channels-list-header" (click)="upload()">
               <span>Documents</span>
@@ -78,6 +74,7 @@
                 </li>
               </div>
             </ul>
+
 
             <header class="channels-list-header focusable" style="margin-top:50px" (click)="copyBtc()">
               <span>Donate</span>
