@@ -77,10 +77,11 @@ export class HomePage {
         //this.initCamera();
        
         this.ekUpload();
-        
-        
 
-
+        if (localStorage.getItem('graphitePdf')){
+            this.loadFileFromBlob(localStorage.getItem('graphitePdf'), localStorage.getItem('graphiteName'));
+        }
+        
         //let docs = await this.documentService.getDocumentsIndex(true)
         //this.testPublicKeyFile();
     }
@@ -172,6 +173,21 @@ export class HomePage {
             this.createPdf(pdfData);
         };
         reader.readAsArrayBuffer(blob);
+    }
+
+    loadFileFromBlob(blob, fileName) {
+        setTimeout(()=>{
+            document.getElementById('globalLoading').style.display = "";
+        }, 300);
+        this.loading.present();
+        localStorage.setItem("FileName", fileName);
+        let pdfData = this.base64ToUint8Array(blob);
+        this.pdfBuffer = pdfData.buffer;
+        this.savePdfAsString(pdfData);
+        this.createPdf(pdfData);
+        this.saveFile(fileName);
+        localStorage.removeItem('graphitePdf');
+        localStorage.removeItem('graphiteName');
     }
 
     createPdf(pdfData) {
@@ -524,6 +540,17 @@ export class HomePage {
     spinShow(){
         this.isSpinning = true;
     }
+
+    base64ToUint8Array(base64) {
+        var raw = atob(base64);
+        var uint8Array = new Uint8Array(raw.length);
+        for (var i = 0; i < raw.length; i++) {
+        uint8Array[i] = raw.charCodeAt(i);
+        }
+        return uint8Array;
+    }
+    
+       
 
 }
 

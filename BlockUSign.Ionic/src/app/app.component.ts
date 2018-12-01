@@ -518,6 +518,12 @@ export class MyApp {
 
 }
 
+ 
+  importFromGraphite(){
+    this.nav.setRoot("HomePage");
+    this.nav.push("GraphitePage");
+  }
+
 }
 
 

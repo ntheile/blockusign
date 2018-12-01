@@ -1105,6 +1105,10 @@
     .nyancat {
         left: -70% !important;    
     }
+
+    .live-chat {
+		zoom: 0.77;
+	}
 }
 
 @media screen and (min-width: 1050px) {
@@ -1114,6 +1118,10 @@
     .nyancat {
         left: -60% !important;
     }
+
+    .live-chat {
+		zoom: 0.77;
+	}
 
 }
 
@@ -1132,10 +1140,10 @@
     }
 
     .live-chat {
-		zoom: 0.8;
+		zoom: 0.77;
 	}
 	.grid {
-		zoom: 0.8;
+		zoom: 0.77;
     }
     
     .nyancat {
@@ -1226,4 +1234,17 @@
       border-radius: 50%;
       opacity: .85;
       padding: 10px 10px 10px 10px;
+  }
+
+  .import-graphite{
+    border-radius: 30px !important;
+    font-size: 12px !important;
+    background-color: transparent;
+    padding: 3px 3px 3px 3px;
+    color: white;
+    text-align: center;
+  }
+
+  .import-graphite:hover{
+    opacity: .8;
   }
