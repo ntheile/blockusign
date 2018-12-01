@@ -8,31 +8,25 @@
   <meta name="viewport" content="viewport-fit=cover, initial-scale=1.0, minimum-scale=.5, maximum-scale=1.5, user-scalable=yes">
   <meta name="format-detection" content="telephone=no">
   <meta name="msapplication-tap-highlight" content="no">
-
-  <!-- <script type="text/javascript">
-    var appInsights=window.appInsights||function(a){
-      function b(a){c[a]=function(){var b=arguments;c.queue.push(function(){c[a].apply(c,b)})}}var c={config:a},d=document,e=window;setTimeout(function(){var b=d.createElement("script");b.src=a.url||"https://az416426.vo.msecnd.net/scripts/a/ai.0.js",d.getElementsByTagName("script")[0].parentNode.appendChild(b)});try{c.cookie=d.cookie}catch(a){}c.queue=[];for(var f=["Event","Exception","Metric","PageView","Trace","Dependency"];f.length;)b("track"+f.pop());if(b("setAuthenticatedUserContext"),b("clearAuthenticatedUserContext"),b("startTrackEvent"),b("stopTrackEvent"),b("startTrackPage"),b("stopTrackPage"),b("flush"),!a.disableExceptionTracking){f="onerror",b("_"+f);var g=e[f];e[f]=function(a,b,d,e,h){var i=g&&g(a,b,d,e,h);return!0!==i&&c["_"+f](a,b,d,e,h),i}}return c
-      }({
-          instrumentationKey:"09525095-4a2e-4654-ac6a-330f3c84047c"
-      });
-      
-    window.appInsights=appInsights,appInsights.queue&&0===appInsights.queue.length&&appInsights.trackPageView();
-  </script> -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.23.0/polyfill.min.js"></script>
-
-
-  <link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico">
-  <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#4e8ef7">
-
   <!-- add to homescreen for ios -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
+
+  <link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico">
+  <link rel="manifest" href="manifest.json">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu:700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Cedarville+Cursive" rel="stylesheet">
+  <link href="build/main.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.480/pdf_viewer.css" rel="stylesheet">
+  <link href="./assets/text_layer_builder.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="./assets/spectrum.css">
+  <link href='https://fonts.googleapis.com/css?family=Glegoo' rel='stylesheet' type='text/css'>
+  <link href='./assets/ng-select.material.theme.css' rel='stylesheet' type='text/css'>
+  
   <!-- cordova.js required for cordova apps (remove if not needed) -->
   <!-- <script src="cordova.js"></script> -->
-
 
   <!-- un-comment this code to enable service worker -->
   <script>
@@ -53,145 +47,124 @@
       }
     </script>
 
-  <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Ubuntu:700" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Cedarville+Cursive" rel="stylesheet">
-
-
-  <link href="build/main.css" rel="stylesheet">
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.480/pdf_viewer.js"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.480/pdf_viewer.css" rel="stylesheet">
-
-  <script src="./assets/text_layer_builder.js"></script>
-  <link href="./assets/text_layer_builder.css" rel="stylesheet">
-  <script src="./assets/spectrum.js"></script>
-  <link rel="stylesheet" type="text/css" href="./assets/spectrum.css">
-
-
-
-  <script>
-    //pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://mozilla.github.io/pdf.js/build/pdf.worker.js';
-    PDFJS = pdfjsLib;
-    PDFJS.DefaultTextLayerFactory = DefaultTextLayerFactory;
-
-    function guid() {
-      function s4() {
-        return Math.floor((1 + Math.random()) * 0x10000)
-          .toString(16)
-          .substring(1);
-      }
-      return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-    }
-
-
-    Array.prototype.remove = function () {
-      var what, a = arguments, L = a.length, ax;
-      while (L && this.length) {
-        what = a[--L];
-        while ((ax = this.indexOf(what)) !== -1) {
-          this.splice(ax, 1);
-        }
-      }
-      return this;
-    };
-
-    function getQueryParam(name, url) {
-      if (!url) url = window.location.href;
-      name = name.replace(/[\[\]]/g, "\\$&");
-      var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-      if (!results) return null;
-      if (!results[2]) return '';
-      return decodeURIComponent(results[2].replace(/\+/g, " "));
-    }
-
-
-    var beforePrint = function () {
-      console.log('b4 print');
-      $(".block-pdf-page > .scroll-content:first").scrollTop(0, 0)
-      $("body").height($("#svg-dropzone").height());
-      $("ion-app").height($("#svg-dropzone").height());
-      $("ion-content").height($("#svg-dropzone").height());
-      $("ng-component").height($("#svg-dropzone").height());
-      $("ion-split-pane").height($("#svg-dropzone").height());
-      $("ion-nav").height($("#svg-dropzone").height());
-      $("page-annotate").height($("#svg-dropzone").height());
-      $("page-email").height($("#svg-dropzone").height());
-      $("page-home").height($("#svg-dropzone").height());
-      $("page-review").height($("#svg-dropzone").height());
-      $("page-sign").height($("#svg-dropzone").height());
-      $(".scroll-content").height($("#svg-dropzone").height());
-      $(".page").css('margin-top', '0px');
-    };
-
-    var afterPrint = function () {
-      console.log('after print');
-      $("body").removeAttr("style");
-      $("ion-app").removeAttr("style");
-      $("ion-content").removeAttr("style");
-      $("ng-component").removeAttr("style");
-      $("ion-split-pane").removeAttr("style");
-      $("ion-nav").removeAttr("style");
-      $("page-annotate").removeAttr("style");
-      $("page-email").removeAttr("style");
-      $("page-home").removeAttr("style");
-      $("page-review").removeAttr("style");
-      $("page-sign").removeAttr("style");
-      $(".scroll-content").removeAttr("style");
-      $(".page").css('margin-top', '130px');
-    };
-
-    if (window.matchMedia) {
-      var mediaQueryList = window.matchMedia('print');
-
-      mediaQueryList.addListener(function (mql) {
-        //alert($(mediaQueryList).html());
-        if (mql.matches) {
-          beforePrint();
-        } else {
-          afterPrint();
-        }
-      });
-    }
-
-    window.onbeforeprint = beforePrint;
-    window.onafterprint = afterPrint;
-
-  </script>
-
-  <script src="./assets/pdf-annotate.js"></script>
-  <script src="./assets/blockstack.js"></script>
-  <script src="./assets/bitcoinjs-lib.js"></script>
-  <script src="./assets/parseZoneFile.js"></script>
-
-  <link href='https://fonts.googleapis.com/css?family=Glegoo' rel='stylesheet' type='text/css'>
-
-  <link href='./assets/ng-select.material.theme.css' rel='stylesheet' type='text/css'>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/interact.js/1.2.9/interact.min.js"></script>
-  <script src="./assets/dragOn.js"></script>
-  <script src="./assets/sjcl.js"></script>
-  <script src="./assets/ccmArrayBuffer.js"></script>
-  <script src="./assets/codecArrayBuffer.js"></script>
-  <script src="./assets/jslinq.min.js"></script>
-  <script src="https://cdn.rawgit.com/julianshapiro/blast/master/jquery.blast.min.js"></script>
-
+ 
 
 </head>
 
 <body>
 
-
-
-
   <!-- Ionic's root component and where the app will load -->
   <ion-app>
-
-
-
   </ion-app>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.23.0/polyfill.min.js"></script>
+  <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.480/pdf_viewer.js"></script>
+  <script src="./assets/text_layer_builder.js"></script>
+  <script src="./assets/spectrum.js"></script>
+  <script>
+      //pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://mozilla.github.io/pdf.js/build/pdf.worker.js';
+      PDFJS = pdfjsLib;
+      PDFJS.DefaultTextLayerFactory = DefaultTextLayerFactory;
+  
+      function guid() {
+        function s4() {
+          return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+        }
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+      }
+  
+  
+      Array.prototype.remove = function () {
+        var what, a = arguments, L = a.length, ax;
+        while (L && this.length) {
+          what = a[--L];
+          while ((ax = this.indexOf(what)) !== -1) {
+            this.splice(ax, 1);
+          }
+        }
+        return this;
+      };
+  
+      function getQueryParam(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+      }
+  
+  
+      var beforePrint = function () {
+        console.log('b4 print');
+        $(".block-pdf-page > .scroll-content:first").scrollTop(0, 0)
+        $("body").height($("#svg-dropzone").height());
+        $("ion-app").height($("#svg-dropzone").height());
+        $("ion-content").height($("#svg-dropzone").height());
+        $("ng-component").height($("#svg-dropzone").height());
+        $("ion-split-pane").height($("#svg-dropzone").height());
+        $("ion-nav").height($("#svg-dropzone").height());
+        $("page-annotate").height($("#svg-dropzone").height());
+        $("page-email").height($("#svg-dropzone").height());
+        $("page-home").height($("#svg-dropzone").height());
+        $("page-review").height($("#svg-dropzone").height());
+        $("page-sign").height($("#svg-dropzone").height());
+        $(".scroll-content").height($("#svg-dropzone").height());
+        $(".page").css('margin-top', '0px');
+      };
+  
+      var afterPrint = function () {
+        console.log('after print');
+        $("body").removeAttr("style");
+        $("ion-app").removeAttr("style");
+        $("ion-content").removeAttr("style");
+        $("ng-component").removeAttr("style");
+        $("ion-split-pane").removeAttr("style");
+        $("ion-nav").removeAttr("style");
+        $("page-annotate").removeAttr("style");
+        $("page-email").removeAttr("style");
+        $("page-home").removeAttr("style");
+        $("page-review").removeAttr("style");
+        $("page-sign").removeAttr("style");
+        $(".scroll-content").removeAttr("style");
+        $(".page").css('margin-top', '130px');
+      };
+  
+      if (window.matchMedia) {
+        var mediaQueryList = window.matchMedia('print');
+  
+        mediaQueryList.addListener(function (mql) {
+          //alert($(mediaQueryList).html());
+          if (mql.matches) {
+            beforePrint();
+          } else {
+            afterPrint();
+          }
+        });
+      }
+  
+      window.onbeforeprint = beforePrint;
+      window.onafterprint = afterPrint;
+  
+    </script>
+  
+    <script src="./assets/pdf-annotate.js"></script>
+    <script src="./assets/blockstack.js"></script>
+    <script src="./assets/bitcoinjs-lib.js"></script>
+    <script src="./assets/parseZoneFile.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/interact.js/1.2.9/interact.min.js"></script>
+    <script src="./assets/dragOn.js"></script>
+    <script src="./assets/sjcl.js"></script>
+    <script src="./assets/ccmArrayBuffer.js"></script>
+    <script src="./assets/codecArrayBuffer.js"></script>
+    <script src="./assets/jslinq.min.js"></script>
+    <script src="https://cdn.rawgit.com/julianshapiro/blast/master/jquery.blast.min.js"></script>
+  
 
   <!-- The polyfills js is generated during the build process -->
   <script src="build/polyfills.js"></script>

@@ -45,6 +45,7 @@ export class HomePage {
     cameraContext: any;
     loading;
     isSpinning = false;
+   
 
     @ViewChild("fileUploadForm") fileUploadForm: ElementRef;
     @ViewChild("fileUpload") fileUpload: ElementRef;
@@ -73,13 +74,20 @@ export class HomePage {
 
     async ionViewDidLoad() {
 
+        document.getElementById('globalLoading').style.display = "none";
+        $(".cheapload").hide();
         this.spinHide();
         //this.initCamera();
        
         this.ekUpload();
 
         if (localStorage.getItem('graphitePdf')){
-            this.loadFileFromBlob(localStorage.getItem('graphitePdf'), localStorage.getItem('graphiteName'));
+            document.getElementById('globalLoading').style.display = "";
+            this.loading.present();
+            setTimeout( () =>{ // hack to avoid screen freeze
+                this.loadFileFromBlob(localStorage.getItem('graphitePdf'), localStorage.getItem('graphiteName'));
+            } , 300);
+           
         }
         
         //let docs = await this.documentService.getDocumentsIndex(true)
@@ -97,9 +105,13 @@ export class HomePage {
 
     async saveFile(fileName) {
         this.spinShow();
+        this.loading.present();
+       
         let documentList = await this.documentService.addDocument(fileName, this.pdfBuffer);
         this.spinHide();
+        this.loading.dismiss();
         this.next();
+ 
     }
 
     async getFile() {
@@ -109,11 +121,7 @@ export class HomePage {
 
     loadFile() {
 
-        setTimeout(()=>{
-            document.getElementById('globalLoading').style.display = "";
-        }, 300);
-
-        this.loading.present();
+        
 
         //let fileInput: any = document.getElementById('file-upload');
         let fileInput = this.fileUpload.nativeElement;
@@ -176,9 +184,9 @@ export class HomePage {
     }
 
     loadFileFromBlob(blob, fileName) {
-        setTimeout(()=>{
-            document.getElementById('globalLoading').style.display = "";
-        }, 300);
+       
+        document.getElementById('globalLoading').style.display = "";
+        
         this.loading.present();
         localStorage.setItem("FileName", fileName);
         let pdfData = this.base64ToUint8Array(blob);
@@ -289,9 +297,11 @@ export class HomePage {
             // Process all File objects
             for (var i = 0, f; f = files[i]; i++) {
                 // parseFile(f);
-                self.loadFile();
-                
-
+                document.getElementById('globalLoading').style.display = "";
+                this.loading.present();
+                setTimeout( () =>{ // hack to avoid screen freeze
+                    self.loadFile();
+                } , 200);
             }
         }
 
