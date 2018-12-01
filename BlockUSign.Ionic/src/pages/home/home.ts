@@ -75,7 +75,6 @@ export class HomePage {
     async ionViewDidLoad() {
 
         document.getElementById('globalLoading').style.display = "none";
-        $(".cheapload").hide();
         this.spinHide();
         //this.initCamera();
        
@@ -84,10 +83,7 @@ export class HomePage {
         if (localStorage.getItem('graphitePdf')){
             document.getElementById('globalLoading').style.display = "";
             this.loading.present();
-            setTimeout( () =>{ // hack to avoid screen freeze
-                this.loadFileFromBlob(localStorage.getItem('graphitePdf'), localStorage.getItem('graphiteName'));
-            } , 300);
-           
+            this.loadFileFromBlob(localStorage.getItem('graphitePdf'), localStorage.getItem('graphiteName'));
         }
         
         //let docs = await this.documentService.getDocumentsIndex(true)
@@ -184,18 +180,16 @@ export class HomePage {
     }
 
     loadFileFromBlob(blob, fileName) {
-       
-        document.getElementById('globalLoading').style.display = "";
-        
-        this.loading.present();
+               
         localStorage.setItem("FileName", fileName);
         let pdfData = this.base64ToUint8Array(blob);
         this.pdfBuffer = pdfData.buffer;
         this.savePdfAsString(pdfData);
         this.createPdf(pdfData);
-        this.saveFile(fileName);
         localStorage.removeItem('graphitePdf');
         localStorage.removeItem('graphiteName');
+        this.saveFile(localStorage.getItem("FileName"));
+        
     }
 
     createPdf(pdfData) {
@@ -299,9 +293,7 @@ export class HomePage {
                 // parseFile(f);
                 document.getElementById('globalLoading').style.display = "";
                 this.loading.present();
-                setTimeout( () =>{ // hack to avoid screen freeze
-                    self.loadFile();
-                } , 200);
+                self.loadFile();
             }
         }
 
