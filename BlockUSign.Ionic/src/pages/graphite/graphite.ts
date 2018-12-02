@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { handleOAuthFlow, decryptPayload, getCollection, getFile, decryptContent } from 'graphite-docs';
+import { Http, RequestOptions } from '@angular/http';
+import 'rxjs/add/operator/toPromise';
+import { initDomAdapter } from '@angular/platform-browser/src/browser';
 declare let window: any;
 declare let blockstack: any;
 
@@ -23,22 +26,37 @@ export class GraphitePage {
   graphiteJWT;
   graphiteGaia;
 
+  httpOptions;
+
   constructor(
     public navParams: NavParams,
     public nav: NavController, 
+    public  http: Http,
   ) {
   }
 
   ionViewDidLoad() {
-    if(window.location.href.includes('response')) {
-      this.handleGraphiteRedirect();
-    }
-    else if(window.location.href.includes('username')){
+    this.init();
+  }
+
+  init(){
+   
+   if(window.location.href.includes('file')){
       this.fromGraphite();
+      return;
+    }
+    else if (window.location.href.includes('response')) {
+      this.handleGraphiteRedirect();
+      return;
+
     }
     else{
       this.importFromGraphite();
+      return;
+
     }
+
+    
   }
 
   importFromGraphite(){
@@ -73,20 +91,50 @@ export class GraphitePage {
       id: doc.id
     });
     console.log(pdf.link);
+    this.loadPdf(pdf);
+  }
+  
+  loadPdf(pdf){
     localStorage.setItem('graphitePdf', pdf.link.replace('data:application/pdf;base64,',''));
     localStorage.setItem('graphiteName', pdf.name);
     this.nav.setRoot("HomePage");
     this.nav.push("HomePage");
-  } 
+  }
 
   async fromGraphite() {
-    let fileId = this.getParameterByName("fileId", window.location.href);
-    fileId = fileId + ".json";
+    let fileId = this.getParameterByName("file", window.location.href);
+    let username = this.getParameterByName("user", window.location.href);
+    let appUrl = this.getParameterByName("app", window.location.href);
+    let decrypt = this.getParameterByName("decrypt", window.location.href);
     console.log('fileid', fileId);
-    getFile(fileId, {decrypt: false}).then((file) => {
-      let pdf = JSON.parse(decryptContent(file, {privateKey: blockstack.loadUserData().appPrivateKey}));
-      console.log(pdf);
-    });
+    this.httpOptions = new RequestOptions();
+    this.httpOptions.headers = new Headers(
+      {
+        'Content-Type': 'application/json'
+      }
+    );
+    let downloadUrl = "https://gaia-gateway.com/" + username + "/" + encodeURIComponent(appUrl) + "/" + fileId;
+    try{
+      let resp = await this.http.get(downloadUrl, this.httpOptions).toPromise();
+      let data = resp.json();
+      if(decrypt=="true"){
+        data = blockstack.decryptContent(JSON.stringify(data), {privateKey: blockstack.loadUserData().appPrivateKey});
+      }
+      console.log(data);
+
+      //now redirected pdf data payload to editor
+      if (data.type =="application/pdf"){
+        this.loadPdf(data);
+      }
+      else{
+        alert('must be data.type application/pdf ') ;
+      }
+     
+
+    }
+    catch(e){
+      console.error('error in fromGraphite ', e);
+    }
   }
 
   getParameterByName(name, url) {
