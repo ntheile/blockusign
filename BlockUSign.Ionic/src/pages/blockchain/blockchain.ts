@@ -175,6 +175,7 @@ export class BlockchainPage {
       myzoneFile.onStep = "4"
       this.mySubDomainName = myzoneFile.subdomainName;
       console.log("mySubDomainName", this.mySubDomainName);
+      this.signature = myzoneFile.zonefileJson.txt.find(n=>n.name == "signature").txt;
       return true;
     }
     else{
