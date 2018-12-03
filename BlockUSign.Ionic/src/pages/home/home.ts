@@ -45,7 +45,7 @@ export class HomePage {
     cameraContext: any;
     loading;
     isSpinning = false;
-   
+    isGraphite = false;
 
     @ViewChild("fileUploadForm") fileUploadForm: ElementRef;
     @ViewChild("fileUpload") fileUpload: ElementRef;
@@ -74,18 +74,19 @@ export class HomePage {
 
     async ionViewDidLoad() {
 
-        document.getElementById('globalLoading').style.display = "none";
         this.spinHide();
         //this.initCamera();
        
         this.ekUpload();
-
-        if (localStorage.getItem('graphitePdf')){
-            document.getElementById('globalLoading').style.display = "";
-            this.loading.present();
-            this.loadFileFromBlob(localStorage.getItem('graphitePdf'), localStorage.getItem('graphiteName'));
-        }
         
+        try{
+            if (localStorage.getItem('graphitePdf')){
+                this.isGraphite = true;
+            }
+        }
+        catch(e){}
+
+
         //let docs = await this.documentService.getDocumentsIndex(true)
         //this.testPublicKeyFile();
     }
@@ -101,13 +102,9 @@ export class HomePage {
 
     async saveFile(fileName) {
         this.spinShow();
-        this.loading.present();
-       
         let documentList = await this.documentService.addDocument(fileName, this.pdfBuffer);
         this.spinHide();
-        this.loading.dismiss();
         this.next();
- 
     }
 
     async getFile() {
@@ -117,7 +114,11 @@ export class HomePage {
 
     loadFile() {
 
-        
+        setTimeout(()=>{
+            document.getElementById('globalLoading').style.display = "";
+        }, 300);
+
+        this.loading.present();
 
         //let fileInput: any = document.getElementById('file-upload');
         let fileInput = this.fileUpload.nativeElement;
@@ -179,19 +180,6 @@ export class HomePage {
         reader.readAsArrayBuffer(blob);
     }
 
-    loadFileFromBlob(blob, fileName) {
-               
-        localStorage.setItem("FileName", fileName);
-        let pdfData = this.base64ToUint8Array(blob);
-        this.pdfBuffer = pdfData.buffer;
-        this.savePdfAsString(pdfData);
-        this.createPdf(pdfData);
-        localStorage.removeItem('graphitePdf');
-        localStorage.removeItem('graphiteName');
-        this.saveFile(localStorage.getItem("FileName"));
-        
-    }
-
     createPdf(pdfData) {
         // Loaded via <script> tag, create shortcut to access PDF.js exports.
         let pdfjsLib = window['pdfjs-dist/build/pdf'];
@@ -225,7 +213,10 @@ export class HomePage {
                 renderTask.then(() => {
                     console.log('Page rendered');
                     this.loading.dismiss();
-                    document.getElementById('globalLoading').style.display = "none";
+                    try{
+                        document.getElementById('globalLoading').style.display = "none";
+                    }
+                    catch(e){}
                 });
             });
 
@@ -291,9 +282,9 @@ export class HomePage {
             // Process all File objects
             for (var i = 0, f; f = files[i]; i++) {
                 // parseFile(f);
-                document.getElementById('globalLoading').style.display = "";
-                this.loading.present();
                 self.loadFile();
+                
+
             }
         }
 
@@ -503,8 +494,19 @@ export class HomePage {
             this.testGetFile(myPublicKey);
         }
 
+    }
 
-
+    loadFileFromGraphite() {
+        let blob =  localStorage.getItem('graphitePdf');
+        let fileName = localStorage.getItem('graphiteName')
+        localStorage.setItem("FileName", fileName);
+        let pdfData = this.base64ToUint8Array(blob);
+        this.pdfBuffer = pdfData.buffer;
+        this.savePdfAsString(pdfData);
+        this.createPdf(pdfData);
+        localStorage.removeItem('graphitePdf');
+        localStorage.removeItem('graphiteName');
+        this.saveFile(localStorage.getItem("FileName"));
     }
 
 
@@ -551,9 +553,6 @@ export class HomePage {
         }
         return uint8Array;
     }
-    
-       
 
 }
-
 

@@ -165,3 +165,19 @@
     
   }
   
+
+  .twitter-btn{
+      border-width: 1px;
+      border-style: solid;
+      border-color: #488aff;
+      color: #488aff;
+      background-color: transparent;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      border-radius: 50px;
+    padding: 10px 20px 10px 20px;
+  }
+
+  .twitter-btn:hover{
+    opacity: .7;
+  }

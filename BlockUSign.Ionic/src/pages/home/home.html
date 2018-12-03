@@ -8,7 +8,7 @@
     <ion-row class="uploader-row" >
       <ion-col>
       
-        <div >
+        <div *ngIf="!isGraphite">
           <!-- Upload  -->
           <form id="file-upload-form" #fileUploadForm class="uploader" onclick="document.getElementById('globalLoading').style.display = '';">
             <input id="file-upload" #fileUpload type="file" name="fileUpload" accept=".pdf" />
@@ -32,7 +32,8 @@
               </div>
             </label>
           </form>
-
+          
+       
 
 
         </div>
@@ -50,6 +51,10 @@
 
     <ion-row>
       <ion-col>
+          <div class="load-graphite" *ngIf="isGraphite">
+              <h3>Upload file from Graphite</h3>
+              <button (click)="loadFileFromGraphite()" class="twitter-btn">Next</button>
+            </div>
         <div>
           <br/>
           <canvas id="the-canvas" #theCanvas></canvas>

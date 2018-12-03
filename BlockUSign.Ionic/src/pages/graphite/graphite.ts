@@ -130,9 +130,7 @@ export class GraphitePage {
       else{
         alert('must be data.type application/pdf ') ;
       }
-     
-
-    }
+         }
     catch(e){
       console.error('error in fromGraphite ', e);
     }
