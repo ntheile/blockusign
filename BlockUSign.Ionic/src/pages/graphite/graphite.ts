@@ -119,6 +119,7 @@ export class GraphitePage {
       let data = resp.json();
       if(decrypt=="true"){
         data = blockstack.decryptContent(JSON.stringify(data), {privateKey: blockstack.loadUserData().appPrivateKey});
+        data = JSON.parse(data);
       }
       console.log(data);
 
