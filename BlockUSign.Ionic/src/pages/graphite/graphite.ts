@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { handleOAuthFlow, decryptPayload, getCollection, getFile, decryptContent } from 'graphite-docs';
 import { Http, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import { BitcoinService } from './../../services/bitcoin.service';
 import { initDomAdapter } from '@angular/platform-browser/src/browser';
 declare let window: any;
 declare let blockstack: any;
@@ -32,6 +33,7 @@ export class GraphitePage {
     public navParams: NavParams,
     public nav: NavController, 
     public  http: Http,
+    public bitcoinService: BitcoinService,
   ) {
   }
 
@@ -101,36 +103,38 @@ export class GraphitePage {
     this.nav.push("HomePage");
   }
 
+  // example redirect url
+  // http://localhost:8100/#/graphite?file=https://gaia.blockstack.org/hub/199HNXubFgCH2QUtXN9bEbousnrHtLTmG6/blockusign/1543803149107&decrypt=true
   async fromGraphite() {
-    let fileId = this.getParameterByName("file", window.location.href);
-    let username = this.getParameterByName("user", window.location.href);
-    let appUrl = this.getParameterByName("app", window.location.href);
+    let file = this.getParameterByName("file", window.location.href);
     let decrypt = this.getParameterByName("decrypt", window.location.href);
-    console.log('fileid', fileId);
-    this.httpOptions = new RequestOptions();
-    this.httpOptions.headers = new Headers(
-      {
-        'Content-Type': 'application/json'
-      }
-    );
-    let downloadUrl = "https://gaia-gateway.com/" + username + "/" + encodeURIComponent(appUrl) + "/" + fileId;
+    console.log('file', file);
+
     try{
-      let resp = await this.http.get(downloadUrl, this.httpOptions).toPromise();
+      
+      this.httpOptions = new RequestOptions();
+      this.httpOptions.headers = new Headers(
+        {
+          'Content-Type': 'application/json'
+        }
+      );
+      let resp = await this.http.get(file, this.httpOptions).toPromise();
       let data = resp.json();
       if(decrypt=="true"){
         data = blockstack.decryptContent(JSON.stringify(data), {privateKey: blockstack.loadUserData().appPrivateKey});
-        data = JSON.parse(data);
       }
+      data = JSON.parse(data);
       console.log(data);
 
       //now redirected pdf data payload to editor
       if (data.type =="application/pdf"){
+        console.log("pdf link ", data.link);
         this.loadPdf(data);
       }
       else{
-        alert('must be data.type application/pdf ') ;
+       alert('must be data.type application/pdf ') ;
       }
-         }
+     }
     catch(e){
       console.error('error in fromGraphite ', e);
     }
