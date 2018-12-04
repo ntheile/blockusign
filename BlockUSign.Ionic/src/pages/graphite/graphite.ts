@@ -120,13 +120,15 @@ export class GraphitePage {
       );
       let resp = await this.http.get(file, this.httpOptions).toPromise();
       let data = resp.json();
+      console.log('graphite data', data);
       if(decrypt=="true"){
         data = blockstack.decryptContent(JSON.stringify(data), {privateKey: blockstack.loadUserData().appPrivateKey});
       }
       data = JSON.parse(data);
-      console.log(data);
+      console.log('graphite data parsed', data);
 
       //now redirected pdf data payload to editor
+      console.log("pdf type ", data.type);
       if (data.type =="application/pdf"){
         console.log("pdf link ", data.link);
         this.loadPdf(data);
