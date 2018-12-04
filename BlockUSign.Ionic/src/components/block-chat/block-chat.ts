@@ -155,7 +155,9 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
         for (let item of orderedMessages) {
   
           let d = item.updatedAt;
-          let formatDate = moment(d).calendar(d);
+          let formatDate = moment(d).calendar(null, {
+            sameElse: 'MMMM Do,YYYY hh:mm a'
+        });
   
           let uid = item.createdBy;
           try {
