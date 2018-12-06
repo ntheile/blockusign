@@ -132,7 +132,7 @@
        
 
         <h6>Step 1 - <ion-icon *ngIf="onStep >= 1" name="md-checkmark-circle" style="margin-left: 2px; color: green "></ion-icon>
-           Propegate to Subdomains Registrar </h6>
+           Propagate to Subdomains Registrar </h6>
         <p><a *ngIf="mySubDomainName" href="https://blockusign-subdomains.azurewebsites.net/status/{{mySubDomainName}}" target="_blank">
           https://blockusign-subdomains.azurewebsites.net/status/{{mySubDomainName}}</a></p>
       
@@ -141,7 +141,7 @@
         <p [innerHTML]="subdomainsStatus"></p>
 
         <h6>Step 3 - <ion-icon *ngIf="onStep >= 3" name="md-checkmark-circle" style="margin-left: 2px; color: green "></ion-icon>
-          Propegate zonefile hash to Blockstack Atlas P2P network</h6>
+          Propagate zonefile hash to Blockstack Atlas P2P network</h6>
         <a *ngIf="mySubDomainName" href="https://core.blockstack.org/v1/names/{{mySubDomainName}}.blockusign1.id" target="_blank">https://core.blockstack.org/v1/names/{{mySubDomainName}}.blockusign1.id</a>
 
 
