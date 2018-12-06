@@ -107,7 +107,7 @@
 
         .btn {
             border: 2px solid;
-            border-radius: 20px;
+            border-radius: 50px;
             opacity: 0.8;
             cursor: pointer;
             padding: 5px 17px 5px;
@@ -191,7 +191,7 @@
         p.description {
             margin: 20px 0px;
             line-height: 1.5;
-            font-size: 1em;
+            font-size: 1.2em;
             color: whitesmoke;
         }
 
@@ -239,7 +239,7 @@
 
         .desc-text {
             color: whitesmoke; 
-            background-color: rgba(0,0,0,.4); 
+            background-color: rgba(0,0,0,.15); 
             padding: 10px 10px 10px 10px; 
             border-radius:5px
         }
@@ -285,6 +285,28 @@
                 display: none !important;
             }
 
+            .main-desc{
+                margin-right: 0px !important;
+                line-height: 1.2em !important; 
+                padding: 20px 16px 16px 20px; 
+                vertical-align: middle ;
+                margin-bottom: 26px !important;
+                
+            }
+
+            .side-by-side-content{
+                font-size: 20px; 
+                height: 100%;
+                width: 100% !important;
+                text-align: center;
+                line-height: 1.5em;
+            }
+            
+            .mobi-pad{
+                font-size: 20px !important;
+            }
+
+
         }
 
         @media (max-width: 881px) {
@@ -316,6 +338,31 @@
             
 
          }
+
+        .side-by-side-wrapper{
+            display:flex;  
+            flex-wrap:wrap; 
+            align-items: center; 
+            margin-left: auto; 
+            margin-right: auto; 
+            max-width: 1142px
+        }
+
+        .side-by-side-content{
+            font-size: 20px; 
+            height: 400px; 
+            width: 560px; 
+            text-align: center;
+            line-height: 1.5em;
+        }
+
+        .main-desc{
+            margin-right: 16px;
+            line-height: 1.5em; 
+            padding: 20px 16px 16px 20px; 
+            vertical-align: middle 
+        }
+
     </style>
 </head>
 
@@ -352,25 +399,33 @@
                         <img src="./assets//imgs/blockusignTextLoRes.png" width="225px" style="padding-left: 10px" />
 
                         <h1>Encrypted Document Signing and Digital Notary - Powered by the Blockchain</h1>
-                        
-                        <br/>
-                        <p class="desc-text" style="font-size:20px"> 
-                            Sign documents and maintain ownership of data like it's on your own encrypted laptop <br/><br/>  
-                            Prove a document was signed with <b>NO</b> need for a notary service or lawyer <br/><br/> 
-                            Secure DocuSign alternative - great for signing leases and legal notarized documents
-                        </p>
-                        <br/><br/>
+
+                        <br/> <br/>
                         <a class="btn" onclick="localStorage.setItem('signUp', 'true');" href="index.html" style="color:whitesmoke; background-color: #454cad; border: none; text-decoration: none;font-size: 1.5rem; padding: 20px 75px 20px 75px"
                         target="_blank">Sign Up</a>
-                        <br/><br/>
-                        
-                      
-                    
+                        <br/> <br/><br/>
                     </center>
-
                 </div>
 
-                <div class="flex-grid desktop-video">
+            </div>
+
+            <div class="side-by-side-wrapper">
+                    <div class="desc-text side-by-side-content main-desc">           
+                        <p  style="font-size:24px" class='mobi-pad'> 
+                            Sign documents and maintain ownership of data like it's on your own encrypted laptop &nbsp; <img height="24px" width="24px" src="./assets/imgs/lock.png" /> <br/><br/>  
+                          Prove a document was signed with <b>NO</b> need for a Notary service or Lawyer &nbsp; <img height="24px" width="24px" src="./assets/imgs/verify.png" />  <br/><br/> 
+                          <img height="24px" width="24px" src="./assets/imgs/doc.png" /> &nbsp; Secure DocuSign Alternative - great for signing leases and legal notarized documents  
+                        </p>
+                    </div>
+                     <br/><br/>
+                    <div class=" side-by-side-content">
+                            <a class="twitter-timeline" data-height="400" data-theme="light" href="https://twitter.com/blockusignapp?ref_src=twsrc%5Etfw" >Tweets by blockusignapp</a> 
+                            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    </div>
+            </div>
+
+            <div class="bighero" style="clear: both">
+                <div class="flex-grid desktop-video" >
                     <div class="flex-grid-col">
                         <p class="desc-text" style="font-size:20px">Blockusign App Demo</p>
                         <iframe width="560" height="315" src="https://www.youtube.com/embed//ccokAmUCafI" frameborder="0" allow="autoplay; encrypted-media"
@@ -384,8 +439,13 @@
                             allowfullscreen></iframe>
                     </div>
                 </div>
-
             </div>
+           
+
+
+                              
+
+         
 
             <div class="mobile-video">
                 <div>
@@ -443,20 +503,6 @@
                 </div>
 
             </div>
-
-            <div class="bighero" style="clear: both; font-size: 20px;">
-                    <p class="desc-text"> 
-                        <br/>
-                            Finalize the document as a legally binding agreement by saving it's hash and 
-                            your digital signature as a smart contract to the blockchain. This can be verified by a lawyer or judge<br/><br/>
-                
-                        <span style="font-size:22px; font-weight: 500">Features</span><br/> 
-                        - Immutable log of changes and e-Signatures<br/>  
-                        - Decentralized App (dApp)<br/><br/>      
-                    </p>
-            </div>
-
-
 
             <center>
                 <p style="color:white;">
@@ -627,11 +673,17 @@
             deliver them to the bitcoin blockchain. We call this the "Blockusign Virtual Side Chain". 
             It's used for document hash and digital signature verification. It's also used for immutable storage. See this for technical reference:
             <a href="https://github.com/ntheile/blockusign/issues/58" target="_blank">https://github.com/ntheile/blockusign/issues/58</a>
+
+            <br/><br/>
+            Finalize the document as a legally binding agreement by saving it's hash and 
+            your digital signature as a smart contract to the blockchain. This can be verified by a lawyer or judge.<br/><br/>
+
+            <span style="font-size:22px; font-weight: 700">Features</span><br/> 
+            - Immutable log of changes and e-Signatures<br/>  
+            - Decentralized App (dApp)
         </p>
-        
-        
-        <br/>
-        <br/>
+       
+               
     </section>
 
 
