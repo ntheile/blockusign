@@ -1,50 +1,69 @@
-<ion-content class="no-overflow-page" >
+<ion-content class="no-overflow-page">
 
 
-  <block-steps activeStep="5" #blockSteps class="no-print">
-  </block-steps>
+    <block-steps activeStep="5" #blockSteps class="no-print">
+    </block-steps>
 
-  <div style="clear:both"></div>
-  <section style="position: relative;" class="nextBackButtons no-print">
-      <button class="nextBackButtonBack" ion-fab mini (click)="back()" style="background-color:green; position: absolute;"><ion-icon name="md-arrow-back"></ion-icon></button>
-  </section>  
-  <div style="clear:both"></div>
-  <div padding class="no-print centerMe" style="padding-left:50px">
-      <button round outline ion-button  style="border-radius: 30px;" (click)="postBlockchain()">
-        <ion-icon name="logo-bitcoin"></ion-icon>
-        &nbsp; &nbsp;Save Digital Signature<br/> to the Blockchain<br/>
-      </button>
-      <span></span>
-      <button ion-button round outline  style="border-radius: 30px;"  onclick="window.print()">
-        <ion-icon name="md-download"></ion-icon>
-        &nbsp; &nbsp;Download
-      </button>
-      
+    <!-- <div style="clear:both"></div>
+    <section style="position: relative;" class="nextBackButtons no-print">
+        <button class="nextBackButtonBack" ion-fab mini (click)="back()" style="background-color:green; position: absolute;">
+            <ion-icon name="md-arrow-back"></ion-icon>
+        </button>
+    </section>
+    <div style="clear:both"></div> -->
+
+
+
+    <div padding class="no-print centerMe" style="padding-left:50px; margin-bottom: 0px">
+        <button round outline ion-button small style="border-radius: 30px 0px 0px 30px; margin: 0; padding:3" (click)="postBlockchain()">
+            <ion-icon name="logo-bitcoin"></ion-icon>
+            &nbsp; &nbsp;Save Digital Signature<br /> to the Blockchain<br />
+        </button>
+        <span></span>
+        <button ion-button round outline small style="border-radius: 0px 0px 0px 0px; margin: 0; margin-left: -5px; margin-right:-5px; padding:3"
+            onclick="window.print()">
+            <ion-icon name="md-download"></ion-icon>
+            &nbsp; &nbsp;Download
+        </button>
+
+
+        <button ion-button round outline small style="border-radius: 0px 30px 30px 0px; margin: 0; padding:3" (click)="showVideoRTC()">
+            <ion-icon name="md-videocam"></ion-icon>
+            &nbsp; &nbsp;Record Video Proof
+        </button>
     </div>
 
- 
-  <div>
-      <loading style="width: 30px" *ngIf="collaborators.length == 0"></loading>
-      <div class="no-print selectable" padding *ngIf="collaborators" style="display:flex; flex-direction: row">
-          <div *ngFor="let collaborator of collaborators" style="margin-right:5px">
-              <img  class="avatar shadow" src="{{collaborator.avatar}}" /> <br/><br/>
-              <span>  
-                  {{collaborator.userId}}
-              </span>
-          </div>
+
+
+
+    <p class="no-print selectable" padding *ngIf="hash" style="margin: 0px">
+        Document Hash = {{ hash }}
+    </p>
+
+
+
+    <videoRTC style="width: 320px;" *ngIf="showVideo"></videoRTC>
+
+    <div style="display:flex; flex-direction: column; height: 700px">
+        <div style="position: absolute; z-index: 9999999">
+            <loading style="width: 30px" *ngIf="collaborators.length == 0"></loading>
+            <div class="no-print selectable" padding *ngIf="collaborators" style="display:flex; flex-direction: row">
+
+                <div *ngFor="let collaborator of collaborators" style="margin-right:5px">
+                    <img class="avatar shadow" src="{{collaborator.avatar}}" /> <br /><br />
+                    <span>
+                        {{collaborator.userId}}
+                    </span>
+                </div>
+            </div>
         </div>
 
-  </div>
+        <block-pdf marginTop="1px" locked="true" style="height: 95%">
 
-  <p class="no-print selectable" padding *ngIf="hash">
-      Document Hash = {{ hash }}
-  </p>
-     
-  
-  
-  <block-pdf marginTop="1px" locked="true" >
+        </block-pdf>
 
-  </block-pdf>
+    </div>
+
 
 
 </ion-content>

@@ -66,55 +66,25 @@
       </ion-list>
       <ion-list *ngSwitchCase="'link'" padding>
         <br/>
-        <textarea style="width:90%; color: black" [(ngModel)]="documentLink" class="emailLink no-print"></textarea>
+        <textarea style="width:100%; height: 100%; color: black; border-radius: 5px" [(ngModel)]="documentLink" class="emailLink no-print"></textarea>
       </ion-list>
-      <ion-list *ngSwitchCase="'email'">
-        <form></form>
-        <br/>
-        <ion-grid style="position: relative" class="no-print">
-          <ion-row align-items-left padding>
-            <ion-col style="display: none;">
-              <ng-select style="width:460px; background-color:whitesmoke; border-radius:2px; padding-left:10px" [items]="people3"
-                [multiple]="false" bindLabel="username" [(ngModel)]="selectedUser" (change)="searchUser($event)"
-                [typeahead]="people3Typeahead" placeholder="Select signer...">
-                <ng-template ng-label-tmp let-item="item" let-clear="clear">
-                  <span class="ng-value-label">
-                    <img [src]="item.profile.image && item.profile.image[0].contentUrl" width="20px" height="20px">
-                    {{item.username}}</span>
-                  <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
-                </ng-template>
-                <ng-template ng-option-tmp let-item="item">
-                  <span style="width:100%" (click)="clickedUser()">
-                    <img [src]="item.profile.image && item.profile.image[0].contentUrl" width="20px" height="20px">
-                    {{item.username}}
-                  </span>
-                </ng-template>
-              </ng-select>
-            </ion-col>
-            <ion-col style="display: none;">
-              <h3>or</h3>
-            </ion-col>
-            <ion-col style="width:460px; background-color:transparent; ">
-              <!-- <ion-item  style="width:460px; background-color:transparent; " >
-                  <ion-input style="width:460px;" placeholder="[Enter Email]" [(ngModel)]="email"></ion-input>
-                </ion-item> -->
-
-              <input class="classic-input" type="email" size="64" maxLength="64" required placeholder="Email To..."
-                [(ngModel)]="email" autofocus>
-
-            </ion-col>
-            <ion-col>
-              <button ion-button icon-end (click)="sendEmail($event)" style="border-radius: 30px">
-                Send Email<ion-icon name="md-send"></ion-icon></button>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+      <ion-list *ngSwitchCase="'email'" padding>
+        <div style="display:flex; margin-top: 15px"> 
+            <input style="border-radius: 50px 0px 0px 50px; height: 40px; width: 90%" class="classic-input" type="email" size="40" maxLength="64" required placeholder="Email To..."
+            [(ngModel)]="email" autofocus>
+  
+            <button ion-button icon-end (click)="sendEmail($event)" 
+              style="border-radius: 0px 50px 50px 0px; height: 40px; width: 10%; margin-left: -5px; margin-top:0px">
+                <ion-icon name="md-send"></ion-icon></button>
+        </div>
+         
+        
       </ion-list>
     </div>
   </div>
 
 
-  <block-pdf marginTop="10px" marginBottom="120px" locked="true">
+  <block-pdf marginTop="0px" marginBottom="120px" locked="true">
   </block-pdf>
 
 

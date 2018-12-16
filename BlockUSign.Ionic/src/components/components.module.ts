@@ -5,13 +5,15 @@ import { BlockPdfComponent } from './block-pdf/block-pdf';
 import { DirectivesModule } from '../directives/directives.module';
 import { BlockChatComponent } from './block-chat/block-chat';
 import { LoadingComponent } from './loading/loading';
+import { VideoComponent } from './video/video';
 
 
 @NgModule({
     declarations: [BlockStepsComponent,
         BlockPdfComponent,
     BlockChatComponent,
-    LoadingComponent],
+    LoadingComponent,
+    VideoComponent],
     imports: [
         IonicModule,
         DirectivesModule
@@ -19,7 +21,8 @@ import { LoadingComponent } from './loading/loading';
     exports: [BlockStepsComponent,
         BlockPdfComponent,
     BlockChatComponent,
-    LoadingComponent]
+    LoadingComponent,
+    VideoComponent]
 })
 export class BlockStepsComponentModule {
     static forRoot(): ModuleWithProviders {

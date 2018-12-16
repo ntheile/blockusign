@@ -29,6 +29,7 @@ export class ReviewPage {
   hash = "";
   @ViewChild("blockSteps") blockSteps: BlockStepsComponent;
   collaborators = [];
+  showVideo = false;
 
   constructor(
     public navCtrl: NavController, 
@@ -111,6 +112,16 @@ export class ReviewPage {
 
   async getCollaborators(){
     this.collaborators = await this.documentService.getCollaborators(this.documentService.currentDoc.guid);
+  }
+
+  showVideoRTC(){
+    if (this.showVideo){
+      this.showVideo = false;
+    }
+    else{
+      this.showVideo = true;
+    }
+    
   }
 
 
