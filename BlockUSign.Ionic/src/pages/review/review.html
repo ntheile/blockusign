@@ -42,7 +42,7 @@
 
 
 
-    <videoRTC style="width: 320px;" *ngIf="showVideo"></videoRTC>
+    <videoRTC #videoRTC style="width: 320px;" *ngIf="showVideo"></videoRTC>
 
     <div style="display:flex; flex-direction: column; height: 700px">
         <div style="position: absolute; z-index: 9999999">
@@ -50,7 +50,7 @@
             <div class="no-print selectable" padding *ngIf="collaborators" style="display:flex; flex-direction: row">
 
                 <div *ngFor="let collaborator of collaborators" style="margin-right:5px">
-                    <img class="avatar shadow" src="{{collaborator.avatar}}" /> <br /><br />
+                    <img class="avatar shadow video-ring" src="{{collaborator.avatar}}" (click)="getVideoR()" /> <br /><br />
                     <span>
                         {{collaborator.userId}}
                     </span>

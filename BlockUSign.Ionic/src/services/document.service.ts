@@ -502,6 +502,27 @@ export class DocumentService {
     return this.docStorageMaps;
   }
 
+  async saveVideo(video){
+    let videoName = this.currentDoc.guid + '.webm';
+    let videoStr = this.ecryptDoc(video, this.currentDoc.documentKey)
+    let resp = await blockstack.putFile(videoName, videoStr, { encrypt: false });
+  }
+
+
+  async getVideo(path?){
+    let videoName = this.currentDoc.guid + '.webm';
+    let resp;
+    if (!path){
+      resp = await blockstack.getFile(videoName, { decrypt: false }); 
+    }
+    
+    let video = null;
+    if (resp) {
+         video = this.decryptDoc(resp, this.currentDoc.documentKey);
+    }
+
+    return new Uint8Array(video);
+  }
  
 
   //#region Encryption

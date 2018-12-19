@@ -1,10 +1,11 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DocumentService } from './../../services/document.service';
 import { BlockStepsComponent } from '../../components/block-steps/block-steps';
 import { BitcoinService } from '../../services/bitcoin.service';
 import { BlockStackService } from '../../services/blockstack.service';
 import { Block } from 'bitcoinjs-lib';
+import { VideoComponent } from '../../components/video/video';
 declare let window: any;
 declare let blockstack: any;
 
@@ -28,6 +29,7 @@ export class ReviewPage {
 
   hash = "";
   @ViewChild("blockSteps") blockSteps: BlockStepsComponent;
+  @ViewChild(VideoComponent) videoEL: VideoComponent;
   collaborators = [];
   showVideo = false;
 
@@ -38,6 +40,7 @@ export class ReviewPage {
     private bitcoinService: BitcoinService,
     private blockstackService: BlockStackService,
     private nav: NavController, 
+    private change: ChangeDetectorRef
   ) {
 
     // if ( this.navParams.get("guid") && !this.documentService.currentDoc ){
@@ -123,6 +126,14 @@ export class ReviewPage {
     }
     
   }
+
+  async getVideoR(){
+    console.log('git vid');
+    this.showVideo = true;
+    this.change.detectChanges();
+    await this.videoEL.getVideo();
+  }
+
 
 
 }
