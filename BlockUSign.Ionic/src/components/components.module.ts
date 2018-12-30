@@ -6,6 +6,7 @@ import { DirectivesModule } from '../directives/directives.module';
 import { BlockChatComponent } from './block-chat/block-chat';
 import { LoadingComponent } from './loading/loading';
 import { VideoComponent } from './video/video';
+import { RecordButtonComponent } from './record-button/record-button';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { VideoComponent } from './video/video';
         BlockPdfComponent,
     BlockChatComponent,
     LoadingComponent,
-    VideoComponent],
+    VideoComponent,
+    RecordButtonComponent],
     imports: [
         IonicModule,
         DirectivesModule
@@ -22,7 +24,8 @@ import { VideoComponent } from './video/video';
         BlockPdfComponent,
     BlockChatComponent,
     LoadingComponent,
-    VideoComponent]
+    VideoComponent,
+    RecordButtonComponent]
 })
 export class BlockStepsComponentModule {
     static forRoot(): ModuleWithProviders {

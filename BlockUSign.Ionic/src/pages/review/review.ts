@@ -123,6 +123,8 @@ export class ReviewPage {
     }
     else{
       this.showVideo = true;
+      this.change.detectChanges();
+      this.videoEL.setVideoPaused();
     }
     
   }
@@ -132,6 +134,15 @@ export class ReviewPage {
     this.showVideo = true;
     this.change.detectChanges();
     await this.videoEL.getVideo();
+  }
+
+  toggleVideoStoryHead(){
+    if(this.showVideo){
+      this.showVideo = false;
+    }
+    else{
+      this.getVideoR();
+    }
   }
 
 

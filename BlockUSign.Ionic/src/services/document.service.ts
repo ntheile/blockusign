@@ -521,7 +521,8 @@ export class DocumentService {
          video = this.decryptDoc(resp, this.currentDoc.documentKey);
     }
 
-    return new Uint8Array(video);
+    //return new Uint8Array(video);
+    return video;
   }
  
 

@@ -15,55 +15,41 @@
 
 
     <div padding class="no-print centerMe" style="padding-left:50px; margin-bottom: 0px">
-        <button round outline ion-button small style="border-radius: 30px 0px 0px 30px; margin: 0; padding:3" (click)="postBlockchain()">
+        <button round outline ion-button small style=" margin: 0; padding:3" (click)="postBlockchain()">
             <ion-icon name="logo-bitcoin"></ion-icon>
-            &nbsp; &nbsp;Save Digital Signature<br /> to the Blockchain<br />
+            &nbsp; &nbsp;Save Digital Signature<br /> on Blockchain<br />
         </button>
-        <span></span>
-        <button ion-button round outline small style="border-radius: 0px 0px 0px 0px; margin: 0; margin-left: -5px; margin-right:-5px; padding:3"
-            onclick="window.print()">
-            <ion-icon name="md-download"></ion-icon>
-            &nbsp; &nbsp;Download
-        </button>
-
-
-        <button ion-button round outline small style="border-radius: 0px 30px 30px 0px; margin: 0; padding:3" (click)="showVideoRTC()">
+        <button ion-button round outline small style=" margin: 0; padding:3" (click)="showVideoRTC()">
             <ion-icon name="md-videocam"></ion-icon>
             &nbsp; &nbsp;Record Video Proof
         </button>
+        <button ion-button round outline small style="margin: 0; padding:3" onclick="window.print()">
+            <ion-icon name="md-download"></ion-icon>
+            &nbsp; &nbsp;Download
+        </button>
     </div>
-
-
-
 
     <p class="no-print selectable" padding *ngIf="hash" style="margin: 0px">
         Document Hash = {{ hash }}
     </p>
 
-
-
-    <videoRTC #videoRTC style="width: 320px;" *ngIf="showVideo"></videoRTC>
-
-    <div style="display:flex; flex-direction: column; height: 700px">
-        <div style="position: absolute; z-index: 9999999">
-            <loading style="width: 30px" *ngIf="collaborators.length == 0"></loading>
-            <div class="no-print selectable" padding *ngIf="collaborators" style="display:flex; flex-direction: row">
-
-                <div *ngFor="let collaborator of collaborators" style="margin-right:5px">
-                    <img class="avatar shadow video-ring" src="{{collaborator.avatar}}" (click)="getVideoR()" /> <br /><br />
-                    <span>
-                        {{collaborator.userId}}
-                    </span>
-                </div>
+    <div>
+        <loading style="width: 30px" *ngIf="collaborators.length == 0"></loading>
+        <div class="no-print selectable" padding *ngIf="collaborators" style="display:flex; flex-direction: row">
+            <div *ngFor="let collaborator of collaborators" style="margin-right:5px">
+                <img class="avatar shadow video-ring" src="{{collaborator.avatar}}" (click)="toggleVideoStoryHead()" />
+                <br /><br />
+                <span>
+                    {{collaborator.userId}}
+                </span>
             </div>
         </div>
-
-        <block-pdf marginTop="1px" locked="true" style="height: 95%">
-
-        </block-pdf>
-
     </div>
 
 
+    <videoRTC #videoEL style="width: 320px;" *ngIf="showVideo" class="no-print"></videoRTC>
+
+    <block-pdf marginTop="1px" locked="true" style="height: 95%">
+    </block-pdf>
 
 </ion-content>
