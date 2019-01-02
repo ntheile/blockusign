@@ -75,20 +75,21 @@ export class DocumentService {
     // write to /api/Code?docGuid=12345&code=12345
     await this.writeCode(newDocument.guid, newDocument.code);
     // add my storage path - write to /api/DocStorageMap?docGuid=12345&code=12345&storagePath=urlEncode(pathToStorage)
-    await this.addDocStoragePath(newDocument.guid, newDocument.code, blockstack.loadUserData().profile.apps[window.location.origin]);
+    await this.addDocStoragePath(newDocument.guid, newDocument.code, 
+      this.blockStackService.getStoragePath());
 
-    newDocument.pathAnnotatedDoc = blockstack.loadUserData().profile.apps[window.location.origin];
+    newDocument.pathAnnotatedDoc = this.blockStackService.getStoragePath();
     let profileData = await this.blockStackService.getProfileData();
     let myEmail = null;
     if (profileData){
       myEmail = JSON.parse(profileData).email;
     }
     newDocument.paths = [{
-      name: blockstack.loadUserData().profile.name, 
+      name: this.blockStackService.getName(), 
       userId: blockstack.loadUserData().username, 
       email: myEmail,
       appPublicKey: await this.blockStackService.getAppPublicKey(),
-      pathToStorage: blockstack.loadUserData().profile.apps[window.location.origin]
+      pathToStorage: this.blockStackService.getStoragePath()
     }];
     newDocument.signer = [];
     this.documentsList.push(newDocument);
@@ -178,7 +179,7 @@ export class DocumentService {
       userId: myUserId, 
       email: myEmail,
       appPublicKey: await this.blockStackService.getAppPublicKey(),
-      pathToStorage: blockstack.loadUserData().profile.apps[window.location.origin]
+      pathToStorage: this.blockStackService.getStoragePath()
     });
 
     this.documentsList.push(newDocument);
@@ -192,7 +193,7 @@ export class DocumentService {
 
 
     // add my storage path - write to /api/DocStorageMap?docGuid=12345&code=12345&storagePath=urlEncode(pathToStorage)
-    await this.addDocStoragePath(newDocument.guid, newDocument.code, blockstack.loadUserData().profile.apps[window.location.origin]);
+    await this.addDocStoragePath(newDocument.guid, newDocument.code, this.blockStackService.getStoragePath());
 
     //  now copy annotations
     let annotsResp = await this.getAnnotationsByPath(this.currentDoc.pathAnnotatedDoc + guid + ".annotations.json", this.currentDoc.documentKey);
@@ -245,7 +246,7 @@ export class DocumentService {
       annotations: ""
     }
     this.currentDocAnnotationsDoc = Automerge.init();
-    let commit = blockstack.loadUserData().profile.name + " created annotations on " + this.getDate(); 
+    let commit = this.blockStackService.getName() + " created annotations on " + this.getDate(); 
     this.currentDocAnnotationsDoc = Automerge.change(this.currentDocAnnotationsDoc, commit, doc => {
       doc.annots = [];
     });
@@ -258,7 +259,7 @@ export class DocumentService {
     let json = {
       annotations: annotation
     }
-    let commit = blockstack.loadUserData().profile.name + " added annotation on " + this.getDate(); 
+    let commit = this.blockStackService.getName() + " added annotation on " + this.getDate(); 
     this.currentDocAnnotationsDoc = Automerge.change(this.currentDocAnnotationsDoc, commit, doc => {
       doc.annots.insertAt(0, json);
     });
@@ -276,7 +277,7 @@ export class DocumentService {
       this.currentDocAnnotationsDoc = Automerge.load(decrypted);
       this.currentDocAnnotations =  this.currentDocAnnotationsDoc.annots[0];//JSON.parse(decrypted);
       // now merge annotations
-      let theirPath = jslinq(this.docStorageMaps.storagePaths).where( (el) => el != blockstack.loadUserData().profile.apps[window.location.origin]  ).toList();
+      let theirPath = jslinq(this.docStorageMaps.storagePaths).where( (el) => el != this.blockStackService.getStoragePath()  ).toList();
       // @todo in the future maybe support mutiple parties signing a doc and allow more than 2 storage paths
       let theirUrl = theirPath[0];
       if (theirUrl){
@@ -349,7 +350,7 @@ export class DocumentService {
           this.logDoc = this.decryptString(resp, this.currentDoc.documentKey);
           this.logDoc =  Automerge.load(this.logDoc);
           this.log = this.logDoc.log;
-          let theirPath = jslinq(this.docStorageMaps.storagePaths).where( (el) => el != blockstack.loadUserData().profile.apps[window.location.origin]  ).toList();
+          let theirPath = jslinq(this.docStorageMaps.storagePaths).where( (el) => el != this.blockStackService.getStoragePath()  ).toList();
           let theirUrl = theirPath[0];
           if (theirUrl){
             let url = theirUrl + logFileName;

@@ -151,8 +151,6 @@
         </p>
         <div *ngFor="let zf of zoneFiles"> 
             <p style="display: flex;align-items: center;" *ngIf="zf.verified">
-              <!-- <img *ngIf="blockstack.loadUserData().profile.image" class="avatar shadow" style="border-radius: 30px; margin-right:15px" src="{{blockstack.loadUserData().profile.image[0].contentUrl}}" />
-              <img *ngIf="!blockstack.loadUserData().profile.image" class="avatar shadow" style="border-radius: 30px; margin-right:15px" src="https://www.gravatar.com/avatar/?d=identicon" /> -->
               <ion-icon  name="md-checkmark-circle" style="margin-left: 2px; color: green "></ion-icon>
               &nbsp;
               <a href="https://core.blockstack.org/v1/names/{{zf.subdomainName}}.blockusign1.id" target="_blank">{{ zf.verified }}</a>

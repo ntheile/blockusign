@@ -134,7 +134,10 @@ export class BlockStackService {
     
     let encryptedEmail = await this.encryptEmail(email, await this.getEmailKey() );
 
-    let storagePath = blockstack.loadUserData().profile.apps[window.location.origin];
+    let storagePath = this.getStoragePath();
+    
+
+   
     let json = {
       email: encryptedEmail,
       storagePath: storagePath,
@@ -144,7 +147,27 @@ export class BlockStackService {
   }
 
   getStoragePath(){
-    return blockstack.loadUserData().profile.apps[window.location.origin];
+    //return blockstack.loadUserData().profile.apps[window.location.origin];
+    let storagePath;
+    if (blockstack.loadUserData().profile.apps){
+      blockstack.loadUserData().profile.apps[window.location.origin];
+    } else{
+      let gaiaConfig = JSON.parse(localStorage.getItem('blockstack-gaia-hub-config'));
+      storagePath = gaiaConfig.url_prefix + '/' + gaiaConfig.address + '/';
+    }
+
+    return storagePath;
+  }
+
+  getName(){
+    let name = '';
+    if (blockstack.loadUserData().profile.name){
+     name = blockstack.loadUserData().profile.name;
+    } else{
+      name = blockstack.loadUserData().username;
+    }
+
+    return name;
   }
 
   async clearProfileData() {

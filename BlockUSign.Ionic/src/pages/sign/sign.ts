@@ -91,7 +91,13 @@ export class SignPage {
     }
 
     console.log('ionViewDidLoad SignPage');
-    this.name = blockstack.loadUserData().profile.name;
+    try{
+      this.name = blockstack.loadUserData().profile.name;
+    } catch(e){
+      this.name = "none";
+      console.log('Null blockstack.loadUserData().profile.name');
+    }
+    
   }
 
   ionViewDidEnter(){
