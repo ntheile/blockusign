@@ -62,8 +62,11 @@ import { ToastController } from 'ionic-angular';
       //   guid: d.guid
       // });
       //this.viewCtrl.dismiss();
-      window.location.replace("/#/"+page+"/" + d.guid);
-      window.location.reload();
+      setTimeout( async ()=>{
+        window.location.replace("/#/"+page+"/" + d.guid);
+        window.location.reload();
+      }, 1000);
+     
     }
 
   }
