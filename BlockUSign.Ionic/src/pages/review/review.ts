@@ -32,6 +32,7 @@ export class ReviewPage {
   @ViewChild(VideoComponent) videoEL: VideoComponent;
   collaborators = [];
   showVideo = false;
+  isSafari = false;
 
   constructor(
     public navCtrl: NavController, 
@@ -61,6 +62,7 @@ export class ReviewPage {
 
 
   ionViewDidLoad() {
+    this.isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
     this.init();
   }
 

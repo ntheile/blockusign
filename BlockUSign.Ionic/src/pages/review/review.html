@@ -48,6 +48,7 @@
     </div>
 
     <ion-icon name="ios-arrow-up" *ngIf="showVideo" (click)="hideVideo()" style="cursor:pointer" padding></ion-icon>
+    <span *ngIf="isSafari && showVideo">Sorry, video is not supported in Safari at this time</span>
     <videoRTC #videoEL style="width: 320px;" *ngIf="showVideo" class="no-print" padding></videoRTC>
 
     <block-pdf marginTop="1px" locked="true" style="height: 95%">
