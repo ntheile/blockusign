@@ -12,6 +12,7 @@ import { ToastController } from 'ionic-angular';
        <button (click)="close()" style="float: right; background-color: #1E2124; margin-top: -10px; margin-bottom: -4px"> <ion-icon style="color: white; margin-top:-10px" name="md-close-circle"></ion-icon></button>
         <button ion-item (click)="goto('BlockchainPage')" style="background-color: #1E2124"> <ion-icon name="md-finger-print"></ion-icon>&nbsp;&nbsp; Verify on Blockchain</button>
         <button ion-item (click)="goto('SignPage')" style="background-color: #1E2124"> <ion-icon name="md-create"></ion-icon>&nbsp;&nbsp; View e-signatures</button>
+        <button ion-item (click)="goto('ReviewPage')" style="background-color: #1E2124"> <ion-icon name="ios-videocam"></ion-icon>&nbsp;&nbsp; View Video Proof</button>
         <button ion-item (click)="documentRemove()" style="background-color: #1E2124"> <ion-icon name="md-trash"></ion-icon>&nbsp;&nbsp; Delete</button>
       </ion-list>
     </div>
