@@ -150,7 +150,7 @@ export class BlockStackService {
     //return blockstack.loadUserData().profile.apps[window.location.origin];
     let storagePath;
     if (blockstack.loadUserData().profile.apps){
-      blockstack.loadUserData().profile.apps[window.location.origin];
+      storagePath = blockstack.loadUserData().profile.apps[window.location.origin];
     } else{
       let gaiaConfig = JSON.parse(localStorage.getItem('blockstack-gaia-hub-config'));
       storagePath = gaiaConfig.url_prefix + '/' + gaiaConfig.address + '/';

@@ -146,24 +146,29 @@ export class VideoComponent {
   }
 
 
-  async getVideo() {
-    let vid = await this.documentService.getVideo();
+  async getVideo(path) {
+
+    let vid = await this.documentService.getVideo(path);
     if (vid){
       let blob = new Uint8Array(vid);
       this.videoHash = this.documentService.genHash(blob);
 
       this.playVideo(vid);
+    } 
+    else{
+      this.videoHash = "No Video";
     }
+
   }
 
-  async setVideoPaused(){
-    await this.getVideo();
-    setTimeout(()=>{
-      this.video.nativeElement.pause();
-    }, 500);
+  // async setVideoPaused(){
+  //   await this.getVideo();
+  //   setTimeout(()=>{
+  //     this.video.nativeElement.pause();
+  //   }, 500);
   
     
-  }
+  // }
 
   async toggleRecord(){
 

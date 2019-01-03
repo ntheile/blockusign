@@ -510,21 +510,37 @@ export class DocumentService {
   }
 
 
-  async getVideo(path?){
-    let videoName = this.currentDoc.guid + '.webm';
-    let resp;
+  async getVideo(path){
+   
+    // get users storage path 
+    // let path = this.getStoragePathByUserId(userId);
     if (!path){
-      resp = await blockstack.getFile(videoName, { decrypt: false }); 
+      return null;
     }
-    
+    let videoName = this.currentDoc.guid + '.webm';
+    videoName = path + videoName;
     let video = null;
-    if (resp) {
-         video = this.decryptDoc(resp, this.currentDoc.documentKey);
-    }
-
+    try{
+      let resp = await this.http.get(videoName).toPromise();
+      if (resp) {
+        let encryptedDoc = resp.text();
+        video = this.decryptDoc(encryptedDoc, this.currentDoc.documentKey);
+      }
+    } catch(e){}
+    
+    
     //return new Uint8Array(video);
     return video;
   }
+
+  isMyPath(path){
+    let mypath = this.blockStackService.getStoragePath();
+    if (mypath == path){
+      return true;
+    }
+    return false;
+  }
+
  
 
   //#region Encryption

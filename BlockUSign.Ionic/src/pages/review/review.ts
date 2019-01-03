@@ -1,5 +1,5 @@
 import { Component, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, BlockerDelegate } from 'ionic-angular';
 import { DocumentService } from './../../services/document.service';
 import { BlockStepsComponent } from '../../components/block-steps/block-steps';
 import { BitcoinService } from '../../services/bitcoin.service';
@@ -124,25 +124,33 @@ export class ReviewPage {
     else{
       this.showVideo = true;
       this.change.detectChanges();
-      this.videoEL.setVideoPaused();
+      //this.videoEL.setVideoPaused();
     }
     
   }
 
-  async getVideoR(){
+  async getVideoR(path){
     console.log('git vid');
     this.showVideo = true;
     this.change.detectChanges();
-    await this.videoEL.getVideo();
+    await this.videoEL.getVideo(path);
   }
 
-  toggleVideoStoryHead(){
-    if(this.showVideo){
-      this.showVideo = false;
+  toggleVideoStoryHead(userId){
+
+    let path = null;
+    if (userId == blockstack.loadUserData().username){
+     path =  this.documentService.docStorageMaps.storagePaths.find( u=> u == this.blockstackService.getStoragePath() );
+    } else{
+      path = this.documentService.docStorageMaps.storagePaths.find( u=> u != this.blockstackService.getStoragePath() );
     }
-    else{
-      this.getVideoR();
-    }
+    
+    this.getVideoR(path);
+  
+  }
+
+  hideVideo(){
+    this.showVideo = false;
   }
 
 
