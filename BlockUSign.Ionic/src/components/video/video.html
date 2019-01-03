@@ -4,7 +4,9 @@
       </video>
   </div>
   <div class="row">
-    <record-button #recordBtn (click)="toggleRecord()" style="margin-left: auto; margin-right: auto"></record-button>
+    <record-button #recordBtn (click)="toggleRecord()" 
+    style="margin-left: auto; margin-right: auto"
+    *ngIf="documentService.currentDoc && !documentService.currentDoc.isCompleted"></record-button>
   </div>
   <span style="font-size:10px" *ngIf="videoHash">Video Hash: {{ videoHash }}</span>
 </div>

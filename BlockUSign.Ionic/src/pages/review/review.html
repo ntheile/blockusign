@@ -17,9 +17,14 @@
     <div padding class="no-print centerMe" style="padding-left:50px; margin-bottom: 0px">
         <button round outline ion-button small style=" margin: 0; padding:3" (click)="postBlockchain()">
             <ion-icon name="logo-bitcoin"></ion-icon>
-            &nbsp; &nbsp;Save Digital Signature<br /> on Blockchain<br />
+            &nbsp; &nbsp;
+            <span *ngIf="documentService.currentDoc && !documentService.currentDoc.isCompleted">Save Digital Signature<br /> on Blockchain<br /></span>
+            <span *ngIf="documentService.currentDoc && documentService.currentDoc.isCompleted">View Digital Signature<br /> on Blockchain<br /></span>
+            
         </button>
-        <button ion-button round outline small style=" margin: 0; padding:3" (click)="showVideoRTC()">
+        <button ion-button round outline small 
+            *ngIf="documentService.currentDoc && !documentService.currentDoc.isCompleted"
+            style=" margin: 0; padding:3" (click)="showVideoRTC()">
             <ion-icon name="md-videocam"></ion-icon>
             &nbsp; &nbsp;Record Video Proof
         </button>
