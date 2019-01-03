@@ -229,7 +229,7 @@ export class BitcoinService {
   // the document GUID (which is a pretty long string...maybe we can strip out the dashes in the future, maybe we append the alphabet to give us 26 more signers)
   async getAllZoneFileSubdomainStatusByGuid(guid) {
     let zonefiles = []; // subdomainId , status 
-   
+    let failedOnce = false;
     for(let i = -1; i <= 9; i++)
     {
       let subdomainName = guid;
@@ -242,7 +242,11 @@ export class BitcoinService {
         zonefiles.push({subdomainName: subdomainName, subdomainStatus: status});
       }
       catch(e){
-        return zonefiles;
+        console.log('reached end i=' + i);
+        if (failedOnce){
+            return zonefiles;
+        }
+        failedOnce = true;
       }
     }
     return zonefiles;
