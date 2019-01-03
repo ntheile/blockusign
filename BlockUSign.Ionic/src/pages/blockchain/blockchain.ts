@@ -8,7 +8,8 @@ import { EmailService } from '../../services/email.service';
 import { Block } from 'bitcoinjs-lib';
 import { AlertController } from 'ionic-angular';
 import { LoadingComponent } from '../../components/loading/loading';
-declare let window: any;
+import { VideoComponent  } from '../../components/video/video';
+declare let window: any; 
 declare let blockstack: any;
 declare let $:any;
 declare let blast:any;
@@ -33,6 +34,7 @@ declare let parseZoneFile: any;
 export class BlockchainPage {
 
   hash = "";
+  videoHash = "";
   guid = "";
   guidPrefix = null;
   address = "";
@@ -60,6 +62,8 @@ export class BlockchainPage {
   maxCollaborators = 3;
   isLoading = true;
   @ViewChild("blockSteps") blockSteps: BlockStepsComponent;
+  @ViewChild(VideoComponent) videoEL: VideoComponent;
+
 
   constructor(
     public navCtrl: NavController,
@@ -69,7 +73,7 @@ export class BlockchainPage {
     private blockstackService: BlockStackService,
     private toastCtrl: ToastController,
     private alertCtrl: AlertController,
-    private emailService: EmailService,
+    private emailService: EmailService
   ) { }
 
 
@@ -86,6 +90,7 @@ export class BlockchainPage {
       this.mySubDomainName = this.getSubdomainName();
       this.collaborators = await this.documentService.getCollaborators(this.guid);
       await this.getHash();
+      this.calculateMyVideoHash();
       await this.getSig();
       await this.checkIfOthersSigned();
       this.checkIfISigned();
@@ -211,7 +216,7 @@ export class BlockchainPage {
     let wif = this.bitcoinService.getWif();
 
     // @todo check for 409 error
-    let resp = this.bitcoinService.sendSudomainBatch(this.mySubDomainName, this.address, this.hash, this.signature, this.profileUrl);
+    let resp = this.bitcoinService.sendSudomainBatch(this.mySubDomainName, this.address, this.hash, this.videoHash, this.signature, this.profileUrl);
     // saving to the blockchain
     this.onStep="1";
 
@@ -485,6 +490,16 @@ export class BlockchainPage {
       ]
     });
     alert.present();
+  }
+
+  async calculateMyVideoHash(){
+    let videoPath =  this.documentService.docStorageMaps.storagePaths.find( u=> u == this.blockstackService.getStoragePath() );
+    this.videoEL.recordButtonOn = false;
+    await this.videoEL.getVideo(videoPath);
+    setTimeout( ()=>{
+      this.videoEL.pause();
+    }, 400 ); 
+    this.videoHash = this.videoEL.videoHash;
   }
 
 

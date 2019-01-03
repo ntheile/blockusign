@@ -164,15 +164,16 @@ export class BitcoinService {
         return verified;
     }
 
-    async sendSudomainBatch(fileName, appAddress, hash, signature, profileUrl) { 
+    async sendSudomainBatch(fileName, appAddress, hash, videoHash, signature, profileUrl) { 
         
        
         
         let origin = '$ORIGIN ' + fileName + '\n$TTL 3600\n_https._tcp URI 10 1 \"' + profileUrl + '\"\n'; 
         let hashTXT = 'hash TXT \"' + hash + '\"\n';
+        let videoHashTXT = 'videoHash TXT \"' + videoHash + '\"\n';
         let signatureTXT = 'signature TXT \"' + signature + '\"\n';
         let ownerTXT = 'owner TXT \"' + appAddress + '\"\n';
-        let zonefile = origin + hashTXT + signatureTXT + ownerTXT;
+        let zonefile = origin + hashTXT + videoHashTXT + signatureTXT + ownerTXT;
         let privateKey = new window.bitcore.PrivateKey(); // this makes it immutable, nobody nows this key to be able to update the subdomain
         let burnAddress = privateKey.toAddress().toString();
         

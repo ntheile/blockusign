@@ -29,6 +29,7 @@ export class VideoComponent {
   isRecording = false;
   isStopped = true;
   rawVideo;
+  recordButtonOn = true;
   public mediaConstraints = {
     video: true,
     audio: {
@@ -55,9 +56,12 @@ export class VideoComponent {
   }
 
   ionViewDidLoad() {
-    let video: HTMLVideoElement = this.video.nativeElement;
-    video.muted = false;
-    this.init();
+    try{
+      let video: HTMLVideoElement = this.video.nativeElement;
+      video.muted = false;
+      this.init();
+    }catch(e){}
+    
   }
 
   async init() {
@@ -142,6 +146,7 @@ export class VideoComponent {
     this.videoHash = this.documentService.genHash(blob);
     this.change.detectChanges();
 
+    return this.videoHash;
   }
 
 
@@ -160,8 +165,6 @@ export class VideoComponent {
 
   async getVideo(path) {
 
-
-    
     const loader = this.loading.create({
       content: "Loading video ...",
       duration: 10000
@@ -191,6 +194,10 @@ export class VideoComponent {
   
     
   // }
+
+  pause(){
+    this.video.nativeElement.pause();
+  }
 
   async toggleRecord(){
 

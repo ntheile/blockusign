@@ -12,6 +12,8 @@
     </span>
     <br /><br />
 
+    
+
     <div style="position: relative; height: 350px; max-width: 420px;">
 
 
@@ -78,6 +80,7 @@
 
     </div>
 
+   
 
     <div *ngIf="isSaving" class="nyancat" style="position: absolute; max-width:600px; z-index: 999999; top:15%; left: 30%">
         <span class="head">
@@ -105,11 +108,11 @@
 
     <p style=" user-select: text; margin: 10px 10px 10px 10px" *ngIf="showSig">
       <b>Hash</b> - <i>the pdf, e-Signature, and chat's unique signature</i><br />&nbsp;&nbsp;&nbsp;&nbsp; {{hash}} <br /><br />
+      <b>Video Hash</b> - <i>Video Proof you signed off on the doc</i><br />&nbsp;&nbsp;&nbsp;&nbsp; {{videoHash}} <br /><br />
       <b>Signature</b> - <i>your unique digital signature</i><br />&nbsp;&nbsp;&nbsp;&nbsp; {{signature}} <br /><br />
       <b>Address</b> - <i>The public key that represents you </i><br />&nbsp;&nbsp;&nbsp;&nbsp;
       {{address}} <br /><br />
     </p>
-
 
     <div style="clear:both"></div>
 
@@ -121,7 +124,7 @@
         <ion-icon *ngIf="showAdvancedInfo" name="ios-arrow-up" style=" margin-left: 20px; "></ion-icon>
       </div>
 
-     
+      
 
       <div *ngIf="showAdvancedInfo">
 
@@ -159,6 +162,7 @@
             </p>
         </div>
        
+        
 
         <br /><br /><br />
         <p>How does this all work?</p>
@@ -166,7 +170,9 @@
 
       </div>
 
-
+      <h3>Video Proof</h3>
+      <videoRTC #videoEL style="width: 320px;"  class="no-print" padding></videoRTC>
+     
 
       <br /><br />
 

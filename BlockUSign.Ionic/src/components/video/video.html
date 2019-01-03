@@ -6,7 +6,7 @@
   <div class="row">
     <record-button #recordBtn (click)="toggleRecord()" 
     style="margin-left: auto; margin-right: auto"
-    *ngIf="documentService.currentDoc && !documentService.currentDoc.isCompleted"></record-button>
+    *ngIf="documentService.currentDoc && !documentService.currentDoc.isCompleted && recordButtonOn"></record-button>
   </div>
   <span style="font-size:10px" *ngIf="videoHash">Video Hash: {{ videoHash }}</span>
 </div>
