@@ -3,6 +3,8 @@ import * as RecordRTC from 'recordrtc';
 import { DocumentService } from './../../services/document.service';
 import { timingSafeEqual } from 'crypto';
 import { RecordButtonComponent } from '../record-button/record-button';
+import { LoadingController } from 'ionic-angular';
+
 declare let navigator: any;
 
 /**
@@ -46,7 +48,8 @@ export class VideoComponent {
 
   constructor(
     private documentService: DocumentService,
-    private change: ChangeDetectorRef
+    private change: ChangeDetectorRef,
+    public loading: LoadingController
   ) {
 
   }
@@ -75,6 +78,16 @@ export class VideoComponent {
     this.recordRTC.startRecording();
     let video: HTMLVideoElement = this.video.nativeElement;
     video.srcObject = stream;
+    // stop recording after x seconds
+    setTimeout(()=>{
+      if (this.isRecording){
+        this.recordBtn.toggleRecord();
+        this.toggleRecord();
+      }
+      // this.video.nativeElement.pause();
+    }, (this.recordBtn.timer * 1000) );  
+
+
   }
 
 
@@ -99,7 +112,6 @@ export class VideoComponent {
     navigator.mediaDevices
       .getUserMedia(this.mediaConstraints)
       .then(this.successCallback.bind(this), this.errorCallback.bind(this));
-
   }
 
   stopRecording() {
@@ -148,6 +160,15 @@ export class VideoComponent {
 
   async getVideo(path) {
 
+
+    
+    const loader = this.loading.create({
+      content: "Loading video ...",
+      duration: 10000
+    });
+    loader.present();
+  
+    this.videoHash = "Loading...";
     let vid = await this.documentService.getVideo(path);
     if (vid){
       let blob = new Uint8Array(vid);
@@ -158,6 +179,7 @@ export class VideoComponent {
     else{
       this.videoHash = "No Video";
     }
+    loader.dismiss();
 
   }
 
