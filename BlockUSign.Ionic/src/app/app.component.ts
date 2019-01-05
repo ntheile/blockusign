@@ -186,17 +186,11 @@ export class MyApp {
   }
 
   upload() {
-    this.menuCtrl.close();
-    this.nav.setRoot("HomePage");
-    this.clearActive();
-    setTimeout(()=>{
-      try {
-        document.getElementById('globalLoading').style.display = "";
-        document.getElementById('file-upload').click();
-      }
-      catch(e) {}
-    }, 300);
-
+    
+    this.nav.setRoot("HomePage", {'intent': 'upload'});
+    //this.menuCtrl.close();
+    //this.clearActive();
+  
   }
 
 

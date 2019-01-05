@@ -1,5 +1,5 @@
 import { Component, ViewChild, ViewChildren, ElementRef } from '@angular/core';
-import { NavController, IonicPage } from 'ionic-angular';
+import { NavController, IonicPage, NavParams } from 'ionic-angular';
 import { Chart } from 'chart.js';
 import { AnnotatePage } from '../annotate/annotate';
 import moment from 'moment-timezone';
@@ -64,7 +64,8 @@ export class HomePage {
         public loadingCtrl: LoadingController,
         public globalService: GlobalService, 
         public documentService: DocumentService, 
-        public alertCtrl: AlertController
+        public alertCtrl: AlertController,
+        public navParams: NavParams
     ) {
         this.loading = this.loadingCtrl.create({
             content: 'Please wait...',
@@ -73,6 +74,17 @@ export class HomePage {
     }
 
     async ionViewDidLoad() {
+
+        let intent = this.navParams.get('intent');
+        if ( this.navParams.get('intent') ){
+            if (intent == 'upload'){
+               
+                document.getElementById('file-upload').click();
+                
+                //document.getElementById('globalLoading').style.display = "";
+                // document.getElementById('file-upload').click();
+            }
+        }
 
         this.spinHide();
         //this.initCamera();

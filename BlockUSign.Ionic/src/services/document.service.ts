@@ -33,6 +33,7 @@ export class DocumentService {
   public docStorageMaps: DocStorageMaps;
   public urlBlockusignGlobalStore = "https://gaia.blockstack.org/hub/1PoZGGAuQ4yPj72TrXbG4pKbgB9tvCUqQ1/blockusign";
   public urlBlockusign =  "https://blockusign.co"; //"https://blockusign.co"; // "http://localhost:52657";
+  public chatInterval = null;
  
 
   constructor(

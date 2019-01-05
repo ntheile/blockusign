@@ -38,10 +38,12 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-
     this.firstLoad = true;
     this.doc = new Document();
+  }
 
+  ngAfterViewInit() {
+    
     if (this.documentService.currentDoc) {
       this.doc = this.documentService.currentDoc;
       this.initChatPolling();
@@ -52,15 +54,6 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
         this.initChatPolling();
       });
     }
-
-    this.chatSubscription = this.events.subscribe('documentService:addedChat', async (msg) => {
-
-    });
-
-  }
-
-  ngAfterViewInit() {
-   
   }
 
 
@@ -107,17 +100,23 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
       console.log('This document is locked ' + this.documentService.currentDoc.guid);
     }
 
-    this.chatPolling = setInterval(() => {
+    if (this.documentService.chatInterval){
+      clearInterval(this.documentService.chatInterval);
+    }
+
+
+    this.documentService.chatInterval = setInterval(() => {
       setTimeout(() => { // hack?
         this.getLogData(true);
       }, 1000);
-    }, 3000);
+    }, 5000);
+
   }
 
 
   ngOnDestroy() {
 
-    clearInterval(this.chatPolling);
+    clearInterval(this.documentService.chatInterval);
 
     if (this.subscription) {
       this.subscription.unsubscribe();
@@ -128,11 +127,22 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
 
   }
 
+  ionViewWillLeave(){
+    this.ngOnDestroy();
+  }
+
   async getLogData(isPoll) {
 
     $(document).ready(async () => {
 
-      let logData: Log = await this.documentService.getLog(this.doc.guid);
+      let logData: Log;
+      if (isPoll){
+        logData = await this.documentService.getLog(this.doc.guid);
+      }
+      else{
+        logData = this.documentService.logDoc.log;
+      }
+      
 
       //$('.chat-head').last().html(this.doc.fileName);
 
@@ -206,18 +216,23 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
   }
 
   async addMessage() {
+    
+    clearInterval(this.documentService.chatInterval);
+
     setTimeout(async ()=>{
       $(".loadSpin").show();
       this.message = $(".emojiDiv").last().val();
       //$('.log-history').append(this.message);
       await this.documentService.addMessage(this.doc.guid, this.message);
-      this.events.publish('documentService:addedChat', this.message);
+      // this.events.publish('documentService:addedChat', this.message);
       this.message = null;
       this.firstLoad = true;
-      
+    
       $(".intercom-composer-emoji-popover").removeClass("active");
       // @todo optimize this with lazy load adding of new message
-      //await this.getLogData();
+      await this.getLogData(false);
+
+      this.initChatPolling();
     }, 250);;
      
   }

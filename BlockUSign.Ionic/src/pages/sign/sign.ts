@@ -109,6 +109,9 @@ export class SignPage {
     this.blockChat.destroyEmojiEvents();
     this.blockChat.ngOnDestroy();
     this.blockPdf.destroyEmojiEvents();
+    if (this.documentService.chatInterval){
+      clearInterval(this.documentService.chatInterval);
+    }
   }
 
   async next() {
