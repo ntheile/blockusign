@@ -44,13 +44,14 @@ import { ToastController } from 'ionic-angular';
           await this.documentService.removeDocument( d );
           let toast = this.toastCtrl.create({
             message: 'Document deleted!',
-            duration: 3000,
-            position: 'middle'
+            duration: 1600,
+            position: 'top'
           });
           toast.present();        
           this.viewCtrl.dismiss();
           window.location.hash = '';
-        }, 1000 );
+          window.location.reload();
+        }, 200 );
       
     }
 

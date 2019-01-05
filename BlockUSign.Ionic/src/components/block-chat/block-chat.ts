@@ -217,7 +217,6 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
 
   async addMessage() {
     
-    clearInterval(this.documentService.chatInterval);
 
     setTimeout(async ()=>{
       $(".loadSpin").show();
@@ -231,8 +230,7 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
       $(".intercom-composer-emoji-popover").removeClass("active");
       // @todo optimize this with lazy load adding of new message
       await this.getLogData(false);
-
-      this.initChatPolling();
+      
     }, 250);;
      
   }

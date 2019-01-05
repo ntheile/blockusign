@@ -118,7 +118,14 @@ export class DocumentService {
 
   async removeDocument(document) {
     // remove item
-    this.documentsList = (<any>this.documentsList).remove(document);
+    let removeIndex = this.documentsList.findIndex( d=> d.guid == document.guid);
+    if (removeIndex >= 0){
+      this.documentsList.splice(removeIndex, 1);
+    } else{
+      return this.documentsList;
+    }
+    
+    //this.documentsList = (<any>this.documentsList).remove(document);
     await blockstack.putFile(this.indexFileName, JSON.stringify(this.documentsList), { encrypt: true });
     await this.removeDocumentBytes(document.guid);
     // remove binary file
