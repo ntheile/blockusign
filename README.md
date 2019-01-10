@@ -15,7 +15,7 @@ The app uses Ionic (Angular + Cordova + Material Design UI) make sure you have i
 
 `npm install -g ionic@latest`
 
-It also uses electron to wrap up as a desktop app
+It also uses electron to wrap up as a desktop app (*electron code not written yet for auth)
 
 `npm install -g electron`
 

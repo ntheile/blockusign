@@ -44,6 +44,7 @@ export class BlockchainPage {
   
   zoneFiles = [];
   signature = ""; // ary
+  videoSignature = "";
   profileUrl = ""; // ary
   zonefile; // ary
   zonefileJson; // ary
@@ -90,7 +91,7 @@ export class BlockchainPage {
       this.mySubDomainName = this.getSubdomainName();
       this.collaborators = await this.documentService.getCollaborators(this.guid);
       await this.getHash();
-      this.calculateMyVideoHash();
+      await this.calculateMyVideoHash();
       await this.getSig();
       await this.checkIfOthersSigned();
       this.checkIfISigned();
@@ -207,6 +208,11 @@ export class BlockchainPage {
     this.address = this.bitcoinService.getAppBitcoinAddress().toString();
     let wif = this.bitcoinService.getWif();
     this.signature = this.bitcoinService.signMessage(this.hash, wif);
+    if (this.videoHash !== "No Video"){
+      this.videoSignature = this.bitcoinService.signMessage(this.videoHash, wif);
+    } else{
+      this.videoSignature = "No Video";
+    }
     this.profileUrl = this.blockstackService.getProfileJsonUrl();
   }
 
@@ -216,7 +222,7 @@ export class BlockchainPage {
     let wif = this.bitcoinService.getWif();
 
     // @todo check for 409 error
-    let resp = this.bitcoinService.sendSudomainBatch(this.mySubDomainName, this.address, this.hash, this.videoHash, this.signature, this.profileUrl);
+    let resp = this.bitcoinService.sendSudomainBatch(this.mySubDomainName, this.address, this.hash, this.videoHash, this.signature, this.videoSignature, this.profileUrl);
     // saving to the blockchain
     this.onStep="1";
 
