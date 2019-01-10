@@ -20,5 +20,6 @@
     <Content Remove="wwwroot\web.config" />
     <Content Remove="wwwroot\assets\.DS_Store" />
     <Content Remove="wwwroot\build\0.9f6d3386aba5ea9d8e15.chunk.js" />
+    <Content Remove="wwwroot\video.html" />
   </ItemGroup>
 </Project>

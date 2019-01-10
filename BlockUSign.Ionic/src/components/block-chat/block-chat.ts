@@ -104,10 +104,10 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
       clearInterval(this.documentService.chatInterval);
     }
 
-
+    this.getLogData();
     this.documentService.chatInterval = setInterval(() => {
       setTimeout(() => { // hack?
-        this.getLogData(true);
+        this.getLogData();
       }, 1000);
     }, 5000);
 
@@ -131,18 +131,14 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
     this.ngOnDestroy();
   }
 
-  async getLogData(isPoll) {
+  async getLogData() {
 
     $(document).ready(async () => {
 
       let logData: Log;
-      if (isPoll){
-        logData = await this.documentService.getLog(this.doc.guid);
-      }
-      else{
-        logData = this.documentService.logDoc.log;
-      }
-      
+     
+      logData = await this.documentService.getLog(this.doc.guid);
+    
 
       //$('.chat-head').last().html(this.doc.fileName);
 
@@ -155,7 +151,7 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
 
       this.msgCountNew = logData.messages.length;
 
-      if (this.msgCountNew > this.msgCount) {
+      if (this.msgCountNew > this.msgCount || $('.log-history').last().children().length == 0  ) {
         this.msgCount = this.msgCountNew;
         let orderedMessages = jslinq(logData.messages).orderBy((el) => el.updatedAt).toList();
         this.messages = orderedMessages;
@@ -229,7 +225,7 @@ export class BlockChatComponent implements OnDestroy, OnInit, AfterViewInit {
     
       $(".intercom-composer-emoji-popover").removeClass("active");
       // @todo optimize this with lazy load adding of new message
-      await this.getLogData(false);
+      await this.getLogData();
       
     }, 250);;
      

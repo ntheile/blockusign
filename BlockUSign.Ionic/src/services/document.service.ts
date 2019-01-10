@@ -206,14 +206,14 @@ export class DocumentService {
     //  now copy annotations
     let annotsResp = await this.getAnnotationsByPath(this.currentDoc.pathAnnotatedDoc + guid + ".annotations.json", this.currentDoc.documentKey);
     if (annotsResp) {
-      this.saveAnnotations(guid, this.currentDocAnnotations.annotations);
+      await this.saveAnnotations(guid, this.currentDocAnnotations.annotations);
     }
     else{
-      this.saveAnnotations(guid, "");
+      await this.saveAnnotations(guid, "");
     }
 
     // now copy chat log
-    let theirPath = jslinq(this.currentDoc.paths).where( (el) => el.email != this.blockStackService.profile.email  ).toList();
+    let theirPath = jslinq(this.currentDoc.paths).where( (el) => el.userId != this.blockStackService.profile.userId  ).toList();
     if (theirPath){
       try{
         let theirUrl = theirPath[0].pathToStorage + guid + '.log.json';
