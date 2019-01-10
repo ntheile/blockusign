@@ -364,7 +364,7 @@ export class MyApp {
   profileModal(email) {
 
     let alert = this.alertCtrl.create({
-      title: 'Please enter your email',
+      title: 'Please enter your email. We do NOT store it on our servers. It\'s for your use within the app!',
       enableBackdropDismiss: false,
       inputs: [
         {
