@@ -154,6 +154,8 @@ export class BlockStackService {
     } else{
       let gaiaConfig = JSON.parse(localStorage.getItem('blockstack-gaia-hub-config'));
       storagePath = gaiaConfig.url_prefix + '/' + gaiaConfig.address + '/';
+      // make sure no 2 slashes, blockstack code is NOT CONSISTENT with trailing slashes
+      storagePath = storagePath.replace('hub//', 'hub/');
     }
 
     return storagePath;

@@ -18,6 +18,7 @@ import { EmailPageModule } from '../pages/email/email.module';
 import { ReviewPageModule } from '../pages/review/review.module';
 import { BlockStepsComponentModule } from './../components/components.module';
 import { BlockchainPageModule } from './../pages/blockchain/blockchain.module';
+import { FeaturesModalPageModule } from './../pages/features-modal/features-modal.module';
 
 
 //import { HomePage } from './../pages/home/home';
@@ -33,6 +34,7 @@ import { BlockStackService } from '../services/blockstack.service';
 import { Block } from 'bitcoinjs-lib';
 import { BitcoinService } from '../services/bitcoin.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FeatureProvider } from '../providers/feature/feature';
 
 @NgModule({
   declarations: [
@@ -57,6 +59,7 @@ import { HttpClientModule } from '@angular/common/http';
     NgSelectModule, 
     FormsModule,
     BlockStepsComponentModule,
+    FeaturesModalPageModule,
     HttpClientModule
   ],
   bootstrap: [IonicApp],
@@ -76,6 +79,7 @@ import { HttpClientModule } from '@angular/common/http';
     DocumentService,
     EmailService,
     BitcoinService,
+    FeatureProvider,
   ]
 })
 export class AppModule {}

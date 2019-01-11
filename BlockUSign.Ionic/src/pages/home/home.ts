@@ -12,6 +12,7 @@ import { GlobalService } from '../../services/global.service';
 import { DocumentService } from '../../services/document.service';
 import { AlertController } from 'ionic-angular';
 import { unescapeIdentifier } from '@angular/compiler';
+import { FeatureProvider } from './../../providers/feature/feature';
 declare let window: any;
 declare let PDFView: any;
 declare let canvas: any;
@@ -22,6 +23,8 @@ declare let document: any;
 declare let jsPDF: any;
 declare let $: any;
 declare let sjcl: any;
+import { ModalController } from 'ionic-angular';
+import { FeaturesModalPage } from './../features-modal/features-modal';
 
 //const $ = document.querySelectorAll.bind(document);
 
@@ -65,7 +68,9 @@ export class HomePage {
         public globalService: GlobalService, 
         public documentService: DocumentService, 
         public alertCtrl: AlertController,
-        public navParams: NavParams
+        public navParams: NavParams,
+        public featureService: FeatureProvider,
+        public modal: ModalController
     ) {
         this.loading = this.loadingCtrl.create({
             content: 'Please wait...',
@@ -101,6 +106,21 @@ export class HomePage {
 
         //let docs = await this.documentService.getDocumentsIndex(true)
         //this.testPublicKeyFile();
+        this.checkNewFeatures();
+
+    }
+
+    async checkNewFeatures(){
+        try{
+            let newFeatures = await this.featureService.getFeaturesToShow();
+            if (newFeatures.length > 0){
+                const modal = this.modal.create(FeaturesModalPage, null, { enableBackdropDismiss: false });
+                modal.present();
+            } 
+        }catch(e){
+            console.error('could not load new features')
+        }
+       
     }
 
     next() {

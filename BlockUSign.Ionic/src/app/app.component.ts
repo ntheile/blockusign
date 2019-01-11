@@ -56,8 +56,20 @@ export class MyApp {
     public popoverCtrl: PopoverController,
     public menuCtrl: MenuController,
     public blockStackService: BlockStackService,
-    public toastCntrl: ToastController
+    public toastCntrl: ToastController,
   ) {
+
+
+    window.getQueryParam = function (name, url) {
+      if (!url) url = window.location.href;
+      name = name.replace(/[\[\]]/g, "\\$&");
+      var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      var re = decodeURIComponent(results[2].replace(/\+/g, " "));
+      return re;
+    }
 
     this.initializeApp();
 
