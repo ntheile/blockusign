@@ -112,3 +112,8 @@ or
 
 ** https://leifwells.github.io/2017/08/27/testing-in-ionic-configure-existing-projects-for-testing/  (* note I had to downgrade a jasmine package from the tutorial) `npm install --save-dev jasmine@^2.99.0`
 
+
+## Support on Beerpay
+Hey dude! Help me out for a couple of :beers:!
+
+[![Beerpay](https://beerpay.io/ntheile/blockusign/badge.svg?style=beer-square)](https://beerpay.io/ntheile/blockusign)  [![Beerpay](https://beerpay.io/ntheile/blockusign/make-wish.svg?style=flat-square)](https://beerpay.io/ntheile/blockusign?focus=wish)
