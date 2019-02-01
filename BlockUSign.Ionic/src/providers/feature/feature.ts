@@ -10,7 +10,7 @@ export class FeatureProvider {
     console.log('Hello FeatureProvider Provider');
   }
 
-  features = ['videoproofs'];
+  features = ['videoproofs', 'cameraupload'];
   featuresNotSeen = [];
 
   async getFeaturesToShow(){
@@ -58,7 +58,7 @@ export class FeatureProvider {
   async putMyFeatures(){
     let resp = null;
     try{
-      resp = blockstack.putFile('features.json', JSON.stringify(this.features), {encrypt: false});
+      //resp = blockstack.putFile('features.json', JSON.stringify(this.features), {encrypt: false});
     } catch(e){
       return null;
     }

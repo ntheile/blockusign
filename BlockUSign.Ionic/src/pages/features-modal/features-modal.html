@@ -41,6 +41,16 @@
       </div>
     </ion-slide>
 
+    <ion-slide *ngIf="featureService.featuresNotSeen.includes('cameraupload')">
+        <h2>Camera Upload</h2>
+        <p>Upload a document with the camera on your phone or computer</p>
+        <br/>
+        <img src="./../../assets/camera-upload-doc.gif" style="width:220px"  />
+        <br/>
+      </ion-slide>
+
+    
+
 
     <!-- <ion-slide *ngIf="featureService.featuresNotSeen.includes('sign')">
         <h2>signoff</h2>

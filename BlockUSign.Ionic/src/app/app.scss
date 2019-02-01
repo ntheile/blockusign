@@ -1258,3 +1258,13 @@
       margin-left: auto;
       margin-right: auto;
   }
+
+  @media only screen and (min-height: 600px) and (min-width: 768px){
+     .modal-wrapper {
+        left: calc(50% - (600px/2));
+        top: calc(50% - (700px/2));
+        position: absolute;
+        width: 600px;
+        height: 700px;
+    }
+  }
