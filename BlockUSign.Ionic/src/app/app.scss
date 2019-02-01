@@ -1248,3 +1248,12 @@
   .import-graphite:hover{
     opacity: .8;
   }
+
+
+  .myCenter{
+      display: flex;
+      align-content: center;
+      align-items: center;
+      margin-left: auto;
+      margin-right: auto;
+  }

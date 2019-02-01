@@ -32,22 +32,25 @@
               </div>
             </label>
           </form>
-          
-       
-
-
         </div>
-      </ion-col>
+      </ion-col>  
     </ion-row>
 
+    <br/><br/>
+    <div class="myCenter">
+        <p>OR &nbsp;</p>
+        <button ion-button (click)="cameraModal()" style="border-radius: 40px">
+            <ion-icon name="camera"></ion-icon>&nbsp;&nbsp;Take Picture of Doc
+        </button>
+    </div>
+    <div *ngIf="showCamera" class="myCenter">
+        <video #videoCamera (click)="snapClick()" 
+          width="1" height="1" 
+          autoplay style="object-fit: contain; cursor:pointer" ></video>
+        <canvas #cameraCanvas width="750" height="975"></canvas>
+    </div>
 
-    <!-- <ion-row>
-      <ion-col>
-        <video id="video" width="612" height="792"></video>
-        <canvas id="canvasCamera" width="612" height="792"></canvas>
-      </ion-col>
-    </ion-row>
- -->
+   
 
     <ion-row>
       <ion-col>
@@ -70,7 +73,6 @@
   </steps> -->
 
   <!-- <ion-fab top left style="margin-top:130px;background-color:#36393E; opacity: .95;border-radius: 10px" #fab>
-    <button id="snap">Snap Photo</button>
-    <button id="downloadpdf">Download as pdf</button>
+    <button (click)="fullscreen()">From Camera</button>
   </ion-fab> -->
 </ion-content>

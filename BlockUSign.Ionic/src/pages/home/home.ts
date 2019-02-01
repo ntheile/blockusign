@@ -1,4 +1,4 @@
-import { Component, ViewChild, ViewChildren, ElementRef } from '@angular/core';
+import { Component, ViewChild, ViewChildren, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { NavController, IonicPage, NavParams } from 'ionic-angular';
 import { Chart } from 'chart.js';
 import { AnnotatePage } from '../annotate/annotate';
@@ -25,6 +25,9 @@ declare let $: any;
 declare let sjcl: any;
 import { ModalController } from 'ionic-angular';
 import { FeaturesModalPage } from './../features-modal/features-modal';
+let blobStream = require('blob-stream');
+let canvas2pdf = require('canvas2pdf');
+declare let pdfkit: any;
 
 //const $ = document.querySelectorAll.bind(document);
 
@@ -49,6 +52,8 @@ export class HomePage {
     loading;
     isSpinning = false;
     isGraphite = false;
+    showCamera = true;
+    hasCameraBeenClicked = false;
 
     @ViewChild("fileUploadForm") fileUploadForm: ElementRef;
     @ViewChild("fileUpload") fileUpload: ElementRef;
@@ -60,6 +65,9 @@ export class HomePage {
     @ViewChild("theCanvas") theCanvas: ElementRef;
     @ViewChild("messages") messages: ElementRef;
     @ViewChild("spinner") spinner: ElementRef;
+    @ViewChild("videoCamera") videoCamera: ElementRef;
+    @ViewChild("cameraCanvas") cameraCanvas: ElementRef;
+    
     
     
     constructor(
@@ -70,7 +78,8 @@ export class HomePage {
         public alertCtrl: AlertController,
         public navParams: NavParams,
         public featureService: FeatureProvider,
-        public modal: ModalController
+        public modal: ModalController,
+        private change: ChangeDetectorRef,
     ) {
         this.loading = this.loadingCtrl.create({
             content: 'Please wait...',
@@ -92,8 +101,7 @@ export class HomePage {
         }
 
         this.spinHide();
-        //this.initCamera();
-       
+        
         this.ekUpload();
         
         try{
@@ -415,8 +423,36 @@ export class HomePage {
     }
 
 
+    cameraModal() {
+
+        let alert = this.alertCtrl.create({
+            title: '',
+            subTitle: 'Double tap the screen to take a picture of the document',
+            buttons: [
+                {
+                    text: 'Ok',
+                    handler: data  => {
+                       
+                        this.takePicture();
+                      
+       
+
+                        if (true == true) {
+                            // logged in!
+                        } else {
+                            // invalid login
+                            return false;
+                        }
+                    }
+                }
+            ]
+        });
+        alert.present();
+    }
+
     async initCamera() {
 
+        
         // rear camera selection - https://github.com/webrtc/samples/blob/gh-pages/src/content/devices/input-output/js/main.js
         // https://www.html5rocks.com/en/tutorials/getusermedia/intro/
         // @todo check rear camera logic on all phones
@@ -445,19 +481,6 @@ export class HomePage {
             video.play();
         };
 
-        // let process = (video) => {
-        //     let mediaDevices = navigator.mediaDevices;
-        //     mediaDevices.getUserMedia(mediaConfig).then(
-        //         stream => playStream(
-        //             video,
-        //             window.URL.createObjectURL(stream)
-        //         )
-        //     ).catch(function (err) {
-        //         // alert(err);
-        //         alert("Not support get stream from camera!");
-        //     });
-        // };
-
         let process = (video) => {
             let mediaDevices = navigator.mediaDevices;
             mediaDevices.getUserMedia(mediaConfig).then(function (stream) {
@@ -474,21 +497,23 @@ export class HomePage {
                 alert("Not support get stream from camera!");
             });
         };
-
-
-
-        let video = $("#video")[0];
-        process(video);
-
-        this.canvasCamera = $("#canvasCamera")[0];
+        process(this.videoCamera.nativeElement);
+        this.canvasCamera = this.cameraCanvas.nativeElement;
         this.cameraContext = this.canvasCamera.getContext("2d");
+       
+    }
 
-        $("#snap").on('click', () => {
-            this.cameraContext.drawImage(video, 0, 0, 612, 792);
-        });
-
-        $("#downloadpdf").on('click', this.savePDF);
-
+    snapClick(){
+        this.showCamera = true;
+        setTimeout( ()=>{
+            this.change.detectChanges();
+            if (this.hasCameraBeenClicked == false){
+                this.hasCameraBeenClicked = true;
+                this.cameraContext.drawImage(this.videoCamera.nativeElement, 0, 0, 612, 792);
+                this.loadFromImage();
+            }
+        },250);
+        
     }
 
     savePDF() {
@@ -541,6 +566,44 @@ export class HomePage {
         this.saveFile(localStorage.getItem("FileName"));
     }
 
+    async takePicture(){
+        try{
+            //this.showCamera = true;
+            //await this.change.detectChanges();
+            this.videoCamera.nativeElement.requestFullscreen();
+        } catch(e) {};
+        this.initCamera();
+    }
+
+    async loadFromImage(){
+        
+        // get image from camera capture
+        let image = new Image();
+        image.crossOrigin = 'Anonymous';
+        let imgUrl = this.cameraCanvas.nativeElement.toDataURL();
+        image.src = imgUrl;
+        let stream = new blobStream();
+       
+        let ctx = new canvas2pdf.PdfContext(stream);
+        image.onload =  () => {
+            ctx.drawImage(image, 0, 0);
+            ctx.stream.on('finish', async ()=> {
+                this.videoCamera.nativeElement.pause();
+                let blob= ctx.stream.toBlob('application/pdf');
+                this.blobToBase64(blob, (base64)=>{
+                    let pdfData = this.base64ToUint8Array(base64);
+                    this.pdfBuffer = pdfData.buffer;
+                    this.savePdfAsString(pdfData);
+                    this.createPdf(pdfData);
+                    this.hasCameraBeenClicked = false;
+                    this.newDocModal("untitled-" + Date.now() );
+                    window.stream.stop();
+                })
+            });
+            ctx.end();
+        }; 
+    }
+
 
     testPutFile(publicKey): Promise<any> {
         const encryptOptions = { encrypt: publicKey };
@@ -585,6 +648,16 @@ export class HomePage {
         }
         return uint8Array;
     }
+
+    async blobToBase64(blob, callback) {
+        var reader = new FileReader();
+        reader.onload = function() {
+            var dataUrl = reader.result;
+            var base64 = dataUrl.split(',')[1];
+            callback(base64);
+        };
+        reader.readAsDataURL(blob);
+    };
 
 }
 
