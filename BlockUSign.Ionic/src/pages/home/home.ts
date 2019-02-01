@@ -27,6 +27,7 @@ import { ModalController } from 'ionic-angular';
 import { FeaturesModalPage } from './../features-modal/features-modal';
 let blobStream = require('blob-stream');
 let canvas2pdf = require('canvas2pdf');
+let Filters = require('./../../utils/filters');
 declare let pdfkit: any;
 
 //const $ = document.querySelectorAll.bind(document);
@@ -504,11 +505,11 @@ export class HomePage {
     }
 
     snapClick(){
-        this.showCamera = true;
         setTimeout( ()=>{
             this.change.detectChanges();
             if (this.hasCameraBeenClicked == false){
                 this.hasCameraBeenClicked = true;
+                document.exitFullscreen();
                 this.cameraContext.drawImage(this.videoCamera.nativeElement, 0, 0, 612, 792);
                 this.loadFromImage();
             }
@@ -586,7 +587,20 @@ export class HomePage {
        
         let ctx = new canvas2pdf.PdfContext(stream);
         image.onload =  () => {
+
+
+            //let filterData = Filters.filterImage(Filters.grayscale, image);
+
+            //ctx.putImageData(filterData, 0, 0);
+
             ctx.drawImage(image, 0, 0);
+
+            // greyscale
+
+            // sharpen
+
+            // threshold
+
             ctx.stream.on('finish', async ()=> {
                 this.videoCamera.nativeElement.pause();
                 let blob= ctx.stream.toBlob('application/pdf');

@@ -41,29 +41,7 @@
     </div>
 
     <div [ngSwitch]="choice">
-      <ion-list *ngSwitchCase="'blockstack'"> 
-        <br/>
-        <ion-searchbar #searchbar animated="true" showCancelButton="true" 
-            (ionInput)="lookup($event)" (ionCancel)="onSearchClear()" (ionClear)="onSearchClear()"  [(ngModel)]="userInput"></ion-searchbar>
-          <ion-list #searchitems id="searchitems" >
-            <button ion-item *ngFor="let item of userArray" (click)="addUser(item)">
-              {{ item.fullyQualifiedName }}
-            </button>
-            <p *ngIf="!item" padding>No results</p>
-          </ion-list>
-          
-          <div style="display:flex; flex-direction: row; flex-wrap: wrap;" padding>
-            <button *ngIf="selectedUsers.length > 0" ion-button icon-end (click)="sendEmail($event)" style="border-radius: 30px">
-              Send <ion-icon name="md-send"></ion-icon></button>
-              <div  padding *ngFor="let user of selectedUsers" >
-                  <ion-badge  style="cursor:pointer" (click)="removeUser(user)"> {{ user }} 
-                      <ion-icon name="md-close-circle" role="img" style="color: white; margin-top:-10px" class="icon icon-md ion-md-close-circle" aria-label="close circle" ng-reflect-name="md-close-circle"></ion-icon>
-                  </ion-badge>
-              </div>
-          </div>
-         
-          
-      </ion-list>
+      
       <ion-list *ngSwitchCase="'link'" padding>
         <br/>
         <textarea style="width:100%; height: 100%; color: black; border-radius: 5px" [(ngModel)]="documentLink" class="emailLink no-print"></textarea>
@@ -80,6 +58,29 @@
          
         
       </ion-list>
+      <!-- <ion-list *ngSwitchCase="'blockstack'"> 
+          <br/>
+          <ion-searchbar #searchbar animated="true" showCancelButton="true" 
+              (ionInput)="lookup($event)" (ionCancel)="onSearchClear()" (ionClear)="onSearchClear()"  [(ngModel)]="userInput"></ion-searchbar>
+            <ion-list #searchitems id="searchitems" >
+              <button ion-item *ngFor="let item of userArray" (click)="addUser(item)">
+                {{ item.fullyQualifiedName }}
+              </button>
+              <p *ngIf="!item" padding>No results</p>
+            </ion-list>
+            
+            <div style="display:flex; flex-direction: row; flex-wrap: wrap;" padding>
+              <button *ngIf="selectedUsers.length > 0" ion-button icon-end (click)="sendEmail($event)" style="border-radius: 30px">
+                Send <ion-icon name="md-send"></ion-icon></button>
+                <div  padding *ngFor="let user of selectedUsers" >
+                    <ion-badge  style="cursor:pointer" (click)="removeUser(user)"> {{ user }} 
+                        <ion-icon name="md-close-circle" role="img" style="color: white; margin-top:-10px" class="icon icon-md ion-md-close-circle" aria-label="close circle" ng-reflect-name="md-close-circle"></ion-icon>
+                    </ion-badge>
+                </div>
+            </div>
+           
+            
+        </ion-list> -->
     </div>
   </div>
 
