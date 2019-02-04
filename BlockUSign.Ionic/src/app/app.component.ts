@@ -92,7 +92,10 @@ export class MyApp {
     });
 
     //this.createEosTestAccount('dnciofrew');
+    // test 
     console.log('blockusign-test');
+
+
 
   }
 
