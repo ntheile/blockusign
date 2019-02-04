@@ -5,11 +5,15 @@
   <br /><br />
 
 
+  <span style="padding: 10px 10px 10px 10px" *ngIf="!isSaving" class="no-print">  
+    "Seal the Deal" by saving your Digital Signature to the Blockchain! 
+    The document, signatures, update log, and video proof can be verified here - forever, without a third party notary service! 
+    &nbsp;&nbsp;<a href="https://medium.com/blockstack-blog/blockusigns-pragmatic-approach-to-smart-contracts-anchoring-data-on-blockchain-using-blockstack-fb9bd974a306" target="_blank"><ion-icon name="information-circle"></ion-icon>&nbsp;Learn more</a>
+  </span>
+
   <div class="centerMe" style="max-width: 760px" padding>
 
-    <span style="padding: 10px 10px 10px 10px" *ngIf="!isSaving">  <ion-badge style="border-radius: 30px" >beta</ion-badge>
-      Save your Digital Signature to the Blockchain forever!&nbsp;<a href="https://github.com/ntheile/blockusign/issues/58" target="_blank"><ion-icon name="information-circle"></ion-icon></a>
-    </span>
+    
     <br /><br />
 
     
@@ -29,12 +33,11 @@
 
       <button *ngIf="!isSaving && !isOnBlockchain && (onStep == '0') " ion-button style="border-radius: 30px; 
       position: absolute; top: 36%; left:29%;
-      z-index: 999999;"
-        (click)="presentConfirm()">Sign to the<br/> Blockchain
-        <ion-icon name="md-create" style="margin-left: 20px; "></ion-icon>
+      z-index: 999999;" (click)="presentConfirm()">Save
+       <img name="save" src="assets/save.svg" style="width: 25px; height: 25px;margin-left: 8px"/>
       </button>
 
-      <button *ngIf="!isSaving && !isOnBlockchain && (onStep != '0')  " ion-button style="border-radius: 30px; 
+      <button *ngIf="!isSaving && !isOnBlockchain && (onStep != '0') && !isLoading " ion-button style="border-radius: 30px; 
       position: absolute; top: 36%; left:29%;
       z-index: 999999; background-color: #FF9800" (click)="toggleAdvanced()">Saving to the<br/> Blockchain...
         <ion-icon name="md-create" style="margin-left: 20px; "></ion-icon>
@@ -167,7 +170,7 @@
 
         <br /><br /><br />
         <p>How does this all work?</p>
-        <a href="https://github.com/ntheile/blockusign/issues/58" target="_blank">https://github.com/ntheile/blockusign/issues/58</a>
+        <a href="https://medium.com/blockstack-blog/blockusigns-pragmatic-approach-to-smart-contracts-anchoring-data-on-blockchain-using-blockstack-fb9bd974a306" target="_blank">Medium Article - Blockusign App: A Pragmatic Approach to Smart Contracts and Anchoring Data to the Blockchain Using Blockstack</a>
 
       </div>
 

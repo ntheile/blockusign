@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
 import { Searchbar } from 'ionic-angular';
 import { DocumentService } from './../../services/document.service';
 import { EmailService } from './../../services/email.service';
@@ -42,15 +42,18 @@ export class EmailPage {
   selectedUser = [];
   people3Typeahead = new Subject<string>();
   loading;
-  choice = 'link';
+  choice = 'email';
   userInput;
   userArray;
   selectedUsers = [];
-  public documentLink = "";;
+  public documentLink = "";
+  instructionsText = 'After they sign the document you will receive an email confirmation. Then, if you choose, you can record a "video proof" and save the digital signature to the blockchain to really "seal the deal". Oh yeah, and it\'s verifiable without a third party notary! ✏️ 🎉 💪 💪 🎉 ✏️';
 
   @ViewChild("blockSteps") blockSteps: BlockStepsComponent;
   @ViewChild('searchbar') searchbar: Searchbar;
   @ViewChild('searchitems') searchitems: ElementRef;
+  @ViewChild('linkCopy') linkCopy: ElementRef;
+  
   
   constructor(
     public navCtrl: NavController,
@@ -59,7 +62,9 @@ export class EmailPage {
     public emailService: EmailService,
     public blockStackService: BlockStackService,
     public chg: ChangeDetectorRef,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public alertCtrl: AlertController,
+    public toastCtrl: ToastController
   ) {
 
     if (this.navParams.get("guid") && !this.documentService.currentDoc) {
@@ -124,6 +129,10 @@ export class EmailPage {
     return;
   }
 
+  segmentChanged(){
+    this.chg.detectChanges();
+  }
+
   async searchUser(user) {
     let resp = await this.blockStackService.searchUser(user);
   }
@@ -157,6 +166,8 @@ export class EmailPage {
       return;
     }
 
+   
+
     this.loading = this.loadingCtrl.create({
       content: 'Please wait...',
       duration: 12000
@@ -173,8 +184,28 @@ export class EmailPage {
     await this.emailService.sendEmail(this.email, subject, content);
 
     this.loading.dismiss();
+    this.emailSuccessAlert();
 
-    alert('Email sent!');
+  }
+
+  emailSuccessAlert(){
+      let alert = this.alertCtrl.create({
+        title: 'Email Sent!',
+        subTitle: this.instructionsText,
+        buttons: [
+            {
+                text: 'Ok',
+                handler: data => {
+                    if (true == true) {
+                    } else {
+                        // invalid login
+                        return false;
+                    }
+                }
+            }
+        ]
+    });
+    alert.present();
   }
 
   genLink(){
@@ -188,6 +219,37 @@ export class EmailPage {
       alert('Email not found. Please enter below');
     }, 1000 );
   }
+
+
+
+  linkCopiedModal() {
+
+    this.chg.detectChanges();
+
+    try{
+      setTimeout( ()=>{
+        let el = this.linkCopy.nativeElement;
+        el.select();
+        document.execCommand("copy");
+      }, 800 );
+     
+  
+  
+      let toast = this.toastCtrl.create({
+        message: 'Copied link to clipboard. Please send this link to your signer',
+        duration: 3000,
+        position: 'top'
+      });
+    
+      toast.onDidDismiss(() => {
+        console.log('Dismissed toast');
+      });
+    
+      toast.present();
+    } catch(e){}
+  
+  
+}
 
 
 

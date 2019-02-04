@@ -511,7 +511,7 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
     let toast = this.toastCntrl.create({
       message: 'Saved!',
       duration: 2000,
-      position: 'middle'
+      position: 'top'
     });
     toast.onDidDismiss(() => {
       console.log('Dismissed toast');
@@ -611,8 +611,8 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
     
 
     let alert = this.alertCtrl.create({
-      title: 'Email',
-      message: 'Do you want to email the owner saying that you signed the document?',
+      title: 'Success!',
+      message: 'Thanks for signing! Do you want notify the owner stating that you signed the document? This will kick off the process to "Seal the Deal" ',
       buttons: [
         {
           text: 'No',

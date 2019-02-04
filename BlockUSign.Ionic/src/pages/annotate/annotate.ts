@@ -30,6 +30,7 @@ export class AnnotatePage {
   @ViewChild("blockPdf") blockPdf: BlockPdfComponent;
   @ViewChild("blockSteps") blockSteps: BlockStepsComponent;
   public instance: AnnotatePage;
+  showText = true;
 
   constructor(
     public navCtrl: NavController, 
@@ -55,6 +56,15 @@ export class AnnotatePage {
       clearInterval(this.documentService.chatInterval);
     }
 
+  }
+
+  toggleText(){
+    if (this.showText){
+      this.showText = false;
+    }
+    else{
+      this.showText = true;
+    }
   }
 
   async next (){

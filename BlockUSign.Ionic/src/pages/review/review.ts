@@ -33,6 +33,7 @@ export class ReviewPage {
   collaborators = [];
   showVideo = false;
   isSafari = false;
+  name = "";
 
   constructor(
     public navCtrl: NavController, 
@@ -85,6 +86,7 @@ export class ReviewPage {
       this.getHash();
     }
 
+    this.name = blockstack.loadUserData().username;
     
   }
 

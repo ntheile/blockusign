@@ -1,5 +1,5 @@
 import { Component, ViewChild, OnDestroy, AfterViewInit } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { DocumentService } from './../../services/document.service';
 import { BlockPdfComponent } from '../../components/block-pdf/block-pdf';
 import { BlockChatComponent } from '../../components/block-chat/block-chat';
@@ -31,12 +31,14 @@ export class SignPage {
   @ViewChild("blockChat") blockChat: BlockChatComponent;
   @ViewChild("blockPdf") blockPdf: BlockPdfComponent;
   @ViewChild("blockSteps") blockSteps: BlockStepsComponent;
+  showText = true;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public documentService: DocumentService,
-    public myApp: MyApp
+    public myApp: MyApp,
+    public alertCtrl: AlertController,
   ) {
 
   }
@@ -130,5 +132,34 @@ export class SignPage {
     await this.blockPdf.saveSvg();
     this.blockSteps.route("EmailPage");
   }
+
+  toggleText(){
+    if (this.showText){
+      this.showText = false;
+    }
+    else{
+      this.showText = true;
+    }
+  }
+
+  afterSignAlert(){
+    let alert = this.alertCtrl.create({
+      title: 'Email Sent!',
+      subTitle: 'After they sign the document you will receive an email confirmation. Then, if you choose,  you can record a "video proof" and save the digital signature to the blockchain to really "seal the deal!"',
+      buttons: [
+          {
+              text: 'Ok',
+              handler: data => {
+                  if (true == true) {
+                  } else {
+                      // invalid login
+                      return false;
+                  }
+              }
+          }
+      ]
+  });
+  alert.present();
+}
 
 }

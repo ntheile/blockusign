@@ -21,21 +21,21 @@
   </div>
   
 
-  <p class="no-print" padding  *ngIf="documentService.currentDoc && !documentService.currentDoc.isCompleted">
+  <p class="no-print" padding  *ngIf="documentService.currentDoc && !documentService.currentDoc.isCompleted" >
     How do you want to send the document to your signer(s)?
   </p>
-
+  
   <div style="max-width:600px" *ngIf="documentService.currentDoc && !documentService.currentDoc.isCompleted">
     <div>
-      <ion-segment [(ngModel)]="choice">
+      <ion-segment [(ngModel)]="choice" (ionChange)="segmentChanged()">
         <!-- <ion-segment-button selected value="blockstack">
             &nbsp;<ion-icon name="ios-person" class="send-choice"></ion-icon>&nbsp;Name
         </ion-segment-button> -->
-        <ion-segment-button value="link">
-            &nbsp;<ion-icon name="ios-link" class="send-choice"></ion-icon>&nbsp;Link
-        </ion-segment-button>
         <ion-segment-button value="email">
             &nbsp;<ion-icon name="mail" class="send-choice"></ion-icon>&nbsp;Email
+        </ion-segment-button>
+        <ion-segment-button value="link" (click)="linkCopiedModal()">
+            &nbsp;<ion-icon name="ios-link" class="send-choice"></ion-icon>&nbsp;Copy Link
         </ion-segment-button>
       </ion-segment>
     </div>
@@ -44,7 +44,11 @@
       
       <ion-list *ngSwitchCase="'link'" padding>
         <br/>
-        <textarea style="width:100%; height: 100%; color: black; border-radius: 5px" [(ngModel)]="documentLink" class="emailLink no-print"></textarea>
+        <p class="no-print selectable" >
+            Please copy the link below and send to your signer! {{ instructionsText }}
+          </p>
+        
+        <textarea #linkCopy style="width:100%; height: 100%; color: black; border-radius: 5px" [(ngModel)]="documentLink" class="emailLink no-print"></textarea>
       </ion-list>
       <ion-list *ngSwitchCase="'email'" padding>
         <div style="display:flex; margin-top: 15px"> 

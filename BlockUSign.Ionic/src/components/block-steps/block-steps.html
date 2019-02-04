@@ -30,10 +30,10 @@
         <span class="step-name">Review</span>
       </div>
     </li>
-    <li [ngClass]="activeStep == '6' ? 'step active': 'step'" *ngIf="activeStep == '6'">
+    <li [ngClass]="activeStep == '6' ? 'step active': 'step'" (click)="route('BlockchainPage')">
         <ion-icon name="logo-bitcoin"></ion-icon>
         <div class="step-info">
-          <span class="step-name">Blockchain</span>
+          <span class="step-name">Verify</span>
         </div>
       </li>
   </ul>
