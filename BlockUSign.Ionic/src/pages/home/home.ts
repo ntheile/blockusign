@@ -90,6 +90,8 @@ export class HomePage {
 
     async ionViewDidLoad() {
 
+        console.log('blockusign-test');
+
         let intent = this.navParams.get('intent');
         if ( this.navParams.get('intent') ){
             if (intent == 'upload'){
