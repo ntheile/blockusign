@@ -63,6 +63,26 @@ If you are having login issues due to CORS, you can run the app the first time w
 
 This will copy the ionic project to the wwwroot directory to be served up from the .net core project 
 
+# Azure Deploy Settings
+
+Make sure you have the following files configured on the azure website in Kudu:
+
+`site\wwwroot\appsettings.json`
+
+```
+{
+  "SendGridKey": "SG.q....",
+  "GaiaToken": "bearer v1:eyJw...=",
+  "EmailConfirmKey": "0181..."
+}
+```
+
+Azure Portal Settings
+
+
+Lets Encrypt
+
+
 # Architecture Diagram
 
 TODO :) 

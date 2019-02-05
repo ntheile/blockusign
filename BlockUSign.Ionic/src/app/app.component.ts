@@ -92,6 +92,9 @@ export class MyApp {
     });
 
     //this.createEosTestAccount('dnciofrew');
+    // test tag
+    
+
 
 
   }

@@ -3,20 +3,20 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-pool:
-  vmImage: 'Ubuntu 16.04'
+# pool:
+#   vmImage: 'Ubuntu 16.04'
 
-variables:
-  buildConfiguration: 'Release'
+# variables:
+#   buildConfiguration: 'Release'
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '8.x'
+# steps:
+# - task: NodeTool@0
+#   inputs:
+#     versionSpec: '8.x'
     
-- script: |
-    cd Blockusign.Ionic
-    npm install
-    npm install -g ionic@latest
-    ionic build
+# - script: |
+#     cd Blockusign.Ionic
+#     npm install
+#     npm install -g ionic@latest
+#     ionic build
    
