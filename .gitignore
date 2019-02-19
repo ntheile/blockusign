@@ -435,6 +435,10 @@ BlockUSign.Ionic/www/build/vendor.js
 **/bitcoin.js
 **/appsettings.js
 
+#note that **/appsettings.json is dummy schema for ci/cd, DO NOT PUT REAL DATA HERE
+**/appsettings.Development.json
+**/appsettings.Production.json
+
 
 **/subdomain.md
 **/bower_components/*
