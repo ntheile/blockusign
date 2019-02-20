@@ -1,11 +1,11 @@
-<ion-split-pane when="(min-width: 1400px)" >
+<ion-split-pane when="(min-width: 1400px)">
   <ion-menu [content]="content" class="no-print">
-    <div class="discord" style="height: 100%; width: 300px; color:whitesmoke">
+    <div class="discord" style="height: 100%;  color:whitesmoke">
 
       <!-- https://codepen.io/thesbros/pen/vxpMPp -->
       <main class="container">
 
-        <aside class="servers">
+        <!-- <aside class="servers">
 
           <div class="servers-collection">
             <div class="server focusable server-friends" role="button" aria-label="Friends unread">
@@ -20,7 +20,6 @@
           <div class="servers-collection">
             <div class="server focusable active" role="button" aria-label="My Server" (click)="filterDocumentList('all', $event)">
               <div class="server-icon" style="font-weight:bold">
-                <!-- <img src="https://discordapp.com/assets/0e291f67c9274a1abdddeb3fd919cbaa.png" /> -->
                 ALL
               </div>
             </div>
@@ -36,11 +35,12 @@
              
             </div>
           </div>
-        </aside>
+        </aside> -->
 
 
         <aside class="channels">
           <header class="channels-header focusable">
+            
             <img src="./assets/imgs/blockusignLogoSvg.svg" (click)="home()" height="45px" width="45px" class="blockusign-logo" />
             <img src="./assets/imgs/blockusignTextLoRes.png" (click)="home()" width="120px" style="padding-left: 12px; padding-top: 10px" />
             <h3 role="header" class="channels-header-name" style="padding-right: 10px;"></h3>
@@ -62,13 +62,22 @@
 
             
             </section>
-
-
+           
 
             <header class="channels-list-header" (click)="upload()">
               <span>Documents</span>
             </header>
 
+            <div style="display:flex; margin-bottom: 14px; margin-top:-4px;"> 
+                <input style="border-radius: 30px 0px 0px 30px; height: 30px; width: 85%" 
+                class="classic-input" type="email" size="30" maxLength="64" required placeholder="Search...">
+      
+                <button ion-button icon-end
+                  style="border-radius: 0px 30px 30px 0px; height: 30px; width: 15%; margin-left: -5px; margin-top:0px">
+                    <ion-icon name="md-search"></ion-icon></button>
+            </div>
+            
+            
             <ul class="channels-list-text">
               <div *ngFor="let item of documentsList">
                 <li [ngClass]="(item == documentService.currentDoc) ? 'channel focusable channel-text active ' : 'channel focusable channel-text ' ">
@@ -140,7 +149,7 @@
   <ion-nav [root]="rootPage" main #content swipeBackEnabled="false" class="centerMe">
     <!-- content injected here -->
   </ion-nav>
-  <ion-fab left top menuToggle class="no-print">
+  <ion-fab left top menuToggle class="no-print" *ngIf="isMobile" >
     <button ion-fab color="light" color="primary">
       <ion-icon name="menu"></ion-icon>
     </button>

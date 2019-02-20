@@ -1,11 +1,11 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, HostListener, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { Nav, Platform, Toast } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { AnnotatePage } from '../pages/annotate/annotate';
 import { DocumentService } from '../services/document.service';
-import { PopoverController, ToastController} from 'ionic-angular';
+import { PopoverController, ToastController } from 'ionic-angular';
 import { ViewController } from 'ionic-angular';
 import { OptionsPopoverPage } from './options.popover.page';
 import { MenuController } from 'ionic-angular';
@@ -19,8 +19,9 @@ declare let document: any;
 declare var window: any;
 const $ = document.querySelectorAll.bind(document);
 import { AlertController } from 'ionic-angular';
+import { Observable } from 'rxjs';
 declare let jQuery: any;
-   
+
 let { Keystore, Keygen } = require('eosjs-keygen')
 let Eos = require('eosjs')
 
@@ -30,6 +31,8 @@ let Eos = require('eosjs')
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
+  @ViewChild("menuFab") menuFab: ElementRef;
+  
 
   rootPage: any = HomePage;
 
@@ -45,6 +48,8 @@ export class MyApp {
   documentsList: any;
   email: string;
   loading;
+  isMobile = true;
+  resizeTimeout;
 
   constructor(
     public platform: Platform,
@@ -57,6 +62,7 @@ export class MyApp {
     public menuCtrl: MenuController,
     public blockStackService: BlockStackService,
     public toastCntrl: ToastController,
+    public chg: ChangeDetectorRef,
   ) {
 
 
@@ -93,7 +99,7 @@ export class MyApp {
 
     //this.createEosTestAccount('dnciofrew');
     // test tag
-    
+
 
 
 
@@ -109,8 +115,28 @@ export class MyApp {
       this.splashScreen.hide();
       this.showProfile();
       this.setupDiscordMenu();
-
+      this.onResize()
     });
+
+
+
+  }
+
+  @HostListener('window:resize')
+  onResize() {
+    //debounce resize, wait for resize to finish before doing stuff
+    if (this.resizeTimeout) {
+      clearTimeout(this.resizeTimeout);
+    }
+    this.resizeTimeout = setTimeout((() => {
+      if (window.innerWidth <= 1400) {
+        this.isMobile = true;
+        //this.chg.detectChanges();
+      } else{
+        this.isMobile = false;
+      }
+      console.log('Resize complete');
+    }).bind(this), 200);
   }
 
   // openPage(page) {
@@ -137,37 +163,37 @@ export class MyApp {
 
   }
 
-  loginElectron(){
-    
+  loginElectron() {
+
 
     let origin = "http://localhost:8080";
-      let manifest = "http://localhost:8080/manifest.json";
-      blockstack.redirectToSignIn(origin, manifest, ['store_write', 'publish_data', 'email']);
-        // if (!window.blockstack.isUserSignedIn()) {
-            // let authRequest = blockstack.makeAuthRequest(
-            //     blockstack.generateAndStoreTransitKey(),
-            //     origin,
-            //     manifest,
-            //     ['store_write', 'publish_data', 'email'],
-            //     'http://localhost:8080');
-            // blockstack.redirectToSignInWithAuthRequest(authRequest);
-        // }
-        // else {
-        //     console.log('user signed in');
-        // }
+    let manifest = "http://localhost:8080/manifest.json";
+    blockstack.redirectToSignIn(origin, manifest, ['store_write', 'publish_data', 'email']);
+    // if (!window.blockstack.isUserSignedIn()) {
+    // let authRequest = blockstack.makeAuthRequest(
+    //     blockstack.generateAndStoreTransitKey(),
+    //     origin,
+    //     manifest,
+    //     ['store_write', 'publish_data', 'email'],
+    //     'http://localhost:8080');
+    // blockstack.redirectToSignInWithAuthRequest(authRequest);
+    // }
+    // else {
+    //     console.log('user signed in');
+    // }
 
-        // const shell = require('electron').shell;
+    // const shell = require('electron').shell;
 
-        // shell.openExternal('http://localhost:8080');
+    // shell.openExternal('http://localhost:8080');
 
-        // const ipcRenderer = require('electron').ipcRenderer;
-        // ipcRenderer.on('signed-in', function (event, token) {
-        //     console.log(token);
-        //     console.log('signed-in event');
-        //     var url = new URL(window.location.href);
-        //     url.searchParams.append('authResponse', token);
-        //     window.location.href = url.href;
-        // });
+    // const ipcRenderer = require('electron').ipcRenderer;
+    // ipcRenderer.on('signed-in', function (event, token) {
+    //     console.log(token);
+    //     console.log('signed-in event');
+    //     var url = new URL(window.location.href);
+    //     url.searchParams.append('authResponse', token);
+    //     window.location.href = url.href;
+    // });
   }
 
 
@@ -190,7 +216,7 @@ export class MyApp {
       guid: guid
     });
 
-    
+
 
   }
 
@@ -201,11 +227,11 @@ export class MyApp {
   }
 
   upload() {
-    
-    this.nav.setRoot("HomePage", {'intent': 'upload'});
+
+    this.nav.setRoot("HomePage", { 'intent': 'upload' });
     //this.menuCtrl.close();
     //this.clearActive();
-  
+
   }
 
 
@@ -232,25 +258,25 @@ export class MyApp {
 
       //if (!profile.username) {
 
-        let profileData = await this.blockStackService.getProfileData();
+      let profileData = await this.blockStackService.getProfileData();
 
-        if (!profileData) {
+      if (!profileData) {
+        this.profileModal(this.email);
+      }
+      else {
+        let myProfile = JSON.parse(profileData);
+        if (!myProfile.email) {
           this.profileModal(this.email);
         }
         else {
-          let myProfile = JSON.parse(profileData);
-          if (!myProfile.email){
-            this.profileModal(this.email);
-          }
-          else {
-            // this.name = myProfile.email;
-            this.name = blockstack.loadUserData().username;
-            this.loadCachedNewDocWhenLoggedIn();
-          }
+          // this.name = myProfile.email;
+          this.name = blockstack.loadUserData().username;
+          this.loadCachedNewDocWhenLoggedIn();
         }
+      }
 
       //}
-        this.loading.dismiss();
+      this.loading.dismiss();
     } else if (blockstack.isSignInPending()) {
 
       this.cacheNewDocIfNotLoggedIn();
@@ -267,21 +293,21 @@ export class MyApp {
       this.cacheNewDocIfNotLoggedIn();
 
 
-      if (navigator.userAgent.toLocaleLowerCase().includes('electron') === true){
+      if (navigator.userAgent.toLocaleLowerCase().includes('electron') === true) {
         localStorage.setItem('signUp', 'true');
         //this.loginElectron();      
         //return;
       }
-     
-      if (localStorage.getItem('signUp') !== 'true' && location.hostname !== "localhost" ) {
+
+      if (localStorage.getItem('signUp') !== 'true' && location.hostname !== "localhost") {
         window.location.href = "signup.html";
       }
       else {
         localStorage.setItem('signUp', 'true');
         this.login();
       }
-      
-     
+
+
     }
 
     // @todo Optimize this;
@@ -289,16 +315,16 @@ export class MyApp {
 
   }
 
- 
+
   cacheNewDocIfNotLoggedIn() {
     // if contains sign and docData
-    if (location.hash.includes("sign") &&  location.hash.includes("docData") ){
+    if (location.hash.includes("sign") && location.hash.includes("docData")) {
       localStorage.setItem('docCache', location.href);
     }
   }
 
   loadCachedNewDocWhenLoggedIn() {
-    if (localStorage.getItem('docCache')){
+    if (localStorage.getItem('docCache')) {
       let l = localStorage.getItem('docCache');
       localStorage.removeItem('docCache');
       location.replace(l);
@@ -398,13 +424,12 @@ export class MyApp {
         // },
         {
           text: 'Ok',
-          handler: data  => {
+          handler: data => {
 
             if (data.email.indexOf("@") != -1) {
               // logged in!
               // save here
-              this.blockStackService.setProfileData(data.email).then( () =>
-              {
+              this.blockStackService.setProfileData(data.email).then(() => {
                 //location.reload(true);
                 this.showProfile();
                 this.setupDiscordMenu();
@@ -436,10 +461,10 @@ export class MyApp {
   }
 
 
-  filterDocumentList(signer, e){
+  filterDocumentList(signer, e) {
     this.documentService.filterDocuments(signer);
     this.documentsList = this.documentService.documentsListFiltered;
-   
+
 
     const activeServer = $(".server.active")[0];
     activeServer.classList.remove("active");
@@ -447,10 +472,10 @@ export class MyApp {
 
     e.currentTarget.classList.add("active");
     e.currentTarget.setAttribute("aria-selected", true);
-    
+
   }
 
-  copyBtc(){
+  copyBtc() {
     let el = document.getElementById('btc');
 
     el.select();
@@ -461,74 +486,74 @@ export class MyApp {
       duration: 2000,
       position: 'middle'
     });
-  
+
     toast.onDidDismiss(() => {
       console.log('Dismissed toast');
     });
-  
+
     toast.present();
   }
 
-  createEosTestAccount(accountName: string){
-    
+  createEosTestAccount(accountName: string) {
+
 
     let eosConfig = {
-     chainId: '038f4b0fc8ff18a4f0842a8f0564611f6e96e8535901dd45e43ac8691a1c4dca', // 32 byte (64 char) hex string
-     keyProvider: '5J5iLjrs7ZcV....', // WIF string or array of keys..
-     httpEndpoint: 'http://dev.cryptolions.io:38888',
-     expireInSeconds: 60,
-     broadcast: true,
-     verbose: true, // API and transaction binary
-     sign: true
-   }
+      chainId: '038f4b0fc8ff18a4f0842a8f0564611f6e96e8535901dd45e43ac8691a1c4dca', // 32 byte (64 char) hex string
+      keyProvider: '5J5iLjrs7ZcV....', // WIF string or array of keys..
+      httpEndpoint: 'http://dev.cryptolions.io:38888',
+      expireInSeconds: 60,
+      broadcast: true,
+      verbose: true, // API and transaction binary
+      sign: true
+    }
 
-   let eos = Eos(eosConfig)
-   
-   eos.getInfo((error, result) => { console.log("EOS ====> ", error, result) })
-   
+    let eos = Eos(eosConfig)
 
-   // let keyProvider =  '5HxyGPW66Cnj6n7m9uAH39hMDB9V7yaVK3XpF93nRPqHBn8HE7T';//'5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3'; // local testnet 
-   // let pubkey = 'EOS6G2h8AZQWXed9Rb2ShEuigz2e68xxY9EJXst2goi3xddLFckx6' ; // 'EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV';
-   // accountName = 'user5';
-
-   // let eos = Eos({keyProvider: keyProvider});
-
-   let pubkey = "EOS51WQkH86ibNRdaWmYyFLijTPC2NptYFtqQ24YUNg1znxvdLRWE";
-   accountName = "ghshdjeuyhfe";
-
-   eos.transaction(tr => {
-       
-     tr.newaccount({
-       creator: 'blockusign',
-       name: accountName,
-       owner: pubkey, //keys.publicKeys.owner,
-       active: pubkey // keys.publicKeys.active
-     });
+    eos.getInfo((error, result) => { console.log("EOS ====> ", error, result) })
 
 
-     tr.buyrambytes({
-       payer: 'blockusign',
-       receiver: accountName,
-       bytes: 5000
-     });
+    // let keyProvider =  '5HxyGPW66Cnj6n7m9uAH39hMDB9V7yaVK3XpF93nRPqHBn8HE7T';//'5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3'; // local testnet 
+    // let pubkey = 'EOS6G2h8AZQWXed9Rb2ShEuigz2e68xxY9EJXst2goi3xddLFckx6' ; // 'EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV';
+    // accountName = 'user5';
 
-     tr.delegatebw({
-       from: 'blockusign',
-       receiver: accountName,
-       stake_net_quantity: '1.0000 EOS',
-       stake_cpu_quantity: '1.0000 EOS',
-       transfer: 0
-     });
+    // let eos = Eos({keyProvider: keyProvider});
 
-   }).then( (resp) =>{
-     console.log("EOS resp ", resp);
-   });
-    
+    let pubkey = "EOS51WQkH86ibNRdaWmYyFLijTPC2NptYFtqQ24YUNg1znxvdLRWE";
+    accountName = "ghshdjeuyhfe";
 
-}
+    eos.transaction(tr => {
 
- 
-  importFromGraphite(){
+      tr.newaccount({
+        creator: 'blockusign',
+        name: accountName,
+        owner: pubkey, //keys.publicKeys.owner,
+        active: pubkey // keys.publicKeys.active
+      });
+
+
+      tr.buyrambytes({
+        payer: 'blockusign',
+        receiver: accountName,
+        bytes: 5000
+      });
+
+      tr.delegatebw({
+        from: 'blockusign',
+        receiver: accountName,
+        stake_net_quantity: '1.0000 EOS',
+        stake_cpu_quantity: '1.0000 EOS',
+        transfer: 0
+      });
+
+    }).then((resp) => {
+      console.log("EOS resp ", resp);
+    });
+
+
+  }
+
+
+  importFromGraphite() {
     this.nav.setRoot("HomePage");
     this.nav.push("GraphitePage");
   }
