@@ -50,6 +50,7 @@ export class MyApp {
   loading;
   isMobile = true;
   resizeTimeout;
+  search = "";
 
   constructor(
     public platform: Platform,
@@ -461,18 +462,26 @@ export class MyApp {
   }
 
 
-  filterDocumentList(signer, e) {
-    this.documentService.filterDocuments(signer);
+  filterDocumentList(term, e) {
+    this.documentService.filterDocuments(this.search);
     this.documentsList = this.documentService.documentsListFiltered;
 
+    // const activeServer = $(".server.active")[0];
+    // activeServer.classList.remove("active");
+    // activeServer.removeAttribute("aria-selected");
 
-    const activeServer = $(".server.active")[0];
-    activeServer.classList.remove("active");
-    activeServer.removeAttribute("aria-selected");
+    // e.currentTarget.classList.add("active");
+    // e.currentTarget.setAttribute("aria-selected", true);
 
-    e.currentTarget.classList.add("active");
-    e.currentTarget.setAttribute("aria-selected", true);
+  }
 
+  clearSearch(e){
+    this.search = "";
+    this.filterDocumentList(null, e);
+  }
+
+  onKeySearch(e) {
+    this.filterDocumentList(null, e);
   }
 
   copyBtc() {

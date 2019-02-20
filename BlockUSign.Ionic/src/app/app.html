@@ -69,12 +69,15 @@
             </header>
 
             <div style="display:flex; margin-bottom: 14px; margin-top:-4px;"> 
-                <input style="border-radius: 30px 0px 0px 30px; height: 30px; width: 85%" 
-                class="classic-input" type="email" size="30" maxLength="64" required placeholder="Search...">
+                <input style="border-radius: 30px 30px 30px 30px; height: 30px; width: 100%" 
+                class="classic-input" type="email" size="30" maxLength="64" required placeholder="Search..."
+                [(ngModel)]="search" (keyup)="onKeySearch($event)">
       
-                <button ion-button icon-end
-                  style="border-radius: 0px 30px 30px 0px; height: 30px; width: 15%; margin-left: -5px; margin-top:0px">
-                    <ion-icon name="md-search"></ion-icon></button>
+                <button ion-button (click)="clearSearch('all', $event)" *ngIf="search"  
+                  style="border-radius: 0px 30px 30px 0px; height: 30px; width: 16%; margin-left: -12px; margin-right: 3px; margin-top:0px; background-color: #454cad">
+              
+                  <ion-icon name="md-close"></ion-icon>
+                </button>
             </div>
             
             

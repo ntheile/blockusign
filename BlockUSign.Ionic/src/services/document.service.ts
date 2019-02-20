@@ -12,6 +12,7 @@ import * as Automerge from 'automerge/dist/automerge.js';
 import { BlockStackService } from './blockstack.service';
 import { State } from './../models/state';
 import { of } from 'rxjs/observable/of';
+import * as Fuse from 'fuse.js';
 declare let jslinq: any;
 declare let blockstack: any;
 declare let sjcl: any;
@@ -654,12 +655,35 @@ export class DocumentService {
     return d;
   }
 
-  async filterDocuments(signer){
-    if (signer == "all"){
+  async filterDocuments(term){
+
+
+    let options = {
+      shouldSort: true,
+      threshold: 0.6,
+      location: 0,
+      distance: 100,
+      maxPatternLength: 32,
+      minMatchCharLength: 1,
+      keys: [
+        "fileName",
+        "paths.name",
+        "paths.email",
+        "paths.userId",
+      ]
+    };
+    
+    let fuse = new Fuse(this.documentsList, options); // "list" is the item array
+    let result = fuse.search(term);
+
+
+
+    if (term == "" || term == null || term == undefined || term == " "){
       this.documentsListFiltered = this.documentsList;
     }
     else{
-      this.documentsListFiltered = jslinq(this.documentsList).where( (el) => el.signer[0] == signer ).toList();
+      // this.documentsListFiltered = jslinq(this.documentsList).where( (el) => el.fileName[0] == signer ).toList();
+      this.documentsListFiltered = result;
     } 
     return this.documentsListFiltered;
   }
