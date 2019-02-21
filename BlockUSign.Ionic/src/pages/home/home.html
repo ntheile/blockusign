@@ -36,21 +36,13 @@
       </ion-col>  
     </ion-row>
 
-    <br/><br/>
-    <div class="myCenter">
+    <div class="myCenter" *ngIf="!isGraphite">
+        <br/><br/>
         <p>OR &nbsp;</p>
         <button ion-button (click)="cameraModal()" style="border-radius: 40px">
             <ion-icon name="camera"></ion-icon>&nbsp;&nbsp;Take Picture of Doc
         </button>
     </div>
-    <div *ngIf="showCamera" class="myCenter">
-        <video #videoCamera (click)="snapClick()" 
-          width="1" height="1" 
-          autoplay style="object-fit: contain; cursor:pointer" ></video>
-        <canvas #cameraCanvas width="750" height="975"></canvas>
-    </div>
-
-   
 
     <ion-row>
       <ion-col>
@@ -64,6 +56,17 @@
         </div>
       </ion-col>
     </ion-row>
+
+    <div *ngIf="showCamera" class="myCenter">
+        <video #videoCamera (click)="snapClick()" 
+          width="1" height="1" 
+          autoplay style="object-fit: contain; cursor:pointer" ></video>
+        <canvas #cameraCanvas width="750" height="975"></canvas>
+    </div>
+
+   
+
+    
 
   </ion-grid>
 

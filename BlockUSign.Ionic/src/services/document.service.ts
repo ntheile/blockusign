@@ -35,7 +35,7 @@ export class DocumentService {
   public urlBlockusignGlobalStore = "https://gaia.blockstack.org/hub/1PoZGGAuQ4yPj72TrXbG4pKbgB9tvCUqQ1/blockusign";
   public urlBlockusign =  "https://blockusign.co"; //"https://blockusign.co"; // "http://localhost:52657";
   public chatInterval = null;
- 
+  fuse:any = Fuse;
 
   constructor(
     public events: Events, 
@@ -673,8 +673,8 @@ export class DocumentService {
       ]
     };
     
-    let fuse = new Fuse(this.documentsList, options); // "list" is the item array
-    let result = fuse.search(term);
+    let searcher = new this.fuse(this.documentsList, options); // "list" is the item array
+    let result = searcher.search(term);
 
 
 
