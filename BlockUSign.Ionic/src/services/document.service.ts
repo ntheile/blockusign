@@ -12,11 +12,11 @@ import * as Automerge from 'automerge/dist/automerge.js';
 import { BlockStackService } from './blockstack.service';
 import { State } from './../models/state';
 import { of } from 'rxjs/observable/of';
-import * as Fuse from 'fuse.js';
 declare let jslinq: any;
 declare let blockstack: any;
 declare let sjcl: any;
 declare let $: any;
+declare let Fuse:any;
 
 
 @Injectable()
@@ -35,7 +35,6 @@ export class DocumentService {
   public urlBlockusignGlobalStore = "https://gaia.blockstack.org/hub/1PoZGGAuQ4yPj72TrXbG4pKbgB9tvCUqQ1/blockusign";
   public urlBlockusign =  "https://blockusign.co"; //"https://blockusign.co"; // "http://localhost:52657";
   public chatInterval = null;
-  fuse:any = Fuse;
 
   constructor(
     public events: Events, 
@@ -672,8 +671,8 @@ export class DocumentService {
         "paths.userId",
       ]
     };
-    
-    let searcher = new this.fuse(this.documentsList, options); // "list" is the item array
+
+    let searcher = new Fuse(this.documentsList, options); // "list" is the item array
     let result = searcher.search(term);
 
 
