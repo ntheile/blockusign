@@ -19,15 +19,9 @@
         <div style="clear:both"></div>
 
 
-        <div padding style="padding-top: 1px; padding-bottom: 1px; max-width: 750px; margin-top: 12px; margin-bottom: 12px" 
+        <div padding style="max-width: 750px;" 
             class="selectable no-print" *ngIf="documentService.currentDoc && !documentService.currentDoc.isCompleted">
-            <span>Please review the document below. If it looks good you can attach a short 20 second "video proof"
-                recording. Say something like this: </span><br />
-            <div class="bq">
-                My name is {{ name }} and I attest to signing the
-                document - {{ documentService.currentDoc.fileName }} .
-                The unique file hash starts with "{{ hash.substring(0,3) }}"
-            </div>
+            <span>Please review the document below. If it looks good you have the option to approve the agreement with a short 20 second "video proof" recording </span>
         </div>
 
         <button class="no-print" ion-button round outline small *ngIf="documentService.currentDoc && !documentService.currentDoc.isCompleted"

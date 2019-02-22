@@ -21,6 +21,9 @@ export class VideoModalPage {
 
   isSafari = false;
   @ViewChild(VideoComponent) videoEL: VideoComponent;
+  hash = "";
+  name = "";
+  collaborators = [];
 
   constructor(
     public navCtrl: NavController, 
@@ -38,6 +41,8 @@ export class VideoModalPage {
 
 
   async init(){
+    this.getHash();
+    this.name = blockstack.loadUserData().username;
     let path = this.navParams.get('videoPath');
     await this.videoEL.getVideo(path);
   }
@@ -47,5 +52,20 @@ export class VideoModalPage {
     
     this.viewCtrl.dismiss();
   }
+
+  async getHash(){
+    try{
+        this.hash = await this.documentService.getMerkleHash();
+        this.getCollaborators();
+    }
+    catch(e){
+    }
+  
+  }
+
+  async getCollaborators(){
+    this.collaborators = await this.documentService.getCollaborators(this.documentService.currentDoc.guid);
+  }
+
 
 }

@@ -8,21 +8,13 @@
     </ion-toolbar>
   </ion-header>
   
-  <ion-content >
+  <ion-content padding>
       <div class="no-print">
-        <p padding>
-          Hit the record button and say:
-          <!-- <div class="bq">
-              My name is {{ name }} and I attest to signing the
-              document - {{ documentService.currentDoc.fileName }} .
-              The unique file hash starts with "{{ hash.substring(0,3) }}"
-          </div> -->
-          
-        </p>
+        <span>Please hit the record button below and attach a short 20 second "video proof". Say something like this: </span><br />
         <div class="bq" padding>
-            My name is  name  and I attest to signing the
-            document -  documentService.currentDoc.fileName  .
-            The unique file hash starts with " hash.substring(0,3) "
+            My name is {{ name }} and I attest to signing the
+            document - {{ documentService.currentDoc.fileName }} .
+            The unique file hash starts with "{{ hash.substring(0,3) }}"
         </div>
           <span *ngIf="isSafari">Sorry, video is not supported in Safari at this time</span>
           <videoRTC #videoEL style="width: 320px;" class="no-print centerMe" padding></videoRTC>
