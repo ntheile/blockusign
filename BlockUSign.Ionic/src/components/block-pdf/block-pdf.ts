@@ -85,6 +85,7 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
   yourName: string;
   allowResize = false;
   loading;
+  fullToolbar = true;
 
   constructor(
     public navCtrl: NavController,
@@ -672,6 +673,14 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
     
     let docCreated:any = this.documentService.currentDoc.createdAt;
     return (  docCreated < now );
+  }
+
+  toggleToolbar(){
+    if (this.fullToolbar == false){
+      this.fullToolbar = true;
+    } else{
+      this.fullToolbar = false;
+    }
   }
 
   // @HostListener('window:resize', ['$event'])

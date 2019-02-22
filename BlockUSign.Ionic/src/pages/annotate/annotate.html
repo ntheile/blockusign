@@ -1,41 +1,49 @@
 <ion-content class="no-overflow-page">
 
 
-  
-
-  <block-steps #blockSteps activeStep="2" [parent]="instance">
-  </block-steps> 
-
-  <div style="clear:both"></div>
-  <section style="position: relative;" class="nextBackButtons no-print">
-      <button class="nextBackButtonBack" ion-fab mini (click)="back()" style="background-color:green; position: absolute;"><ion-icon name="md-arrow-back"></ion-icon></button>
-      <button class="nextBackButtonNext" ion-fab mini (click)="next()"><ion-icon name="md-arrow-forward" ></ion-icon></button>
-  </section>   
-  <div style="clear:both"></div>
 
 
-  <div style="display:flex; cursor:pointer;" class="no-print">
-        <ion-icon *ngIf="showText" name="md-close-circle" style=" margin-left: 20px; " (click)="toggleText()"></ion-icon>
-        <p *ngIf="showText" class="selectable no-print" style="padding-right: 8px; padding-left: 8px">
-                Please markup the document for your signer by dragging the "sign" annotation on the document. Feel free to use emojis! If required, sign your name by dragging your signature onto the document. Also, add notes to the chat log. This contains all updates and events about the document. 
-        </p>
-   </div>
+    <block-steps #blockSteps activeStep="2" [parent]="instance">
+    </block-steps>
 
- 
+    <div class="centerMe">
 
-  <div *ngIf="documentService.currentDoc && documentService.currentDoc.isCompleted">
-      <ion-icon name="md-lock" style="margin-left: 50px; color: grey; font-size: 25px"></ion-icon> 
-      <span style="margin-left: 5px; color: grey; font-size: 25px">Locked</span>
-  </div>
-  
+        <div style="clear:both"></div>
+        <section style="position: relative;" class="nextBackButtons no-print">
+            <button class="nextBackButtonBack" ion-fab mini (click)="back()" style="background-color:green; position: absolute;">
+                <ion-icon name="md-arrow-back"></ion-icon>
+            </button>
+            <button class="nextBackButtonNext" ion-fab mini (click)="next()">
+                <ion-icon name="md-arrow-forward"></ion-icon>
+            </button>
+        </section>
+        <div style="clear:both"></div>
 
-  <block-pdf #blockPdf showToolBar="true" showSignature="true" showSignHere="true" showButtons="true" marginTop="180px" >
 
-  </block-pdf>
+        <div style="display:flex; cursor:pointer; max-width: 750px" class="no-print">
+            <ion-icon *ngIf="showText" name="md-close-circle" style=" margin-left: 20px; " (click)="toggleText()"></ion-icon>
+            <p *ngIf="showText" class="selectable no-print" style="padding-right: 8px; padding-left: 8px;">
+                Please markup the document for your signer by dragging the "sign" annotation on the document. Feel free
+                to use emojis! If required, sign your name by dragging your signature onto the document. Also, add
+                notes to the chat log. This contains all updates and events about the document.
+            </p>
+        </div>
 
-  <block-chat #blockChat>
-    
-  </block-chat>
+
+
+        <div *ngIf="documentService.currentDoc && documentService.currentDoc.isCompleted" class="no-print">
+            <ion-icon name="md-lock" style="margin-left: 50px; color: grey; font-size: 25px"></ion-icon>
+            <span style="margin-left: 5px; color: grey; font-size: 25px">Locked</span>
+        </div>
+
+    </div>
+
+    <block-pdf #blockPdf showToolBar="true" showSignature="true" showSignHere="true" showButtons="true" marginTop="180px">
+
+    </block-pdf>
+
+    <block-chat #blockChat>
+
+    </block-chat>
 
 </ion-content>
-

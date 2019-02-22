@@ -5,6 +5,8 @@
   </block-steps>
 
   <div style="clear:both"></div>
+  <div class="centerMe">
+
   <section style="position: relative;" class="nextBackButtons no-print">
     <button class="nextBackButtonBack" ion-fab mini (click)="back()" style="background-color:green; position: absolute;">
       <ion-icon name="md-arrow-back"></ion-icon>
@@ -15,7 +17,7 @@
   </section>
   <div style="clear:both"></div>
 
-  <div *ngIf="documentService.currentDoc && documentService.currentDoc.isCompleted">
+  <div *ngIf="documentService.currentDoc && documentService.currentDoc.isCompleted" class="no-print">
       <ion-icon name="md-lock" style="margin-left: 50px; color: grey; font-size: 25px"></ion-icon> 
       <span style="margin-left: 5px; color: grey; font-size: 25px">Locked</span>
   </div>
@@ -88,6 +90,8 @@
     </div>
   </div>
 
+  
+</div>
 
   <block-pdf marginTop="0px" marginBottom="120px" locked="true">
   </block-pdf>

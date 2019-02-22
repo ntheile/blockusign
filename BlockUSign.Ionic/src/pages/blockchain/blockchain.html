@@ -2,71 +2,66 @@
 
   <block-steps activeStep="6" #blockSteps class="no-print">
   </block-steps>
-  <br /><br />
-
-
-  <span style="padding: 10px 10px 10px 10px" *ngIf="!isSaving" class="no-print">  
-    "Seal the Deal" by saving your Digital Signature to the Blockchain! 
-    The document, signatures, update log, and video proof can be verified here - forever, without a third party notary service! 
-    &nbsp;&nbsp;<a href="https://medium.com/blockstack-blog/blockusigns-pragmatic-approach-to-smart-contracts-anchoring-data-on-blockchain-using-blockstack-fb9bd974a306" target="_blank"><ion-icon name="information-circle"></ion-icon>&nbsp;Learn more</a>
-  </span>
+  
+  <div class="centerMe" style="max-width: 500px !important;" padding style="padding-bottom: 0px !important;">
+    <p *ngIf="!isSaving" class="no-print" >
+      "Seal the Deal" by saving your Digital Signature to the Blockchain!<br/>
+      The document, signatures, update log, and video proof can be verified here, <br/> 
+      forever, without a third party notary service!
+      &nbsp;&nbsp;<a href="https://medium.com/blockstack-blog/blockusigns-pragmatic-approach-to-smart-contracts-anchoring-data-on-blockchain-using-blockstack-fb9bd974a306"
+        target="_blank">
+        <ion-icon name="information-circle"></ion-icon>&nbsp;Learn more
+      </a>
+    </p>
+  </div>
 
   <div class="centerMe" style="max-width: 760px" padding>
-
-    
-    <br /><br />
-
-    
-
     <div style="position: relative; height: 350px; max-width: 420px;">
-
-
       <block-pdf marginTop="10px" locked="true" style="zoom: .55; width: 100%; " class="shadow pdfWindow">
-      </block-pdf>   
-     
+      </block-pdf>
+
       <button *ngIf="isOnBlockchain" ion-button style="border-radius: 30px;  
       position: absolute; top: 36%; left:29%;
-      z-index: 999999;background-color: green" (click)="toggleAdvanced()" >Saved
+      z-index: 999999;background-color: green"
+        (click)="toggleAdvanced()">Saved
         <br />On Chain
         <ion-icon name="md-checkmark-circle" style="margin-left: 20px; "></ion-icon>
       </button>
 
       <button *ngIf="!isSaving && !isOnBlockchain && (onStep == '0') " ion-button style="border-radius: 30px; 
       position: absolute; top: 36%; left:29%;
-      z-index: 999999;" (click)="presentConfirm()">Save
-       <img name="save" src="assets/save.svg" style="width: 25px; height: 25px;margin-left: 8px"/>
+      z-index: 999999;"
+        (click)="presentConfirm()">Save
+        <img name="save" src="assets/save.svg" style="width: 25px; height: 25px;margin-left: 8px" />
       </button>
 
       <button *ngIf="!isSaving && !isOnBlockchain && (onStep != '0') && !isLoading " ion-button style="border-radius: 30px; 
       position: absolute; top: 36%; left:29%;
-      z-index: 999999; background-color: #FF9800" (click)="toggleAdvanced()">Saving to the<br/> Blockchain...
+      z-index: 999999; background-color: #FF9800"
+        (click)="toggleAdvanced()">Saving to the<br /> Blockchain...
         <ion-icon name="md-create" style="margin-left: 20px; "></ion-icon>
       </button>
-      
-      <div style="z-index: 999999999; cursor: pointer; position: absolute; top: 4%; left: 29%;" padding >
-        <a *ngFor="let collaborator of collaborators" 
-          href="https://core.blockstack.org/v1/names/{{collaborator.subdomainName}}.blockusign1.id" 
-          target="_blank" 
-          style="opacity: .9 !important; display: inline-block; padding-right: 12px;"
-          class="btooltip">
+
+      <div style="z-index: 999999999; cursor: pointer; position: absolute; top: 4%; left: 29%;" padding>
+        <a *ngFor="let collaborator of collaborators" href="https://core.blockstack.org/v1/names/{{collaborator.subdomainName}}.blockusign1.id"
+          target="_blank" style="opacity: .9 !important; display: inline-block; padding-right: 12px;" class="btooltip">
           <div>
-            <img  class="avatar shadow" src="{{collaborator.avatar}}" /> 
-            <ion-icon *ngIf="collaborator.isVerified"  
-              name="md-checkmark-circle" style="margin-left: -30px; color: green; background-color: white; border-radius: 50%">
-            
+            <img class="avatar shadow" src="{{collaborator.avatar}}" />
+            <ion-icon *ngIf="collaborator.isVerified" name="md-checkmark-circle" style="margin-left: -30px; color: green; background-color: white; border-radius: 50%">
+
             </ion-icon>
           </div>
-          <span *ngIf="collaborator.isVerified" class="btooltiptext" style="padding: 8px 8px 8px 8px">{{collaborator.userId }} <br/><br/> View Digital Signature</span>
-          <span *ngIf="!collaborator.isVerified" class="btooltiptext" style="padding: 8px 8px 8px 8px">{{collaborator.userId }} <br/> Not signed</span>
+          <span *ngIf="collaborator.isVerified" class="btooltiptext" style="padding: 8px 8px 8px 8px">{{collaborator.userId
+            }} <br /><br /> View Digital Signature</span>
+          <span *ngIf="!collaborator.isVerified" class="btooltiptext" style="padding: 8px 8px 8px 8px">{{collaborator.userId
+            }} <br /> Not signed</span>
         </a>
       </div>
 
 
-      <div style="position: absolute; bottom: 10%; left: 42%; z-index: 999999;cursor: pointer; "
-        class="btooltip">
+      <div style="position: absolute; bottom: 10%; left: 42%; z-index: 999999;cursor: pointer; " class="btooltip">
         <div (click)="toggleSig()">
-          <ion-icon name="ios-finger-print" class="shadow"
-            style="font-size:50px;background-color: black; opacity: .75; 
+          <ion-icon name="ios-finger-print" class="shadow" style="font-size:50px;background-color: black; opacity: .75; 
             border-radius: 50%; padding: 4px 10px 4px 10px"></ion-icon><br />
           <span class="btooltiptext">
             <span *ngIf="!showSig">Show </span>
@@ -83,30 +78,31 @@
 
     </div>
 
-   
+
 
     <div *ngIf="isSaving" class="nyancat" style="position: absolute; max-width:600px; z-index: 999999; top:15%; left: 30%">
-        <span class="head">
-          <span class="eyes"></span>
+      <span class="head">
+        <span class="eyes"></span>
+      </span>
+      <span class="body">
+        <span class="poptart"></span>
+        <span class="feet">
+          <span class="foot one"></span>
+          <span class="foot two"></span>
+          <span class="foot three"></span>
+          <span class="foot four"></span>
         </span>
-        <span class="body">
-          <span class="poptart"></span>
-          <span class="feet">
-            <span class="foot one"></span>
-            <span class="foot two"></span>
-            <span class="foot three"></span>
-            <span class="foot four"></span>
-          </span>
-        </span>
-        <span class="tail"></span>
-        <div class="rainbow">
-          <div class="red" style="background-color: red">Saving Saving Saving Saving Saving Saving Saving Saving Saving</div>
-          <div class="orange" style="background-color: orange">to to to to to to to to to to to to to to to to </div>
-          <div class="yellow" style="background-color: pink">the the the the the the the the the the the the the the  </div>
-          <div class="green" style="background-color: green">block block block block block block block block block</div>
-          <div class="blue" style="background-color: blue">chain chain chain chain chain chain chain chain chain </div>
-          <div class="purple" style="background-color: purple">right meow right meow right meow right meow right</div>
+      </span>
+      <span class="tail"></span>
+      <div class="rainbow">
+        <div class="red" style="background-color: red">Saving Saving Saving Saving Saving Saving Saving Saving Saving</div>
+        <div class="orange" style="background-color: orange">to to to to to to to to to to to to to to to to </div>
+        <div class="yellow" style="background-color: pink">the the the the the the the the the the the the the the
         </div>
+        <div class="green" style="background-color: green">block block block block block block block block block</div>
+        <div class="blue" style="background-color: blue">chain chain chain chain chain chain chain chain chain </div>
+        <div class="purple" style="background-color: purple">right meow right meow right meow right meow right</div>
+      </div>
     </div>
 
     <p style=" user-select: text; margin: 10px 10px 10px 10px" *ngIf="showSig">
@@ -128,55 +124,60 @@
         <ion-icon *ngIf="showAdvancedInfo" name="ios-arrow-up" style=" margin-left: 20px; "></ion-icon>
       </div>
 
-      
+
 
       <div *ngIf="showAdvancedInfo">
 
         <div style="display: flex; height: 50px;">
           <p>{{onStep}} of 4 steps complete</p>
-          
+
         </div>
-       
+
 
         <h6>Step 1 - <ion-icon *ngIf="onStep >= 1" name="md-checkmark-circle" style="margin-left: 2px; color: green "></ion-icon>
-           Propagate to Subdomains Registrar </h6>
-        <p><a *ngIf="mySubDomainName" href="https://blockusign-subdomains.azurewebsites.net/status/{{mySubDomainName}}" target="_blank">
-          https://blockusign-subdomains.azurewebsites.net/status/{{mySubDomainName}}</a></p>
-      
+          Propagate to Subdomains Registrar </h6>
+        <p><a *ngIf="mySubDomainName" href="https://blockusign-subdomains.azurewebsites.net/status/{{mySubDomainName}}"
+            target="_blank">
+            https://blockusign-subdomains.azurewebsites.net/status/{{mySubDomainName}}</a></p>
+
         <h6>Step 2 - <ion-icon *ngIf="onStep >= 2" name="md-checkmark-circle" style="margin-left: 2px; color: green "></ion-icon>
           Anchor to bitcoin </h6>
         <p [innerHTML]="subdomainsStatus"></p>
 
         <h6>Step 3 - <ion-icon *ngIf="onStep >= 3" name="md-checkmark-circle" style="margin-left: 2px; color: green "></ion-icon>
           Propagate zonefile hash to Blockstack Atlas P2P network</h6>
-        <a *ngIf="mySubDomainName" href="https://core.blockstack.org/v1/names/{{mySubDomainName}}.blockusign1.id" target="_blank">https://core.blockstack.org/v1/names/{{mySubDomainName}}.blockusign1.id</a>
+        <a *ngIf="mySubDomainName" href="https://core.blockstack.org/v1/names/{{mySubDomainName}}.blockusign1.id"
+          target="_blank">https://core.blockstack.org/v1/names/{{mySubDomainName}}.blockusign1.id</a>
 
 
         <h6>Step 4 - Verified Signatures</h6>
         <p *ngIf="zoneFiles.length < 1">
           None
         </p>
-        <div *ngFor="let zf of zoneFiles"> 
-            <p style="display: flex;align-items: center;" *ngIf="zf.verified">
-              <ion-icon  name="md-checkmark-circle" style="margin-left: 2px; color: green "></ion-icon>
-              &nbsp;
-              <a href="https://core.blockstack.org/v1/names/{{zf.subdomainName}}.blockusign1.id" target="_blank">{{ zf.verified }}</a>
-              &nbsp;
-              {{ zf.hash }}
-            </p>
+        <div *ngFor="let zf of zoneFiles">
+          <p style="display: flex;align-items: center;" *ngIf="zf.verified">
+            <ion-icon name="md-checkmark-circle" style="margin-left: 2px; color: green "></ion-icon>
+            &nbsp;
+            <a href="https://core.blockstack.org/v1/names/{{zf.subdomainName}}.blockusign1.id" target="_blank">{{
+              zf.verified }}</a>
+            &nbsp;
+            {{ zf.hash }}
+          </p>
         </div>
-       
-        
+
+
 
         <br /><br /><br />
         <p>How does this all work?</p>
-        <a href="https://medium.com/blockstack-blog/blockusigns-pragmatic-approach-to-smart-contracts-anchoring-data-on-blockchain-using-blockstack-fb9bd974a306" target="_blank">Medium Article - Blockusign App: A Pragmatic Approach to Smart Contracts and Anchoring Data to the Blockchain Using Blockstack</a>
+        <a href="https://medium.com/blockstack-blog/blockusigns-pragmatic-approach-to-smart-contracts-anchoring-data-on-blockchain-using-blockstack-fb9bd974a306"
+          target="_blank">Medium Article - Blockusign App: A Pragmatic Approach to Smart Contracts and Anchoring Data
+          to the Blockchain Using Blockstack</a>
 
       </div>
 
       <h3>Video Proof</h3>
-      <videoRTC #videoEL style="width: 320px;"  class="no-print" padding></videoRTC>
-     
+      <videoRTC #videoEL style="width: 320px;" class="no-print" padding></videoRTC>
+
 
       <br /><br />
 

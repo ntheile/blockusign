@@ -1,6 +1,6 @@
 <ion-content class="block-pdf-page">
 
-  <div class="page" id="pageContainer1" data-page-number="1" style="position:relative;width: 100%; height:100%;"
+  <div class="page centerMe" id="pageContainer1" data-page-number="1" style="position:relative;width: 100%; height:100%;"
     [style.margin-top]="marginTop">
 
 
@@ -38,8 +38,8 @@
     <br /><br />
   </div>
 
-  <ion-fab *ngIf="showToolBar" top left style="margin-top:1px;background-color:#36393E; opacity: .95;border-radius: 10px"
-    #fab class="no-print">
+  <ion-fab *ngIf="showToolBar" top left style="margin-top:1px;background-color:#36393E; opacity: .95;border-radius: 10px; max-width: 450px"
+    #fab class="no-print centerMe">
     <ion-grid style="padding: 8px !important">
       <ion-row justify-content-start align-items-center>
         <ion-col col-auto *ngIf="showSignature" style="position: relative;">
@@ -51,7 +51,7 @@
             </div>
             <span class="divider"></span>&nbsp;&nbsp;
             <div class="btooltip">
-              <input class="font-size font-selector" type="number" name="quantity" min="6" max="100" value="25" />
+              <input class="font-size font-selector" type="number" name="quantity" min="6" max="100" value="18" />
               <span class="btooltiptext">Font Size</span>
             </div>
 
@@ -87,8 +87,8 @@
                 height="50" viewBox="0 0 200 50" style="clear:both; background:#ffeb8e; border: 1px solid red ;"
                 opacity="1">
                 <text class="emojiDiv2" #sigText contenteditable="true" x="50%" y="50%" (click)="clearPlaceHolder($event)"
-                  width="200" height="50" viewBox="0 0 200 50" alignment-baseline="middle" text-anchor="middle" fill="green"
-                  font-family="Cedarville Cursive" font-weight="bold" style="font-size: 25px">
+                  width="200" height="50" viewBox="0 0 200 50" alignment-baseline="middle" text-anchor="middle" fill="black"
+                  font-family="Cedarville Cursive" font-weight="bold" style="font-size: 18px">
                   {{ yourName }}
                 </text>
               </svg>

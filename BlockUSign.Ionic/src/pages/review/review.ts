@@ -1,11 +1,12 @@
 import { Component, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, BlockerDelegate } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, BlockerDelegate, ModalController } from 'ionic-angular';
 import { DocumentService } from './../../services/document.service';
 import { BlockStepsComponent } from '../../components/block-steps/block-steps';
 import { BitcoinService } from '../../services/bitcoin.service';
 import { BlockStackService } from '../../services/blockstack.service';
 import { Block } from 'bitcoinjs-lib';
 import { VideoComponent } from '../../components/video/video';
+import { VideoModalPage } from '../video-modal/video-modal';
 declare let window: any;
 declare let blockstack: any;
 
@@ -40,9 +41,10 @@ export class ReviewPage {
     public navParams: NavParams, 
     public documentService: DocumentService,
     private bitcoinService: BitcoinService,
-    private blockstackService: BlockStackService,
+    public blockstackService: BlockStackService,
     private nav: NavController, 
-    private change: ChangeDetectorRef
+    private change: ChangeDetectorRef,
+    public modal: ModalController,
   ) {
 
     // if ( this.navParams.get("guid") && !this.documentService.currentDoc ){
@@ -99,6 +101,13 @@ export class ReviewPage {
     this.blockSteps.route("SignPage");
   }
 
+  next(){
+    // this.navCtrl.push("SignPage", {
+    //   guid: this.documentService.currentDoc.guid
+    // });
+    this.blockSteps.route("BlockchainPage");
+  }
+
   async getHash(){
     try{
         this.hash = await this.documentService.getMerkleHash();
@@ -121,23 +130,31 @@ export class ReviewPage {
     this.collaborators = await this.documentService.getCollaborators(this.documentService.currentDoc.guid);
   }
 
-  showVideoRTC(){
-    if (this.showVideo){
-      this.showVideo = false;
-    }
-    else{
-      this.showVideo = true;
-      this.change.detectChanges();
-      //this.videoEL.setVideoPaused();
-    }
+  //showVideoRTC(){
+
     
-  }
+    //this.toggleVideoStoryHead(collaborator.userId);
+    
+
+    // if (this.showVideo){
+    //   this.showVideo = false;
+    // }
+    // else{
+    //   this.showVideo = true;
+    //   this.change.detectChanges();
+    // }
+    
+  //}
 
   async getVideoR(path){
     console.log('git vid');
     this.showVideo = true;
     this.change.detectChanges();
-    await this.videoEL.getVideo(path);
+    
+    // await this.videoEL.getVideo(path);
+
+    const modal = this.modal.create(VideoModalPage, {videoPath: path }, { enableBackdropDismiss: false });
+    modal.present();
   }
 
   toggleVideoStoryHead(userId){
@@ -151,6 +168,8 @@ export class ReviewPage {
     
     this.getVideoR(path);
   
+   
+
   }
 
   hideVideo(){

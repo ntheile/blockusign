@@ -4,83 +4,75 @@
     <block-steps activeStep="5" #blockSteps class="no-print">
     </block-steps>
 
-    <!-- <div style="clear:both"></div>
-    <section style="position: relative;" class="nextBackButtons no-print">
-        <button class="nextBackButtonBack" ion-fab mini (click)="back()" style="background-color:green; position: absolute;">
-            <ion-icon name="md-arrow-back"></ion-icon>
-        </button>
-    </section>
-    <div style="clear:both"></div> -->
+    <div class="centerMe">
 
 
+        <div style="clear:both"></div>
+        <section style="position: relative; " class="nextBackButtons no-print">
+            <button class="nextBackButtonBack" ion-fab mini (click)="back()" style="background-color:green; position: absolute;">
+                <ion-icon name="md-arrow-back"></ion-icon>
+            </button>
+            <button class="nextBackButtonNext" ion-fab mini (click)="next()">
+                <ion-icon name="md-arrow-forward"></ion-icon>
+            </button>
+        </section>
+        <div style="clear:both"></div>
 
-    <div padding class="no-print centerMe" style="padding-left:50px; margin-bottom: 0px">
-        <button ion-button round outline small 
-            *ngIf="documentService.currentDoc && !documentService.currentDoc.isCompleted"
-            style=" margin: 0; padding:3" (click)="showVideoRTC()">
+
+        <div padding style="padding-top: 1px; padding-bottom: 1px; max-width: 750px; margin-top: 12px; margin-bottom: 12px" 
+            class="selectable no-print" *ngIf="documentService.currentDoc && !documentService.currentDoc.isCompleted">
+            <span>Please review the document below. If it looks good you can attach a short 20 second "video proof"
+                recording. Say something like this: </span><br />
+            <div class="bq">
+                My name is {{ name }} and I attest to signing the
+                document - {{ documentService.currentDoc.fileName }} .
+                The unique file hash starts with "{{ hash.substring(0,3) }}"
+            </div>
+        </div>
+
+        <button class="no-print" ion-button round outline small *ngIf="documentService.currentDoc && !documentService.currentDoc.isCompleted"
+            style=" margin: 0; padding:3" (click)="toggleVideoStoryHead(blockstackService.userId)">
             <ion-icon name="md-videocam"></ion-icon>
             &nbsp; &nbsp;Record Video Proof
         </button>
-        <button round outline ion-button small style=" margin: 0; padding:3" (click)="postBlockchain()">
-            <ion-icon name="logo-bitcoin"></ion-icon>
-            &nbsp; &nbsp;
-            <span *ngIf="documentService.currentDoc && !documentService.currentDoc.isCompleted">Save the Digital Signature<br/> to the Blockchain</span>
-            <span *ngIf="documentService.currentDoc && documentService.currentDoc.isCompleted">View Digital Signature<br /> on Blockchain<br /></span>
-            
-        </button>
-        
-       
-    </div>
-    <div padding style="padding-top: 1px; padding-bottom: 1px" class="selectable no-print" *ngIf="documentService.currentDoc">
-       <span>Please review the document below. If it looks good you can attach a short 20 second "video proof" recording. Say something like this: </span><br/>
-       <div class="bq">
-           My name is {{ name }} and I attest to signing the
-           document - {{ documentService.currentDoc.fileName }} . 
-           The unique file hash starts with "{{ hash.substring(0,3) }}"
-       </div>
-    </div>
-    <div>
-        <loading style="width: 30px" *ngIf="collaborators.length == 0"></loading>
-        <div class="no-print selectable" padding *ngIf="collaborators" style="display:flex; flex-direction: row">
-            
-            <div *ngFor="let collaborator of collaborators" style="margin-right:5px" class="btooltip">
-                <img class="avatar shadow video-ring" src="{{collaborator.avatar}}" (click)="toggleVideoStoryHead(collaborator.userId)" />
-                <span class="btooltiptext">Record/View Video</span>
-                <br /><br />
-                
-                    <span >
+
+        <div>
+            <loading style="width: 30px" *ngIf="collaborators.length == 0"></loading>
+            <div class="no-print selectable" padding *ngIf="collaborators" style="display:flex; flex-direction: row">
+
+                <div *ngFor="let collaborator of collaborators" style="margin-right:5px" class="btooltip">
+                    <img class="avatar shadow video-ring" src="{{collaborator.avatar}}" (click)="toggleVideoStoryHead(collaborator.userId)" />
+                    <span class="btooltiptext">Record/View Video</span>
+                    <br /><br />
+                    <span>
                         {{collaborator.userId}}
-                        
+
                     </span>
-                    
-                
-                
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="no-print">
-        <ion-icon name="ios-arrow-up" *ngIf="showVideo" (click)="hideVideo()" style="cursor:pointer" padding></ion-icon>
-        <span *ngIf="isSafari && showVideo">Sorry, video is not supported in Safari at this time</span>
-        <videoRTC #videoEL style="width: 320px;" *ngIf="showVideo" class="no-print" padding></videoRTC>        
-    </div>
-   
-    
-    
-       
-    <div style="display: flex; flex-wrap: wrap">
-           
-           <p class="no-print selectable" padding *ngIf="hash" style="margin: 0px">
+        <!--<div class="no-print">
+             <ion-icon name="ios-arrow-up" *ngIf="showVideo" (click)="hideVideo()" style="cursor:pointer" padding></ion-icon> 
+            <span *ngIf="isSafari && showVideo">Sorry, video is not supported in Safari at this time</span>
+            <videoRTC #videoEL style="width: 320px;" *ngIf="showVideo" class="no-print" padding></videoRTC>
+        </div>-->
+
+
+        <div style="display: flex; flex-wrap: wrap">
+
+            <p class="no-print selectable" padding *ngIf="hash" style="margin: 0px">
                 Document Hash = {{ hash }}
-         </p>
-         <button ion-button round outline small style="margin: 0; padding:3; margin-bottom: 5px; padding-top: -30px"
-         onclick="window.print()" class="no-print">
+            </p>
+            <button ion-button round outline small style="margin: 0; padding:3; margin-bottom: 5px; padding-top: -30px"
+                onclick="window.print()" class="no-print">
                 <ion-icon name="md-download"></ion-icon>
                 &nbsp; &nbsp;Download
-        </button>
+            </button>
+        </div>
+
     </div>
-  
-   
+
     <block-pdf marginTop="1px" locked="true" style="height: 95%">
     </block-pdf>
 

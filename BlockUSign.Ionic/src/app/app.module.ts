@@ -19,6 +19,7 @@ import { ReviewPageModule } from '../pages/review/review.module';
 import { BlockStepsComponentModule } from './../components/components.module';
 import { BlockchainPageModule } from './../pages/blockchain/blockchain.module';
 import { FeaturesModalPageModule } from './../pages/features-modal/features-modal.module';
+import { VideoModalPageModule } from './../pages/video-modal/video-modal.module';
 
 
 //import { HomePage } from './../pages/home/home';
@@ -60,6 +61,7 @@ import { FeatureProvider } from '../providers/feature/feature';
     FormsModule,
     BlockStepsComponentModule,
     FeaturesModalPageModule,
+    VideoModalPageModule,
     HttpClientModule
   ],
   bootstrap: [IonicApp],
