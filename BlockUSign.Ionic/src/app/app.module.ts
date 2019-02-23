@@ -36,6 +36,7 @@ import { Block } from 'bitcoinjs-lib';
 import { BitcoinService } from '../services/bitcoin.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FeatureProvider } from '../providers/feature/feature';
+import { FeedPageModule } from '../pages/feed/feed.module';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { FeatureProvider } from '../providers/feature/feature';
     BlockStepsComponentModule,
     FeaturesModalPageModule,
     VideoModalPageModule,
-    HttpClientModule
+    HttpClientModule,
+    FeedPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
