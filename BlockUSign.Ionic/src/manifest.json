@@ -5,7 +5,7 @@
   "display": "standalone",
   "description": "A decentralized, social document signing tool where you own and control your own documents, contracts and data",
   "icons": [{
-    "src": "https://blockusign.co/assets/imgs/blockusignLogoSvg.svg",
+    "src": "https://blockusign.co/assets/imgs/blockusignLogoHiRes",
     "sizes": "512x512",
     "type": "image/png"
   }],
