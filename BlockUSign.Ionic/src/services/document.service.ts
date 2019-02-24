@@ -659,7 +659,7 @@ export class DocumentService {
 
     let options = {
       shouldSort: true,
-      threshold: 0.6,
+      threshold: 0.35,
       location: 0,
       distance: 100,
       maxPatternLength: 32,
@@ -730,6 +730,17 @@ export class DocumentService {
   onlyUnique(value, index, self) { 
     return self.indexOf(value) === index;
   }
+
+  getQueryParamByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));  
+  }
+
 
 }
 

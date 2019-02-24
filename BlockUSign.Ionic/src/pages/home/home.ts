@@ -25,6 +25,7 @@ declare let $: any;
 declare let sjcl: any;
 import { ModalController } from 'ionic-angular';
 import { FeaturesModalPage } from './../features-modal/features-modal';
+import { FeedComponent } from '../../components/feed/feed';
 let blobStream = require('blob-stream');
 let canvas2pdf = require('canvas2pdf');
 let Filters = require('./../../utils/filters');
@@ -68,7 +69,8 @@ export class HomePage {
     @ViewChild("spinner") spinner: ElementRef;
     @ViewChild("videoCamera") videoCamera: ElementRef;
     @ViewChild("cameraCanvas") cameraCanvas: ElementRef;
-    
+    @ViewChild("feed") feed: FeedComponent;
+
     
     
     constructor(
@@ -118,7 +120,6 @@ export class HomePage {
         //let docs = await this.documentService.getDocumentsIndex(true)
         //this.testPublicKeyFile();
         this.checkNewFeatures();
-
     }
 
     async checkNewFeatures(){

@@ -64,7 +64,11 @@ import { ToastController } from 'ionic-angular';
       // });
       //this.viewCtrl.dismiss();
       setTimeout( async ()=>{
-        window.location.replace("/#/"+page+"/" + d.guid);
+       
+        if(page == "review"){
+          localStorage.setItem('showVideo', "true");
+        }
+        window.location.replace("/#/" + page + "/" + d.guid);
         window.location.reload();
       }, 1000);
      

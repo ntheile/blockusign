@@ -7,6 +7,7 @@ import { BlockChatComponent } from './block-chat/block-chat';
 import { LoadingComponent } from './loading/loading';
 import { VideoComponent } from './video/video';
 import { RecordButtonComponent } from './record-button/record-button';
+import { FeedComponent } from './feed/feed';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { RecordButtonComponent } from './record-button/record-button';
     BlockChatComponent,
     LoadingComponent,
     VideoComponent,
-    RecordButtonComponent],
+    RecordButtonComponent,
+    FeedComponent],
     imports: [
         IonicModule,
         DirectivesModule
@@ -25,7 +27,8 @@ import { RecordButtonComponent } from './record-button/record-button';
     BlockChatComponent,
     LoadingComponent,
     VideoComponent,
-    RecordButtonComponent]
+    RecordButtonComponent,
+    FeedComponent]
 })
 export class BlockStepsComponentModule {
     static forRoot(): ModuleWithProviders {

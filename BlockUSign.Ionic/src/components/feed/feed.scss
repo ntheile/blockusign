@@ -1,0 +1,12 @@
+feed {
+    .feed-card:hover{
+        background: linear-gradient(to right, #282b30 85%, #2e3136);
+        cursor: pointer;
+    }
+    .p{
+        font-size: 1.4rem;
+        font-weight: normal;
+        line-height: 1.5;
+        color: #ddd;
+    }
+}

@@ -38,13 +38,17 @@
 
     <br/><br/>
     <div class="myCenter" *ngIf="!isGraphite">
-       
         <p>OR &nbsp;</p>
         <button ion-button (click)="cameraModal()" style="border-radius: 40px">
             <ion-icon name="camera"></ion-icon>&nbsp;&nbsp;Take Picture of Doc
         </button>
     </div>
 
+
+    <feed #feed *ngIf="!isGraphite || !loading" >
+
+    </feed>
+  
     <ion-row>
       <ion-col>
           <div class="load-graphite" *ngIf="isGraphite">
@@ -57,6 +61,7 @@
         </div>
       </ion-col>
     </ion-row>
+
 
     <div *ngIf="showCamera" class="myCenter">
         <video #videoCamera (click)="snapClick()" 

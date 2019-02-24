@@ -1,5 +1,5 @@
 import { Component, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, BlockerDelegate, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, BlockerDelegate, ModalController, AlertCmp, AlertController } from 'ionic-angular';
 import { DocumentService } from './../../services/document.service';
 import { BlockStepsComponent } from '../../components/block-steps/block-steps';
 import { BitcoinService } from '../../services/bitcoin.service';
@@ -45,6 +45,7 @@ export class ReviewPage {
     private nav: NavController, 
     private change: ChangeDetectorRef,
     public modal: ModalController,
+    public alertCtrl: AlertController
   ) {
 
     // if ( this.navParams.get("guid") && !this.documentService.currentDoc ){
@@ -61,6 +62,7 @@ export class ReviewPage {
     //   //this.getFile();
     // }
 
+
   }
 
 
@@ -70,13 +72,15 @@ export class ReviewPage {
   }
 
   async init() {
+
+  
     
     // if you are a signer and the document is not in your document.index then add it!
     // @todo think about allowing a document to get signed by an anonymous person if they got it via email with the documentKey
 
     if (this.navParams.get("guid") && !this.documentService.currentDoc) {
       let guid = this.navParams.get("guid");
-      this.documentService.getDocumentsIndex(true).then(async (data) => {
+      await this.documentService.getDocumentsIndex(true).then(async (data) => {
         this.documentService.documentsList = data;
         await this.documentService.setCurrentDoc(guid);
         await this.documentService.getAnnotations(guid);
@@ -89,7 +93,18 @@ export class ReviewPage {
     }
 
     this.name = blockstack.loadUserData().username;
+
+   try {
+     if (localStorage.getItem('showVideo') == "true" ){
+       console.log('get video now!');
+        this.toggleVideoStoryHead(this.blockstackService.userId);
+        setTimeout( ()=>{
+          localStorage.setItem('showVideo', "false");
+        }, 3000 )
+     }
+   } catch(e){}
     
+   
   }
 
  
@@ -114,7 +129,26 @@ export class ReviewPage {
         this.getCollaborators();
     }
     catch(e){
-      alert('Please make sure you signed and saved the document. Go back to the "e-sign" page');
+
+
+        let alert = this.alertCtrl.create({
+          title: '',
+          subTitle: 'Please make sure you signed and saved the document. You might need to go back to the "e-sign" page',
+          buttons: [
+              {
+                  text: 'Ok',
+                  handler: data => {
+                      if (true == true) {
+                      } else {
+                          // invalid login
+                          return false;
+                      }
+                  }
+              }
+          ]
+      });
+      alert.present();
+
     }
 
    

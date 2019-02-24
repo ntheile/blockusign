@@ -1,0 +1,68 @@
+<div class="centerMe" style="max-width: 740px">
+  <h3 style="text-align: center;">Activity Feed</h3>
+
+  <div *ngIf="feed">
+
+
+    <div *ngFor="let item of feed">
+      <ion-card class="feed-card">
+
+        <div (click)="documentSelected($event, item)">
+          <ion-item>
+
+            <ion-avatar item-start *ngFor="let signer of item.paths">
+              <img *ngIf="avatars" 
+                src="{{ avatars[signer.userId] }} ">
+            </ion-avatar>
+
+            <p>{{moment(item.updatedAt).calendar(null, {  
+              sameElse: 'MMMM Do,YYYY hh:mm a'
+              })}}</p>
+          </ion-item>
+
+          <!-- <img [src]="avatar" *ngIf="avatar"> -->
+
+          <ion-card-content>
+            <div *ngFor="let signer of item.paths">
+                <p>{{signer.userId}} 
+                  <span class="p" *ngIf="!item.isCompleted">
+                    signed
+                    &nbsp;&nbsp;<ion-icon name="md-create"></ion-icon>&nbsp;&nbsp;
+                  </span>
+                  <span class="p" *ngIf="item.isCompleted">
+                    completed 
+                    &nbsp;&nbsp;<ion-icon name="md-checkbox"></ion-icon>&nbsp;&nbsp;
+                  </span>
+                  "{{ item.fileName }}"</p>
+            </div>
+            
+          </ion-card-content>
+
+          <ion-row>
+            <ion-col>
+              <!-- <button ion-button icon-start clear small>
+                        <ion-icon name="thumbs-up"></ion-icon>
+                        <div>12 Likes</div>
+                      </button> -->
+            </ion-col>
+            <ion-col>
+              <!-- <button ion-button icon-start clear small>
+                        <ion-icon name="text"></ion-icon>
+                        <div>4 Comments</div>
+                      </button> -->
+            </ion-col>
+            <ion-col align-self-center text-center>
+              <!-- <ion-note>
+                        11h ago
+                      </ion-note> -->
+            </ion-col>
+          </ion-row>
+        </div>
+
+
+      </ion-card>
+
+    </div>
+  </div>
+
+</div>
