@@ -1,8 +1,9 @@
-<div class="centerMe" style="max-width: 740px">
-  <h3 style="text-align: center;">Activity Feed</h3>
+<div class="centerMe" style="max-width: 740px" >
+  
+  
 
-  <div *ngIf="feed">
-
+  <div *ngIf="feed.length > 0">
+    <h3 style="text-align: center;">Activity Feed</h3>
 
     <div *ngFor="let item of feed">
       <ion-card class="feed-card">

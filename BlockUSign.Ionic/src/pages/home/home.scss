@@ -20,7 +20,7 @@
     clear: both;
     margin: 0 auto;
     width: 100%;
-    max-width: 600px;
+    max-width: 720px;
   
     label {
       float: left;
@@ -158,11 +158,15 @@
   }
 
 
-  @media (min-width: 1100px) {
-    .uploader-row{
-        margin-left: -150px;
-    }
+  @media (min-width: 1401px) {
+    // .uploader-row{
+    //     margin-left: -150px;
+    // }
     
+    .homeWrap{
+      margin-left: -150px;
+    }
+
   }
   
 
