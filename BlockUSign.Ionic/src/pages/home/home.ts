@@ -183,9 +183,9 @@ export class HomePage {
         }
 
         let fileSize = firstFile.size / 1024 / 1024; // in MB
-        if (fileSize > 2) {
+        if (fileSize > 3) {
             document.getElementById('globalLoading').style.display = "none";
-            alert('Sorry, we are working on supporting larger file sizes :) Please select a smaller document under 2MB');
+            alert('Sorry, we are working on supporting larger file sizes :) Please select a smaller document under 3MB');
             this.loading.dismiss();
             setTimeout(()=>{
                 document.getElementById('globalLoading').style.display = "none";

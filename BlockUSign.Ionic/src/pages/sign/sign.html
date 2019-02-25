@@ -2,7 +2,7 @@
 
     <block-steps activeStep="4" #blockSteps class="no-print"></block-steps>
 
-    <div class="centerMe">
+    <div class="centerMe" style="margin-bottom: -10px !important">
 
         <div style="clear:both"></div>
         <section style="position: relative;" class="nextBackButtons no-print">
@@ -19,8 +19,7 @@
             <ion-icon name="md-lock" style="margin-left: 50px; color: grey; font-size: 25px"></ion-icon>
             <span style="margin-left: 5px; color: grey; font-size: 25px">Locked</span>
         </div>
-
-        <div style="display:flex; cursor:pointer; max-width: 750px;" class="no-print">
+        <div style="display:flex; cursor:pointer; max-width: 750px;" class="no-print instructions-text">
             <ion-icon *ngIf="showText" name="md-close-circle" style=" margin-left: 20px; " (click)="toggleText()"></ion-icon>
             <p *ngIf="showText" class="selectable" style="padding-right: 8px; padding-left: 8px">
                 Please sign your name by dragging your signature onto the document. Also, add notes to the chat log.

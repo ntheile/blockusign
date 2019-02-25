@@ -5,66 +5,69 @@
   </block-steps>
 
   <div style="clear:both"></div>
-  <div class="centerMe">
+  <div class="centerMe" style="max-width: 900px">
 
-  <section style="position: relative;" class="nextBackButtons no-print">
-    <button class="nextBackButtonBack" ion-fab mini (click)="back()" style="background-color:green; position: absolute;">
-      <ion-icon name="md-arrow-back"></ion-icon>
-    </button>
-    <button class="nextBackButtonNext" ion-fab mini (click)="next()">
-      <ion-icon name="md-arrow-forward"></ion-icon>
-    </button>
-  </section>
-  <div style="clear:both"></div>
+    <section style="position: relative;" class="nextBackButtons no-print">
+      <button class="nextBackButtonBack" ion-fab mini (click)="back()"
+        style="background-color:green; position: absolute;">
+        <ion-icon name="md-arrow-back"></ion-icon>
+      </button>
+      <button class="nextBackButtonNext" ion-fab mini (click)="next()">
+        <ion-icon name="md-arrow-forward"></ion-icon>
+      </button>
+    </section>
+    <div style="clear:both"></div>
 
-  <div *ngIf="documentService.currentDoc && documentService.currentDoc.isCompleted" class="no-print">
-      <ion-icon name="md-lock" style="margin-left: 50px; color: grey; font-size: 25px"></ion-icon> 
+    <div *ngIf="documentService.currentDoc && documentService.currentDoc.isCompleted" class="no-print">
+      <ion-icon name="md-lock" style="margin-left: 50px; color: grey; font-size: 25px"></ion-icon>
       <span style="margin-left: 5px; color: grey; font-size: 25px">Locked</span>
-  </div>
-  
-
-  <p class="no-print" padding  *ngIf="documentService.currentDoc && !documentService.currentDoc.isCompleted" >
-    How do you want to send the document to your signer(s)?
-  </p>
-  
-  <div style="max-width:600px" *ngIf="documentService.currentDoc && !documentService.currentDoc.isCompleted">
-    <div>
-      <ion-segment [(ngModel)]="choice" (ionChange)="segmentChanged()">
-        <!-- <ion-segment-button selected value="blockstack">
-            &nbsp;<ion-icon name="ios-person" class="send-choice"></ion-icon>&nbsp;Name
-        </ion-segment-button> -->
-        <ion-segment-button value="email">
-            &nbsp;<ion-icon name="mail" class="send-choice"></ion-icon>&nbsp;Email
-        </ion-segment-button>
-        <ion-segment-button value="link" (click)="linkCopiedModal()">
-            &nbsp;<ion-icon name="ios-link" class="send-choice"></ion-icon>&nbsp;Copy Link
-        </ion-segment-button>
-      </ion-segment>
     </div>
 
-    <div [ngSwitch]="choice">
-      
-      <ion-list *ngSwitchCase="'link'" padding>
-        <br/>
-        <p class="no-print selectable" >
+
+    <p class="no-print" padding *ngIf="documentService.currentDoc && !documentService.currentDoc.isCompleted">
+      How do you want to send the document to your signer(s)?
+    </p>
+
+    <div style="max-width:600px" *ngIf="documentService.currentDoc && !documentService.currentDoc.isCompleted">
+      <div>
+        <ion-segment [(ngModel)]="choice" (ionChange)="segmentChanged()">
+          <!-- <ion-segment-button selected value="blockstack">
+            &nbsp;<ion-icon name="ios-person" class="send-choice"></ion-icon>&nbsp;Name
+        </ion-segment-button> -->
+          <ion-segment-button value="email">
+            &nbsp;<ion-icon name="mail" class="send-choice"></ion-icon>&nbsp;Email
+          </ion-segment-button>
+          <ion-segment-button value="link" (click)="linkCopiedModal()">
+            &nbsp;<ion-icon name="ios-link" class="send-choice"></ion-icon>&nbsp;Copy Link
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+
+      <div [ngSwitch]="choice">
+
+        <ion-list *ngSwitchCase="'link'" padding>
+          <br />
+          <p class="no-print selectable">
             Please copy the link below and send to your signer! {{ instructionsText }}
           </p>
-        
-        <textarea #linkCopy style="width:100%; height: 100%; color: black; border-radius: 5px" [(ngModel)]="documentLink" class="emailLink no-print"></textarea>
-      </ion-list>
-      <ion-list *ngSwitchCase="'email'" padding>
-        <div style="display:flex; margin-top: 15px"> 
-            <input style="border-radius: 50px 0px 0px 50px; height: 40px; width: 90%" class="classic-input" type="email" size="40" maxLength="64" required placeholder="Email To..."
-            [(ngModel)]="email" autofocus>
-  
-            <button ion-button icon-end (click)="sendEmail($event)" 
+
+          <textarea #linkCopy style="width:100%; height: 100%; color: black; border-radius: 5px"
+            [(ngModel)]="documentLink" class="emailLink no-print"></textarea>
+        </ion-list>
+        <ion-list *ngSwitchCase="'email'" padding>
+          <div style="display:flex; margin-top: 15px">
+            <input style="border-radius: 50px 0px 0px 50px; height: 40px; width: 90%" class="classic-input" type="email"
+              size="40" maxLength="64" required placeholder="Email To..." [(ngModel)]="email" autofocus>
+
+            <button ion-button icon-end (click)="sendEmail($event)"
               style="border-radius: 0px 50px 50px 0px; height: 40px; width: 10%; margin-left: -5px; margin-top:0px">
-                <ion-icon name="md-send"></ion-icon></button>
-        </div>
-         
-        
-      </ion-list>
-      <!-- <ion-list *ngSwitchCase="'blockstack'"> 
+              <ion-icon name="md-send"></ion-icon>
+            </button>
+          </div>
+
+
+        </ion-list>
+        <!-- <ion-list *ngSwitchCase="'blockstack'"> 
           <br/>
           <ion-searchbar #searchbar animated="true" showCancelButton="true" 
               (ionInput)="lookup($event)" (ionCancel)="onSearchClear()" (ionClear)="onSearchClear()"  [(ngModel)]="userInput"></ion-searchbar>
@@ -87,14 +90,14 @@
            
             
         </ion-list> -->
+      </div>
     </div>
+
+
   </div>
 
-  
-</div>
-
-  <block-pdf marginTop="0px" marginBottom="120px" locked="true">
-  </block-pdf>
+  <!-- <block-pdf marginTop="0px" marginBottom="120px" locked="true">
+  </block-pdf> -->
 
 
 </ion-content>

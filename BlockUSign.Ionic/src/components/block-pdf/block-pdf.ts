@@ -613,7 +613,7 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
 
     let alert = this.alertCtrl.create({
       title: 'Success!',
-      message: 'Thanks for signing! Do you want notify the owner stating that you signed the document? This will kick off the process to "Seal the Deal" ',
+      message: 'Thanks for signing! Do you want to notify the owner stating that you signed the document? This will kick off the process to "Seal the Deal" ',
       buttons: [
         {
           text: 'No',
@@ -623,8 +623,8 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
           }
         },
         {
-          text: 'Yes',
-          handler:   data => {
+          text: 'Send',
+          handler:  data => {
           
             if (data.email){
               let link = this.genLink();
@@ -634,7 +634,9 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
               let content = "Please review here: <br/><br/><a href='" + link + "' >"+fileName+"</a> ";
               content = content + "<br/><br/>Thanks, <br/>Blockusign";
               this.emailService.sendEmail(data.email, subject, content);
-            }           
+            } else{
+              return false;
+            }          
           }
         }
       ],
