@@ -36,7 +36,8 @@
     "e2e-test": "protractor ./test-config/protractor.conf.js",
     "e2e-update": "webdriver-manager update --standalone false --gecko false --ignore_ssl",
     "deploy": "",
-    "deploy:test": ""
+    "deploy:test": "",
+    "ugly": "uglifyjs src/vendor/blockstack.js src/vendor/babel-polyfill.min.js src/vendor/pdf.js src/vendor/jquery.js src/vendor/pdf_viewer.js src/vendor/text_layer_builder.js src/vendor/spectrum.js src/vendor/sjcl.js src/vendor/pdf-annotate.js src/vendor/bitcoinjs-lib.js src/vendor/parseZoneFile.js src/vendor/interact.min.js src/vendor/dragOn.js src/vendor/ccmArrayBuffer.js src/vendor/codecArrayBuffer.js src/vendor/jslinq.min.js src/vendor/jquery.blast.min.js src/vendor/pdfkit.js src/vendor/jspdf.debug.js src/vendor/webfont.js src/vendor/fuse.min.js -o src/assets/ugly.min.js"
   },
   "dependencies": {
     "@angular/common": "5.0.3",
@@ -104,6 +105,7 @@
     "stream": "0.0.2",
     "sw-toolbox": "3.6.0",
     "technicalindicators": "^1.1.1",
+    "uglify-es": "^3.3.9",
     "uglify-js": "^3.4.9",
     "underscore": "^1.9.1",
     "zone-file": "^0.2.3",

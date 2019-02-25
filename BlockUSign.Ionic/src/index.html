@@ -47,7 +47,8 @@
       }
     </script>
 
- 
+  <!-- npm run ugly - scripts from src/vendor -->
+  <script src="./assets/ugly.min.js"></script>
 
 </head>
 
@@ -57,12 +58,9 @@
   <ion-app>
   </ion-app>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.23.0/polyfill.min.js"></script>
-  <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.480/pdf_viewer.js"></script>
-  <script src="./assets/text_layer_builder.js"></script>
-  <script src="./assets/spectrum.js"></script>
+  
+  
+
   <script>
       //pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://mozilla.github.io/pdf.js/build/pdf.worker.js';
       PDFJS = pdfjsLib;
@@ -141,35 +139,20 @@
       window.onbeforeprint = beforePrint;
       window.onafterprint = afterPrint;
   
-    </script>
+  </script>
   
-    <script src="./assets/pdf-annotate.js"></script>
-    <script src="./assets/blockstack.js"></script>
-    <script src="./assets/bitcoinjs-lib.js"></script>
-    <script src="./assets/parseZoneFile.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/interact.js/1.2.9/interact.min.js"></script>
-    <script src="./assets/dragOn.js"></script>
-    <script src="./assets/sjcl.js"></script>
-    <script src="./assets/ccmArrayBuffer.js"></script>
-    <script src="./assets/codecArrayBuffer.js"></script>
-    <script src="./assets/jslinq.min.js"></script>
-    <script src="https://cdn.rawgit.com/julianshapiro/blast/master/jquery.blast.min.js"></script>
-    <script src="./assets/pdfkit.js"></script>
-  
+
 
   <!-- The polyfills js is generated during the build process -->
   <script src="build/polyfills.js"></script>
-
   <!-- The vendor js is generated during the build process
        It contains all of the dependencies in node_modules -->
   <script src="build/vendor.js"></script>
-
   <!-- The main bundle js is generated during the build process -->
   <script src="build/main.js"></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js'></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.4.2/fuse.min.js"></script>
+
   <!-- <script src="./assets/appsettings.js"></script> -->
+ 
  
 </body>
 
