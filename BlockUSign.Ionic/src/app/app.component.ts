@@ -278,6 +278,19 @@ export class MyApp {
 
       //}
       this.loading.dismiss();
+
+      // get rid of ?authResponse=ey to prevent routing bugs
+      setTimeout( ()=>{
+        try{
+          let authParam =  window.location.href.includes('authResponse');
+          if(authParam){
+            let newUrl = window.location.href.replace("/?authResponse=" + blockstack.loadUserData().authResponseToken , '');
+            history.pushState({}, null, newUrl);
+          }
+        } catch(e){}
+      }, 1500 )
+
+
     } else if (blockstack.isSignInPending()) {
 
       this.cacheNewDocIfNotLoggedIn();
