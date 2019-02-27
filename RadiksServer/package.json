@@ -1,0 +1,31 @@
+{
+  "name": "blockusignradiksserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install": "npm run global",
+    "global": "npm install -g radiks-server && npm install -g babel-node &&  npm install -g cross-env ",
+    "dev": "cross-env NODE_ENV=development npx babel-node index",
+    "start": "cross-env NODE_ENV=production npx babel-node index"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@awaitjs/express": "^0.3.0",
+    "cross-env": "^5.2.0",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "express-force-https": "^1.0.0",
+    "express-ws": "^4.0.0",
+    "linkifyjs": "^2.1.8",
+    "lodash": "^4.17.11",
+    "next": "^8.0.3",
+    "nodemailer": "^5.1.1",
+    "nodemailer-sendgrid-transport": "^0.2.0",
+    "path": "^0.12.7",
+    "qs": "^6.6.0",
+    "radiks-server": "^0.1.7",
+    "universal-cookie-express": "^3.0.7"
+  }
+}

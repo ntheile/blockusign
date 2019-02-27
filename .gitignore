@@ -442,3 +442,4 @@ BlockUSign.Ionic/www/build/vendor.js
 
 **/subdomain.md
 **/bower_components/*
+**.env
