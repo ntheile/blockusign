@@ -8,15 +8,15 @@ const { COLLECTION } = require('radiks-server/app/lib/constants');
 const makeApiController = (db) => {
   const Router = decorateApp(express.Router());
   const radiksData = db.collection(COLLECTION);
-  radiksData.collectionName = "radiks-server-data2";
 
   Router.getAsync('/messages', async (req, res) => {
     let messages = await aggregateMessages(radiksData, req.query);
 
+   
     let username = (req.query.fetcher || req.universalCookies.get('username'));
     if (username) username = username.replace(/"/g, '');
     messages = await transformMessageVotes(messages, username);
-
+ 
     res.json({ messages });
   });
 

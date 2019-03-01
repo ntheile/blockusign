@@ -1,0 +1,40 @@
+{
+  "name": "blockusignradis",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install": "npm install --save-dev nodemon radiks-server babel-cli babel-node cross-env babel-preset-env webpack html-webpack-plugin webpack-livereload-plugin babel-loader style-loader css-loader babel-core webpack-dev-middleware && npm i",
+    "dev": "cross-env NODE_ENV=development nodemon --exec babel-node index",
+    "start": "node index",
+    "build": "babel ../Blockusign.Radik --out-dir build && cp .env build",
+    "zip": "cd dist && powershell Compress-Archive -Force -Path * -DestinationPath deploy.zip",
+    "copy-dist": "cp .env dist && cp package.json dist && cp web.config dist && cp iisnode.yml dist",
+    "dist": "webpack && npm run copy-dist"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@awaitjs/express": "^0.3.0",
+    "cross-env": "^5.2.0",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "express-force-https": "^1.0.0",
+    "express-ws": "^4.0.0",
+    "linkifyjs": "^2.1.8",
+    "lodash": "^4.17.11",
+    "next": "^8.0.3",
+    "nodemailer": "^5.1.1",
+    "nodemailer-sendgrid-transport": "^0.2.0",
+    "path": "^0.12.7",
+    "qs": "^6.6.0",
+    "radiks-server": "^0.1.7",
+    "universal-cookie-express": "^3.0.7"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3",
+    "webpack-node-externals": "^1.7.2"
+  }
+}
