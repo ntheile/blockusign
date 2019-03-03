@@ -61,7 +61,7 @@ export class FeedComponent {
     this.navCtrl.setRoot("HomePage");
 
     let guid = this.documentService.currentDoc.guid;
-    let page = "EmailPage";
+    let page = "ReviewPage";
     if (selectedDocument.isCompleted){
       page = "BlockchainPage";
     }
