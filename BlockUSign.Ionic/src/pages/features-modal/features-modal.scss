@@ -21,4 +21,13 @@ page-features-modal {
         text-align: left;
         line-height: 1.4;
     }
+
+    .swiper-pagination-bullet{
+        opacity: .8;
+        background: whitesmoke;
+    }
+
+    .swiper-pagination-bullet-active{
+        background: #FB8C00;
+    }
 }

@@ -10,7 +10,7 @@ export class FeatureProvider {
     console.log('Hello FeatureProvider Provider');
   }
 
-  features = ['videoproofs', 'cameraupload'];
+  features = ['videoproofs', 'cameraupload', 'search', 'feed'];
   featuresNotSeen = [];
 
   async getFeaturesToShow(){

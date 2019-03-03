@@ -1,61 +1,80 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      New Features!
-    </ion-title>
-    <ion-buttons start>
-      <button ion-button (click)="dismiss()" color="white">
-        Close
-      </button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content style="cursor:pointer">
-  <ion-slides pager padding>
 
-    <ion-slide *ngIf="featureService.featuresNotSeen.includes('videoproofs')">
-      <h3>Video Proofs</h3>
-      <ul>
-        <li>Record a 20 second verbal sign-off video attesting a document is accurate.</li>
-        <li>The video cannot be altered by video editing software because its hash is saved to the blockchain.</li>
-      </ul>
-      <br/>
-      <div class='embed-container'>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/KdaYyUNob_M" frameborder="0" allow="autoplay; encrypted-media"
-          allowfullscreen></iframe>
-      </div>
-    </ion-slide>
+  <ion-header *ngIf="featureService.featuresNotSeen">
+    <ion-toolbar>
+      <ion-title>
+        New Features!
+      </ion-title>
+      <ion-buttons start>
+        <button ion-button (click)="dismiss()" color="white">
+          Close
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
 
-    <ion-slide *ngIf="featureService.featuresNotSeen.includes('videoproofs')">
-      <h2>Video Proofs</h2>
-      <b>Use Cases</b>
-      <ul>
-        <li>Prevent fake news by verifying the source</li>
-        <li>Management can sign off on a deal</li>
-        <li>Video confessionals</li>
-        <li>Verbally record any statement and verify its truthfulness using the blockchain</li>
-      </ul>
-      <div>
-          <ion-icon style="font-size: 7em" name="ios-videocam-outline"></ion-icon>
-      </div>
-    </ion-slide>
+  <ion-content style="cursor:pointer;" *ngIf="featureService.featuresNotSeen">
+    <ion-slides pager padding style="opacity: 0.9;">
 
-    <ion-slide *ngIf="featureService.featuresNotSeen.includes('cameraupload')">
-        <h2>Camera Upload</h2>
-        <p>Upload a document with the camera on your phone or computer</p>
+      <ion-slide *ngIf="featureService.featuresNotSeen.includes('videoproofs')">
+        <h3>Video Proofs</h3>
+        <ul>
+          <li>Record a 20 second verbal sign-off video attesting a document is accurate.</li>
+          <li>The video cannot be altered by video editing software because its hash is saved to the blockchain.</li>
+        </ul>
         <br/>
-        <img src="./../../assets/camera-upload-doc.gif" style="width:220px"  />
-        <br/>
+        <div class='embed-container'>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/KdaYyUNob_M" frameborder="0" allow="autoplay; encrypted-media"
+            allowfullscreen></iframe>
+        </div>
       </ion-slide>
 
+      <ion-slide *ngIf="featureService.featuresNotSeen.includes('videoproofs')">
+        <h2>Video Proofs</h2>
+        <b>Use Cases</b>
+        <ul>
+          <li>Prevent fake news by verifying the source</li>
+          <li>Management can sign off on a deal</li>
+          <li>Video confessionals</li>
+          <li>Verbally record any statement and verify its truthfulness using the blockchain</li>
+        </ul>
+        <div>
+            <ion-icon style="font-size: 7em" name="ios-videocam-outline"></ion-icon>
+        </div>
+      </ion-slide>
+
+      <ion-slide *ngIf="featureService.featuresNotSeen.includes('cameraupload')">
+          <h2>Camera Upload</h2>
+          <p>Upload a document with the camera on your phone or computer</p>
+          <br/>
+          <img src="./../../assets/camera-upload-doc.gif" style="width:220px"  />
+          <br/>
+        </ion-slide>
+
+
+        <ion-slide *ngIf="featureService.featuresNotSeen.includes('search')">
+          <h2>Search</h2>
+          <br/>
+          <video src="./../../assets/imgs/search.mp4" autoplay > </video><br/>
+         
+          <br/>
+        </ion-slide>
+
+        <ion-slide *ngIf="featureService.featuresNotSeen.includes('feed')">
+          <br/>
+          <img src="./../../assets/imgs/feed.png" /><br/>
+          <br/>
+        </ion-slide>
+
+
+        
+      
+
+
+      <!-- <ion-slide *ngIf="featureService.featuresNotSeen.includes('sign')">
+          <h2>signoff</h2>
+      </ion-slide> -->
     
 
-
-    <!-- <ion-slide *ngIf="featureService.featuresNotSeen.includes('sign')">
-        <h2>signoff</h2>
-    </ion-slide> -->
-  
-
-  </ion-slides>
-</ion-content>
+    </ion-slides>
+  </ion-content>
