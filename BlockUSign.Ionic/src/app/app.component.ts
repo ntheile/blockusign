@@ -19,7 +19,10 @@ declare let document: any;
 declare var window: any;
 const $ = document.querySelectorAll.bind(document);
 import { AlertController } from 'ionic-angular';
+import { configure, User } from 'radiks';
 import { Observable } from 'rxjs';
+import { UserSession, AppConfig } from 'blockstack';
+import { MessageProvider } from './../providers/message/message';
 declare let jQuery: any;
 
 let { Keystore, Keygen } = require('eosjs-keygen')
@@ -51,6 +54,7 @@ export class MyApp {
   isMobile = true;
   resizeTimeout;
   search = "";
+  radiksApi = "http://localhost:1337";
 
   constructor(
     public platform: Platform,
@@ -64,6 +68,7 @@ export class MyApp {
     public blockStackService: BlockStackService,
     public toastCntrl: ToastController,
     public chg: ChangeDetectorRef,
+    public messageService: MessageProvider,
   ) {
 
 
@@ -163,6 +168,25 @@ export class MyApp {
     let authRequestJwt = blockstack.makeAuthRequest();
 
   }
+
+  async configureRadiks(){
+
+    const userSession = this.makeUserSession();
+    await configure({
+      apiServer: this.radiksApi,
+      userSession
+    });
+
+    await User.createWithCurrentUser();
+    this.messageService.createMessage();
+
+  }
+
+  makeUserSession () {
+    const appConfig = new AppConfig(['store_write', 'publish_data'], this.radiksApi);
+    const userSession = new UserSession({ appConfig });
+    return userSession;
+  };
 
   loginElectron() {
 
@@ -278,6 +302,10 @@ export class MyApp {
 
       //}
       this.loading.dismiss();
+
+      // Radiks
+      // this.configureRadiks();
+
 
       // get rid of ?authResponse=ey to prevent routing bugs
       setTimeout( ()=>{

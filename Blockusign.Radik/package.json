@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "install": "npm install --save-dev nodemon radiks-server babel-cli babel-node cross-env babel-preset-env webpack html-webpack-plugin webpack-livereload-plugin babel-loader style-loader css-loader babel-core webpack-dev-middleware && npm i",
+    "install": "npm install -g nodemon radiks-server babel-cli babel-node cross-env babel-preset-env webpack html-webpack-plugin webpack-livereload-plugin babel-loader style-loader css-loader babel-core webpack-dev-middleware && npm i",
     "dev": "cross-env NODE_ENV=development nodemon --exec babel-node index",
     "start": "node index",
     "build": "babel ../Blockusign.Radik --out-dir build && cp .env build",
@@ -28,7 +28,7 @@
     "nodemailer-sendgrid-transport": "^0.2.0",
     "path": "^0.12.7",
     "qs": "^6.6.0",
-    "radiks-server": "^0.1.7",
+    "radiks-server": "^0.1.8",
     "universal-cookie-express": "^3.0.7"
   },
   "devDependencies": {
