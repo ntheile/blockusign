@@ -272,11 +272,11 @@ function redirectToSignInWithAuthRequest() {
   var httpsURI = blockstackIDHost + '?authRequest=' + authRequest;
 
   // If they're on a mobile OS, always redirect them to HTTPS site
-  // if (/Android|webOS|iPhone|iPad|iPod|Opera Mini/i.test(navigator.userAgent)) {
+  if (/Android|webOS|iPhone|iPad|iPod|Opera Mini/i.test(navigator.userAgent)) {
     _logger.Logger.info('detected mobile OS, sending to https');
     window.location = httpsURI;
     return;
-  // }
+  }
 
   function successCallback() {
     _logger.Logger.info('protocol handler detected');

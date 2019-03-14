@@ -21,6 +21,21 @@ export class MessageProvider {
 
   async createMessage(){
 
+
+    class Message extends Model {
+      static className = 'Message';
+    
+      static schema = {
+        content: {
+          type: String,
+          decrypted: true,
+        },
+        createdBy: {
+          type: String,
+          decrypted: true,
+        }
+      }
+    }
     
 
     // let m = new Message({
@@ -33,7 +48,9 @@ export class MessageProvider {
     // let resp = await m.save();
 
     // @ts-ignore
-    const msg = await Message.findById('4a2e41f6a3d6-43c8-a8c9-6500a76237cb');
+    // const msg = await Message.findById('4a2e41f6a3d6-43c8-a8c9-6500a76237cb');
+    const messages = await Message.fetchList(null, {decrypt: false});
+    console.log(messages);
     let a = 1;
   }
 

@@ -19,7 +19,7 @@ declare let document: any;
 declare var window: any;
 const $ = document.querySelectorAll.bind(document);
 import { AlertController } from 'ionic-angular';
-import { configure, User } from 'radiks';
+import { configure, getConfig, User } from 'radiks';
 import { Observable } from 'rxjs';
 import { UserSession, AppConfig } from 'blockstack';
 import { MessageProvider } from './../providers/message/message';
@@ -54,8 +54,8 @@ export class MyApp {
   isMobile = true;
   resizeTimeout;
   search = "";
-  radiksApi = "http://localhost:1337";
-
+  radiksApi = "https://blockusign-radiks.azurewebsites.net";
+ 
   constructor(
     public platform: Platform,
     public statusBar: StatusBar,
@@ -171,13 +171,23 @@ export class MyApp {
 
   async configureRadiks(){
 
-    const userSession = this.makeUserSession();
+    let userSession = this.makeUserSession();
+
+    // const { userSession } = getConfig();
+
+    if (userSession.isUserSignedIn()) {
+      const currentUser = await User.currentUser();
+    } else if (userSession.isSignInPending()) {
+      await userSession.handlePendingSignIn();
+      const currentUser = await User.createWithCurrentUser();
+    }
+  
+
     await configure({
       apiServer: this.radiksApi,
       userSession
     });
 
-    await User.createWithCurrentUser();
     this.messageService.createMessage();
 
   }
@@ -303,9 +313,6 @@ export class MyApp {
       //}
       this.loading.dismiss();
 
-      // Radiks
-      // this.configureRadiks();
-
 
       // get rid of ?authResponse=ey to prevent routing bugs
       setTimeout( ()=>{
@@ -317,6 +324,8 @@ export class MyApp {
           }
         } catch(e){}
       }, 1500 )
+
+      this.configureRadiks();
 
 
     } else if (blockstack.isSignInPending()) {
@@ -354,6 +363,9 @@ export class MyApp {
 
     // @todo Optimize this;
     this.blockStackService.saveAppPublicKey();
+
+ 
+
 
   }
 
