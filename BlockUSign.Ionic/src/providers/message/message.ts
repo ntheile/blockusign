@@ -49,37 +49,10 @@ export class MessageProvider {
 
     // @ts-ignore
     // const msg = await Message.findById('4a2e41f6a3d6-43c8-a8c9-6500a76237cb');
-    const messages = await Message.fetchList(null, {decrypt: false});
-    console.log(messages);
+    //const messages = await Message.fetchList(null, {decrypt: false});
+    //console.log(messages);
     let a = 1;
   }
 
 }
 
-class Message extends Model {
-  static className = 'Message';
-
-
-  static schema = {
-    content: {
-      type: String,
-      decrypted: true,
-    },
-    createdBy: {
-      type: String,
-      decrypted: true,
-    }
-  }
-
-  constructor(_schema: any){
-      super(_schema);
-  }
-
-  save(){
-    
-  };
-
-  ago() {
-    return moment( Date.now() ).fromNow();
-  }
-}

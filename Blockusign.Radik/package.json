@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "install": "npm install -g nodemon radiks-server babel-cli babel-node cross-env babel-preset-env webpack html-webpack-plugin webpack-livereload-plugin babel-loader style-loader css-loader babel-core webpack-dev-middleware && npm i",
+    "installer": "npm install -g nodemon radiks-server babel-cli babel-node cross-env babel-preset-env webpack html-webpack-plugin webpack-livereload-plugin babel-loader style-loader css-loader babel-core webpack-dev-middleware && npm i",
     "dev": "cross-env NODE_ENV=development nodemon --exec babel-node index",
     "start": "node index",
-    "build": "babel ../Blockusign.Radik --out-dir build && cp .env build",
+    "build": "babel --ignore node_modules/**/*.js ../Blockusign.Radik --out-dir build  && cp .env build",
     "zip": "cd dist && powershell Compress-Archive -Force -Path * -DestinationPath deploy.zip",
     "copy-dist": "cp .env dist && cp package.json dist && cp web.config dist && cp iisnode.yml dist",
-    "dist": "webpack && npm run copy-dist"
+    "dist": "webpack && npm run copy-dist",
+    "pack": "npm i && npm run build && npm run dist && npm run zip"
   },
   "author": "",
   "license": "ISC",
@@ -28,7 +29,7 @@
     "nodemailer-sendgrid-transport": "^0.2.0",
     "path": "^0.12.7",
     "qs": "^6.6.0",
-    "radiks-server": "^0.1.8",
+    "radiks-server": "^0.1.11",
     "universal-cookie-express": "^3.0.7"
   },
   "devDependencies": {
