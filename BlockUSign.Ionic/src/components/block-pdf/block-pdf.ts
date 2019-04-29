@@ -30,6 +30,7 @@ declare let dragOn: any;
 declare let interact: any;
 declare let getQueryParam: any;
 declare let WebFont: any;
+import Shepherd from 'shepherd.js';
 
 /**
  * Generated class for the BlockPdfComponent component.
@@ -132,6 +133,7 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
   //       this.sigTextElement.nativeElement.innerHTML = "[Enter name]"
   //     }  
   //  }); 
+    
     
   }
 
@@ -339,6 +341,8 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
       this.showToolBar = false;
     }
 
+ 
+
   }
 
   back() {
@@ -389,12 +393,14 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
       }
 
       setTimeout( ()=>{
-        this.loadSvg(1);
+        this.loadSvg(1); 
       }, 500 );
      
 
       this.loading.dismiss();
       this.setCursorFocus(3000);
+
+      this.startSignWizard();
 
     }, (reason) => {
 
@@ -683,6 +689,65 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
     } else{
       this.fullToolbar = false;
     }
+  }
+
+  startSignWizard(){
+
+
+    setTimeout( ()=>{
+      let tour = new Shepherd.Tour({
+        defaultStepOptions: {
+          classes: 'shadow-md bg-purple-dark',
+          scrollTo: true
+        },
+      });
+      
+      tour.addStep('one', {
+        title: 'Sign Here',
+        text: 'Notes',
+        attachTo: 'g > image:nth-child(1) top',
+        advanceOn: '.docs-link click',
+        buttons: [
+            {
+            text: 'Next',
+            action: tour.next
+            }
+        ]
+      });
+  
+  
+      tour.addStep('two', {
+        title: 'Sign Here',
+        text: 'Notes here',
+        attachTo: 'g > image:nth-child(2) top',
+        advanceOn: '.docs-link click',
+        buttons: [
+            {
+            text: 'Next',
+            action: tour.next
+            }
+        ]
+      });
+  
+
+      tour.addStep('three', {
+        title: 'Sign Here',
+        text: 'Notes here',
+        attachTo: 'g > image:nth-child(3) top',
+        advanceOn: '.docs-link click',
+        buttons: [
+            {
+            text: 'Next',
+            action: tour.next
+            }
+        ]
+      });
+     
+      
+      tour.start();
+    }, 1000 );
+
+    
   }
 
   // @HostListener('window:resize', ['$event'])

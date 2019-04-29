@@ -30,6 +30,7 @@ let blobStream = require('blob-stream');
 let canvas2pdf = require('canvas2pdf');
 let Filters = require('./../../utils/filters');
 declare let pdfkit: any;
+import Shepherd from 'shepherd.js';
 
 //const $ = document.querySelectorAll.bind(document);
 
@@ -120,6 +121,102 @@ export class HomePage {
         //let docs = await this.documentService.getDocumentsIndex(true)
         //this.testPublicKeyFile();
         this.checkNewFeatures();
+
+        this.startProductTour();
+    }
+
+    startProductTour(){
+       
+
+        let tour = new Shepherd.Tour({
+            defaultStepOptions: {
+              classes: 'shadow-md bg-purple-dark',
+              scrollTo: true
+  
+            },
+           
+          });
+          
+          tour.addStep('one', {
+            title: '1) Upload',
+            text: 'Upload a PDF to your own encrypted storage bucket',
+            attachTo: '#file-upload-btn top',
+            advanceOn: '.docs-link click',
+            buttons: [
+                {
+                text: 'Next',
+                action: tour.next
+                }
+            ]
+          });
+
+          tour.addStep('two', {
+            title: '2) Annotate',
+            text: 'Drop a "sign here" annotation on the document. Or some emojis 😄😄😄 ',
+            attachTo: '.step:nth-child(2) bottom',
+            advanceOn: '.docs-link click',
+            buttons: [
+                {
+                text: 'Next',
+                action: tour.next
+                }
+            ]
+          });
+
+          tour.addStep('three', {
+            title: '3) Send',
+            text: 'Email to your signer or send a link',
+            attachTo: '.step:nth-child(3) bottom',
+            advanceOn: '.docs-link click',
+            buttons: [
+                {
+                text: 'Next',
+                action: tour.next
+                }
+            ]
+          });
+
+          tour.addStep('four', {
+            title: '4) Sign',
+            text: 'Your signer will land here and sign the document',
+            attachTo: '.step:nth-child(4) bottom',
+            advanceOn: '.docs-link click',
+            buttons: [
+                {
+                text: 'Next',
+                action: tour.next
+                }
+            ]
+          });
+
+          tour.addStep('five', {
+            title: '5) Review',
+            text: 'Review the document. You also can record a video proof here',
+            attachTo: '.step:nth-child(5) bottom',
+            advanceOn: '.docs-link click',
+            buttons: [
+                {
+                text: 'Next',
+                action: tour.next
+                }
+            ]
+          });
+
+          tour.addStep('six', {
+            title: '6) Stamp',
+            text: 'Stamp the document with our Digital Notary Service',
+            attachTo: '.step:nth-child(6) bottom',
+            advanceOn: '.docs-link click',
+            buttons: [
+                {
+                text: 'Done',
+                action: tour.next
+                }
+            ]
+          });
+          
+        tour.start();
+
     }
 
     async checkNewFeatures(){
