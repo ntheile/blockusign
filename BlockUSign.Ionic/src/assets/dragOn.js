@@ -341,11 +341,11 @@
                 // console.group("Cáculos de escalonamento");
 
                 elemDroppedDistanceFrom.svg.left =
-                    elemDroppedDistanceFrom.svg.left / this.metrics.viewBox.scale -
-                    this.metrics.whiteSpace.left / this.metrics.viewBox.scale;
+                    (elemDroppedDistanceFrom.svg.left / this.metrics.viewBox.scale) -
+                    (this.metrics.whiteSpace.left / this.metrics.viewBox.scale );
                 elemDroppedDistanceFrom.svg.top =
-                    elemDroppedDistanceFrom.svg.top / this.metrics.viewBox.scale -
-                    this.metrics.whiteSpace.top / this.metrics.viewBox.scale;
+                    (elemDroppedDistanceFrom.svg.top / this.metrics.viewBox.scale ) -
+                    ( this.metrics.whiteSpace.top / this.metrics.viewBox.scale );
 
                 // console.groupEnd();
 

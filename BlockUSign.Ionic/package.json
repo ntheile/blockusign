@@ -37,7 +37,7 @@
     "e2e-update": "webdriver-manager update --standalone false --gecko false --ignore_ssl",
     "deploy": "",
     "deploy:test": "",
-    "ugly": "uglifyjs src/vendor/blockstack.js src/vendor/babel-polyfill.min.js src/vendor/pdf.js src/vendor/jquery.js src/vendor/pdf_viewer.js src/vendor/text_layer_builder.js src/vendor/spectrum.js src/vendor/sjcl.js src/vendor/pdf-annotate.js src/vendor/bitcoinjs-lib.js src/vendor/parseZoneFile.js src/vendor/interact.min.js src/vendor/dragOn.js src/vendor/ccmArrayBuffer.js src/vendor/codecArrayBuffer.js src/vendor/jslinq.min.js src/vendor/jquery.blast.min.js src/vendor/pdfkit.js src/vendor/jspdf.debug.js src/vendor/webfont.js src/vendor/fuse.min.js -o src/assets/ugly.min.js",
+    "ugly": "uglifyjs src/vendor/blockstack.js src/vendor/babel-polyfill.min.js src/vendor/pdf.js src/vendor/jquery.js src/vendor/pdf_viewer.js src/vendor/text_layer_builder.js src/vendor/spectrum.js src/vendor/sjcl.js src/vendor/pdf-annotate.js src/vendor/bitcoinjs-lib.js src/vendor/parseZoneFile.js src/vendor/interact.min.js src/vendor/ccmArrayBuffer.js src/vendor/codecArrayBuffer.js src/vendor/jslinq.min.js src/vendor/jquery.blast.min.js src/vendor/pdfkit.js src/vendor/jspdf.debug.js src/vendor/webfont.js src/vendor/fuse.min.js -o src/assets/ugly.min.js",
     "uglycss": "uglifycss src/assets/css/ubuntu-font.css src/assets/css/cursive-font.css src/assets/css/pdf_viewer.css src/assets/text_layer_builder.css src/assets/spectrum.css src/assets/css/glegoo-font.css src/assets/ng-select.material.theme.css --output src/assets/ugly.min.css"
   },
   "dependencies": {
@@ -84,6 +84,7 @@
     "ionic-angular": "3.9.2",
     "ionic-plugin-keyboard": "^2.2.1",
     "ionicons": "3.0.0",
+    "jquery.scrollto": "^2.1.2",
     "jslinq": "^1.0.21",
     "jsonld": "^1.1.0",
     "linq-to-typescript": "^2.0.0",

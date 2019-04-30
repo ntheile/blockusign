@@ -152,7 +152,7 @@ export class HomePage {
 
           tour.addStep('two', {
             title: '2) Annotate',
-            text: 'Drop a "sign here" annotation on the document. Or some emojis 😄😄😄 ',
+            text: 'Drop a "sign here" or emoji 😄😄😄 annotations on the document ',
             attachTo: '.step:nth-child(2) bottom',
             advanceOn: '.docs-link click',
             buttons: [
@@ -178,7 +178,7 @@ export class HomePage {
 
           tour.addStep('four', {
             title: '4) Sign',
-            text: 'Your signer will land here and sign the document',
+            text: 'Your signer will land here to sign the document',
             attachTo: '.step:nth-child(4) bottom',
             advanceOn: '.docs-link click',
             buttons: [
@@ -191,7 +191,7 @@ export class HomePage {
 
           tour.addStep('five', {
             title: '5) Review',
-            text: 'Review the document. You also can record a video proof here',
+            text: 'Both parties can review the document. You also can record a video proof here',
             attachTo: '.step:nth-child(5) bottom',
             advanceOn: '.docs-link click',
             buttons: [
@@ -204,7 +204,7 @@ export class HomePage {
 
           tour.addStep('six', {
             title: '6) Stamp',
-            text: 'Stamp the document with our Digital Notary Service',
+            text: 'Both parties can stamp the document with our Digital Notary Service',
             attachTo: '.step:nth-child(6) bottom',
             advanceOn: '.docs-link click',
             buttons: [
