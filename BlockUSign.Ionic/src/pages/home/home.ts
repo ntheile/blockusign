@@ -122,7 +122,8 @@ export class HomePage {
         //this.testPublicKeyFile();
         this.checkNewFeatures();
 
-        this.startProductTour();
+
+
     }
 
     startProductTour(){
@@ -136,11 +137,29 @@ export class HomePage {
             },
            
           });
+
+          tour.addStep('welcome', {
+            title: 'Welcome',
+            text: "Welcome to Blockusign,  let's take a tour!",
+            attachTo: 'center',
+            advanceOn: '.docs-link click',
+            buttons: [
+                {
+                    text: 'Exit',
+                    action: tour.cancel
+                },
+                {
+                    text: 'Next',
+                    action: tour.next
+                }
+            ]
+          });
+
           
           tour.addStep('one', {
             title: '1) Upload',
             text: 'Upload a PDF to your own encrypted storage bucket',
-            attachTo: '#file-upload-btn top',
+            attachTo: '.step:nth-child(1) top',
             advanceOn: '.docs-link click',
             buttons: [
                 {
@@ -152,7 +171,7 @@ export class HomePage {
 
           tour.addStep('two', {
             title: '2) Annotate',
-            text: 'Drop a "sign here" or emoji 😄😄😄 annotations on the document ',
+            text: 'Drop a "sign here" annotation or emoji 😄😄😄 on the document ',
             attachTo: '.step:nth-child(2) bottom',
             advanceOn: '.docs-link click',
             buttons: [
@@ -165,7 +184,7 @@ export class HomePage {
 
           tour.addStep('three', {
             title: '3) Send',
-            text: 'Email to your signer or send a link',
+            text: 'Email your signer. Or send them a link. If you are a solo signer just skip this step.',
             attachTo: '.step:nth-child(3) bottom',
             advanceOn: '.docs-link click',
             buttons: [
@@ -220,15 +239,24 @@ export class HomePage {
     }
 
     async checkNewFeatures(){
-        try{
+        try {
             let newFeatures = await this.featureService.getFeaturesToShow();
             if (newFeatures.length > 0){
                 const modal = this.modal.create(FeaturesModalPage, null, { enableBackdropDismiss: false });
                 modal.present();
             } 
-        }catch(e){
+        } catch(e){
             console.error('could not load new features')
         }
+
+        
+        let hasTakenTour = localStorage.getItem('hasTakenTour');
+
+        if (!hasTakenTour) {
+            localStorage.setItem('hasTakenTour', 'true');
+            this.startProductTour();
+        }
+
        
     }
 
