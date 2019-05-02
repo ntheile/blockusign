@@ -415,7 +415,7 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
 
       // if route is e-Sign
       let routeName = this.navCtrl.getActive();
-      if (routeName.name == "SignPage") {
+      if ( window.location.href.includes('#/sign') ) {
         this.startSignWizard();
       }
 
@@ -566,7 +566,9 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
 
     if (innerHtml) {
       this.svgDrawer.addHTML(innerHtml, this.locked);
-      this.createSigningInstructionsPopOver();
+      if ( window.location.href.includes('#/annotate') ) {
+        this.createSigningInstructionsPopOver();
+      }
     }
 
   }
@@ -808,7 +810,7 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
         if (el.nodeName == "image") {
           let text = $(el).attr('alt');
           if (text) {
-            if (text == "[ Add signing instructions here ... ]") {
+            if (text == "<p>[ Add signing instructions here ... ]</p>") {
               text = "Sign here please";
             }
             tour2.addStep(`step${i}`, {
