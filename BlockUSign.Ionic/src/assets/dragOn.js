@@ -1,8 +1,8 @@
-/**
- * Blah
- * @author odahcam
- * @version 0.0.1?
- **/
+
+var global = global || {};
+global.event = global.event || {};
+
+
 (function (window, document, undefined) {
     "use strict";
 
@@ -17,12 +17,15 @@
      **/
     var pluginName = "dragOn";
 
+    var currentEl;
+
     /*
      * The plugin constructor.
      */
     function Plugin(elem, options) {
 
         this.elem = elem;
+        this.currentEl = this.elem;
 
         // Variables default
         this.settings = $.extend({}, this.defaults, options);
@@ -365,6 +368,9 @@
                     elemImage.setAttribute('width', elemDroppedBounding.width / this.metrics.viewBox.scale);
                     elemImage.setAttribute('height', elemDroppedBounding.height / this.metrics.viewBox.scale);
                     elemImage.setAttribute('preserveAspectRatio', "none");
+                    global.event.annotationDropped = new CustomEvent('annotationDropped', { 'detail': elemImage } );
+                    this.currentEl.dispatchEvent(global.event.annotationDropped, elemImage);
+
                 }
                 else if (elemDropped.tagName === "svg") {
                     elementTypeToCreate = "text";
@@ -385,13 +391,13 @@
                     elemImage.setAttribute('fill', txt.getAttribute('fill'));
                     elemImage.setAttribute('style', txt.getAttribute('style'));
                     elemImage.innerHTML = txt.innerHTML;
-
+                    
                 }
                 else {
                    //  console.log("Drag not supported for " + elemDropped.tagName)
                 }
 
-
+                
 
                 if (this.drawArea.appendChild(elemImage)) {
                     // console.info("New image successful added to SVG!");

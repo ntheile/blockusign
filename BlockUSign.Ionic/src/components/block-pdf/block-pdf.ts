@@ -286,6 +286,9 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
       listenTo: '.draggable'
     });
 
+    this.registerAnnotationEventHandlers();
+
+
     let docData = getQueryParam('docData');
     if (docData) {
       this.loading.dismiss();
@@ -318,6 +321,14 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
       this.yourName = "[Edit Name]"
     }
 
+  }
+
+  registerAnnotationEventHandlers(){
+    this.svgDrawer.currentEl.addEventListener('annotationDropped', (e) => { 
+      let el = e.detail;
+      console.log('annotationDropped', e);
+      this.generateSigningInstructionInstance(el, {'click': true} );
+    }, false);
   }
 
 
@@ -564,58 +575,79 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
     // add click event for popup annotation help
     let annotations = this.svgDrawer.drawArea.children;
     for (let annotation of annotations) {
-
-      annotation.addEventListener("mouseup", function (el) {
-
-        let altText = " [ Please Add signing instructions here ] ";
-        try {
-          altText = el.srcElement.attributes["alt"].value;
-        } catch (e) { }
-
-        let tour2 = new Shepherd.Tour({
-          defaultStepOptions: {
-            classes: 'shadow-md bg-purple-dark',
-            scrollTo: false
-          }
-        });
-        tour2.addStep(`step`, {
-          title: '',
-          text: altText,
-          attachTo: `[x="${el.srcElement.x.baseVal.value}"][y="${el.srcElement.y.baseVal.value}"] top`,
-          advanceOn: '.docs-link click',
-          buttons: [
-            {
-              text: 'Delete',
-              events: {
-                'click': function (e) {
-                  console.log('delete', tour2);
-                  let el = tour2.steps[0];
-                  el.target.remove();
-                  return tour2.complete();
-                }
-              }
-            },
-            {
-              text: 'Ok',
-              events: {
-                'click': function (e) {
-                  console.log('complete', tour2);
-                  let el = tour2.steps[0];
-                  console.log(el.options.text);
-                  $(el.target).attr('alt', ($(".shepherd-text")[0]).innerHTML);
-                  return tour2.complete();
-                }
-              }
-            }
-          ],
-        });
-        tour2.start();
-
-        $(".shepherd-text").attr("contenteditable", "true");
-        $(".shepherd-text").focus();
-      });
+     this.generateSigningInstructionInstance(annotation, null);
     }
   }
+
+  generateSigningInstructionInstance(annotation, options){
+    annotation.addEventListener("mouseup", (el) => {
+
+      let altText = "[ Add signing instructions here ... ]";
+      try {
+        altText = el.srcElement.attributes["alt"].value;
+      } catch (e) { }
+
+      let tour2 = new Shepherd.Tour({
+        defaultStepOptions: {
+          classes: 'shadow-md bg-purple-dark',
+          scrollTo: false
+        }
+      });
+      tour2.addStep(`step`, {
+        title: '',
+        text: altText,
+        attachTo: `[x="${el.srcElement.x.baseVal.value}"][y="${el.srcElement.y.baseVal.value}"] top`,
+        advanceOn: '.docs-link click',
+        buttons: [
+          {
+            text: 'Delete',
+            events: {
+              'click': function (e) {
+                console.log('delete', tour2);
+                let el = tour2.steps[0];
+                el.target.remove();
+                return tour2.complete();
+              }
+            }
+          },
+          {
+            text: 'Ok',
+            events: {
+              'click': function (e) {
+                console.log('complete', tour2);
+                let el = tour2.steps[0];
+                console.log(el.options.text);
+                $(el.target).attr('alt', ($(".shepherd-text")[0]).innerHTML);
+                return tour2.complete();
+              }
+            }
+          }
+        ],
+      });
+      tour2.start();
+
+      $(".shepherd-text").attr("contenteditable", "true");
+      $(".shepherd-text").focus();
+      
+    });
+
+    if (options){
+      if(options.click){
+        // yeah she dirty
+        setTimeout( ()=>{
+          this.simulateTriggerMouseEvent (annotation, "mouseup");
+        }, 500);
+      }
+    }
+
+  }
+
+  simulateTriggerMouseEvent (node, eventType) {
+    let clickEvent = document.createEvent ('MouseEvents');
+    clickEvent.initEvent(eventType, true, true);
+    node.dispatchEvent (clickEvent);
+  }
+
 
   public editSignature() {
 
@@ -776,21 +808,23 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
         if (el.nodeName == "image") {
           let text = $(el).attr('alt');
           if (text) {
-            if (text !== "[ Please Add signing instructions here ]") {
-              tour2.addStep(`step${i}`, {
-                title: '',
-                text: text,
-                attachTo: `g > image:nth-child(${i}) top`,
-                advanceOn: '.docs-link click',
-                buttons: [
-                  {
-                    text: 'Next',
-                    action: tour2.next
-                  }
-                ]
-              });
+            if (text == "[ Add signing instructions here ... ]") {
+              text = "Sign here please";
             }
+            tour2.addStep(`step${i}`, {
+              title: '',
+              text: text,
+              attachTo: `g > image:nth-child(${i}) top`,
+              advanceOn: '.docs-link click',
+              buttons: [
+                {
+                  text: 'Next',
+                  action: tour2.next
+                }
+              ]
+            });
           }
+          
         }
       }
       tour2.start();
