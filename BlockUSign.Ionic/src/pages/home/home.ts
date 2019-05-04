@@ -241,22 +241,30 @@ export class HomePage {
     async checkNewFeatures(){
         try {
             let newFeatures = await this.featureService.getFeaturesToShow();
-            if (newFeatures.length > 0){
-                const modal = this.modal.create(FeaturesModalPage, null, { enableBackdropDismiss: false });
-                modal.present();
-            } 
+            let hasTakenTour = localStorage.getItem('hasTakenTour');
+
+
+            if (!hasTakenTour) {
+                localStorage.setItem('hasTakenTour', 'true');
+                this.startProductTour();
+            } else { 
+                if (newFeatures.length > 0){
+                    const modal = this.modal.create(FeaturesModalPage, null, { enableBackdropDismiss: false });
+                    modal.present();
+    
+                    if (newFeatures.length > 1){
+                        // you are a new user and need to take a product tour
+                    }
+                   
+                }
+            }
+
         } catch(e){
             console.error('could not load new features')
         }
 
         
-        let hasTakenTour = localStorage.getItem('hasTakenTour');
-
-        if (!hasTakenTour) {
-            localStorage.setItem('hasTakenTour', 'true');
-            this.startProductTour();
-        }
-
+       
        
     }
 

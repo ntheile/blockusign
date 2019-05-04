@@ -292,7 +292,7 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
     });
 
     $(document).ready( ()=>{
-      this.registerAnnotationEventHandlers();
+        this.registerAnnotationEventHandlers();
     });
 
     let docData = getQueryParam('docData');
@@ -581,12 +581,12 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
 
   createSigningInstructionsPopOver() {
     // add click event for popup annotation help
-    $(document).ready(()=>{
+    setTimeout(()=>{
       let annotations = this.svgDrawer.drawArea.children;
       for (let annotation of annotations) {
        this.generateSigningInstructionInstance(annotation, null);
       }
-    });
+    }, 2000);
   }
 
   generateSigningInstructionInstance(annotation, options){
