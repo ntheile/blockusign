@@ -20,7 +20,7 @@ declare let blockstack: any;
 @IonicPage({
   name: 'ReviewPage',
   segment: 'review/:guid',
-  defaultHistory: ['SignPage', 'EmailPage','AnnotatePage', 'HomePage']
+  defaultHistory: ['SignPage', 'EmailPage', 'AnnotatePage', 'HomePage']
 })
 @Component({
   selector: 'page-review',
@@ -37,33 +37,16 @@ export class ReviewPage {
   name = "";
 
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
+    public navCtrl: NavController,
+    public navParams: NavParams,
     public documentService: DocumentService,
     private bitcoinService: BitcoinService,
     public blockstackService: BlockStackService,
-    private nav: NavController, 
+    private nav: NavController,
     private change: ChangeDetectorRef,
     public modal: ModalController,
     public alertCtrl: AlertController
-  ) {
-
-    // if ( this.navParams.get("guid") && !this.documentService.currentDoc ){
-    //   let guid = this.navParams.get("guid");
-    //   this.documentService.getDocumentsIndex(true).then((data) => {
-    //     this.documentService.documentsList = data;
-    //     this.documentService.setCurrentDoc(guid);
-    //     //this.getFile();
-    //     // @todo in side menu highlight selected doc
-        
-    //   });
-    // }
-    // else{
-    //   //this.getFile();
-    // }
-
-
-  }
+  ) { }
 
 
   ionViewDidLoad() {
@@ -73,11 +56,7 @@ export class ReviewPage {
 
   async init() {
 
-  
-    
     // if you are a signer and the document is not in your document.index then add it!
-    // @todo think about allowing a document to get signed by an anonymous person if they got it via email with the documentKey
-
     if (this.navParams.get("guid") && !this.documentService.currentDoc) {
       let guid = this.navParams.get("guid");
       await this.documentService.getDocumentsIndex(true).then(async (data) => {
@@ -86,127 +65,109 @@ export class ReviewPage {
         await this.documentService.getAnnotations(guid);
         this.getHash();
       });
-     
+
     }
-    else{
+    else {
+      let guid = this.navParams.get("guid");
+      await this.documentService.getAnnotations(guid);
       this.getHash();
     }
 
     this.name = blockstack.loadUserData().username;
 
-   try {
-     if (localStorage.getItem('showVideo') == "true" ){
-       console.log('get video now!');
+    try {
+      if (localStorage.getItem('showVideo') == "true") {
+        console.log('get video now!');
         this.toggleVideoStoryHead(this.blockstackService.userId);
-        setTimeout( ()=>{
+        setTimeout(() => {
           localStorage.setItem('showVideo', "false");
-        }, 3000 )
-     }
-   } catch(e){}
-    
-   
+        }, 3000)
+      }
+    } catch (e) {
+      console.log('toggle head errer', e)
+    }
+
+
   }
 
- 
 
-  back(){
+
+  back() {
     // this.navCtrl.push("SignPage", {
     //   guid: this.documentService.currentDoc.guid
     // });
     this.blockSteps.route("SignPage");
   }
 
-  next(){
+  next() {
     // this.navCtrl.push("SignPage", {
     //   guid: this.documentService.currentDoc.guid
     // });
     this.blockSteps.route("BlockchainPage");
   }
 
-  async getHash(){
-    try{
-        this.hash = await this.documentService.getMerkleHash();
-        this.getCollaborators();
+  async getHash() {
+    try {
+      this.hash = await this.documentService.getMerkleHash();
+      this.getCollaborators();
     }
-    catch(e){
-
-
-        let alert = this.alertCtrl.create({
-          title: '',
-          subTitle: 'Please make sure you signed and saved the document. You might need to go back to the "e-sign" page',
-          buttons: [
-              {
-                  text: 'Ok',
-                  handler: data => {
-                      if (true == true) {
-                      } else {
-                          // invalid login
-                          return false;
-                      }
-                  }
+    catch (e) {
+      console.log('cannot get hash', e)
+      let alert = this.alertCtrl.create({
+        title: '',
+        subTitle: 'Please make sure you signed and saved the document. You might need to go back to the "e-sign" page',
+        buttons: [
+          {
+            text: 'Ok',
+            handler: data => {
+              if (true == true) {
+              } else {
+                // invalid login
+                return false;
               }
-          ]
+            }
+          }
+        ]
       });
       alert.present();
-
     }
 
-   
+
   }
 
-  postBlockchain(){
+  postBlockchain() {
     this.nav.push('BlockchainPage', {
       guid: this.documentService.currentDoc.guid
     });
   }
 
-  async getCollaborators(){
+  async getCollaborators() {
     this.collaborators = await this.documentService.getCollaborators(this.documentService.currentDoc.guid);
+    let a = 1;
   }
 
-  //showVideoRTC(){
-
-    
-    //this.toggleVideoStoryHead(collaborator.userId);
-    
-
-    // if (this.showVideo){
-    //   this.showVideo = false;
-    // }
-    // else{
-    //   this.showVideo = true;
-    //   this.change.detectChanges();
-    // }
-    
-  //}
-
-  async getVideoR(path){
+  async getVideoR(path) {
     console.log('git vid');
     this.showVideo = true;
     this.change.detectChanges();
-    
+
     // await this.videoEL.getVideo(path);
 
-    const modal = this.modal.create(VideoModalPage, {videoPath: path }, { enableBackdropDismiss: false });
+    const modal = this.modal.create(VideoModalPage, { videoPath: path }, { enableBackdropDismiss: false });
     modal.present();
   }
 
-  toggleVideoStoryHead(userId){
-
+  toggleVideoStoryHead(userId) {
     let path = null;
-    if (userId == blockstack.loadUserData().username){
-     path =  this.documentService.docStorageMaps.storagePaths.find( u=> u == this.blockstackService.getStoragePath() );
-    } else{
-      path = this.documentService.docStorageMaps.storagePaths.find( u=> u != this.blockstackService.getStoragePath() );
+    if (userId == blockstack.loadUserData().username) {
+      path = this.documentService.docStorageMaps.storagePaths.find(u => u == this.blockstackService.getStoragePath());
+    } else {
+      path = this.documentService.docStorageMaps.storagePaths.find(u => u != this.blockstackService.getStoragePath());
     }
-    
     this.getVideoR(path);
-  
-   
-
   }
 
-  hideVideo(){
+  hideVideo() {
     this.showVideo = false;
   }
 
