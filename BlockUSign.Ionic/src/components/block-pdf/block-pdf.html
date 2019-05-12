@@ -38,7 +38,7 @@
     <br /><br />
   </div>
 
-  <ion-fab *ngIf="showToolBar" top left style="margin-top:1px;background-color:#36393E; opacity: .95;border-radius: 10px; max-width: 450px"
+  <ion-fab *ngIf="showToolBar" top left style="margin-top:1px;background-color:#36393E; opacity: .95;border-radius: 10px; max-width: 485px"
     #fab class="no-print centerMe">
     <ion-grid style="padding: 8px !important">
       <ion-row justify-content-start align-items-center>
@@ -76,11 +76,21 @@
           </div>
           <br />
 
-
-
+          <!-- helper to generate annotation images -->
+          <!-- <div class="draggable draggable-droppable" 
+          style="clear:both; background:#ffeb8e; font-weight: bold;
+            border: 1px solid red ; width: 73.46875px; height: 54px; text-align: center; padding-top: 2px; padding-bottom: 2px;"  >
+            <span style="color: #B71C1C; font-size: 11px; letter-spacing: .3px">TITLE</span><br/>
+            <ion-icon name="md-briefcase" style="color: #B71C1C;"></ion-icon>
+          </div> -->
+    
           <div class="btooltip" style="display:flex; flex-direction:row; margin-top: 10px">
+            <button icon-only (click)="openAnnotaionsDropDown($event)" class="remove-button-style">
+                <ion-icon name="ios-arrow-dropdown" style="font-size: 20px" ></ion-icon>
+            </button>
+            
+            <img *ngIf="showSignHere" id="sigImg" height="50px" class="draggable draggable-droppable" [src]="currentAnnotationUrl()" />
 
-            <img *ngIf="showSignHere" id="sigImg" height="50px" class="draggable draggable-droppable" src="./../../assets/imgs/sign.png" />
             <div contenteditable="true" tabindex="0" class="btooltip" (keyup)="onKey($event)" class="editSigContent"
               style="caret-color: black; max-width:190px;float: left; margin-left: 8px; -webkit-user-select: text; user-select: text">
               <svg xmlns="http://www.w3.org/2000/svg" id="signature" class="draggable draggable-droppable" width="200"

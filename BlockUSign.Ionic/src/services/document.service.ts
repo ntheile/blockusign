@@ -35,6 +35,7 @@ export class DocumentService {
   public urlBlockusignGlobalStore = "https://gaia.blockstack.org/hub/1PoZGGAuQ4yPj72TrXbG4pKbgB9tvCUqQ1/blockusign";
   public urlBlockusign =  "https://blockusign.co"; //"https://blockusign.co"; // "http://localhost:52657";
   public chatInterval = null;
+  public currentAnnotationUrl = "./../../assets/imgs/sign.png";
 
   constructor(
     public events: Events, 

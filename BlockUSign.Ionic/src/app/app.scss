@@ -1288,3 +1288,17 @@
     margin-bottom: 18px;
     opacity: .2;
 }
+
+.remove-button-style{
+    background: none !important;
+	color: inherit !important;
+	border: none !important;
+	padding: 0 !important;
+	font: inherit !important;
+	cursor: pointer !important;
+	outline: inherit !important;
+}
+
+.popover-width{
+    width: 120px !important;
+}

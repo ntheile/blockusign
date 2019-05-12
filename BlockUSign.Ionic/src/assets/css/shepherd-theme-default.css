@@ -63,8 +63,8 @@
 
 .tippy-popper[x-placement^=top] .tippy-arrow {
 	border-bottom: 0;
-	border-top-color: #f6f6f6;
-	left: calc(50% - 16px)
+	border-top-color: rgba(0, 0, 0, .3);
+	left: calc(50% - 16px);
 }
 
 .tippy-popper[x-placement^=bottom] {
@@ -116,7 +116,7 @@
 }
 
 .shepherd-element {
-	filter: drop-shadow(0 1px 4px rgba(0, 0, 0, .2))
+	filter: drop-shadow(0 2px 7px rgba(0, 0, 0, .8));
 }
 
 .shepherd-element.shepherd-has-title .shepherd-content header {

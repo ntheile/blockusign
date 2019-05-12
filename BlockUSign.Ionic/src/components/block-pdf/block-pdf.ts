@@ -1,6 +1,5 @@
-import { Component, ViewChild, Input, ChangeDetectionStrategy, ChangeDetectorRef, ViewContainerRef, AfterViewInit, OnDestroy, OnInit, ElementRef, Renderer2, HostListener, ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
+import { Component, ViewChild, Input, ChangeDetectionStrategy, ChangeDetectorRef, ViewContainerRef, AfterViewInit, OnDestroy, OnInit, ElementRef, Renderer2, HostListener, ANALYZE_FOR_ENTRY_COMPONENTS, SecurityContext } from '@angular/core';
 import { NavController, NavParams, IonicPage, Segment, LoadingController, AlertController, PopoverController, ToastController } from 'ionic-angular';
-import { CryptoCompareService } from '../../services/cryptocompare.service'
 import { AbsoluteDragDirective } from '../../directives/absolute-drag/absolute-drag';
 import { DocumentService } from '../../services/document.service';
 import { EmailService } from '../../services/email.service';
@@ -12,11 +11,9 @@ import 'rxjs/add/operator/map';
 import pdfjsLib from 'pdfjs-dist/build/pdf';
 import worker from 'pdfjs-dist/build/pdf.worker.entry';
 import PDFAnnotate from 'pdf-annotate';
-import annotations from './annotations';
-import mockViewport from './mockViewport'
-import { MyApp } from '../../app/app.component';
 import * as _ from 'underscore';
 //import { EmojiPopoverPage } from '../../app/emoji.popover.page';
+import { AnnotationsDropdownComponent } from '../annotations-dropdown/annotations-dropdown';
 declare let CustomStyle: any;
 declare var $: any;
 declare var window: any;
@@ -31,6 +28,7 @@ declare let interact: any;
 declare let getQueryParam: any;
 declare let WebFont: any;
 import Shepherd from 'shepherd.js';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 /**
  * Generated class for the BlockPdfComponent component.
@@ -62,7 +60,6 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
   // @ViewChild("editableEl") editableEl: ElementRef;
   scale = 2; // 150 DPI - legacy = 1
   canvasWidth = "750px"; // legacy = 612 X 792
-
 
 
 
@@ -102,6 +99,7 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
     private renderer: Renderer2,
     public toastCntrl: ToastController,
     private emailService: EmailService,
+    public sanitizer: DomSanitizer
   ) {
     console.log('====> constructor');
 
@@ -280,11 +278,17 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
 
   }
 
+  currentAnnotationUrl() {
+    let url = this.documentService.currentAnnotationUrl;
+    return this.sanitizer.bypassSecurityTrustUrl(url);
+  }
+
+
   init() {
 
     this.registerFontSelector();
     this.registerColorPicker();
-
+    
     this.svgDrawer = dragOn(document.querySelector(".dropzone"), {
       listenTo: '.draggable'
     });
@@ -420,7 +424,9 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
       // if route is e-Sign
       let routeName = this.navCtrl.getActive();
       if (window.location.href.includes('#/sign')) {
-        this.startSignWizard();
+        if (!this.isMobile()){
+          this.startSignWizard();
+        }
       }
 
 
@@ -865,7 +871,14 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
 
       console.log('start sign wizard');
       tour2.start();
-    }, 3000);
+    }, 3001);
+  }
+
+  openAnnotaionsDropDown(myEvent) {
+    let popover = this.popoverCtrl.create(AnnotationsDropdownComponent, {}, { cssClass: 'popover-width'});
+    popover.present({
+      ev: myEvent
+    });
   }
 
   // device detection
