@@ -874,11 +874,27 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
     }, 3001);
   }
 
-  openAnnotaionsDropDown(myEvent) {
+  openAnnotaionsDropDown(myEvent) { 
+    
+    $(document).off('click');
+    
     let popover = this.popoverCtrl.create(AnnotationsDropdownComponent, {}, { cssClass: 'popover-width'});
     popover.present({
       ev: myEvent
     });
+
+    $(document).on('click', (e) => {
+      console.log('clicked', e);
+      if (e.toElement.classList.contains('annotation-dropdown')){
+
+      } else{
+        popover.dismiss();
+        $(document).off('click');
+      }
+     
+    });
+
+    
   }
 
   // device detection

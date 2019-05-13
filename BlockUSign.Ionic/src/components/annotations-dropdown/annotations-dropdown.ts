@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ViewController } from 'ionic-angular';
 import { DocumentService } from '../../services/document.service';
+declare let dragOn:any;
 
 @Component({
   selector: 'annotations-dropdown',
@@ -20,7 +21,7 @@ export class AnnotationsDropdownComponent {
 
   close(url) {
     this.documentService.currentAnnotationUrl = url;
-    this.viewCtrl.dismiss();
+    //this.viewCtrl.dismiss();
   }
 
 }

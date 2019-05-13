@@ -40,6 +40,8 @@
 
   <ion-fab *ngIf="showToolBar" top left style="margin-top:1px;background-color:#36393E; opacity: .95;border-radius: 10px; max-width: 485px"
     #fab class="no-print centerMe">
+
+
     <ion-grid style="padding: 8px !important">
       <ion-row justify-content-start align-items-center>
         <ion-col col-auto *ngIf="showSignature" style="position: relative;">
@@ -85,7 +87,7 @@
           </div> -->
     
           <div class="btooltip" style="display:flex; flex-direction:row; margin-top: 10px">
-            <button icon-only (click)="openAnnotaionsDropDown($event)" class="remove-button-style">
+            <button icon-only (click)="openAnnotaionsDropDown($event)" class="remove-button-style annotation-dropdown">
                 <ion-icon name="ios-arrow-dropdown" style="font-size: 20px" ></ion-icon>
             </button>
             
