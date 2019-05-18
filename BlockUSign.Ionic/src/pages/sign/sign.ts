@@ -1,10 +1,11 @@
 import { Component, ViewChild, OnDestroy, AfterViewInit } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Events } from 'ionic-angular';
 import { DocumentService } from './../../services/document.service';
 import { BlockPdfComponent } from '../../components/block-pdf/block-pdf';
 import { BlockChatComponent } from '../../components/block-chat/block-chat';
 import { BlockStepsComponent } from '../../components/block-steps/block-steps';
 import { MyApp } from '../../app/app.component';
+import { Utils } from './../../providers/utils/utils';
 declare let blockstack: any;
 declare let getQueryParam: any;
 declare let jslinq: any;
@@ -39,13 +40,22 @@ export class SignPage {
     public documentService: DocumentService,
     public myApp: MyApp,
     public alertCtrl: AlertController,
+    public events: Events,
+    public utils: Utils,
   ) {
-
+   
   }
 
   ionViewDidLoad() {
-    this.init();
+    this.init();  
   }
+
+  startSignWizard() {
+    setTimeout( ()=>{
+      this.blockPdf.startSignWizard();
+    }, 1000 );
+  }
+
 
   async init() {
     
@@ -99,12 +109,20 @@ export class SignPage {
       this.name = "none";
       console.log('Null blockstack.loadUserData().profile.name');
     }
+
+   
     
   }
 
   ionViewDidEnter(){
     this.blockPdf.registerEmojiEvent();
     this.blockChat.registerEmojiEvent();
+    this.events.subscribe('svg:loaded', () => {
+      console.log('svg:loaded');
+      if (!this.utils.isMobile()){
+        this.startSignWizard();    
+      }
+    });
   }
 
   ionViewWillLeave() {
@@ -114,6 +132,7 @@ export class SignPage {
     if (this.documentService.chatInterval){
       clearInterval(this.documentService.chatInterval);
     }
+    this.events.unsubscribe('svg:loaded');
   }
 
   async next() {

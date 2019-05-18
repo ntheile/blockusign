@@ -9,6 +9,7 @@ import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/map';
 import { BlockStepsComponent } from '../../components/block-steps/block-steps';
 
+
 declare var $: any;
 declare var window: any;
 declare var blockstack: any;
@@ -39,12 +40,27 @@ export class AnnotatePage {
     public events: Events
   ) {
     this.instance = this;
+    
   }
 
+
+  ionViewDidLoad() {    
+   
+  }
+
+  createSigningInstructionsPopOver(){
+    setTimeout( ()=>{
+      this.blockPdf.createSigningInstructionsPopOver();
+    }, 1000);
+  }
   
   ionViewDidEnter(){
     this.blockPdf.registerEmojiEvent();
     this.blockChat.registerEmojiEvent();
+    this.events.subscribe('svg:loaded', () => {
+      console.log('svg:loaded');
+      this.createSigningInstructionsPopOver();
+    });
   }
 
   ionViewWillLeave() {
@@ -55,6 +71,7 @@ export class AnnotatePage {
     if (this.documentService.chatInterval){
       clearInterval(this.documentService.chatInterval);
     }
+    this.events.unsubscribe('svg:loaded');
 
   }
 

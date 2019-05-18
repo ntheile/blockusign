@@ -38,6 +38,7 @@ import { Block } from 'bitcoinjs-lib';
 import { BitcoinService } from '../services/bitcoin.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FeatureProvider } from '../providers/feature/feature';
+import { Utils } from '../providers/utils/utils';
 
 
 @NgModule({
@@ -87,6 +88,7 @@ import { FeatureProvider } from '../providers/feature/feature';
     EmailService,
     BitcoinService,
     FeatureProvider,
+    Utils,
   ]
 })
 export class AppModule {}
