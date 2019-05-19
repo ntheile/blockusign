@@ -596,14 +596,25 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  generateSigningInstructionInstance(annotation, options) {
+  async generateSigningInstructionInstance(annotation, options) {
 
-    annotation.addEventListener(this.mouseEndEventDeviceSpecific, (el) => {
+    annotation.addEventListener(this.mouseEndEventDeviceSpecific, async (el) => {
+
+      // remove old element
+      $('.tippy-popper').remove();
 
       let altText = "[ Add signing instructions here ... ]";
       try {
         altText = el.srcElement.attributes["alt"].value;
       } catch (e) { }
+
+      let attachToEl = document.querySelector(`[x="${el.srcElement.x.baseVal.value}"][y="${el.srcElement.y.baseVal.value}"]`);
+      if (!attachToEl){
+        // debounce it
+        console.log('attachTo El not found, debouncing for 1 second...');
+        await this.utils.timeout(1000);
+        console.log('done debouncing');
+      }
 
       let tour2 = new Shepherd.Tour({
         defaultStepOptions: {
@@ -620,9 +631,9 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
           {
             text: 'Delete',
             events: {
-              'click': function (e) {
+              'click':  (e) => {
                 console.log('delete', tour2);
-                let el = tour2.steps[0];
+                // let el = tour2.steps[0];
                 el.target.remove();
                 $('.ion-page').off('click');
                 return tour2.complete();
@@ -632,12 +643,17 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
           {
             text: 'Ok',
             events: {
-              'click': function (e) {
+              'click':  (e) => {
                 console.log('complete', tour2);
-                let el = tour2.steps[0];
-                console.log(el.options.text);
-                $(el.target).attr('alt', ($(".shepherd-text")[0]).innerHTML);
+                // let el = tour2.steps[0];
+                let shepardCount = $(".shepherd-text").length;
+                console.log('how many shepards? ', shepardCount);
+                $(el.target).attr('alt', ($(".shepherd-text")[shepardCount - 1]).innerHTML);
                 $('.ion-page').off('click');
+                if (shepardCount > 1){
+                  // remove old element
+                 $('.tippy-popper').remove();
+                }
                 return tour2.complete();
               }
             }
