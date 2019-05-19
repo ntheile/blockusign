@@ -32,7 +32,7 @@ export class SignPage {
   @ViewChild("blockChat") blockChat: BlockChatComponent;
   @ViewChild("blockPdf") blockPdf: BlockPdfComponent;
   @ViewChild("blockSteps") blockSteps: BlockStepsComponent;
-  showText = true;
+  showText = false;
 
   constructor(
     public navCtrl: NavController,
@@ -43,22 +43,22 @@ export class SignPage {
     public events: Events,
     public utils: Utils,
   ) {
-   
+
   }
 
   ionViewDidLoad() {
-    this.init();  
+    this.init();
   }
 
   startSignWizard() {
-    setTimeout( ()=>{
+    setTimeout(() => {
       this.blockPdf.startSignWizard();
-    }, 1000 );
+    }, 1000);
   }
 
 
   async init() {
-    
+
     // if you are a signer and the document is not in your document.index then add it!
     // @todo think about allowing a document to get signed by an anonymous person if they got it via email with the documentKey
 
@@ -82,7 +82,7 @@ export class SignPage {
       let resp = await this.documentService.getDocumentsIndex(true);
       this.documentService.documentsList = resp;
       let guid = this.navParams.get("guid");
-   
+
       if (this.documentService.documentExists(guid)) {
         this.documentService.setCurrentDoc(guid);
       }
@@ -91,36 +91,37 @@ export class SignPage {
         let path = doc.pathAnnotatedDoc + this.navParams.get("guid") + ".pdf";
         console.log(path);
         let fileBuffer = await this.documentService.getDocumentByPath(path, doc.documentKey);
-        let copied = await this.documentService.copyDocument(doc, guid, fileBuffer);     
+        let copied = await this.documentService.copyDocument(doc, guid, fileBuffer);
         this.blockPdf.ngOnInit();
         this.documentService.getDocumentsIndex(true);
         this.myApp.documentsGetList();
       }
       window.location.reload(true);
     }
-    else{
+    else {
       console.log('Error, must pass in guid')
     }
 
     console.log('ionViewDidLoad SignPage');
-    try{
+    try {
       this.name = blockstack.loadUserData().profile.name;
-    } catch(e){
+    } catch (e) {
       this.name = "none";
       console.log('Null blockstack.loadUserData().profile.name');
     }
 
-   
-    
+
+
   }
 
-  ionViewDidEnter(){
+  ionViewDidEnter() {
+    this.pageInstructions();
     this.blockPdf.registerEmojiEvent();
     this.blockChat.registerEmojiEvent();
     this.events.subscribe('svg:loaded', () => {
       console.log('svg:loaded');
-      if (!this.utils.isMobile()){
-        this.startSignWizard();    
+      if (!this.utils.isMobile()) {
+        this.startSignWizard();
       }
     });
   }
@@ -129,7 +130,7 @@ export class SignPage {
     this.blockChat.destroyEmojiEvents();
     this.blockChat.ngOnDestroy();
     this.blockPdf.destroyEmojiEvents();
-    if (this.documentService.chatInterval){
+    if (this.documentService.chatInterval) {
       clearInterval(this.documentService.chatInterval);
     }
     this.events.unsubscribe('svg:loaded');
@@ -139,7 +140,7 @@ export class SignPage {
     // this.navCtrl.push("ReviewPage", {
     //   guid: this.documentService.currentDoc.guid
     // });
-    
+
     await this.blockPdf.saveSvg();
     this.blockSteps.route("ReviewPage");
   }
@@ -152,33 +153,52 @@ export class SignPage {
     this.blockSteps.route("EmailPage");
   }
 
-  toggleText(){
-    if (this.showText){
+  toggleText() {
+    if (this.showText) {
       this.showText = false;
     }
-    else{
+    else {
       this.showText = true;
     }
   }
 
-  afterSignAlert(){
+  afterSignAlert() {
     let alert = this.alertCtrl.create({
       title: 'Email Sent!',
       subTitle: 'After they sign the document you will receive an email confirmation. Then, if you choose,  you can record a "video proof" and save the digital signature to the blockchain to really "seal the deal!"',
       buttons: [
-          {
-              text: 'Ok',
-              handler: data => {
-                  if (true == true) {
-                  } else {
-                      // invalid login
-                      return false;
-                  }
-              }
+        {
+          text: 'Ok',
+          handler: data => {
+            if (true == true) {
+            } else {
+              // invalid login
+              return false;
+            }
           }
+        }
       ]
-  });
-  alert.present();
-}
+    });
+    alert.present();
+  }
+
+  pageInstructions(){
+    let shouldShowText = localStorage.getItem('showTextSignPage');
+    if (shouldShowText == "true" || !shouldShowText){
+      this.showPageInstructions();
+    } else { 
+      this.hidePageInstructions();
+    }
+  }
+
+  hidePageInstructions(){
+    this.showText = false;
+    localStorage.setItem('showTextSignPage', 'false');
+  }
+
+  showPageInstructions(){
+    this.showText = true;
+    localStorage.setItem('showTextSignPage', 'true');
+  }
 
 }

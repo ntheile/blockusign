@@ -31,7 +31,7 @@ export class AnnotatePage {
   @ViewChild("blockPdf") blockPdf: BlockPdfComponent;
   @ViewChild("blockSteps") blockSteps: BlockStepsComponent;
   public instance: AnnotatePage;
-  showText = true;
+  showText = false;
 
   constructor(
     public navCtrl: NavController, 
@@ -55,12 +55,14 @@ export class AnnotatePage {
   }
   
   ionViewDidEnter(){
+    this.pageInstructions();
     this.blockPdf.registerEmojiEvent();
     this.blockChat.registerEmojiEvent();
     this.events.subscribe('svg:loaded', () => {
       console.log('svg:loaded');
       this.createSigningInstructionsPopOver();
     });
+    
   }
 
   ionViewWillLeave() {
@@ -75,13 +77,23 @@ export class AnnotatePage {
 
   }
 
-  toggleText(){
-    if (this.showText){
-      this.showText = false;
+  pageInstructions(){
+    let shouldShowText = localStorage.getItem('showTextAnnotatePage');
+    if (shouldShowText == "true" || !shouldShowText){
+      this.showPageInstructions();
+    } else { 
+      this.hidePageInstructions();
     }
-    else{
-      this.showText = true;
-    }
+  }
+
+  hidePageInstructions(){
+    this.showText = false;
+    localStorage.setItem('showTextAnnotatePage', 'false');
+  }
+
+  showPageInstructions(){
+    this.showText = true;
+    localStorage.setItem('showTextAnnotatePage', 'true');
   }
 
   async next (){

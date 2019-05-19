@@ -87,7 +87,7 @@
           </div> -->
     
           <div class="btooltip" style="display:flex; flex-direction:row; margin-top: 10px">
-            <button icon-only (click)="openAnnotaionsDropDown($event)" class="remove-button-style annotation-dropdown">
+            <button *ngIf="showSignHere" icon-only (click)="openAnnotaionsDropDown($event)" class="remove-button-style annotation-dropdown">
                 <ion-icon name="ios-arrow-dropdown" style="font-size: 20px" ></ion-icon>
             </button>
             

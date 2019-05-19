@@ -19,10 +19,13 @@
         </section>
         <div style="clear:both"></div>
 
-
-        <div style="display:flex; cursor:pointer; max-width: 750px;" class="no-print instructions-text">
-            <ion-icon *ngIf="showText" name="md-close-circle" style=" margin-left: 20px; " (click)="toggleText()"></ion-icon>
-            <p *ngIf="showText" class="selectable no-print" style="padding-right: 8px; padding-left: 8px;">
+       
+        <div style="display:flex; cursor:pointer;" class="no-print instructions-text" *ngIf="showText === false">
+            <ion-icon name="md-information-circle" color="primary" style=" margin-left: 20px; margin-bottom: 10px" (click)="showPageInstructions()"></ion-icon>
+        </div>
+        <div style="display:flex; cursor:pointer; max-width: 750px;" class="no-print instructions-text" *ngIf="showText">
+            <ion-icon name="md-close-circle" style=" margin-left: 20px; " (click)="hidePageInstructions()"></ion-icon>
+            <p class="selectable no-print" style="padding-right: 8px; padding-left: 8px;">
                 Please markup the document for your signer by dragging the "sign" annotation on the document. Feel free
                 to use emojis! If required, sign your name by dragging your signature onto the document. Also, add
                 notes to the chat log. This contains all updates and events about the document.
