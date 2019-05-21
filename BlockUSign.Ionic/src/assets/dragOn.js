@@ -391,6 +391,9 @@ global.event = global.event || {};
                     elemImage.setAttribute('fill', txt.getAttribute('fill'));
                     elemImage.setAttribute('style', txt.getAttribute('style'));
                     elemImage.innerHTML = txt.innerHTML;
+
+                    global.event.textAnnotationDropped = new CustomEvent('textAnnotationDropped', { 'detail': elemImage } );
+                    document.dispatchEvent(global.event.textAnnotationDropped, elemImage);
                     
                 }
                 else {

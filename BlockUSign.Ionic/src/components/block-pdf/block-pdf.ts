@@ -87,6 +87,8 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
   fullToolbar = true;
   flag;
   mouseEndEventDeviceSpecific = "mouseup";
+  annotationsTotal = 0;
+  annotationsComplete = 0;
 
   constructor(
     public navCtrl: NavController,
@@ -129,7 +131,8 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
       }
 
       this.init();
-
+      document.addEventListener('textAnnotationDropped', this.onTextAnnotationDropped );
+    
     });
 
   }
@@ -278,7 +281,7 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnDestroy() {
     console.log("====> ngOnDestroy");
-
+    document.removeEventListener('textAnnotationDropped', this.onTextAnnotationDropped);
   }
 
   currentAnnotationUrl() {
@@ -584,8 +587,19 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
       //   this.createSigningInstructionsPopOver();
       // }
       this.events.publish('svg:loaded');
+      this.calculateAnnotationsCompleted();
+      this.calculateAnnotationsTotal();
+      
     }
 
+  }
+
+  calculateAnnotationsTotal(){
+    this.annotationsTotal = $('.dragOn-drawArea' ).children('image').filter( function () { return ( parseInt($(this).attr("x")) > 0 && parseInt($(this).attr("y")) > 0 ) ; } ).length;
+  }
+
+  calculateAnnotationsCompleted(){
+    $('.annotationsComplete')[0].innerHTML = $('.dragOn-drawArea' ).children('text').filter( function () { return ( parseInt($(this).attr("x")) > 0 && parseInt($(this).attr("y")) > 0 ) ; } ).length;
   }
 
   createSigningInstructionsPopOver() {
@@ -820,6 +834,13 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.sigTextElement.nativeElement.textContent == "") {
       this.sigTextElement.nativeElement.innerHTML = "&nbsp;";
     }
+  }
+
+  onTextAnnotationDropped(e){
+    console.log('onTextAnnotationDropped', e);
+    setTimeout( ()=>{
+      $('.annotationsComplete')[0].innerHTML = $('.dragOn-drawArea' ).children('text').filter( function () { return ( parseInt($(this).attr("x")) > 0 && parseInt($(this).attr("y")) > 0 ) ; } ).length;
+    }, 1000 )
   }
 
   isOldDoc() {
