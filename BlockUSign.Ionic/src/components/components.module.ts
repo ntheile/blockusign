@@ -8,6 +8,7 @@ import { LoadingComponent } from './loading/loading';
 import { VideoComponent } from './video/video';
 import { RecordButtonComponent } from './record-button/record-button';
 import { FeedComponent } from './feed/feed';
+import { DragOnComponent } from './drag-on/drag-on';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { FeedComponent } from './feed/feed';
     LoadingComponent,
     VideoComponent,
     RecordButtonComponent,
-    FeedComponent],
+    FeedComponent,
+    DragOnComponent],
     imports: [
         IonicModule,
         DirectivesModule
@@ -28,7 +30,8 @@ import { FeedComponent } from './feed/feed';
     LoadingComponent,
     VideoComponent,
     RecordButtonComponent,
-    FeedComponent]
+    FeedComponent,
+    DragOnComponent]
 })
 export class BlockStepsComponentModule {
     static forRoot(): ModuleWithProviders {

@@ -4,3 +4,4 @@ TO DO
 - [ ] DragOn events
     - [ ] Drop Zone for each annotation
     - [ ] OnMoved Event Handler
+- [ ] Turn dragOn.js into an Ionic Component

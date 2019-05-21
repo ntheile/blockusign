@@ -1,0 +1,103 @@
+drag-on {
+    *, *:before, *:after {
+        box-sizing: border-box;
+      }
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        background-color:#568eb9;
+        background-image: linear-gradient(rgba(255,255,255,.3) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(255,255,255,.3) 2px, transparent 2px),
+        linear-gradient(rgba(255,255,255,.2) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.2) 1px, transparent 1px);
+        background-size:100px 100px, 100px 100px, 20px 20px, 20px 20px;
+        background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px
+      }
+      .drop-zone {
+        height: 70vh;
+        position: relative;
+      }
+        .steps {
+          position: absolute;
+          height: 100px;
+          width: 100px;
+          background: white;
+          border: 1px solid #568eb9;
+          box-shadow: 0 5px 15px rgba(0,0,0,.2);
+        }
+          .step-1 { top:  50px; left:   50px; }
+          .step-2 { top: 200px; left:   50px; }
+          .step-3 { top: 250px; left:  200px; }
+          .step-4 { top: 250px; left:  350px; }
+          .step-5 { top: 250px; left:  500px; }
+          .step-6 { top: 200px; left: 650px; }
+      
+          .can--drop:not(.caught--it):not(.can--catch) {
+            /*animation: bounce 1.5s ease infinite;*/
+            animation: glow 1.5s ease infinite;
+          }
+      
+          @keyframes glow {
+            50% {
+              background: rgba(255,255,255,.6);
+            }
+          }
+      
+          @keyframes bounce {
+            50% {
+              transform:
+                scale(.98)
+                translateY(-5%);
+            }
+          }
+      
+          .steps:before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            height: 100%; width: 100%;
+            background: #6dc001;
+      
+            transform-origin: center;
+            transform: scale(0);
+          }
+          .can--catch:before {
+            animation: grow .75s ease infinite;
+          }
+      
+          @keyframes grow {
+            from { transform: scale(0); }
+            to {
+              opacity: 0;
+              transform: scale(1);
+            }
+          }
+          
+      
+      .drag-zone {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        height: 30vh;
+        background: rgba(255,255,255,.3);
+        border-top: 1px solid rgba(255,255,255,.5);
+      }
+        .drag-wrap {
+          width: 100px;
+        }
+        .drag-zone .draggable {
+          display: inline-block;
+        }
+          .draggable {
+            cursor: -webkit-grab;
+            cursor:    -moz-grab;
+            cursor:         grab;
+          }
+          .draggable.getting--dragged {
+            cursor: -webkit-grabbing;
+            cursor:    -moz-grabbing;
+            cursor:         grabbing;
+          }
+      
+      .draggable { max-width: 100%; height: auto; }
+}
