@@ -120,7 +120,7 @@ export class HomePage {
 
         //let docs = await this.documentService.getDocumentsIndex(true)
         //this.testPublicKeyFile();
-        this.checkNewFeatures();
+        // this.checkNewFeatures();
 
 
 

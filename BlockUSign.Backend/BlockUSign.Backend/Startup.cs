@@ -49,6 +49,32 @@ namespace BlockUSign.Backend
                 app.UseDeveloperExceptionPage();
             }
 
+            // Add header
+            app.Use(async (context, nextMiddleware) =>
+            {
+
+                context.Response.OnStarting(() =>
+                {
+                    context.Response.Headers.Add("can't-be-evil", "true");
+
+                    // delete cookies 
+                    foreach (var cookie in context.Request.Cookies.Keys)
+                    {
+                        context.Response.Cookies.Delete(cookie);
+                    }
+
+
+                    // rewrite rules
+
+
+                    return Task.FromResult(0);
+                });
+                await nextMiddleware();
+            });
+
+
+            
+
 
             app.UseRewriter(new RewriteOptions().Add(new RedirectWwwRule()));
 
