@@ -25,7 +25,10 @@
 
 
     <p class="no-print" padding *ngIf="documentService.currentDoc && !documentService.currentDoc.isCompleted">
-      How do you want to send the document to your signer(s)?
+      How do you want to send the document to your signer(s)? 
+    </p>
+    <p class="no-print" *ngIf="documentService.currentDoc && !documentService.currentDoc.isCompleted">
+      &nbsp;&nbsp; * If you are the only solo signer then proceed to the next step.
     </p>
 
     <div style="max-width:600px" *ngIf="documentService.currentDoc && !documentService.currentDoc.isCompleted">

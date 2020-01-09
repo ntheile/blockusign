@@ -12,6 +12,24 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
+
+  <script>
+    function deleteAllCookies() {
+      var cookies = document.cookie.split(";");
+
+      for (var i = 0; i < cookies.length; i++) {
+          var cookie = cookies[i];
+          var eqPos = cookie.indexOf("=");
+          var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+          document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      }
+    }
+    deleteAllCookies();
+  </script>
+
+  <link href="./assets/cdn/css/material-fonts.css" rel="stylesheet">
+  <link href="./assets/cdn/css/roboto/roboto-fontface.css" rel="stylesheet" /> 
+
   <link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico">
   <link rel="manifest" href="manifest.json">
   <link href="./assets/ugly.min.css" rel="stylesheet">
@@ -42,7 +60,7 @@
   <!-- npm run ugly - scripts from src/vendor -->
   <script src="./assets/ugly.min.js"></script>
   <link rel="stylesheet" href="./assets/css/shepherd-theme-default.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.2/jquery.scrollTo.min.js"></script>
+  <script src="./assets/jquery.scrollTo.min.js"></script>
   <script src="./assets/dragOn.js"></script>
 
 </head>

@@ -45,7 +45,7 @@ export class AnnotatePage {
 
 
   ionViewDidLoad() {    
-   
+   this.showPageInstructions();
   }
 
   createSigningInstructionsPopOver(){

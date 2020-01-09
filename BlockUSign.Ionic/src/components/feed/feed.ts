@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { BlockStackService } from '../../services/blockstack.service';
 import { DocumentService } from '../../services/document.service';
 import * as moment from 'moment';
+
 declare let blockstack: any;
 
 /**
@@ -35,6 +36,15 @@ export class FeedComponent {
 
   async init(){
     this.name = blockstack.loadUserData().username;
+
+    if (!this.name){
+      let profileData = await this.blockstackService.getProfileData();
+      if (profileData) {
+        let myProfile = JSON.parse(profileData);
+        this.name = myProfile.email; 
+      }
+    }
+
     this.loadFeed();
   }
 

@@ -14,6 +14,7 @@ import PDFAnnotate from 'pdf-annotate';
 import * as _ from 'underscore';
 //import { EmojiPopoverPage } from '../../app/emoji.popover.page';
 import { AnnotationsDropdownComponent } from '../annotations-dropdown/annotations-dropdown';
+import { BlockStackService } from './../../services/blockstack.service';
 declare let CustomStyle: any;
 declare var $: any;
 declare var window: any;
@@ -105,6 +106,7 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
     public sanitizer: DomSanitizer,
     public events: Events,
     public utils: Utils,
+    public blockStackService: BlockStackService,
   ) {
     console.log('====> constructor');
 
@@ -765,6 +767,15 @@ export class BlockPdfComponent implements OnInit, AfterViewInit, OnDestroy {
 
     let ownerEmail = "";
     let me = blockstack.loadUserData().username;
+    
+    if (!me){
+      let profileData = await this.blockStackService.getProfileData();
+      if (profileData) {
+        let myProfile = JSON.parse(profileData);
+        me = myProfile.email; 
+      }
+    }
+    
 
     try {
       let collaborators = await this.documentService.getCollaborators(this.documentService.currentDoc.guid);

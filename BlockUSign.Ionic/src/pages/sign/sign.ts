@@ -48,6 +48,7 @@ export class SignPage {
 
   ionViewDidLoad() {
     this.init();
+    this.showPageInstructions();
   }
 
   startSignWizard() {

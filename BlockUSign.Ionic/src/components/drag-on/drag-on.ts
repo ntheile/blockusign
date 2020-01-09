@@ -27,6 +27,7 @@ export class DragOnComponent {
         var startPos = null;
     
         interact('.draggable').draggable({
+          // @ts-ignore
           snap: {
             targets: [startPos],
             range: Infinity,

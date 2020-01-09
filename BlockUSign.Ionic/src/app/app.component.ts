@@ -44,7 +44,7 @@ export class MyApp {
   fileName = "blockusign/pdf1.pdf";
   profile: any;
   pdfBuffer: any;
-  avatar: string = "https://www.gravatar.com/avatar/?d=identicon";
+  avatar: string = "./assets/gravatar.png";
   documentsList: any;
   email: string;
   loading;
@@ -246,7 +246,13 @@ export class MyApp {
     if (blockstack.isUserSignedIn()) {
 
       let profile = blockstack.loadUserData();
-      this.name = profile.username;
+      
+      if (profile.username){
+        this.name = profile.username;
+      } 
+      
+      
+     
       this.isLoggedIn = true;
       try {
         this.avatar = profile.profile.image[0].contentUrl;
@@ -272,8 +278,15 @@ export class MyApp {
         else {
           // this.name = myProfile.email;
           this.name = blockstack.loadUserData().username;
+          if (!this.name){
+            this.name = myProfile.email;
+          }
           this.loadCachedNewDocWhenLoggedIn();
         }
+      }
+
+      if (!this.name){
+        this.name = profile.decentralizedID
       }
 
       //}
