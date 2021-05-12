@@ -70,7 +70,7 @@
     "bower": "^1.8.2",
     "browserify": "^16.2.3",
     "canvas2pdf": "^1.0.7",
-    "chart.js": "^2.7.1",
+    "chart.js": "^2.9.4",
     "chirp-connect": "^3.0.12",
     "cordova-android": "6.3.0",
     "cordova-plugin-device": "^1.1.4",
