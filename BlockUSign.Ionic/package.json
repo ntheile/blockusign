@@ -128,7 +128,7 @@
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "electron": "^2.0.8",
+    "electron": "^9.4.0",
     "html-loader": "^0.5.1",
     "istanbul-instrumenter-loader": "^3.0.0",
     "jasmine": "^2.5.3",
