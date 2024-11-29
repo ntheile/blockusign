@@ -74,7 +74,7 @@
     "chirp-connect": "^3.0.12",
     "cordova-android": "6.3.0",
     "cordova-plugin-device": "^1.1.4",
-    "cordova-plugin-ionic-webview": "^1.1.16",
+    "cordova-plugin-ionic-webview": "^2.2.0",
     "cordova-plugin-splashscreen": "^4.0.3",
     "cordova-plugin-whitelist": "^1.3.1",
     "cors": "^2.8.4",
